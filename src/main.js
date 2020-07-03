@@ -1,5 +1,5 @@
 // Import global assets
-import './assets/global.css'
+import './assets/styles/global.scss'
 
 // Import vue component
 import components from './components'

@@ -29,3 +29,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.button {
+  border: none;
+  padding: 6px 8px;
+  color: white;
+  background-color: $sb-green;
+}
+</style>
