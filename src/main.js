@@ -5,7 +5,7 @@ import './assets/styles/global.scss'
 import components from './components'
 
 // Declare install function executed by Vue.use()
-export function install(Vue) {
+export function install (Vue) {
   if (install.installed) return
 
   install.installed = true

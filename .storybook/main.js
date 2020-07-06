@@ -9,19 +9,19 @@ module.exports = {
     '@storybook/addon-storysource'
   ],
   // https://storybook.js.org/docs/configurations/custom-webpack-config/
-  webpackFinal: async (config ) => {
+  webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.scss$/,
       use: ['sass-loader', {
         loader: 'style-resources-loader',
         options: {
-            patterns: [
-              path.resolve(__dirname, '../src/assets/styles/variables.scss')
-            ]
+          patterns: [
+            path.resolve(__dirname, '../src/assets/styles/variables.scss')
+          ]
         }
-      }],
-    });
+      }]
+    })
 
-    return config;
+    return config
   }
-};
+}
