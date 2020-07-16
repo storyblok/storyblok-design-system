@@ -1,4 +1,4 @@
-const path = require('path')
+const { globalStyles } = require('../config/globals')
 
 module.exports = {
   stories: [
@@ -18,9 +18,7 @@ module.exports = {
       use: ['sass-loader', {
         loader: 'style-resources-loader',
         options: {
-          patterns: [
-            path.resolve(__dirname, '../src/assets/styles/variables.scss')
-          ]
+          patterns: globalStyles
         }
       }]
     })
