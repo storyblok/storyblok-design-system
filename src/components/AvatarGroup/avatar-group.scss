@@ -1,0 +1,34 @@
+.sb-avatar-group {
+  position: relative;
+
+  .sb-avatar,
+  &__more {
+    margin-left: -10px;
+    border-radius: 100%;
+    border: 3px solid $white;
+    transform: translate(0, 0);
+  }
+
+  .sb-avatar:first-child {
+    margin-left: 0;
+  }
+
+  .sb-avatar:hover {
+    transform: translate(0, -10px);
+    z-index: 99999;
+  }
+
+  &__more {
+    @include avatarComponent();
+    @include avatarComponentSize($sb-avatar-normal);
+    background-color: $lighter;
+  }
+
+  &--large &__more {
+    @include avatarComponentSize($sb-avatar-large); 
+  }
+
+  &--small &__more {
+    @include avatarComponentSize($sb-avatar-small); 
+  }
+}

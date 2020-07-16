@@ -12,6 +12,14 @@ const COLORS = Object.entries(styles).filter(entry => {
 export const availableSizes = ['large', 'normal', 'small']
 
 /**
+ * @description check if a size is valid
+ * @method isSizeValid
+ * @param  {string} size
+ * @return {boolean}
+ */
+export const isSizeValid = size => availableSizes.indexOf(size) !== -1
+
+/**
  * @description generates a random color
  * @method generateRandomColor
  * @return {string}

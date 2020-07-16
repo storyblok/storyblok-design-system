@@ -5,13 +5,7 @@
   // types of avatar
   &__image,
   &__initials {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-    position: relative;
-    border-radius: 100%;
-    overflow: hidden;
+    @include avatarComponent();
     
     width: $sb-avatar-normal;
     height: $sb-avatar-normal;

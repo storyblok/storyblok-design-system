@@ -1,7 +1,7 @@
 import './avatar.scss'
 import avatarFallback from '../../assets/icons/avatar-fallback.svg'
 import { canUseDOM } from '../../utils'
-import { availableSizes, getInitials, generateRandomColor } from './utils.js'
+import { isSizeValid, getInitials, generateRandomColor } from './utils.js'
 
 const SbAvatar = {
   name: 'SbAvatar',
@@ -12,9 +12,7 @@ const SbAvatar = {
     },
     size: {
       type: String,
-      validator (value) {
-        return availableSizes.indexOf(value) !== -1
-      }
+      validator: isSizeValid
     },
     showName: {
       type: Boolean,

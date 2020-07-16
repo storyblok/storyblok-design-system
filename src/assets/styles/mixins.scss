@@ -1,0 +1,14 @@
+@mixin avatarComponent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+@mixin avatarComponentSize ($size) {
+  width: $size;
+  height: $size;
+}
