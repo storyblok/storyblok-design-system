@@ -17,27 +17,15 @@
     height: $sb-avatar-normal;
   }
 
-  // sizes
-  &--small {
-    .sb-avatar__image,
-    .sb-avatar__initials {
-      width: $sb-avatar-small;
-      height: $sb-avatar-small;
-    }
-  }
-
-  &--large {
-    .sb-avatar__image,
-    .sb-avatar__initials {
-      width: $sb-avatar-large;
-      height: $sb-avatar-large;
-    }
-  }
-
   // image
   img {
     width: 100%;
     max-width: 100%;
+    vertical-align: middle;
+    border-radius: 100%;
+
+    width: $sb-avatar-normal;
+    height: $sb-avatar-normal;
   }
 
   // initials
@@ -52,5 +40,24 @@
   &__text {
     font-size: 13px;
     margin-left: 10px;
+  }
+
+  // sizes
+  &--small {
+    .sb-avatar__image,
+    .sb-avatar__initials,
+    img {
+      width: $sb-avatar-small;
+      height: $sb-avatar-small;
+    }
+  }
+
+  &--large {
+    .sb-avatar__image,
+    .sb-avatar__initials,
+    img {
+      width: $sb-avatar-large;
+      height: $sb-avatar-large;
+    }
   }
 }

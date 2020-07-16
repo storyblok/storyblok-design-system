@@ -67,6 +67,7 @@ const SbAvatar = {
       if (this.isImageLoaded) {
         return h('img', {
           attrs: {
+            alt: this.name,
             src: this.src
           }
         })
@@ -74,6 +75,7 @@ const SbAvatar = {
 
       return h('img', {
         attrs: {
+          alt: this.name,
           src: avatarFallback
         }
       })
@@ -86,6 +88,10 @@ const SbAvatar = {
     }
 
     const renderAvatar = () => {
+      if (this.$slots.default) {
+        return this.$slots.default
+      }
+
       if (this.src) {
         return h('div', {
           staticClass: 'sb-avatar__image',
