@@ -1,1 +1,36 @@
+// Color pallete
+
+// primary
 $sb-green: #00B3B0;
+$sb-dark-blue: #1B243F;
+
+// secondary
+$green: #2DB47D;
+$blue: #395ECE;
+$yellow: #FBCE41;
+$orange: #FFAC00;
+$red: #FF6159;
+
+// neutrals
+$dark-light: #B1B5BE;
+$light: #DFE3E8;
+$lighter: #F4F6F8;
+$icon-color: #B1B5BE;
+$background-dark: #DDDDDD;
+$background-light: #E7E7E7;
+$background-lighet: #F5F5F5;
+
+// ----
+
+// Typography
+$primary-font-family: 'Roboto';
+$primary-text-color: #1B243F;
+
+// Global Variables
+$color-primary: $sb-green;
+$dark-color-primary: $sb-dark-blue;
+
+$color-secondary: $green;
+$color-positive: $green;
+$color-negative: $red;
+$color-warning: $orange;
