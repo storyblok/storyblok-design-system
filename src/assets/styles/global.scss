@@ -6,3 +6,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@each $name, $pair in $colors {
+  .bg-#{$name} {
+    background-color: $pair;
+  }
+
+  .text-#{$name} {
+    color: $pair;
+  }
+}

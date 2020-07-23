@@ -28,13 +28,23 @@ $primary-font-family: 'Roboto';
 $primary-text-color: #1B243F;
 
 // Global Variables
-$color-primary: $sb-green;
-$dark-color-primary: $sb-dark-blue;
 
+// Colors
+$color-primary: $sb-green;
+$color-primary-dark: $sb-dark-blue;
 $color-secondary: $green;
 $color-positive: $green;
 $color-negative: $red;
 $color-warning: $orange;
+
+$colors: (
+  'primary': $color-primary,
+  'primary-dark': $color-primary-dark,
+  'secondary': $color-secondary,
+  'positive': $color-positive,
+  'negative': $color-negative,
+  'warning': $color-warning
+);
 
 // Avatar variables
 $sb-avatar-small: 26px;
