@@ -1,15 +1,8 @@
-import styles from '../../assets/styles/js-variables.scss'
-import { getRandomNumber } from '../../utils'
-
-const COLORS = Object.entries(styles).filter(entry => {
-  const [key] = entry
-  return key.includes('colors')
-})
-
-/**
- * @type {Array<string>}
- */
-export const availableSizes = ['large', 'normal', 'small']
+import {
+  getRandomNumber,
+  availableSizes,
+  availableBgColors
+} from '../../utils'
 
 /**
  * @description check if a size is valid
@@ -20,14 +13,14 @@ export const availableSizes = ['large', 'normal', 'small']
 export const isSizeValid = size => availableSizes.indexOf(size) !== -1
 
 /**
- * @description generates a random color
- * @method generateRandomColor
+ * @description generates a random bg color class
+ * @method generateRandomBgColor
  * @return {string}
  */
-export const generateRandomColor = () => {
-  const randomNumber = getRandomNumber(0, COLORS.length)
-  const color = COLORS[randomNumber]
-  return color[1]
+export const generateRandomBgColor = () => {
+  const randomNumber = getRandomNumber(0, availableBgColors.length)
+
+  return availableBgColors[randomNumber]
 }
 
 /**

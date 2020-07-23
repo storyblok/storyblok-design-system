@@ -1,7 +1,7 @@
 import './avatar.scss'
 import avatarFallback from '../../assets/icons/avatar-fallback.svg'
 import { canUseDOM } from '../../utils'
-import { isSizeValid, getInitials, generateRandomColor } from './utils.js'
+import { isSizeValid, getInitials, generateRandomBgColor } from './utils.js'
 
 const SbAvatar = {
   name: 'SbAvatar',
@@ -92,10 +92,7 @@ const SbAvatar = {
 
       if (this.src) {
         return h('div', {
-          staticClass: 'sb-avatar__image',
-          style: {
-            backgroundColor: generateRandomColor()
-          }
+          staticClass: 'sb-avatar__image ' + generateRandomBgColor()
         }, [
           renderAvatarImage()
         ])
@@ -103,10 +100,7 @@ const SbAvatar = {
 
       if (this.name) {
         return h('div', {
-          staticClass: 'sb-avatar__initials',
-          style: {
-            backgroundColor: generateRandomColor()
-          }
+          staticClass: 'sb-avatar__initials ' + generateRandomBgColor()
         }, [
           h('span', getInitials(this.name))
         ])
