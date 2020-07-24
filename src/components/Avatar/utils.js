@@ -36,5 +36,5 @@ export const getInitials = username => {
     return `${firstWord.charAt(0)}${secondWord.charAt(0)}`
   }
 
-  return firstWord.charAt(0)
+  return `${firstWord.charAt(0)}${firstWord.charAt(1)}`
 }

@@ -40,7 +40,7 @@ const SbAvatar = {
         this.isImageLoaded = true
       }
 
-      image.onError = () => {
+      image.onerror = () => {
         this.isImageLoaded = false
       }
     }
