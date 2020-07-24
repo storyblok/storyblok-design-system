@@ -2,7 +2,7 @@ import { isSizeValid } from '../Avatar/utils'
 
 import './avatar-group.scss'
 
-const MoreAvatar = {
+export const MoreAvatar = {
   name: 'MoreAvatar',
 
   functional: true,
