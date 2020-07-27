@@ -2,6 +2,28 @@ import { isSizeValid } from '../Avatar/utils'
 
 import './avatar-group.scss'
 
+export const MoreAvatars = {
+  name: 'MoreAvatars',
+
+  functional: true,
+
+  render (h, { props, children }) {
+    const data = children.map(element => {
+      element.componentOptions.propsData = {
+        ...element.componentOptions.propsData,
+        ...props,
+        showName: true
+      }
+
+      return element
+    })
+
+    return h('div', {
+      staticClass: 'sb-avatar-group__avatars'
+    }, data)
+  }
+}
+
 export const MoreAvatar = {
   name: 'MoreAvatar',
 
@@ -65,7 +87,20 @@ const SbAvatarGroup = {
       }
     })
 
-    return h('div', avatarGroupProps, [data])
+    const moreAvatars = children.filter((_, index) => index >= maxElements)
+
+    return h(
+      'div',
+      avatarGroupProps,
+      [
+        data,
+        moreAvatars.length > 0 ? h(
+          MoreAvatars,
+          { props },
+          [...moreAvatars]
+        ) : null
+      ]
+    )
   }
 }
 

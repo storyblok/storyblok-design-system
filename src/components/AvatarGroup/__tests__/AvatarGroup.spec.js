@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import SbAvatarGroup, { MoreAvatar } from '..'
+import SbAvatarGroup, { MoreAvatar, MoreAvatars } from '..'
 import SbAvatar from '../../Avatar'
 
 const factory = (template, propsData = {}) => {
@@ -65,12 +65,17 @@ describe('SbAvatarGroup component', () => {
     const wrappers = factory(template)
 
     it('should render a list of six Avatars', () => {
-      expect(wrappers.findAllComponents(SbAvatar).length).toBe(6)
+      expect(wrappers.findAll('.sb-avatar-group > .sb-avatar').length).toBe(6)
     })
 
     it('should render, as the last element, the MoreAvatar component with +n text', () => {
       expect(wrappers.findAllComponents(MoreAvatar).length).toBe(1)
       expect(wrappers.findComponent(MoreAvatar).text()).toBe('+3')
+    })
+
+    it('should render the MoreAvatars component with the children', () => {
+      const moreAvatars = wrappers.findComponent(MoreAvatars)
+      expect(moreAvatars.findAll('.sb-avatar').length).toBe(3)
     })
   })
 })
