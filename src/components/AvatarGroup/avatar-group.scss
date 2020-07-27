@@ -1,21 +1,47 @@
+@mixin avatarGroupItem {
+  border-radius: 50%;
+  border: 3px solid $white;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
 .sb-avatar-group {
+  display: inline-block;
   position: relative;
 
-  .sb-avatar,
-  &__more {
-    margin-left: -10px;
-    border-radius: 100%;
-    border: 3px solid $white;
-    transform: translate(0, 0);
+  > .sb-avatar {
+    margin-left: -20px;
+    cursor: pointer;
+    
+    .sb-avatar__image,
+    .sb-avatar__initials {
+      @include avatarGroupItem;
+      overflow: hidden;
+      transform: translate(0, 0);
+      transition: 0.1s ease-in-out;
+    }
   }
 
-  .sb-avatar:first-child {
+  &__more {
+    @include avatarGroupItem;
+    margin-left: -20px;
+    cursor: pointer;
+  }
+
+  > .sb-avatar:first-child {
     margin-left: 0;
   }
 
-  .sb-avatar:hover {
-    transform: translate(0, -10px);
-    z-index: 99999;
+  > .sb-avatar:hover {
+    .sb-avatar__image,
+    .sb-avatar__initials {
+      transform: translate(0, -10px);
+      z-index: 99999;
+    }
+  }
+
+  &:hover > .sb-avatar:not(:hover) {
+    opacity: 0.5;
   }
 
   &__more {
