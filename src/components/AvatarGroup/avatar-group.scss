@@ -10,7 +10,7 @@
   position: relative;
 
   > .sb-avatar {
-    margin-left: -20px;
+    margin-left: -15px;
     cursor: pointer;
     
     .sb-avatar__image,
@@ -24,7 +24,7 @@
 
   &__more {
     @include avatarGroupItem;
-    margin-left: -20px;
+    margin-left: -15px;
     cursor: pointer;
   }
 
@@ -50,16 +50,28 @@
     background-color: $lighter;
   }
 
+  // sizes
   &--large &__more {
     @include avatarComponentSize($sb-avatar-large); 
+  }
+
+  &--large &__more,
+  &--large > .sb-avatar {
+    margin-left: -20px;
   }
 
   &--small &__more {
     @include avatarComponentSize($sb-avatar-small); 
   }
 
+  &--small &__more,
+  &--small > .sb-avatar {
+    margin-left: -10px;
+  }
+
   &__avatars {
     position: absolute;
+    background-color: $white;
     top: 120%;
     right: 0;
     display: inline-block;
