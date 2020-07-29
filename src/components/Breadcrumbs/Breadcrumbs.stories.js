@@ -9,7 +9,7 @@ export default {
   decorators: [withKnobs]
 }
 
-const defaultBreadcrumbItems = [
+export const defaultBreadcrumbItems = [
   {
     label: 'Global',
     href: '#Global',

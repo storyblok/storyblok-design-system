@@ -51,11 +51,18 @@ const SbBreadcrumbItem = {
     label: String,
     title: String,
     href: String,
-    to: Object,
     as: {
       type: String,
       default: 'a'
-    }
+    },
+    // router-link props and derivatives
+    append: Boolean,
+    disabled: Boolean,
+    exact: Boolean,
+    exactActiveClass: String,
+    link: Boolean,
+    to: [String, Object],
+    replace: Boolean
   },
 
   render (h, { props }) {
@@ -97,5 +104,6 @@ const SbBreadcrumbItem = {
 }
 
 export {
+  SbBreadcrumbLink,
   SbBreadcrumbItem
 }

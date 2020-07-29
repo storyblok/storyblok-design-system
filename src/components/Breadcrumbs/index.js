@@ -130,5 +130,6 @@ const SbBreadcrumbs = {
 export {
   SbBreadcrumbs,
   SbBreadcrumbItem,
+  SbBreadcrumbDropdown,
   SbBreadcrumbSeparator
 }
