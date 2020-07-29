@@ -1,3 +1,15 @@
+/**
+ * @method getLabelTruncated
+ * @param  {string} label
+ * @return {string}
+ */
+const getLabelTruncated = label => `${label.slice(0, 13)}...`
+
+/**
+ * SbBreadcrumbLink component
+ *
+ * Link abstraction to handle with <a> tags and custom tags
+ */
 const SbBreadcrumbLink = {
   name: 'SbBreadcrumbLink',
   functional: true,
@@ -39,8 +51,11 @@ const SbBreadcrumbLink = {
   }
 }
 
-const getLabelTruncated = label => `${label.slice(0, 13)}...`
-
+/**
+ * SbBreadcrumbItem component
+ *
+ * Breadcrumb item that renders just a text or a SbBreadcrumbLink
+ */
 const SbBreadcrumbItem = {
   name: 'SbBreadcrumbItem',
 

@@ -1,5 +1,10 @@
 import { SbBreadcrumbItem } from './BreadcrumItem'
 
+/**
+ * SbBreadcrumbDropdown component
+ *
+ * Dropdown that renders the additional items
+ */
 const SbBreadcrumbDropdown = {
   name: 'SbBreadcrumbDropdown',
 
@@ -28,6 +33,11 @@ const SbBreadcrumbDropdown = {
   }
 }
 
+/**
+ * SbBreadcrumbSeparator component
+ *
+ * Separator
+ */
 const SbBreadcrumbSeparator = {
   name: 'SbBreadcrumbSeparator',
 
@@ -50,6 +60,11 @@ const SbBreadcrumbSeparator = {
   }
 }
 
+/**
+ * SbBreadcrumbs component
+ *
+ * Breadcrumbs container
+ */
 const SbBreadcrumbs = {
   name: 'SbBreadcrumbs',
 
