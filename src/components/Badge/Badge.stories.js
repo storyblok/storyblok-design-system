@@ -45,7 +45,7 @@ export const SmallWithText = () => ({
   template: `<div>
     <SbBadge status="success" is-small text="5"/>
     <SbBadge status="info" is-small text="10"/>
-    <SbBadge status="warning" is-small text="25"/>
-    <SbBadge status="error" is-small text="0"/>
+    <SbBadge status="warning" is-small text="15"/>
+    <SbBadge status="error" is-small text="200"/>
   </div>`
 })

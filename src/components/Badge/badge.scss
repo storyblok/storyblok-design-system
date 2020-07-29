@@ -9,14 +9,18 @@
   border-radius: 5px;
   height: 21px;
   width: 80px;
-  line-height: 20px;
+  line-height: 21px;
 
   &--small {
     height: 20px;
     width: 20px;
   }
 
-  //status
+  &--medium {
+    height: 20px;
+    width: 38px;
+  }
+
   &--success {
     background-color: $green;
   }
@@ -31,5 +35,16 @@
 
   &--error {
     background-color: $red;
+  }
+
+  &--icon{
+    width: 8px;
+  }
+
+  &--text-icon {
+    img {
+      padding-right: 3px;
+      padding-top: 4px;
+    }
   }
 }

@@ -1,5 +1,7 @@
 import './badge.scss'
+import badgeError from '../../assets/icons/badge-error.svg'
 import { captalize } from './utils'
+
 const SbBadge = {
   name: 'SbBadge',
 
@@ -30,26 +32,23 @@ const SbBadge = {
       staticClass: 'sb-badge'
     }
 
+    const renderIcon = () => {
+      return h('img', {
+        attrs: {
+          src: badgeError,
+          class: 'sb-badge--icon',
+          alt: `${captalize(this.status)} icon`
+        }
+      })
+    }
+
     if (this.status) {
       badgeProps.staticClass += ` sb-badge--${this.status}`
     }
 
-    // This function to render icons, Must be refactored to
-    // return real svgs, at the moment it's an example based
-    // on the font awesome
-
-    const renderIcon = () => {
-      return h('i', {
-        staticClass: `fas fa-${this.status === 'success' ? 'times'
-                      : this.status === 'info' ? 'info'
-                      : this.status === 'warning' ? 'warning'
-                      : 'error'}`
-      })
-    }
-
     if (this.icon) {
       return h('span', {
-        staticClass: badgeProps.staticClass
+        staticClass: badgeProps.staticClass + ' sb-badge--text-icon'
       }, [
         renderIcon(),
         captalize(this.status)
@@ -66,7 +65,7 @@ const SbBadge = {
 
     if (this.isSmall) {
       return h('span', {
-        staticClass: badgeProps.staticClass + ' sb-badge--small'
+        staticClass: badgeProps.staticClass + (this.text.length > 1 ? ' sb-badge--medium' : ' sb-badge--small')
       }, [
         captalize(this.text)
       ])
