@@ -55,7 +55,7 @@ const SbBreadcrumbs = {
 
   props: {
     items: Array,
-    separator: String
+    isLargeSection: Boolean
   },
 
   data: () => ({
@@ -71,6 +71,9 @@ const SbBreadcrumbs = {
   render (h) {
     const breadcrumbsProps = {
       staticClass: 'sb-breadcrumbs',
+      class: {
+        'sb-breadcrumbs--large-section': this.isLargeSection
+      },
       attrs: {
         'aria-label': 'breadcrumb'
       }

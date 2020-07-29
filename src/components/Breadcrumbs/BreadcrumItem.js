@@ -61,14 +61,13 @@ const SbBreadcrumbItem = {
 
     const breadcrumbsItemProps = {
       staticClass: 'sb-breadcrumbs__item',
+      class: {
+        'sb-breadcrumbs__item--active': isActive
+      },
       attrs: {
         // to identify that the last link is the current page
         'aria-current': isActive ? 'page' : null
       }
-    }
-
-    if (isActive) {
-      breadcrumbsItemProps.staticClass += ' sb-breadcrumbs__item--active'
     }
 
     const renderChildren = () => {

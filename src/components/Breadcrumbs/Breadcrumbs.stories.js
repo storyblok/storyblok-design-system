@@ -1,9 +1,12 @@
+import { withKnobs, boolean } from '@storybook/addon-knobs'
+
 import { SbBreadcrumbs } from '.'
 
 // default export defines configurations to all stories
 export default {
   title: 'SbBreadcrumbs',
-  component: SbBreadcrumbs
+  component: SbBreadcrumbs,
+  decorators: [withKnobs]
 }
 
 const defaultBreadcrumbItems = [
@@ -49,10 +52,31 @@ export const Default = () => ({
           isActive: true
         }
       ]
+    },
+    isLargeSection: {
+      default: boolean('Enable Large Section', false)
     }
   },
   template: `
-    <SbBreadcrumbs :items="items" />
+    <SbBreadcrumbs v-bind="{ items, isLargeSection }" />
+  `
+})
+
+export const WithLargeSection = () => ({
+  components: { SbBreadcrumbs },
+  props: {
+    items: {
+      default: () => [
+        ...defaultBreadcrumbItems.slice(0, 2),
+        {
+          label: 'CTA Section',
+          isActive: true
+        }
+      ]
+    }
+  },
+  template: `
+    <SbBreadcrumbs :items="items" is-large-section />
   `
 })
 

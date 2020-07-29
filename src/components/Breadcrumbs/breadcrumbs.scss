@@ -63,4 +63,14 @@
   & > &__item:last-child {
     margin-right: 0;
   }
+
+  &--large-section {
+    > .sb-breadcrumbs__item:last-child {
+      width: 100%;
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 25px;
+      color: $primary-text-color;
+    }
+  }
 }
