@@ -39,6 +39,8 @@ const SbBreadcrumbLink = {
   }
 }
 
+const getLabelTruncated = label => `${label.slice(0, 13)}...`
+
 const SbBreadcrumbItem = {
   name: 'SbBreadcrumbItem',
 
@@ -58,6 +60,8 @@ const SbBreadcrumbItem = {
 
   render (h, { props }) {
     const { isActive, label, title, href, to, as } = props
+    const isTruncated = (label || '').length > 15
+    const labelFormated = isTruncated ? getLabelTruncated(label) : label
 
     const breadcrumbsItemProps = {
       staticClass: 'sb-breadcrumbs__item',
@@ -79,13 +83,13 @@ const SbBreadcrumbItem = {
               href,
               to,
               as,
-              label
+              label: labelFormated
             }
           })
         ]
       }
 
-      return [label]
+      return [labelFormated]
     }
 
     return h('li', breadcrumbsItemProps, renderChildren())

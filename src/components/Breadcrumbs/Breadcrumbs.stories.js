@@ -124,3 +124,27 @@ export const LongBreadcrumsInTwoLines = () => ({
     </div>
   `
 })
+
+export const ItemsTruncated = () => ({
+  components: { SbBreadcrumbs },
+  props: {
+    items: {
+      default: () => [
+        ...defaultBreadcrumbItems.slice(0, 2),
+        {
+          label: 'Long hero section name tooltip',
+          href: '#test-truncated'
+        },
+        {
+          label: 'CTA Section',
+          isActive: true
+        }
+      ]
+    }
+  },
+  template: `
+    <div style="max-width: 400px">
+      <SbBreadcrumbs :items="items" />
+    </div>
+  `
+})
