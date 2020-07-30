@@ -5,7 +5,7 @@ import {
   SbBreadcrumbItem,
   SbBreadcrumbDropdown
 } from '..'
-import { defaultBreadcrumbItems } from '../Breadcrumbs.stories'
+import { defaultBreadcrumbItemsData } from '../Breadcrumbs.stories'
 
 const factory = (propsData = {}) => {
   return mount(SbBreadcrumbs, {
@@ -22,7 +22,7 @@ describe('SbBreadrumbs component', () => {
   describe('when render a simple breadcrumbs list', () => {
     const wrapper = factory({
       items: [
-        ...defaultBreadcrumbItems.slice(0, 2),
+        ...defaultBreadcrumbItemsData.slice(0, 2),
         defaultLastItem
       ]
     })
@@ -35,7 +35,7 @@ describe('SbBreadrumbs component', () => {
   describe('when render a long list of breadcrumbs', () => {
     const wrapper = factory({
       items: [
-        ...defaultBreadcrumbItems,
+        ...defaultBreadcrumbItemsData,
         {
           label: 'Long hero section name tooltip',
           href: '#test-truncated'
@@ -72,7 +72,7 @@ describe('SbBreadrumbs component', () => {
   describe('when render a large section', () => {
     const wrapper = factory({
       items: [
-        ...defaultBreadcrumbItems.slice(0, 2),
+        ...defaultBreadcrumbItemsData.slice(0, 2),
         defaultLastItem
       ],
       isLargeSection: true

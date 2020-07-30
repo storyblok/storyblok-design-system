@@ -6,10 +6,11 @@ import { SbBreadcrumbs } from '.'
 export default {
   title: 'SbBreadcrumbs',
   component: SbBreadcrumbs,
+  excludeStories: /.*Data$/,
   decorators: [withKnobs]
 }
 
-export const defaultBreadcrumbItems = [
+export const defaultBreadcrumbItemsData = [
   {
     label: 'Global',
     href: '#Global',
@@ -46,7 +47,7 @@ export const Default = () => ({
   props: {
     items: {
       default: () => [
-        ...defaultBreadcrumbItems.slice(0, 2),
+        ...defaultBreadcrumbItemsData.slice(0, 2),
         {
           label: 'CTA Section',
           isActive: true
@@ -58,7 +59,7 @@ export const Default = () => ({
     }
   },
   template: `
-    <SbBreadcrumbs v-bind="{ items, isLargeSection }" />
+    <SbBreadcrumbs :items="items" :is-large-section="isLargeSection" />
   `
 })
 
@@ -67,7 +68,7 @@ export const WithLargeSection = () => ({
   props: {
     items: {
       default: () => [
-        ...defaultBreadcrumbItems.slice(0, 2),
+        ...defaultBreadcrumbItemsData.slice(0, 2),
         {
           label: 'CTA Section',
           isActive: true
@@ -85,7 +86,7 @@ export const LongBreadcrums = () => ({
   props: {
     items: {
       default: () => [
-        ...defaultBreadcrumbItems.slice(0, -1),
+        ...defaultBreadcrumbItemsData.slice(0, -1),
         {
           label: 'Button CTA',
           href: '#Button-CTA',
@@ -110,7 +111,7 @@ export const LongBreadcrumsInTwoLines = () => ({
   props: {
     items: {
       default: () => [
-        ...defaultBreadcrumbItems.slice(0, -1),
+        ...defaultBreadcrumbItemsData.slice(0, -1),
         {
           label: 'CTA Section',
           isActive: true
@@ -130,7 +131,7 @@ export const ItemsTruncated = () => ({
   props: {
     items: {
       default: () => [
-        ...defaultBreadcrumbItems.slice(0, 2),
+        ...defaultBreadcrumbItemsData.slice(0, 2),
         {
           label: 'Long hero section name tooltip',
           href: '#test-truncated'
