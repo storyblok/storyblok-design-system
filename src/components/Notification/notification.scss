@@ -1,0 +1,107 @@
+.sb-notification {
+  width: 434px;
+  height: 118px;
+  border-radius: 10px;
+  margin: 10px;
+
+  &--header {
+    display: flex;
+    padding: 20px 20px 0 20px;
+    justify-content: space-between;
+  }
+
+  &--content {
+    width: 312px;
+    display: block;
+    margin: auto;
+    margin-top: -20px;
+    margin-bottom: 19px;
+    margin-left: 58px;
+  }
+
+  &--without-link {
+    height: 91px;
+  }
+
+  &--title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &--description {
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  &--link {
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: none;
+    text-decoration-color: $primary-text-color;
+    color: $primary-text-color;
+  }
+
+  &--btn {
+    width: 14px;
+    height: 14px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  &--success {
+    background-color: $light-green;
+  }
+
+  &--warning {
+    background-color: $light-yellow;
+  }
+
+  &--info {
+    background-color: $light-blue;
+  }
+
+  &--error {
+    background-color: $light-red;
+    
+    .sb-notification--title {
+      color: $red;
+    }
+  }
+
+  &--general {
+    background-color: $white;
+    border: 1px solid $lighter;
+    box-shadow: 0px 1px 2px 0px $black;
+  }
+
+  &-banner {
+    width: 698px;
+    height: 91px;
+    display: flex;
+    justify-content: space-between;
+
+    &--icon {
+      width: 30px;
+      height: auto;
+      margin: auto;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    &--link {
+      width: 278px;
+      height: 20px;
+      margin: auto;
+      text-align: right;
+      margin-right: 29px;
+    }
+
+    &--header {
+      width: 312px;
+      height: 52px;
+      margin: auto;
+      margin-left: 0px;
+    }
+  }
+}
