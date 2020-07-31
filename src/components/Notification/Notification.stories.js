@@ -80,3 +80,90 @@ export const BannerNotification = () => ({
     </SbNotification>
   `
 })
+
+export const AllBannersNotification = () => ({
+  components: { SbNotification },
+  template: `<div>
+  <SbNotification 
+      status="success"
+      title="Success title"
+      description="Subtitle text goes here"
+      link="http://#"
+      format="banner">
+  </SbNotification>
+  <SbNotification 
+      status="info"
+      title="Information title"
+      description="Subtitle text goes here"
+      link="http://#"
+      format="banner">
+  </SbNotification>
+  <SbNotification 
+      status="warning"
+      title="Warning title"
+      description="Subtitle text goes here"
+      link="http://#"
+      format="banner">
+  </SbNotification>
+  <SbNotification 
+      status="error"
+      title="Error title"
+      description="Subtitle text goes here"
+      link="http://#"
+      format="banner">
+  </SbNotification>
+  <SbNotification 
+      status="general"
+      title="general title"
+      description="Subtitle text goes here"
+      link="http://#"
+      format="banner">
+  </SbNotification>
+  </div>`
+})
+
+export const ShortBanner = () => ({
+  components: { SbNotification },
+  template: `
+  <SbNotification 
+      status="general"
+      title="general title"
+      link="http://#"
+      link-name="To next"
+      short>
+  </SbNotification>`
+})
+
+export const ShortBanners = () => ({
+  components: { SbNotification },
+  template: `<div>
+  <SbNotification 
+      status="success"
+      title="success title"
+      link="http://#"
+      link-name="To next"
+      short>
+  </SbNotification>
+  <SbNotification 
+      status="error"
+      title="Error title"
+      link="http://#"
+      link-name="To next"
+      short>
+  </SbNotification>
+  <SbNotification 
+      status="warning"
+      title="Warning title"
+      link="http://#"
+      link-name="To next"
+      short>
+  </SbNotification>
+  <SbNotification 
+      status="info"
+      title="Info title"
+      link="http://#"
+      link-name="To next"
+      short>
+  </SbNotification>
+  </div>`
+})

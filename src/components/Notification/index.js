@@ -53,6 +53,10 @@ const SbNotification = {
       notificationProps.staticClass += ' sb-notification--without-link'
     }
 
+    if (this.short) {
+      notificationProps.staticClass += ' sb-notification--short'
+    }
+
     const renderIcon = () => {
       return h('span', {
         class: 'sb-notification--icon'
@@ -66,6 +70,9 @@ const SbNotification = {
     }
 
     const renderDescription = () => {
+      if (this.description === '') {
+        return
+      }
       return h('p', {
         staticClass: 'sb-notification--description'
       }, captalize(this.description))
@@ -115,22 +122,22 @@ const SbNotification = {
     const bannerBody = [
       h('div', {
         staticClass: 'sb-notification-banner--icon'
-      }, [renderIcon()]),
+      }, [(this.short ? '' : renderIcon())]),
       h('div', {
         staticClass: 'sb-notification-banner--header'
       }, [
         renderTitle(),
-        renderDescription()
+        (this.short ? '' : renderDescription())
       ]),
       h('div', {
         staticClass: 'sb-notification-banner--link'
       }, [
         renderLink(),
-        renderIcon()
+        (this.short ? renderCloseBtn() : renderIcon())
       ])
     ]
 
-    if (this.format === 'banner') {
+    if (this.format === 'banner' || this.short) {
       return h('div', {
         staticClass: notificationProps.staticClass + ' sb-notification-banner'
       }, bannerBody)

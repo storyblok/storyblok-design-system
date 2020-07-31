@@ -39,6 +39,7 @@
     text-decoration: none;
     text-decoration-color: $primary-text-color;
     color: $primary-text-color;
+    margin-right: 15px;
   }
 
   &--btn {
@@ -102,6 +103,15 @@
       height: 52px;
       margin: auto;
       margin-left: 0px;
+    }
+  }
+
+  &--short {
+    height: 61px;
+    width: 434px;
+
+    .sb-notification-banner--header {
+      height: 19px;
     }
   }
 }
