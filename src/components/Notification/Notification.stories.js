@@ -165,5 +165,12 @@ export const ShortBanners = () => ({
       link-name="To next"
       short>
   </SbNotification>
+  <SbNotification 
+      status="general"
+      title="General title"
+      link="http://#"
+      link-name="To next"
+      short>
+  </SbNotification>
   </div>`
 })
