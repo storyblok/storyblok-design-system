@@ -28,3 +28,13 @@ export const IsDisabled = () => ({
   components: { SbButton },
   template: '<SbButton label="Disabled" is-disabled/>'
 })
+
+export const SecondaryButton = () => ({
+  components: { SbButton },
+  template: `<div>
+    <SbButton label="Disabled" status="secondary" size="small"/>
+    <SbButton label="Disabled" status="secondary" />
+    <SbButton label="Disabled" status="secondary" is-disabled/>
+    <SbButton label="Disabled" status="secondary" size="large"/>
+  </div>`
+})
