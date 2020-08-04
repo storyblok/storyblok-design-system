@@ -1,5 +1,6 @@
 import './button.scss'
-import loading from '../../assets/icons/loading.svg'
+import isLoading from '../../assets/icons/loading.svg'
+import isCheck from '../../assets/icons/check.svg'
 // import { captalize } from '../../utils/captalize'
 
 const SbButton = {
@@ -25,17 +26,31 @@ const SbButton = {
     status: {
       type: String,
       default: 'primary'
+    },
+    icon: {
+      type: String,
+      default: null
     }
   },
 
   render (h) {
-    const renderIcon = () => {
+    const renderIcon = (icon) => {
+      // Remove this function when the icons component is ready
+      const icons = {
+        check: isCheck,
+        loading: isLoading
+      }
+
       return h('img', {
         attrs: {
-          alt: 'Is loading',
-          src: loading
+          alt: `Is ${icon}`,
+          src: Object.keys(icons)[0] === icon ? icons.check : icons.loading
         }
       })
+    }
+
+    const renderLabel = () => {
+      return h('span', this.label)
     }
 
     const buttonProps = {
@@ -46,10 +61,19 @@ const SbButton = {
       buttonProps.staticClass += ` sb-button--${this.size}`
     }
 
+    if (this.icon) {
+      return h('button', {
+        staticClass: buttonProps.staticClass + ' sb-button--icon'
+      }, [
+        renderIcon('check'),
+        renderLabel()
+      ])
+    }
+
     if (this.isLoading) {
       return h('button', {
         staticClass: buttonProps.staticClass + ' sb-button--loading'
-      }, [renderIcon()])
+      }, [renderIcon('loading')])
     }
 
     return h('button', {

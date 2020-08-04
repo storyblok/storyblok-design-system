@@ -43,6 +43,13 @@
     opacity: 30%;
   }
 
+  &--icon {
+    img { 
+      vertical-align: middle;
+      margin-right: 3.5px;
+    }
+  }
+
   &:focus {
     border-radius: 6px;
     border: 3px solid rgb(217, 244, 243);

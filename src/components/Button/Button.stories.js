@@ -29,6 +29,14 @@ export const IsDisabled = () => ({
   template: '<SbButton label="Disabled" is-disabled/>'
 })
 
+export const WithIcon = () => ({
+  components: { SbButton },
+  template: `<div>
+    <SbButton label="Disabled" icon="check"/>
+    <SbButton label="Disabled" icon="check" status="secondary"/>
+  </div>`
+})
+
 export const SecondaryButton = () => ({
   components: { SbButton },
   template: `<div>
