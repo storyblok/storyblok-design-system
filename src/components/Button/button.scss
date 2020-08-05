@@ -9,6 +9,8 @@
   &--primary {
     background-color: $color-primary;
     color: $white;
+    padding-left: 3px;
+    padding-right: 3px;
     
     &:hover {
       transition: all .1s ease-in-out;
@@ -22,6 +24,8 @@
     color: $primary-text-color;
     border: 1px solid rgb(223, 227, 232);
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+    padding-left: 3px;
+    padding-right: 3px;
 
     &:hover {
       color: $sb-green;
@@ -44,14 +48,17 @@
   }
 
   &--icon {
-    img { 
-      vertical-align: middle;
-      margin-right: 3.5px;
-    }
+    vertical-align: middle;
+    margin-right: 3.5px;
+  }
+
+  &--label {
+    vertical-align: middle;
   }
 
   &:focus {
     border-radius: 6px;
     border: 3px solid rgb(217, 244, 243);
+    color: $sb-green;
   }
 }

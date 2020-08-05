@@ -1,7 +1,6 @@
 import './button.scss'
 import isLoading from '../../assets/icons/loading.svg'
 import isCheck from '../../assets/icons/check.svg'
-// import { captalize } from '../../utils/captalize'
 
 const SbButton = {
   name: 'SbButton',
@@ -43,6 +42,7 @@ const SbButton = {
 
       return h('img', {
         attrs: {
+          class: 'sb-button--icon',
           alt: `Is ${icon}`,
           src: Object.keys(icons)[0] === icon ? icons.check : icons.loading
         }
@@ -50,37 +50,51 @@ const SbButton = {
     }
 
     const renderLabel = () => {
-      return h('span', this.label)
+      return h('span', {
+        attrs: {
+          class: 'sb-button--label'
+        }
+      }, this.label)
+    }
+
+    const renderButton = (classes, content) => {
+      return h('button', {
+        attrs: {
+          class: classes,
+          disabled: this.isDisabled || this.isLoading,
+          'aria-disabled': this.isDisabled || this.isLoading
+        },
+        on: {
+          click: (!this.isDisabled || !this.isLoading ? $event => this.$emit('click', $event) : '')
+        }
+      }, content)
     }
 
     const buttonProps = {
       staticClass: `sb-button sb-button--${this.status}`
     }
 
+    const content = []
+
     if (this.size) {
       buttonProps.staticClass += ` sb-button--${this.size}`
     }
 
     if (this.icon) {
-      return h('button', {
-        staticClass: buttonProps.staticClass + ' sb-button--icon'
-      }, [
-        renderIcon('check'),
-        renderLabel()
-      ])
+      content.push(renderIcon('check'))
     }
 
     if (this.isLoading) {
-      return h('button', {
-        staticClass: buttonProps.staticClass + ' sb-button--loading'
-      }, [renderIcon('loading')])
+      return renderButton(buttonProps.staticClass + ' sb-button--loading', [renderIcon('loading')])
     }
 
-    return h('button', {
-      attrs: {
-        class: buttonProps.staticClass + (this.isDisabled ? ' sb-button--disabled' : '')
-      }
-    }, [this.label])
+    if (this.isDisabled) {
+      buttonProps.staticClass += ' sb-button--disabled'
+    }
+
+    content.push(renderLabel())
+
+    return renderButton(buttonProps.staticClass, content)
   }
 }
 

@@ -10,39 +10,68 @@ export const Default = () => ({
   template: '<SbButton label="Primary"/>'
 })
 
+export const SecondaryButton = () => ({
+  components: { SbButton },
+  template: `<div>
+    <SbButton label="Secondary" status="secondary" />
+  </div>`
+})
+
 export const AllSizes = () => ({
   components: { SbButton },
   template: `<div>
-    <SbButton label="Small" size="small"/>
-    <SbButton label="Default" />
-    <SbButton label="Large" size="large"/>
+    <div style="margin: 10px 0;">
+      <SbButton label="Small" size="small"/>
+      <SbButton label="Default" />
+      <SbButton label="Large" size="large"/>
+    </div>
+    <div style="margin: 10px 0;">
+      <SbButton label="Small" size="small" status="secondary"/>
+      <SbButton label="Default" status="secondary"/>
+      <SbButton label="Large" size="large" status="secondary"/>
+    </div>
   </div>`
 })
 
 export const IsLoading = () => ({
   components: { SbButton },
-  template: '<SbButton label="Primary" isLoading/>'
+  template: `<div>
+  <div style="margin: 10px 0;">
+    <SbButton label="Primary" size="small" isLoading/>
+    <SbButton label="Primary" isLoading/>
+    <SbButton label="Primary" size="large" isLoading/>
+  </div>
+  </div>`
 })
 
 export const IsDisabled = () => ({
   components: { SbButton },
-  template: '<SbButton label="Disabled" is-disabled/>'
+  template: `<div>
+  <div style="margin: 10px 0;">
+    <SbButton label="Disabled" size="small" is-disabled/>
+    <SbButton label="Disabled" is-disabled/>
+    <SbButton label="Disabled" size="large" is-disabled/>
+  </div>
+  <div style="margin: 10px 0;">
+    <SbButton label="Disabled" size="small" is-disabled status="secondary"/>
+    <SbButton label="Disabled" is-disabled status="secondary"/>
+    <SbButton label="Disabled" size="large" is-disabled status="secondary"/>
+  </div>
+  </div>`
 })
 
 export const WithIcon = () => ({
   components: { SbButton },
   template: `<div>
+  <div style="margin: 10px 0;">
+    <SbButton label="Disabled" size="small" icon="check"/>
     <SbButton label="Disabled" icon="check"/>
+    <SbButton label="Disabled" size="large" icon="check"/>
+  </div>
+  <div style="margin: 10px 0;">
+    <SbButton label="Disabled" size="small" icon="check" status="secondary"/>
     <SbButton label="Disabled" icon="check" status="secondary"/>
-  </div>`
-})
-
-export const SecondaryButton = () => ({
-  components: { SbButton },
-  template: `<div>
-    <SbButton label="Disabled" status="secondary" size="small"/>
-    <SbButton label="Disabled" status="secondary" />
-    <SbButton label="Disabled" status="secondary" is-disabled/>
-    <SbButton label="Disabled" status="secondary" size="large"/>
+    <SbButton label="Disabled" size="large" icon="check" status="secondary"/>
+  </div>
   </div>`
 })
