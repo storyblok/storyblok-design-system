@@ -3,7 +3,8 @@
   font-weight: 500;
   line-height: 20px;
   text-align: center;
-  width: 82px;
+  width: 100px;
+  height: 20px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -20,6 +21,15 @@
   &--disabled {
     cursor: not-allowed;
     opacity: 30%;
+  }
+
+  &--icon {
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  &--link {
+    width: 82px;
   }
 
   &:hover {
