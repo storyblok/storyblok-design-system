@@ -1,90 +1,90 @@
-import SbGroupButton from './index'
+import SbButtonGroup from './index'
 import SbButton from '../Button/index'
 
 export default {
-  title: 'SbGroupButton',
-  component: SbGroupButton
+  title: 'SbButtonGroup',
+  component: SbButtonGroup
 }
 
 export const Default = () => ({
-  components: { SbGroupButton, SbButton },
+  components: { SbButtonGroup, SbButton },
   template: `
-  <SbGroupButton>
+  <SbButtonGroup>
     <SbButton label="One" />
     <SbButton label="Two" />
     <SbButton label="Three" />
-  </SbGroupButton>
+  </SbButtonGroup>
   `
 })
 
 export const SecondaryGroupButtons = () => ({
-  components: { SbGroupButton, SbButton },
+  components: { SbButtonGroup, SbButton },
   template: `
-  <SbGroupButton>
+  <SbButtonGroup>
     <SbButton label="One" status="secondary"/>
     <SbButton label="Two" status="secondary"/>
     <SbButton label="Three" status="secondary"/>
     <SbButton label="Four" status="secondary"/>
     <SbButton label="Five" status="secondary"/>
-  </SbGroupButton>
+  </SbButtonGroup>
   `
 })
 
 export const SmallGroupButtons = () => ({
-  components: { SbGroupButton, SbButton },
+  components: { SbButtonGroup, SbButton },
   template: `
   <div>
     <div style="margin: 10px 0;">
-      <SbGroupButton size="small">
+      <SbButtonGroup size="small">
         <SbButton label="One" status="secondary"/>
         <SbButton label="Two" status="secondary"/>
         <SbButton label="Three" status="secondary"/>
         <SbButton label="Four" status="secondary"/>
         <SbButton label="Five" status="secondary"/>
-      </SbGroupButton>
+      </SbButtonGroup>
     </div>
 
     <div style="margin: 10px 0;">
-      <SbGroupButton>
+      <SbButtonGroup>
         <SbButton label="One" status="secondary"/>
         <SbButton label="Two" status="secondary"/>
         <SbButton label="Three" status="secondary"/>
         <SbButton label="Four" status="secondary"/>
         <SbButton label="Five" status="secondary"/>
-      </SbGroupButton>
+      </SbButtonGroup>
     </div>
 
     <div style="margin: 10px 0;">
-      <SbGroupButton size="large">
+      <SbButtonGroup size="large">
         <SbButton label="One" status="secondary"/>
         <SbButton label="Two" status="secondary"/>
         <SbButton label="Three" status="secondary"/>
         <SbButton label="Four" status="secondary"/>
         <SbButton label="Five" status="secondary"/>
-      </SbGroupButton>
+      </SbButtonGroup>
     </div>
   </div>
   `
 })
 
 export const LabelAndIconGroupButtons = () => ({
-  components: { SbGroupButton, SbButton },
+  components: { SbButtonGroup, SbButton },
   template: `
-    <SbGroupButton size="small">
+    <SbButtonGroup size="small">
       <SbButton label="Check" icon="check" status="secondary"/>
       <SbButton label="This" icon="check" status="secondary"/>
       <SbButton label="Rocket" icon="check" status="secondary"/>
-    </SbGroupButton>
+    </SbButtonGroup>
   `
 })
 
 export const IconGroupButtons = () => ({
-  components: { SbGroupButton, SbButton },
+  components: { SbButtonGroup, SbButton },
   template: `
-    <SbGroupButton size="small">
+    <SbButtonGroup size="small">
       <SbButton icon="check" status="secondary"/>
       <SbButton icon="check" status="secondary"/>
       <SbButton icon="check" status="secondary"/>
-    </SbGroupButton>
+    </SbButtonGroup>
   `
 })

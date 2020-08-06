@@ -15,8 +15,8 @@ const renderGroupButtons = (props, children, h) => {
   }, data)
 }
 
-const SbGroupButton = {
-  name: 'SbGroupButton',
+const SbButtonGroup = {
+  name: 'SbButtonGroup',
   functional: true,
   props: {
     size: {
@@ -33,4 +33,4 @@ const SbGroupButton = {
   }
 }
 
-export default SbGroupButton
+export default SbButtonGroup
