@@ -14,7 +14,7 @@
     
     &:hover {
       transition: all .1s ease-in-out;
-      background: rgb(0, 164, 161);
+      background: $sb-green-hover;
       box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.08);
     }
   }
@@ -56,9 +56,13 @@
     vertical-align: middle;
   }
 
+  &--no-label {
+    height: 36px;
+    width: 36px;
+  }
+
   &:focus {
     border-radius: 6px;
     border: 3px solid rgb(217, 244, 243);
-    color: $sb-green;
   }
 }

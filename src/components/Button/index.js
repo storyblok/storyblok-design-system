@@ -12,7 +12,7 @@ const SbButton = {
     },
     label: {
       type: String,
-      default: 'Click'
+      default: null
     },
     isLoading: {
       type: Boolean,
@@ -50,11 +50,14 @@ const SbButton = {
     }
 
     const renderLabel = () => {
-      return h('span', {
-        attrs: {
-          class: 'sb-button--label'
-        }
-      }, this.label)
+      if (this.label) {
+        return h('span', {
+          attrs: {
+            class: 'sb-button--label'
+          }
+        }, this.label)
+      }
+      return ''
     }
 
     const renderButton = (classes, content) => {
@@ -93,6 +96,10 @@ const SbButton = {
     }
 
     content.push(renderLabel())
+
+    if (!this.label) {
+      buttonProps.staticClass += ' sb-button--no-label'
+    }
 
     return renderButton(buttonProps.staticClass, content)
   }
