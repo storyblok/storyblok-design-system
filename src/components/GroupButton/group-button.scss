@@ -1,0 +1,24 @@
+.sb-group-button {
+  display: inline;
+
+  // reset and adjust border-radius
+  .sb-button {
+    border-radius: 0;
+
+    &:hover {
+      background-color: $sb-green-hover;
+      color: $white;
+      border: none;
+    }
+  }
+
+  .sb-button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  
+  .sb-button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
