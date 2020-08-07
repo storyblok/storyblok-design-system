@@ -34,12 +34,6 @@ const SbNotification = {
     }
   },
 
-  methods: {
-    close () {
-      console.log('closing notification')
-    }
-  },
-
   render (h) {
     const notificationProps = {
       staticClass: 'sb-notification'
@@ -97,7 +91,7 @@ const SbNotification = {
             class: 'sb-notification--btn'
           },
           on: {
-            click: this.close
+            click: $event => this.$emit('click', $event)
           }
         }, 'X')
       }
