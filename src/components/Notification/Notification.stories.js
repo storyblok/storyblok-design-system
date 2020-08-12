@@ -1,17 +1,33 @@
 import SbNotification from './index'
+import { withKnobs, text, select } from '@storybook/addon-knobs'
 
 export default {
   title: 'SbNotification',
-  component: SbNotification
+  component: SbNotification,
+  decorators: [withKnobs]
 }
 
 export const Default = () => ({
   components: { SbNotification },
+  props: {
+    title: {
+      default: () => text('Title', 'A very interesting title')
+    },
+    description: {
+      default: () => text('Description', 'Subtitle text goes here.')
+    },
+    link: {
+      default: () => text('Link', 'Example link')
+    },
+    status: {
+      default: () => select('Status', ['general', 'success', 'warning', 'info', 'error'])
+    }
+  },
   template: `<SbNotification 
-                status="success"
-                title="Notification title"
-                description="Subtitle text goes here. "
-                link-name="Example link"
+                :status="status"
+                :title="title"
+                :description="description "
+                :link-name="link"
                 link="http://#">
              </SbNotification>`
 })
@@ -71,10 +87,22 @@ export const MultipleNotifications = () => ({
 
 export const BannerNotification = () => ({
   components: { SbNotification },
+  props: {
+    title: {
+      default: () => text('Title', 'A interesting banner title')
+    },
+    description: {
+      default: () => text('Description', 'Subtitle text goes here.')
+    },
+    status: {
+      default: () => select('Status', ['general', 'success', 'warning', 'info', 'error'])
+    }
+  },
   template: `
-    <SbNotification 
-      title="Notification title"
-      description="Subtitle text goes here"
+    <SbNotification
+      :status="status" 
+      :title="title"
+      :description="description"
       link="http://#"
       format="banner">
     </SbNotification>
