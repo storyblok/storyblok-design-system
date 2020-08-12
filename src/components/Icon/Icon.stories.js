@@ -54,7 +54,8 @@ export const AllIcons = () => ({
       default: () => select('Sizes', iconSizes, 'medium')
     }
   },
-  template: `<div>
+  template: `
+  <div>
     <div style="margin-bottom: 10px">
       <SbIcon name="chevron-down" :size="size"/>
       <SbIcon name="chevron-left" :size="size"/>
@@ -89,6 +90,6 @@ export const AllIcons = () => ({
       <SbIcon name="upload-pictogram" :size="size"/>
       <SbIcon name="delete-pictogram" :size="size"/>
     </div>
-  </div
+  </div>
   `
 })
