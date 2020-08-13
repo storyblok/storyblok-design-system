@@ -75,6 +75,8 @@ export const AllIcons = () => ({
       <SbIcon name="warning-bedge" :size="size"/>
       <SbIcon name="success-bedge" :size="size"/>
       <SbIcon name="error-bedge" :size="size"/>
+      <SbIcon name="warning" :size="size"/>
+      <SbIcon name="info" :size="size"/>
     </div>
 
     <div style="margin-bottom: 10px">

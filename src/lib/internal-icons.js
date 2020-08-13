@@ -369,6 +369,37 @@ const icons = {
           <path d="M28 11a1 1 0 011 1v1h6a1 1 0 011 1v1a1 1 0 01-1 1H13a1 1 0 01-1-1v-1a1 1 0 011-1h6v-1a1 1 0 011-1h8z"/>
         </g>
       </g>`
+  },
+  warning: {
+    viewBox: '0 0 16 16',
+    path: `
+      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <path d="M0 0h16v16H0z"/>
+          <path d="M8.894 4.789l3.382 6.764A1 1 0 0111.382 13H4.618a1 1 0 01-.894-1.447l3.382-6.764a1 1 0 011.788 0z" fill="#1B243F"/>
+        </g>
+      </g>`
+  },
+  info: {
+    viewBox: '0 0 16 16',
+    path: `
+      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="a">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.105882 0 0 0 0 0.141176 0 0 0 0 0.247059 0 0 0 1.000000 0"/>
+          </filter>
+        </defs>
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <path d="M0 0h16v16H0z"/>
+          <path d="M0 0h16v16H0z"/>
+          <g filter="url(#a)">
+            <g transform="translate(7 4)" fill="#FFF">
+              <circle cx="1" cy="1" r="1"/>
+              <rect x="0" y="3" width="2" height="5" rx="1"/>
+            </g>
+          </g>
+        </g>
+      </g>`
   }
 }
 
