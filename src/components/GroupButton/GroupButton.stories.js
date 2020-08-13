@@ -1,18 +1,31 @@
 import SbButtonGroup from './index'
 import SbButton from '../Button/index'
+import { withKnobs, select, text } from '@storybook/addon-knobs'
 
 export default {
   title: 'SbButtonGroup',
-  component: SbButtonGroup
+  component: SbButtonGroup,
+  decorators: [withKnobs]
 }
 
 export const Default = () => ({
   components: { SbButtonGroup, SbButton },
+  props: {
+    label: {
+      default: () => text('Label', 'One')
+    },
+    status: {
+      default: () => select('Status', ['primary', 'secondary'], 'primary')
+    },
+    size: {
+      default: () => select('Size', ['small', 'default', 'large'], 'default')
+    }
+  },
   template: `
-  <SbButtonGroup>
-    <SbButton label="One" />
-    <SbButton label="Two" />
-    <SbButton label="Three" />
+  <SbButtonGroup :size="size">
+    <SbButton :label="label" :status="status" :size="size" />
+    <SbButton :label="label" :status="status" :size="size" />
+    <SbButton :label="label" :status="status" :size="size" />
   </SbButtonGroup>
   `
 })

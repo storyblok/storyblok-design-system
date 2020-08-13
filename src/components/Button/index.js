@@ -8,7 +8,7 @@ const SbButton = {
   props: {
     size: {
       type: String,
-      default: null
+      default: 'default'
     },
     label: {
       type: String,
@@ -74,25 +74,21 @@ const SbButton = {
     }
 
     const buttonProps = {
-      staticClass: `sb-button sb-button--${this.status}`
+      staticClass: `sb-button sb-button--${this.status} sb-button--${this.size}`
     }
 
     const content = []
-
-    if (this.size) {
-      buttonProps.staticClass += ` sb-button--${this.size}`
-    }
 
     if (this.icon) {
       content.push(renderIcon('check'))
     }
 
-    if (this.isLoading) {
-      return renderButton(buttonProps.staticClass + ' sb-button--loading', [renderIcon('loading')])
-    }
-
     if (this.isDisabled) {
       buttonProps.staticClass += ' sb-button--disabled'
+    }
+
+    if (this.isLoading) {
+      return renderButton(buttonProps.staticClass + ' sb-button--loading', [renderIcon('loading')])
     }
 
     content.push(renderLabel())

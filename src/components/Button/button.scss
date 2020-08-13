@@ -1,8 +1,6 @@
 .sb-button {
   border-radius: 5px;
   font-size: 16px;
-  height: 46px;
-  width: 113px;
   cursor: pointer;
   border: none;
 
@@ -35,6 +33,11 @@
   &--small {
     height: 36px;
     width: 88px;
+  }
+
+  &--default {
+    height: 46px;
+    width: 113px;
   }
   
   &--large {

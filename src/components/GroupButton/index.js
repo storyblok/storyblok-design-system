@@ -21,7 +21,7 @@ const SbButtonGroup = {
   props: {
     size: {
       type: String,
-      default: null
+      default: 'default'
     }
   },
 

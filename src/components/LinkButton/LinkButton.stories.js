@@ -1,13 +1,34 @@
 import SbLinkButton from './index'
 
+import { withKnobs, select, text, boolean } from '@storybook/addon-knobs'
+
 export default {
   title: 'SbLinkButton',
-  component: SbLinkButton
+  component: SbLinkButton,
+  decorators: [withKnobs]
 }
 
 export const Default = () => ({
   components: { SbLinkButton },
-  template: '<SbLinkButton label="Primary" to="#" title="To home page"/>'
+  props: {
+    label: {
+      default: () => text('Label', 'Primary')
+    },
+    title: {
+      default: () => text('Title', 'Example Link')
+    },
+    status: {
+      default: () => select('Status', ['primary', 'secondary'], 'primary')
+    },
+    isDisabled: {
+      default: () => boolean('Is Disabled', false)
+    }
+  },
+  template: `<SbLinkButton :label="label" 
+                           to="#"
+                           :title="title"
+                           :is-disabled="isDisabled"
+                           :status="status"/>`
 })
 
 export const PrimaryAndSecondary = () => ({

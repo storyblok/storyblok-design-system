@@ -1,13 +1,37 @@
 import SbButton from './index'
 
+import { withKnobs, select, text, boolean } from '@storybook/addon-knobs'
+
 export default {
   title: 'SbButton',
-  component: SbButton
+  component: SbButton,
+  decorators: [withKnobs]
 }
 
 export const Default = () => ({
   components: { SbButton },
-  template: '<SbButton label="Primary"/>'
+  props: {
+    status: {
+      default: () => select('Status', ['primary', 'secondary'], 'primary')
+    },
+    label: {
+      default: () => text('Label', 'Primary')
+    },
+    size: {
+      default: () => select('Size', ['small', 'default', 'large'], 'default')
+    },
+    isLoading: {
+      default: () => boolean('Is Loading', false)
+    },
+    isDisabled: {
+      default: () => boolean('Is Disabled', false)
+    }
+  },
+  template: `<SbButton :status="status"
+                       :label="label" 
+                       :is-loading="isLoading" 
+                       :is-disabled="isDisabled" 
+                       :size="size"/>`
 })
 
 export const SecondaryButton = () => ({
