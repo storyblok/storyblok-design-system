@@ -17,7 +17,7 @@ describe('SbBadge component', () => {
     await waitMs()
 
     expect(wrapper.find('span').attributes('class')).toBe('sb-badge sb-badge--success')
-    expect(wrapper.find('span').text()).toBe('Success')
+    expect(wrapper.find('span').text()).toBe('success')
   })
 
   it('test if svg was loaded', async () => {
@@ -40,7 +40,7 @@ describe('SbBadge component', () => {
     await waitMs()
 
     expect(wrapper.find('img').attributes('class')).toBe('sb-badge--icon')
-    expect(wrapper.find('span').text()).toBe('Success')
+    expect(wrapper.find('span').text()).toBe('success')
   })
 
   it('test success badge only with icon', async () => {

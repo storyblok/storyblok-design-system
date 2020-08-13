@@ -1,13 +1,36 @@
 import SbBadge from './index'
+import { withKnobs, text, select, boolean } from '@storybook/addon-knobs'
 
 export default {
   title: 'SbBadge',
-  component: SbBadge
+  component: SbBadge,
+  decorators: [withKnobs]
 }
 
 export const Default = () => ({
   components: { SbBadge },
-  template: '<SbBadge status="success"/>'
+  props: {
+    text: {
+      default: () => text('Text', 'Success')
+    },
+    status: {
+      default: () => select('Status', ['success', 'warning', 'info', 'error'])
+    },
+    icon: {
+      default: () => boolean('Icon', false)
+    },
+    onlyIcon: {
+      default: () => boolean('Only Icon', false)
+    },
+    isSmall: {
+      default: () => boolean('Small Badge', false)
+    }
+  },
+  template: `<SbBadge :text="text" 
+                      :status="status"
+                      :icon="icon"
+                      :only-icon="onlyIcon"
+                      :is-small="isSmall"/>`
 })
 
 export const Status = () => ({

@@ -1,6 +1,5 @@
 import './badge.scss'
 import badgeError from '../../assets/icons/badge-error.svg'
-import { captalize } from './utils'
 
 const SbBadge = {
   name: 'SbBadge',
@@ -8,10 +7,11 @@ const SbBadge = {
   props: {
     status: {
       type: String,
-      required: true
+      default: 'success'
     },
     text: {
-      type: String
+      type: String,
+      default: null
     },
     icon: {
       type: Boolean,
@@ -37,7 +37,7 @@ const SbBadge = {
         attrs: {
           src: badgeError,
           class: 'sb-badge--icon',
-          alt: `${captalize(this.status)} icon`
+          alt: `${this.status} icon`
         }
       })
     }
@@ -51,7 +51,7 @@ const SbBadge = {
         staticClass: badgeProps.staticClass + ' sb-badge--text-icon'
       }, [
         renderIcon(),
-        captalize(this.status)
+        this.text || this.status
       ])
     }
 
@@ -67,13 +67,13 @@ const SbBadge = {
       return h('span', {
         staticClass: badgeProps.staticClass + (this.text.length > 1 ? ' sb-badge--medium' : ' sb-badge--small')
       }, [
-        captalize(this.text)
+        this.text
       ])
     }
 
     return h('span', {
       staticClass: badgeProps.staticClass
-    }, captalize(this.status))
+    }, this.text || this.status)
   }
 }
 
