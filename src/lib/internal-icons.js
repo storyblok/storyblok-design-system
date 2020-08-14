@@ -288,56 +288,6 @@ const icons = {
         </g>
       </g>`
   },
-  'info-bedge': {
-    viewBox: '0 0 16 16',
-    path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <rect fill="#395ECE" x="0" y="0" width="16" height="16" rx="3"/>
-          <g filter="url(#a)">
-            <g transform="translate(7 4)" fill="#FFF">
-              <circle cx="1" cy="1" r="1"/>
-              <rect x="0" y="3" width="2" height="5" rx="1"/>
-            </g>
-          </g>
-        </g>
-      </g>`
-  },
-  'warning-bedge': {
-    viewBox: '0 0 16 16',
-    path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <rect fill="#FFAC00" x="0" y="0" width="16" height="16" rx="3"/>
-          <path d="M8.894 3.789l3.382 6.764A1 1 0 0111.382 12H4.618a1 1 0 01-.894-1.447l3.382-6.764a1 1 0 011.788 0z" fill="#FFF"/>
-        </g>
-      </g>`
-  },
-  'success-bedge': {
-    viewBox: '0 0 16 16',
-    path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <rect fill="#2DB47D" x="0" y="0" width="16" height="16" rx="3"/>
-          <path d="M11.611 5.27l.008.009c.37.374.37.977 0 1.352l-4.004 4.054a.934.934 0 01-.496.264l-.11.013-.111.001a.935.935 0 01-.618-.278L4.277 8.658a.962.962 0 010-1.352.938.938 0 011.327-.008l.008.008 1.335 1.351 3.337-3.378a.938.938 0 011.327-.008z" fill="#FFF"/>
-        </g>
-      </g>`
-  },
-  'error-bedge': {
-    viewBox: '0 0 16 16',
-    path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <rect fill="#FF6159" x="0" y="0" width="16" height="16" rx="3"/>
-          <path d="M10.75 5.255a.863.863 0 010 1.221L9.224 8.003l1.526 1.526a.863.863 0 01-1.221 1.22L8.003 9.225 6.476 10.75a.863.863 0 01-1.22-1.221l1.526-1.526-1.527-1.527a.863.863 0 111.221-1.22l1.527 1.526 1.526-1.527a.863.863 0 011.22 0z" fill="#FFF"/>
-        </g>
-      </g>`
-  },
   'success-pictogram': {
     viewBox: '0 0 48 48',
     path: `

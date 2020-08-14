@@ -71,10 +71,6 @@ export const AllIcons = () => ({
       <SbIcon name="checkmark" :size="size"/>
       <SbIcon name="overflow-menu-vertic" :size="size"/>
       <SbIcon name="status-circle" :size="size"/>
-      <SbIcon name="info-bedge" :size="size"/>
-      <SbIcon name="warning-bedge" :size="size"/>
-      <SbIcon name="success-bedge" :size="size"/>
-      <SbIcon name="error-bedge" :size="size"/>
       <SbIcon name="warning" :size="size"/>
       <SbIcon name="info" :size="size"/>
     </div>
