@@ -8,11 +8,17 @@ $icon-extra-large-size: 48px;
   height: $size;
 }
 
+@mixin setColor ($color) {
+  fill: $color;
+  color: $color;
+}
+
 .sb-icon {
   @include setIconSize($icon-default-size);
   display: inline-block;
   vertical-align: middle;
   stroke-width: 2px;
+  @include setColor($color-primary-dark);
 
   &--small {
     @include setIconSize($icon-small-size);
@@ -24,5 +30,11 @@ $icon-extra-large-size: 48px;
 
   &--x-large {
     @include setIconSize($icon-extra-large-size);
+  }
+
+  @each $key, $color in $colors {
+    &--color-#{$key} {
+      @include setColor($color);
+    }
   }
 }

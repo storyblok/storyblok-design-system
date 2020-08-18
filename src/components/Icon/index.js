@@ -1,4 +1,5 @@
 import { getSvgIcon, iconSizes } from './utils'
+import { availableColors } from '../../utils'
 
 /**
  * SbIcon component
@@ -17,16 +18,21 @@ const SbIcon = {
     role: {
       type: String,
       default: 'presentation'
+    },
+    color: {
+      type: String,
+      validator: (color) => availableColors.indexOf(color) !== -1
     }
   },
 
   render (h) {
     const iconDeff = getSvgIcon(this.name)
     const sizeClass = this.size ? `sb-icon--${this.size}` : null
+    const colorClass = this.color ? `sb-icon--color-${this.color}` : null
 
     return h('svg', {
       staticClass: 'sb-icon',
-      class: [sizeClass],
+      class: [sizeClass, colorClass],
       attrs: {
         role: this.role || 'presentation',
         viewBox: iconDeff.viewBox
