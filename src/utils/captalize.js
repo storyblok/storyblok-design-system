@@ -22,12 +22,7 @@ export const captalizeAllAfterSpaces = (text) => {
   if (text === '' || text === undefined) {
     return ''
   }
-  let splitedText = text.split(' ')
+  const data = text.split(' ').map(captalize)
 
-  splitedText = splitedText.map(phrase => {
-    phrase = phrase.charAt(0).toUpperCase() + phrase.substring(1)
-    return phrase
-  })
-
-  return splitedText.join(' ')
+  return data.join(' ')
 }
