@@ -1,19 +1,19 @@
 import {
-  captalize,
-  captalizeAllAfterSpaces,
+  capitalize,
+  capitalizeAllAfterSpaces,
   getRandomNumber
 } from '../../src/utils'
 
 describe('Utils function', () => {
-  describe('test captalize function', () => {
+  describe('test capitalize function', () => {
     it('should change to upper case the first letter in a string', () => {
-      expect(captalize('storyblok is amazing')).toEqual('Storyblok is amazing')
+      expect(capitalize('storyblok is amazing')).toEqual('Storyblok is amazing')
     })
 
     it('should return an empty string when is pass an empty string or nothing', () => {
-      expect(captalize('')).toEqual('')
+      expect(capitalize('')).toEqual('')
 
-      expect(captalize()).toEqual('')
+      expect(capitalize()).toEqual('')
     })
 
     it('should keep the capitalize behavior when the string is already capitalized', () => {
@@ -21,22 +21,22 @@ describe('Utils function', () => {
     })
   })
 
-  describe('test captalizeAllAfterSpaces function', () => {
+  describe('test capitalizeAllAfterSpaces function', () => {
     it('should capitalize every word in a string', () => {
       expect(
-        captalizeAllAfterSpaces('storyblok is amazing')
+        capitalizeAllAfterSpaces('storyblok is amazing')
       ).toEqual('Storyblok Is Amazing')
     })
 
     it('should return an empty string when is pass an empty string or nothing', () => {
-      expect(captalizeAllAfterSpaces('')).toEqual('')
+      expect(capitalizeAllAfterSpaces('')).toEqual('')
 
-      expect(captalizeAllAfterSpaces()).toEqual('')
+      expect(capitalizeAllAfterSpaces()).toEqual('')
     })
 
     it('should keep the same input when the string is already capitalized', () => {
       expect(
-        captalizeAllAfterSpaces('Storyblok Is Amazing')
+        capitalizeAllAfterSpaces('Storyblok Is Amazing')
       ).toEqual('Storyblok Is Amazing')
     })
   })

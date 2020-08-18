@@ -1,10 +1,10 @@
 /**
- * @description captalize the first letter that is passed as an argument
- * @method captalize
+ * @description capitalize the first letter that is passed as an argument
+ * @method capitalize
  * @param  {string} text
  * @return {string}
  */
-export const captalize = (text) => {
+export const capitalize = (text) => {
   if (text === '' || text === undefined) {
     return ''
   }
@@ -13,16 +13,16 @@ export const captalize = (text) => {
 }
 
 /**
- * @description captalize all letter's after spaces that is passed as an argument
- * @method captalizeAllAfterSpaces
+ * @description capitalize all letter's after spaces that is passed as an argument
+ * @method capitalizeAllAfterSpaces
  * @param  {string} text
  * @return {string}
  */
-export const captalizeAllAfterSpaces = (text) => {
+export const capitalizeAllAfterSpaces = (text) => {
   if (text === '' || text === undefined) {
     return ''
   }
-  const data = text.split(' ').map(captalize)
+  const data = text.split(' ').map(capitalize)
 
   return data.join(' ')
 }
