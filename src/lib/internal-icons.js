@@ -102,191 +102,103 @@ const icons = {
     viewBox: '0 0 16 16',
     path: `
       <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7.293 10.536a1 1 0 001.414 0l2.829-2.829a1 1 0 10-1.415-1.414L8 8.414 5.879 6.293a1 1 0 10-1.415 1.414l2.829 2.829z" fill="#B1B5BE" stroke="none" stroke-width="1" fill-rule="evenodd"/>
+        <path d="M7.293 10.536a1 1 0 001.414 0l2.829-2.829a1 1 0 10-1.415-1.414L8 8.414 5.879 6.293a1 1 0 10-1.415 1.414l2.829 2.829z" fill="currentColor" stroke="none" stroke-width="1" fill-rule="evenodd"/>
       </g>`
   },
   'chevron-left': {
     viewBox: '0 0 16 16',
     path: `
-    <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="a">
-          <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-        </filter>
-      </defs>
-      <g transform="translate(-291 -1408)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M296.464 1415.293a1 1 0 000 1.414l2.829 2.829a1 1 0 101.414-1.415l-2.121-2.121 2.121-2.121a1 1 0 10-1.414-1.415l-2.829 2.829z" fill="#B1B5BE"/>
-      </g>
+    <g transform="translate(-291 -1408)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <path d="M296.464 1415.293a1 1 0 000 1.414l2.829 2.829a1 1 0 101.414-1.415l-2.121-2.121 2.121-2.121a1 1 0 10-1.414-1.415l-2.829 2.829z" fill="currentColor"/>
     </g>`
   },
   'chevron-right': {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-433 -1408)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path d="M443.536 1415.293a1 1 0 010 1.414l-2.829 2.829a1 1 0 11-1.414-1.415l2.12-2.122-2.12-2.12a1 1 0 111.414-1.415l2.829 2.829z" fill="#1B243F"/>
-        </g>
-      </g>`
+    <g transform="translate(-433 -1408)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <path d="M443.536 1415.293a1 1 0 010 1.414l-2.829 2.829a1 1 0 11-1.414-1.415l2.12-2.122-2.12-2.12a1 1 0 111.414-1.415l2.829 2.829z" fill="currentColor"/>
+    </g>`
   },
   'chevron-up': {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-575 -1408)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path d="M583.707 1413.464a1 1 0 00-1.414 0l-2.829 2.829a1 1 0 101.415 1.414l2.121-2.121 2.121 2.121a1 1 0 101.415-1.414l-2.829-2.829z" fill="#1B243F"/>
-        </g>
-      </g>`
+    <g transform="translate(-575 -1408)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <path d="M583.707 1413.464a1 1 0 00-1.414 0l-2.829 2.829a1 1 0 101.415 1.414l2.121-2.121 2.121 2.121a1 1 0 101.415-1.414l-2.829-2.829z" fill="currentColor"/>
+    </g>`
   },
   'chevron-sort': {
     viewBox: '0 0 16 22',
     path: `
-      <g width="16" height="22" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-717 -1405)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g fill="#1B243F"><path d="M725.707 1410.464a1 1 0 00-1.414 0l-2.829 2.829a1 1 0 101.415 1.414l2.121-2.121 2.121 2.121a1 1 0 101.415-1.414l-2.829-2.829zM724.293 1421.536a1 1 0 001.414 0l2.829-2.829a1 1 0 10-1.415-1.414l-2.121 2.121-2.121-2.121a1 1 0 10-1.415 1.414l2.829 2.829z"/>
-          </g>
-        </g>
-      </g>`
+    <g transform="translate(-717 -1405)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g fill="currentColor"><path d="M725.707 1410.464a1 1 0 00-1.414 0l-2.829 2.829a1 1 0 101.415 1.414l2.121-2.121 2.121 2.121a1 1 0 101.415-1.414l-2.829-2.829zM724.293 1421.536a1 1 0 001.414 0l2.829-2.829a1 1 0 10-1.415-1.414l-2.121 2.121-2.121-2.121a1 1 0 10-1.415 1.414l2.829 2.829z"/>
+      </g>
+    </g>`
   },
   search: {
     viewBox: '0 0 19 20',
     path: `
-      <g width="19" height="20" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-858 -1407)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path d="M862.047 1411.259a5.5 5.5 0 018.616 6.702l2.54 2.54a1 1 0 11-1.414 1.415l-2.448-2.448a5.5 5.5 0 01-7.294-8.21zm1.296 1.296a3.667 3.667 0 105.185 5.186 3.667 3.667 0 00-5.185-5.186z" fill="#1B243F"/>
-        </g>
-      </g>`
+    <g transform="translate(-858 -1407)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <path d="M862.047 1411.259a5.5 5.5 0 018.616 6.702l2.54 2.54a1 1 0 11-1.414 1.415l-2.448-2.448a5.5 5.5 0 01-7.294-8.21zm1.296 1.296a3.667 3.667 0 105.185 5.186 3.667 3.667 0 00-5.185-5.186z" fill="currentColor"/>
+    </g>`
   },
   close: {
     viewBox: '0 0 18 18',
     path: `
-      <g width="18" height="18" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-1000 -1407)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path d="M1013.243 1411.757a1 1 0 010 1.415l-2.829 2.828 2.829 2.828a1 1 0 01-1.415 1.415l-2.828-2.829-2.828 2.829a1 1 0 01-1.415-1.415l2.829-2.828-2.829-2.828a1 1 0 111.415-1.415l2.828 2.829 2.828-2.829a1 1 0 011.415 0z" fill="#1B243F"/>
-        </g>
-      </g>`
+    <g transform="translate(-1000 -1407)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <path d="M1013.243 1411.757a1 1 0 010 1.415l-2.829 2.828 2.829 2.828a1 1 0 01-1.415 1.415l-2.828-2.829-2.828 2.829a1 1 0 01-1.415-1.415l2.829-2.828-2.829-2.828a1 1 0 111.415-1.415l2.828 2.829 2.828-2.829a1 1 0 011.415 0z" fill="currentColor"/>
+    </g>`
   },
   folder: {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-1143 -1408)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path d="M1148.987 1412l1.425 1.364.242.236H1156v6.4h-10v-8h2.987m-.402-2H1145a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-8a1 1 0 00-1-1h-6l-1.705-1.705a1 1 0 00-.71-.295z" fill="#1B243F"/>
-        </g>
-      </g>`
+    <g transform="translate(-1143 -1408)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <path d="M1148.987 1412l1.425 1.364.242.236H1156v6.4h-10v-8h2.987m-.402-2H1145a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-8a1 1 0 00-1-1h-6l-1.705-1.705a1 1 0 00-.71-.295z" fill="currentColor"/>
+    </g>`
   },
   calendar: {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-149 -1550)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path d="M159 1551a1 1 0 011 1h2a2 2 0 012 2v9a2 2 0 01-2 2h-10a2 2 0 01-2-2v-9a2 2 0 012-2h2a1 1 0 112 0h2a1 1 0 011-1zm-7 7v5h10v-5h-10zm0-2h10v-2h-2a1 1 0 01-2 0h-2a1 1 0 11-2 0h-2v2z" fill="#B1B5BE"/>
-        </g>
-      </g>`
+    <g transform="translate(-149 -1550)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <path d="M159 1551a1 1 0 011 1h2a2 2 0 012 2v9a2 2 0 01-2 2h-10a2 2 0 01-2-2v-9a2 2 0 012-2h2a1 1 0 112 0h2a1 1 0 011-1zm-7 7v5h10v-5h-10zm0-2h10v-2h-2a1 1 0 01-2 0h-2a1 1 0 11-2 0h-2v2z" fill="currentColor"/>
+    </g>`
   },
   plus: {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-291 -1550)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path d="M299 1554a1 1 0 011 1v2h2a1 1 0 010 2h-2v2a1 1 0 01-2 0v-2h-2a1 1 0 110-2h2v-2a1 1 0 011-1z" fill="#1B243F"/>
-        </g>
-      </g>`
+    <g transform="translate(-291 -1550)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <path d="M299 1554a1 1 0 011 1v2h2a1 1 0 010 2h-2v2a1 1 0 01-2 0v-2h-2a1 1 0 110-2h2v-2a1 1 0 011-1z" fill="currentColor"/>
+    </g>`
   },
   substract: {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-433 -1550)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <rect x="4" y="7" width="8" height="2" rx="1" transform="translate(433 1550)" fill="#1B243F"/>
-        </g>
-      </g>`
+    <g transform="translate(-433 -1550)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <rect x="4" y="7" width="8" height="2" rx="1" transform="translate(433 1550)" fill="currentColor"/>
+    </g>`
   },
   checkmark: {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-575 -1550)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path d="M586.611 1555.27l.008.009c.37.374.37.977 0 1.352l-4.004 4.054a.934.934 0 01-.496.264l-.11.013-.111.001a.935.935 0 01-.618-.278l-2.003-2.027a.962.962 0 010-1.352.938.938 0 011.327-.008l.008.008 1.335 1.351 3.337-3.378a.938.938 0 011.327-.008z" fill="#1B243F"/>
-        </g>
-      </g>`
+      <g transform="translate(-575 -1550)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M586.611 1555.27l.008.009c.37.374.37.977 0 1.352l-4.004 4.054a.934.934 0 01-.496.264l-.11.013-.111.001a.935.935 0 01-.618-.278l-2.003-2.027a.962.962 0 010-1.352.938.938 0 011.327-.008l.008.008 1.335 1.351 3.337-3.378a.938.938 0 011.327-.008z" fill="currentColor"/>
+      </g>
+    `
   },
   'overflow-menu-vertic': {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-717 -1550)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path d="M725 1561.733a1.6 1.6 0 110 3.2 1.6 1.6 0 010-3.2zm0-5.333a1.6 1.6 0 110 3.2 1.6 1.6 0 010-3.2zm0-5.333a1.6 1.6 0 110 3.2 1.6 1.6 0 010-3.2z" fill="#1B243F"/>
-        </g>
-      </g>`
+      <g transform="translate(-717 -1550)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M725 1561.733a1.6 1.6 0 110 3.2 1.6 1.6 0 010-3.2zm0-5.333a1.6 1.6 0 110 3.2 1.6 1.6 0 010-3.2zm0-5.333a1.6 1.6 0 110 3.2 1.6 1.6 0 010-3.2z" fill="currentColor"/>
+      </g>
+    `
   },
   'status-circle': {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.694118 0 0 0 0 0.709804 0 0 0 0 0.745098 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g transform="translate(-859 -1550)" filter="url(#a)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <circle fill="#1B243F" cx="8" cy="8" r="3" transform="translate(859 1550)"/>
-        </g>
-      </g>`
+      <g transform="translate(-859 -1550)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle fill="currentColor" cx="8" cy="8" r="3" transform="translate(859 1550)"/>
+      </g>
+    `
   },
   'success-pictogram': {
     viewBox: '0 0 48 48',
@@ -323,33 +235,26 @@ const icons = {
   warning: {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path d="M0 0h16v16H0z"/>
-          <path d="M8.894 4.789l3.382 6.764A1 1 0 0111.382 13H4.618a1 1 0 01-.894-1.447l3.382-6.764a1 1 0 011.788 0z" fill="#1B243F"/>
-        </g>
-      </g>`
+      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M0 0h16v16H0z"/>
+        <path d="M8.894 4.789l3.382 6.764A1 1 0 0111.382 13H4.618a1 1 0 01-.894-1.447l3.382-6.764a1 1 0 011.788 0z" fill="currentColor"/>
+      </g>
+    `
   },
   info: {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="a">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.105882 0 0 0 0 0.141176 0 0 0 0 0.247059 0 0 0 1.000000 0"/>
-          </filter>
-        </defs>
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path d="M0 0h16v16H0z"/>
-          <path d="M0 0h16v16H0z"/>
-          <g filter="url(#a)">
-            <g transform="translate(7 4)" fill="#FFF">
-              <circle cx="1" cy="1" r="1"/>
-              <rect x="0" y="3" width="2" height="5" rx="1"/>
-            </g>
+      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M0 0h16v16H0z"/>
+        <path d="M0 0h16v16H0z"/>
+        <g>
+          <g transform="translate(7 4)" fill="currentColor">
+            <circle cx="1" cy="1" r="1"/>
+            <rect x="0" y="3" width="2" height="5" rx="1"/>
           </g>
         </g>
-      </g>`
+      </g>
+    `
   }
 }
 
