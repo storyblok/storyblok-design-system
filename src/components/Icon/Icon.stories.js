@@ -17,7 +17,7 @@ export const Default = () => ({
       default: () => select('Sizes', iconSizes, 'medium')
     }
   },
-  template: '<SbIcon name="arrow" :size="size" />'
+  template: '<SbIcon name="chevron-down" :size="size" />'
 })
 
 export const FallackIcon = () => ({
@@ -30,19 +30,19 @@ export const IconSizes = () => ({
   template: `
     <div>
       <div style="margin-bottom: 10px">
-        <SbIcon name="arrow" size="small" />
+        <SbIcon name="chevron-down" size="small" />
       </div>
 
       <div style="margin-bottom: 10px">
-        <SbIcon name="arrow" />
+        <SbIcon name="chevron-down" />
       </div>
 
       <div style="margin-bottom: 10px">
-        <SbIcon name="arrow" size="large" />
+        <SbIcon name="chevron-down" size="large" />
       </div>
 
       <div style="margin-bottom: 10px">
-        <SbIcon name="arrow" size="x-large" />
+        <SbIcon name="chevron-down" size="x-large" />
       </div>
     </div>
   `

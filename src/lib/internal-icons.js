@@ -2,16 +2,6 @@
  * Internal icon paths
  */
 const icons = {
-  arrow: {
-    viewBox: '0 0 5 8',
-    path: `
-      <g>
-        <path
-          fill="currentColor"
-          d="M5,0 C5.55228475,-1.01453063e-16 6,0.44771525 6,1 L6,5 C6,5.55228475 5.55228475,6 5,6 C4.44771525,6 4,5.55228475 4,5 L3.999,2 L1,2 C0.44771525,2 -2.27366912e-12,1.55228475 -2.27373675e-12,1 C-2.27380439e-12,0.44771525 0.44771525,1.01453063e-16 1,0 L5,0 L5,0 Z"></path>
-      </g>
-    `
-  },
   'fallback-black': {
     viewBox: '0 0 46 46',
     path: `
@@ -101,7 +91,7 @@ const icons = {
   'chevron-down': {
     viewBox: '0 0 16 16',
     path: `
-      <g width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <g version="1.1" xmlns="http://www.w3.org/2000/svg">
         <path d="M7.293 10.536a1 1 0 001.414 0l2.829-2.829a1 1 0 10-1.415-1.414L8 8.414 5.879 6.293a1 1 0 10-1.415 1.414l2.829 2.829z" fill="currentColor" stroke="none" stroke-width="1" fill-rule="evenodd"/>
       </g>`
   },
