@@ -16,9 +16,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
-    "@storybook/addon-essentials": "^6.0.13",
+    "@storybook/addon-essentials": "^6.0.16",
     "@storybook/preset-scss": "^1.0.2",
-    "@storybook/vue": "^6.0.13",
+    "@storybook/vue": "^6.0.16",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
     "@vue/cli-plugin-unit-jest": "~4.4.0",
