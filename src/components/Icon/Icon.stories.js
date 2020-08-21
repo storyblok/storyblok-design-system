@@ -1,4 +1,3 @@
-import { withKnobs, select } from '@storybook/addon-knobs'
 
 import SbIcon from '.'
 import { iconSizes } from './utils'
@@ -7,18 +6,35 @@ import { availableColors } from '../../utils'
 export default {
   title: 'SbIcon',
   component: SbIcon,
-  decorators: [withKnobs]
+  args: {
+    size: {
+      name: 'size',
+      description: 'Size for SbIcon',
+      control: {
+        type: 'select',
+        options: iconSizes
+      }
+    },
+    color: {
+      name: 'color',
+      description: 'Color for SbIcon',
+      control: {
+        type: 'select',
+        options: availableColors
+      }
+    }
+  }
 }
 
-export const Default = () => ({
+export const Default = args => ({
   components: { SbIcon },
-  props: {
-    size: {
-      default: () => select('Sizes', iconSizes, 'medium')
-    }
-  },
+  props: Object.keys(args),
   template: '<SbIcon name="chevron-down" :size="size" />'
 })
+
+Default.args = {
+  size: 'normal'
+}
 
 export const FallackIcon = () => ({
   components: { SbIcon },
@@ -48,16 +64,9 @@ export const IconSizes = () => ({
   `
 })
 
-export const AllIcons = () => ({
+export const AllIcons = args => ({
   components: { SbIcon },
-  props: {
-    size: {
-      default: () => select('Sizes', iconSizes, 'medium')
-    },
-    color: {
-      default: () => select('Color', availableColors, 'primary')
-    }
-  },
+  props: Object.keys(args),
   template: `
   <div>
     <div style="margin-bottom: 10px">

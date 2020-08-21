@@ -1,34 +1,60 @@
 import SbLinkButton from './index'
 
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs'
-
 export default {
   title: 'SbLinkButton',
   component: SbLinkButton,
-  decorators: [withKnobs]
-}
-
-export const Default = () => ({
-  components: { SbLinkButton },
-  props: {
+  args: {
+    status: 'primary',
+    size: null,
+    label: 'Primary'
+  },
+  argTypes: {
+    size: {
+      name: 'size',
+      description: 'Size',
+      control: {
+        type: 'select',
+        options: ['small', 'normal', 'large']
+      }
+    },
     label: {
-      default: () => text('Label', 'Primary')
+      name: 'label',
+      description: 'Label'
     },
     title: {
-      default: () => text('Title', 'Example Link')
+      name: 'title',
+      description: 'Title to `SbLinkButton`'
     },
     status: {
-      default: () => select('Status', ['primary', 'secondary'], 'primary')
+      name: 'status',
+      description: '`SbLinkButton` status',
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary']
+      }
     },
     isDisabled: {
-      default: () => boolean('Is Disabled', false)
+      name: 'isDisabled',
+      description: 'Disable `SbLinkButton`',
+      control: {
+        type: 'boolean'
+      }
     }
-  },
-  template: `<SbLinkButton :label="label" 
-                           to="#"
-                           :title="title"
-                           :is-disabled="isDisabled"
-                           :status="status"/>`
+  }
+}
+
+export const Default = args => ({
+  components: { SbLinkButton },
+  props: Object.keys(args),
+  template: `
+    <SbLinkButton
+      :label="label"
+      to="#"
+      :title="title"
+      :is-disabled="isDisabled"
+      :status="status"
+    />
+  `
 })
 
 export const PrimaryAndSecondary = () => ({

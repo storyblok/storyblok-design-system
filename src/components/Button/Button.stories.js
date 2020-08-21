@@ -1,37 +1,69 @@
 import SbButton from './index'
 
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs'
-
 export default {
   title: 'SbButton',
   component: SbButton,
-  decorators: [withKnobs]
-}
-
-export const Default = () => ({
-  components: { SbButton },
-  props: {
-    status: {
-      default: () => select('Status', ['primary', 'secondary'], 'primary')
+  args: {
+    status: 'primary',
+    size: null,
+    label: 'Primary',
+    isLoading: false,
+    isDisabled: false
+  },
+  argTypes: {
+    size: {
+      name: 'size',
+      description: 'Size',
+      control: {
+        type: 'select',
+        options: ['small', 'normal', 'large']
+      }
     },
     label: {
-      default: () => text('Label', 'Primary')
-    },
-    size: {
-      default: () => select('Size', ['small', 'default', 'large'], 'default')
+      name: 'label',
+      description: 'Label (inner test)'
     },
     isLoading: {
-      default: () => boolean('Is Loading', false)
+      name: 'isLoading',
+      description: 'Show a loading',
+      control: {
+        type: 'boolean'
+      }
     },
     isDisabled: {
-      default: () => boolean('Is Disabled', false)
+      name: 'isDisabled',
+      description: 'Disable button',
+      control: {
+        type: 'boolean'
+      }
+    },
+    status: {
+      name: 'status',
+      description: '`SbButton` status',
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary']
+      }
+    },
+    icon: {
+      name: 'icon',
+      description: 'Icon to `SbButton`'
     }
-  },
-  template: `<SbButton :status="status"
-                       :label="label" 
-                       :is-loading="isLoading" 
-                       :is-disabled="isDisabled" 
-                       :size="size"/>`
+  }
+}
+
+export const Default = args => ({
+  components: { SbButton },
+  props: Object.keys(args),
+  template: `
+    <SbButton
+      :status="status"
+      :label="label"
+      :is-loading="isLoading"
+      :is-disabled="isDisabled"
+      :size="size"
+    />
+  `
 })
 
 export const SecondaryButton = () => ({
@@ -60,11 +92,9 @@ export const AllSizes = () => ({
 export const IsLoading = () => ({
   components: { SbButton },
   template: `<div>
-  <div style="margin: 10px 0;">
-    <SbButton label="Primary" size="small" isLoading/>
-    <SbButton label="Primary" isLoading/>
-    <SbButton label="Primary" size="large" isLoading/>
-  </div>
+    <SbButton size="small" isLoading />
+    <SbButton isLoading />
+    <SbButton size="large" isLoading />
   </div>`
 })
 
