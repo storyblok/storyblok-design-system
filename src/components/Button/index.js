@@ -43,7 +43,7 @@ const SbButton = {
       return h('img', {
         attrs: {
           class: 'sb-button--icon',
-          alt: `Is ${icon}`,
+          alt: '',
           src: Object.keys(icons)[0] === icon ? icons.check : icons.loading
         }
       })
@@ -60,12 +60,19 @@ const SbButton = {
       return ''
     }
 
-    const renderButton = (classes, content) => {
+    const renderButton = (content) => {
       return h('button', {
+        staticClass: `sb-button sb-button--${this.status}`,
         attrs: {
-          class: classes,
           disabled: this.isDisabled || this.isLoading,
           'aria-disabled': this.isDisabled || this.isLoading
+        },
+        class: {
+          'sb-button--disabled': this.isDisabled,
+          'sb-button--loading': this.isLoading,
+          'sb-button--no-label': !this.label,
+          'sb-button--small': this.size === 'small',
+          'sb-button--large': this.size === 'large'
         },
         on: {
           click: (!this.isDisabled || !this.isLoading ? $event => this.$emit('click', $event) : '')
@@ -73,31 +80,19 @@ const SbButton = {
       }, content)
     }
 
-    const buttonProps = {
-      staticClass: `sb-button sb-button--${this.status} sb-button--${this.size}`
-    }
-
     const content = []
 
     if (this.icon) {
-      content.push(renderIcon('check'))
-    }
-
-    if (this.isDisabled) {
-      buttonProps.staticClass += ' sb-button--disabled'
+      content.push(renderIcon(this.icon))
     }
 
     if (this.isLoading) {
-      return renderButton(buttonProps.staticClass + ' sb-button--loading', [renderIcon('loading')])
+      return renderButton([renderIcon('loading')])
     }
 
     content.push(renderLabel())
 
-    if (!this.label) {
-      buttonProps.staticClass += ' sb-button--no-label'
-    }
-
-    return renderButton(buttonProps.staticClass, content)
+    return renderButton(content)
   }
 }
 

@@ -1,71 +1,61 @@
 .sb-button {
+  padding: 13px 28.5px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   border: none;
+  transition: all .1s ease-in-out;
 
-  &--primary {
+  &--primary:not(&--disabled) {
     background-color: $color-primary;
     color: $white;
-    padding-left: 3px;
-    padding-right: 3px;
     
     &:hover {
-      transition: all .1s ease-in-out;
       background: $sb-green-hover;
       box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.08);
     }
   }
   
-  &--secondary {
+  &--secondary:not(&--disabled) {
     background-color: $white;
     color: $primary-text-color;
     border: 1px solid rgb(223, 227, 232);
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
-    padding-left: 3px;
-    padding-right: 3px;
 
     &:hover {
       color: $sb-green;
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
     }
   }
 
   &--small {
-    height: 36px;
-    width: 88px;
-  }
-
-  &--default {
-    height: 46px;
-    width: 113px;
+    padding: 8px 16px;
   }
   
   &--large {
-    height: 60px;
-    width: 142px;
+    padding: 20px 43px;
   }
 
   &--disabled {
+    color: #b1b5be;
+    background-color: rgba(#dfe3e8, 0.3);
     cursor: not-allowed;
-    opacity: 30%;
+    border: 1px solid #dfe3e8;
   }
 
   &--icon {
     vertical-align: middle;
-    margin-right: 3.5px;
+    margin-right: 7px;
   }
 
   &--label {
     vertical-align: middle;
   }
 
-  &--no-label {
-    height: 36px;
-    width: 36px;
+  &--no-label &--icon {
+    margin-right: 0;
   }
 
   &:focus {
-    border-radius: 6px;
-    border: 3px solid rgb(217, 244, 243);
+    outline: 3px solid rgba($sb-green, 0.23);
   }
 }
