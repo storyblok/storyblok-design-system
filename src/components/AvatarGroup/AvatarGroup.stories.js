@@ -4,13 +4,34 @@ import SbAvatar from '../Avatar'
 // default export defines configurations to all stories
 export default {
   title: 'SbAvatarGroup',
-  component: SbAvatarGroup
+  component: SbAvatarGroup,
+  parameters: {
+    docs: {
+      description: {
+        component: 'The `SbAvatarGroup` component is to list the `SbAvatar`'
+      }
+    }
+  },
+  args: {
+    size: 'normal'
+  },
+  argTypes: {
+    size: {
+      name: 'size',
+      description: 'Size of the SbAvatar',
+      control: {
+        type: 'select',
+        options: ['small', 'normal', 'large']
+      }
+    }
+  }
 }
 
-export const Default = () => ({
+export const Default = (args) => ({
   components: { SbAvatarGroup, SbAvatar },
+  props: Object.keys(args),
   template: `
-  <SbAvatarGroup size="large">
+  <SbAvatarGroup :size="size">
     <SbAvatar
       src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
     />
@@ -74,6 +95,14 @@ export const WithSizes = () => ({
   </div>
   `
 })
+
+WithSizes.parameters = {
+  docs: {
+    description: {
+      story: 'You can change the size for all `SbAvatar` components just passing the `size` attribute for `SbAvatarGroup`'
+    }
+  }
+}
 
 export const WithMoreAvatars = () => ({
   components: { SbAvatarGroup, SbAvatar },
@@ -183,3 +212,11 @@ export const WithMoreAvatars = () => ({
   </div>
   `
 })
+
+WithMoreAvatars.parameters = {
+  docs: {
+    description: {
+      story: 'When you have more than **6** `SbAvatar` components, it will be render a placeholder as last element indicating how many more components are there'
+    }
+  }
+}
