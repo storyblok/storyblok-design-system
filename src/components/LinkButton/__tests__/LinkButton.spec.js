@@ -7,53 +7,52 @@ const factory = propsData => {
   })
 }
 
-describe('Tests for SbLinkButton', () => {
-  it('Test if link-button render correctly', async () => {
+describe('Test SbLinkButton component', () => {
+  describe('SbLinkButton default behavior', () => {
     const wrapper = factory({
       label: 'Primary',
-      to: 'http://storyblok.com',
+      href: 'http://storyblok.com',
       title: 'To home page'
     })
+    const LinkButton = wrapper.find('a')
 
-    const LinkButton = wrapper.find('button')
-
-    expect(LinkButton.attributes('class')).toBe('sb-link-button sb-link-button--primary')
-    expect(LinkButton.find('a').attributes('href')).toBe('http://storyblok.com')
-    expect(LinkButton.find('a').attributes('title')).toBe('To home page')
-    expect(LinkButton.find('a').text()).toBe('Primary')
-  })
-
-  it('Test if secondary link-button render correctly', async () => {
-    const wrapper = factory({
-      label: 'Secondary',
-      to: 'http://storyblok.com/v2',
-      title: 'To second page',
-      status: 'secondary'
+    it('should render a <a> tag with properly attributes', () => {
+      expect(LinkButton.exists()).toBe(true)
+      expect(LinkButton.attributes('href')).toBe('http://storyblok.com')
+      expect(LinkButton.attributes('title')).toBe('To home page')
+      expect(LinkButton.text()).toBe('Primary')
     })
 
-    const LinkButton = wrapper.find('button')
-
-    expect(LinkButton.attributes('class')).toBe('sb-link-button sb-link-button--secondary')
-    expect(LinkButton.find('a').attributes('href')).toBe('http://storyblok.com/v2')
-    expect(LinkButton.find('a').attributes('title')).toBe('To second page')
-    expect(LinkButton.find('a').text()).toBe('Secondary')
+    it('should have properly classes with primary state', () => {
+      expect(LinkButton.attributes('class')).toBe('sb-link-button sb-link-button--primary')
+    })
   })
 
-  it('Test if primary link-button render icon', async () => {
-    const wrapper = factory({
-      label: 'Secondary',
-      to: 'http://storyblok.com/',
-      title: 'Link with icon',
-      icon: 'check'
+  describe('secondary SbLinkButton', () => {
+    it('should have properly classes with secondary state', () => {
+      const wrapper = factory({
+        label: 'Secondary',
+        href: 'http://storyblok.com/v2',
+        title: 'To second page',
+        status: 'secondary'
+      })
+
+      const LinkButton = wrapper.find('a')
+
+      expect(LinkButton.attributes('class')).toBe('sb-link-button sb-link-button--secondary')
     })
+  })
 
-    const LinkButton = wrapper.find('button')
+  describe('SbLinkButton using icon', () => {
+    it('should have an img tag', () => {
+      const wrapper = factory({
+        label: 'Secondary',
+        href: 'http://storyblok.com/',
+        title: 'Link with icon',
+        icon: 'check'
+      })
 
-    expect(LinkButton.attributes('class')).toBe('sb-link-button sb-link-button--primary')
-    expect(LinkButton.find('a').attributes('href')).toBe('http://storyblok.com/')
-    expect(LinkButton.find('a').attributes('title')).toBe('Link with icon')
-
-    expect(LinkButton.find('img').attributes('class')).toBe('sb-link-button--icon')
-    expect(LinkButton.find('img').attributes('alt')).toBe('Is check')
+      expect(wrapper.find('img').exists()).toBe(true)
+    })
   })
 })

@@ -8,11 +8,10 @@ const SbLinkButton = {
   props: {
     label: {
       type: String,
-      default: 'Click'
+      default: null
     },
     to: {
       type: String,
-      required: true,
       default: null
     },
     title: {
@@ -30,55 +29,64 @@ const SbLinkButton = {
     icon: {
       type: String,
       default: null
+    },
+    href: {
+      type: String
+    },
+    as: {
+      type: String,
+      default: 'a'
     }
   },
 
   render (h) {
-    const renderLinkButton = () => {
-      return h('button', {
-        attrs: {
-          class: buttonProps.staticClass
-        }
-      }, [renderIcon(this.icon), renderLink()])
+    const getAttrs = () => {
+      const attrs = {
+        title: this.title
+      }
+
+      if (this.isDisabled) {
+        attrs.disabled = true
+      }
+
+      if (this.as === 'a') {
+        attrs.href = this.href
+      }
+
+      return attrs
     }
 
     const renderIcon = (icon) => {
-      if (this.icon) {
-        const icons = {
-          check: isCheck,
-          loading: isLoading
+      const icons = {
+        check: isCheck,
+        loading: isLoading
+      }
+
+      return h('img', {
+        attrs: {
+          class: 'sb-link-button--icon',
+          alt: '',
+          src: Object.keys(icons)[0] === icon ? icons.check : icons.loading
         }
-
-        return h('img', {
-          attrs: {
-            class: 'sb-link-button--icon',
-            alt: `Is ${icon}`,
-            src: Object.keys(icons)[0] === icon ? icons.check : icons.loading
-          }
-        })
-      }
-      return ''
+      })
     }
 
-    const renderLink = () => {
-      if (this.to) {
-        const link = h('a', {
-          attrs: {
-            href: this.to,
-            title: this.title,
-            class: buttonProps.staticClass += ' sb-link-button--link' + (this.isDisabled ? ' sb-link-button--disabled' : '')
-          }
-        }, this.label)
-
-        return link
-      }
+    const renderLabel = () => {
+      return h('span', {
+        staticClass: 'sb-link-button--label'
+      }, this.label)
     }
 
-    const buttonProps = {
-      staticClass: `sb-link-button sb-link-button--${this.status}` + (this.isDisabled ? ' sb-link-button--disabled' : '')
-    }
-
-    return renderLinkButton()
+    return h(this.as, {
+      staticClass: `sb-link-button sb-link-button--${this.status}`,
+      class: {
+        'sb-link-button--disabled': this.isDisabled
+      },
+      attrs: getAttrs()
+    }, [
+      this.icon && renderIcon(),
+      this.label && renderLabel()
+    ])
   }
 }
 
