@@ -1,6 +1,5 @@
 import './button.scss'
-import isLoading from '../../assets/icons/loading.svg'
-import isCheck from '../../assets/icons/check.svg'
+import SbIcon from '../Icon'
 
 const SbButton = {
   name: 'SbButton',
@@ -33,18 +32,11 @@ const SbButton = {
   },
 
   render (h) {
-    const renderIcon = (icon) => {
-      // Remove this function when the icons component is ready
-      const icons = {
-        check: isCheck,
-        loading: isLoading
-      }
-
-      return h('img', {
-        attrs: {
-          class: 'sb-button--icon',
-          alt: '',
-          src: Object.keys(icons)[0] === icon ? icons.check : icons.loading
+    const renderIcon = () => {
+      return h(SbIcon, {
+        props: {
+          size: 'small',
+          name: this.isLoading ? 'loading' : this.icon
         }
       })
     }
@@ -64,13 +56,12 @@ const SbButton = {
       return h('button', {
         staticClass: `sb-button sb-button--${this.status}`,
         attrs: {
-          disabled: this.isDisabled || this.isLoading,
-          'aria-disabled': this.isDisabled || this.isLoading
+          disabled: this.isDisabled,
+          'aria-disabled': this.isDisabled
         },
         class: {
           'sb-button--disabled': this.isDisabled,
-          'sb-button--loading': this.isLoading,
-          'sb-button--no-label': !this.label,
+          'sb-button--no-label': !this.label || this.isLoading,
           'sb-button--small': this.size === 'small',
           'sb-button--large': this.size === 'large'
         },

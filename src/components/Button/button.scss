@@ -1,29 +1,47 @@
 .sb-button {
+  display: inline-flex;
+  align-items: center;
   padding: 13px 28.5px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   border: none;
   transition: all .1s ease-in-out;
+  vertical-align: middle;
 
-  &--primary:not(&--disabled) {
+  &--primary {
     background-color: $color-primary;
     color: $white;
     
-    &:hover {
-      background: $sb-green-hover;
-      box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.08);
+    &:hover:not([disabled]) {
+      background-color: $sb-green-hover;
+    }
+
+    &[disabled] {
+      color: #004e4c;
+      background-color: rgba($color-primary, 0.5);
+    }
+
+    &:focus {
+      outline: 3px solid #d9f4f3;
     }
   }
   
-  &--secondary:not(&--disabled) {
-    background-color: $white;
-    color: $primary-text-color;
-    border: 1px solid rgb(223, 227, 232);
+  &--secondary {
+    background-color: $color-primary-dark;
+    color: $white;
 
-    &:hover {
-      color: $sb-green;
-      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+    &:hover:not([disabled]) {
+      background-color: #545b6f;
+    }
+
+    &[disabled] {
+      color: $color-primary-dark;
+      background-color: rgba($color-primary-dark, 0.5);
+    }
+
+    &:focus {
+      outline: 3px solid #c6c8cf;
     }
   }
 
@@ -35,14 +53,11 @@
     padding: 20px 43px;
   }
 
-  &--disabled {
-    color: #b1b5be;
-    background-color: rgba(#dfe3e8, 0.3);
+  &[disabled] {
     cursor: not-allowed;
-    border: 1px solid #dfe3e8;
   }
 
-  &--icon {
+  .sb-icon {
     vertical-align: middle;
     margin-right: 7px;
   }
@@ -51,11 +66,7 @@
     vertical-align: middle;
   }
 
-  &--no-label &--icon {
+  &--no-label .sb-icon {
     margin-right: 0;
-  }
-
-  &:focus {
-    outline: 3px solid rgba($sb-green, 0.23);
   }
 }

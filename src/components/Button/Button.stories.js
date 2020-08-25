@@ -1,12 +1,56 @@
 import SbButton from './index'
 
+const ButtonTemplate = args => ({
+  components: { SbButton },
+  props: Object.keys(args),
+  template: `
+    <div>
+      <SbButton
+        :status="status"
+        :label="label"
+        :size="size"
+      />
+
+      <SbButton
+        :status="status"
+        :is-disabled="isDisabled"
+        :icon="icon"
+        :label="label"
+        :size="size"
+      />
+
+      <SbButton
+        :status="status"
+        :label="label"
+        :is-loading="isLoading"
+        isDisabled
+        :size="size"
+      />
+
+      <SbButton
+        :status="status"
+        is-loading
+        :is-disabled="isDisabled"
+        :size="size"
+      />
+    </div>
+  `
+})
+
 export default {
   title: 'SbButton',
   component: SbButton,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Buttons are used to initialize an action. Button labels express what action will occur when the user interacts with it.'
+      }
+    }
+  },
   args: {
     status: 'primary',
     size: null,
-    label: 'Primary',
+    label: 'Default',
     isLoading: false,
     isDisabled: false
   },
@@ -21,7 +65,10 @@ export default {
     },
     label: {
       name: 'label',
-      description: 'Label (inner test)'
+      description: 'Label (inner test)',
+      control: {
+        type: 'text'
+      }
     },
     isLoading: {
       name: 'isLoading',
@@ -47,7 +94,10 @@ export default {
     },
     icon: {
       name: 'icon',
-      description: 'Icon to `SbButton`'
+      description: 'Icon to `SbButton`',
+      control: {
+        type: 'text'
+      }
     }
   }
 }
@@ -66,66 +116,51 @@ export const Default = args => ({
   `
 })
 
-export const SecondaryButton = () => ({
+export const Primary = ButtonTemplate.bind({})
+
+Primary.args = {
+  label: 'Primary',
+  icon: 'checkmark'
+}
+
+Primary.parameters = {
+  docs: {
+    description: {
+      story: 'For the principal call to action on the page. Primary buttons should only appear once per screen (not including the application header or in a modal dialog).'
+    }
+  }
+}
+
+export const Secondary = ButtonTemplate.bind({})
+
+Secondary.args = {
+  label: 'Secondary',
+  status: 'secondary',
+  icon: 'calendar'
+}
+
+Secondary.parameters = {
+  docs: {
+    description: {
+      story: 'For secondary actions on each page, these can only be used in conjunction with a primary button.'
+    }
+  }
+}
+
+export const Sizes = args => ({
   components: { SbButton },
+  props: Object.keys(args),
   template: `<div>
-    <SbButton label="Secondary" status="secondary" />
+    <SbButton label="Small" size="small" :status="status" />
+    <SbButton label="Default" :status="status" />
+    <SbButton label="Large" size="large" :status="status" />
   </div>`
 })
 
-export const AllSizes = () => ({
-  components: { SbButton },
-  template: `<div>
-    <div style="margin: 10px 0;">
-      <SbButton label="Small" size="small"/>
-      <SbButton label="Default" />
-      <SbButton label="Large" size="large"/>
-    </div>
-    <div style="margin: 10px 0;">
-      <SbButton label="Small" size="small" status="secondary"/>
-      <SbButton label="Default" status="secondary"/>
-      <SbButton label="Large" size="large" status="secondary"/>
-    </div>
-  </div>`
-})
-
-export const IsLoading = () => ({
-  components: { SbButton },
-  template: `<div>
-    <SbButton size="small" isLoading />
-    <SbButton isLoading />
-    <SbButton size="large" isLoading />
-  </div>`
-})
-
-export const IsDisabled = () => ({
-  components: { SbButton },
-  template: `<div>
-  <div style="margin: 10px 0;">
-    <SbButton label="Disabled" size="small" is-disabled/>
-    <SbButton label="Disabled" is-disabled/>
-    <SbButton label="Disabled" size="large" is-disabled/>
-  </div>
-  <div style="margin: 10px 0;">
-    <SbButton label="Disabled" size="small" is-disabled status="secondary"/>
-    <SbButton label="Disabled" is-disabled status="secondary"/>
-    <SbButton label="Disabled" size="large" is-disabled status="secondary"/>
-  </div>
-  </div>`
-})
-
-export const WithIcon = () => ({
-  components: { SbButton },
-  template: `<div>
-  <div style="margin: 10px 0;">
-    <SbButton label="Disabled" size="small" icon="check"/>
-    <SbButton label="Disabled" icon="check"/>
-    <SbButton label="Disabled" size="large" icon="check"/>
-  </div>
-  <div style="margin: 10px 0;">
-    <SbButton label="Disabled" size="small" icon="check" status="secondary"/>
-    <SbButton label="Disabled" icon="check" status="secondary"/>
-    <SbButton label="Disabled" size="large" icon="check" status="secondary"/>
-  </div>
-  </div>`
-})
+Sizes.parameters = {
+  docs: {
+    description: {
+      story: 'You can set the `size` attribute to change the padding inside the button'
+    }
+  }
+}
