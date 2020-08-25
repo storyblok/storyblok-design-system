@@ -1,6 +1,5 @@
 import './link-button.scss'
-import isLoading from '../../assets/icons/loading.svg'
-import isCheck from '../../assets/icons/check.svg'
+import SbIcon from '../Icon'
 
 const SbLinkButton = {
   name: 'SbLinkButton',
@@ -56,17 +55,11 @@ const SbLinkButton = {
       return attrs
     }
 
-    const renderIcon = (icon) => {
-      const icons = {
-        check: isCheck,
-        loading: isLoading
-      }
-
-      return h('img', {
-        attrs: {
-          class: 'sb-link-button--icon',
-          alt: '',
-          src: Object.keys(icons)[0] === icon ? icons.check : icons.loading
+    const renderIcon = () => {
+      return h(SbIcon, {
+        props: {
+          size: 'small',
+          name: this.icon
         }
       })
     }
@@ -77,7 +70,7 @@ const SbLinkButton = {
       }, this.label)
     }
 
-    return h(this.as, {
+    return h(this.as || 'a', {
       staticClass: `sb-link-button sb-link-button--${this.status}`,
       class: {
         'sb-link-button--disabled': this.isDisabled

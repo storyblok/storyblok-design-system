@@ -1,4 +1,5 @@
-import SbLinkButton from '../index'
+import SbLinkButton from '..'
+import SbIcon from '../../Icon'
 import { mount } from '@vue/test-utils'
 
 const factory = propsData => {
@@ -44,15 +45,21 @@ describe('Test SbLinkButton component', () => {
   })
 
   describe('SbLinkButton using icon', () => {
-    it('should have an img tag', () => {
-      const wrapper = factory({
-        label: 'Secondary',
-        href: 'http://storyblok.com/',
-        title: 'Link with icon',
-        icon: 'check'
-      })
+    const wrapper = factory({
+      label: 'Secondary',
+      href: 'http://storyblok.com/',
+      title: 'Link with icon',
+      icon: 'checkmark'
+    })
 
-      expect(wrapper.find('img').exists()).toBe(true)
+    const Icon = wrapper.findComponent(SbIcon)
+
+    it('should have SbIcon component', () => {
+      expect(Icon.exists()).toBe(true)
+    })
+
+    it('should the SbIcon with name that it was passed', () => {
+      expect(Icon.props('name')).toBe('checkmark')
     })
   })
 })

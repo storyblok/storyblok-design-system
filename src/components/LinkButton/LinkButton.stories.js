@@ -6,7 +6,11 @@ export default {
   args: {
     status: 'primary',
     size: null,
-    label: 'Primary'
+    href: 'https://storyblok.com',
+    label: 'Go to Storyblok website',
+    as: undefined,
+    title: null,
+    isDisabled: false
   },
   argTypes: {
     size: {
@@ -19,11 +23,31 @@ export default {
     },
     label: {
       name: 'label',
-      description: 'Label'
+      description: 'Label',
+      control: {
+        type: 'text'
+      }
+    },
+    as: {
+      name: 'as',
+      description: 'The tag that should be used (<a> is default)',
+      control: {
+        type: 'text'
+      }
+    },
+    href: {
+      name: 'href',
+      description: 'href attribute for <a> tag',
+      control: {
+        type: 'text'
+      }
     },
     title: {
       name: 'title',
-      description: 'Title to `SbLinkButton`'
+      description: 'Title to `SbLinkButton`',
+      control: {
+        type: 'text'
+      }
     },
     status: {
       name: 'status',
@@ -39,6 +63,13 @@ export default {
       control: {
         type: 'boolean'
       }
+    },
+    icon: {
+      name: 'icon',
+      description: 'Icon to `SbLinkButton`',
+      control: {
+        type: 'text'
+      }
     }
   }
 }
@@ -48,35 +79,105 @@ export const Default = args => ({
   props: Object.keys(args),
   template: `
     <SbLinkButton
-      :label="label"
-      to="#"
-      :title="title"
-      :is-disabled="isDisabled"
-      :status="status"
+      v-bind="{
+        as,
+        label,
+        href,
+        title,
+        isDisabled,
+        status
+      }"
     />
   `
 })
 
-export const PrimaryAndSecondary = () => ({
+// export const Secondary = args => ({
+//   props: Object.keys(args),
+//   components: { SbLinkButton },
+//   template: `<div>
+//     <SbLinkButton
+//       v-bind="{
+//         label,
+//         status
+//       }"
+//     />
+//   </div>`
+// })
+
+// Secondary.args = {
+//   label: 'Secondary link button',
+//   status: 'secondary'
+// }
+
+export const WithIcon = args => ({
   components: { SbLinkButton },
+  props: Object.keys(args),
   template: `<div>
-    <SbLinkButton label="Primary" to="http://#" title="To home page"/>
-    <SbLinkButton label="Primary" to="http://#" title="To home page" status="secondary"/>
+      <div>
+        <SbLinkButton
+          v-bind="{
+            label: primaryLabel,
+            href,
+            title,
+            icon
+          }"
+        />
+      </div>
+
+      <div style="margin-top: 20px">
+        <SbLinkButton
+          v-bind="{
+            label: secondaryLabel,
+            href,
+            title,
+            icon,
+            status: 'secondary'
+          }"
+        />
+      </div>
   </div>`
 })
 
-export const PrimaryAndSecondaryWithIcon = () => ({
+WithIcon.args = {
+  primaryLabel: 'Primary label',
+  secondaryLabel: 'Secondary label',
+  icon: 'checkmark'
+}
+
+export const Disabled = args => ({
   components: { SbLinkButton },
+  props: Object.keys(args),
   template: `<div>
-    <SbLinkButton label="Primary" to="http://#" title="To home page" icon="check"/>
-    <SbLinkButton label="Primary" to="http://#" title="To home page" status="secondary" icon="check"/>
+      <div>
+        <SbLinkButton
+          v-bind="{
+            label: primaryLabel,
+            href,
+            title,
+            icon,
+            isDisabled
+          }"
+        />
+      </div>
+
+      <div style="margin-top: 20px">
+        <SbLinkButton
+          v-bind="{
+            label: secondaryLabel,
+            href,
+            title,
+            icon,
+            status: 'secondary',
+            isDisabled
+          }"
+        />
+      </div>
   </div>`
 })
 
-export const PrimaryAndSecondaryDisabled = () => ({
-  components: { SbLinkButton },
-  template: `<div>
-    <SbLinkButton label="Primary" to="http://#" title="To home page" is-disabled/>
-    <SbLinkButton label="Primary" to="http://#" title="To home page" status="secondary" is-disabled/>
-  </div>`
-})
+Disabled.args = {
+  primaryLabel: 'Primary disabled label',
+  secondaryLabel: 'Secondary disabled label',
+  icon: 'checkmark',
+  isDisabled: true
+}
