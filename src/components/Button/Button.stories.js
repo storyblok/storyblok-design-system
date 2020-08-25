@@ -171,6 +171,22 @@ Ghost.parameters = {
   }
 }
 
+export const Danger = ButtonTemplate.bind({})
+
+Danger.args = {
+  label: 'Danger',
+  status: 'danger',
+  icon: 'close'
+}
+
+Danger.parameters = {
+  docs: {
+    description: {
+      story: 'Destructive actions'
+    }
+  }
+}
+
 export const Sizes = args => ({
   components: { SbButton },
   props: Object.keys(args),

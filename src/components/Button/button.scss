@@ -64,6 +64,15 @@
     }
   }
 
+  &--danger {
+    background-color: $color-negative;
+    color: $white;
+
+    &:focus {
+      outline: 3px solid #FFD7D5;
+    }
+  }
+
   &--small {
     padding: 8px 16px;
   }
