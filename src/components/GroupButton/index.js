@@ -20,8 +20,7 @@ const SbButtonGroup = {
   functional: true,
   props: {
     size: {
-      type: String,
-      default: 'default'
+      type: String
     }
   },
 

@@ -6,8 +6,7 @@ const SbButton = {
 
   props: {
     size: {
-      type: String,
-      default: 'default'
+      type: String
     },
     label: {
       type: String,
