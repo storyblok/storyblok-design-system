@@ -15,7 +15,7 @@
     color: $white;
     
     &:hover:not([disabled]) {
-      background-color: $sb-green-hover;
+      background-color: #40c6c4;
     }
 
     &[disabled] {
@@ -43,6 +43,24 @@
 
     &:focus {
       outline: 3px solid #c6c8cf;
+    }
+  }
+
+  &--ghost {
+    background-color: $white;
+    color: $color-primary-dark;
+    border: 1px solid #dfe3e8;
+
+    &:hover:not([disabled]) {
+      background-color: #dfe3e8;
+    }
+
+    &[disabled] {
+      opacity: 0.5;
+    }
+
+    &:focus {
+      outline: 3px solid #eff1f3;
     }
   }
 

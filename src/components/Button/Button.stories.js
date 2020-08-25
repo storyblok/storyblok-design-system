@@ -155,6 +155,22 @@ Secondary.parameters = {
   }
 }
 
+export const Ghost = ButtonTemplate.bind({})
+
+Ghost.args = {
+  label: 'Ghost',
+  status: 'ghost',
+  icon: 'calendar'
+}
+
+Ghost.parameters = {
+  docs: {
+    description: {
+      story: 'For less prominent actions, ghost buttons can be used in isolation or paired with a primary button when there are multiple calls to action.'
+    }
+  }
+}
+
 export const Sizes = args => ({
   components: { SbButton },
   props: Object.keys(args),
