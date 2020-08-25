@@ -53,7 +53,8 @@ export default {
     label: 'Default',
     isLoading: false,
     isDisabled: false,
-    isFullWidth: false
+    isFullWidth: false,
+    isRounded: false
   },
   argTypes: {
     size: {
@@ -103,6 +104,20 @@ export default {
     isFullWidth: {
       name: 'isFullWidth',
       description: 'Expand button to 100% width',
+      control: {
+        type: 'boolean'
+      }
+    },
+    isRounded: {
+      name: 'isRounded',
+      description: 'Transform button to rounded',
+      control: {
+        type: 'boolean'
+      }
+    },
+    hasIconOnly: {
+      name: 'hasIconOnly',
+      description: 'Set the button to have only icon with a specific padding',
       control: {
         type: 'boolean'
       }
@@ -223,4 +238,46 @@ export const FullWidth = args => ({
 FullWidth.args = {
   label: 'Full width',
   isFullWidth: true
+}
+
+export const JustIcons = args => ({
+  components: { SbButton },
+  props: Object.keys(args),
+  template: `<div style="max-width: 500px;">
+    <SbButton
+      status="primary"
+      :size="size"
+      :icon="icon"
+      :is-loading="isLoading"
+      :is-disabled="isDisabled"
+      :size="size"
+      has-icon-only
+    />
+
+    <SbButton
+      status="secondary"
+      :size="size"
+      :icon="icon"
+      :is-loading="isLoading"
+      :is-disabled="isDisabled"
+      :size="size"
+      has-icon-only
+    />
+
+    <SbButton
+      status="ghost"
+      :size="size"
+      :icon="icon"
+      :is-loading="isLoading"
+      :is-disabled="isDisabled"
+      :size="size"
+      is-rounded
+      has-icon-only
+    />
+  </div>`
+})
+
+JustIcons.args = {
+  icon: 'plus',
+  isRounded: false
 }

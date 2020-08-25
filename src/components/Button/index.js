@@ -32,6 +32,14 @@ const SbButton = {
     isFullWidth: {
       type: Boolean,
       default: false
+    },
+    isRounded: {
+      type: Boolean,
+      default: false
+    },
+    hasIconOnly: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -65,10 +73,11 @@ const SbButton = {
         },
         class: {
           'sb-button--disabled': this.isDisabled,
-          'sb-button--no-label': !this.label || this.isLoading,
           'sb-button--small': this.size === 'small',
           'sb-button--large': this.size === 'large',
-          'sb-button--full': this.isFullWidth
+          'sb-button--full': this.isFullWidth,
+          'sb-button--rounded': this.isRounded,
+          'sb-button--has-icon-only': this.hasIconOnly
         },
         on: {
           click: (!this.isDisabled || !this.isLoading ? $event => this.$emit('click', $event) : '')

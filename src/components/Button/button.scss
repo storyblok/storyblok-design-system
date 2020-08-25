@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 13px 28.5px;
+  padding: 14px 28.5px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
@@ -87,18 +87,25 @@
 
   .sb-icon {
     vertical-align: middle;
-    margin-right: 7px;
   }
 
   &--label {
     vertical-align: middle;
   }
 
-  &--no-label .sb-icon {
-    margin-right: 0;
-  }
-
   &--full {
     width: 100%;
+  }
+
+  &--rounded {
+    border-radius: 100%;
+  }
+
+  &--has-icon-only {
+    padding: 15px 15px;
+
+    .sb-icon {
+      margin: 0;
+    }
   }
 }
