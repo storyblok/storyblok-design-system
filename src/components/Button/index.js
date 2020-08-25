@@ -28,6 +28,10 @@ const SbButton = {
     icon: {
       type: String,
       default: null
+    },
+    isFullWidth: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -63,7 +67,8 @@ const SbButton = {
           'sb-button--disabled': this.isDisabled,
           'sb-button--no-label': !this.label || this.isLoading,
           'sb-button--small': this.size === 'small',
-          'sb-button--large': this.size === 'large'
+          'sb-button--large': this.size === 'large',
+          'sb-button--full': this.isFullWidth
         },
         on: {
           click: (!this.isDisabled || !this.isLoading ? $event => this.$emit('click', $event) : '')

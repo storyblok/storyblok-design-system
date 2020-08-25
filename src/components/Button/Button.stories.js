@@ -52,7 +52,8 @@ export default {
     size: null,
     label: 'Default',
     isLoading: false,
-    isDisabled: false
+    isDisabled: false,
+    isFullWidth: false
   },
   argTypes: {
     size: {
@@ -97,6 +98,13 @@ export default {
       description: 'Icon to `SbButton`',
       control: {
         type: 'text'
+      }
+    },
+    isFullWidth: {
+      name: 'isFullWidth',
+      description: 'Expand button to 100% width',
+      control: {
+        type: 'boolean'
       }
     }
   }
@@ -163,4 +171,24 @@ Sizes.parameters = {
       story: 'You can set the `size` attribute to change the padding inside the button'
     }
   }
+}
+
+export const FullWidth = args => ({
+  components: { SbButton },
+  props: Object.keys(args),
+  template: `<div style="max-width: 500px;">
+    <SbButton
+      :status="status"
+      :is-loading="isLoading"
+      :is-disabled="isDisabled"
+      :size="size"
+      :is-full-width="isFullWidth"
+      :label="label"
+    />
+  </div>`
+})
+
+FullWidth.args = {
+  label: 'Full width',
+  isFullWidth: true
 }

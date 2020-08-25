@@ -1,6 +1,7 @@
 .sb-button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   padding: 13px 28.5px;
   border-radius: 5px;
   font-size: 16px;
@@ -68,5 +69,9 @@
 
   &--no-label .sb-icon {
     margin-right: 0;
+  }
+
+  &--full {
+    width: 100%;
   }
 }
