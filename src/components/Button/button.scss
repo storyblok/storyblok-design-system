@@ -89,7 +89,7 @@
     vertical-align: middle;
   }
 
-  &--label {
+  &__label {
     vertical-align: middle;
   }
 
@@ -99,6 +99,18 @@
 
   &--rounded {
     border-radius: 100%;
+  }
+
+  &--has-icon-before {
+    .sb-icon {
+      margin-right: 5px;
+    }
+  }
+
+  &--has-icon-after {
+    .sb-icon {
+      margin-left: 5px;
+    }
   }
 
   &--has-icon-only {

@@ -24,7 +24,11 @@ const SbButton = {
       type: String,
       default: 'primary'
     },
-    icon: {
+    iconBefore: {
+      type: String,
+      default: null
+    },
+    iconAfter: {
       type: String,
       default: null
     },
@@ -43,24 +47,21 @@ const SbButton = {
   },
 
   render (h) {
-    const renderIcon = () => {
+    const renderIcon = (icon) => {
       return h(SbIcon, {
         props: {
           size: 'small',
-          name: this.isLoading ? 'loading' : this.icon
+          name: this.isLoading ? 'loading' : icon
         }
       })
     }
 
     const renderLabel = () => {
-      if (this.label) {
-        return h('span', {
-          attrs: {
-            class: 'sb-button--label'
-          }
-        }, this.label)
-      }
-      return ''
+      return h('span', {
+        attrs: {
+          class: 'sb-button__label'
+        }
+      }, this.label)
     }
 
     const renderButton = (content) => {
@@ -76,7 +77,9 @@ const SbButton = {
           'sb-button--large': this.size === 'large',
           'sb-button--full': this.isFullWidth,
           'sb-button--rounded': this.isRounded,
-          'sb-button--has-icon-only': this.hasIconOnly
+          'sb-button--has-icon-only': this.hasIconOnly,
+          'sb-button--has-icon-before': this.iconBefore,
+          'sb-button--has-icon-after': this.iconAfter
         },
         on: {
           click: (!this.isDisabled || !this.isLoading ? $event => this.$emit('click', $event) : '')
@@ -84,17 +87,15 @@ const SbButton = {
       }, content)
     }
 
-    const content = []
-
-    if (this.icon) {
-      content.push(renderIcon(this.icon))
-    }
-
     if (this.isLoading) {
       return renderButton([renderIcon('loading')])
     }
 
-    content.push(renderLabel())
+    const content = [
+      this.iconBefore && renderIcon(this.iconBefore),
+      this.label && renderLabel(),
+      this.iconAfter && renderIcon(this.iconAfter)
+    ]
 
     return renderButton(content)
   }
