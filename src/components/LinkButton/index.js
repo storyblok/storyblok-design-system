@@ -21,7 +21,7 @@ const SbLinkButton = {
       type: Boolean,
       default: false
     },
-    status: {
+    type: {
       type: String,
       default: 'primary'
     },
@@ -71,7 +71,7 @@ const SbLinkButton = {
     }
 
     return h(this.as || 'a', {
-      staticClass: `sb-link-button sb-link-button--${this.status}`,
+      staticClass: `sb-link-button sb-link-button--${this.type}`,
       class: {
         'sb-link-button--disabled': this.isDisabled
       },

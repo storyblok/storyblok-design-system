@@ -6,13 +6,13 @@ const ButtonTemplate = args => ({
   template: `
     <div>
       <SbButton
-        :status="status"
+        :type="type"
         :label="label"
         :size="size"
       />
 
       <SbButton
-        :status="status"
+        :type="type"
         :is-disabled="isDisabled"
         :icon="icon"
         :label="label"
@@ -20,7 +20,7 @@ const ButtonTemplate = args => ({
       />
 
       <SbButton
-        :status="status"
+        :type="type"
         :label="label"
         :is-loading="isLoading"
         isDisabled
@@ -28,7 +28,7 @@ const ButtonTemplate = args => ({
       />
 
       <SbButton
-        :status="status"
+        :type="type"
         is-loading
         :is-disabled="isDisabled"
         :size="size"
@@ -48,7 +48,7 @@ export default {
     }
   },
   args: {
-    status: 'primary',
+    type: 'primary',
     size: null,
     label: 'Default',
     isLoading: false,
@@ -86,9 +86,9 @@ export default {
         type: 'boolean'
       }
     },
-    status: {
-      name: 'status',
-      description: '`SbButton` status',
+    type: {
+      name: 'type',
+      description: '`SbButton` type',
       control: {
         type: 'select',
         options: ['primary', 'secondary']
@@ -130,7 +130,7 @@ export const Default = args => ({
   props: Object.keys(args),
   template: `
     <SbButton
-      :status="status"
+      :type="type"
       :label="label"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
@@ -158,7 +158,7 @@ export const Secondary = ButtonTemplate.bind({})
 
 Secondary.args = {
   label: 'Secondary',
-  status: 'secondary',
+  type: 'secondary',
   icon: 'calendar'
 }
 
@@ -174,7 +174,7 @@ export const Ghost = ButtonTemplate.bind({})
 
 Ghost.args = {
   label: 'Ghost',
-  status: 'ghost',
+  type: 'ghost',
   icon: 'calendar'
 }
 
@@ -190,7 +190,7 @@ export const Danger = ButtonTemplate.bind({})
 
 Danger.args = {
   label: 'Danger',
-  status: 'danger',
+  type: 'danger',
   icon: 'close'
 }
 
@@ -206,9 +206,9 @@ export const Sizes = args => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `<div>
-    <SbButton label="Small" size="small" :status="status" />
-    <SbButton label="Default" :status="status" />
-    <SbButton label="Large" size="large" :status="status" />
+    <SbButton label="Small" size="small" :type="type" />
+    <SbButton label="Default" :type="type" />
+    <SbButton label="Large" size="large" :type="type" />
   </div>`
 })
 
@@ -225,7 +225,7 @@ export const FullWidth = args => ({
   props: Object.keys(args),
   template: `<div style="max-width: 500px;">
     <SbButton
-      :status="status"
+      :type="type"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :size="size"
@@ -245,7 +245,7 @@ export const JustIcons = args => ({
   props: Object.keys(args),
   template: `<div style="max-width: 500px;">
     <SbButton
-      status="primary"
+      type="primary"
       :size="size"
       :icon="icon"
       :is-loading="isLoading"
@@ -255,7 +255,7 @@ export const JustIcons = args => ({
     />
 
     <SbButton
-      status="secondary"
+      type="secondary"
       :size="size"
       :icon="icon"
       :is-loading="isLoading"
@@ -265,7 +265,7 @@ export const JustIcons = args => ({
     />
 
     <SbButton
-      status="ghost"
+      type="ghost"
       :size="size"
       :icon="icon"
       :is-loading="isLoading"

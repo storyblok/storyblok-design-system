@@ -4,7 +4,7 @@ export default {
   title: 'SbLinkButton',
   component: SbLinkButton,
   args: {
-    status: 'primary',
+    type: 'primary',
     size: null,
     href: 'https://storyblok.com',
     label: 'Go to Storyblok website',
@@ -49,9 +49,9 @@ export default {
         type: 'text'
       }
     },
-    status: {
-      name: 'status',
-      description: '`SbLinkButton` status',
+    type: {
+      name: 'type',
+      description: '`SbLinkButton` type',
       control: {
         type: 'select',
         options: ['primary', 'secondary']
@@ -85,7 +85,7 @@ export const Default = args => ({
         href,
         title,
         isDisabled,
-        status
+        type
       }"
     />
   `
@@ -98,7 +98,7 @@ export const Default = args => ({
 //     <SbLinkButton
 //       v-bind="{
 //         label,
-//         status
+//         type
 //       }"
 //     />
 //   </div>`
@@ -106,7 +106,7 @@ export const Default = args => ({
 
 // Secondary.args = {
 //   label: 'Secondary link button',
-//   status: 'secondary'
+//   type: 'secondary'
 // }
 
 export const WithIcon = args => ({
@@ -131,7 +131,7 @@ export const WithIcon = args => ({
             href,
             title,
             icon,
-            status: 'secondary'
+            type: 'secondary'
           }"
         />
       </div>
@@ -167,7 +167,7 @@ export const Disabled = args => ({
             href,
             title,
             icon,
-            status: 'secondary',
+            type: 'secondary',
             isDisabled
           }"
         />

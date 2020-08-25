@@ -35,7 +35,7 @@ describe('Test SbLinkButton component', () => {
         label: 'Secondary',
         href: 'http://storyblok.com/v2',
         title: 'To second page',
-        status: 'secondary'
+        type: 'secondary'
       })
 
       const LinkButton = wrapper.find('a')

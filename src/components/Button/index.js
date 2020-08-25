@@ -20,7 +20,7 @@ const SbButton = {
       type: Boolean,
       default: false
     },
-    status: {
+    type: {
       type: String,
       default: 'primary'
     },
@@ -65,7 +65,7 @@ const SbButton = {
 
     const renderButton = (content) => {
       return h('button', {
-        staticClass: `sb-button sb-button--${this.status}`,
+        staticClass: `sb-button sb-button--${this.type}`,
         attrs: {
           disabled: this.isDisabled,
           'aria-disabled': this.isDisabled

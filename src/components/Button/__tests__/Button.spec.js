@@ -40,7 +40,7 @@ describe('Test SbButton Component', () => {
   it('test SbButton in secondary color', async () => {
     const wrapper = factory({
       label: 'Secondary Button',
-      status: 'secondary'
+      type: 'secondary'
     })
 
     expect(wrapper.find('button').attributes('class')).toBe('sb-button sb-button--secondary')
