@@ -173,6 +173,7 @@ Primary.parameters = {
 export const Secondary = ButtonTemplate.bind({})
 
 Secondary.args = {
+  type: 'secondary',
   label: 'Secondary',
   iconBefore: 'checkmark',
   iconAfter: 'calendar'

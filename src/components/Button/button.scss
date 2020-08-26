@@ -11,7 +11,7 @@
   vertical-align: middle;
 
   &--primary {
-    background-color: $color-primary;
+    background-color: $sb-green;
     color: $white;
     
     &:hover:not([disabled]) {
@@ -20,39 +20,39 @@
 
     &[disabled] {
       color: #004e4c;
-      background-color: rgba($color-primary, 0.5);
+      background-color: rgba($sb-green, 0.5);
     }
 
     &:focus {
-      outline: 3px solid #d9f4f3;
+      outline: 3px solid $sb-green-25;
     }
   }
   
   &--secondary {
-    background-color: $color-primary-dark;
+    background-color: $sb-dark-blue;
     color: $white;
 
     &:hover:not([disabled]) {
-      background-color: #545b6f;
+      background-color: $sb-dark-blue-75;
     }
 
     &[disabled] {
       color: $color-primary-dark;
-      background-color: rgba($color-primary-dark, 0.5);
+      background-color: rgba($sb-dark-blue, 0.5);
     }
 
     &:focus {
-      outline: 3px solid #c6c8cf;
+      outline: 3px solid $sb-dark-blue-25;
     }
   }
 
   &--ghost {
     background-color: $white;
-    color: $color-primary-dark;
-    border: 1px solid #dfe3e8;
+    color: $sb-dark-blue;
+    border: 1px solid $light;
 
     &:hover:not([disabled]) {
-      background-color: #dfe3e8;
+      background-color: $light-50;
     }
 
     &[disabled] {
@@ -60,16 +60,20 @@
     }
 
     &:focus {
-      outline: 3px solid #eff1f3;
+      outline: 3px solid $light-25;
     }
   }
 
   &--danger {
-    background-color: $color-negative;
+    background-color: $red;
     color: $white;
 
+    &[disabled] {
+      opacity: 0.5;
+    }
+
     &:focus {
-      outline: 3px solid #FFD7D5;
+      outline: 3px solid $red-25;
     }
   }
 
