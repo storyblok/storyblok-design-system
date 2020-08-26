@@ -1,6 +1,10 @@
 .sb-group-button {
   display: inline;
 
+  .sb-link-button {
+    margin: 0 15px;
+  }
+
   &:not(&--has-spaces) {
     .sb-button {
       border-radius: 0;
@@ -14,10 +18,6 @@
     .sb-button:last-child {
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
-    }
-
-    .sb-button--ghost:not(:last-child) {
-      border-right: none;
     }
   }
 
