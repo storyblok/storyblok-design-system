@@ -1,24 +1,29 @@
 .sb-group-button {
   display: inline;
 
-  // reset and adjust border-radius
-  .sb-button {
-    border-radius: 0;
+  &:not(&--has-spaces) {
+    .sb-button {
+      border-radius: 0;
+    }
+  
+    .sb-button:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    
+    .sb-button:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
 
-    &:hover {
-      background-color: $green;
-      color: $white;
-      border: none;
+    .sb-button--ghost:not(:last-child) {
+      border-right: none;
     }
   }
 
-  .sb-button:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-  
-  .sb-button:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+  &--has-spaces {
+    .sb-button:not(:last-child) {
+      margin-right: 5px;
+    }
   }
 }
