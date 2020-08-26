@@ -1,8 +1,8 @@
 import './link-button.scss'
 import SbIcon from '../Icon'
 
-const SbLinkButton = {
-  name: 'SbLinkButton',
+const SbLink = {
+  name: 'SbLink',
 
   props: {
     label: {
@@ -16,10 +16,6 @@ const SbLinkButton = {
     title: {
       type: String,
       default: null
-    },
-    isDisabled: {
-      type: Boolean,
-      default: false
     },
     type: {
       type: String,
@@ -35,17 +31,23 @@ const SbLinkButton = {
     as: {
       type: String,
       default: 'a'
+    },
+    iconBefore: {
+      type: String,
+      default: null
+    },
+    iconAfter: {
+      type: String,
+      default: null
     }
   },
 
   render (h) {
     const getAttrs = () => {
-      const attrs = {
-        title: this.title
-      }
+      const attrs = {}
 
-      if (this.isDisabled) {
-        attrs.disabled = true
+      if (this.title) {
+        attrs.title = this.title
       }
 
       if (this.as === 'a') {
@@ -55,32 +57,34 @@ const SbLinkButton = {
       return attrs
     }
 
-    const renderIcon = () => {
+    const renderIcon = (icon) => {
       return h(SbIcon, {
         props: {
           size: 'small',
-          name: this.icon
+          name: icon
         }
       })
     }
 
     const renderLabel = () => {
       return h('span', {
-        staticClass: 'sb-link-button--label'
+        staticClass: 'sb-link--label'
       }, this.label)
     }
 
     return h(this.as || 'a', {
-      staticClass: `sb-link-button sb-link-button--${this.type}`,
+      staticClass: `sb-link sb-link--${this.type}`,
       class: {
-        'sb-link-button--disabled': this.isDisabled
+        'sb-button--has-icon-before': this.iconBefore,
+        'sb-button--has-icon-after': this.iconAfter
       },
       attrs: getAttrs()
     }, [
-      this.icon && renderIcon(),
-      this.label && renderLabel()
+      this.iconBefore && renderIcon(this.iconBefore),
+      this.label && renderLabel(),
+      this.iconAfter && renderIcon(this.iconAfter)
     ])
   }
 }
 
-export default SbLinkButton
+export default SbLink

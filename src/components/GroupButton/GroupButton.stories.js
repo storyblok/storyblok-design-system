@@ -1,6 +1,6 @@
 import SbButtonGroup from '.'
 import SbButton from '../Button/index'
-import SbLinkButton from '../LinkButton'
+import SbLink from '../Link'
 
 const GroupButtonTemplate = args => ({
   components: { SbButtonGroup, SbButton },
@@ -78,14 +78,14 @@ export const JustIcons = args => ({
   `
 })
 
-export const WithLinkButton = args => ({
-  components: { SbButtonGroup, SbButton, SbLinkButton },
+export const WithLink = args => ({
+  components: { SbButtonGroup, SbButton, SbLink },
   props: Object.keys(args),
   template: `
     <SbButtonGroup v-bind="{ size, type, hasSpaces }">
       <SbButton :label="firstLabel" :type="type" />
       <SbButton :label="secondaryLabel" :type="type" />
-      <SbLinkButton label="Read More" href="https://google.com" />
+      <SbLink label="Read More" href="https://google.com" />
     </SbButtonGroup>
   `
 })

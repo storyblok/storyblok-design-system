@@ -1,16 +1,15 @@
-import SbLinkButton from './index'
+import SbLink from './index'
 
 export default {
-  title: 'SbLinkButton',
-  component: SbLinkButton,
+  title: 'SbLink',
+  component: SbLink,
   args: {
     type: 'primary',
     size: null,
     href: 'https://storyblok.com',
     label: 'Go to Storyblok website',
     as: undefined,
-    title: null,
-    isDisabled: false
+    title: null
   },
   argTypes: {
     size: {
@@ -44,29 +43,36 @@ export default {
     },
     title: {
       name: 'title',
-      description: 'Title to `SbLinkButton`',
+      description: 'Title to `SbLink`',
       control: {
         type: 'text'
       }
     },
     type: {
       name: 'type',
-      description: '`SbLinkButton` type',
+      description: '`SbLink` type',
       control: {
         type: 'select',
         options: ['primary', 'secondary']
       }
     },
-    isDisabled: {
-      name: 'isDisabled',
-      description: 'Disable `SbLinkButton`',
-      control: {
-        type: 'boolean'
-      }
-    },
     icon: {
       name: 'icon',
-      description: 'Icon to `SbLinkButton`',
+      description: 'Icon to `SbLink`',
+      control: {
+        type: 'text'
+      }
+    },
+    iconBefore: {
+      name: 'iconBefore',
+      description: 'Icon before label',
+      control: {
+        type: 'text'
+      }
+    },
+    iconAfter: {
+      name: 'iconAfter',
+      description: 'Icon after label',
       control: {
         type: 'text'
       }
@@ -75,16 +81,15 @@ export default {
 }
 
 export const Default = args => ({
-  components: { SbLinkButton },
+  components: { SbLink },
   props: Object.keys(args),
   template: `
-    <SbLinkButton
+    <SbLink
       v-bind="{
         as,
         label,
         href,
         title,
-        isDisabled,
         type
       }"
     />
@@ -93,9 +98,9 @@ export const Default = args => ({
 
 // export const Secondary = args => ({
 //   props: Object.keys(args),
-//   components: { SbLinkButton },
+//   components: { SbLink },
 //   template: `<div>
-//     <SbLinkButton
+//     <SbLink
 //       v-bind="{
 //         label,
 //         type
@@ -110,27 +115,27 @@ export const Default = args => ({
 // }
 
 export const WithIcon = args => ({
-  components: { SbLinkButton },
+  components: { SbLink },
   props: Object.keys(args),
   template: `<div>
       <div>
-        <SbLinkButton
+        <SbLink
           v-bind="{
             label: primaryLabel,
             href,
             title,
-            icon
+            iconBefore
           }"
         />
       </div>
 
       <div style="margin-top: 20px">
-        <SbLinkButton
+        <SbLink
           v-bind="{
             label: secondaryLabel,
             href,
             title,
-            icon,
+            iconAfter,
             type: 'secondary'
           }"
         />
@@ -141,43 +146,7 @@ export const WithIcon = args => ({
 WithIcon.args = {
   primaryLabel: 'Primary label',
   secondaryLabel: 'Secondary label',
-  icon: 'checkmark'
-}
-
-export const Disabled = args => ({
-  components: { SbLinkButton },
-  props: Object.keys(args),
-  template: `<div>
-      <div>
-        <SbLinkButton
-          v-bind="{
-            label: primaryLabel,
-            href,
-            title,
-            icon,
-            isDisabled
-          }"
-        />
-      </div>
-
-      <div style="margin-top: 20px">
-        <SbLinkButton
-          v-bind="{
-            label: secondaryLabel,
-            href,
-            title,
-            icon,
-            type: 'secondary',
-            isDisabled
-          }"
-        />
-      </div>
-  </div>`
-})
-
-Disabled.args = {
-  primaryLabel: 'Primary disabled label',
-  secondaryLabel: 'Secondary disabled label',
   icon: 'checkmark',
-  isDisabled: true
+  iconBefore: 'checkmark',
+  iconAfter: 'calendar'
 }

@@ -1,35 +1,35 @@
-import SbLinkButton from '..'
+import SbLink from '..'
 import SbIcon from '../../Icon'
 import { mount } from '@vue/test-utils'
 
 const factory = propsData => {
-  return mount(SbLinkButton, {
+  return mount(SbLink, {
     propsData
   })
 }
 
-describe('Test SbLinkButton component', () => {
-  describe('SbLinkButton default behavior', () => {
+describe('Test SbLink component', () => {
+  describe('SbLink default behavior', () => {
     const wrapper = factory({
       label: 'Primary',
       href: 'http://storyblok.com',
       title: 'To home page'
     })
-    const LinkButton = wrapper.find('a')
+    const Link = wrapper.find('a')
 
     it('should render a <a> tag with properly attributes', () => {
-      expect(LinkButton.exists()).toBe(true)
-      expect(LinkButton.attributes('href')).toBe('http://storyblok.com')
-      expect(LinkButton.attributes('title')).toBe('To home page')
-      expect(LinkButton.text()).toBe('Primary')
+      expect(Link.exists()).toBe(true)
+      expect(Link.attributes('href')).toBe('http://storyblok.com')
+      expect(Link.attributes('title')).toBe('To home page')
+      expect(Link.text()).toBe('Primary')
     })
 
     it('should have properly classes with primary state', () => {
-      expect(LinkButton.attributes('class')).toBe('sb-link-button sb-link-button--primary')
+      expect(Link.attributes('class')).toBe('sb-link sb-link--primary')
     })
   })
 
-  describe('secondary SbLinkButton', () => {
+  describe('secondary SbLink', () => {
     it('should have properly classes with secondary state', () => {
       const wrapper = factory({
         label: 'Secondary',
@@ -38,18 +38,18 @@ describe('Test SbLinkButton component', () => {
         type: 'secondary'
       })
 
-      const LinkButton = wrapper.find('a')
+      const Link = wrapper.find('a')
 
-      expect(LinkButton.attributes('class')).toBe('sb-link-button sb-link-button--secondary')
+      expect(Link.attributes('class')).toBe('sb-link sb-link--secondary')
     })
   })
 
-  describe('SbLinkButton using icon', () => {
+  describe('SbLink using icon', () => {
     const wrapper = factory({
       label: 'Secondary',
       href: 'http://storyblok.com/',
       title: 'Link with icon',
-      icon: 'checkmark'
+      iconAfter: 'checkmark'
     })
 
     const Icon = wrapper.findComponent(SbIcon)
