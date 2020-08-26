@@ -15,7 +15,7 @@
     color: $white;
     
     &:hover:not([disabled]) {
-      background-color: #40c6c4;
+      background-color: $sb-green-75;
     }
 
     &[disabled] {
