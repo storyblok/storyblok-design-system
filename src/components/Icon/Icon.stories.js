@@ -7,20 +7,40 @@ export default {
   title: 'SbIcon',
   component: SbIcon,
   args: {
-    size: {
-      name: 'size',
-      description: 'Size for SbIcon',
-      control: {
-        type: 'select',
-        options: iconSizes
-      }
-    },
+    size: 'normal',
+    color: 'primary',
+    name: 'chevron-down',
+    role: null
+  },
+  argTypes: {
     color: {
       name: 'color',
       description: 'Color for SbIcon',
       control: {
         type: 'select',
         options: availableColors
+      }
+    },
+    name: {
+      name: 'name',
+      description: 'Icon name',
+      control: {
+        type: 'text'
+      }
+    },
+    role: {
+      name: 'role',
+      description: 'HTML role for the icon',
+      control: {
+        type: 'text'
+      }
+    },
+    size: {
+      name: 'size',
+      description: 'Size for SbIcon',
+      control: {
+        type: 'select',
+        options: iconSizes
       }
     }
   }
@@ -29,7 +49,7 @@ export default {
 export const Default = args => ({
   components: { SbIcon },
   props: Object.keys(args),
-  template: '<SbIcon name="chevron-down" :size="size" />'
+  template: '<SbIcon v-bind="{ name, color, size, role }" />'
 })
 
 Default.args = {

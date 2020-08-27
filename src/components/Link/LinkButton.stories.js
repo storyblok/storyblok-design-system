@@ -144,9 +144,22 @@ export const WithIcon = args => ({
 })
 
 WithIcon.args = {
-  primaryLabel: 'Primary label',
-  secondaryLabel: 'Secondary label',
   icon: 'checkmark',
   iconBefore: 'checkmark',
-  iconAfter: 'calendar'
+  iconAfter: 'calendar',
+  primaryLabel: 'Icon before',
+  secondaryLabel: 'Icon after'
+}
+
+WithIcon.argTypes = {
+  primaryLabel: {
+    control: {
+      type: 'text'
+    }
+  },
+  secondaryLabel: {
+    control: {
+      type: 'text'
+    }
+  }
 }

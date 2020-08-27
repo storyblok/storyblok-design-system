@@ -65,48 +65,11 @@ export default {
     isRounded: false
   },
   argTypes: {
-    size: {
-      name: 'size',
-      description: 'Size',
-      control: {
-        type: 'select',
-        options: ['small', 'normal', 'large']
-      }
-    },
-    label: {
-      name: 'label',
-      description: 'Label (inner test)',
-      control: {
-        type: 'text'
-      }
-    },
-    isLoading: {
-      name: 'isLoading',
-      description: 'Show a loading',
-      control: {
-        type: 'boolean'
-      }
-    },
     isDisabled: {
       name: 'isDisabled',
       description: 'Disable button',
       control: {
         type: 'boolean'
-      }
-    },
-    type: {
-      name: 'type',
-      description: '`SbButton` type',
-      control: {
-        type: 'select',
-        options: ['primary', 'secondary']
-      }
-    },
-    iconBefore: {
-      name: 'iconBefore',
-      description: 'Icon before label',
-      control: {
-        type: 'text'
       }
     },
     iconAfter: {
@@ -116,9 +79,23 @@ export default {
         type: 'text'
       }
     },
+    iconBefore: {
+      name: 'iconBefore',
+      description: 'Icon before label',
+      control: {
+        type: 'text'
+      }
+    },
     isFullWidth: {
       name: 'isFullWidth',
       description: 'Expand button to 100% width',
+      control: {
+        type: 'boolean'
+      }
+    },
+    isLoading: {
+      name: 'isLoading',
+      description: 'Show a loading',
       control: {
         type: 'boolean'
       }
@@ -135,6 +112,29 @@ export default {
       description: 'Set the button to have only icon with a specific padding',
       control: {
         type: 'boolean'
+      }
+    },
+    label: {
+      name: 'label',
+      description: 'Label (inner test)',
+      control: {
+        type: 'text'
+      }
+    },
+    size: {
+      name: 'size',
+      description: 'Size',
+      control: {
+        type: 'select',
+        options: ['small', 'normal', 'large']
+      }
+    },
+    type: {
+      name: 'type',
+      description: '`SbButton` type',
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary', 'ghost', 'danger']
       }
     }
   }
@@ -259,6 +259,14 @@ FullWidth.args = {
   isFullWidth: true
 }
 
+FullWidth.parameters = {
+  docs: {
+    description: {
+      story: 'When you define the button as `isFullWidth`, it will be expanded to full width to fill its parent container.'
+    }
+  }
+}
+
 export const JustIcons = args => ({
   components: { SbButton },
   props: Object.keys(args),
@@ -299,4 +307,12 @@ export const JustIcons = args => ({
 JustIcons.args = {
   iconBefore: 'plus',
   isRounded: false
+}
+
+JustIcons.parameters = {
+  docs: {
+    description: {
+      story: 'If you use the button just with icon, you can use the `hasIconOnly` boolean attribute. Optionally, you can use the `isRounded` attribute too.'
+    }
+  }
 }

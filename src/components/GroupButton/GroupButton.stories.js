@@ -2,17 +2,8 @@ import SbButtonGroup from '.'
 import SbButton from '../Button/index'
 import SbLink from '../Link'
 
-const GroupButtonTemplate = args => ({
-  components: { SbButtonGroup, SbButton },
-  props: Object.keys(args),
-  template: `
-    <SbButtonGroup v-bind="{ size, type, hasSpaces }">
-      <SbButton :label="firstLabel" />
-      <SbButton :label="secondaryLabel" />
-      <SbButton :label="thirdLabel" />
-    </SbButtonGroup>
-  `
-})
+import { availableTypes } from '../Button/lib'
+import { availableSizes } from '../../utils'
 
 export default {
   title: 'SbButtonGroup',
@@ -20,10 +11,7 @@ export default {
   args: {
     type: 'ghost',
     size: null,
-    hasSpaces: false,
-    firstLabel: 'First Button',
-    secondaryLabel: 'Secondary Button',
-    thirdLabel: 'Third Button'
+    hasSpaces: false
   },
   argTypes: {
     size: {
@@ -31,7 +19,7 @@ export default {
       description: 'Size to each `SbButton` inside the `SbButtonGroup`',
       control: {
         type: 'select',
-        options: ['small', 'normal', 'large']
+        options: [...availableSizes]
       }
     },
     type: {
@@ -39,7 +27,7 @@ export default {
       description: '`SbButton` type',
       control: {
         type: 'select',
-        options: ['primary', 'secondary', 'ghost']
+        options: [...availableTypes]
       }
     },
     hasSpaces: {
@@ -52,7 +40,17 @@ export default {
   }
 }
 
-export const Default = GroupButtonTemplate.bind()
+export const Default = args => ({
+  components: { SbButtonGroup, SbButton },
+  props: Object.keys(args),
+  template: `
+    <SbButtonGroup v-bind="{ size, type, hasSpaces }">
+      <SbButton label="First Button" />
+      <SbButton label="Secondary Button" />
+      <SbButton label="Third Button" />
+    </SbButtonGroup>
+  `
+})
 
 export const WithIcons = args => ({
   components: { SbButtonGroup, SbButton },
@@ -65,6 +63,24 @@ export const WithIcons = args => ({
     </SbButtonGroup>
   `
 })
+
+WithIcons.args = {
+  firstLabel: 'First Button',
+  secondaryLabel: 'Secondary Button'
+}
+
+WithIcons.argTypes = {
+  firstLabel: {
+    control: {
+      type: 'text'
+    }
+  },
+  secondaryLabel: {
+    control: {
+      type: 'text'
+    }
+  }
+}
 
 export const JustIcons = args => ({
   components: { SbButtonGroup, SbButton },
@@ -89,3 +105,21 @@ export const WithLink = args => ({
     </SbButtonGroup>
   `
 })
+
+WithLink.args = {
+  firstLabel: 'First Button',
+  secondaryLabel: 'Secondary Button'
+}
+
+WithLink.argTypes = {
+  firstLabel: {
+    control: {
+      type: 'text'
+    }
+  },
+  secondaryLabel: {
+    control: {
+      type: 'text'
+    }
+  }
+}

@@ -1,15 +1,34 @@
-import './link-button.scss'
+// other components
 import SbIcon from '../Icon'
 
+// styles
+import './link-button.scss'
+
+/**
+ * SbLink component
+ *
+ * SbLink is a component used primarly to navigation
+ */
 const SbLink = {
   name: 'SbLink',
 
   props: {
+    as: {
+      type: String,
+      default: 'a'
+    },
     label: {
       type: String,
       default: null
     },
-    to: {
+    href: {
+      type: String
+    },
+    iconBefore: {
+      type: String,
+      default: null
+    },
+    iconAfter: {
       type: String,
       default: null
     },
@@ -17,26 +36,7 @@ const SbLink = {
       type: String,
       default: null
     },
-    type: {
-      type: String,
-      default: 'primary'
-    },
-    icon: {
-      type: String,
-      default: null
-    },
-    href: {
-      type: String
-    },
-    as: {
-      type: String,
-      default: 'a'
-    },
-    iconBefore: {
-      type: String,
-      default: null
-    },
-    iconAfter: {
+    to: {
       type: String,
       default: null
     }
@@ -68,12 +68,12 @@ const SbLink = {
 
     const renderLabel = () => {
       return h('span', {
-        staticClass: 'sb-link--label'
+        staticClass: 'sb-link__label'
       }, this.label)
     }
 
     return h(this.as || 'a', {
-      staticClass: `sb-link sb-link--${this.type}`,
+      staticClass: 'sb-link',
       class: {
         'sb-button--has-icon-before': this.iconBefore,
         'sb-button--has-icon-after': this.iconAfter

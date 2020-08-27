@@ -1,38 +1,41 @@
-import './button.scss'
+// other components
 import SbIcon from '../Icon'
 
+// styles
+import './button.scss'
+
+import { sharedProps } from './lib'
+
+/**
+ * SbButton component
+ *
+ * SbButton is a component used for clickable user interactions
+ */
 const SbButton = {
   name: 'SbButton',
 
   props: {
-    size: {
-      type: String
-    },
-    label: {
-      type: String,
-      default: null
-    },
-    isLoading: {
+    hasIconOnly: {
       type: Boolean,
       default: false
-    },
-    isDisabled: {
-      type: Boolean,
-      default: false
-    },
-    type: {
-      type: String,
-      default: 'primary'
-    },
-    iconBefore: {
-      type: String,
-      default: null
     },
     iconAfter: {
       type: String,
       default: null
     },
+    iconBefore: {
+      type: String,
+      default: null
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false
+    },
     isFullWidth: {
+      type: Boolean,
+      default: false
+    },
+    isLoading: {
       type: Boolean,
       default: false
     },
@@ -40,10 +43,11 @@ const SbButton = {
       type: Boolean,
       default: false
     },
-    hasIconOnly: {
-      type: Boolean,
-      default: false
-    }
+    label: {
+      type: String,
+      default: null
+    },
+    ...sharedProps
   },
 
   render (h) {

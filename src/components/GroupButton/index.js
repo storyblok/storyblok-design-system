@@ -1,18 +1,21 @@
+// styles
 import './group-button.scss'
 
+import { sharedProps } from '../Button/lib'
+
+/**
+ * SbButtonGroup component
+ *
+ * SbButtonGroup is a component used to group buttons and links
+ */
 const SbButtonGroup = {
   name: 'SbButtonGroup',
   functional: true,
   props: {
-    size: {
-      type: String
-    },
     hasSpaces: {
       type: Boolean
     },
-    type: {
-      type: String
-    }
+    ...sharedProps
   },
 
   render (h, context) {
