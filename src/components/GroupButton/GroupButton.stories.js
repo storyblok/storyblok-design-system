@@ -1,4 +1,4 @@
-import SbButtonGroup from '.'
+import SbGroupButton from '.'
 import SbButton from '../Button/index'
 import SbLink from '../Link'
 
@@ -6,8 +6,8 @@ import { availableTypes } from '../Button/lib'
 import { availableSizes } from '../../utils'
 
 export default {
-  title: 'SbButtonGroup',
-  component: SbButtonGroup,
+  title: 'SbGroupButton',
+  component: SbGroupButton,
   args: {
     type: 'ghost',
     size: null,
@@ -16,7 +16,7 @@ export default {
   argTypes: {
     size: {
       name: 'size',
-      description: 'Size to each `SbButton` inside the `SbButtonGroup`',
+      description: 'Size to each `SbButton` inside the `SbGroupButton`',
       control: {
         type: 'select',
         options: [...availableSizes]
@@ -41,26 +41,26 @@ export default {
 }
 
 export const Default = args => ({
-  components: { SbButtonGroup, SbButton },
+  components: { SbGroupButton, SbButton },
   props: Object.keys(args),
   template: `
-    <SbButtonGroup v-bind="{ size, type, hasSpaces }">
+    <SbGroupButton v-bind="{ size, type, hasSpaces }">
       <SbButton label="First Button" />
       <SbButton label="Secondary Button" />
       <SbButton label="Third Button" />
-    </SbButtonGroup>
+    </SbGroupButton>
   `
 })
 
 export const WithIcons = args => ({
-  components: { SbButtonGroup, SbButton },
+  components: { SbGroupButton, SbButton },
   props: Object.keys(args),
   template: `
-    <SbButtonGroup v-bind="{ size, type, hasSpaces }">
+    <SbGroupButton v-bind="{ size, type, hasSpaces }">
       <SbButton :label="firstLabel" />
       <SbButton :label="secondaryLabel" />
-      <SbButton has-icon-only iconBefore="close" />
-    </SbButtonGroup>
+      <SbButton has-icon-only icon="close" />
+    </SbGroupButton>
   `
 })
 
@@ -83,26 +83,26 @@ WithIcons.argTypes = {
 }
 
 export const JustIcons = args => ({
-  components: { SbButtonGroup, SbButton },
+  components: { SbGroupButton, SbButton },
   props: Object.keys(args),
   template: `
-    <SbButtonGroup v-bind="{ size, type, hasSpaces }">
-      <SbButton has-icon-only iconBefore="calendar" />
-      <SbButton has-icon-only iconBefore="plus" />
-      <SbButton has-icon-only iconBefore="overflow-menu-vertic" />
-    </SbButtonGroup>
+    <SbGroupButton v-bind="{ size, type, hasSpaces }">
+      <SbButton has-icon-only icon="calendar" />
+      <SbButton has-icon-only icon="plus" />
+      <SbButton has-icon-only icon="overflow-menu-vertic" />
+    </SbGroupButton>
   `
 })
 
 export const WithLink = args => ({
-  components: { SbButtonGroup, SbButton, SbLink },
+  components: { SbGroupButton, SbButton, SbLink },
   props: Object.keys(args),
   template: `
-    <SbButtonGroup v-bind="{ size, type, hasSpaces }">
+    <SbGroupButton v-bind="{ size, type, hasSpaces }">
       <SbButton :label="firstLabel" :type="type" />
       <SbButton :label="secondaryLabel" :type="type" />
       <SbLink label="Read More" href="https://google.com" />
-    </SbButtonGroup>
+    </SbGroupButton>
   `
 })
 

@@ -1,12 +1,12 @@
 import { mount } from '@vue/test-utils'
-import SbButtonGroup from '..'
+import SbGroupButton from '..'
 import SbButton from '../../Button'
 
 const factory = (template, propsData = {}) => {
   const Wrapper = {
     components: {
       SbButton,
-      SbButtonGroup
+      SbGroupButton
     },
     template
   }
@@ -16,15 +16,15 @@ const factory = (template, propsData = {}) => {
   })
 }
 
-describe('Tests SbButtonGroup component', () => {
+describe('Tests SbGroupButton component', () => {
   describe('when it pass n SbButton components inside', () => {
     it('should have n SbButton components', () => {
       const template = `
-        <SbButtonGroup>
+        <SbGroupButton>
           <SbButton label="One" />
           <SbButton label="Two" />
           <SbButton label="Three" />
-        </SbButtonGroup>
+        </SbGroupButton>
       `
       const wrapper = factory(template)
 
@@ -35,11 +35,11 @@ describe('Tests SbButtonGroup component', () => {
   describe('when use the properties from button component', () => {
     it('should have the correct size property in each child component', () => {
       const template = `
-        <SbButtonGroup size="large">
+        <SbGroupButton size="large">
           <SbButton label="One" />
           <SbButton label="Two" />
           <SbButton label="Three" />
-        </SbButtonGroup>
+        </SbGroupButton>
       `
       const wrapper = factory(template)
 
@@ -50,11 +50,11 @@ describe('Tests SbButtonGroup component', () => {
 
     it('should have the correct type property in each child component', () => {
       const template = `
-        <SbButtonGroup size="small" type="ghost">
+        <SbGroupButton size="small" type="ghost">
           <SbButton label="One" />
           <SbButton label="Two" />
           <SbButton label="Three" />
-        </SbButtonGroup>
+        </SbGroupButton>
       `
       const wrapper = factory(template)
 
@@ -68,11 +68,11 @@ describe('Tests SbButtonGroup component', () => {
   describe('when use hasSpaces property', () => {
     it('should have the properly class', () => {
       const template = `
-        <SbButtonGroup has-spaces>
+        <SbGroupButton has-spaces>
           <SbButton label="One" />
           <SbButton label="Two" />
           <SbButton label="Three" />
-        </SbButtonGroup>
+        </SbGroupButton>
       `
       const wrapper = factory(template)
 

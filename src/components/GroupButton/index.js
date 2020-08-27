@@ -4,12 +4,12 @@ import './group-button.scss'
 import { sharedProps } from '../Button/lib'
 
 /**
- * SbButtonGroup component
+ * SbGroupButton component
  *
- * SbButtonGroup is a component used to group buttons and links
+ * SbGroupButton is a component used to group buttons and links
  */
-const SbButtonGroup = {
-  name: 'SbButtonGroup',
+const SbGroupButton = {
+  name: 'SbGroupButton',
   functional: true,
   props: {
     hasSpaces: {
@@ -40,4 +40,4 @@ const SbButtonGroup = {
   }
 }
 
-export default SbButtonGroup
+export default SbGroupButton
