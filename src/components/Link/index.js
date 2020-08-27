@@ -67,9 +67,29 @@ const SbLink = {
     }
 
     const renderLabel = () => {
-      return h('span', {
-        staticClass: 'sb-link__label'
-      }, this.label)
+      if (this.label) {
+        return h('span', {
+          staticClass: 'sb-link__label'
+        }, this.label)
+      }
+
+      if (this.$slots.default) {
+        return h('span', {
+          staticClass: 'sb-link__label'
+        }, this.$slots.default)
+      }
+
+      return null
+    }
+
+    const getProps = () => {
+      const props = {}
+
+      if (this.as !== 'a' && this.to) {
+        props.to = this.to
+      }
+
+      return props
     }
 
     return h(this.as || 'a', {
@@ -78,10 +98,11 @@ const SbLink = {
         'sb-button--has-icon-before': this.iconBefore,
         'sb-button--has-icon-after': this.iconAfter
       },
-      attrs: getAttrs()
+      attrs: getAttrs(),
+      props: getProps()
     }, [
       this.iconBefore && renderIcon(this.iconBefore),
-      this.label && renderLabel(),
+      renderLabel(),
       this.iconAfter && renderIcon(this.iconAfter)
     ])
   }

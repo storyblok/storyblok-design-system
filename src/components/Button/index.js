@@ -61,11 +61,19 @@ const SbButton = {
     }
 
     const renderLabel = () => {
-      return h('span', {
-        attrs: {
-          class: 'sb-button__label'
-        }
-      }, this.label)
+      if (this.label) {
+        return h('span', {
+          staticClass: 'sb-button__label'
+        }, this.label)
+      }
+
+      if (this.$slots.default) {
+        return h('span', {
+          staticClass: 'sb-button__label'
+        }, this.$slots.default)
+      }
+
+      return null
     }
 
     const renderButton = (content) => {
@@ -97,7 +105,7 @@ const SbButton = {
 
     const content = [
       this.iconBefore && renderIcon(this.iconBefore),
-      this.label && renderLabel(),
+      renderLabel(),
       this.iconAfter && renderIcon(this.iconAfter)
     ]
 

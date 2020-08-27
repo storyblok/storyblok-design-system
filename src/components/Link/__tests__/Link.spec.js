@@ -1,15 +1,18 @@
 import SbLink from '..'
 import SbIcon from '../../Icon'
-import { mount } from '@vue/test-utils'
+import { mount, RouterLinkStub } from '@vue/test-utils'
 
 const factory = propsData => {
   return mount(SbLink, {
-    propsData
+    propsData,
+    stubs: {
+      RouterLink: RouterLinkStub
+    }
   })
 }
 
 describe('Test SbLink component', () => {
-  describe('SbLink default behavior', () => {
+  describe('when use as default <a> tag', () => {
     const wrapper = factory({
       label: 'Primary',
       href: 'http://storyblok.com',
@@ -23,30 +26,12 @@ describe('Test SbLink component', () => {
       expect(Link.attributes('title')).toBe('To home page')
       expect(Link.text()).toBe('Primary')
     })
-
-    it('should have properly classes with primary state', () => {
-      expect(Link.attributes('class')).toBe('sb-link sb-link--primary')
-    })
   })
 
-  describe('secondary SbLink', () => {
-    it('should have properly classes with secondary state', () => {
-      const wrapper = factory({
-        label: 'Secondary',
-        href: 'http://storyblok.com/v2',
-        title: 'To second page',
-        type: 'secondary'
-      })
-
-      const Link = wrapper.find('a')
-
-      expect(Link.attributes('class')).toBe('sb-link sb-link--secondary')
-    })
-  })
-
-  describe('SbLink using icon', () => {
+  describe('when using an icon', () => {
+    const label = 'Link with icon'
     const wrapper = factory({
-      label: 'Secondary',
+      label,
       href: 'http://storyblok.com/',
       title: 'Link with icon',
       iconAfter: 'checkmark'
@@ -60,6 +45,53 @@ describe('Test SbLink component', () => {
 
     it('should the SbIcon with name that it was passed', () => {
       expect(Icon.props('name')).toBe('checkmark')
+    })
+  })
+
+  describe('when use router-link component', () => {
+    const label = 'Auth data'
+
+    const wrapper = factory({
+      label,
+      to: '/auth',
+      title: 'Link with icon',
+      as: 'router-link'
+    })
+
+    const routerLinkComponent = wrapper.findComponent(RouterLinkStub)
+
+    it('should the component exists', () => {
+      expect(
+        routerLinkComponent.exists()
+      ).toBe(true)
+
+      expect(
+        routerLinkComponent.text()
+      ).toBe(label)
+    })
+
+    it('should the component has the correct props', () => {
+      expect(
+        routerLinkComponent.props('to')
+      ).toBe('/auth')
+    })
+  })
+
+  describe('when use label as a default slot', () => {
+    const label = 'Auth data'
+
+    const wrapper = mount(SbLink, {
+      propsData: {
+        to: '/auth',
+        title: 'Link with icon'
+      },
+      slots: {
+        default: [label]
+      }
+    })
+
+    it('should render the correct label', () => {
+      expect(wrapper.text()).toBe(label)
     })
   })
 })

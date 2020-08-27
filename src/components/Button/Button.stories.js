@@ -277,7 +277,6 @@ export const JustIcons = args => ({
       :iconBefore="iconBefore"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
-      :size="size"
       has-icon-only
     />
 
@@ -287,7 +286,6 @@ export const JustIcons = args => ({
       :iconBefore="iconBefore"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
-      :size="size"
       has-icon-only
     />
 
@@ -297,7 +295,6 @@ export const JustIcons = args => ({
       :iconBefore="iconBefore"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
-      :size="size"
       is-rounded
       has-icon-only
     />
@@ -313,6 +310,34 @@ JustIcons.parameters = {
   docs: {
     description: {
       story: 'If you use the button just with icon, you can use the `hasIconOnly` boolean attribute. Optionally, you can use the `isRounded` attribute too.'
+    }
+  }
+}
+
+export const InlineLabel = args => ({
+  components: { SbButton },
+  props: Object.keys(args),
+  template: `<div style="max-width: 500px;">
+    <SbButton
+      :type="type"
+      :is-loading="isLoading"
+      :is-disabled="isDisabled"
+      :size="size"
+      :is-full-width="isFullWidth"
+    >
+      {{ label }}
+    </SbButton>
+  </div>`
+})
+
+InlineLabel.args = {
+  label: 'Inline label'
+}
+
+InlineLabel.parameters = {
+  docs: {
+    description: {
+      story: 'You can use the label inline, not as prop.'
     }
   }
 }

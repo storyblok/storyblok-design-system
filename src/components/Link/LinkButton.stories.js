@@ -96,6 +96,23 @@ export const Default = args => ({
   `
 })
 
+export const InlineLabel = args => ({
+  components: { SbLink },
+  props: Object.keys(args),
+  template: `
+    <SbLink
+      v-bind="{
+        as,
+        href,
+        title,
+        type
+      }"
+    >
+      {{ label }}
+    </SbLink>
+  `
+})
+
 // export const Secondary = args => ({
 //   props: Object.keys(args),
 //   components: { SbLink },
