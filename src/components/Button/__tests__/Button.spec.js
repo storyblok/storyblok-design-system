@@ -61,13 +61,13 @@ describe('Test SbButton Component', () => {
   describe('with icon before label', () => {
     const wrapper = factory({
       label: 'Label with before icon',
-      iconBefore: 'calendar'
+      icon: 'calendar'
     })
     const iconComponent = wrapper.findComponent(SbIcon)
 
     it('should have the properly class', () => {
       expect(
-        wrapper.classes('sb-button--has-icon-before')
+        wrapper.classes('sb-button--has-icon')
       ).toBe(true)
     })
 
@@ -85,13 +85,13 @@ describe('Test SbButton Component', () => {
   describe('with icon after label', () => {
     const wrapper = factory({
       label: 'Label with before icon',
-      iconAfter: 'chevron-down'
+      iconRight: 'chevron-down'
     })
     const iconComponent = wrapper.findComponent(SbIcon)
 
     it('should have the properly class', () => {
       expect(
-        wrapper.classes('sb-button--has-icon-after')
+        wrapper.classes('sb-button--has-icon-right')
       ).toBe(true)
     })
 

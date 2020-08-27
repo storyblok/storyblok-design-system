@@ -14,7 +14,7 @@ const ButtonTemplate = args => ({
       <SbButton
         :type="type"
         :is-disabled="isDisabled"
-        :icon-before="iconBefore"
+        :icon="icon"
         :label="label"
         :size="size"
       />
@@ -22,7 +22,7 @@ const ButtonTemplate = args => ({
       <SbButton
         :type="type"
         :is-disabled="isDisabled"
-        :icon-after="iconAfter"
+        :icon-right="iconRight"
         :label="label"
         :size="size"
       />
@@ -72,16 +72,16 @@ export default {
         type: 'boolean'
       }
     },
-    iconAfter: {
-      name: 'iconAfter',
-      description: 'Icon after label',
+    iconRight: {
+      name: 'iconRight',
+      description: 'Icon on the right',
       control: {
         type: 'text'
       }
     },
-    iconBefore: {
-      name: 'iconBefore',
-      description: 'Icon before label',
+    icon: {
+      name: 'icon',
+      description: 'Icon before label (default on the left)',
       control: {
         type: 'text'
       }
@@ -158,8 +158,8 @@ export const Primary = ButtonTemplate.bind({})
 
 Primary.args = {
   label: 'Primary',
-  iconBefore: 'checkmark',
-  iconAfter: 'calendar'
+  icon: 'checkmark',
+  iconRight: 'calendar'
 }
 
 Primary.parameters = {
@@ -175,8 +175,8 @@ export const Secondary = ButtonTemplate.bind({})
 Secondary.args = {
   type: 'secondary',
   label: 'Secondary',
-  iconBefore: 'checkmark',
-  iconAfter: 'calendar'
+  icon: 'checkmark',
+  iconRight: 'calendar'
 }
 
 Secondary.parameters = {
@@ -192,8 +192,8 @@ export const Ghost = ButtonTemplate.bind({})
 Ghost.args = {
   label: 'Ghost',
   type: 'ghost',
-  iconBefore: 'checkmark',
-  iconAfter: 'calendar'
+  icon: 'checkmark',
+  iconRight: 'calendar'
 }
 
 Ghost.parameters = {
@@ -209,8 +209,8 @@ export const Danger = ButtonTemplate.bind({})
 Danger.args = {
   label: 'Danger',
   type: 'danger',
-  iconBefore: 'close',
-  iconAfter: 'close'
+  icon: 'close',
+  iconRight: 'close'
 }
 
 Danger.parameters = {
@@ -274,7 +274,7 @@ export const JustIcons = args => ({
     <SbButton
       type="primary"
       :size="size"
-      :iconBefore="iconBefore"
+      :icon="icon"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       has-icon-only
@@ -283,7 +283,7 @@ export const JustIcons = args => ({
     <SbButton
       type="secondary"
       :size="size"
-      :iconBefore="iconBefore"
+      :icon="icon"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       has-icon-only
@@ -292,7 +292,7 @@ export const JustIcons = args => ({
     <SbButton
       type="ghost"
       :size="size"
-      :iconBefore="iconBefore"
+      :icon="icon"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       is-rounded
@@ -302,7 +302,7 @@ export const JustIcons = args => ({
 })
 
 JustIcons.args = {
-  iconBefore: 'plus',
+  icon: 'plus',
   isRounded: false
 }
 

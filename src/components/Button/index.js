@@ -19,11 +19,11 @@ const SbButton = {
       type: Boolean,
       default: false
     },
-    iconAfter: {
+    icon: {
       type: String,
       default: null
     },
-    iconBefore: {
+    iconRight: {
       type: String,
       default: null
     },
@@ -90,8 +90,8 @@ const SbButton = {
           'sb-button--full': this.isFullWidth,
           'sb-button--rounded': this.isRounded,
           'sb-button--has-icon-only': this.hasIconOnly,
-          'sb-button--has-icon-before': this.iconBefore,
-          'sb-button--has-icon-after': this.iconAfter
+          'sb-button--has-icon': this.icon,
+          'sb-button--has-icon-right': this.iconRight
         },
         on: {
           click: (!this.isDisabled || !this.isLoading ? $event => this.$emit('click', $event) : '')
@@ -104,9 +104,9 @@ const SbButton = {
     }
 
     const content = [
-      this.iconBefore && renderIcon(this.iconBefore),
+      this.icon && renderIcon(this.icon),
       renderLabel(),
-      this.iconAfter && renderIcon(this.iconAfter)
+      this.iconRight && renderIcon(this.iconRight)
     ]
 
     return renderButton(content)
