@@ -24,11 +24,11 @@ const SbLink = {
     href: {
       type: String
     },
-    iconBefore: {
+    icon: {
       type: String,
       default: null
     },
-    iconAfter: {
+    iconRight: {
       type: String,
       default: null
     },
@@ -95,15 +95,15 @@ const SbLink = {
     return h(this.as || 'a', {
       staticClass: 'sb-link',
       class: {
-        'sb-button--has-icon-before': this.iconBefore,
-        'sb-button--has-icon-after': this.iconAfter
+        'sb-button--has-icon': this.icon,
+        'sb-button--has-icon-right': this.iconRight
       },
       attrs: getAttrs(),
       props: getProps()
     }, [
-      this.iconBefore && renderIcon(this.iconBefore),
+      this.icon && renderIcon(this.icon),
       renderLabel(),
-      this.iconAfter && renderIcon(this.iconAfter)
+      this.iconRight && renderIcon(this.iconRight)
     ])
   }
 }

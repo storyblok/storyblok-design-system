@@ -34,7 +34,7 @@ describe('Test SbLink component', () => {
       label,
       href: 'http://storyblok.com/',
       title: 'Link with icon',
-      iconAfter: 'checkmark'
+      icon: 'checkmark'
     })
 
     const Icon = wrapper.findComponent(SbIcon)

@@ -29,7 +29,7 @@ export default {
     },
     as: {
       name: 'as',
-      description: 'The tag that should be used (<a> is default)',
+      description: 'The tag that should be used (the `<a>` tag is default)',
       control: {
         type: 'text'
       }
@@ -58,21 +58,14 @@ export default {
     },
     icon: {
       name: 'icon',
-      description: 'Icon to `SbLink`',
+      description: 'Icon to `SbLink` (default on the left)',
       control: {
         type: 'text'
       }
     },
-    iconBefore: {
-      name: 'iconBefore',
-      description: 'Icon before label',
-      control: {
-        type: 'text'
-      }
-    },
-    iconAfter: {
-      name: 'iconAfter',
-      description: 'Icon after label',
+    iconRight: {
+      name: 'iconRight',
+      description: 'Icon on the right',
       control: {
         type: 'text'
       }
@@ -141,7 +134,7 @@ export const WithIcon = args => ({
             label: primaryLabel,
             href,
             title,
-            iconBefore
+            icon
           }"
         />
       </div>
@@ -152,7 +145,7 @@ export const WithIcon = args => ({
             label: secondaryLabel,
             href,
             title,
-            iconAfter,
+            iconRight,
             type: 'secondary'
           }"
         />
@@ -162,8 +155,7 @@ export const WithIcon = args => ({
 
 WithIcon.args = {
   icon: 'checkmark',
-  iconBefore: 'checkmark',
-  iconAfter: 'calendar',
+  iconRight: 'calendar',
   primaryLabel: 'Icon before',
   secondaryLabel: 'Icon after'
 }

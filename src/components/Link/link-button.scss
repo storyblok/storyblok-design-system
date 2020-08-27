@@ -28,8 +28,16 @@
     cursor: not-allowed;
   }
 
-  .sb-icon {
-    margin-right: 3px;
+  &--has-icon {
+    .sb-icon {
+      margin-right: 3px;
+    }
+  }
+
+  &--has-icon-right {
+    .sb-icon {
+      margin-left: 3px;
+    }
   }
 
   &:active,
