@@ -10,7 +10,7 @@ const factory = propsData => {
 describe('SbIcon component', () => {
   it('should not appent the size class when do not pass the correct size', () => {
     const wrapper = factory({
-      name: 'arrow'
+      name: 'calendar'
     })
 
     expect(wrapper.classes('sb-icon')).toBe(true)
@@ -19,7 +19,7 @@ describe('SbIcon component', () => {
   describe('when pass size attribute', () => {
     it('should append --small class', () => {
       const wrapper = factory({
-        name: 'arrow',
+        name: 'calendar',
         size: 'small'
       })
 
@@ -28,7 +28,7 @@ describe('SbIcon component', () => {
 
     it('should append --large class', () => {
       const wrapper = factory({
-        name: 'arrow',
+        name: 'calendar',
         size: 'large'
       })
 
@@ -37,7 +37,7 @@ describe('SbIcon component', () => {
 
     it('should append --x-large class', () => {
       const wrapper = factory({
-        name: 'arrow',
+        name: 'calendar',
         size: 'x-large'
       })
 
@@ -48,7 +48,7 @@ describe('SbIcon component', () => {
   describe('when pass color attribute', () => {
     it('should append color-NAME class', () => {
       const wrapper = factory({
-        name: 'arrow',
+        name: 'calendar',
         color: 'primary'
       })
 
