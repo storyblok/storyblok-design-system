@@ -1,4 +1,5 @@
 import { SbBreadcrumbItem } from './BreadcrumItem'
+import SbIcon from '../Icon'
 
 /**
  * SbBreadcrumbDropdown component
@@ -56,7 +57,14 @@ const SbBreadcrumbSeparator = {
       on: {
         ...listeners
       }
-    }, '---')
+    }, [
+      h(SbIcon, {
+        props: {
+          size: 'small',
+          name: 'chevron-right'
+        }
+      })
+    ])
   }
 }
 
@@ -103,6 +111,13 @@ const SbBreadcrumbs = {
         h(SbBreadcrumbItem, {
           props: firstElementProps
         }),
+        h(SbBreadcrumbSeparator),
+        h(SbBreadcrumbDropdown, {
+          props: {
+            items: restElements,
+            active: this.showDropdown
+          }
+        }),
         h(SbBreadcrumbSeparator, {
           props: {
             active: this.showDropdown
@@ -111,13 +126,6 @@ const SbBreadcrumbs = {
             click: this.toggleDropdown
           }
         }),
-        h(SbBreadcrumbDropdown, {
-          props: {
-            items: restElements,
-            active: this.showDropdown
-          }
-        }),
-        h(SbBreadcrumbSeparator),
         h(SbBreadcrumbItem, {
           props: lastElementProps
         })

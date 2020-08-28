@@ -41,13 +41,23 @@
     margin: 0;
     left: 0;
     display: block;
-    padding: 20px;
+    padding: 9px 0;
     @include generalBoxShadow();
 
     .sb-breadcrumbs__item {
       display: block;
       font-size: 14px;
-      margin-bottom: 16px;
+      text-decoration: none;
+    }
+
+    .sb-breadcrumbs__item a {
+      display: block;
+      padding: 6px 15px;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #EFF1F3;
+      }
     }
 
     .sb-breadcrumbs__item:last-child {
@@ -57,7 +67,7 @@
 
   & > &__item,
   & > &__separator {
-    margin-right: 10px;
+    margin-right: 5px;
   }
 
   & > &__item:last-child {

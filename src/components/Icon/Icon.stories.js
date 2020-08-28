@@ -1,5 +1,3 @@
-import { withKnobs, select } from '@storybook/addon-knobs'
-
 import SbIcon from '.'
 import { iconSizes } from './utils'
 import { availableColors } from '../../utils'
@@ -7,18 +5,55 @@ import { availableColors } from '../../utils'
 export default {
   title: 'SbIcon',
   component: SbIcon,
-  decorators: [withKnobs]
+  args: {
+    size: 'normal',
+    color: 'primary',
+    name: 'chevron-down',
+    role: null
+  },
+  argTypes: {
+    color: {
+      name: 'color',
+      description: 'Color for SbIcon',
+      control: {
+        type: 'select',
+        options: availableColors
+      }
+    },
+    name: {
+      name: 'name',
+      description: 'Icon name',
+      control: {
+        type: 'text'
+      }
+    },
+    role: {
+      name: 'role',
+      description: 'HTML role for the icon',
+      control: {
+        type: 'text'
+      }
+    },
+    size: {
+      name: 'size',
+      description: 'Size for SbIcon',
+      control: {
+        type: 'select',
+        options: iconSizes
+      }
+    }
+  }
 }
 
-export const Default = () => ({
+export const Default = args => ({
   components: { SbIcon },
-  props: {
-    size: {
-      default: () => select('Sizes', iconSizes, 'medium')
-    }
-  },
-  template: '<SbIcon name="chevron-down" :size="size" />'
+  props: Object.keys(args),
+  template: '<SbIcon v-bind="{ name, color, size, role }" />'
 })
+
+Default.args = {
+  size: 'normal'
+}
 
 export const FallackIcon = () => ({
   components: { SbIcon },
@@ -32,15 +67,12 @@ export const IconSizes = () => ({
       <div style="margin-bottom: 10px">
         <SbIcon name="chevron-down" size="small" />
       </div>
-
       <div style="margin-bottom: 10px">
         <SbIcon name="chevron-down" />
       </div>
-
       <div style="margin-bottom: 10px">
         <SbIcon name="chevron-down" size="large" />
       </div>
-
       <div style="margin-bottom: 10px">
         <SbIcon name="chevron-down" size="x-large" />
       </div>
@@ -48,16 +80,9 @@ export const IconSizes = () => ({
   `
 })
 
-export const AllIcons = () => ({
+export const AllIcons = args => ({
   components: { SbIcon },
-  props: {
-    size: {
-      default: () => select('Sizes', iconSizes, 'medium')
-    },
-    color: {
-      default: () => select('Color', availableColors, 'primary')
-    }
-  },
+  props: Object.keys(args),
   template: `
   <div>
     <div style="margin-bottom: 10px">
@@ -78,7 +103,6 @@ export const AllIcons = () => ({
       <SbIcon name="warning" v-bind="{ size, color }" />
       <SbIcon name="info" v-bind="{ size, color }" />
     </div>
-
     <div style="margin-bottom: 10px">
       <SbIcon name="fallback-black" v-bind="{ size, color }" />
       <SbIcon name="fallback-blue" v-bind="{ size, color }" />
@@ -86,7 +110,6 @@ export const AllIcons = () => ({
       <SbIcon name="fallback-yellow" v-bind="{ size, color }" />
       <SbIcon name="fallback-light-green" v-bind="{ size, color }" />
     </div>
-
     <div style="margin-bottom: 10px">
       <SbIcon name="success-pictogram" v-bind="{ size, color }" />
       <SbIcon name="upload-pictogram" v-bind="{ size, color }" />
