@@ -7,9 +7,7 @@ module.exports = {
   ],
   addons: [
     '@storybook/preset-scss',
-    '@storybook/addon-actions',
-    '@storybook/addon-knobs/register',
-    '@storybook/addon-storysource'
+    '@storybook/addon-essentials'
   ],
   // https://storybook.js.org/docs/configurations/custom-webpack-config/
   webpackFinal: async (config) => {

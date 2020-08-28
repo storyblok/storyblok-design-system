@@ -1,0 +1,40 @@
+$icon-small-size: 16px;
+$icon-default-size: 24px;
+$icon-large-size: 32px;
+$icon-extra-large-size: 48px;
+
+@mixin setIconSize ($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin setColor ($color) {
+  fill: $color;
+  color: $color;
+}
+
+.sb-icon {
+  @include setIconSize($icon-default-size);
+  display: inline-block;
+  vertical-align: middle;
+  stroke-width: 2px;
+  @include setColor($color-primary-dark);
+
+  &--small {
+    @include setIconSize($icon-small-size);
+  }
+
+  &--large {
+    @include setIconSize($icon-large-size);
+  }
+
+  &--x-large {
+    @include setIconSize($icon-extra-large-size);
+  }
+
+  @each $key, $color in $colors {
+    &--color-#{$key} {
+      @include setColor($color);
+    }
+  }
+}
