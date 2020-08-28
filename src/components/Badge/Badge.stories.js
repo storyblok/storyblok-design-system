@@ -1,40 +1,79 @@
 import SbBadge from './index'
-import { withKnobs, text, select, boolean } from '@storybook/addon-knobs'
 
 export default {
   title: 'SbBadge',
   component: SbBadge,
-  decorators: [withKnobs]
-}
-
-export const Default = () => ({
-  components: { SbBadge },
-  props: {
-    text: {
-      default: () => text('Text', 'Success')
-    },
-    status: {
-      default: () => select('Status', ['success', 'warning', 'info', 'error'])
-    },
-    icon: {
-      default: () => boolean('Icon', false)
-    },
-    onlyIcon: {
-      default: () => boolean('Only Icon', false)
-    },
-    isSmall: {
-      default: () => boolean('Small Badge', false)
+  parameters: {
+    docs: {
+      description: {
+        component: 'Badges are composed of text inside a bg color element and may include inline/inline-block elements and/or icons.'
+      }
     }
   },
-  template: `<SbBadge :text="text" 
-                      :status="status"
-                      :icon="icon"
-                      :only-icon="onlyIcon"
-                      :is-small="isSmall"/>`
+  args: {
+    text: 'Label',
+    status: 'success',
+    icon: '',
+    onlyIcon: false,
+    isSmall: false
+  },
+  argTypes: {
+    icon: {
+      name: 'icon',
+      description: 'Name of the icon to `SbBadge`',
+      control: {
+        type: 'text'
+      }
+    },
+    isSmall: {
+      name: 'isSmall',
+      description: 'Only icon',
+      control: {
+        type: 'boolean'
+      }
+    },
+    onlyIcon: {
+      name: 'onlyIcon',
+      description: 'Only icon',
+      control: {
+        type: 'boolean'
+      }
+    },
+    status: {
+      name: 'status',
+      description: 'Type of the `SbBadge` component',
+      control: {
+        type: 'select',
+        options: ['small', 'normal', 'large']
+      }
+    },
+    text: {
+      name: 'text',
+      description: 'Badge text',
+      control: {
+        type: 'text'
+      }
+    }
+  }
+}
+
+export const Default = args => ({
+  components: { SbBadge },
+  props: Object.keys(args),
+  template: `
+    <SbBadge
+      :text="text"
+      :status="status"
+      :icon="icon"
+      :only-icon="onlyIcon"
+      :is-small="isSmall"
+    />
+  `
 })
 
-export const Status = () => ({
+export const Status = args => ({
   components: { SbBadge },
+  props: Object.keys(args),
   template: `<div>
     <SbBadge status="success"/>
     <SbBadge status="info"/>
@@ -43,32 +82,35 @@ export const Status = () => ({
   </div>`
 })
 
-export const StatusWithIcon = () => ({
+export const StatusWithIcon = args => ({
   components: { SbBadge },
+  props: Object.keys(args),
   template: `<div>
-    <SbBadge status="success" icon/>
-    <SbBadge status="info" icon/>
-    <SbBadge status="warning" icon/>
-    <SbBadge status="error" icon/>
+    <SbBadge status="success" icon />
+    <SbBadge status="info" icon />
+    <SbBadge status="warning" icon />
+    <SbBadge status="error" icon />
   </div>`
 })
 
-export const OnlyIcon = () => ({
+export const OnlyIcon = args => ({
   components: { SbBadge },
+  props: Object.keys(args),
   template: `<div>
-    <SbBadge status="success" onlyIcon/>
-    <SbBadge status="info" onlyIcon/>
-    <SbBadge status="warning" onlyIcon/>
-    <SbBadge status="error" onlyIcon/>
+    <SbBadge status="success" onlyIcon />
+    <SbBadge status="info" onlyIcon />
+    <SbBadge status="warning" onlyIcon />
+    <SbBadge status="error" onlyIcon />
   </div>`
 })
 
-export const SmallWithText = () => ({
+export const SmallWithText = args => ({
   components: { SbBadge },
+  props: Object.keys(args),
   template: `<div>
-    <SbBadge status="success" is-small text="5"/>
-    <SbBadge status="info" is-small text="10"/>
-    <SbBadge status="warning" is-small text="15"/>
-    <SbBadge status="error" is-small text="200"/>
+    <SbBadge status="success" is-small text="5" />
+    <SbBadge status="info" is-small text="10" />
+    <SbBadge status="warning" is-small text="15" />
+    <SbBadge status="error" is-small text="200" />
   </div>`
 })
