@@ -1,0 +1,29 @@
+.sb-group-button {
+  display: inline;
+
+  .sb-link {
+    margin: 0 15px;
+  }
+
+  &:not(&--has-spaces) {
+    .sb-button {
+      border-radius: 0;
+    }
+  
+    .sb-button:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    
+    .sb-button:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+  &--has-spaces {
+    .sb-button:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
+}

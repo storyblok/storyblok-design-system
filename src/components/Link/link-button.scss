@@ -1,0 +1,47 @@
+.sb-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: $color-primary;
+
+  &:hover:not([disabled]) {
+    border-bottom: 1px solid $color-primary;
+  }
+
+  // &--secondary {
+  //   color: $color-primary-dark;
+
+  //   &:hover:not(&:disabled)  {
+  //     color: $color-primary;
+  //     border-bottom: 1px solid $color-primary;
+  //   }
+  // }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  &--has-icon {
+    .sb-icon {
+      margin-right: 3px;
+    }
+  }
+
+  &--has-icon-right {
+    .sb-icon {
+      margin-left: 3px;
+    }
+  }
+
+  &:active,
+  &:focus {
+    border-bottom-style: dashed;
+  }
+}

@@ -18,7 +18,7 @@ export default {
   argTypes: {
     size: {
       name: 'size',
-      description: 'Size of the SbAvatar',
+      description: 'Size of the `SbAvatar`',
       control: {
         type: 'select',
         options: ['small', 'normal', 'large']
