@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
-import { waitMs } from '../../../utils/tests-utils'
+
+import SbIcon from '../../Icon'
 import SbBadge from '..'
 
 const factory = propsData => {
@@ -9,75 +10,135 @@ const factory = propsData => {
 }
 
 describe('SbBadge component', () => {
-  it('test success badge', async () => {
+  describe('default behavior, when just pass type and label properties', () => {
     const wrapper = factory({
-      status: 'success'
+      type: 'negative',
+      label: 'Badge error label'
     })
 
-    await waitMs()
+    it('should have a properly type class', () => {
+      expect(wrapper.attributes('class')).toBe('sb-badge sb-badge--negative')
+    })
 
-    expect(wrapper.find('span').attributes('class')).toBe('sb-badge sb-badge--success')
-    expect(wrapper.find('span').text()).toBe('success')
+    it('should have a properly icon name', () => {
+      const IconComponent = wrapper.findComponent(SbIcon)
+
+      expect(IconComponent.props('name')).toBe('close')
+    })
+
+    it('should have the correct label', () => {
+      expect(wrapper.text()).toBe('Badge error label')
+    })
   })
 
-  it('test if svg was loaded', async () => {
-    const wrapper = factory({
-      status: 'success',
-      icon: true
+  describe('when it uses the slot for text', () => {
+    it('should have the correct label', () => {
+      const label = 'Badge from slot'
+      const wrapper = mount(SbBadge, {
+        propsData: {
+          type: 'positive'
+        },
+        slots: {
+          default: [label]
+        }
+      })
+
+      expect(wrapper.text()).toBe(label)
     })
-
-    await waitMs()
-
-    expect(wrapper.find('img').attributes('class')).toBe('sb-badge--icon')
   })
 
-  it('test success badge with icon', async () => {
+  describe('when it uses the contract property', () => {
     const wrapper = factory({
-      status: 'success',
-      icon: true
+      contract: true,
+      type: 'info',
+      label: 'Badge info label'
     })
 
-    await waitMs()
+    it('should have the correct type class', () => {
+      expect(wrapper.classes('sb-badge--info')).toBe(true)
+    })
 
-    expect(wrapper.find('img').attributes('class')).toBe('sb-badge--icon')
-    expect(wrapper.find('span').text()).toBe('success')
+    it('should have the properly class', () => {
+      expect(wrapper.classes('sb-badge--contract')).toBe(true)
+    })
+
+    it('should does not render the SbIcon component', () => {
+      expect(wrapper.findComponent(SbIcon).exists()).toBe(false)
+    })
+
+    it('should does not render any label', () => {
+      expect(wrapper.text()).toBe('')
+    })
   })
 
-  it('test success badge only with icon', async () => {
+  describe('when it uses the onlyIcon property', () => {
     const wrapper = factory({
-      status: 'success',
-      onlyIcon: true
+      type: 'info',
+      onlyIcon: true,
+      label: 'Badge info label'
     })
 
-    await waitMs()
+    it('should have the correct type class', () => {
+      expect(wrapper.classes('sb-badge--info')).toBe(true)
+    })
 
-    expect(wrapper.find('img').attributes('class')).toBe('sb-badge--icon')
-    expect(wrapper.find('span').text()).toBe('')
+    it('should have the properly class', () => {
+      expect(wrapper.classes('sb-badge--only-icon')).toBe(true)
+    })
+
+    it('should render the SbIcon component', () => {
+      expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
+    })
+
+    it('should does not render any label', () => {
+      expect(wrapper.text()).toBe('')
+    })
   })
 
-  it('test render badge with small text', async () => {
+  describe('when it uses the inlineLabel property', () => {
+    const label = 'Badge warning label'
     const wrapper = factory({
-      status: 'success',
-      isSmall: true,
-      text: '5'
+      type: 'warning',
+      inlineLabel: true,
+      label
     })
 
-    await waitMs()
+    it('should have the correct type class', () => {
+      expect(wrapper.classes('sb-badge--warning')).toBe(true)
+    })
 
-    expect(wrapper.find('span').text()).toBe('5')
-    expect(wrapper.find('span').attributes('class')).toBe('sb-badge sb-badge--success sb-badge--small')
+    it('should have the properly class', () => {
+      expect(wrapper.classes('sb-badge--inline-label')).toBe(true)
+    })
+
+    it('should render the SbIcon component', () => {
+      expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
+    })
+
+    it('should render the correct label', () => {
+      expect(wrapper.text()).toBe(label)
+    })
   })
 
-  it('test render badge with medium text', async () => {
+  describe('when it uses the number property', () => {
+    const number = 0
+
     const wrapper = factory({
-      status: 'success',
-      isSmall: true,
-      text: '200'
+      type: 'warning',
+      inlineLabel: true,
+      number
     })
 
-    await waitMs()
+    it('should have the correct type class', () => {
+      expect(wrapper.classes('sb-badge--warning')).toBe(true)
+    })
 
-    expect(wrapper.find('span').text()).toBe('200')
-    expect(wrapper.find('span').attributes('class')).toBe('sb-badge sb-badge--success sb-badge--medium')
+    it('should does not render the SbIcon component', () => {
+      expect(wrapper.findComponent(SbIcon).exists()).toBe(false)
+    })
+
+    it('should render the correct number', () => {
+      expect(wrapper.text()).toBe(number.toString())
+    })
   })
 })

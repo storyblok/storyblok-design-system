@@ -1,79 +1,78 @@
 import './badge.scss'
-import badgeError from '../../assets/icons/badge-error.svg'
+
+import SbIcon from '../Icon'
+
+import { badgeTypes, mapIconByTypes } from './lib'
+import { isValidNumber } from '../../utils'
 
 const SbBadge = {
   name: 'SbBadge',
 
   props: {
-    status: {
-      type: String,
-      default: 'success'
+    inlineLabel: {
+      type: Boolean,
+      default: false
     },
-    text: {
+    contract: {
+      type: Boolean,
+      default: false
+    },
+    label: {
       type: String,
       default: null
     },
-    icon: {
-      type: Boolean,
-      default: false
+    number: {
+      type: Number,
+      default: null
     },
     onlyIcon: {
       type: Boolean,
       default: false
     },
-    isSmall: {
-      type: Boolean,
-      default: false
+    type: {
+      type: String,
+      required: true,
+      validator: type => badgeTypes.indexOf(type) !== -1
     }
   },
 
   render (h) {
     const badgeProps = {
-      staticClass: 'sb-badge'
+      staticClass: `sb-badge sb-badge--${this.type}`,
+      class: {
+        'sb-badge--contract': this.contract,
+        'sb-badge--only-icon': this.onlyIcon,
+        'sb-badge--inline-label': this.inlineLabel
+      }
     }
 
     const renderIcon = () => {
-      return h('img', {
-        attrs: {
-          src: badgeError,
-          class: 'sb-badge--icon',
-          alt: `${this.status} icon`
+      return h(SbIcon, {
+        props: {
+          name: mapIconByTypes[this.type],
+          size: 'small'
         }
       })
     }
 
-    if (this.status) {
-      badgeProps.staticClass += ` sb-badge--${this.status}`
-    }
+    const renderLabel = () => {
+      const textLabel = this.label || this.$slots.default
+      const label = isValidNumber(this.number) ? this.number : textLabel
 
-    if (this.icon) {
       return h('span', {
-        staticClass: badgeProps.staticClass + ' sb-badge--text-icon'
-      }, [
-        renderIcon(),
-        this.text || this.status
-      ])
+        staticClass: 'sb-badge__label'
+      }, label)
     }
 
-    if (this.onlyIcon) {
-      return h('span', {
-        staticClass: badgeProps.staticClass + ' sb-badge--small'
-      }, [
-        renderIcon()
-      ])
-    }
+    const isRenderIcon = !this.contract && !isValidNumber(this.number)
+    const hasLabelToRender = this.label || this.$slots.default || isValidNumber(this.number)
 
-    if (this.isSmall) {
-      return h('span', {
-        staticClass: badgeProps.staticClass + (this.text.length > 1 ? ' sb-badge--medium' : ' sb-badge--small')
-      }, [
-        this.text
-      ])
-    }
+    const children = [
+      isRenderIcon && renderIcon(),
+      hasLabelToRender && !this.contract && !this.onlyIcon && renderLabel()
+    ]
 
-    return h('span', {
-      staticClass: badgeProps.staticClass
-    }, this.text || this.status)
+    return h('div', badgeProps, children)
   }
 }
 
