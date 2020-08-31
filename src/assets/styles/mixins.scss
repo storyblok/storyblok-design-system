@@ -15,8 +15,8 @@
 
 @mixin generalBoxShadow () {
   background-color: $white;
-  border: 1px solid $icon-color;
+  border: 1px solid $light;
   border-radius: 4px;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 2px 17px 3px rgba(34, 42, 69, 0.07);
   z-index: 99999;
 }
