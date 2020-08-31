@@ -28,7 +28,7 @@ export default {
   args: {
     closable: false,
     label: 'Tag Label',
-    type: 'primary'
+    type: 'light'
   },
   argTypes: {
     closable: {
@@ -51,9 +51,6 @@ export default {
       control: {
         type: 'select',
         options: tagTypes
-      },
-      type: {
-        required: true
       }
     }
   }

@@ -19,7 +19,7 @@ const SbTag = {
     },
     type: {
       type: String,
-      required: true,
+      default: 'light',
       validator: type => includes(tagTypes, type)
     }
   },
