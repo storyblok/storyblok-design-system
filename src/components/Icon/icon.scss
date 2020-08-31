@@ -18,7 +18,8 @@ $icon-extra-large-size: 48px;
   display: inline-block;
   vertical-align: middle;
   stroke-width: 2px;
-  @include setColor($color-primary-dark);
+  color: currentColor;
+  fill: currentColor;
 
   &--small {
     @include setIconSize($icon-small-size);
