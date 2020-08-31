@@ -1,4 +1,3 @@
-
 import SbIcon from '.'
 import { iconSizes } from './utils'
 import { availableColors } from '../../utils'
@@ -68,15 +67,12 @@ export const IconSizes = () => ({
       <div style="margin-bottom: 10px">
         <SbIcon name="chevron-down" size="small" />
       </div>
-
       <div style="margin-bottom: 10px">
         <SbIcon name="chevron-down" />
       </div>
-
       <div style="margin-bottom: 10px">
         <SbIcon name="chevron-down" size="large" />
       </div>
-
       <div style="margin-bottom: 10px">
         <SbIcon name="chevron-down" size="x-large" />
       </div>
@@ -107,7 +103,6 @@ export const AllIcons = args => ({
       <SbIcon name="warning" v-bind="{ size, color }" />
       <SbIcon name="info" v-bind="{ size, color }" />
     </div>
-
     <div style="margin-bottom: 10px">
       <SbIcon name="fallback-black" v-bind="{ size, color }" />
       <SbIcon name="fallback-blue" v-bind="{ size, color }" />
@@ -115,7 +110,6 @@ export const AllIcons = args => ({
       <SbIcon name="fallback-yellow" v-bind="{ size, color }" />
       <SbIcon name="fallback-light-green" v-bind="{ size, color }" />
     </div>
-
     <div style="margin-bottom: 10px">
       <SbIcon name="success-pictogram" v-bind="{ size, color }" />
       <SbIcon name="upload-pictogram" v-bind="{ size, color }" />
