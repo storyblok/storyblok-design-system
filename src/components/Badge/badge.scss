@@ -1,50 +1,66 @@
+@mixin setColor ($color) {
+  background-color: $color;
+
+  .sb-icon {
+    background-color: $color;
+  }
+}
+
 .sb-badge {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 10px;
   color: $white;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0px;
   text-align: center;
   border-radius: 5px;
-  height: 21px;
-  width: 80px;
-  line-height: 21px;
 
-  &--small {
-    height: 20px;
-    width: 20px;
-  }
-
-  &--medium {
-    height: 20px;
-    width: 38px;
-  }
-
-  &--success {
-    background-color: $green;
+  &--positive {
+    @include setColor($green);
   }
 
   &--warning {
-    background-color: $orange;
+    @include setColor($orange);
   }
 
   &--info {
-    background-color: $blue;
+    @include setColor($blue);
   }
 
-  &--error {
-    background-color: $red;
+  &--negative {
+    @include setColor($red);
   }
 
-  &--icon{
-    width: 8px;
+  &--only-icon {
+    padding: 0;
   }
 
-  &--text-icon {
-    img {
-      padding-right: 3px;
-      padding-top: 4px;
+  &:not(&--only-icon) .sb-icon {
+    margin-right: 5px;
+  }
+
+  .sb-icon {
+    border-radius: 5px;
+  }
+
+  &--contract {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border-radius: 100%;
+  }
+
+  &--inline-label {
+    background-color: $white;
+    padding: 0;
+
+    .sb-badge__label {
+      color: $color-primary-dark;
+      margin-left: 5px;
     }
   }
 }

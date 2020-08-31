@@ -1,4 +1,22 @@
 import SbBadge from './index'
+import { badgeTypes } from './lib'
+
+const BadgeTemplate = args => ({
+  components: { SbBadge },
+  props: Object.keys(args),
+  template: `
+    <SbBadge
+      v-bind="{
+        contract,
+        inlineLabel,
+        label,
+        number,
+        onlyIcon,
+        type
+      }"
+    />
+  `
+})
 
 export default {
   title: 'SbBadge',
@@ -11,106 +29,165 @@ export default {
     }
   },
   args: {
-    text: 'Label',
-    status: 'success',
-    icon: '',
+    contract: false,
+    inlineLabel: false,
+    label: 'Badge Label',
+    number: null,
     onlyIcon: false,
-    isSmall: false
+    type: 'positive'
   },
   argTypes: {
-    icon: {
-      name: 'icon',
-      description: 'Name of the icon to `SbBadge`',
+    contract: {
+      name: 'contract',
+      description: 'A small and circular `SbBadge`',
+      control: {
+        type: 'boolean'
+      }
+    },
+    inlineLabel: {
+      name: 'inlineLabel',
+      description: 'Define a label on the right',
+      control: {
+        type: 'boolean'
+      }
+    },
+    label: {
+      name: 'label',
+      description: 'Label to `SbBadge`',
       control: {
         type: 'text'
       }
     },
-    isSmall: {
-      name: 'isSmall',
-      description: 'Only icon',
+    number: {
+      name: 'number',
+      description: 'Define the `SbBadge` as just a number',
       control: {
-        type: 'boolean'
+        type: 'number'
       }
     },
     onlyIcon: {
       name: 'onlyIcon',
-      description: 'Only icon',
+      description: 'Only renders an icon',
       control: {
         type: 'boolean'
       }
     },
-    status: {
-      name: 'status',
-      description: 'Type of the `SbBadge` component',
+    type: {
+      name: 'type',
+      description: 'Type of the `SbBadge`',
       control: {
         type: 'select',
-        options: ['small', 'normal', 'large']
-      }
-    },
-    text: {
-      name: 'text',
-      description: 'Badge text',
-      control: {
-        type: 'text'
+        options: badgeTypes
+      },
+      type: {
+        required: true
       }
     }
   }
 }
 
-export const Default = args => ({
+export const Default = BadgeTemplate.bind({})
+
+export const Types = args => ({
   components: { SbBadge },
   props: Object.keys(args),
-  template: `
+  template: `<div>
     <SbBadge
-      :text="text"
-      :status="status"
-      :icon="icon"
-      :only-icon="onlyIcon"
-      :is-small="isSmall"
+      v-bind="{
+        label,
+        inlineLabel,
+        number,
+        type:'positive'
+      }"
     />
-  `
-})
-
-export const Status = args => ({
-  components: { SbBadge },
-  props: Object.keys(args),
-  template: `<div>
-    <SbBadge status="success"/>
-    <SbBadge status="info"/>
-    <SbBadge status="warning"/>
-    <SbBadge status="error"/>
+    <SbBadge
+      v-bind="{
+        label,
+        inlineLabel,
+        number,
+        type:'info'
+      }"
+    />
+    <SbBadge
+      v-bind="{
+        label,
+        inlineLabel,
+        number,
+        type:'warning'
+      }"
+    />
+    <SbBadge
+      v-bind="{
+        label,
+        inlineLabel,
+        number,
+        type:'negative'
+      }"
+    />
   </div>`
 })
 
-export const StatusWithIcon = args => ({
-  components: { SbBadge },
-  props: Object.keys(args),
-  template: `<div>
-    <SbBadge status="success" icon />
-    <SbBadge status="info" icon />
-    <SbBadge status="warning" icon />
-    <SbBadge status="error" icon />
-  </div>`
-})
+Types.parameters = {
+  docs: {
+    description: {
+      story: 'You can set the `type` property to change the type of the `SbBadge`'
+    }
+  }
+}
 
-export const OnlyIcon = args => ({
-  components: { SbBadge },
-  props: Object.keys(args),
-  template: `<div>
-    <SbBadge status="success" onlyIcon />
-    <SbBadge status="info" onlyIcon />
-    <SbBadge status="warning" onlyIcon />
-    <SbBadge status="error" onlyIcon />
-  </div>`
-})
+export const JustNumber = BadgeTemplate.bind({})
 
-export const SmallWithText = args => ({
-  components: { SbBadge },
-  props: Object.keys(args),
-  template: `<div>
-    <SbBadge status="success" is-small text="5" />
-    <SbBadge status="info" is-small text="10" />
-    <SbBadge status="warning" is-small text="15" />
-    <SbBadge status="error" is-small text="200" />
-  </div>`
-})
+JustNumber.args = {
+  number: 1000
+}
+
+JustNumber.parameters = {
+  docs: {
+    description: {
+      story: 'You can set the `type` property to change the type of the `SbBadge`'
+    }
+  }
+}
+
+export const OnlyIcon = BadgeTemplate.bind({})
+
+OnlyIcon.args = {
+  onlyIcon: true
+}
+
+OnlyIcon.parameters = {
+  docs: {
+    description: {
+      story: 'You can set the `onlyIcon` property to just show the icon'
+    }
+  }
+}
+
+export const Contract = BadgeTemplate.bind({})
+
+Contract.args = {
+  contract: true
+}
+
+Contract.parameters = {
+  docs: {
+    description: {
+      story: 'You can set the `contract` property to just show a circle with a background type'
+    }
+  }
+}
+
+export const InlineLabel = BadgeTemplate.bind({})
+
+InlineLabel.args = {
+  inlineLabel: true,
+  label: 'Inline label'
+}
+
+InlineLabel.parameters = {
+  docs: {
+    description: {
+      story: 'You can set the `inlineLabel` property to just the icon filled with a background type and the label is on the right'
+    }
+  }
+}
