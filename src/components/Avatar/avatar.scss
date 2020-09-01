@@ -31,9 +31,24 @@
   }
 
   // text (on the left)
-  &__text {
-    font-size: 13px;
+  &__text-container {
+    display: inline-block;
     margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  &__text {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: $primary-text-color;
+  }
+
+  &__description {
+    display: block;
+    font-size: 13px;
+    font-weight: normal;
+    color: $light-gray;
   }
 
   // sizes

@@ -136,4 +136,20 @@ describe('SbAvatar component', () => {
       expect(wrapper.find('img').attributes('alt')).toBe(imageAlt)
     })
   })
+
+  describe('when pass the description property', () => {
+    const wrapper = factory({
+      name: 'John Doe',
+      description: 'Created by',
+      showName: true
+    })
+
+    it('should have the correct name', () => {
+      expect(wrapper.find('.sb-avatar__text').text()).toBe('John Doe')
+    })
+
+    it('should have the correct description', () => {
+      expect(wrapper.find('.sb-avatar__description').text()).toBe('Created by')
+    })
+  })
 })

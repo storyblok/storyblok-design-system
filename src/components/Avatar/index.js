@@ -1,12 +1,22 @@
 import './avatar.scss'
 import avatarFallback from '../../assets/icons/avatar-fallback.svg'
-import { canUseDOM } from '../../utils'
+import { canUseDOM, includes } from '../../utils'
 import { isSizeValid, getInitials, generateRandomBgColor } from './utils.js'
+
+const positionTypes = ['top', 'bottom']
 
 const SbAvatar = {
   name: 'SbAvatar',
 
   props: {
+    description: {
+      type: String
+    },
+    descriptionPosition: {
+      type: String,
+      default: 'top',
+      validator: position => includes(positionTypes, position)
+    },
     name: {
       type: String
     },
@@ -85,6 +95,28 @@ const SbAvatar = {
       }, this.name)
     }
 
+    const renderDescription = () => {
+      return h('span', {
+        staticClass: `sb-avatar__description sb-avatar__description--${this.descriptionPosition}`
+      }, this.description)
+    }
+
+    const renderTextContainer = () => {
+      const showDescription = this.showName && this.description
+      const position = this.descriptionPosition
+
+      return h(
+        'div', {
+          staticClass: 'sb-avatar__text-container'
+        },
+        [
+          showDescription && position === 'top' && renderDescription(),
+          renderName(),
+          showDescription && position === 'bottom' && renderDescription()
+        ]
+      )
+    }
+
     const renderAvatar = () => {
       if (this.$slots.default) {
         return this.$slots.default
@@ -113,7 +145,7 @@ const SbAvatar = {
 
     if (this.showName && this.name) {
       children.push(
-        renderName()
+        renderTextContainer()
       )
     }
 

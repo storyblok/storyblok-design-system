@@ -12,12 +12,28 @@ export default {
     }
   },
   args: {
+    description: null,
+    descriptionPosition: null,
     name: null,
     size: 'normal',
     showName: false,
     src: null
   },
   argTypes: {
+    description: {
+      name: 'description',
+      description: 'Description to `SbAvatar`',
+      control: {
+        type: 'text'
+      }
+    },
+    descriptionPosition: {
+      name: 'descriptionPosition',
+      description: 'Define the position to description',
+      control: {
+        type: 'text'
+      }
+    },
     name: {
       name: 'name',
       description: 'Username',
@@ -42,7 +58,10 @@ export default {
     },
     src: {
       name: 'src',
-      description: 'Path to image'
+      description: 'Path to image',
+      control: {
+        type: 'text'
+      }
     }
   }
 }
@@ -138,6 +157,50 @@ WithUsername.parameters = {
   docs: {
     description: {
       story: 'You can show the `name` attribute on the right by passing the `showName` attribute'
+    }
+  }
+}
+
+export const WithDescription = args => ({
+  components: { SbAvatar },
+  props: Object.keys(args),
+  template: `<div>
+    <div>
+      <SbAvatar
+        v-bind="{
+          description,
+          descriptionPosition: 'top',
+          name,
+          size,
+          showName
+        }"
+      />
+    </div>
+
+    <div style="margin-top: 20px">
+      <SbAvatar
+        v-bind="{
+          description,
+          descriptionPosition: 'bottom',
+          name,
+          size,
+          showName
+        }"
+      />
+    </div>
+  </div>`
+})
+
+WithDescription.args = {
+  name: 'John Doe',
+  description: 'Created by',
+  showName: true
+}
+
+WithDescription.parameters = {
+  docs: {
+    description: {
+      story: 'You can add a description to `SbAvatar`'
     }
   }
 }
