@@ -1,5 +1,5 @@
 .sb-group-button {
-  display: inline;
+  display: inline-flex;
 
   .sb-link {
     margin: 0 15px;
@@ -18,6 +18,10 @@
     .sb-button:last-child {
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
+    }
+
+    .sb-button:not(:first-child) {
+      border-left: none;
     }
   }
 

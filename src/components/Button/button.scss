@@ -2,11 +2,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 28.5px;
+  padding: 13px 28px;
+  border: 1px solid transparent;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  border: none;
   transition: all .1s ease-in-out;
   vertical-align: middle;
 
@@ -21,6 +21,10 @@
     &[disabled] {
       color: #004e4c;
       background-color: rgba($sb-green, 0.5);
+
+      .sb-button__label {
+        opacity: 0.5;
+      }
     }
 
     &:focus {
@@ -49,7 +53,7 @@
   &--ghost {
     background-color: $white;
     color: $sb-dark-blue;
-    border: 1px solid $light;
+    border-color: $light;
 
     &:hover:not([disabled]) {
       background-color: $light-50;
@@ -94,6 +98,7 @@
   }
 
   &__label {
+    font-weight: 500;
     vertical-align: middle;
   }
 
@@ -102,7 +107,7 @@
   }
 
   &--rounded {
-    border-radius: 100%;
+    border-radius: 50%;
   }
 
   &--has-icon {
@@ -118,7 +123,7 @@
   }
 
   &--has-icon-only {
-    padding: 15px 15px;
+    padding: 14px 14px;
 
     .sb-icon {
       margin: 0;
