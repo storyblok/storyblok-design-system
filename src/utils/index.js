@@ -1,4 +1,5 @@
 export * from './dom'
 export * from './number'
 export * from './constants'
-export * from './captalize'
+export * from './capitalize'
+export * from './collection'

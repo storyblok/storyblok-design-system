@@ -1,0 +1,132 @@
+.sb-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 28px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all .1s ease-in-out;
+  vertical-align: middle;
+
+  &--primary {
+    background-color: $sb-green;
+    color: $white;
+    
+    &:hover:not([disabled]) {
+      background-color: $sb-green-75;
+    }
+
+    &[disabled] {
+      color: #004e4c;
+      background-color: rgba($sb-green, 0.5);
+
+      .sb-button__label {
+        opacity: 0.5;
+      }
+    }
+
+    &:focus {
+      outline: 3px solid $sb-green-25;
+    }
+  }
+  
+  &--secondary {
+    background-color: $sb-dark-blue;
+    color: $white;
+
+    &:hover:not([disabled]) {
+      background-color: $sb-dark-blue-75;
+    }
+
+    &[disabled] {
+      color: $color-primary-dark;
+      background-color: rgba($sb-dark-blue, 0.5);
+    }
+
+    &:focus {
+      outline: 3px solid $sb-dark-blue-25;
+    }
+  }
+
+  &--ghost {
+    background-color: $white;
+    color: $sb-dark-blue;
+    border-color: $light;
+
+    &:hover:not([disabled]) {
+      background-color: $light-50;
+    }
+
+    &[disabled] {
+      opacity: 0.5;
+    }
+
+    &:focus {
+      outline: 3px solid $light-25;
+    }
+  }
+
+  &--danger {
+    background-color: $red;
+    color: $white;
+
+    &[disabled] {
+      opacity: 0.5;
+    }
+
+    &:focus {
+      outline: 3px solid $red-25;
+    }
+  }
+
+  &--small {
+    padding: 8px 16px;
+  }
+  
+  &--large {
+    padding: 20px 43px;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  .sb-icon {
+    vertical-align: middle;
+  }
+
+  &__label {
+    font-weight: 500;
+    vertical-align: middle;
+  }
+
+  &--full {
+    width: 100%;
+  }
+
+  &--rounded {
+    border-radius: 50%;
+  }
+
+  &--has-icon {
+    .sb-icon {
+      margin-right: 5px;
+    }
+  }
+
+  &--has-icon-right {
+    .sb-icon {
+      margin-left: 5px;
+    }
+  }
+
+  &--has-icon-only {
+    padding: 14px 14px;
+
+    .sb-icon {
+      margin: 0;
+    }
+  }
+}

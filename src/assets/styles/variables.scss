@@ -1,61 +1,89 @@
 // Color pallete
 
-// primary
-$sb-green: #00B3B0;
-$sb-dark-blue: #1B243F;
+// teal
+$sb-green:                                     #00B3B0;
+$sb-green-75:                                  #40C6C4;
+$sb-green-50:                                  #7FD9D7;
+$sb-green-25:                                  #D9F4F3;
 
-// secondary
-$green: #2DB47D;
-$blue: #395ECE;
-$yellow: #FBCE41;
-$orange: #FFAC00;
-$red: #FF6159;
+// Ink
+$sb-dark-blue:                                 #1B243F;
+$sb-dark-blue-75:                              #545B6F;
+$sb-dark-blue-50:                              #8D919F;
+$sb-dark-blue-25:                              #C6C8CF;
 
-// neutrals
-$dark-light: #B1B5BE;
-$light: #DFE3E8;
-$lighter: #F4F6F8;
-$icon-color: #B1B5BE;
-$background-dark: #DDDDDD;
-$background-light: #E7E7E7;
-$background-lighet: #F5F5F5;
-$white: #FFF;
+// green
+$green:                                        #2DB47D;
+$green-75:                                     #62C79E;
+$green-50:                                     #96D9BE;
+$green-25:                                     #CAECDE;
 
-// light-colors
-$light-green: #CBECDE;
-$light-blue: #CDD8F4;
-$light-yellow: #FEF3CF;
-$light-red: #FED7D5;
+// yellow
+$yellow:                                       #FBCE41;
+$yellow-75:                                    #FCDB71;
+$yellow-50:                                    #FDE6A0;
+$yellow-25:                                    #FEF3CF;
 
-// dark-colors
-$black: rgba(0, 0, 0, 0.08);
+// blue
+$blue:                                         #395ECE;
+$blue-75:                                      #6B87DB;
+$blue-50:                                      #9CAEE6;
+$blue-25:                                      #CDD7F3;
 
+// orange
+$orange:                                       #FFAC00;
+$orange-75:                                    #FFC140;
+$orange-50:                                    #FFD57F;
+$orange-25:                                    #FFEABF;
+
+// red
+$red:                                          #FF6159;
+$red-75:                                       #FF8983;
+$red-50:                                       #FFB0AC;
+$red-25:                                       #FFD7D5;
+
+// light
+$light:                                        #DFE3E8;
+$light-75:                                     #E7EAEE;
+$light-50:                                     #EFF1F3;
+$light-25:                                     #F7F8F9;
+$light-gray:                                   #B1B5BE;
+
+$black:                                        #101525;
+$white:                                        #FFF;
 // ----
 
 // Typography
-$primary-font-family: 'Roboto';
-$primary-text-color: #1B243F;
+$primary-font-family:                            'Roboto';
+$primary-text-color:                             $sb-dark-blue;
+
+$text-header:                                    25px;
+$text-subheader:                                 18px;
+$text-text-medium:                               16px;
+$text-text-medium-small:                         14px;
+$text-text-small:                                13px;
+// ----
 
 // Global Variables
 
 // Colors
-$color-primary: $sb-green;
-$color-primary-dark: $sb-dark-blue;
-$color-secondary: $green;
-$color-positive: $green;
-$color-negative: $red;
-$color-warning: $orange;
+$color-primary:                                  $sb-green;
+$color-primary-dark:                             $sb-dark-blue;
+$color-secondary:                                $green;
+$color-positive:                                 $green;
+$color-negative:                                 $red;
+$color-warning:                                  $orange;
 
 $colors: (
-  'primary': $color-primary,
-  'primary-dark': $color-primary-dark,
-  'secondary': $color-secondary,
-  'positive': $color-positive,
-  'negative': $color-negative,
-  'warning': $color-warning
+  'primary':                                     $color-primary,
+  'primary-dark':                                $color-primary-dark,
+  'secondary':                                   $color-secondary,
+  'positive':                                    $color-positive,
+  'negative':                                    $color-negative,
+  'warning':                                     $color-warning
 );
 
 // Avatar variables
-$sb-avatar-small: 26px;
-$sb-avatar-normal: 32px;
-$sb-avatar-large: 46px;
+$sb-avatar-small:                                26px;
+$sb-avatar-normal:                               32px;
+$sb-avatar-large:                                46px;

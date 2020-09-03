@@ -3,13 +3,59 @@ import SbAvatar from './index'
 // default export defines configurations to all stories
 export default {
   title: 'SbAvatar',
-  component: SbAvatar
+  component: SbAvatar,
+  parameters: {
+    docs: {
+      description: {
+        component: 'The `SbAvatar` is a component to view user information. It provides a fallback when the user image is not allowed. By default, it applys a border-radius to view a round avatar.'
+      }
+    }
+  },
+  args: {
+    name: null,
+    size: 'normal',
+    showName: false,
+    src: null
+  },
+  argTypes: {
+    name: {
+      name: 'name',
+      description: 'Username',
+      control: {
+        type: 'text'
+      }
+    },
+    size: {
+      name: 'size',
+      description: 'Size of the SbAvatar',
+      control: {
+        type: 'select',
+        options: ['small', 'normal', 'large']
+      }
+    },
+    showName: {
+      name: 'showName',
+      description: 'Enable show the username on the right',
+      control: {
+        type: 'boolean'
+      }
+    },
+    src: {
+      name: 'src',
+      description: 'Path to image'
+    }
+  }
 }
 
-export const Default = () => ({
+export const Default = (args) => ({
   components: { SbAvatar },
-  template: '<SbAvatar src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4" />'
+  props: Object.keys(args),
+  template: '<SbAvatar v-bind="{ showName, size, name, src }" />'
 })
+
+Default.args = {
+  src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4'
+}
 
 export const Initials = () => ({
   components: { SbAvatar },
@@ -21,6 +67,14 @@ export const Initials = () => ({
     <SbAvatar name="John" size="small" />
   </div>`
 })
+
+Initials.parameters = {
+  docs: {
+    description: {
+      story: 'When you do not pass the `src` attribute, but, pass the `name` attribute, the component will be use the initials from the name'
+    }
+  }
+}
 
 export const Sizes = () => ({
   components: { SbAvatar },
@@ -40,6 +94,14 @@ export const Sizes = () => ({
     />
   </div>`
 })
+
+Sizes.parameters = {
+  docs: {
+    description: {
+      story: 'You can change the size of the `SbAvatar` components just passing the `size` attribute'
+    }
+  }
+}
 
 export const WithUsername = () => ({
   components: { SbAvatar },
@@ -72,6 +134,14 @@ export const WithUsername = () => ({
   </div>`
 })
 
+WithUsername.parameters = {
+  docs: {
+    description: {
+      story: 'You can show the `name` attribute on the right by passing the `showName` attribute'
+    }
+  }
+}
+
 export const WithFallback = () => ({
   components: { SbAvatar },
   template: `<div>
@@ -89,6 +159,14 @@ export const WithFallback = () => ({
   </div>`
 })
 
+WithFallback.parameters = {
+  docs: {
+    description: {
+      story: 'When the image is not available, the component will be show a fallback avatar'
+    }
+  }
+}
+
 export const WithInternalElements = () => ({
   components: { SbAvatar },
   template: `<div>
@@ -105,3 +183,11 @@ export const WithInternalElements = () => ({
     </div>
   </div>`
 })
+
+WithInternalElements.parameters = {
+  docs: {
+    description: {
+      story: 'You can use internal elements inside `SbAvatar` component, like `<img>` tag'
+    }
+  }
+}
