@@ -5,6 +5,11 @@ import { isSizeValid, getInitials, generateRandomBgColor } from './utils.js'
 
 const positionTypes = ['top', 'bottom']
 
+/**
+ * SbAvatar component
+ *
+ * SbAvatar is a component to view user information or entity
+ */
 const SbAvatar = {
   name: 'SbAvatar',
 
@@ -82,6 +87,7 @@ const SbAvatar = {
       }
 
       return h('img', {
+        staticClass: generateRandomBgColor(),
         attrs: {
           alt: this.name,
           src: avatarFallback
@@ -124,7 +130,7 @@ const SbAvatar = {
 
       if (this.src) {
         return h('div', {
-          staticClass: 'sb-avatar__image ' + generateRandomBgColor()
+          staticClass: 'sb-avatar__image'
         }, [
           renderAvatarImage()
         ])
