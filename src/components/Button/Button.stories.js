@@ -56,13 +56,16 @@ export default {
     }
   },
   args: {
-    type: 'primary',
-    size: null,
-    label: 'Default',
     isLoading: false,
     isDisabled: false,
     isFullWidth: false,
-    isRounded: false
+    isRounded: false,
+    icon: null,
+    iconRight: null,
+    hasIconOnly: false,
+    label: 'Default',
+    size: null,
+    type: 'primary'
   },
   argTypes: {
     isDisabled: {
@@ -145,11 +148,16 @@ export const Default = args => ({
   props: Object.keys(args),
   template: `
     <SbButton
-      :type="type"
-      :label="label"
+      :is-rounded="isRounded"
+      :is-full-width="isFullWidth"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
+      :icon="icon"
+      :icon-right="iconRight"
+      :has-icon-only="hasIconOnly"
+      :label="label"
       :size="size"
+      :type="type"
     />
   `
 })

@@ -1,6 +1,5 @@
 import SbGroupButton from '.'
 import SbButton from '../Button/index'
-import SbLink from '../Link'
 
 import { availableTypes } from '../Button/lib'
 import { availableSizes } from '../../utils'
@@ -93,33 +92,3 @@ export const JustIcons = args => ({
     </SbGroupButton>
   `
 })
-
-export const WithLink = args => ({
-  components: { SbGroupButton, SbButton, SbLink },
-  props: Object.keys(args),
-  template: `
-    <SbGroupButton v-bind="{ size, type, hasSpaces }">
-      <SbButton :label="firstLabel" :type="type" />
-      <SbButton :label="secondaryLabel" :type="type" />
-      <SbLink label="Read More" href="https://google.com" />
-    </SbGroupButton>
-  `
-})
-
-WithLink.args = {
-  firstLabel: 'First Button',
-  secondaryLabel: 'Secondary Button'
-}
-
-WithLink.argTypes = {
-  firstLabel: {
-    control: {
-      type: 'text'
-    }
-  },
-  secondaryLabel: {
-    control: {
-      type: 'text'
-    }
-  }
-}
