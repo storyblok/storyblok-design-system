@@ -73,6 +73,7 @@ $color-secondary:                                $green;
 $color-positive:                                 $green;
 $color-negative:                                 $red;
 $color-warning:                                  $orange;
+$color-white:                                    $white;
 
 $colors: (
   'primary':                                     $color-primary,
@@ -80,7 +81,8 @@ $colors: (
   'secondary':                                   $color-secondary,
   'positive':                                    $color-positive,
   'negative':                                    $color-negative,
-  'warning':                                     $color-warning
+  'warning':                                     $color-warning,
+  'white':                                       $color-white
 );
 
 // Avatar variables

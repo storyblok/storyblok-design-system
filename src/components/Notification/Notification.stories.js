@@ -1,204 +1,115 @@
 import SbNotification from './index'
-import { withKnobs, text, select } from '@storybook/addon-knobs'
 
 export default {
   title: 'SbNotification',
   component: SbNotification,
-  decorators: [withKnobs]
-}
-
-export const Default = () => ({
-  components: { SbNotification },
-  props: {
-    title: {
-      default: () => text('Title', 'A very interesting title')
-    },
-    description: {
-      default: () => text('Description', 'Subtitle text goes here.')
-    },
-    link: {
-      default: () => text('Link', 'Example link')
-    },
-    status: {
-      default: () => select('Status', ['general', 'success', 'warning', 'info', 'error'])
+  parameters: {
+    docs: {
+      description: {
+        component: 'Notification component sends various types of notification, with texts, descriptions and various links and diferent status.'
+      }
     }
   },
+  args: {
+    status: 'general',
+    title: 'Title',
+    description: null,
+    link: null,
+    linkName: null,
+    isBanner: false,
+    isShort: false,
+    isExpandable: false,
+    isFull: false,
+    notificationIcon: null
+  },
+  argTypes: {
+    status: {
+      name: 'status',
+      description: 'Status color',
+      control: {
+        type: 'select',
+        options: ['general', 'success', 'warning', 'info', 'error']
+      }
+    },
+    title: {
+      name: 'title',
+      description: 'Title for notification',
+      control: {
+        type: 'text'
+      }
+    },
+    description: {
+      name: 'description',
+      description: 'Notification description',
+      control: {
+        type: 'text'
+      }
+    },
+    link: {
+      name: 'link',
+      description: 'The link URL',
+      control: {
+        type: 'text'
+      }
+    },
+    linkName: {
+      name: 'linkName',
+      description: 'Name for the link URL',
+      control: {
+        type: 'text'
+      }
+    },
+    notificationIcon: {
+      name: 'notificationIcon',
+      description: 'Change notification icon',
+      control: {
+        type: 'text'
+      }
+    },
+    isBanner: {
+      name: 'isBanner',
+      description: 'Change notification format to Banner view',
+      control: {
+        type: 'boolean'
+      }
+    },
+    isShort: {
+      name: 'short',
+      description: 'Change notification format to short view',
+      control: {
+        type: 'boolean'
+      }
+    },
+    isExpandable: {
+      name: 'isExpandable',
+      description: 'Change notification to expadable and show content',
+      control: {
+        type: 'boolean'
+      }
+    },
+    isFull: {
+      name: 'isFull',
+      description: 'Change notification format to full view',
+      control: {
+        type: 'boolean'
+      }
+    }
+  }
+}
+
+export const Default = (args) => ({
+  components: { SbNotification },
+  props: Object.keys(args),
   template: `<SbNotification 
                 :status="status"
                 :title="title"
                 :description="description "
-                :link-name="link"
-                link="http://#">
+                :link-name="linkName"
+                :link="link"
+                :is-banner="isBanner"
+                :is-short="isShort"
+                :is-expandable="isExpandable"
+                :is-full="isFull"
+                :notification-icon="notificationIcon">
              </SbNotification>`
-})
-
-export const NotificationWithoutLink = () => ({
-  components: { SbNotification },
-  template: `<SbNotification 
-                status="success"
-                title="Success"
-                description="Subtitle text goes here.">
-             </SbNotification>`
-})
-
-export const MultipleNotifications = () => ({
-  components: { SbNotification },
-  template: `<div>
-    <SbNotification 
-      status="success"
-      title="Success"
-      description="This component has been successfully rendered"
-      link-name="Example link"
-      link="http://#">
-    </SbNotification>
-
-    <SbNotification 
-      status="warning"
-      title="This component has 2 warnings"
-      description="This component has been successfully rendered, but have 2 warnings"
-      link-name="Example link"
-      link="http://#">
-    </SbNotification>
-
-    <SbNotification 
-      status="info"
-      title="This component has an info"
-      description="Subtitle text goes here. "
-      link-name="Example link"
-      link="http://#">
-    </SbNotification>
-
-    <SbNotification 
-      status="error"
-      title="This component has an error"
-      description="Subtitle text goes here. "
-      link-name="Example link"
-      link="http://#">
-    </SbNotification>
-
-    <SbNotification 
-      title="Notification title"
-      description="Subtitle text goes here. "
-      link-name="Example link"
-      link="http://#">
-    </SbNotification>
-  </div>`
-})
-
-export const BannerNotification = () => ({
-  components: { SbNotification },
-  props: {
-    title: {
-      default: () => text('Title', 'A interesting banner title')
-    },
-    description: {
-      default: () => text('Description', 'Subtitle text goes here.')
-    },
-    status: {
-      default: () => select('Status', ['general', 'success', 'warning', 'info', 'error'])
-    }
-  },
-  template: `
-    <SbNotification
-      :status="status" 
-      :title="title"
-      :description="description"
-      link="http://#"
-      format="banner">
-    </SbNotification>
-  `
-})
-
-export const AllBannersNotification = () => ({
-  components: { SbNotification },
-  template: `<div>
-  <SbNotification 
-      status="success"
-      title="Success title"
-      description="Subtitle text goes here"
-      link="http://#"
-      format="banner">
-  </SbNotification>
-  <SbNotification 
-      status="info"
-      title="Information title"
-      description="Subtitle text goes here"
-      link="http://#"
-      format="banner">
-  </SbNotification>
-  <SbNotification 
-      status="warning"
-      title="Warning title"
-      description="Subtitle text goes here"
-      link="http://#"
-      format="banner">
-  </SbNotification>
-  <SbNotification 
-      status="error"
-      title="Error title"
-      description="Subtitle text goes here"
-      link="http://#"
-      format="banner">
-  </SbNotification>
-  <SbNotification 
-      status="general"
-      title="general title"
-      description="Subtitle text goes here"
-      link="http://#"
-      format="banner">
-  </SbNotification>
-  </div>`
-})
-
-export const ShortBanner = () => ({
-  components: { SbNotification },
-  template: `
-  <SbNotification 
-      status="general"
-      title="general title"
-      link="http://#"
-      link-name="To next"
-      short>
-  </SbNotification>`
-})
-
-export const ShortBanners = () => ({
-  components: { SbNotification },
-  template: `<div>
-  <SbNotification 
-      status="success"
-      title="success title"
-      link="http://#"
-      link-name="To next"
-      short>
-  </SbNotification>
-  <SbNotification 
-      status="error"
-      title="Error title"
-      link="http://#"
-      link-name="To next"
-      short>
-  </SbNotification>
-  <SbNotification 
-      status="warning"
-      title="Warning title"
-      link="http://#"
-      link-name="To next"
-      short>
-  </SbNotification>
-  <SbNotification 
-      status="info"
-      title="Info title"
-      link="http://#"
-      link-name="To next"
-      short>
-  </SbNotification>
-  <SbNotification 
-      status="general"
-      title="General title"
-      link="http://#"
-      link-name="To next"
-      short>
-  </SbNotification>
-  </div>`
 })

@@ -12,7 +12,8 @@ export const availableColors = [
   'secondary',
   'positive',
   'negative',
-  'warning'
+  'warning',
+  'white'
 ]
 
 /**

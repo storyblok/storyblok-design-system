@@ -1,5 +1,6 @@
 import './notification.scss'
 import { captalize } from '../../utils/captalize'
+import SbIcon from '../Icon'
 
 const SbNotification = {
   name: 'SbNotification',
@@ -11,10 +12,11 @@ const SbNotification = {
     },
     title: {
       type: String,
-      default: 'general'
+      default: 'notification'
     },
     description: {
-      type: String
+      type: String,
+      default: null
     },
     link: {
       type: String,
@@ -24,122 +26,133 @@ const SbNotification = {
       type: String,
       default: null
     },
-    format: {
-      type: String,
-      default: null
-    },
-    short: {
+    isBanner: {
       type: Boolean,
       default: false
+    },
+    isShort: {
+      type: Boolean,
+      default: false
+    },
+    isExpandable: {
+      type: Boolean,
+      default: false
+    },
+    isFull: {
+      type: Boolean,
+      default: false
+    },
+    notificationIcon: {
+      type: String,
+      default: null
     }
   },
 
   render (h) {
-    const notificationProps = {
-      staticClass: 'sb-notification'
+    const renderNotification = (content) => {
+      return h('div', {
+        staticClass: `sb-notification sb-notification--${this.status}`,
+        class: {
+          'sb-notification--banner': this.isBanner,
+          'sb-notification--short': this.isShort,
+          'sb-notification--expandable': this.isExpandable,
+          'sb-notification--full': this.isFull
+        }
+      }, content)
     }
 
-    if (this.status) {
-      notificationProps.staticClass += ` sb-notification--${this.status}`
-    }
+    const renderStatusIcon = () => {
+      const typeOfStatusIcons = {
+        general: 'info',
+        success: 'checkmark',
+        warning: 'warning',
+        info: 'info',
+        error: 'close'
+      }
 
-    if (!this.link) {
-      notificationProps.staticClass += ' sb-notification--without-link'
-    }
-
-    if (this.short) {
-      notificationProps.staticClass += ' sb-notification--short'
-    }
-
-    const renderIcon = () => {
       return h('span', {
-        class: 'sb-notification--icon'
-      }, 'X')
+        staticClass: 'sb-notification--icon-container'
+      }, [renderIcon(this.notificationIcon || typeOfStatusIcons[this.status], 'white')])
+    }
+
+    const renderIcon = (icon, colorName = null) => {
+      return h(SbIcon, {
+        props: {
+          size: 'small',
+          name: icon,
+          color: colorName
+        }
+      })
     }
 
     const renderTitle = () => {
-      return h('span', {
-        staticClass: 'sb-notification--title'
-      }, captalize(this.title))
+      if (this.title) {
+        return h('span', {
+          staticClass: 'sb-notification--title'
+        }, captalize(this.title))
+      }
+      return null
     }
 
     const renderDescription = () => {
-      if (this.description === '') {
-        return
+      if (this.description) {
+        return h('div', {
+          staticClass: 'sb-notification--description'
+        }, captalize(this.description))
       }
-      return h('p', {
-        staticClass: 'sb-notification--description'
-      }, captalize(this.description))
+      return null
     }
 
     const renderLink = () => {
       if (this.link) {
-        return h('a', {
-          attrs: {
-            href: this.link,
-            target: '_blank',
-            class: 'sb-notification--link'
-          }
-        }, (this.linkName ? captalize(this.linkName) : 'View Details'))
+        return h('div', {
+          staticClass: 'sb-notification--link'
+        }, [
+          h('a', {
+            attrs: {
+              href: this.link,
+              target: '_blank',
+              title: `Link to ${this.linkName}`
+            }
+          }, (this.linkName ? captalize(this.linkName) : 'View Details'),
+          this.isFull ? renderIcon('chevron-right') : null)
+        ])
       }
+      return null
     }
 
-    const renderCloseBtn = () => {
-      if (!this.format || this.format !== 'banner') {
+    const renderCloseButton = () => {
+      return h('button', {
+        attrs: {
+          class: 'sb-notification--btn'
+        },
+        on: {
+          click: $event => this.$emit('click', $event)
+        }
+      }, [renderIcon('close')])
+    }
+
+    const renderExpandableButton = () => {
+      if (this.isExpandable) {
         return h('button', {
           attrs: {
-            class: 'sb-notification--btn'
-          },
-          on: {
-            click: $event => this.$emit('click', $event)
+            class: 'sb-notification--expandle'
           }
-        }, 'X')
+        }, renderIcon('chevron-down'))
       }
+      return null
     }
 
-    const notificationBody = [
-      h('div', {
-        staticClass: 'sb-notification--header'
-      }, [
-        renderIcon(),
-        renderCloseBtn()
-      ]),
-      h('div', {
-        staticClass: 'sb-notification--content'
-      }, [
-        renderTitle(),
-        renderDescription(),
-        renderLink()
-      ])
+    const content = [
+      renderStatusIcon(),
+      renderTitle(),
+      !(this.isFull || this.isExpandable) ? renderCloseButton() : null,
+      renderDescription(),
+      renderLink(),
+      renderExpandableButton()
     ]
 
-    const bannerBody = [
-      h('div', {
-        staticClass: 'sb-notification-banner--icon'
-      }, [(this.short ? '' : renderIcon())]),
-      h('div', {
-        staticClass: 'sb-notification-banner--header'
-      }, [
-        renderTitle(),
-        (this.short ? '' : renderDescription())
-      ]),
-      h('div', {
-        staticClass: 'sb-notification-banner--link'
-      }, [
-        renderLink(),
-        (this.short ? renderCloseBtn() : renderIcon())
-      ])
-    ]
-
-    if (this.format === 'banner' || this.short) {
-      return h('div', {
-        staticClass: notificationProps.staticClass + ' sb-notification-banner'
-      }, bannerBody)
-    }
-
-    return h('div', {
-      staticClass: notificationProps.staticClass
-    }, notificationBody)
+    return renderNotification(content)
   }
 }
 
