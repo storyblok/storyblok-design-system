@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { waitMs } from '../../../utils/tests-utils'
 import SbAvatar from '..'
+import SbBadge from '../../Badge'
 
 const LOAD_FAILURE_SRC = 'LOAD_FAILURE_SRC'
 const LOAD_SUCCESS_SRC = 'LOAD_SUCCESS_SRC'
@@ -150,6 +151,25 @@ describe('SbAvatar component', () => {
 
     it('should have the correct description', () => {
       expect(wrapper.find('.sb-avatar__description').text()).toBe('Created by')
+    })
+  })
+
+  describe('when pass the status property', () => {
+    const wrapper = factory({
+      src: '',
+      status: 'positive'
+    })
+
+    const BadgeComponent = wrapper.findComponent(SbBadge)
+
+    it('should exists the SbBadge component', () => {
+      expect(BadgeComponent.exists()).toBe(true)
+    })
+
+    it('should have the correct type and contract properties', () => {
+      expect(BadgeComponent.props('type')).toBe('positive')
+
+      expect(BadgeComponent.props('contract')).toBe(true)
     })
   })
 })

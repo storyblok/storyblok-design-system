@@ -1,5 +1,7 @@
 import SbAvatar from './index'
 
+import { badgeTypes } from '../Badge/lib'
+
 // default export defines configurations to all stories
 export default {
   title: 'SbAvatar',
@@ -17,7 +19,8 @@ export default {
     name: null,
     size: 'normal',
     showName: false,
-    src: null
+    src: null,
+    status: null
   },
   argTypes: {
     description: {
@@ -61,6 +64,14 @@ export default {
       description: 'Path to image',
       control: {
         type: 'text'
+      }
+    },
+    status: {
+      name: 'status',
+      description: 'Render a `SbBadge` to show a status to `SbAvatar`',
+      control: {
+        type: 'select',
+        options: badgeTypes
       }
     }
   }
@@ -253,4 +264,15 @@ WithInternalElements.parameters = {
       story: 'You can use internal elements inside `SbAvatar` component, like `<img>` tag'
     }
   }
+}
+
+export const WithStatus = (args) => ({
+  components: { SbAvatar },
+  props: Object.keys(args),
+  template: '<SbAvatar :src="src" :status="status" />'
+})
+
+WithStatus.args = {
+  src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
+  status: 'positive'
 }

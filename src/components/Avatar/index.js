@@ -3,6 +3,8 @@ import avatarFallback from '../../assets/icons/avatar-fallback.svg'
 import { canUseDOM, includes } from '../../utils'
 import { isSizeValid, getInitials, generateRandomBgColor } from './utils.js'
 
+import SbBadge from '../Badge'
+
 const positionTypes = ['top', 'bottom']
 
 /**
@@ -34,6 +36,9 @@ const SbAvatar = {
       default: false
     },
     src: {
+      type: String
+    },
+    status: {
       type: String
     }
   },
@@ -152,6 +157,17 @@ const SbAvatar = {
     if (this.showName && this.name) {
       children.push(
         renderTextContainer()
+      )
+    }
+
+    if (this.status) {
+      children.push(
+        h(SbBadge, {
+          props: {
+            type: this.status,
+            contract: true
+          }
+        })
       )
     }
 
