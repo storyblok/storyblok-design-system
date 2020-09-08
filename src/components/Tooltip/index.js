@@ -51,6 +51,11 @@ export default {
     },
     hideTooltip () {
       this.isVisibleTooltip = false
+    },
+    handleKeydown (event) {
+      if (event.key === 'Escape') {
+        this.hideTooltip()
+      }
     }
   },
 
@@ -72,7 +77,8 @@ export default {
         focus: this.showTooltip,
         blur: this.hideTooltip,
         mouseenter: this.showTooltip,
-        mouseleave: this.hideTooltip
+        mouseleave: this.hideTooltip,
+        keydown: this.handleKeydown
       }
     }
 

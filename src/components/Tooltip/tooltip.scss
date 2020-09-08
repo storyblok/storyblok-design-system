@@ -88,8 +88,7 @@
     }
   }
 
-  &:hover &__label,
-  &:focus &__label {
+  &__label[aria-hidden=false] {
     display: block;
   }
 }
