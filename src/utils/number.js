@@ -8,3 +8,11 @@
 export const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min)
 }
+
+/**
+ * @description check if a value is a valid number
+ * @method isValidNumber
+ * @param  {any} value
+ * @return {number}
+ */
+export const isValidNumber = value => typeof value === 'number'
