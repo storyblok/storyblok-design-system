@@ -81,7 +81,20 @@ const SbAvatar = {
       avatarProps.staticClass += ` sb-avatar--${this.size}`
     }
 
+    const renderBadgeStatus = () => {
+      return h(SbBadge, {
+        props: {
+          type: this.status,
+          contract: true
+        }
+      })
+    }
+
     const renderAvatarImage = () => {
+      if (this.$slots.default) {
+        return this.$slots.default
+      }
+
       if (this.isImageLoaded) {
         return h('img', {
           attrs: {
@@ -129,15 +142,12 @@ const SbAvatar = {
     }
 
     const renderAvatar = () => {
-      if (this.$slots.default) {
-        return this.$slots.default
-      }
-
-      if (this.src) {
+      if (this.src || this.$slots.default) {
         return h('div', {
           staticClass: 'sb-avatar__image'
         }, [
-          renderAvatarImage()
+          renderAvatarImage(),
+          !!this.status && renderBadgeStatus()
         ])
       }
 
@@ -145,7 +155,8 @@ const SbAvatar = {
         return h('div', {
           staticClass: 'sb-avatar__initials ' + generateRandomBgColor()
         }, [
-          h('span', getInitials(this.name))
+          h('span', getInitials(this.name)),
+          !!this.status && renderBadgeStatus()
         ])
       }
     }
@@ -157,17 +168,6 @@ const SbAvatar = {
     if (this.showName && this.name) {
       children.push(
         renderTextContainer()
-      )
-    }
-
-    if (this.status) {
-      children.push(
-        h(SbBadge, {
-          props: {
-            type: this.status,
-            contract: true
-          }
-        })
       )
     }
 

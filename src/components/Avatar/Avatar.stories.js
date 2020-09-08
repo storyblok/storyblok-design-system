@@ -34,7 +34,8 @@ export default {
       name: 'descriptionPosition',
       description: 'Define the position to description',
       control: {
-        type: 'text'
+        type: 'select',
+        options: ['top', 'bottom']
       }
     },
     name: {
@@ -80,7 +81,19 @@ export default {
 export const Default = (args) => ({
   components: { SbAvatar },
   props: Object.keys(args),
-  template: '<SbAvatar v-bind="{ showName, size, name, src }" />'
+  template: `
+    <SbAvatar
+      v-bind="{
+        description,
+        descriptionPosition,
+        name,
+        size,
+        showName,
+        src,
+        status
+      }"
+    />
+  `
 })
 
 Default.args = {
@@ -269,7 +282,7 @@ WithInternalElements.parameters = {
 export const WithStatus = (args) => ({
   components: { SbAvatar },
   props: Object.keys(args),
-  template: '<SbAvatar :src="src" :status="status" />'
+  template: '<SbAvatar :src="src" :status="status" :size="size" />'
 })
 
 WithStatus.args = {

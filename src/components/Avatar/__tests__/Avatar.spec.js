@@ -156,7 +156,7 @@ describe('SbAvatar component', () => {
 
   describe('when pass the status property', () => {
     const wrapper = factory({
-      src: '',
+      src: LOAD_SUCCESS_SRC,
       status: 'positive'
     })
 
