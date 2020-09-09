@@ -98,6 +98,11 @@
     font-size: 16px;
     font-weight: 500;
     vertical-align: middle;
+    width: 75%;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &--description {
@@ -106,7 +111,9 @@
     margin-left: 52px;
     margin-right: 34px;
     margin-top: 13px;
-    overflow-wrap: break-word;
+    line-height: 1.5em;
+    overflow: hidden; 
+    text-overflow: ellipsis;
   }
 
   &--link {
