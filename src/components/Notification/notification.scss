@@ -1,56 +1,42 @@
 .sb-notification {
   width: 430px;
-  height: 118px;
+  height: 59px;
   border-radius: 10px;
   margin: 10px;
 
-  //sizes
-  &--short {
-    width: 719px;
-    height: 59px;
+  // Notification modifiers
+  &--full-content {
+    width: 1179px;
+    height: 90px;
+
+    .sb-notification--link {
+      float: right;
+      margin-right: 20px;
+      margin-top: 37px;
+      z-index: 1;
+    }
   }
 
   &--full {
     width: 1179px;
   }
 
-  &--banner {
-    height: 90px;
-    width: 1179px;
+  &--expandable {
+    height: 136px !important;
   }
 
-  // content
-  &--title {
-    font-size: 16px;
-    font-weight: 500;
-  }
-
-  &--description {
-    font-size: 14px;
-    font-weight: normal;
-    margin-left: 52px;
-    margin-right: 34px;
-    margin-top: 13px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  &--link {
-    margin-left: 52px;
-    margin-top: 12px;
-    
-    a {
-      font-size: 14px;
-      font-weight: normal;
-      text-decoration: none;
-      text-decoration-color: $primary-text-color;
-      color: $primary-text-color;
-      text-decoration: underline;
-    }
+  &--expandle-button {
+    margin-top: 22px;
+    margin-right: 20px;
+    padding: 0;
+    float: right;
+    border: none;
+    background: transparent;
+    cursor: pointer;
   }
 
   &--btn {
-    margin-top: 23px;
+    margin-top: 22px;
     margin-right: 20px;
     padding: 0;
     float: right;
@@ -63,12 +49,11 @@
     }
   }
 
-  // status
+  // Status of notication
   &--icon-container {
     height: 16px;
-    border-radius: 3px;
     display: inline-block;
-    background-color:  $blue;
+    background-color:  transparent;
     margin-left: 18px;
     margin-right: 18px;
     margin-top: 21px;
@@ -78,36 +63,20 @@
     }
   }
 
-  &--success {
+  &--positive {
     background-color: $green-25;
-
-    .sb-notification--icon-container {
-      background-color: $green;
-    }
   }
 
   &--warning {
     background-color: $yellow-25;
-
-    .sb-notification--icon-container {
-      background-color: $yellow;
-    }
   }
 
   &--info {
     background-color: $blue-25;
-
-    .sb-notification--icon-container {
-      background-color:  $blue;
-    }
   }
 
-  &--error {
+  &--negative {
     background-color: $red-25;
-
-    .sb-notification--icon-container {
-      background-color:  $red;
-    }
 
     .sb-notification--title {
       color: $red;
@@ -118,5 +87,42 @@
     background-color: $white;
     @include generalBoxShadow();
     border-radius: 10px;
+  }
+
+  // Content style for notification
+  &--content {
+    height: 118px;
+  }
+
+  &--title {
+    font-size: 16px;
+    font-weight: 500;
+    vertical-align: middle;
+  }
+
+  &--description {
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 52px;
+    margin-right: 34px;
+    margin-top: 13px;
+    overflow-wrap: break-word;
+  }
+
+  &--link {
+    margin-left: 52px;
+    margin-top: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 34px;
+    
+    a {
+      font-size: 14px;
+      font-weight: normal;
+      text-decoration: none;
+      text-decoration-color: $primary-text-color;
+      color: $primary-text-color;
+      text-decoration: underline;
+    }
   }
 }

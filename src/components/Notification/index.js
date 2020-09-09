@@ -1,6 +1,7 @@
 import './notification.scss'
 import { captalize } from '../../utils/captalize'
 import SbIcon from '../Icon'
+import SbBadge from '../Badge'
 
 const SbNotification = {
   name: 'SbNotification',
@@ -26,14 +27,6 @@ const SbNotification = {
       type: String,
       default: null
     },
-    isBanner: {
-      type: Boolean,
-      default: false
-    },
-    isShort: {
-      type: Boolean,
-      default: false
-    },
     isExpandable: {
       type: Boolean,
       default: false
@@ -41,10 +34,22 @@ const SbNotification = {
     isFull: {
       type: Boolean,
       default: false
-    },
-    notificationIcon: {
-      type: String,
-      default: null
+    }
+  },
+
+  data () {
+    return {
+      expandle: false
+    }
+  },
+
+  methods: {
+    expandleNotification () {
+      if (this.expandle === false) {
+        this.expandle = true
+      } else {
+        this.expandle = false
+      }
     }
   },
 
@@ -53,34 +58,29 @@ const SbNotification = {
       return h('div', {
         staticClass: `sb-notification sb-notification--${this.status}`,
         class: {
-          'sb-notification--banner': this.isBanner,
-          'sb-notification--short': this.isShort,
-          'sb-notification--expandable': this.isExpandable,
-          'sb-notification--full': this.isFull
+          'sb-notification--expandable': this.expandle,
+          'sb-notification--full': this.isFull,
+          'sb-notification--content': (!this.isFull && !this.isExpandable) && (this.description || this.link),
+          'sb-notification--full-content': this.isFull && (this.description || this.link) && !this.isExpandable
         }
       }, content)
     }
 
     const renderStatusIcon = () => {
-      const typeOfStatusIcons = {
-        general: 'info',
-        success: 'checkmark',
-        warning: 'warning',
-        info: 'info',
-        error: 'close'
-      }
-
-      return h('span', {
-        staticClass: 'sb-notification--icon-container'
-      }, [renderIcon(this.notificationIcon || typeOfStatusIcons[this.status], 'white')])
+      return h(SbBadge, {
+        staticClass: 'sb-notification--icon-container',
+        props: {
+          onlyIcon: true,
+          type: this.status === 'general' ? 'info' : this.status
+        }
+      })
     }
 
-    const renderIcon = (icon, colorName = null) => {
+    const renderIcon = (icon) => {
       return h(SbIcon, {
         props: {
           size: 'small',
-          name: icon,
-          color: colorName
+          name: icon
         }
       })
     }
@@ -114,42 +114,57 @@ const SbNotification = {
               target: '_blank',
               title: `Link to ${this.linkName}`
             }
-          }, (this.linkName ? captalize(this.linkName) : 'View Details'),
-          this.isFull ? renderIcon('chevron-right') : null)
+          }, [
+            this.linkName ? captalize(this.linkName) : 'View Details',
+            (this.isFull && !this.isExpandable) ? renderIcon('chevron-right') : null
+          ])
         ])
       }
       return null
     }
 
-    const renderCloseButton = () => {
+    const renderActionButton = (action = null) => {
       return h('button', {
         attrs: {
           class: 'sb-notification--btn'
         },
         on: {
-          click: $event => this.$emit('click', $event)
+          click: action === 'close' ? $event => this.$emit('click', $event) : this.expandleNotification
         }
-      }, [renderIcon('close')])
+      }, [
+        action === 'close' ? [renderIcon('close')] : this.expandle ? renderIcon('chevron-up') : renderIcon('chevron-down')
+      ])
     }
 
-    const renderExpandableButton = () => {
+    const discoverButtonToRender = () => {
       if (this.isExpandable) {
-        return h('button', {
-          attrs: {
-            class: 'sb-notification--expandle'
-          }
-        }, renderIcon('chevron-down'))
+        return renderActionButton()
       }
-      return null
+      if (this.isFull && this.link) {
+        return renderLink()
+      }
+      if (this.isFull) {
+        renderActionButton('close')
+      }
+      return renderActionButton('close')
+    }
+
+    if (this.isExpandable && !this.expandle) {
+      const fitContent = [
+        renderStatusIcon(),
+        renderTitle(),
+        discoverButtonToRender()
+      ]
+      return renderNotification(fitContent)
     }
 
     const content = [
       renderStatusIcon(),
       renderTitle(),
-      !(this.isFull || this.isExpandable) ? renderCloseButton() : null,
+      discoverButtonToRender(),
       renderDescription(),
-      renderLink(),
-      renderExpandableButton()
+      !(this.isFull) ? renderLink() : null,
+      (this.isFull && this.isExpandable) ? renderLink() : null
     ]
 
     return renderNotification(content)
