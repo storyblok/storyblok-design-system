@@ -1,5 +1,7 @@
 import SbAvatar from './index'
 
+import { badgeTypes } from '../Badge/lib'
+
 // default export defines configurations to all stories
 export default {
   title: 'SbAvatar',
@@ -12,12 +14,30 @@ export default {
     }
   },
   args: {
+    description: null,
+    descriptionPosition: null,
     name: null,
     size: 'normal',
     showName: false,
-    src: null
+    src: null,
+    status: null
   },
   argTypes: {
+    description: {
+      name: 'description',
+      description: 'Description to `SbAvatar`',
+      control: {
+        type: 'text'
+      }
+    },
+    descriptionPosition: {
+      name: 'descriptionPosition',
+      description: 'Define the position to description',
+      control: {
+        type: 'select',
+        options: ['top', 'bottom']
+      }
+    },
     name: {
       name: 'name',
       description: 'Username',
@@ -42,7 +62,18 @@ export default {
     },
     src: {
       name: 'src',
-      description: 'Path to image'
+      description: 'Path to image',
+      control: {
+        type: 'text'
+      }
+    },
+    status: {
+      name: 'status',
+      description: 'Render a `SbBadge` to show a status to `SbAvatar`',
+      control: {
+        type: 'select',
+        options: badgeTypes
+      }
     }
   }
 }
@@ -50,7 +81,19 @@ export default {
 export const Default = (args) => ({
   components: { SbAvatar },
   props: Object.keys(args),
-  template: '<SbAvatar v-bind="{ showName, size, name, src }" />'
+  template: `
+    <SbAvatar
+      v-bind="{
+        description,
+        descriptionPosition,
+        name,
+        size,
+        showName,
+        src,
+        status
+      }"
+    />
+  `
 })
 
 Default.args = {
@@ -142,6 +185,50 @@ WithUsername.parameters = {
   }
 }
 
+export const WithDescription = args => ({
+  components: { SbAvatar },
+  props: Object.keys(args),
+  template: `<div>
+    <div>
+      <SbAvatar
+        v-bind="{
+          description,
+          descriptionPosition: 'top',
+          name,
+          size,
+          showName
+        }"
+      />
+    </div>
+
+    <div style="margin-top: 20px">
+      <SbAvatar
+        v-bind="{
+          description,
+          descriptionPosition: 'bottom',
+          name,
+          size,
+          showName
+        }"
+      />
+    </div>
+  </div>`
+})
+
+WithDescription.args = {
+  name: 'John Doe',
+  description: 'Created by',
+  showName: true
+}
+
+WithDescription.parameters = {
+  docs: {
+    description: {
+      story: 'You can add a description to `SbAvatar`'
+    }
+  }
+}
+
 export const WithFallback = () => ({
   components: { SbAvatar },
   template: `<div>
@@ -190,4 +277,15 @@ WithInternalElements.parameters = {
       story: 'You can use internal elements inside `SbAvatar` component, like `<img>` tag'
     }
   }
+}
+
+export const WithStatus = (args) => ({
+  components: { SbAvatar },
+  props: Object.keys(args),
+  template: '<SbAvatar :src="src" :status="status" :size="size" />'
+})
+
+WithStatus.args = {
+  src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
+  status: 'positive'
 }
