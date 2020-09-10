@@ -1,0 +1,67 @@
+@mixin setColor ($color) {
+  background-color: $color;
+
+  .sb-icon {
+    background-color: $color;
+  }
+}
+
+.sb-badge {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 10px;
+  color: $white;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  text-align: center;
+  border-radius: 5px;
+
+  &--positive {
+    @include setColor($green);
+  }
+
+  &--warning {
+    @include setColor($orange);
+  }
+
+  &--info {
+    @include setColor($blue);
+  }
+
+  &--negative {
+    @include setColor($red);
+  }
+
+  &--only-icon {
+    padding: 0;
+  }
+
+  &:not(&--only-icon) .sb-icon {
+    margin-right: 5px;
+  }
+
+  .sb-icon {
+    border-radius: 5px;
+  }
+
+  &--contract {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border-radius: 100%;
+  }
+
+  &--inline-label {
+    background-color: $white;
+    padding: 0;
+
+    .sb-badge__label {
+      color: $color-primary-dark;
+      margin-left: 5px;
+      font-weight: 500;
+    }
+  }
+}

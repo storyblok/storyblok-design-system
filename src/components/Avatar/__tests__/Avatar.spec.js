@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { waitMs } from '../../../utils/tests-utils'
 import SbAvatar from '..'
+import SbBadge from '../../Badge'
 
 const LOAD_FAILURE_SRC = 'LOAD_FAILURE_SRC'
 const LOAD_SUCCESS_SRC = 'LOAD_SUCCESS_SRC'
@@ -134,6 +135,41 @@ describe('SbAvatar component', () => {
 
       expect(wrapper.find('img').attributes('src')).toBe(LOAD_SUCCESS_SRC)
       expect(wrapper.find('img').attributes('alt')).toBe(imageAlt)
+    })
+  })
+
+  describe('when pass the description property', () => {
+    const wrapper = factory({
+      name: 'John Doe',
+      description: 'Created by',
+      showName: true
+    })
+
+    it('should have the correct name', () => {
+      expect(wrapper.find('.sb-avatar__text').text()).toBe('John Doe')
+    })
+
+    it('should have the correct description', () => {
+      expect(wrapper.find('.sb-avatar__description').text()).toBe('Created by')
+    })
+  })
+
+  describe('when pass the status property', () => {
+    const wrapper = factory({
+      src: LOAD_SUCCESS_SRC,
+      status: 'positive'
+    })
+
+    const BadgeComponent = wrapper.findComponent(SbBadge)
+
+    it('should exists the SbBadge component', () => {
+      expect(BadgeComponent.exists()).toBe(true)
+    })
+
+    it('should have the correct type and contract properties', () => {
+      expect(BadgeComponent.props('type')).toBe('positive')
+
+      expect(BadgeComponent.props('contract')).toBe(true)
     })
   })
 })

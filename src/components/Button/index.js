@@ -105,7 +105,7 @@ const SbButton = {
 
     const content = [
       this.icon && renderIcon(this.icon),
-      renderLabel(),
+      !this.hasIconOnly && renderLabel(),
       this.iconRight && renderIcon(this.iconRight)
     ]
 
