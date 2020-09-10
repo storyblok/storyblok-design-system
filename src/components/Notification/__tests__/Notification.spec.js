@@ -38,5 +38,7 @@ describe('SbNotification tests', () => {
     expect(wrapper.find('span').text()).toBe('Notification title')
 
     expect(wrapper.find('a').text()).toBe('Example link')
+
+    expect(wrapper.find('a').attributes('href')).toBe('http://storyblok.com')
   })
 })
