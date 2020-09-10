@@ -11,6 +11,8 @@ const BadgeTemplate = args => ({
         label,
         type
       }"
+
+      @close="onClick"
     />
   `
 })
@@ -52,6 +54,9 @@ export default {
         type: 'select',
         options: tagTypes
       }
+    },
+    onClick: {
+      action: 'clicked'
     }
   }
 }
