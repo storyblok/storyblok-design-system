@@ -10,7 +10,9 @@
   align-items: center;
   padding: 3px 20px;
   border-radius: 5px;
-  vertical-align: center;
+  vertical-align: middle;
+  font-size: 13px;
+  font-weight: 500;
 
   &--primary {
     @include setColor($color-primary, $white);
