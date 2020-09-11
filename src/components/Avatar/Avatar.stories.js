@@ -1,6 +1,6 @@
 import SbAvatar from './index'
 
-import { availableBgColors } from '../../utils'
+import { availableColors } from '../../utils'
 import { badgeTypes } from '../Badge/lib'
 
 // default export defines configurations to all stories
@@ -30,7 +30,7 @@ export default {
       description: 'Add a background color when the `SbAvatar` has the initials or the fallback icon',
       control: {
         type: 'select',
-        options: availableBgColors
+        options: availableColors
       }
     },
     description: {
@@ -265,6 +265,39 @@ WithFallback.parameters = {
   }
 }
 
+export const WithStatus = (args) => ({
+  components: { SbAvatar },
+  props: Object.keys(args),
+  template: '<SbAvatar :src="src" :status="status" :size="size" />'
+})
+
+WithStatus.args = {
+  src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
+  status: 'positive'
+}
+
+export const WithInitials = args => ({
+  components: { SbAvatar },
+  props: Object.keys(args),
+  template: `<div>
+    <SbAvatar :size="size" :name="name" :bg-color="bgColor" />
+  </div>`
+})
+
+WithInitials.args = {
+  size: 'large',
+  name: 'Ada Lovelace',
+  bgColor: 'primary'
+}
+
+WithInitials.parameters = {
+  docs: {
+    description: {
+      story: 'When you do not use the `src` attribute, the component will use the `name` attribute to show the initials to name'
+    }
+  }
+}
+
 export const WithInternalElements = () => ({
   components: { SbAvatar },
   template: `<div>
@@ -288,15 +321,4 @@ WithInternalElements.parameters = {
       story: 'You can use internal elements inside `SbAvatar` component, like `<img>` tag'
     }
   }
-}
-
-export const WithStatus = (args) => ({
-  components: { SbAvatar },
-  props: Object.keys(args),
-  template: '<SbAvatar :src="src" :status="status" :size="size" />'
-})
-
-WithStatus.args = {
-  src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
-  status: 'positive'
 }
