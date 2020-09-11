@@ -9,17 +9,27 @@ export const MoreAvatars = {
 
   functional: true,
 
+  props: {
+    size: {
+      type: String
+    },
+    visible: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   render (h, { props, children }) {
     const data = children.map(element => {
       const elementProps = element.componentOptions.propsData
 
       if (elementProps.name) {
-        elementProps.name = truncate(15, elementProps.name)
+        elementProps.name = truncate(18, elementProps.name)
       }
 
       element.componentOptions.propsData = {
         ...element.componentOptions.propsData,
-        ...props,
+        size: props.size || null,
         showName: true
       }
 
@@ -27,7 +37,10 @@ export const MoreAvatars = {
     })
 
     return h('div', {
-      staticClass: 'sb-avatar-group__avatars'
+      staticClass: 'sb-avatar-group__avatars',
+      attrs: {
+        'aria-hidden': !props.visible + ''
+      }
     }, data)
   }
 }
@@ -38,14 +51,24 @@ export const MoreAvatar = {
   functional: true,
 
   props: {
+    expanded: {
+      type: Boolean,
+      default: false
+    },
     label: {
       type: String
     }
   },
 
-  render (h, { props }) {
-    return h('div', {
-      staticClass: 'sb-avatar-group__more'
+  render (h, { props, listeners }) {
+    return h('button', {
+      staticClass: 'sb-avatar-group__more',
+      attrs: {
+        'aria-expanded': props.expanded + ''
+      },
+      on: {
+        ...listeners
+      }
     }, props.label)
   }
 }
@@ -58,8 +81,6 @@ export const MoreAvatar = {
 const SbAvatarGroup = {
   name: 'AvatarGroup',
 
-  functional: true,
-
   props: {
     size: {
       type: String,
@@ -67,15 +88,27 @@ const SbAvatarGroup = {
     }
   },
 
-  render (h, { slots, props }) {
-    const children = slots().default.filter(e => e.tag)
-    const avatarGroupProps = {
-      staticClass: 'sb-avatar-group'
-    }
+  data: () => ({
+    isVisibleDropdown: false
+  }),
 
-    if (props.size) {
-      avatarGroupProps.staticClass += ` sb-avatar-group--${props.size}`
+  methods: {
+    toggleDropdown () {
+      this.isVisibleDropdown = !this.isVisibleDropdown
+    },
+    onMoreAvatarKeyDown (event) {
+      if (event.key === 'Escape') {
+        this.closeDropdown()
+      }
+    },
+    closeDropdown () {
+      this.isVisibleDropdown = false
     }
+  },
+
+  render (h) {
+    const children = this.$slots.default.filter(e => e.tag)
+    const sizeClass = this.size ? `sb-avatar-group--${this.size}` : null
 
     const childrenCount = children.length
     const maxElements = 6
@@ -84,7 +117,7 @@ const SbAvatarGroup = {
       if (maxElements && index < maxElements) {
         element.componentOptions.propsData = {
           ...element.componentOptions.propsData,
-          ...props
+          size: this.size
         }
 
         return element
@@ -93,8 +126,12 @@ const SbAvatarGroup = {
       if (maxElements && index === maxElements) {
         return h(MoreAvatar, {
           props: {
-            size: props.size,
-            label: `+${childrenCount - maxElements}`
+            label: `+${childrenCount - maxElements}`,
+            expanded: this.isVisibleDropdown
+          },
+          on: {
+            click: this.toggleDropdown,
+            keydown: this.onMoreAvatarKeyDown
           }
         })
       }
@@ -102,18 +139,21 @@ const SbAvatarGroup = {
 
     const moreAvatars = children.filter((_, index) => index >= maxElements)
 
-    return h(
-      'div',
-      avatarGroupProps,
-      [
-        data,
-        moreAvatars.length > 0 ? h(
-          MoreAvatars,
-          { props },
-          [...moreAvatars]
-        ) : null
-      ]
-    )
+    const renderDropdown = () => {
+      return h(MoreAvatars, {
+        props: {
+          ...this.$props, visible: this.isVisibleDropdown
+        }
+      }, [...moreAvatars])
+    }
+
+    return h('div', {
+      staticClass: 'sb-avatar-group',
+      class: [sizeClass]
+    }, [
+      data,
+      moreAvatars.length > 0 && renderDropdown()
+    ])
   }
 }
 
