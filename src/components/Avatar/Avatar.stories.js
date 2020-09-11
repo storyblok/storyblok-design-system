@@ -1,5 +1,6 @@
 import SbAvatar from './index'
 
+import { availableBgColors } from '../../utils'
 import { badgeTypes } from '../Badge/lib'
 
 // default export defines configurations to all stories
@@ -14,6 +15,7 @@ export default {
     }
   },
   args: {
+    bgColor: null,
     description: null,
     descriptionPosition: null,
     name: null,
@@ -23,6 +25,14 @@ export default {
     status: null
   },
   argTypes: {
+    bgColor: {
+      name: 'bgColor',
+      description: 'Add a background color when the `SbAvatar` has the initials or the fallback icon',
+      control: {
+        type: 'select',
+        options: availableBgColors
+      }
+    },
     description: {
       name: 'description',
       description: 'Description to `SbAvatar`',
@@ -84,6 +94,7 @@ export const Default = (args) => ({
   template: `
     <SbAvatar
       v-bind="{
+        bgColor,
         description,
         descriptionPosition,
         name,
