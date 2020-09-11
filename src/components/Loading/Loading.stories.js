@@ -1,5 +1,20 @@
 import SbLoading from './index'
 
+const LoadingTemplate = args => ({
+  components: { SbLoading },
+  props: Object.keys(args),
+  template: `
+    <SbLoading
+      v-bind="{
+        type,
+        size,
+        value,
+        showPercentage
+      }"
+    />
+  `
+})
+
 export default {
   title: 'SbLoading',
   component: SbLoading,
@@ -11,7 +26,7 @@ export default {
     }
   },
   args: {
-    type: null,
+    type: 'spinner',
     size: 'normal',
     value: 0,
     showPercentage: false
@@ -51,15 +66,133 @@ export default {
   }
 }
 
-export const Default = args => ({
+export const Default = LoadingTemplate.bind({})
+
+export const ProgressBar = args => ({
   components: { SbLoading },
   props: Object.keys(args),
   template: `
-    <SbLoading
-      :type="type"
-      :size="size"
-      :value="value"
-      :show-percentage="showPercentage"
-    />
+    <div>
+      <SbLoading
+        v-bind="{
+          type,
+          size,
+          value,
+          showPercentage
+        }"
+      />
+    </div>
   `
 })
+
+ProgressBar.args = {
+  type: 'bar',
+  value: 25,
+  showPercentage: true
+}
+
+ProgressBar.parameters = {
+  docs: {
+    description: {
+      story: 'When passing the prop `bar` the component starts to render a progress bar.'
+    }
+  }
+}
+
+export const SpinnerWithSizes = args => ({
+  components: { SbLoading },
+  props: Object.keys(args),
+  template: `
+    <div>
+      <SbLoading
+        v-bind="{
+          type: 'spinner',
+          size: 'small',
+          value,
+          showPercentage
+        }"
+      />
+      <SbLoading
+        v-bind="{
+          type: 'spinner',
+          size: 'normal',
+          value,
+          showPercentage
+        }"
+      />
+      <SbLoading
+        v-bind="{
+          type: 'spinner',
+          size: 'large',
+          value,
+          showPercentage
+        }"
+      />
+      <SbLoading
+        v-bind="{
+          type: 'spinner',
+          size: 'x-large',
+          value,
+          showPercentage
+        }"
+      />
+    </div>
+  `
+})
+
+SpinnerWithSizes.parameters = {
+  docs: {
+    description: {
+      story: 'When passing the prop `spinner` the component starts to render an animated spinner'
+    }
+  }
+}
+
+export const SpinnerWithPercentage = args => ({
+  components: { SbLoading },
+  props: Object.keys(args),
+  template: `
+    <div>
+      <SbLoading
+        v-bind="{
+          type: 'spinner',
+          size: 'small',
+          value: 25,
+          showPercentage: true
+        }"
+      />
+      <SbLoading
+        v-bind="{
+          type: 'spinner',
+          size: 'normal',
+          value: 25,
+          showPercentage: true
+        }"
+      />
+      <SbLoading
+        v-bind="{
+          type: 'spinner',
+          size: 'large',
+          value: 25,
+          showPercentage: true
+        }"
+      />
+      <SbLoading
+        v-bind="{
+          type: 'spinner',
+          size: 'x-large',
+          value: 25,
+          showPercentage: true
+        }"
+      />
+    </div>
+  `
+})
+
+SpinnerWithPercentage.parameters = {
+  docs: {
+    description: {
+      story: 'The spinners also show the percentage of the loanding, pass the `showPercentage` property so that the percentage is shown.'
+    }
+  }
+}
