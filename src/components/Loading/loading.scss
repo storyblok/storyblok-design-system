@@ -1,0 +1,41 @@
+.sb-loading {
+  width: 100%;
+
+  &--bar {
+    border-radius: 0px;
+    height: 5px;
+    width: 100%;
+  }
+
+  &--bar::-webkit-progress-value {  
+    background: $sb-green;
+  }
+
+  &--bar[value]::-webkit-progress-bar {
+    background: $light;
+  }
+
+  &--label {
+    margin: auto;
+    margin-top: 15px;
+    width: 23px;
+    display: block;
+    font-size: $text-text-small;
+  }
+
+  &--small {
+    width: 26px;
+  }
+
+  &--normal {
+    width: 32px;
+  }
+
+  &--large {
+    width: 46px;
+  }
+
+  &--x-large {
+    width: 76px;
+  }
+}
