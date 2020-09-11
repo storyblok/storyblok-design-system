@@ -31,7 +31,7 @@ const SbLoading = {
       return h(SbIcon, {
         class: '',
         props: {
-          size: this.size,
+          size: this.size || 'normal',
           name: 'loading'
         }
       })
@@ -69,7 +69,7 @@ const SbLoading = {
 
     if (this.type === 'spinner') {
       return h('div', {
-        staticClass: `sb-loading sb-loading--spinner sb-loading--spinner-${this.size}`
+        staticClass: `sb-loading sb-loading--spinner sb-loading--spinner-${this.size || 'normal'}`
       }, [
         renderSpinnerLoading(),
         this.showPercentage ? renderPercentage('sb-loading--spinner-label') : null
