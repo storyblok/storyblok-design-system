@@ -2,7 +2,7 @@ import { isSizeValid } from '../Avatar/utils'
 
 import './avatar-group.scss'
 
-import { truncate } from '../../utils'
+import { truncate, availableColors } from '../../utils'
 
 export const MoreAvatars = {
   name: 'MoreAvatars',
@@ -117,7 +117,8 @@ const SbAvatarGroup = {
       if (maxElements && index < maxElements) {
         element.componentOptions.propsData = {
           ...element.componentOptions.propsData,
-          size: this.size
+          size: this.size,
+          bgColor: availableColors[index]
         }
 
         return element
