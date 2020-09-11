@@ -1,5 +1,8 @@
 .sb-loading {
-  width: 100%;
+  
+  &--progress-bar {
+    width: 100%;
+  }
 
   &--bar {
     border-radius: 0px;
@@ -15,7 +18,7 @@
     background: $light;
   }
 
-  &--label {
+  &--bar-label {
     margin: auto;
     margin-top: 15px;
     width: 23px;
@@ -23,19 +26,58 @@
     font-size: $text-text-small;
   }
 
-  &--small {
+  &--spinner {
+    svg {
+      color: $sb-green;
+    }
+  }
+
+  &--spinner-label {
+    margin: auto;
+    top: -60%;
+    display: flex;
+    position: relative;
+    width: 18px;
+    font-size: $text-text-small;
+  }
+
+  &--spinner-small {
     width: 26px;
+    height: 26px;
+
+    svg {
+      width: 26px;
+      height: 26px;
+    }
   }
 
-  &--normal {
+  &--spinner-normal {
     width: 32px;
+    height: 32px;
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
   }
 
-  &--large {
+  &--spinner-large {
     width: 46px;
+    height: 46px;
+
+    svg {
+      width: 46px;
+      height: 46px;
+    }
   }
 
-  &--x-large {
+  &--spinner-x-large {
     width: 76px;
+    height: 76px;
+
+    svg {
+      width: 76px;
+      height: 76px;
+    }
   }
 }

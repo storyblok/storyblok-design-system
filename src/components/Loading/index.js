@@ -37,10 +37,10 @@ const SbLoading = {
       })
     }
 
-    const renderPercentage = (id) => {
+    const renderPercentage = (from, id) => {
       return h('label', {
         attrs: {
-          class: 'sb-loading--label',
+          class: from,
           for: id
         }
       }, [`${this.value}%`])
@@ -58,12 +58,23 @@ const SbLoading = {
       })
     }
 
-    return h('div', {
-      staticClass: 'sb-loading'
-    }, [
-      this.type === 'spinner' ? renderSpinnerLoading() : renderProgressBarLoading(),
-      this.showPercentage ? renderPercentage() : null
-    ])
+    if (this.type === 'bar') {
+      return h('div', {
+        staticClass: 'sb-loading sb-loading--progress-bar'
+      }, [
+        renderProgressBarLoading(),
+        this.showPercentage ? renderPercentage('sb-loading--bar-label') : null
+      ])
+    }
+
+    if (this.type === 'spinner') {
+      return h('div', {
+        staticClass: `sb-loading sb-loading--spinner sb-loading--spinner-${this.size}`
+      }, [
+        renderSpinnerLoading(),
+        this.showPercentage ? renderPercentage('sb-loading--spinner-label') : null
+      ])
+    }
   }
 }
 
