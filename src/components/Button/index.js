@@ -1,5 +1,6 @@
 // other components
 import SbIcon from '../Icon'
+import SbLoading from '../Loading'
 
 // styles
 import './button.scss'
@@ -55,7 +56,7 @@ const SbButton = {
       return h(SbIcon, {
         props: {
           size: 'small',
-          name: this.isLoading ? 'loading' : icon
+          name: icon
         }
       })
     }
@@ -91,7 +92,8 @@ const SbButton = {
           'sb-button--rounded': this.isRounded,
           'sb-button--has-icon-only': this.hasIconOnly,
           'sb-button--has-icon': this.icon,
-          'sb-button--has-icon-right': this.iconRight
+          'sb-button--has-icon-right': this.iconRight,
+          'sb-button--loading': this.isLoading
         },
         on: {
           click: (!this.isDisabled || !this.isLoading ? $event => this.$emit('click', $event) : '')
@@ -100,7 +102,15 @@ const SbButton = {
     }
 
     if (this.isLoading) {
-      return renderButton([renderIcon('loading')])
+      return renderButton([
+        h(SbLoading, {
+          props: {
+            type: 'spinner',
+            size: 'small',
+            color: (this.type === 'primary' || this.type === 'secondary' || this.type === 'danger') ? 'white' : 'primary-dark'
+          }
+        })
+      ])
     }
 
     const content = [

@@ -349,3 +349,32 @@ InlineLabel.parameters = {
     }
   }
 }
+
+export const LoadingButton = args => ({
+  components: { SbButton },
+  props: Object.keys(args),
+  template: `
+    <SbButton
+      :is-rounded="isRounded"
+      :is-full-width="isFullWidth"
+      :is-loading="isLoading"
+      :is-disabled="isDisabled"
+      :size="size"
+      :type="type"
+    />`
+})
+
+LoadingButton.args = ButtonTemplate.bind({})
+
+LoadingButton.args = {
+  type: 'primary',
+  isLoading: true
+}
+
+LoadingButton.parameters = {
+  docs: {
+    description: {
+      story: 'Types of buttons with loading'
+    }
+  }
+}

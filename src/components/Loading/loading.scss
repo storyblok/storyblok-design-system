@@ -26,12 +26,6 @@
     font-size: $text-text-small;
   }
 
-  &--spinner {
-    svg {
-      color: $sb-green;
-    }
-  }
-
   &--spinner-label {
     margin: auto;
     top: -60%;

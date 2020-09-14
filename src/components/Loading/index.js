@@ -23,16 +23,20 @@ const SbLoading = {
     showPercentage: {
       type: Boolean,
       default: false
+    },
+    color: {
+      type: String,
+      default: null
     }
   },
 
   render (h) {
     const renderSpinnerLoading = () => {
       return h(SbIcon, {
-        class: '',
         props: {
           size: this.size || 'normal',
-          name: 'loading'
+          name: 'loading',
+          color: this.color
         }
       })
     }

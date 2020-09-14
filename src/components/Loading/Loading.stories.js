@@ -1,4 +1,5 @@
 import SbLoading from './index'
+import { availableColors } from '../../utils'
 
 const LoadingTemplate = args => ({
   components: { SbLoading },
@@ -9,7 +10,8 @@ const LoadingTemplate = args => ({
         type,
         size,
         value,
-        showPercentage
+        showPercentage,
+        color
       }"
     />
   `
@@ -29,7 +31,8 @@ export default {
     type: 'spinner',
     size: 'normal',
     value: 0,
-    showPercentage: false
+    showPercentage: false,
+    color: 'primary'
   },
   argTypes: {
     type: {
@@ -61,6 +64,14 @@ export default {
       description: 'With the prop `show-percentage` you can choose whether you want the loading percentage to appear or not.',
       control: {
         type: 'boolean'
+      }
+    },
+    color: {
+      name: 'color',
+      description: 'Color',
+      control: {
+        type: 'select',
+        options: availableColors
       }
     }
   }
