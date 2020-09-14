@@ -1,12 +1,29 @@
 import './avatar.scss'
 import avatarFallback from '../../assets/icons/avatar-fallback.svg'
-import { canUseDOM } from '../../utils'
+import { canUseDOM, includes } from '../../utils'
 import { isSizeValid, getInitials, generateRandomBgColor } from './utils.js'
 
+import SbBadge from '../Badge'
+
+const positionTypes = ['top', 'bottom']
+
+/**
+ * SbAvatar component
+ *
+ * SbAvatar is a component to view user information or entity
+ */
 const SbAvatar = {
   name: 'SbAvatar',
 
   props: {
+    description: {
+      type: String
+    },
+    descriptionPosition: {
+      type: String,
+      default: 'top',
+      validator: position => includes(positionTypes, position)
+    },
     name: {
       type: String
     },
@@ -19,6 +36,9 @@ const SbAvatar = {
       default: false
     },
     src: {
+      type: String
+    },
+    status: {
       type: String
     }
   },
@@ -61,7 +81,20 @@ const SbAvatar = {
       avatarProps.staticClass += ` sb-avatar--${this.size}`
     }
 
+    const renderBadgeStatus = () => {
+      return h(SbBadge, {
+        props: {
+          type: this.status,
+          contract: true
+        }
+      })
+    }
+
     const renderAvatarImage = () => {
+      if (this.$slots.default) {
+        return this.$slots.default
+      }
+
       if (this.isImageLoaded) {
         return h('img', {
           attrs: {
@@ -72,6 +105,7 @@ const SbAvatar = {
       }
 
       return h('img', {
+        staticClass: generateRandomBgColor(),
         attrs: {
           alt: this.name,
           src: avatarFallback
@@ -85,16 +119,35 @@ const SbAvatar = {
       }, this.name)
     }
 
-    const renderAvatar = () => {
-      if (this.$slots.default) {
-        return this.$slots.default
-      }
+    const renderDescription = () => {
+      return h('span', {
+        staticClass: `sb-avatar__description sb-avatar__description--${this.descriptionPosition}`
+      }, this.description)
+    }
 
-      if (this.src) {
+    const renderTextContainer = () => {
+      const showDescription = this.showName && this.description
+      const position = this.descriptionPosition
+
+      return h(
+        'div', {
+          staticClass: 'sb-avatar__text-container'
+        },
+        [
+          showDescription && position === 'top' && renderDescription(),
+          renderName(),
+          showDescription && position === 'bottom' && renderDescription()
+        ]
+      )
+    }
+
+    const renderAvatar = () => {
+      if (this.src || this.$slots.default) {
         return h('div', {
-          staticClass: 'sb-avatar__image ' + generateRandomBgColor()
+          staticClass: 'sb-avatar__image'
         }, [
-          renderAvatarImage()
+          renderAvatarImage(),
+          !!this.status && renderBadgeStatus()
         ])
       }
 
@@ -102,7 +155,8 @@ const SbAvatar = {
         return h('div', {
           staticClass: 'sb-avatar__initials ' + generateRandomBgColor()
         }, [
-          h('span', getInitials(this.name))
+          h('span', getInitials(this.name)),
+          !!this.status && renderBadgeStatus()
         ])
       }
     }
@@ -113,7 +167,7 @@ const SbAvatar = {
 
     if (this.showName && this.name) {
       children.push(
-        renderName()
+        renderTextContainer()
       )
     }
 

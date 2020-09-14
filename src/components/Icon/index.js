@@ -10,18 +10,18 @@ const SbIcon = {
   name: 'SbIcon',
 
   props: {
-    name: String,
-    size: {
+    color: {
       type: String,
-      validator: (size) => iconSizes.indexOf(size) !== -1
+      validator: (color) => availableColors.indexOf(color) !== -1
     },
+    name: String,
     role: {
       type: String,
       default: 'presentation'
     },
-    color: {
+    size: {
       type: String,
-      validator: (color) => availableColors.indexOf(color) !== -1
+      validator: (size) => iconSizes.indexOf(size) !== -1
     }
   },
 
@@ -39,6 +39,9 @@ const SbIcon = {
       },
       domProps: {
         innerHTML: iconDeff.path
+      },
+      on: {
+        ...this.$listeners
       }
     })
   }
