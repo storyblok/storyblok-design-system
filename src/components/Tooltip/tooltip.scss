@@ -1,0 +1,94 @@
+@mixin tooltip($position) {
+  &--#{$position} {
+    @if ($position == 'top') {
+      .sb-tooltip__label {
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        
+        &::after {
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+        }
+      }
+    }
+
+    @if ($position == 'bottom') {
+      .sb-tooltip__label {
+        top: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        
+        &::after {
+          bottom: 100%;
+          left: 50%;
+          margin-left: -5px;
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    @if ($position == 'left') {
+      .sb-tooltip__label {
+        top: 50%;
+        transform: translateY(-50%);
+        right: 125%;
+        
+        &::after {
+          top: 50%;
+          transform: translateY(-50%) rotate(270deg);
+          left: 100%;
+        }
+      }
+    }
+
+    @if ($position == 'right') {
+      .sb-tooltip__label {
+        top: 50%;
+        transform: translateY(-50%);
+        left: 125%;
+        
+        &::after {
+          top: 50%;
+          transform: translateY(-50%) rotate(90deg);
+          right: 100%;
+        }
+      }
+    }
+  }
+}
+
+.sb-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  @include tooltip('top');
+  @include tooltip('bottom');
+  @include tooltip('left');
+  @include tooltip('right');
+
+  &__label {
+    display: none;
+    width: auto;
+    position: absolute;
+    padding: 6px 20px;
+    color: $white;
+    font-size: 13px;
+    background-color: $color-primary-dark;
+    border-radius: 2px;
+    white-space: nowrap;
+
+    &::after {
+      content: "";
+      position: absolute;
+      border-width: 5px;
+      border-style: solid;
+      border-color: $color-primary-dark transparent transparent transparent;
+    }
+  }
+
+  &__label[aria-hidden=false] {
+    display: block;
+  }
+}
