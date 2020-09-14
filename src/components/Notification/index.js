@@ -1,5 +1,5 @@
 import './notification.scss'
-import { captalize } from '../../utils/captalize'
+import { capitalize } from '../../utils'
 import SbIcon from '../Icon'
 import SbBadge from '../Badge'
 
@@ -45,11 +45,7 @@ const SbNotification = {
 
   methods: {
     expandleNotification () {
-      if (this.expandle === false) {
-        this.expandle = true
-      } else {
-        this.expandle = false
-      }
+      this.expandle = !this.expandle
     }
   },
 
@@ -89,7 +85,7 @@ const SbNotification = {
       if (this.title) {
         return h('span', {
           staticClass: 'sb-notification--title'
-        }, captalize(this.title))
+        }, capitalize(this.title))
       }
       return null
     }
@@ -98,7 +94,7 @@ const SbNotification = {
       if (this.description) {
         return h('div', {
           staticClass: 'sb-notification--description'
-        }, captalize(this.description))
+        }, capitalize(this.description))
       }
       return null
     }
@@ -115,7 +111,7 @@ const SbNotification = {
               title: `Link to ${this.linkName}`
             }
           }, [
-            this.linkName ? captalize(this.linkName) : 'View Details',
+            this.linkName ? capitalize(this.linkName) : 'View Details',
             (this.isFull && !this.isExpandable) ? renderIcon('chevron-right') : null
           ])
         ])
