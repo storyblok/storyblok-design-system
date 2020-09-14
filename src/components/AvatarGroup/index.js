@@ -2,6 +2,8 @@ import { isSizeValid } from '../Avatar/utils'
 
 import './avatar-group.scss'
 
+import { truncate } from '../../utils'
+
 export const MoreAvatars = {
   name: 'MoreAvatars',
 
@@ -9,6 +11,12 @@ export const MoreAvatars = {
 
   render (h, { props, children }) {
     const data = children.map(element => {
+      const elementProps = element.componentOptions.propsData
+
+      if (elementProps.name) {
+        elementProps.name = truncate(15, elementProps.name)
+      }
+
       element.componentOptions.propsData = {
         ...element.componentOptions.propsData,
         ...props,
@@ -42,6 +50,11 @@ export const MoreAvatar = {
   }
 }
 
+/**
+ * SbAvatarGroup component
+ *
+ * SbAvatarGroup is a component to group SbAvatar
+ */
 const SbAvatarGroup = {
   name: 'AvatarGroup',
 

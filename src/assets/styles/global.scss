@@ -9,11 +9,11 @@ body {
 
 @each $name, $pair in $colors {
   .bg-#{$name} {
-    background-color: $pair;
+    background-color: $pair !important;
   }
 
   .text-#{$name} {
-    color: $pair;
+    color: $pair !important;
   }
 }
 
