@@ -120,7 +120,8 @@ export const SpinnerWithSizes = args => ({
           type: 'spinner',
           size: 'small',
           value,
-          showPercentage
+          showPercentage,
+          color
         }"
       />
       <SbLoading
@@ -128,7 +129,8 @@ export const SpinnerWithSizes = args => ({
           type: 'spinner',
           size: 'normal',
           value,
-          showPercentage
+          showPercentage,
+          color
         }"
       />
       <SbLoading
@@ -136,7 +138,8 @@ export const SpinnerWithSizes = args => ({
           type: 'spinner',
           size: 'large',
           value,
-          showPercentage
+          showPercentage,
+          color
         }"
       />
       <SbLoading
@@ -144,7 +147,8 @@ export const SpinnerWithSizes = args => ({
           type: 'spinner',
           size: 'x-large',
           value,
-          showPercentage
+          showPercentage,
+          color
         }"
       />
     </div>
@@ -169,7 +173,8 @@ export const SpinnerWithPercentage = args => ({
           type: 'spinner',
           size: 'small',
           value: 25,
-          showPercentage: true
+          showPercentage: true,
+          color
         }"
       />
       <SbLoading
@@ -177,7 +182,8 @@ export const SpinnerWithPercentage = args => ({
           type: 'spinner',
           size: 'normal',
           value: 25,
-          showPercentage: true
+          showPercentage: true,
+          color
         }"
       />
       <SbLoading
@@ -185,7 +191,8 @@ export const SpinnerWithPercentage = args => ({
           type: 'spinner',
           size: 'large',
           value: 25,
-          showPercentage: true
+          showPercentage: true,
+          color
         }"
       />
       <SbLoading
@@ -193,7 +200,8 @@ export const SpinnerWithPercentage = args => ({
           type: 'spinner',
           size: 'x-large',
           value: 25,
-          showPercentage: true
+          showPercentage: true,
+          color
         }"
       />
     </div>
