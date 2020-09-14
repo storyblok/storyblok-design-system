@@ -1,3 +1,5 @@
+import SbTooltip from '../Tooltip'
+
 /**
  * @method getLabelTruncated
  * @param  {string} label
@@ -96,22 +98,35 @@ const SbBreadcrumbItem = {
       }
     }
 
-    const renderChildren = () => {
+    const renderLabel = () => {
       if (!isActive) {
+        return h(SbBreadcrumbLink, {
+          props: {
+            title,
+            href,
+            to,
+            as,
+            label: labelFormated
+          }
+        })
+      }
+
+      return labelFormated
+    }
+
+    const renderChildren = () => {
+      if (isTruncated) {
         return [
-          h(SbBreadcrumbLink, {
+          h(SbTooltip, {
             props: {
-              title,
-              href,
-              to,
-              as,
-              label: labelFormated
+              position: 'bottom',
+              label
             }
-          })
+          }, [renderLabel()])
         ]
       }
 
-      return [labelFormated]
+      return [renderLabel()]
     }
 
     return h('li', breadcrumbsItemProps, renderChildren())
