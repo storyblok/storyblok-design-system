@@ -34,14 +34,17 @@ export const Default = (args) => ({
   <SbAvatarGroup :size="size">
     <SbAvatar
       src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
+      name="John Doe"
     />
 
     <SbAvatar
       src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
+      name="Kobe Bryant"
     />
 
     <SbAvatar
       src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
+      name="Elvis Presley"
     />
   </SbAvatarGroup>
   `
