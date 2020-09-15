@@ -20,7 +20,8 @@ export default {
     size: 'normal',
     showName: false,
     src: null,
-    status: null
+    status: null,
+    useTooltip: false
   },
   argTypes: {
     description: {
@@ -73,6 +74,13 @@ export default {
       control: {
         type: 'select',
         options: badgeTypes
+      }
+    },
+    useTooltip: {
+      name: 'useTooltip',
+      description: 'Enable show a tooltip with the username on the bottom',
+      control: {
+        type: 'boolean'
       }
     }
   }
@@ -288,4 +296,32 @@ export const WithStatus = (args) => ({
 WithStatus.args = {
   src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
   status: 'positive'
+}
+
+WithStatus.parameters = {
+  docs: {
+    description: {
+      story: 'When you set the `status` property, it will show a contracted `SbBadge` component. It is useful to show a user status, like online.'
+    }
+  }
+}
+
+export const WithTooltip = (args) => ({
+  components: { SbAvatar },
+  props: Object.keys(args),
+  template: '<SbAvatar :src="src" :name="name" :use-tooltip="useTooltip" />'
+})
+
+WithTooltip.args = {
+  src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
+  name: 'John Doe',
+  useTooltip: true
+}
+
+WithTooltip.parameters = {
+  docs: {
+    description: {
+      story: 'When you set the `useTooltip` property, you need to provide a `name` property that should be used for tooltip label. This should not render the user name and description on right'
+    }
+  }
 }

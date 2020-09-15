@@ -84,7 +84,8 @@ const SbAvatarGroup = {
       if (maxElements && index < maxElements) {
         element.componentOptions.propsData = {
           ...element.componentOptions.propsData,
-          ...props
+          ...props,
+          useTooltip: true
         }
 
         return element
