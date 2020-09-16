@@ -107,7 +107,7 @@ const SbPagesContainer = {
       }),
       h('span', {
         staticClass: 'sb-pagination__placeholder'
-      }, 'of 11 pages')
+      }, `of ${this.pages} pages`)
     ])
   }
 }
@@ -130,6 +130,11 @@ const SbPaginationSelect = {
   render (h, { props, listeners }) {
     const { options } = props
 
+    const processAriaLabel = (option) => {
+      const { ariaLabel, value } = option
+      return props.value === value ? `${ariaLabel}, Current` : ariaLabel
+    }
+
     return h('select', {
       staticClass: 'sb-pagination__select',
       on: {
@@ -139,7 +144,7 @@ const SbPaginationSelect = {
       ...options.map(option => {
         return h('option', {
           attrs: {
-            ...(option.ariaLabel && { 'aria-label': option.ariaLabel }),
+            ...(option.ariaLabel && { 'aria-label': processAriaLabel(option) }),
             value: option.value,
             selected: props.value === option.value
           }
@@ -179,11 +184,14 @@ const SbPerPageContainer = {
         props: {
           options: perPageOptions,
           value: this.perPage
+        },
+        on: {
+          change: this.onSelectChange
         }
       }),
       h('span', {
         staticClass: 'sb-pagination__placeholder'
-      }, '1-10 of 50 items')
+      }, '1-10 of 40 items')
     ])
   }
 }
@@ -208,7 +216,7 @@ const SbPagination = {
 
   computed: {
     pages () {
-      return this.total / this.perPage
+      return Math.ceil(this.total / this.perPage)
     },
     isFirstDisabled () {
       return this.value <= 1
