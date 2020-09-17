@@ -1,11 +1,11 @@
-import SbTabs from '.'
-import SbTab from '../Tab/index'
+import SbTabs, { SbTab } from '.'
 
 export default {
   title: 'SbTabs',
   component: SbTabs,
   args: {
-    showAddButton: false
+    showAddButton: false,
+    type: null
   },
   argTypes: {
     showAddButton: {
@@ -14,6 +14,14 @@ export default {
       control: {
         type: 'boolean'
       }
+    },
+    type: {
+      name: 'type',
+      description: 'With prop `type` you can change the type of tab view',
+      control: {
+        type: 'select',
+        options: ['default', 'container', 'vertical']
+      }
     }
   }
 }
@@ -21,11 +29,22 @@ export default {
 export const Default = args => ({
   components: { SbTabs, SbTab },
   props: Object.keys(args),
+  methods: {
+    onUpdate (val) {
+      this.content.push(val)
+    }
+  },
+  data () {
+    return {
+      content: []
+    }
+  },
   template: `
-    <SbTabs v-bind="{ showAddButton }">
-      <SbTab label="First" />
-      <SbTab label="Secondary" />
-      <SbTab label="Third" />
+    <SbTabs v-bind="{ showAddButton, type }" @changeModel="onUpdate">
+      <SbTab label="First" name="first" />
+      <SbTab label="Secondary" name="secondary" />
+      <SbTab label="Third" name="third" />
+      <SbTab v-for="item in content" :key="item.name" :label="item.value" :name="item.name" />
     </SbTabs>
   `
 })

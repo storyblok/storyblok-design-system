@@ -1,5 +1,6 @@
 .sb-tabs {
-
+  border-bottom: 1px solid $light-gray;
+  width: fit-content;
 
   &--add-button {
     background-color: transparent;

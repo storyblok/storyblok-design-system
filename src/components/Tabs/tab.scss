@@ -1,0 +1,14 @@
+.sb-tab {
+  color: $light-gray;
+  font-family: $primary-font-family;
+  font-size: $text-text-medium-small;
+  font-weight: normal;
+  cursor: pointer;
+  padding: 0 10px 0 10px;
+
+  &--active{
+    color: $primary-text-color;
+    font-weight: 500;
+    border-bottom: 3px solid $sb-green;
+  }
+}
