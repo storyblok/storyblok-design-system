@@ -6,6 +6,7 @@
   color: $color-primary-dark;
   box-shadow: 0px -1px 0px 0px $light, 0px 1px 0px 0px $light;
 
+  // elements
   &__per-page-container {
     margin-right: 120px;
     padding-left: 10px;
@@ -33,6 +34,7 @@
     border: none;
     border-left: 1px solid $light;
     color: $color-primary-dark;
+    cursor: pointer;
 
     &:not(:disabled):hover {
       color: $color-primary;
@@ -42,5 +44,14 @@
       cursor: not-allowed;
       color: $sb-dark-blue-25;
     }
+  }
+
+  // modifiers
+  &--full-width {
+    width: 100%;
+  }
+
+  &--full-width &__per-page-container {
+    margin-right: auto;
   }
 }

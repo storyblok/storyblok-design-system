@@ -130,4 +130,17 @@ describe('SbPagination component', () => {
       expect(wrapper.emitted('input')[0][0]).toBe(4)
     })
   })
+
+  describe('with fullWidth property', () => {
+    const wrapper = factory({
+      value: 1,
+      total: 100,
+      perPage: 10,
+      isFullWidth: true
+    })
+
+    it('should add the --full-width modifier class', () => {
+      expect(wrapper.classes('sb-pagination--full-width')).toBe(true)
+    })
+  })
 })

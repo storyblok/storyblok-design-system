@@ -1,5 +1,24 @@
 import SbPagination from '.'
 
+const PaginationTemplate = args => ({
+  components: { SbPagination },
+  props: Object.keys(args),
+  template: `
+    <div style="padding: 20px">
+      <SbPagination
+        v-bind="{
+          value: value || 1,
+          total: total || 100,
+          perPage: perPage || 10,
+          isFullWidth
+        }"
+        @input="onInput"
+        @per-page-change="onPageChange"
+      />
+    </div>
+  `
+})
+
 export default {
   title: 'SbPagination',
   component: SbPagination,
@@ -9,9 +28,16 @@ export default {
     perPage: 10
   },
   argTypes: {
-    value: {
-      name: 'value',
-      description: 'Current page',
+    isFullWidth: {
+      name: 'isFullWidth',
+      description: 'Expand the `SbPagination` component to 100% width',
+      control: {
+        type: 'boolean'
+      }
+    },
+    perPage: {
+      name: 'perPage',
+      description: 'Number of items per page',
       control: {
         type: 'number'
       }
@@ -23,26 +49,34 @@ export default {
         type: 'number'
       }
     },
-    perPage: {
-      name: 'perPage',
-      description: 'Number of items per page',
+    value: {
+      name: 'value',
+      description: 'Current page',
       control: {
         type: 'number'
       }
     },
     onPageChange: {
       action: 'perPageChanged'
+    },
+    onInput: {
+      action: 'pageChanged'
     }
   }
 }
 
-export const Default = args => ({
-  components: { SbPagination },
-  props: Object.keys(args),
-  template: `
-    <SbPagination
-      v-bind="{ value: value || 1, total: total || 100, perPage: perPage || 10 }"
-      @per-page-change="onPageChange"
-    />
-  `
-})
+export const Default = PaginationTemplate.bind({})
+
+export const FullWidth = PaginationTemplate.bind({})
+
+FullWidth.args = {
+  isFullWidth: true
+}
+
+FullWidth.parameters = {
+  docs: {
+    description: {
+      story: 'When you define the `SbPagination` as `isFullWidth`, it will be expanded to full width to fill its parent container.'
+    }
+  }
+}

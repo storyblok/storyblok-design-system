@@ -208,17 +208,21 @@ const SbPagination = {
   name: 'SbPagination',
 
   props: {
-    value: {
+    isFullWidth: {
+      type: Boolean,
+      default: false
+    },
+    perPage: {
       type: Number,
-      required: true
+      default: 10
     },
     total: {
       type: Number,
       default: 100
     },
-    perPage: {
+    value: {
       type: Number,
-      default: 10
+      required: true
     }
   },
 
@@ -286,7 +290,10 @@ const SbPagination = {
     })
 
     return h('div', {
-      staticClass: 'sb-pagination'
+      staticClass: 'sb-pagination',
+      class: {
+        'sb-pagination--full-width': this.isFullWidth
+      }
     }, [
       h(SbPerPageContainer, {
         props: {
