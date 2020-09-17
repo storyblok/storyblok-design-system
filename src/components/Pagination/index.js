@@ -36,7 +36,7 @@ const SbPaginationButton = {
     }
   },
 
-  render (h, { props, listeners }) {
+  render (h, { props, listeners, data }) {
     const { icon, tooltipLabel, disabled } = props
 
     return h(SbTooltip, {
@@ -48,7 +48,8 @@ const SbPaginationButton = {
       h('button', {
         staticClass: 'sb-pagination__button',
         attrs: {
-          disabled
+          disabled,
+          ...data.attrs || {}
         },
         class: {
           'sb-pagination__button--disabled': disabled
@@ -97,6 +98,9 @@ const SbPagesContainer = {
       staticClass: 'sb-pagination__pages-container'
     }, [
       h(SbPaginationSelect, {
+        attrs: {
+          'data-testid': 'page-select'
+        },
         props: {
           options: pagesOptions,
           value: this.currentPage
@@ -127,7 +131,7 @@ const SbPaginationSelect = {
     }
   },
 
-  render (h, { props, listeners }) {
+  render (h, { props, listeners, data }) {
     const { options } = props
 
     const processAriaLabel = (option) => {
@@ -136,6 +140,7 @@ const SbPaginationSelect = {
     }
 
     return h('select', {
+      attrs: { ...data.attrs || {} },
       staticClass: 'sb-pagination__select',
       on: {
         ...listeners
@@ -181,6 +186,9 @@ const SbPerPageContainer = {
     }, [
       h('span', 'Itens per page:'),
       h(SbPaginationSelect, {
+        attrs: {
+          'data-testid': 'per-page-select'
+        },
         props: {
           options: perPageOptions,
           value: this.perPage
@@ -250,6 +258,9 @@ const SbPagination = {
 
   render (h) {
     const leftArrowButton = h(SbPaginationButton, {
+      attrs: {
+        'data-testid': 'pagination-previous-button'
+      },
       props: {
         icon: 'chevron-left',
         tooltipLabel: 'Previous page',
@@ -261,6 +272,9 @@ const SbPagination = {
     })
 
     const rightArrowButton = h(SbPaginationButton, {
+      attrs: {
+        'data-testid': 'pagination-next-button'
+      },
       props: {
         icon: 'chevron-right',
         tooltipLabel: 'Next page',
