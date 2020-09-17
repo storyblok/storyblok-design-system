@@ -3,6 +3,8 @@ import './pagination.scss'
 import SbIcon from '../Icon'
 import SbTooltip from '../Tooltip'
 
+const DEFAULT_ROWS_PER_PAGE_DROPDOWN = [10, 20, 30, 40, 50]
+
 const factorySelectOption = (value, factoryAriaLabel) => {
   return {
     value: value,
@@ -165,6 +167,10 @@ const SbPerPageContainer = {
   props: {
     perPage: {
       type: Number
+    },
+    perPageAvailable: {
+      type: Array,
+      default: () => []
     }
   },
 
@@ -175,12 +181,12 @@ const SbPerPageContainer = {
   },
 
   render (h) {
-    const perPageOptions = [
-      factorySelectOption(10, perPage => `Select per page ${perPage} items`),
-      factorySelectOption(20, perPage => `Select per page ${perPage} items`),
-      factorySelectOption(30, perPage => `Select per page ${perPage} items`),
-      factorySelectOption(40, perPage => `Select per page ${perPage} items`)
-    ]
+    const perPageOptions = this.perPageAvailable.map(perPage => {
+      return factorySelectOption(
+        perPage, value => `Select per page ${value} items`
+      )
+    })
+
     return h('div', {
       staticClass: 'sb-pagination__per-page-container'
     }, [
@@ -304,6 +310,10 @@ const SbPagination = {
       type: Boolean,
       default: false
     },
+    customPerPageOptions: {
+      type: Array,
+      default: () => []
+    },
     isFullWidth: {
       type: Boolean,
       default: false
@@ -331,6 +341,17 @@ const SbPagination = {
     },
     isLastDisabled () {
       return this.value >= this.pages
+    },
+    perPageAvailable () {
+      if (
+        this.customPerPageOptions !== null &&
+        (Array.isArray(this.customPerPageOptions) &&
+        this.customPerPageOptions.length !== 0)
+      ) {
+        return this.customPerPageOptions
+      }
+
+      return DEFAULT_ROWS_PER_PAGE_DROPDOWN
     }
   },
 
@@ -432,7 +453,8 @@ const SbPagination = {
       h(SbPerPageContainer, {
         props: {
           total: this.total,
-          perPage: this.perPage
+          perPage: this.perPage,
+          perPageAvailable: this.perPageAvailable
         },
         on: {
           'per-page-change': this.onPerPageChange

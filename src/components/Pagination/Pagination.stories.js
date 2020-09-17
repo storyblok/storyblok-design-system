@@ -27,6 +27,7 @@ const PaginationTemplate = args => ({
         v-bind="{
           carousel,
           compact,
+          customPerPageOptions,
           isFullWidth,
           total: total || 100
         }"
@@ -45,6 +46,7 @@ export default {
   args: {
     carousel: false,
     compact: false,
+    customPerPageOptions: [],
     isFullWidth: false,
     perPage: 10,
     total: 100,
@@ -63,6 +65,13 @@ export default {
       description: 'Only show buttons and pages information',
       control: {
         type: 'boolean'
+      }
+    },
+    customPerPageOptions: {
+      name: 'customPerPageOptions',
+      description: 'Allow to user set a custom options to perPage select',
+      control: {
+        type: 'array'
       }
     },
     isFullWidth: {
