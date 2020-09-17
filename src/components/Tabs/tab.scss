@@ -5,8 +5,9 @@
   font-weight: normal;
   cursor: pointer;
   padding: 0 10px 0 10px;
+  display: inline;
 
-  &--active{
+  &--is-active {
     color: $primary-text-color;
     font-weight: 500;
     border-bottom: 3px solid $sb-green;

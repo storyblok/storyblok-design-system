@@ -4,17 +4,34 @@ import { capitalize } from '../../utils'
 import './tabs.scss'
 import './tab.scss'
 
-export const SbTabPanel = {
+const SbTabPanels = {
   name: 'SbTabPanel',
-  props: {
 
-  },
   render (h) {
-
+    return h('div', {
+      staticClass: 'sb-tab-panels'
+    },
+    [...this.$slots.default])
   }
 }
 
-export const SbTab = {
+const SbTabPanel = {
+  name: 'SbTabPanel',
+  props: {
+    name: {
+      type: String,
+      default: null
+    }
+  },
+  render (h) {
+    return h('section', {
+      staticClass: 'sb-tab-panel'
+    },
+    [...this.$slots.default])
+  }
+}
+
+const SbTab = {
   name: 'SbTab',
   props: {
     label: {
@@ -27,29 +44,48 @@ export const SbTab = {
     edited: {
       type: Boolean,
       default: false
+    },
+    isActive: {
+      type: Boolean,
+      default: false
     }
   },
 
   methods: {
-    editLabel () {
+    editLabel (e) {
       const editedLabel = prompt('Set new label for this tab: ', this.label)
 
-      if (editedLabel === '') {
-        return
+      if (editedLabel) {
+        e.target.innerText = capitalize(editedLabel)
       }
-
-      this.newLabel = editedLabel
     },
     onKeyDown (e) {
       if (e.key === 'Enter') {
-        this.$emit('edited-tab', { value: capitalize(e.target.value) || this.label, name: this.name })
+        this.$emit('edited-tab', { value: capitalize(e.target.value) || this.label, name: e.target.value.toLowerCase() })
+      }
+    },
+    setActiveTab (name) {
+      if (name) {
+        const tabs = document.getElementsByClassName('sb-tab')
+
+        for (const tab of tabs) {
+          if (tab !== tabs[name]) {
+            tab.classList.value = tab.classList.value.split(' ').filter(e => e !== 'sb-tab--is-active')
+          } else {
+            tab.classList.value += ' sb-tab--is-active'
+          }
+        }
+
+        this.active = name
+
+        this.$emit('active-tab', name)
       }
     }
   },
 
   data () {
     return {
-      newLabel: null
+      active: ''
     }
   },
 
@@ -66,12 +102,16 @@ export const SbTab = {
       })
     }
 
-    return h('span', {
+    return h('li', {
       staticClass: 'sb-tab',
+      class: {
+        'sb-tab--is-active': this.name === this.active
+      },
       attrs: {
         name: this.label.toLowerCase()
       },
       on: {
+        click: () => this.setActiveTab(this.name),
         dblclick: this.editLabel
       }
     },
@@ -108,27 +148,35 @@ const SbTabs = {
     onEditedTab (content) {
       this.tabsStories = []
       this.$emit('changeModel', content)
+    },
+    setNewActiveTab (name) {
+      this.activeTab = name
     }
   },
 
   data () {
     return {
-      tabsStories: []
+      tabsStories: [],
+      activeTab: null
     }
   },
 
   render (h) {
     const renderTabs = () => {
-      return h('div', {
+      return h('ul', {
         staticClass: 'sb-tabs',
         class: [
           `sb-tabs--${(this.type ? this.type : 'default')}`
-        ]
+        ],
+        on: {
+          'active-tab': () => this.setNewActiveTab
+        }
       },
       [
         ...this.$slots.default,
         ...this.tabsStories,
         this.showAddButton ? renderAddButton() : null
+        // this.activeTab ? [renderPanel()] : null
       ])
     }
 
@@ -156,4 +204,9 @@ const SbTabs = {
   }
 }
 
-export default SbTabs
+export {
+  SbTabs,
+  SbTab,
+  SbTabPanels,
+  SbTabPanel
+}

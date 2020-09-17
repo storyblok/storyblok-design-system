@@ -1,6 +1,8 @@
 .sb-tabs {
+  list-style-type: none;
   border-bottom: 1px solid $light-gray;
-  width: fit-content;
+  padding: 0;
+  margin: 0;
 
   &--add-button {
     background-color: transparent;
@@ -8,5 +10,13 @@
     border: none;
     vertical-align: bottom;
     cursor: pointer;
+  }
+
+  &--container {
+    .sb-tab--is-active{
+      border: 1px solid $light-gray;
+      border-bottom: none;
+      border-radius: 5px 5px 0px 0px;
+    }
   }
 }
