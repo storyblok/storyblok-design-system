@@ -204,10 +204,102 @@ const SbPerPageContainer = {
   }
 }
 
+const SbPaginationDot = {
+  name: 'SbPaginationDot',
+
+  functional: true,
+
+  props: {
+    currentPage: {
+      type: Number,
+      default: false
+    },
+    page: {
+      type: Number,
+      required: true,
+      default: 1
+    }
+  },
+
+  render (h, { props, listeners }) {
+    const { page, currentPage } = props
+    const isCurrent = currentPage === page
+    return h('button', {
+      staticClass: 'sb-pagination-dot',
+      class: {
+        'sb-pagination-dot--active': isCurrent
+      },
+      attrs: {
+        page,
+        'aria-label': isCurrent ? `Curent page, Page ${page}` : `Goto page ${page}`,
+        'aria-current': isCurrent + ''
+      },
+      on: {
+        ...listeners
+      }
+    })
+  }
+}
+
+const SbPaginationCarousel = {
+  name: 'SbPaginationCarousel',
+
+  props: {
+    pages: {
+      type: Number,
+      required: true,
+      default: 10
+    },
+    currentPage: {
+      type: Number,
+      required: true,
+      default: 1
+    }
+  },
+
+  methods: {
+    onChangePageButton (page) {
+      this.$emit('change-page', page)
+    }
+  },
+
+  render (h) {
+    const paginationDots = []
+
+    for (let pageNumber = 1; pageNumber <= this.pages; pageNumber++) {
+      paginationDots.push(
+        h(SbPaginationDot, {
+          props: {
+            page: pageNumber,
+            currentPage: this.currentPage
+          },
+          on: {
+            click: () => {
+              this.onChangePageButton(pageNumber)
+            }
+          }
+        })
+      )
+    }
+
+    return h('nav', {
+      staticClass: 'sb-pagination-carousel-container',
+      attrs: {
+        role: 'navigation',
+        'aria-label': 'Pagination Navigation'
+      }
+    }, paginationDots)
+  }
+}
+
 const SbPagination = {
   name: 'SbPagination',
 
   props: {
+    carousel: {
+      type: Boolean,
+      default: false
+    },
     compact: {
       type: Boolean,
       default: false
@@ -292,6 +384,27 @@ const SbPagination = {
         click: this.handleNextPage
       }
     })
+
+    if (this.carousel) {
+      return h('div', {
+        staticClass: 'sb-pagination',
+        class: {
+          'sb-pagination--carousel': this.carousel
+        }
+      }, [
+        leftArrowButton,
+        h(SbPaginationCarousel, {
+          props: {
+            pages: this.pages,
+            currentPage: this.value
+          },
+          on: {
+            'change-page': this.onPageChange
+          }
+        }),
+        rightArrowButton
+      ])
+    }
 
     if (this.compact) {
       return h('div', {

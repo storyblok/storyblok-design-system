@@ -162,4 +162,25 @@ describe('SbPagination component', () => {
       ).toBe('1 of 10 pages')
     })
   })
+
+  describe('with carousel property', () => {
+    const wrapper = factory({
+      value: 1,
+      total: 100,
+      perPage: 10,
+      carousel: true
+    })
+
+    it('should add the --carousel modifier class', () => {
+      expect(wrapper.classes('sb-pagination--carousel')).toBe(true)
+    })
+
+    it('should have a role navigation', () => {
+      expect(wrapper.find('[role="navigation"]').exists()).toBe(true)
+    })
+
+    it('should have a one element with aria-current=true', () => {
+      expect(wrapper.findAll('[aria-current="true"]').length).toBe(1)
+    })
+  })
 })

@@ -46,6 +46,29 @@
     }
   }
 
+  &-carousel-container {
+    display: flex;
+    margin: 0 20px;
+  }
+
+  &-dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    background-color: $light;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+
+    &:not(:first-child) {
+      margin-left: 15px;
+    }
+
+    &--active {
+      background-color: $color-primary;
+    }
+  }
+
   // modifiers
   &--full-width {
     width: 100%;
@@ -55,7 +78,6 @@
     margin-right: auto;
   }
 
-  // modifiers
   &--compact {
     width: 100%;
     box-shadow: none;
@@ -69,5 +91,13 @@
     border: none;
     border-left: 1px solid $light;
     border-right: 1px solid $light;
+  }
+
+  &--carousel {
+    box-shadow: none;
+  }
+
+  &--carousel &__button {
+    border: none;
   }
 }

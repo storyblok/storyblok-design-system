@@ -3,18 +3,37 @@ import SbPagination from '.'
 const PaginationTemplate = args => ({
   components: { SbPagination },
   props: Object.keys(args),
+  data: () => ({
+    currentPage: 1,
+    perPageData: 10
+  }),
+  watch: {
+    value (val) {
+      this.currentPage = val
+    },
+    perPage (val) {
+      this.perPageData = val
+    }
+  },
+  methods: {
+    onPageChangeData (val) {
+      this.perPageData = val
+      this.onPageChange(val)
+    }
+  },
   template: `
     <div style="padding: 20px">
       <SbPagination
         v-bind="{
+          carousel,
           compact,
           isFullWidth,
-          perPage: perPage || 10,
-          total: total || 100,
-          value: value || 1
+          total: total || 100
         }"
-        @input="onInput"
-        @per-page-change="onPageChange"
+        :per-page="perPageData"
+        v-model="currentPage"
+        @page-change="onPageChange"
+        @per-page-change="onPageChangeData"
       />
     </div>
   `
@@ -24,6 +43,7 @@ export default {
   title: 'SbPagination',
   component: SbPagination,
   args: {
+    carousel: false,
     compact: false,
     isFullWidth: false,
     perPage: 10,
@@ -31,6 +51,13 @@ export default {
     value: 1
   },
   argTypes: {
+    carousel: {
+      name: 'carousel',
+      description: 'Only show buttons and pages information',
+      control: {
+        type: 'boolean'
+      }
+    },
     compact: {
       name: 'compact',
       description: 'Only show buttons and pages information',
@@ -66,10 +93,10 @@ export default {
         type: 'number'
       }
     },
-    onPageChange: {
+    onPerPageChange: {
       action: 'perPageChanged'
     },
-    onInput: {
+    onPageChange: {
       action: 'pageChanged'
     }
   }
@@ -100,7 +127,21 @@ Compact.args = {
 Compact.parameters = {
   docs: {
     description: {
-      story: 'When it uses the `compact` property, only the previous and next buttons show and the informations about the items'
+      story: 'When it uses the `compact` property, only the previous and next buttons show up and the informations about the items'
+    }
+  }
+}
+
+export const Carousel = PaginationTemplate.bind({})
+
+Carousel.args = {
+  carousel: true
+}
+
+Carousel.parameters = {
+  docs: {
+    description: {
+      story: 'When it uses the `carousel` property, only the previous and next buttons show up and, in the middle, a dot navigation shows to change the page'
     }
   }
 }
