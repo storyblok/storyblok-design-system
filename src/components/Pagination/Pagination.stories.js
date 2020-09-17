@@ -7,10 +7,11 @@ const PaginationTemplate = args => ({
     <div style="padding: 20px">
       <SbPagination
         v-bind="{
-          value: value || 1,
-          total: total || 100,
+          compact,
+          isFullWidth,
           perPage: perPage || 10,
-          isFullWidth
+          total: total || 100,
+          value: value || 1
         }"
         @input="onInput"
         @per-page-change="onPageChange"
@@ -23,11 +24,20 @@ export default {
   title: 'SbPagination',
   component: SbPagination,
   args: {
-    value: 1,
+    compact: false,
+    isFullWidth: false,
+    perPage: 10,
     total: 100,
-    perPage: 10
+    value: 1
   },
   argTypes: {
+    compact: {
+      name: 'compact',
+      description: 'Only show buttons and pages information',
+      control: {
+        type: 'boolean'
+      }
+    },
     isFullWidth: {
       name: 'isFullWidth',
       description: 'Expand the `SbPagination` component to 100% width',
@@ -77,6 +87,20 @@ FullWidth.parameters = {
   docs: {
     description: {
       story: 'When you define the `SbPagination` as `isFullWidth`, it will be expanded to full width to fill its parent container.'
+    }
+  }
+}
+
+export const Compact = PaginationTemplate.bind({})
+
+Compact.args = {
+  compact: true
+}
+
+Compact.parameters = {
+  docs: {
+    description: {
+      story: 'When it uses the `compact` property, only the previous and next buttons show and the informations about the items'
     }
   }
 }

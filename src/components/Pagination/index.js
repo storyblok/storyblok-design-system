@@ -208,6 +208,10 @@ const SbPagination = {
   name: 'SbPagination',
 
   props: {
+    compact: {
+      type: Boolean,
+      default: false
+    },
     isFullWidth: {
       type: Boolean,
       default: false
@@ -288,6 +292,23 @@ const SbPagination = {
         click: this.handleNextPage
       }
     })
+
+    if (this.compact) {
+      return h('div', {
+        staticClass: 'sb-pagination',
+        class: {
+          'sb-pagination--compact': this.compact
+        }
+      }, [
+        leftArrowButton,
+        h('span', {
+          attrs: {
+            'data-testid': 'pagination-pages-information'
+          }
+        }, `${this.value} of ${this.pages} pages`),
+        rightArrowButton
+      ])
+    }
 
     return h('div', {
       staticClass: 'sb-pagination',

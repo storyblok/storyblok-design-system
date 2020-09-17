@@ -54,4 +54,20 @@
   &--full-width &__per-page-container {
     margin-right: auto;
   }
+
+  // modifiers
+  &--compact {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  &--compact > span {
+    margin: 0 20px;
+  }
+
+  &--compact &__button {
+    border: none;
+    border-left: 1px solid $light;
+    border-right: 1px solid $light;
+  }
 }

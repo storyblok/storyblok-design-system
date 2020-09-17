@@ -131,7 +131,7 @@ describe('SbPagination component', () => {
     })
   })
 
-  describe('with fullWidth property', () => {
+  describe('with isFullWidth property', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
@@ -141,6 +141,25 @@ describe('SbPagination component', () => {
 
     it('should add the --full-width modifier class', () => {
       expect(wrapper.classes('sb-pagination--full-width')).toBe(true)
+    })
+  })
+
+  describe('with compact property', () => {
+    const wrapper = factory({
+      value: 1,
+      total: 100,
+      perPage: 10,
+      compact: true
+    })
+
+    it('should add the --compact modifier class', () => {
+      expect(wrapper.classes('sb-pagination--compact')).toBe(true)
+    })
+
+    it('should have a text with pages information', () => {
+      expect(
+        wrapper.find('[data-testid="pagination-pages-information"]').text()
+      ).toBe('1 of 10 pages')
     })
   })
 })
