@@ -169,6 +169,41 @@ describe('SbPagination component', () => {
     })
   })
 
+  describe('when changes the page by using the buttons', () => {
+    const wrapper = factory({
+      value: 1,
+      total: 100,
+      perPage: 10
+    })
+
+    it('should emit the input event when next button is clicked', async () => {
+      await wrapper
+        .find('[data-testid="pagination-next-button"]')
+        .trigger('click')
+
+      await wrapper.vm.$nextTick()
+
+      // get the input event result (the result is: [[2]])
+      expect(wrapper.emitted('input')[0][0]).toBe(2)
+    })
+
+    it('should emit the input event when previous button is clicked', async () => {
+      // setting the value manually to the previous button is not disable
+      await wrapper.setProps({
+        value: 5
+      })
+
+      await wrapper
+        .find('[data-testid="pagination-previous-button"]')
+        .trigger('click')
+
+      await wrapper.vm.$nextTick()
+
+      // get the input event result (the result is: [[2]])
+      expect(wrapper.emitted('input')[0][0]).toBe(2)
+    })
+  })
+
   describe('when pass the customPerPageOptions property', () => {
     const wrapper = factory({
       value: 1,
@@ -242,6 +277,15 @@ describe('SbPagination component', () => {
 
     it('should have a one element with aria-current=true', () => {
       expect(wrapper.findAll('[aria-current="true"]').length).toBe(1)
+    })
+
+    it('should emit the page when click a dot button', async () => {
+      const dotButtons = wrapper.findAll('nav button')
+      const thirdPageDot = dotButtons.at(2)
+
+      await thirdPageDot.trigger('click')
+
+      expect(wrapper.emitted('input')[0][0]).toBe(3)
     })
   })
 })
