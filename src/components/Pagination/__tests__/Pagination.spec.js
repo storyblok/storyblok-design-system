@@ -169,6 +169,29 @@ describe('SbPagination component', () => {
     })
   })
 
+  describe('when pass the customPerPageOptions property', () => {
+    const wrapper = factory({
+      value: 1,
+      total: 60,
+      perPage: 5,
+      customPerPageOptions: [5, 15, 30]
+    })
+
+    it('should have three options with respective values', () => {
+      const options = wrapper.findAll('[data-testid="per-page-select"] option')
+      expect(options.length).toBe(3)
+      expect(options.at(0).element.value).toBe('5')
+      expect(options.at(1).element.value).toBe('15')
+      expect(options.at(2).element.value).toBe('30')
+    })
+
+    it('should have the text showing pagination items information', () => {
+      expect(
+        wrapper.find('[data-testid="pagination-items-information"]').text()
+      ).toBe('1-5 of 60 items')
+    })
+  })
+
   describe('with isFullWidth property', () => {
     const wrapper = factory({
       value: 1,
