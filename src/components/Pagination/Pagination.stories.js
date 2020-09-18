@@ -43,6 +43,13 @@ const PaginationTemplate = args => ({
 export default {
   title: 'SbPagination',
   component: SbPagination,
+  parameters: {
+    docs: {
+      description: {
+        component: '`SbPagination` is used for splitting up content or data into several pages, with a control for navigating to the next or previous page.'
+      }
+    }
+  },
   args: {
     carousel: false,
     compact: false,
@@ -97,7 +104,7 @@ export default {
     },
     value: {
       name: 'value',
-      description: 'Current page',
+      description: 'Current page. The value property has to be used for `v-model` directive',
       control: {
         type: 'number'
       }
