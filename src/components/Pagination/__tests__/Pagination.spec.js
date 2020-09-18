@@ -36,8 +36,14 @@ describe('SbPagination component', () => {
 
     it('should have a text showing how many pages are', () => {
       expect(
-        wrapper.findAll('.sb-pagination__placeholder').at(1).text()
+        wrapper.find('[data-testid="pagination-pages-information"]').text()
       ).toBe('of 10 pages')
+    })
+
+    it('should have a text showing the current pagination items', () => {
+      expect(
+        wrapper.find('[data-testid="pagination-items-information"]').text()
+      ).toBe('1-10 of 100 items')
     })
   })
 
@@ -45,7 +51,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 3,
       total: 100,
-      perPage: 25
+      perPage: 10
     })
 
     it('should have the page select with this specific page', () => {
@@ -62,6 +68,38 @@ describe('SbPagination component', () => {
       expect(
         wrapper.find('[data-testid="pagination-next-button"]').element.disabled
       ).toBe(false)
+    })
+
+    it('should have the correct text showing the current page items', () => {
+      expect(
+        wrapper.find('[data-testid="pagination-items-information"]').text()
+      ).toBe('21-30 of 100 items')
+    })
+  })
+
+  describe('when it is the last page', () => {
+    const wrapper = factory({
+      value: 4,
+      total: 100,
+      perPage: 30
+    })
+
+    it('should have the page select with this specific page', () => {
+      expect(
+        wrapper.find('[data-testid="page-select"]').element.value
+      ).toBe('4')
+    })
+
+    it('should have the next button disabled', () => {
+      expect(
+        wrapper.find('[data-testid="pagination-next-button"]').element.disabled
+      ).toBe(true)
+    })
+
+    it('should have the text showing the residual last items', () => {
+      expect(
+        wrapper.find('[data-testid="pagination-items-information"]').text()
+      ).toBe('91-100 of 100 items')
     })
   })
 
@@ -80,7 +118,7 @@ describe('SbPagination component', () => {
 
     it('should have the correct text with how many pages information', () => {
       expect(
-        wrapper.findAll('.sb-pagination__placeholder').at(1).text()
+        wrapper.find('[data-testid="pagination-pages-information"]').text()
       ).toBe('of 5 pages')
     })
   })
@@ -108,7 +146,7 @@ describe('SbPagination component', () => {
         perPage: 20
       })
       expect(
-        wrapper.findAll('.sb-pagination__placeholder').at(1).text()
+        wrapper.find('[data-testid="pagination-pages-information"]').text()
       ).toBe('of 5 pages')
     })
   })

@@ -111,9 +111,12 @@ const SbPagesContainer = {
           change: this.onSelectChange
         }
       }),
-      h('span', {
-        staticClass: 'sb-pagination__placeholder'
-      }, `of ${this.pages} pages`)
+      h(SbPaginationPagesText, {
+        props: {
+          pages: this.pages,
+          isPlaceholder: true
+        }
+      })
     ])
   }
 }
@@ -171,6 +174,15 @@ const SbPerPageContainer = {
     perPageAvailable: {
       type: Array,
       default: () => []
+    },
+    currentPage: {
+      type: Number
+    },
+    total: {
+      type: Number
+    },
+    pages: {
+      type: Number
     }
   },
 
@@ -203,9 +215,15 @@ const SbPerPageContainer = {
           change: this.onSelectChange
         }
       }),
-      h('span', {
-        staticClass: 'sb-pagination__placeholder'
-      }, '1-10 of 40 items')
+      h(SbPaginationItemsText, {
+        props: {
+          total: this.total,
+          currentPage: this.currentPage,
+          pages: this.pages,
+          perPage: this.perPage,
+          isPlaceholder: true
+        }
+      })
     ])
   }
 }
@@ -298,6 +316,95 @@ const SbPaginationCarousel = {
   }
 }
 
+const SbPaginationPagesText = {
+  name: 'SbPaginationPagesText',
+
+  functional: true,
+
+  props: {
+    pages: {
+      type: Number,
+      default: 1
+    },
+    currentPage: {
+      type: Number
+    },
+    isPlaceholder: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  render (h, { props }) {
+    const { currentPage, isPlaceholder, pages } = props
+    const hasCurrentPage = currentPage >= 0
+    const text = hasCurrentPage
+      ? `${currentPage} of ${pages} pages`
+      : `of ${pages} pages`
+
+    return h('span', {
+      class: {
+        'sb-pagination__placeholder': isPlaceholder
+      },
+      attrs: {
+        'data-testid': 'pagination-pages-information'
+      }
+    }, text)
+  }
+}
+
+const SbPaginationItemsText = {
+  name: 'SbPaginationItemsText',
+
+  functional: true,
+
+  props: {
+    pages: {
+      type: Number
+    },
+    perPage: {
+      type: Number,
+      default: 1
+    },
+    total: {
+      type: Number,
+      default: 100
+    },
+    currentPage: {
+      type: Number
+    },
+    isPlaceholder: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  render (h, { props }) {
+    const { currentPage, isPlaceholder, pages, perPage, total } = props
+    const isTheLastPage = currentPage === pages
+    const currentPageItems = (currentPage * perPage)
+    const firstCurrentPageItem = currentPage === 1
+      ? 1
+      : (currentPageItems - perPage) + 1
+    const lastCurrentPageItem = currentPage === 1
+      ? perPage
+      : isTheLastPage
+        ? total
+        : currentPageItems
+
+    const text = `${firstCurrentPageItem}-${lastCurrentPageItem} of ${total} items`
+
+    return h('span', {
+      class: {
+        'sb-pagination__placeholder': isPlaceholder
+      },
+      attrs: {
+        'data-testid': 'pagination-items-information'
+      }
+    }, text)
+  }
+}
+
 const SbPagination = {
   name: 'SbPagination',
 
@@ -371,6 +478,7 @@ const SbPagination = {
     },
     onPerPageChange (perPage) {
       this.$emit('per-page-change', perPage)
+      this.updateValue(1)
     },
     updateValue (value) {
       this.$emit('input', value)
@@ -435,11 +543,12 @@ const SbPagination = {
         }
       }, [
         leftArrowButton,
-        h('span', {
-          attrs: {
-            'data-testid': 'pagination-pages-information'
+        h(SbPaginationPagesText, {
+          props: {
+            pages: this.pages,
+            currentPage: this.value
           }
-        }, `${this.value} of ${this.pages} pages`),
+        }),
         rightArrowButton
       ])
     }
@@ -454,6 +563,8 @@ const SbPagination = {
         props: {
           total: this.total,
           perPage: this.perPage,
+          currentPage: this.value,
+          pages: this.pages,
           perPageAvailable: this.perPageAvailable
         },
         on: {
