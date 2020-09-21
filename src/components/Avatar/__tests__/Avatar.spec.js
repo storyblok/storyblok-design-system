@@ -196,4 +196,17 @@ describe('SbAvatar component', () => {
       expect(ToolipComponent.props('label')).toBe(name)
     })
   })
+
+  describe('when pass the bgColor property', () => {
+    const wrapper = factory({
+      name: 'John Doe',
+      bgColor: 'secondary'
+    })
+
+    it('should have the specific bg class', () => {
+      expect(
+        wrapper.find('.sb-avatar__initials.bg-secondary').exists()
+      ).toBe(true)
+    })
+  })
 })
