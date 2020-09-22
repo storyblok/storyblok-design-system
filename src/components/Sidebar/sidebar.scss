@@ -1,5 +1,6 @@
 @mixin activeItemState () {
   background-color: #262e48;
+  color: $color-primary;
 
   &::after {
     opacity: 1;
