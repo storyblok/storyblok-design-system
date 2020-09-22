@@ -1,8 +1,8 @@
 import SbIcon from '../Icon'
+import SbTooltip from '../Tooltip'
 import { capitalize } from '../../utils'
 
 import './tabs.scss'
-import './tab.scss'
 
 const SbTabPanels = {
   name: 'SbTabPanel',
@@ -31,6 +31,22 @@ const SbTabPanel = {
   }
 }
 
+const SbTabList = {
+  name: 'SbTabList',
+  render (h) {
+    const renderTabList = () => {
+      return h('ul', {
+        staticClass: 'sb-tab-list'
+      },
+      [
+        ...this.$slots.default
+      ])
+    }
+
+    return renderTabList()
+  }
+}
+
 const SbTab = {
   name: 'SbTab',
   props: {
@@ -52,15 +68,10 @@ const SbTab = {
   },
 
   methods: {
-    editLabel (e) {
-      const editedLabel = prompt('Set new label for this tab: ', this.label)
-
-      if (editedLabel) {
-        e.target.innerText = capitalize(editedLabel)
-      }
-    },
     onKeyDown (e) {
       if (e.key === 'Enter') {
+        this.isEditable = false
+        this.setActiveTab(e.target.value.toLowerCase())
         this.$emit('edited-tab', { value: capitalize(e.target.value) || this.label, name: e.target.value.toLowerCase() })
       }
     },
@@ -85,7 +96,9 @@ const SbTab = {
 
   data () {
     return {
-      active: ''
+      active: '',
+      showEditButton: false,
+      isEditable: this.edited
     }
   },
 
@@ -102,6 +115,33 @@ const SbTab = {
       })
     }
 
+    const renderEditButton = () => {
+      return h(SbTooltip, {
+        props: {
+          id: 'add-button',
+          label: 'Edit',
+          position: 'top'
+        }
+      },
+      [
+        h('button', {
+          staticClass: 'sb-tabs--edit-button',
+          on: {
+            click: () => { this.isEditable = true }
+          }
+        },
+        [
+          h(SbIcon, {
+            props: {
+              name: 'plus', // change to pencil when available
+              size: 'small',
+              color: 'primary-dark'
+            }
+          })
+        ])
+      ])
+    }
+
     return h('li', {
       staticClass: 'sb-tab',
       class: {
@@ -111,11 +151,15 @@ const SbTab = {
         name: this.label.toLowerCase()
       },
       on: {
-        click: () => this.setActiveTab(this.name),
-        dblclick: this.editLabel
+        click: () => { this.setActiveTab(this.name) },
+        mouseenter: () => { this.showEditButton = true },
+        mouseleave: () => { this.showEditButton = false }
       }
     },
-    this.edited ? [renderEditedTab()] : capitalize(this.label))
+    [
+      this.isEditable ? [renderEditedTab()] : capitalize(this.label),
+      this.showEditButton ? [renderEditButton()] : null
+    ])
   }
 }
 
@@ -181,23 +225,32 @@ const SbTabs = {
     }
 
     const renderAddButton = () => {
-      return h('button', {
-        attrs: {
-          class: 'sb-tabs--add-button'
-        },
-        on: {
-          click: () => this.addNewTab(h)
+      return h(SbTooltip, {
+        props: {
+          id: 'add-button',
+          label: 'New Label',
+          position: 'top'
         }
       },
       [
-        h(SbIcon, {
-          props: {
-            name: 'plus',
-            size: 'small'
+        h('button', {
+          attrs: {
+            class: 'sb-tabs--add-button'
+          },
+          on: {
+            click: () => this.addNewTab(h)
           }
-        })
-      ]
-      )
+        },
+        [
+          h(SbIcon, {
+            props: {
+              name: 'plus',
+              size: 'small'
+            }
+          })
+        ]
+        )
+      ])
     }
 
     return renderTabs()
@@ -208,5 +261,6 @@ export {
   SbTabs,
   SbTab,
   SbTabPanels,
-  SbTabPanel
+  SbTabPanel,
+  SbTabList
 }

@@ -3,6 +3,7 @@
   border-bottom: 1px solid $light-gray;
   padding: 0;
   margin: 0;
+  width: fit-content;
 
   &--add-button {
     background-color: transparent;
@@ -18,5 +19,52 @@
       border-bottom: none;
       border-radius: 5px 5px 0px 0px;
     }
+  }
+
+  &--vertical {
+    border: none;
+    .sb-tab-list {
+      display: grid;
+    }
+
+    .sb-tab--is-active {
+      border-bottom: none;
+      border-left: 3px solid $sb-green;
+    }
+  }
+
+  &--edit-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 2px;
+    margin-right: 2px;
+    vertical-align: text-top;
+    cursor: pointer;
+  }
+}
+
+.sb-tab-list {
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+}
+
+.sb-tab {
+  color: $light-gray;
+  font-family: $primary-font-family;
+  font-size: $text-text-medium-small;
+  font-weight: normal;
+  cursor: pointer;
+  padding: 0 10px 0 10px;
+  display: inline;
+  line-height: 33px;
+  min-width: 88px;
+  text-align: center;
+
+  &--is-active {
+    color: $primary-text-color;
+    font-weight: 500;
+    border-bottom: 3px solid $sb-green;
   }
 }

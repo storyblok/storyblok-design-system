@@ -2,7 +2,8 @@ import {
   SbTabs,
   SbTab,
   SbTabPanels,
-  SbTabPanel
+  SbTabPanel,
+  SbTabList
 } from '.'
 
 export default {
@@ -32,7 +33,7 @@ export default {
 }
 
 export const Default = args => ({
-  components: { SbTabs, SbTab },
+  components: { SbTabs, SbTab, SbTabList },
   props: Object.keys(args),
   methods: {
     onUpdate (val) {
@@ -46,22 +47,26 @@ export const Default = args => ({
   },
   template: `
     <SbTabs v-bind="{ showAddButton, type }" @changeModel="onUpdate">
-      <SbTab label="First" name="first" is-active />
-      <SbTab label="Secondary" name="secondary" />
-      <SbTab label="Third" name="third" />
-      <SbTab v-for="item in content" :key="item.name" :label="item.value" :name="item.name" />
+      <SbTabList>
+        <SbTab label="First" name="first" is-active />
+        <SbTab label="Secondary" name="secondary" />
+        <SbTab label="Third" name="third" />
+        <SbTab v-for="item in content" :key="item.name" :label="item.value" :name="item.name" />
+      </SbTabList>
     </SbTabs>
   `
 })
 
 export const TabsWithTabPanels = args => ({
-  components: { SbTabs, SbTab, SbTabPanels, SbTabPanel },
+  components: { SbTabs, SbTab, SbTabPanels, SbTabPanel, SbTabList },
   props: Object.keys(args),
   template: `
     <SbTabs v-bind="{ showAddButton, type }">
-      <SbTab label="First" name="first" is-active />
-      <SbTab label="Secondary" name="secondary" />
-      <SbTab label="Third" name="third" />
+      <SbTabList>
+        <SbTab label="First" name="first" is-active />
+        <SbTab label="Secondary" name="secondary" />
+        <SbTab label="Third" name="third" />
+      </SbTabList>
       
       <SbTabPanels>
         <SbTabPanel name="first">
