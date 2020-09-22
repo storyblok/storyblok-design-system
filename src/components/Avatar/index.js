@@ -16,6 +16,9 @@ const SbAvatar = {
   name: 'SbAvatar',
 
   props: {
+    bgColor: {
+      type: String
+    },
     description: {
       type: String
     },
@@ -63,6 +66,10 @@ const SbAvatar = {
       image.onerror = () => {
         this.isImageLoaded = false
       }
+    },
+
+    getBgColor () {
+      return this.bgColor ? `bg-${this.bgColor}` : generateRandomBgColor()
     }
   },
 
@@ -105,7 +112,7 @@ const SbAvatar = {
       }
 
       return h('img', {
-        staticClass: generateRandomBgColor(),
+        staticClass: this.getBgColor(),
         attrs: {
           alt: this.name,
           src: avatarFallback
@@ -153,7 +160,7 @@ const SbAvatar = {
 
       if (this.name) {
         return h('div', {
-          staticClass: 'sb-avatar__initials ' + generateRandomBgColor()
+          staticClass: 'sb-avatar__initials ' + this.getBgColor()
         }, [
           h('span', getInitials(this.name)),
           !!this.status && renderBadgeStatus()
