@@ -76,14 +76,18 @@ const SbSidebarLink = {
       })
     }
 
+    const ariaLabel = props.active
+      ? props.ariaLabel + ', Current Page'
+      : props.ariaLabel
+
     return h(props.as, {
       staticClass: 'sb-sidebar-link',
       class: {
         'sb-sidebar-link--active': props.active
       },
       attrs: {
-        'aria-label': props.ariaLabel || null,
-        'aria-current': props.active + '',
+        'aria-label': ariaLabel || null,
+        'aria-current': props.active && props.active + '',
         href: props.href || null
       },
       props: {

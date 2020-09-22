@@ -54,9 +54,6 @@ const SbSidebar = {
           staticClass: 'sb-sidebar-item',
           class: {
             'sb-sidebar-item--active': listItem.active
-          },
-          attrs: {
-            'aria-label': listItem.ariaLabel
           }
         }, [
           h(SbSidebarLink, {

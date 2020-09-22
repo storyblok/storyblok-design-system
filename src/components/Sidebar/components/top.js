@@ -33,9 +33,10 @@ const SbSidebarLogo = {
 
   render (h, { props }) {
     return h('svg', {
-      staticClass: 'sb-sidebar__logo',
+      staticClass: 'sb-sidebar-logo',
       attrs: {
-        role: 'presentation',
+        role: 'img',
+        'aria-label': 'Storyblok Official Logo',
         viewBox: props.minimize ? '0 0 29 33' : '0 0 158 33'
       },
       domProps: {

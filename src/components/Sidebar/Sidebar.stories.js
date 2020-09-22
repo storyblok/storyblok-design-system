@@ -46,7 +46,7 @@ export default {
         href: '#',
         icon: 'sidebar-dashboard',
         label: 'Dashboard',
-        ariaLabel: 'Ir para o dashboard',
+        ariaLabel: 'Goto dashboard',
         active: true
       },
       {
