@@ -1,7 +1,9 @@
 @mixin activeItemState () {
-  border-left-color: $color-primary;
-  color: $color-primary;
   background-color: #262e48;
+
+  &::after {
+    opacity: 1;
+  }
 }
 
 .sb-sidebar {
@@ -13,6 +15,11 @@
   &__top {
     display: flex;
     padding: 30px;
+
+    .sb-avatar {
+      display: block;
+      margin-left: 30px;
+    }
   }
 
   &__logo {
@@ -36,17 +43,30 @@
   }
 
   &-link  {
+    position: relative;
     display: flex;
     align-items: center;
     padding: 15px 30px;
     color: $white;
-    border-left: 3px solid transparent;
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 0px;
     text-decoration: none;
     vertical-align: middle;
     cursor: pointer;
+    transition: all 0.1s ease-in;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background-color: $color-primary;
+      opacity: 0;
+      transition: all 0.1s ease-in;
+    }
 
     &:hover {
       @include activeItemState();
@@ -61,8 +81,28 @@
     }
   }
 
-  // internal lib icons
-  .sb-avatar {
-    margin-left: 30px;
+  // modifiers
+  &--minimize {
+    max-width: 90px;
+
+    .sb-icon {
+      margin: 0;
+    }
+  }
+
+  &--minimize &__top {
+    flex-direction: column;
+
+    .sb-avatar {
+      margin: 30px 0 0;
+    }
+  }
+
+  &--minimize &-link {
+    justify-content: center;
+
+    &__label {
+      display: none;
+    }
   }
 }

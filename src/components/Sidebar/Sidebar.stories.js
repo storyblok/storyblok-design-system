@@ -10,7 +10,8 @@ const SidebarTemplate = args => ({
     <SbSidebar
       v-bind="{
         user,
-        listItems
+        listItems,
+        minimize
       }"
     >
 
@@ -32,7 +33,8 @@ export default {
     user: {
       name: 'Dominik Angerer',
       src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
-      email: 'fake@fake.com'
+      email: 'fake@fake.com',
+      minimize: false
     },
     listItems: [
       {
@@ -87,7 +89,8 @@ export default {
         icon: 'sidebar-settings',
         label: 'Settings'
       }
-    ]
+    ],
+    minimize: false
   },
   argTypes: {
     user: {
@@ -96,8 +99,21 @@ export default {
       control: {
         type: 'object'
       }
+    },
+    minimize: {
+      name: 'minimize',
+      description: 'Minimize the Sidebar to just show the icons',
+      control: {
+        type: 'boolean'
+      }
     }
   }
 }
 
 export const Default = SidebarTemplate.bind({})
+
+export const Minimized = SidebarTemplate.bind({})
+
+Minimized.args = {
+  minimize: true
+}

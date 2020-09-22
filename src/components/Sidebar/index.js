@@ -23,6 +23,10 @@ const SbSidebar = {
     },
     user: {
       type: Object
+    },
+    minimize: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -31,7 +35,11 @@ const SbSidebar = {
       return h('div', {
         staticClass: 'sb-sidebar__top'
       }, [
-        h(SbSidebarLogo),
+        h(SbSidebarLogo, {
+          props: {
+            minimize: this.minimize
+          }
+        }),
         h(SbSidebarUser, {
           props: {
             ...this.user || {}
@@ -71,7 +79,10 @@ const SbSidebar = {
     }
 
     return h('aside', {
-      staticClass: 'sb-sidebar'
+      staticClass: 'sb-sidebar',
+      class: {
+        'sb-sidebar--minimize': this.minimize
+      }
     }, [
       renderSidebarTop(),
 

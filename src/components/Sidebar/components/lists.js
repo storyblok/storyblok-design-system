@@ -45,10 +45,6 @@ const SbSidebarLink = {
       type: String,
       default: null
     },
-    hiddenLabel: {
-      type: Boolean,
-      default: false
-    },
     href: {
       type: String
     },
@@ -98,7 +94,7 @@ const SbSidebarLink = {
       }
     }, [
       renderIcon(),
-      !props.hiddenLabel && renderLabel()
+      renderLabel()
     ])
   }
 }
