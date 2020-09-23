@@ -11,7 +11,7 @@ export const AllColors = () => ({
   <section>
     <div>
       <h1>Primary palette</h1>
-      <h1>Brand Colors</h1>
+      <h3>Brand Colors</h3>
 
       <SbColors color-name="#00B3B0" name="Teal 100%"/>
       <SbColors color-name="#40C6C4" name="Teal 75%"/>
