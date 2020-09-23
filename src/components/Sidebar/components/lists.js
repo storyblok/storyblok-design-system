@@ -60,7 +60,7 @@ const SbSidebarLink = {
 
   functional: true,
 
-  render (h, { props, listeners }) {
+  render (h, { props, listeners, data }) {
     const renderLabel = () => {
       return h('span', {
         staticClass: 'sb-sidebar-link__label'
@@ -86,6 +86,7 @@ const SbSidebarLink = {
         'sb-sidebar-link--active': props.active
       },
       attrs: {
+        ...data.attrs,
         'aria-label': ariaLabel || null,
         'aria-current': props.active && props.active + '',
         href: props.href || null

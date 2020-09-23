@@ -122,6 +122,7 @@ const SbSidebarUserDropDown = {
 
     return h('div', {
       attrs: {
+        'data-testid': 'sidebar-user-dropdown',
         tabindex: 0,
         'aria-hidden': !this.active + ''
       },
