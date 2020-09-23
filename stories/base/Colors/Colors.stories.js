@@ -1,7 +1,7 @@
 import SbColors from '.'
 
 export default {
-  title: 'SbColors',
+  title: 'Design System/Base/Colors',
   component: SbColors
 }
 
