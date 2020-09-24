@@ -1,11 +1,27 @@
 .sb-tabs {
-  list-style-type: none;
-  border-bottom: 1px solid $light-gray;
+  width: 100%;
+  position: relative;
+  display: flex;
   padding: 0;
   margin: 0;
-  width: fit-content;
+  list-style-type: none;
 
-  &--add-button {
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $light-gray;
+  }
+
+  // elements
+  &__add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
     background-color: transparent;
     color: $light-gray;
     border: none;
@@ -13,17 +29,11 @@
     cursor: pointer;
   }
 
-  &--container {
-    .sb-tab--is-active{
-      border: 1px solid $light-gray;
-      border-bottom: none;
-      border-radius: 5px 5px 0px 0px;
-    }
-  }
-
+  // modifiers
   &--vertical {
     border: none;
     .sb-tab-list {
+      display: -ms-grid;
       display: grid;
     }
 
@@ -32,39 +42,76 @@
       border-left: 3px solid $sb-green;
     }
   }
-
-  &--edit-button {
-    background: none;
-    border: none;
-    padding: 0;
-    margin-left: 2px;
-    margin-right: 2px;
-    vertical-align: text-top;
-    cursor: pointer;
-  }
-}
-
-.sb-tab-list {
-  padding: 0;
-  margin: 0;
-  display: inline-flex;
 }
 
 .sb-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 14px 23px;
+  text-align: center;
   color: $light-gray;
   font-family: $primary-font-family;
   font-size: $text-text-medium-small;
   font-weight: normal;
   cursor: pointer;
-  padding: 0 10px 0 10px;
-  display: inline;
-  line-height: 33px;
-  min-width: 88px;
-  text-align: center;
 
+  // modifiers
   &--is-active {
     color: $primary-text-color;
     font-weight: 500;
-    border-bottom: 3px solid $sb-green;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: $sb-green;
+      z-index: 3;
+    }
   }
+
+  &--editable {
+    .sb-tooltip {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+      z-index: 4;
+    }
+
+    &:hover,
+    &:focus {
+      .sb-tab-edit-button {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.sb-tab-add {
+  position: relative;
+  text-align: center;
+  padding: 14px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.sb-tab-panel {
+  display: block;
+
+  &[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+.sb-tab-edit-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  vertical-align: text-top;
+  cursor: pointer;
+  opacity: 0;
 }
