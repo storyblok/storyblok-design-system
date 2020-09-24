@@ -86,10 +86,6 @@ const SbSidebarUserDropDown = {
         href: '#'
       },
       {
-        label: 'Sidebar Focus view',
-        href: '#'
-      },
-      {
         label: 'Personal access tokens',
         href: '#'
       },

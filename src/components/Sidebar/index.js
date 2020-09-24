@@ -8,6 +8,9 @@ import {
   SbSidebarLink
 } from './components'
 
+import SbButton from '../Button'
+import SbTooltip from '../Tooltip'
+
 /**
  * SbSidebar component
  *
@@ -27,6 +30,12 @@ const SbSidebar = {
     minimize: {
       type: Boolean,
       default: false
+    }
+  },
+
+  methods: {
+    toggleMinimizedState () {
+      this.$emit('update:minimize', !this.minimize)
     }
   },
 
@@ -71,7 +80,25 @@ const SbSidebar = {
       return h('div', {
         staticClass: 'sb-sidebar__bottom'
       }, [
-        this.$slots.bottom
+        this.$slots.bottom,
+        h(SbTooltip, {
+          props: {
+            label: this.minimize ? 'Expand Sidebar' : 'Collapse Sidebar',
+            position: 'right'
+          }
+        }, [
+          h(SbButton, {
+            props: {
+              icon: this.minimize ? 'chevron-right' : 'chevron-left',
+              size: 'small',
+              hasIconOnly: true,
+              isRounded: true
+            },
+            on: {
+              click: this.toggleMinimizedState
+            }
+          })
+        ])
       ])
     }
 
