@@ -2,7 +2,7 @@ const { globalStyles } = require('../config/globals')
 
 module.exports = {
   stories: [
-    // '../stories/**/*.stories.js',
+    '../stories/**/*.stories.js',
     '../src/**/*.stories.js'
   ],
   addons: [
