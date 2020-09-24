@@ -89,5 +89,29 @@ describe('Test SbSidebar component', () => {
     it('should have the --minimize class', () => {
       expect(wrapper.classes('sb-sidebar--minimize')).toBe(true)
     })
+
+    it('should have a SbButton to collapse the Sidebar and a SbTooltip with Collapse and Expand Sidebar messages', async () => {
+      const button = wrapper.find('[data-testid="sidebar-button-toggle"')
+
+      const tooltip = wrapper.find('[data-testid="sidebar-tooltip-toggle"')
+
+      expect(button.exists()).toBe(true)
+      expect(tooltip.exists()).toBe(true)
+
+      await button.trigger('click')
+
+      expect(wrapper.emitted('update:minimize')).toBeTruthy()
+      expect(wrapper.emitted('update:minimize')).toEqual([[false]])
+      expect(tooltip.props('label')).toBe('Expand Sidebar')
+
+      await wrapper.setProps({
+        minimize: false
+      })
+
+      await button.trigger('click')
+
+      expect(wrapper.emitted('update:minimize')).toEqual([[false], [true]])
+      expect(tooltip.props('label')).toBe('Collapse Sidebar')
+    })
   })
 })
