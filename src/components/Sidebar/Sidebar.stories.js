@@ -67,13 +67,25 @@ export const userData = {
 const SidebarTemplate = args => ({
   components: { SbSidebar, SbSidebarLink },
   props: Object.keys(args),
+  data: () => ({
+    internalMinimize: false
+  }),
+  watch: {
+    minimize: {
+      immediate: true,
+      handler (value) {
+        this.internalMinimize = value
+      }
+    }
+  },
   template: `
     <SbSidebar
       v-bind="{
         user,
-        listItems,
-        minimize
+        listItems
       }"
+
+      :minimize.sync="internalMinimize"
     >
 
       <template slot="bottom">
@@ -106,7 +118,7 @@ export default {
     },
     minimize: {
       name: 'minimize',
-      description: 'Minimize the Sidebar to just show the icons',
+      description: 'Minimize the Sidebar to just show the icons. When use this property, you should put the `sync` modifier (like `:minimize.sync`) to allow the sidebar change the state itself',
       control: {
         type: 'boolean'
       }
@@ -120,4 +132,12 @@ export const Minimized = SidebarTemplate.bind({})
 
 Minimized.args = {
   minimize: true
+}
+
+Minimized.parameters = {
+  docs: {
+    description: {
+      story: 'When you define the sidebar as `minimize`, it will collapse the sidebar to just show the link icons.'
+    }
+  }
 }
