@@ -38,7 +38,25 @@ const TabsTemplate = template => args => ({
       }
     }
   },
-  template
+  template: template || `
+    <div>
+      <SbTabs
+        v-model="currentTab"
+        :show-add-button="showAddButton"
+        :type="type"
+        @new-tab="onNewTab"
+      >
+        <SbTab
+          v-for="tab in tabs"
+          :key="tab.name"
+          :label="tab.label"
+          :name="tab.name"
+          editable
+          @edit-tab="onEditTab"
+        />
+      </SbTabs>
+    </div>
+  `
 })
 
 export default {
@@ -67,28 +85,21 @@ export default {
   }
 }
 
-export const Default = TabsTemplate(`
-  <div>
-    <SbTabs
-      v-model="currentTab"
-      :show-add-button="showAddButton"
-      :type="type"
-      @new-tab="onNewTab"
-    >
-      <SbTab
-        v-for="tab in tabs"
-        :key="tab.name"
-        :label="tab.label"
-        :name="tab.name"
-        editable
-        @edit-tab="onEditTab"
-      />
-    </SbTabs>
-  </div>
-  `
-).bind({})
+export const Default = TabsTemplate().bind({})
 
-export const TabsWithTabPanels = TabsTemplate(`
+export const Container = TabsTemplate().bind({})
+
+Container.args = {
+  type: 'container'
+}
+
+export const Vertical = TabsTemplate().bind({})
+
+Vertical.args = {
+  type: 'vertical'
+}
+
+export const WithTabPanels = TabsTemplate(`
   <div>
     <SbTabs
       v-model="currentTab"

@@ -29,17 +29,43 @@
     cursor: pointer;
   }
 
+  &--container {
+    .sb-tab--is-active {
+      border: 1px solid $light-gray;
+      border-bottom: none;
+      border-radius: 5px 5px 0px 0px;
+
+      &::after {
+        background-color: $white;
+      }
+    }
+  }
+
   // modifiers
   &--vertical {
-    border: none;
-    .sb-tab-list {
-      display: -ms-grid;
-      display: grid;
+    flex-direction: column;
+
+    &::after {
+      display: none;
     }
 
     .sb-tab--is-active {
-      border-bottom: none;
-      border-left: 3px solid $sb-green;
+      &::after {
+        width: 3px;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    .sb-tab--editable {
+      .sb-tooltip {
+        position: relative;
+        margin-left: 5px;
+        top: auto;
+        right: 0;
+        transform: none;
+      }
     }
   }
 }
