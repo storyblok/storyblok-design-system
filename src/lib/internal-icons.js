@@ -264,6 +264,15 @@ const icons = {
         />
       </path>
     `
+  },
+  edit: {
+    viewBox: '0 0 12 12',
+    path: `
+    <g fill="none" fill-rule="evenodd">
+      <path d="M-2-2h16v16H-2z"/>
+      <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8.2222222 1L11 3.77777778 3.77777778 11H1V8.2222222z"/>
+    </g>
+    `
   }
 }
 

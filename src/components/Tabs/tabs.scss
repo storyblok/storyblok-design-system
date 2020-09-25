@@ -134,10 +134,19 @@
 }
 
 .sb-tab-edit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   background: transparent;
   border: none;
-  padding: 0;
-  vertical-align: text-top;
   cursor: pointer;
+  color: currentColor;
+  fill: currentColor;
   opacity: 0;
+
+  svg {
+    width: 12px;
+    height: 12px;
+  }
 }

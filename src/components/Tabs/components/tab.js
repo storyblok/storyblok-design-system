@@ -86,7 +86,7 @@ const SbEditButton = {
       [
         h(SbIcon, {
           props: {
-            name: 'plus', // change to pencil when available
+            name: 'edit',
             size: 'small',
             color: 'primary-dark'
           }
