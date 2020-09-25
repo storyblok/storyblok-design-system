@@ -9,7 +9,10 @@ export const SbTabAdd = {
 
   render (h, { listeners }) {
     return h('li', {
-      staticClass: 'sb-tab-add'
+      staticClass: 'sb-tab-add',
+      attrs: {
+        'data-testid': 'new-tab-container'
+      }
     }, [
       h(SbTooltip, {
         props: {
