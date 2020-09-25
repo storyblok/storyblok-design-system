@@ -171,6 +171,16 @@
 
     .sb-button {
       opacity: 1;
+      color: $color-primary-dark;
+      background-color: $light-75;
+
+      &:hover {
+        background-color: $light-75;
+      }
+
+      &:focus {
+        outline: 3px solid $light-25;
+      }
     }
   }
 
