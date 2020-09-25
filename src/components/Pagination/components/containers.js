@@ -104,7 +104,7 @@ export const SbPerPageContainer = {
     return h('div', {
       staticClass: 'sb-pagination__per-page-container'
     }, [
-      h('span', 'Itens per page:'),
+      h('span', 'Items per page:'),
       h(SbPaginationSelect, {
         attrs: {
           'data-testid': 'per-page-select'
