@@ -86,9 +86,9 @@ export const JustIcons = args => ({
   props: Object.keys(args),
   template: `
     <SbGroupButton v-bind="{ size, type, hasSpaces }">
-      <SbButton has-icon-only icon="calendar" />
-      <SbButton has-icon-only icon="plus" />
-      <SbButton has-icon-only icon="overflow-menu-vertic" />
+      <SbButton has-icon-only icon="calendar" iconDescription="Calendar Icon" />
+      <SbButton has-icon-only icon="plus" iconDescription="Plus Icon" />
+      <SbButton has-icon-only icon="overflow-menu-vertic" iconDescription="Overflow Icon" />
     </SbGroupButton>
   `
 })

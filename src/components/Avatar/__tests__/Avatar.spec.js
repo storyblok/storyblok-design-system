@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils'
 import { waitMs } from '../../../utils/tests-utils'
 import SbAvatar from '..'
 import SbBadge from '../../Badge'
+import SbToolip from '../../Tooltip'
 
 const LOAD_FAILURE_SRC = 'LOAD_FAILURE_SRC'
 const LOAD_SUCCESS_SRC = 'LOAD_SUCCESS_SRC'
@@ -170,6 +171,29 @@ describe('SbAvatar component', () => {
       expect(BadgeComponent.props('type')).toBe('positive')
 
       expect(BadgeComponent.props('contract')).toBe(true)
+    })
+  })
+
+  describe('when pass the useTooltip property', () => {
+    const name = 'John Doe'
+    const wrapper = factory({
+      src: LOAD_SUCCESS_SRC,
+      useTooltip: true,
+      name
+    })
+
+    const ToolipComponent = wrapper.findComponent(SbToolip)
+
+    it('should exists the SbToolip component', () => {
+      expect(ToolipComponent.exists()).toBe(true)
+    })
+
+    it('should have the bottom position as property', () => {
+      expect(ToolipComponent.props('position')).toBe('bottom')
+    })
+
+    it('should have the correct label as property', () => {
+      expect(ToolipComponent.props('label')).toBe(name)
     })
   })
 

@@ -61,6 +61,7 @@ export default {
     isFullWidth: false,
     isRounded: false,
     icon: null,
+    iconDescription: null,
     iconRight: null,
     hasIconOnly: false,
     label: 'Default',
@@ -73,6 +74,13 @@ export default {
       description: 'Disable button',
       control: {
         type: 'boolean'
+      }
+    },
+    iconDescription: {
+      name: 'iconDescription',
+      description: 'Description to Icon when the `SbButton` has the `hasIconOnly` property setted to true',
+      control: {
+        type: 'text'
       }
     },
     iconRight: {
@@ -303,6 +311,7 @@ export const JustIcons = args => ({
       :icon="icon"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
+      :icon-description="iconDescription"
       is-rounded
       has-icon-only
     />
@@ -311,7 +320,8 @@ export const JustIcons = args => ({
 
 JustIcons.args = {
   icon: 'plus',
-  isRounded: false
+  isRounded: false,
+  iconDescription: 'Hey! I have a description!'
 }
 
 JustIcons.parameters = {
