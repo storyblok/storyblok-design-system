@@ -82,6 +82,10 @@ const SbAvatarGroup = {
   name: 'AvatarGroup',
 
   props: {
+    maxElements: {
+      type: Number,
+      default: 5
+    },
     size: {
       type: String,
       validator: isSizeValid
@@ -111,7 +115,7 @@ const SbAvatarGroup = {
     const sizeClass = this.size ? `sb-avatar-group--${this.size}` : null
 
     const childrenCount = children.length
-    const maxElements = 6
+    const maxElements = this.maxElements || 5
 
     const data = children.map((element, index) => {
       if (maxElements && index < maxElements) {
