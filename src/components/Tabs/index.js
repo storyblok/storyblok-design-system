@@ -1,12 +1,12 @@
-import {
-  SbTab,
-  SbTabAdd,
-  SbTabPanel,
-  SbTabPanels
-} from './components'
+import { SbTab, SbTabAdd } from './components'
 
 import './tabs.scss'
 
+/**
+ * SbTabs component
+ *
+ * SbTabs is a container to SbTab component to perform a tab visualization.
+ */
 const SbTabs = {
   name: 'SbTabs',
   props: {
@@ -116,7 +116,5 @@ const SbTabs = {
 
 export {
   SbTabs,
-  SbTab,
-  SbTabPanels,
-  SbTabPanel
+  SbTab
 }

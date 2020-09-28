@@ -125,14 +125,6 @@
   align-items: center;
 }
 
-.sb-tab-panel {
-  display: block;
-
-  &[aria-hidden="true"] {
-    display: none;
-  }
-}
-
 .sb-tab-edit-button {
   display: flex;
   align-items: center;

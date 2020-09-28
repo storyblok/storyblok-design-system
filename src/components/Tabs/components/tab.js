@@ -99,6 +99,11 @@ const SbEditButton = {
   }
 }
 
+/**
+ * SbTab component
+ *
+ * SbTab is a tab component to perform a tab visualization.
+ */
 export const SbTab = {
   name: 'SbTab',
   props: {

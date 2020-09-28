@@ -1,9 +1,5 @@
-import {
-  SbTabs,
-  SbTab,
-  SbTabPanels,
-  SbTabPanel
-} from '.'
+import { SbTabs, SbTab } from '.'
+import { SbTabPanels, SbTabPanel } from '../TabPanels'
 
 const TabsTemplate = template => args => ({
   components: { SbTabs, SbTab, SbTabPanel, SbTabPanels },
@@ -65,6 +61,13 @@ export default {
   args: {
     showAddButton: false,
     type: null
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Tabs keeps related content in a single container that is shown and hidden through navigation.'
+      }
+    }
   },
   argTypes: {
     showAddButton: {
