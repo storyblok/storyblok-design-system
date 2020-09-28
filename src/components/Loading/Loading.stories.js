@@ -11,7 +11,8 @@ const LoadingTemplate = args => ({
         size,
         value,
         showPercentage,
-        color
+        color,
+        uiBlock
       }"
     />
   `
@@ -32,7 +33,8 @@ export default {
     size: 'normal',
     value: 0,
     showPercentage: false,
-    color: 'primary'
+    color: 'primary',
+    uiBlock: false
   },
   argTypes: {
     type: {
@@ -68,10 +70,17 @@ export default {
     },
     color: {
       name: 'color',
-      description: 'Color',
+      description: 'Select the color of the loading spinner with the colors available in our Desing system.',
       control: {
         type: 'select',
         options: availableColors
+      }
+    },
+    uiBlock: {
+      name: 'uiBlock',
+      description: 'With this property the user`s ui will be locked when starting loading.',
+      control: {
+        type: 'boolean'
       }
     }
   }
@@ -212,6 +221,21 @@ SpinnerWithPercentage.parameters = {
   docs: {
     description: {
       story: 'The spinners also show the percentage of the loanding, pass the `showPercentage` property so that the percentage is shown.'
+    }
+  }
+}
+
+export const BlockingUiLoading = LoadingTemplate.bind({})
+
+BlockingUiLoading.args = {
+  uiBlock: true,
+  size: 'x-large'
+}
+
+BlockingUiLoading.parameters = {
+  docs: {
+    description: {
+      story: 'The `uiBlock` feature causes the user`s screen to be blocked during loading.'
     }
   }
 }

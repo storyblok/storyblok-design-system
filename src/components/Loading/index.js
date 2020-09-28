@@ -3,6 +3,7 @@ import './loading.scss'
 import { loadingSizes } from './utils'
 
 import SbIcon from '../Icon'
+import SbBlockUI from '../BlockUI'
 
 const SbLoading = {
   name: 'SbLoading',
@@ -17,7 +18,7 @@ const SbLoading = {
       validator: (size) => loadingSizes.indexOf(size) !== -1
     },
     value: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     showPercentage: {
@@ -27,6 +28,10 @@ const SbLoading = {
     color: {
       type: String,
       default: null
+    },
+    uiBlock: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -47,7 +52,7 @@ const SbLoading = {
           class: from,
           for: id
         }
-      }, [`${this.value}%`])
+      }, [`${parseInt(this.value)}%`])
     }
 
     const renderProgressBarLoading = () => {
@@ -55,30 +60,42 @@ const SbLoading = {
         attrs: {
           class: 'sb-loading--bar',
           id: 'progres-bar-loading',
-          value: this.value,
+          value: parseInt(this.value),
           min: 0,
           max: 100
         }
       })
     }
 
-    if (this.type === 'bar') {
+    const returnSizeOfSpinner = () => {
+      if (this.type === 'spinner') {
+        return `sb-loading--spinner-${this.size || 'normal'}`
+      }
+      return ''
+    }
+
+    const renderLoading = () => {
       return h('div', {
-        staticClass: 'sb-loading sb-loading--progress-bar'
-      }, [
-        renderProgressBarLoading(),
-        this.showPercentage ? renderPercentage('sb-loading--bar-label') : null
+        staticClass: 'sb-loading ' + returnSizeOfSpinner(),
+        class: {
+          'sb-loading--block': this.uiBlock,
+          'sb-loading--progress-bar': this.type === 'bar',
+          'sb-loading--spinner': this.type === 'spinner'
+        }
+      },
+      [
+        this.type === 'bar' ? renderProgressBarLoading() : renderSpinnerLoading(),
+        this.showPercentage ? renderPercentage(this.type === 'bar' ? 'sb-loading--bar-label' : 'sb-loading--spinner-label') : null
       ])
     }
 
-    if (this.type === 'spinner') {
-      return h('div', {
-        staticClass: `sb-loading sb-loading--spinner sb-loading--spinner-${this.size || 'normal'}`
-      }, [
-        renderSpinnerLoading(),
-        this.showPercentage ? renderPercentage('sb-loading--spinner-label') : null
-      ])
+    if (this.uiBlock) {
+      return h(SbBlockUI,
+        [
+          renderLoading()
+        ])
     }
+    return renderLoading()
   }
 }
 

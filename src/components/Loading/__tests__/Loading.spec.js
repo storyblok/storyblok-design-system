@@ -38,8 +38,19 @@ describe('Testing loading component', () => {
       showPercentage: true
     })
 
-    expect(wrapper.find('div').attributes('class')).toBe('sb-loading sb-loading--spinner sb-loading--spinner-normal')
+    expect(wrapper.find('div').attributes('class')).toBe('sb-loading sb-loading--spinner-normal sb-loading--spinner')
     expect(wrapper.find('svg').attributes('class')).toBe('sb-icon sb-icon--normal')
     expect(wrapper.find('label').text()).toBe('35%')
+  })
+
+  it('test if block ui render correctly', async () => {
+    const wrapper = factory({
+      type: 'spinner',
+      size: 'normal',
+      value: 35,
+      uiBlock: true
+    })
+
+    expect(wrapper.find('div').attributes('class')).toBe('sb-block-ui')
   })
 })
