@@ -86,7 +86,10 @@ const SbAvatar = {
 
   render (h) {
     const avatarProps = {
-      staticClass: 'sb-avatar'
+      staticClass: 'sb-avatar',
+      on: {
+        ...this.$listeners
+      }
     }
 
     if (this.size) {
