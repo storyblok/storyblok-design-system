@@ -1,5 +1,6 @@
 import { mount, RouterLinkStub, shallowMount } from '@vue/test-utils'
 import { SbBreadcrumbItem, SbBreadcrumbLink } from '../BreadcrumItem'
+import SbTooltip from '../../Tooltip'
 
 const factory = (propsData = {}) => {
   return mount(SbBreadcrumbItem, {
@@ -34,17 +35,27 @@ describe('SbBreadcrumbItem component', () => {
   })
 
   describe('when render a long label', () => {
+    const title = 'A long title that should be render correctly'
+    const label = 'A long label to test'
     const wrapper = factory({
       href: '/test-link',
-      label: 'A long label to test',
-      title: 'A long title that should be render correctly'
+      label,
+      title
     })
 
     it('should render the first 13 letters', () => {
       const linkTag = wrapper.find('a')
       expect(linkTag.attributes('href')).toBe('/test-link')
-      expect(linkTag.attributes('title')).toBe('A long title that should be render correctly')
+      expect(linkTag.attributes('title')).toBe(title)
       expect(linkTag.text()).toBe('A long label ...')
+    })
+
+    it('should render a tooltip with the long label at the bottom position', () => {
+      const SbTooltipComponent = wrapper.findComponent(SbTooltip)
+
+      expect(SbTooltipComponent.exists()).toBe(true)
+      expect(SbTooltipComponent.props('label')).toBe(label)
+      expect(SbTooltipComponent.props('position')).toBe('bottom')
     })
   })
 

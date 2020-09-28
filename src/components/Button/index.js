@@ -1,5 +1,6 @@
 // other components
 import SbIcon from '../Icon'
+import SbTooltip from '../Tooltip'
 
 // styles
 import './button.scss'
@@ -24,6 +25,10 @@ const SbButton = {
       default: null
     },
     iconRight: {
+      type: String,
+      default: null
+    },
+    iconDescription: {
       type: String,
       default: null
     },
@@ -108,6 +113,15 @@ const SbButton = {
       !this.hasIconOnly && renderLabel(),
       this.iconRight && renderIcon(this.iconRight)
     ]
+
+    if (this.hasIconOnly && this.iconDescription) {
+      return h(SbTooltip, {
+        props: {
+          label: this.iconDescription,
+          position: 'bottom'
+        }
+      }, [renderButton(content)])
+    }
 
     return renderButton(content)
   }
