@@ -1,0 +1,16 @@
+.sb-colors {
+  height: 100px;
+  width: 250px;
+  padding: 0;
+  margin: -1px;
+  display: inline-block;
+
+  &--container {
+    color: rgb(177, 181, 190);
+    font-size: 14px;
+    height: 150px;
+    width: 250px;
+    display: inline-grid;
+    margin-bottom: 10px;
+  }
+}

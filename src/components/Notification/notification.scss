@@ -1,0 +1,135 @@
+.sb-notification {
+  width: 430px;
+  height: 59px;
+  border-radius: 10px;
+  margin: 10px;
+
+  // Notification modifiers
+  &--full-content {
+    width: 1179px;
+    height: 90px;
+
+    .sb-notification--link {
+      float: right;
+      margin-right: 20px;
+      margin-top: 37px;
+      z-index: 1;
+    }
+  }
+
+  &--full {
+    width: 1179px;
+  }
+
+  &--expandable {
+    height: 136px;
+  }
+
+  &--expandle-button {
+    margin-top: 22px;
+    margin-right: 20px;
+    padding: 0;
+    float: right;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  &--btn {
+    margin-top: 22px;
+    margin-right: 20px;
+    padding: 0;
+    float: right;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    svg {
+      vertical-align: top;
+    }
+  }
+
+  // Status of notication
+  &--icon-container {
+    height: 16px;
+    display: inline-block;
+    background-color:  transparent;
+    margin-left: 18px;
+    margin-right: 18px;
+    margin-top: 21px;
+
+    svg {
+      vertical-align: top;
+    }
+  }
+
+  &--positive {
+    background-color: $green-25;
+  }
+
+  &--warning {
+    background-color: $yellow-25;
+  }
+
+  &--info {
+    background-color: $blue-25;
+  }
+
+  &--negative {
+    background-color: $red-25;
+
+    .sb-notification--title {
+      color: $red;
+    }
+  }
+
+  &--general {
+    background-color: $white;
+    @include generalBoxShadow();
+    border-radius: 10px;
+  }
+
+  // Content style for notification
+  &--content {
+    height: 118px;
+  }
+
+  &--title {
+    font-size: 16px;
+    font-weight: 500;
+    vertical-align: middle;
+    width: 75%;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &--description {
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 52px;
+    margin-right: 34px;
+    margin-top: 13px;
+    line-height: 1.5em;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+  }
+
+  &--link {
+    margin-left: 52px;
+    margin-top: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 34px;
+    
+    a {
+      font-size: 14px;
+      font-weight: normal;
+      text-decoration: none;
+      text-decoration-color: $primary-text-color;
+      color: $primary-text-color;
+      text-decoration: underline;
+    }
+  }
+}

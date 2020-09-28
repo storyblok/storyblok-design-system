@@ -4,6 +4,7 @@ import { canUseDOM, includes } from '../../utils'
 import { isSizeValid, getInitials, generateRandomBgColor } from './utils.js'
 
 import SbBadge from '../Badge'
+import SbTooltip from '../Tooltip'
 
 const positionTypes = ['top', 'bottom']
 
@@ -16,6 +17,9 @@ const SbAvatar = {
   name: 'SbAvatar',
 
   props: {
+    bgColor: {
+      type: String
+    },
     description: {
       type: String
     },
@@ -40,6 +44,10 @@ const SbAvatar = {
     },
     status: {
       type: String
+    },
+    useTooltip: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -63,6 +71,10 @@ const SbAvatar = {
       image.onerror = () => {
         this.isImageLoaded = false
       }
+    },
+
+    getBgColor () {
+      return this.bgColor ? `bg-${this.bgColor}` : generateRandomBgColor()
     }
   },
 
@@ -74,7 +86,10 @@ const SbAvatar = {
 
   render (h) {
     const avatarProps = {
-      staticClass: 'sb-avatar'
+      staticClass: 'sb-avatar',
+      on: {
+        ...this.$listeners
+      }
     }
 
     if (this.size) {
@@ -105,7 +120,7 @@ const SbAvatar = {
       }
 
       return h('img', {
-        staticClass: generateRandomBgColor(),
+        staticClass: this.getBgColor(),
         attrs: {
           alt: this.name,
           src: avatarFallback
@@ -144,7 +159,10 @@ const SbAvatar = {
     const renderAvatar = () => {
       if (this.src || this.$slots.default) {
         return h('div', {
-          staticClass: 'sb-avatar__image'
+          staticClass: 'sb-avatar__image',
+          attrs: {
+            ...(this.useTooltip && { tabindex: 0 })
+          }
         }, [
           renderAvatarImage(),
           !!this.status && renderBadgeStatus()
@@ -153,7 +171,10 @@ const SbAvatar = {
 
       if (this.name) {
         return h('div', {
-          staticClass: 'sb-avatar__initials ' + generateRandomBgColor()
+          staticClass: 'sb-avatar__initials ' + this.getBgColor(),
+          attrs: {
+            ...(this.useTooltip && { tabindex: 0 })
+          }
         }, [
           h('span', getInitials(this.name)),
           !!this.status && renderBadgeStatus()
@@ -161,11 +182,22 @@ const SbAvatar = {
       }
     }
 
+    if (this.name && this.useTooltip) {
+      return h('div', avatarProps, [
+        h(SbTooltip, {
+          props: {
+            label: this.name,
+            position: 'bottom'
+          }
+        }, [renderAvatar()])
+      ])
+    }
+
     const children = [
       renderAvatar()
     ]
 
-    if (this.showName && this.name) {
+    if (this.showName && this.name && !this.useTooltip) {
       children.push(
         renderTextContainer()
       )

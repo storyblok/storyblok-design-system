@@ -1,0 +1,103 @@
+.sb-pagination {
+  display: inline-flex;
+  align-items: center;
+  height: 53px;
+  font-size: 14px;
+  color: $color-primary-dark;
+  box-shadow: 0px -1px 0px 0px $light, 0px 1px 0px 0px $light;
+
+  // elements
+  &__per-page-container {
+    margin-right: 120px;
+    padding-left: 10px;
+  }
+
+  &__pages-container {
+    margin-right: 30px;
+  }
+
+  &__select {
+    margin: 0 10px;
+    border: none;
+  }
+
+  &__placeholder {
+    font-size: 13px;
+    color: $light-gray;
+    font-weight: normal;
+  }
+
+  &__button {
+    width: 55px;
+    height: 55px;
+    background-color: transparent;
+    border: none;
+    border-left: 1px solid $light;
+    color: $color-primary-dark;
+    cursor: pointer;
+
+    &:not(:disabled):hover {
+      color: $color-primary;
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+      color: $sb-dark-blue-25;
+    }
+  }
+
+  &-carousel-container {
+    display: flex;
+    margin: 0 20px;
+  }
+
+  &-dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    background-color: $light;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+
+    &:not(:first-child) {
+      margin-left: 15px;
+    }
+
+    &--active {
+      background-color: $color-primary;
+    }
+  }
+
+  // modifiers
+  &--full-width {
+    width: 100%;
+  }
+
+  &--full-width &__per-page-container {
+    margin-right: auto;
+  }
+
+  &--compact {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  &--compact > span {
+    margin: 0 20px;
+  }
+
+  &--compact &__button {
+    border: none;
+    border-left: 1px solid $light;
+    border-right: 1px solid $light;
+  }
+
+  &--carousel {
+    box-shadow: none;
+  }
+
+  &--carousel &__button {
+    border: none;
+  }
+}

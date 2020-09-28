@@ -1,5 +1,6 @@
 import SbAvatar from './index'
 
+import { availableColors } from '../../utils'
 import { badgeTypes } from '../Badge/lib'
 
 // default export defines configurations to all stories
@@ -14,15 +15,25 @@ export default {
     }
   },
   args: {
+    bgColor: null,
     description: null,
     descriptionPosition: null,
     name: null,
     size: 'normal',
     showName: false,
     src: null,
-    status: null
+    status: null,
+    useTooltip: false
   },
   argTypes: {
+    bgColor: {
+      name: 'bgColor',
+      description: 'Add a background color when the `SbAvatar` has the initials or the fallback icon',
+      control: {
+        type: 'select',
+        options: availableColors
+      }
+    },
     description: {
       name: 'description',
       description: 'Description to `SbAvatar`',
@@ -74,6 +85,13 @@ export default {
         type: 'select',
         options: badgeTypes
       }
+    },
+    useTooltip: {
+      name: 'useTooltip',
+      description: 'Enable show a tooltip with the username on the bottom',
+      control: {
+        type: 'boolean'
+      }
     }
   }
 }
@@ -84,6 +102,7 @@ export const Default = (args) => ({
   template: `
     <SbAvatar
       v-bind="{
+        bgColor,
         description,
         descriptionPosition,
         name,
@@ -254,6 +273,39 @@ WithFallback.parameters = {
   }
 }
 
+export const WithStatus = (args) => ({
+  components: { SbAvatar },
+  props: Object.keys(args),
+  template: '<SbAvatar :src="src" :status="status" :size="size" />'
+})
+
+WithStatus.args = {
+  src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
+  status: 'positive'
+}
+
+export const WithInitials = args => ({
+  components: { SbAvatar },
+  props: Object.keys(args),
+  template: `<div>
+    <SbAvatar :size="size" :name="name" :bg-color="bgColor" />
+  </div>`
+})
+
+WithInitials.args = {
+  size: 'large',
+  name: 'Ada Lovelace',
+  bgColor: 'primary'
+}
+
+WithInitials.parameters = {
+  docs: {
+    description: {
+      story: 'When you do not use the `src` attribute, the component will use the `name` attribute to show the initials to name'
+    }
+  }
+}
+
 export const WithInternalElements = () => ({
   components: { SbAvatar },
   template: `<div>
@@ -279,13 +331,22 @@ WithInternalElements.parameters = {
   }
 }
 
-export const WithStatus = (args) => ({
+export const WithTooltip = (args) => ({
   components: { SbAvatar },
   props: Object.keys(args),
-  template: '<SbAvatar :src="src" :status="status" :size="size" />'
+  template: '<SbAvatar :src="src" :name="name" :use-tooltip="useTooltip" />'
 })
 
-WithStatus.args = {
+WithTooltip.args = {
   src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
-  status: 'positive'
+  name: 'John Doe',
+  useTooltip: true
+}
+
+WithTooltip.parameters = {
+  docs: {
+    description: {
+      story: 'When you set the `useTooltip` property, you need to provide a `name` property that should be used for tooltip label. This should not render the user name and description on right'
+    }
+  }
 }

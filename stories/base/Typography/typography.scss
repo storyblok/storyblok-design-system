@@ -1,0 +1,24 @@
+.sb-typography {
+  &__label {
+    color: #b1b5be;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    color: #1b243f;
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 50px;
+  }
+
+  &__subtitle {
+    color: #1b243f;
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}
