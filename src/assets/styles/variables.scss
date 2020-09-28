@@ -56,12 +56,27 @@ $white:                                        #FFF;
 // Typography
 $primary-font-family:                            'Roboto';
 $primary-text-color:                             $sb-dark-blue;
+$font-size-default:                              16px;
+$line-height-default:                            1;
 
 $text-header:                                    25px;
 $text-subheader:                                 18px;
 $text-text-medium:                               16px;
 $text-text-medium-small:                         14px;
 $text-text-small:                                13px;
+
+$font-size-xs:                                   0.75rem;
+$font-size-sm:                                   0.8125rem;
+$font-size-md:                                   0.875rem;
+$font-size-lg:                                   1rem;
+
+// Font weight
+$font-weight-thin:                               100;
+$font-weight-light:                              300;
+$font-weight-regular:                            400;
+$font-weight-medium:                             500;
+$font-weight-bold:                               700;
+
 // ----
 
 // Global Variables
@@ -82,7 +97,33 @@ $colors: (
   'positive':                                    $color-positive,
   'negative':                                    $color-negative,
   'warning':                                     $color-warning,
-  'white':                                       $color-white
+  'white':                                       $color-white,
+  'teal':                                        $sb-green,
+  'ink':                                         $sb-dark-blue,
+  'green':                                       $green,
+  'yellow':                                      $yellow,
+  'blue':                                        $blue,
+  'orange':                                      $orange,
+  'red':                                         $red,
+  'light':                                       $light,
+  'light-gray':                                  $light-gray
+);
+
+// Font size
+$font-size: (
+  'xs':                                          $font-size-xs,
+  'sm':                                          $font-size-sm,
+  'md':                                          $font-size-md,
+  'lg':                                          $font-size-lg,
+);
+
+// Font weight
+$font-weight: (
+  'thin':                                        $font-weight-thin,
+  'light':                                       $font-weight-light,
+  'regular':                                     $font-weight-regular,
+  'medium':                                      $font-weight-medium,
+  'bold':                                        $font-weight-bold,
 );
 
 // Avatar variables
