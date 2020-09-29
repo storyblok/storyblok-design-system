@@ -93,8 +93,9 @@ export default {
         }, childrenElement.componentOptions.children)
       }
 
+      const childrenData = childrenElement.data || {}
       return h(childrenElement.tag, {
-        ...(childrenElement.data || {}),
+        ...childrenData,
         attrs: {
           ...(childrenElement.data ? childrenElement.data.attrs : {}),
           'aria-describedby': id
@@ -104,7 +105,8 @@ export default {
           blur: this.hideTooltip,
           mouseenter: this.showTooltip,
           mouseleave: this.hideTooltip,
-          keydown: this.handleKeydown
+          keydown: this.handleKeydown,
+          ...(childrenData.on || {})
         }
       }, childrenElement.children)
     }
