@@ -172,15 +172,17 @@ const SbTabs = {
         return element
       })
     }
-    const typeTab = this.type ? `sb-tabs--${this.type}` : null
 
     return h('ul', {
       staticClass: 'sb-tabs',
+      class: {
+        'sb-tabs--container': !this.isVertical && this.type === 'container',
+        'sb-tabs--vertical': this.isVertical
+      },
       attrs: {
         role: 'tablist',
         ...this.$attrs
-      },
-      class: [typeTab]
+      }
     },
     [
       processChilren(),

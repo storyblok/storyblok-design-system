@@ -99,7 +99,7 @@ export default {
       description: 'With prop `type` you can change the type of tab view',
       control: {
         type: 'select',
-        options: ['container', 'vertical']
+        options: ['container']
       }
     }
   }
