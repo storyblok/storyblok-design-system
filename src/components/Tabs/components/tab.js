@@ -160,12 +160,11 @@ export const SbTab = {
     emitActivateTab (value) {
       this.$emit('activate-tab', value)
     },
-    setActiveTab (event) {
-      if (event.key === 'Tab') {
-        return
-      }
-
-      this.emitActivateTab(this.name)
+    handleClick () {
+      this.$emit('activate-tab', this.name)
+    },
+    handleKeyDown (event) {
+      this.$emit('change-tab', event)
     },
     setEditable () {
       this.internalEditable = true
@@ -197,22 +196,24 @@ export const SbTab = {
     return h('li', {
       staticClass: 'sb-tab',
       attrs: {
-        tabindex: 0,
-        'aria-selected': this.activate + ''
+        role: 'tab',
+        tabindex: this.activate ? 0 : -1,
+        'aria-selected': this.activate + '',
+        ...this.$attrs
       },
       class: {
         'sb-tab--editable': this.editable,
         'sb-tab--is-active': this.activate
       },
       on: {
-        click: this.setActiveTab,
-        keydown: this.setActiveTab
+        click: this.handleClick,
+        keydown: this.handleKeyDown
       }
     },
     [
       this.allowShowEditInput && renderEditedTab(),
       !this.allowShowEditInput && renderLabel(),
-      renderEditButton()
+      this.editable && renderEditButton()
     ])
   }
 }

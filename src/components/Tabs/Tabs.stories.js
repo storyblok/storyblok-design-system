@@ -40,6 +40,8 @@ const TabsTemplate = template => args => ({
         v-model="currentTab"
         :show-add-button="showAddButton"
         :type="type"
+        :orientation="orientation"
+        aria-label="This is a simple description"
         @new-tab="onNewTab"
       >
         <SbTab
@@ -47,7 +49,6 @@ const TabsTemplate = template => args => ({
           :key="tab.name"
           :label="tab.label"
           :name="tab.name"
-          editable
           @edit-tab="onEditTab"
         />
       </SbTabs>
@@ -59,6 +60,7 @@ export default {
   title: 'SbTabs',
   component: SbTabs,
   args: {
+    orientation: 'horizontal',
     showAddButton: false,
     type: null
   },
@@ -70,6 +72,21 @@ export default {
     }
   },
   argTypes: {
+    description: {
+      name: 'description',
+      description: 'Property',
+      control: {
+        type: 'text'
+      }
+    },
+    orientation: {
+      name: 'orientation',
+      description: 'Define how the tabs should be views, as horizontal or vertical.',
+      control: {
+        type: 'select',
+        options: ['horizontal', 'vertical']
+      }
+    },
     showAddButton: {
       name: 'showAddButton',
       description: 'Prop to show the button for adding new tabs.',
@@ -99,6 +116,7 @@ Container.args = {
 export const Vertical = TabsTemplate().bind({})
 
 Vertical.args = {
+  orientation: 'vertical',
   type: 'vertical'
 }
 
@@ -115,22 +133,21 @@ export const WithTabPanels = TabsTemplate(`
         :key="tab.name"
         :label="tab.label"
         :name="tab.name"
-        editable
         @edit-tab="onEditTab"
       />
     </SbTabs>
 
     <SbTabPanels v-model="currentTab">
       <SbTabPanel name="first">
-        Panel first
+        <p>Panel first</p>
       </SbTabPanel>
 
       <SbTabPanel name="secondary">
-        Panel secondary
+        <p>Panel secondary</p>
       </SbTabPanel>
 
       <SbTabPanel name="third">
-        Panel third
+        <p>Panel third</p>
       </SbTabPanel>
     </SbTabPanels>
   </div>

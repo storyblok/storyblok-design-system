@@ -1,3 +1,5 @@
+import { cleanChildren } from '../../utils'
+
 import { SbTab, SbTabAdd } from './components'
 
 import './tabs.scss'
@@ -10,6 +12,11 @@ import './tabs.scss'
 const SbTabs = {
   name: 'SbTabs',
   props: {
+    orientation: {
+      type: String,
+      default: 'horizontal',
+      validator: val => ['horizontal', 'vertical'].includes(val)
+    },
     showAddButton: {
       type: Boolean,
       default: false
@@ -25,6 +32,8 @@ const SbTabs = {
 
   data () {
     return {
+      children: [],
+      childNodes: [],
       isAddTab: false,
       additionalTabs: []
     }
@@ -33,6 +42,17 @@ const SbTabs = {
   computed: {
     enableAddButton () {
       return this.showAddButton && !this.isAddTab
+    },
+    currentIndex () {
+      return this.children.findIndex(child => {
+        return this.getTabNameFromNode(child) === this.value
+      })
+    },
+    childrenCount () {
+      return this.children.length
+    },
+    isVertical () {
+      return this.orientation === 'vertical'
     }
   },
 
@@ -65,7 +85,61 @@ const SbTabs = {
     },
     emitActivateTab (tabName) {
       this.$emit('input', tabName)
+    },
+    onChangeTab (event) {
+      const lastIndex = this.childrenCount - 1
+
+      if (event.key === 'ArrowRight' && !this.isVertical) {
+        const newIndex = this.currentIndex !== lastIndex
+          ? this.currentIndex + 1
+          : 0
+
+        this.changeActiveTab(newIndex)
+      }
+
+      if (event.key === 'ArrowLeft' && !this.isVertical) {
+        const newIndex = this.currentIndex === 0
+          ? lastIndex
+          : this.currentIndex - 1
+
+        this.changeActiveTab(newIndex)
+      }
+
+      if (event.key === 'ArrowUp' && this.isVertical) {
+        const newIndex = this.currentIndex === 0
+          ? lastIndex
+          : this.currentIndex - 1
+
+        this.changeActiveTab(newIndex)
+      }
+
+      if (event.key === 'ArrowDown' && this.isVertical) {
+        const newIndex = this.currentIndex !== lastIndex
+          ? this.currentIndex + 1
+          : 0
+
+        this.changeActiveTab(newIndex)
+      }
+
+      this.$emit('keydown', event)
+    },
+    getTabNameFromNode (vnode) {
+      return vnode.componentOptions.propsData.name
+    },
+    changeActiveTab (index) {
+      this.childNodes[index].focus()
+
+      const newTabName = this.getTabNameFromNode(this.children[index])
+      this.emitActivateTab(newTabName)
     }
+  },
+
+  mounted () {
+    this.$nextTick(() => {
+      const children = this.$el.children
+      this.childNodes = Object.assign({}, children)
+      this.children = cleanChildren(this.$slots.default)
+    })
   },
 
   render (h) {
@@ -91,7 +165,8 @@ const SbTabs = {
 
         element.componentOptions.listeners = {
           ...element.componentOptions.listeners,
-          'activate-tab': this.emitActivateTab
+          'activate-tab': this.emitActivateTab,
+          'change-tab': this.onChangeTab
         }
 
         return element
@@ -102,7 +177,8 @@ const SbTabs = {
     return h('ul', {
       staticClass: 'sb-tabs',
       attrs: {
-        role: 'tablist'
+        role: 'tablist',
+        ...this.$attrs
       },
       class: [typeTab]
     },

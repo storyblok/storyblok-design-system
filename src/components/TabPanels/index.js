@@ -21,7 +21,10 @@ const SbTabPanel = {
     return h('div', {
       staticClass: 'sb-tab-panel',
       attrs: {
-        'aria-hidden': !this.activate + ''
+        role: 'tabpanel',
+        tabindex: this.activate ? 0 : -1,
+        'aria-hidden': !this.activate + '',
+        ...this.$attrs
       }
     }, this.$slots.default)
   }
