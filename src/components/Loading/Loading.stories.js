@@ -225,17 +225,24 @@ SpinnerWithPercentage.parameters = {
   }
 }
 
-export const BlockingUiLoading = LoadingTemplate.bind({})
+export const BlockingUiLoadingSpinner = LoadingTemplate.bind({})
 
-BlockingUiLoading.args = {
+BlockingUiLoadingSpinner.args = {
   uiBlock: true,
   size: 'x-large'
 }
 
-BlockingUiLoading.parameters = {
+BlockingUiLoadingSpinner.parameters = {
   docs: {
     description: {
       story: 'The `uiBlock` feature causes the user`s screen to be blocked during loading.'
     }
   }
+}
+
+export const BlockingUiLoadingProgressBar = LoadingTemplate.bind({})
+
+BlockingUiLoadingProgressBar.args = {
+  uiBlock: true,
+  type: 'bar'
 }

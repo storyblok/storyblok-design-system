@@ -19,12 +19,11 @@ const factory = (template, propsData = {}) => {
 describe('Test if BlockUi render correctly', () => {
   it('Test if BlockUi render with message', async () => {
     const template = `
-        <SbBlockUi message="Storyblok message" />
+        <SbBlockUi />
       `
     const wrapper = factory(template)
 
     expect(wrapper.classes()[0]).toBe('sb-block-ui')
-    expect(wrapper.text()).toBe('Storyblok message')
   })
 
   it('Test if BlockUi render a component', async () => {
