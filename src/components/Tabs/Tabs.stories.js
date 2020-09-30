@@ -153,3 +153,24 @@ export const WithTabPanels = TabsTemplate(`
   </div>
   `
 ).bind({})
+
+export const EditableTabs = TabsTemplate(`
+<div>
+  <SbTabs
+    v-model="currentTab"
+    :show-add-button="showAddButton"
+    :type="type"
+    @new-tab="onNewTab"
+  >
+    <SbTab
+      v-for="tab in tabs"
+      :key="tab.name"
+      :label="tab.label"
+      :name="tab.name"
+      editable
+      @edit-tab="onEditTab"
+    />
+  </SbTabs>
+</div>
+`
+).bind({})
