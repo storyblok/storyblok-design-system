@@ -2,7 +2,7 @@
   height: 312px;
   width: 552px;
   border-radius: 3px;
-  border: 1px solid rgb(223, 227, 232);
+  border: 1px solid $light;
 
   &--borderless {
     border: none;
@@ -27,9 +27,12 @@
   &--content {
     height: 204px;
     width: 512px;
-    background: rgb(245, 245, 245);
     margin: auto;
     margin-top: 54px;
+  }
+
+  &--no-content {
+    background: $light-50;
   }
   
   &--title {
@@ -41,10 +44,19 @@
     font-size: $font-size-md;
     font-weight: $font-weight-medium;
   }
+
   .sb-link {
     float: right;
     margin-top: 15px;
     margin-bottom: 15px;
     margin-right: 20px;
+  }
+
+  &--option {
+    transform: rotate(90deg);
+    cursor: pointer;
+    margin-right: 20px;
+    margin-top: 20px;
+    float: right;
   }
 }

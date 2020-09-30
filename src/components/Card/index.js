@@ -1,6 +1,7 @@
 import './card.scss'
 import { capitalize } from '../../utils'
 import SbLink from '../Link'
+import SbIcon from '../Icon'
 
 const SbCard = {
   name: 'SbCard',
@@ -21,6 +22,14 @@ const SbCard = {
     isBorderless: {
       type: Boolean,
       default: false
+    },
+    isLoading: {
+      type: Boolean,
+      default: false
+    },
+    options: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -36,7 +45,15 @@ const SbCard = {
     }
 
     const renderOptions = () => {
-      return null
+      if (this.options) {
+        return h(SbIcon, {
+          class: 'sb-card--option',
+          props: {
+            name: 'overflow-menu-vertic',
+            size: 'small'
+          }
+        })
+      }
     }
 
     const renderLink = () => {
@@ -55,7 +72,10 @@ const SbCard = {
 
     const renderCardContent = () => {
       return h('div', {
-        staticClass: 'sb-card--content'
+        staticClass: 'sb-card--content',
+        class: {
+          'sb-card--no-content': !this.$slots.default
+        }
       },
       [
         this.$slots.default
