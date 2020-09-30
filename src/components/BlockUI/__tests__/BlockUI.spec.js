@@ -23,7 +23,7 @@ describe('Test if BlockUi render correctly', () => {
       `
     const wrapper = factory(template)
 
-    expect(wrapper.classes()[0]).toBe('sb-block-ui')
+    expect(wrapper.classes('sb-block-ui')).toBe(true)
   })
 
   it('Test if BlockUi render a component', async () => {
