@@ -2,6 +2,7 @@ import SbIcon from '../../Icon'
 import SbTooltip from '../../Tooltip'
 import { capitalize } from '../../../utils'
 
+// @vue/component
 export const SbTabAdd = {
   name: 'SbTabAdd',
 
@@ -43,6 +44,7 @@ export const SbTabAdd = {
   }
 }
 
+// @vue/component
 const SbEditableInput = {
   name: 'SbEditableInput',
 
@@ -67,6 +69,7 @@ const SbEditableInput = {
   }
 }
 
+// @vue/component
 const SbEditButton = {
   name: 'SbEditButton',
 
@@ -100,12 +103,15 @@ const SbEditButton = {
 }
 
 /**
+ * @vue/component
+ *
  * SbTab component
  *
  * SbTab is a tab component to perform a tab visualization.
  */
 export const SbTab = {
   name: 'SbTab',
+
   props: {
     activate: {
       type: Boolean,
@@ -129,8 +135,8 @@ export const SbTab = {
 
   data () {
     return {
-      showEditButton: false,
-      internalEditable: this.edited
+      internalEditable: this.edited,
+      showEditButton: false
     }
   },
 
@@ -141,33 +147,55 @@ export const SbTab = {
   },
 
   methods: {
-    onKeyDownEditInput (e) {
-      if (e.key === 'Enter') {
+    /**
+     * triggers the active-tab event
+     * @param {Event} value
+     */
+    $_triggerActivateTab (value) {
+      this.$emit('activate-tab', value)
+    },
+
+    /**
+     * handles with click on li element and triggers the active-tab event
+     */
+    handleClick () {
+      this.$_triggerActivateTab(this.name)
+    },
+
+    /**
+     * forwards the keydown event
+     * @param {Event} event
+     */
+    handleKeyDown (event) {
+      this.$emit('keydown', event)
+    },
+
+    /**
+     * enable internal edit state when clicks in the edit button
+     */
+    handleClickEditButton () {
+      this.internalEditable = true
+    },
+
+    /**
+     * handles with keydown event emitted by edit input
+     * @param {Event} event
+     */
+    handleKeyDownEditInput (event) {
+      if (event.key === 'Enter') {
         this.internalEditable = false
-        this.emitActivateTab(e.target.value.toLowerCase())
+        this.$_triggerActivateTab(event.target.value.toLowerCase())
         this.$emit('edit-tab', {
-          label: capitalize(e.target.value) || this.label,
+          label: capitalize(event.target.value) || this.label,
           name: this.name
         })
       }
 
-      if (e.key === 'Escape') {
+      if (event.key === 'Escape') {
         this.internalEditable = false
 
         this.$emit('cancel-edit-tab')
       }
-    },
-    emitActivateTab (value) {
-      this.$emit('activate-tab', value)
-    },
-    handleClick () {
-      this.$emit('activate-tab', this.name)
-    },
-    handleKeyDown (event) {
-      this.$emit('change-tab', event)
-    },
-    setEditable () {
-      this.internalEditable = true
     }
   },
 
@@ -178,7 +206,7 @@ export const SbTab = {
           value: this.label
         },
         on: {
-          keydown: this.onKeyDownEditInput
+          keydown: this.handleKeyDownEditInput
         }
       })
     }
@@ -186,7 +214,7 @@ export const SbTab = {
     const renderEditButton = () => {
       return h(SbEditButton, {
         on: {
-          click: this.setEditable
+          click: this.handleClickEditButton
         }
       })
     }
@@ -196,10 +224,10 @@ export const SbTab = {
     return h('li', {
       staticClass: 'sb-tab',
       attrs: {
+        ...this.$attrs,
         role: 'tab',
         tabindex: this.activate ? 0 : -1,
-        'aria-selected': this.activate + '',
-        ...this.$attrs
+        'aria-selected': this.activate + ''
       },
       class: {
         'sb-tab--editable': this.editable,

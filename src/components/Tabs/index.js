@@ -5,12 +5,15 @@ import { SbTab, SbTabAdd } from './components'
 import './tabs.scss'
 
 /**
+ * @vue/component
+ *
  * SbTabs component
  *
  * SbTabs is a container to SbTab component to perform a tab visualization.
  */
 const SbTabs = {
   name: 'SbTabs',
+
   props: {
     orientation: {
       type: String,
@@ -32,33 +35,55 @@ const SbTabs = {
 
   data () {
     return {
+      additionalTabs: [],
       children: [],
-      childNodes: [],
-      isAddTab: false,
-      additionalTabs: []
+      childVNodes: [],
+      onAddTab: false
     }
   },
 
   computed: {
-    enableAddButton () {
-      return this.showAddButton && !this.isAddTab
+    childrenCount () {
+      return this.children.length
     },
     currentIndex () {
       return this.children.findIndex(child => {
-        return this.getTabNameFromNode(child) === this.value
+        return this.$_getTabNameFromNode(child) === this.value
       })
     },
-    childrenCount () {
-      return this.children.length
+    enableAddButton () {
+      return this.showAddButton && !this.onAddTab
     },
     isVertical () {
       return this.orientation === 'vertical'
     }
   },
 
+  mounted () {
+    this.$nextTick(() => {
+      this.childVNodes = Object.assign({}, this.$el.children)
+      this.children = cleanChildren(this.$slots.default)
+    })
+  },
+
   methods: {
-    addNewTab (h) {
-      this.isAddTab = true
+    /**
+     * gets a node from children using the index and triggers the input with its name
+     * @param {Number} index
+     */
+    $_changeActiveTab (index) {
+      this.childVNodes[index].focus()
+
+      const newTabName = this.$_getTabNameFromNode(this.children[index])
+      this.$_triggerActiveTab(newTabName)
+    },
+
+    /**
+     * creates a new tab with edit input
+     * @param {CreateElement} h
+     */
+    $_createNewTab (h) {
+      this.onAddTab = true
 
       this.additionalTabs.push(
         h(SbTab, {
@@ -68,25 +93,60 @@ const SbTabs = {
             showEditInput: true
           },
           on: {
-            'edit-tab': this.onNewTab,
-            'cancel-edit-tab': this.onCancelEditTab
+            'edit-tab': this.handleEditTabOnCreate,
+            'cancel-edit-tab': this.handleCancelEditOnCreate
           }
         })
       )
     },
-    onNewTab (content) {
-      this.isAddTab = false
+
+    /**
+     * gets the name from a component node
+     * @param {VNode} vnode
+     */
+    $_getTabNameFromNode (vnode) {
+      return vnode.componentOptions.propsData.name
+    },
+
+    /**
+     * emits an input event with the new tab identifier
+     * @param {String} identifier name of the tab
+     */
+    $_triggerActiveTab (identifier) {
+      this.$emit('input', identifier)
+    },
+
+    /**
+     * emits a new-tab event with the new created tab
+     * @param {{label: string, name: string}} content
+     */
+    handleEditTabOnCreate (content) {
+      this.onAddTab = false
       this.additionalTabs = []
       this.$emit('new-tab', content)
     },
-    onCancelEditTab () {
-      this.isAddTab = false
+
+    /**
+     * cancels the new create tab action
+     */
+    handleCancelEditOnCreate () {
+      this.onAddTab = false
       this.additionalTabs = []
     },
-    emitActivateTab (tabName) {
-      this.$emit('input', tabName)
+
+    /**
+     * gets the active tab event and trigger the input event
+     * @param {String} identifier
+     */
+    handleActiveTab (identifier) {
+      this.$_triggerActiveTab(identifier)
     },
-    onChangeTab (event) {
+
+    /**
+     * handles keydown event in SbTab component and performs the navigation
+     * @param {Event} event
+     */
+    handleKeyDown (event) {
       const lastIndex = this.childrenCount - 1
 
       if (event.key === 'ArrowRight' && !this.isVertical) {
@@ -94,7 +154,7 @@ const SbTabs = {
           ? this.currentIndex + 1
           : 0
 
-        this.changeActiveTab(newIndex)
+        this.$_changeActiveTab(newIndex)
       }
 
       if (event.key === 'ArrowLeft' && !this.isVertical) {
@@ -102,7 +162,7 @@ const SbTabs = {
           ? lastIndex
           : this.currentIndex - 1
 
-        this.changeActiveTab(newIndex)
+        this.$_changeActiveTab(newIndex)
       }
 
       if (event.key === 'ArrowUp' && this.isVertical) {
@@ -110,7 +170,7 @@ const SbTabs = {
           ? lastIndex
           : this.currentIndex - 1
 
-        this.changeActiveTab(newIndex)
+        this.$_changeActiveTab(newIndex)
       }
 
       if (event.key === 'ArrowDown' && this.isVertical) {
@@ -118,36 +178,19 @@ const SbTabs = {
           ? this.currentIndex + 1
           : 0
 
-        this.changeActiveTab(newIndex)
+        this.$_changeActiveTab(newIndex)
       }
 
       if (event.key === 'Home') {
-        this.changeActiveTab(0)
+        this.$_changeActiveTab(0)
       }
 
       if (event.key === 'End') {
-        this.changeActiveTab(lastIndex)
+        this.$_changeActiveTab(lastIndex)
       }
 
       this.$emit('keydown', event)
-    },
-    getTabNameFromNode (vnode) {
-      return vnode.componentOptions.propsData.name
-    },
-    changeActiveTab (index) {
-      this.childNodes[index].focus()
-
-      const newTabName = this.getTabNameFromNode(this.children[index])
-      this.emitActivateTab(newTabName)
     }
-  },
-
-  mounted () {
-    this.$nextTick(() => {
-      const children = this.$el.children
-      this.childNodes = Object.assign({}, children)
-      this.children = cleanChildren(this.$slots.default)
-    })
   },
 
   render (h) {
@@ -156,7 +199,7 @@ const SbTabs = {
     const renderAddButton = () => {
       return h(SbTabAdd, {
         on: {
-          click: () => this.addNewTab(h)
+          click: () => this.$_createNewTab(h)
         }
       })
     }
@@ -173,8 +216,8 @@ const SbTabs = {
 
         element.componentOptions.listeners = {
           ...element.componentOptions.listeners,
-          'activate-tab': this.emitActivateTab,
-          'change-tab': this.onChangeTab
+          'activate-tab': this.handleActiveTab,
+          keydown: this.handleKeyDown
         }
 
         return element
@@ -188,8 +231,8 @@ const SbTabs = {
         'sb-tabs--vertical': this.isVertical
       },
       attrs: {
-        role: 'tablist',
-        ...this.$attrs
+        ...this.$attrs,
+        role: 'tablist'
       }
     },
     [

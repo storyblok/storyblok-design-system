@@ -1,12 +1,15 @@
 import './tab-panels.scss'
 
 /**
+ * @vue/component
+ *
  * SbTabPanel component
  *
  * SbTabPanel is a component to show any information when it is visible.
  */
 const SbTabPanel = {
   name: 'SbTabPanel',
+
   props: {
     activate: {
       type: Boolean,
@@ -17,20 +20,23 @@ const SbTabPanel = {
       required: true
     }
   },
+
   render (h) {
     return h('div', {
       staticClass: 'sb-tab-panel',
       attrs: {
+        ...this.$attrs,
         role: 'tabpanel',
         tabindex: this.activate ? 0 : -1,
-        'aria-hidden': !this.activate + '',
-        ...this.$attrs
+        'aria-hidden': !this.activate + ''
       }
     }, this.$slots.default)
   }
 }
 
 /**
+ * @vue/component
+ *
  * SbTabPanels component
  *
  * SbTabPanels is a container to SbTabPanel component to perform a visualization of information by using the value property. It's good to use along with SbTabs component.
@@ -40,12 +46,14 @@ const SbTabPanels = {
 
   functional: true,
 
-  value: {
-    type: [String, Number],
-    required: true
+  props: {
+    value: {
+      type: [String, Number],
+      required: true
+    }
   },
 
-  render (h, { slots, props }) {
+  render (h, { slots, props, data }) {
     const children = slots().default.filter(e => e.tag) || []
 
     const processChilren = () => {
@@ -63,7 +71,10 @@ const SbTabPanels = {
     }
 
     return h('div', {
-      staticClass: 'sb-tab-panels'
+      staticClass: 'sb-tab-panels',
+      attrs: {
+        ...data.$attrs
+      }
     }, processChilren())
   }
 }
