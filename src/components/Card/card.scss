@@ -1,0 +1,50 @@
+.sb-card {
+  height: 312px;
+  width: 552px;
+  border-radius: 3px;
+  border: 1px solid rgb(223, 227, 232);
+
+  &--borderless {
+    border: none;
+
+    .sb-card--content {
+      border-radius: 3px;
+      height: 244px;
+      width: 552px;
+      margin-top: 20px;
+    }
+
+    .sb-card--title {
+      margin-left: 0px;
+      position: relative;
+    }
+
+    .sb-link {
+      margin-right: 0px !important;
+    }
+  }
+
+  &--content {
+    height: 204px;
+    width: 512px;
+    background: rgb(245, 245, 245);
+    margin: auto;
+    margin-top: 54px;
+  }
+  
+  &--title {
+    margin-left: 20px;
+    position: fixed;
+    margin-top: 20px;
+    color: $primary-text-color;
+    font-family: $primary-font-family;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+  }
+  .sb-link {
+    float: right;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+  }
+}
