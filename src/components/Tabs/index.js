@@ -121,6 +121,14 @@ const SbTabs = {
         this.changeActiveTab(newIndex)
       }
 
+      if (event.key === 'Home') {
+        this.changeActiveTab(0)
+      }
+
+      if (event.key === 'End') {
+        this.changeActiveTab(lastIndex)
+      }
+
       this.$emit('keydown', event)
     },
     getTabNameFromNode (vnode) {

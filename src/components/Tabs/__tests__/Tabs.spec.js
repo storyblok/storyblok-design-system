@@ -308,4 +308,76 @@ describe('Test SbTabs', () => {
       expect(tabActive.props('name')).toBe('first')
     })
   })
+
+  describe('when perform the navigation Home and End keys', () => {
+    afterEach(() => {
+      jest.clearAllMocks()
+    })
+
+    const onInput = jest.fn()
+    const ComponentWrapper = {
+      components: {
+        SbTabs,
+        SbTab
+      },
+      data: () => ({
+        currentTab: 'first',
+        orientation: 'horizontal'
+      }),
+      methods: {
+        onInput
+      },
+      template: `
+        <SbTabs
+          v-model="currentTab"
+          :orientation="orientation"
+          @input="onInput"
+        >
+          <SbTab label="First" name="first" />
+          <SbTab label="Second" name="second" />
+          <SbTab label="Third" name="third" />
+        </SbTabs>
+      `
+    }
+
+    const wrapper = mount(ComponentWrapper)
+
+    it('should move to first tab when it clicks in Home key', async () => {
+      await wrapper.setData({
+        currentTab: 'third'
+      })
+      const thirdTab = wrapper.find('[aria-selected="true"]')
+
+      // it should move to first tab
+      await thirdTab.trigger('keydown', {
+        key: 'Home'
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['first'])
+
+      const tabActive = wrapper.find('[aria-selected="true"]')
+      expect(tabActive.props('name')).toBe('first')
+    })
+
+    it('should move to last tab when it clicks in End key', async () => {
+      await wrapper.setData({
+        currentTab: 'first'
+      })
+      const firstTab = wrapper.find('[aria-selected="true"]')
+
+      // it should move to first tab
+      await firstTab.trigger('keydown', {
+        key: 'End'
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['third'])
+
+      const tabActive = wrapper.find('[aria-selected="true"]')
+      expect(tabActive.props('name')).toBe('third')
+    })
+  })
 })
