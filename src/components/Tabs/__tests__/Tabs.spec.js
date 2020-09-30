@@ -145,4 +145,167 @@ describe('Test SbTabs', () => {
       expect(newTab.props('label')).toBe('New tab')
     })
   })
+
+  describe('when perform the navigation using arrows', () => {
+    afterEach(() => {
+      jest.clearAllMocks()
+    })
+
+    const onInput = jest.fn()
+    const ComponentWrapper = {
+      components: {
+        SbTabs,
+        SbTab
+      },
+      data: () => ({
+        currentTab: 'first',
+        orientation: 'horizontal'
+      }),
+      methods: {
+        onInput
+      },
+      template: `
+        <SbTabs
+          v-model="currentTab"
+          :orientation="orientation"
+          @input="onInput"
+        >
+          <SbTab label="First" name="first" />
+          <SbTab label="Second" name="second" />
+        </SbTabs>
+      `
+    }
+
+    const wrapper = mount(ComponentWrapper)
+
+    it('should move to right', async () => {
+      let tabActive
+      await wrapper.setData({
+        currentTab: 'first'
+      })
+      const firstTab = wrapper.find('[aria-selected="true"]')
+
+      // it should move to second tab
+      await firstTab.trigger('keydown', {
+        key: 'ArrowRight'
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['second'])
+
+      tabActive = wrapper.find('[aria-selected="true"]')
+      expect(tabActive.props('name')).toBe('second')
+
+      // it should move to first tab
+      await tabActive.trigger('keydown', {
+        key: 'ArrowRight'
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(ComponentWrapper.methods.onInput.mock.calls[1]).toEqual(['first'])
+
+      tabActive = wrapper.find('[aria-selected="true"]')
+      expect(tabActive.props('name')).toBe('first')
+    })
+
+    it('should move to left', async () => {
+      let tabActive
+      await wrapper.setData({
+        currentTab: 'first'
+      })
+      const firstTab = wrapper.find('[aria-selected="true"]')
+
+      // it should move to second tab
+      await firstTab.trigger('keydown', {
+        key: 'ArrowLeft'
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['second'])
+
+      tabActive = wrapper.find('[aria-selected="true"]')
+      expect(tabActive.props('name')).toBe('second')
+
+      // it should move to first tab
+      await tabActive.trigger('keydown', {
+        key: 'ArrowLeft'
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(ComponentWrapper.methods.onInput.mock.calls[1]).toEqual(['first'])
+
+      tabActive = wrapper.find('[aria-selected="true"]')
+      expect(tabActive.props('name')).toBe('first')
+    })
+
+    it('should move to up', async () => {
+      let tabActive
+      await wrapper.setData({
+        currentTab: 'first',
+        orientation: 'vertical'
+      })
+      const firstTab = wrapper.find('[aria-selected="true"]')
+
+      // it should move to second tab
+      await firstTab.trigger('keydown', {
+        key: 'ArrowUp'
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['second'])
+
+      tabActive = wrapper.find('[aria-selected="true"]')
+      expect(tabActive.props('name')).toBe('second')
+
+      // it should move to first tab
+      await tabActive.trigger('keydown', {
+        key: 'ArrowUp'
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(ComponentWrapper.methods.onInput.mock.calls[1]).toEqual(['first'])
+
+      tabActive = wrapper.find('[aria-selected="true"]')
+      expect(tabActive.props('name')).toBe('first')
+    })
+
+    it('should move to down', async () => {
+      let tabActive
+      await wrapper.setData({
+        currentTab: 'first',
+        orientation: 'vertical'
+      })
+      const firstTab = wrapper.find('[aria-selected="true"]')
+
+      // it should move to second tab
+      await firstTab.trigger('keydown', {
+        key: 'ArrowDown'
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['second'])
+
+      tabActive = wrapper.find('[aria-selected="true"]')
+      expect(tabActive.props('name')).toBe('second')
+
+      // it should move to first tab
+      await tabActive.trigger('keydown', {
+        key: 'ArrowDown'
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(ComponentWrapper.methods.onInput.mock.calls[1]).toEqual(['first'])
+
+      tabActive = wrapper.find('[aria-selected="true"]')
+      expect(tabActive.props('name')).toBe('first')
+    })
+  })
 })
