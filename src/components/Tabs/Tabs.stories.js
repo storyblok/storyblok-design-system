@@ -1,6 +1,7 @@
 import { SbTabs, SbTab } from '.'
 import { SbTabPanels, SbTabPanel } from '../TabPanels'
 
+// @vue/component
 const TabsTemplate = template => args => ({
   components: { SbTabs, SbTab, SbTabPanel, SbTabPanels },
   props: Object.keys(args),
@@ -21,6 +22,11 @@ const TabsTemplate = template => args => ({
         }
       ],
       currentTab: 'first'
+    }
+  },
+  watch: {
+    value (newValue) {
+      this.currentTab = newValue
     }
   },
   methods: {
@@ -62,7 +68,8 @@ export default {
   args: {
     orientation: 'horizontal',
     showAddButton: false,
-    type: null
+    type: null,
+    value: 'first'
   },
   parameters: {
     docs: {
@@ -72,13 +79,6 @@ export default {
     }
   },
   argTypes: {
-    description: {
-      name: 'description',
-      description: 'Property',
-      control: {
-        type: 'text'
-      }
-    },
     orientation: {
       name: 'orientation',
       description: 'Define how the tabs should be views, as horizontal or vertical.',
@@ -100,6 +100,13 @@ export default {
       control: {
         type: 'select',
         options: ['container']
+      }
+    },
+    value: {
+      name: 'value',
+      description: 'Current tab. The value property has to be used for `v-model` directive',
+      control: {
+        type: 'text'
       }
     }
   }
