@@ -11,9 +11,17 @@ export default {
     }
   },
   args: {
+    showHeader: true,
     striped: false
   },
   argTypes: {
+    showHeader: {
+      name: 'showHeader',
+      description: 'Toggle table header',
+      control: {
+        type: 'boolean'
+      }
+    },
     striped: {
       name: 'striped',
       description: 'Add zebra-striping to any table row within the `<tbody>`',
@@ -29,10 +37,33 @@ export const Default = (args) => ({
   props: Object.keys(args),
   template: `
     <SbDataTable
+      :show-header="showHeader"
       :striped="striped"
     />
   `
 })
+
+export const ShowHeader = args => ({
+  components: { SbDataTable },
+  props: Object.keys(args),
+  template: `
+    <SbDataTable
+      :show-header="true"
+    />
+  `
+})
+
+ShowHeader.args = {
+  showHeader: true
+}
+
+ShowHeader.parameters = {
+  docs: {
+    description: {
+      story: 'Add zebra-striping to any table row within the `<tbody>`'
+    }
+  }
+}
 
 export const Striped = args => ({
   components: { SbDataTable },

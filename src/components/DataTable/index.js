@@ -4,6 +4,10 @@ import './data-table.scss'
 const SbDataTable = {
   name: 'SbDataTable',
   props: {
+    showHeader: {
+      type: Boolean,
+      default: true
+    },
     striped: {
       type: Boolean,
       default: false
@@ -11,14 +15,18 @@ const SbDataTable = {
   },
   render (h) {
     const renderTableHeader = () => {
-      const TableSizeArray = []
+      if (this.showHeader) {
+        const TableSizeArray = []
 
-      const RowSizeArray = []
-      for (let j = 1; j <= 3; j++) {
-        RowSizeArray.push(h('th', 'Header col: ' + j))
+        const RowSizeArray = []
+        for (let j = 1; j <= 3; j++) {
+          RowSizeArray.push(h('th', 'Header col: ' + j))
+        }
+        TableSizeArray.push(h('tr', [RowSizeArray]))
+        return h('thead', [TableSizeArray])
       }
-      TableSizeArray.push(h('tr', [RowSizeArray]))
-      return h('thead', [TableSizeArray])
+
+      return null
     }
 
     const renderTableBody = () => {
