@@ -46,12 +46,24 @@ export default {
   },
 
   methods: {
+    /**
+     * shows the tooltip
+     */
     showTooltip () {
       this.isVisibleTooltip = true
     },
+
+    /**
+     * hides the tooltip
+     */
     hideTooltip () {
       this.isVisibleTooltip = false
     },
+
+    /**
+     * handles with the keydown event to close the tooltip when esc key is pressed
+     * @param  {Event} event
+     */
     handleKeydown (event) {
       if (event.key === 'Escape') {
         this.hideTooltip()
@@ -93,8 +105,9 @@ export default {
         }, childrenElement.componentOptions.children)
       }
 
+      const childrenData = childrenElement.data || {}
       return h(childrenElement.tag, {
-        ...(childrenElement.data || {}),
+        ...childrenData,
         attrs: {
           ...(childrenElement.data ? childrenElement.data.attrs : {}),
           'aria-describedby': id
@@ -104,7 +117,8 @@ export default {
           blur: this.hideTooltip,
           mouseenter: this.showTooltip,
           mouseleave: this.hideTooltip,
-          keydown: this.handleKeydown
+          keydown: this.handleKeydown,
+          ...(childrenData.on || {})
         }
       }, childrenElement.children)
     }
