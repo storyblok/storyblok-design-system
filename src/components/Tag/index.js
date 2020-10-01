@@ -5,6 +5,7 @@ import { includes } from '../../utils'
 import SbIcon from '../Icon'
 import { tagTypes } from './lib'
 
+// @vue/component
 const SbTag = {
   name: 'SbTag',
 

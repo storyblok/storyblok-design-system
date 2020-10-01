@@ -2,6 +2,8 @@ import SbIcon from '../../Icon'
 import SbTooltip from '../../Tooltip'
 
 /**
+ * @vue/component
+ *
  * SbPaginationButton
  *
  * Render the arrow buttons in Pagination
@@ -17,10 +19,12 @@ export const SbPaginationButton = {
       default: false
     },
     icon: {
-      type: String
+      type: String,
+      required: true
     },
     tooltipLabel: {
-      type: String
+      type: String,
+      required: true
     }
   },
 
@@ -58,6 +62,8 @@ export const SbPaginationButton = {
 }
 
 /**
+ * @vue/component
+ *
  * SbPaginationPagesText
  *
  * Render the pages information
@@ -69,7 +75,8 @@ export const SbPaginationPagesText = {
 
   props: {
     currentPage: {
-      type: Number
+      type: Number,
+      default: 1
     },
     isPlaceholder: {
       type: Boolean,
@@ -78,15 +85,18 @@ export const SbPaginationPagesText = {
     pages: {
       type: Number,
       default: 1
+    },
+    showCurrentPage: {
+      type: Boolean,
+      default: false
     }
   },
 
   render (h, { props }) {
-    const { currentPage, isPlaceholder, pages } = props
-    const hasCurrentPage = currentPage >= 0
-    const text = hasCurrentPage
-      ? `${currentPage} of ${pages} pages`
-      : `of ${pages} pages`
+    const { currentPage, showCurrentPage, isPlaceholder, pages } = props
+    const text = showCurrentPage
+      ? `${currentPage} of ${pages} pages` // to compact container
+      : `of ${pages} pages` // to other container types
 
     return h('span', {
       class: {
@@ -100,6 +110,8 @@ export const SbPaginationPagesText = {
 }
 
 /**
+ * @vue/component
+ *
  * SbPaginationItemsText
  *
  * Render the information about items in current page
@@ -111,18 +123,22 @@ export const SbPaginationItemsText = {
 
   props: {
     currentPage: {
-      type: Number
+      type: Number,
+      required: true,
+      default: 1
     },
     isPlaceholder: {
       type: Boolean,
       default: false
     },
     pages: {
-      type: Number
+      type: Number,
+      required: true,
+      default: 10
     },
     perPage: {
       type: Number,
-      default: 1
+      default: 10
     },
     total: {
       type: Number,
@@ -157,6 +173,8 @@ export const SbPaginationItemsText = {
 }
 
 /**
+ * @vue/component
+ *
  * SbPaginationSelect
  *
  * Wrapper for selects elements in Pagination component
@@ -172,7 +190,8 @@ export const SbPaginationSelect = {
       default: () => []
     },
     value: {
-      type: Number
+      type: Number,
+      default: 1
     }
   },
 

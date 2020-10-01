@@ -12,6 +12,8 @@ import SbButton from '../Button'
 import SbTooltip from '../Tooltip'
 
 /**
+ * @vue/component
+ *
  * SbSidebar component
  *
  * Render a Sidebar container, that's a part of Storyblok UI structure
@@ -25,7 +27,8 @@ const SbSidebar = {
       default: () => []
     },
     user: {
-      type: Object
+      type: Object,
+      default: () => ({})
     },
     minimize: {
       type: Boolean,

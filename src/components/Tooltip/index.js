@@ -19,6 +19,8 @@ const randomString = length => {
 }
 
 /**
+ * @vue/component
+ *
  * SbTooltip component
  *
  * SbTooltip is a small piece of contextual information about an element on the screen, which is displayed when a user hovers or focuses on the element it is describing.
@@ -26,17 +28,14 @@ const randomString = length => {
 export default {
   name: 'SbTooltip',
 
-  data: () => ({
-    isVisibleTooltip: false
-  }),
-
   props: {
     id: {
       type: String,
       default: () => `sb-tooltip-${randomString(5)}`
     },
     label: {
-      type: String
+      type: String,
+      required: true
     },
     position: {
       type: String,
@@ -44,6 +43,10 @@ export default {
       validator: position => includes(availablePositions, position)
     }
   },
+
+  data: () => ({
+    isVisibleTooltip: false
+  }),
 
   methods: {
     showTooltip () {

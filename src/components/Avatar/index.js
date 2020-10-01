@@ -9,6 +9,8 @@ import SbTooltip from '../Tooltip'
 const positionTypes = ['top', 'bottom']
 
 /**
+ * @vue/component
+ *
  * SbAvatar component
  *
  * SbAvatar is a component to view user information or entity
@@ -18,10 +20,12 @@ const SbAvatar = {
 
   props: {
     bgColor: {
-      type: String
+      type: String,
+      default: null
     },
     description: {
-      type: String
+      type: String,
+      default: null
     },
     descriptionPosition: {
       type: String,
@@ -29,10 +33,12 @@ const SbAvatar = {
       validator: position => includes(positionTypes, position)
     },
     name: {
-      type: String
+      type: String,
+      default: null
     },
     size: {
       type: String,
+      default: null,
       validator: isSizeValid
     },
     showName: {
@@ -40,10 +46,12 @@ const SbAvatar = {
       default: false
     },
     src: {
-      type: String
+      type: String,
+      default: null
     },
     status: {
-      type: String
+      type: String,
+      default: null
     },
     useTooltip: {
       type: Boolean,
@@ -54,6 +62,12 @@ const SbAvatar = {
   data: () => ({
     isImageLoaded: false
   }),
+
+  created () {
+    if (process.browser) {
+      this.loadImage(this.src)
+    }
+  },
 
   methods: {
     loadImage (src) {
@@ -78,12 +92,6 @@ const SbAvatar = {
     }
   },
 
-  created () {
-    if (process.browser) {
-      this.loadImage(this.src)
-    }
-  },
-
   render (h) {
     const avatarProps = {
       staticClass: 'sb-avatar',
@@ -92,7 +100,7 @@ const SbAvatar = {
       }
     }
 
-    if (this.size) {
+    if (this.size && this.size !== 'normal') {
       avatarProps.staticClass += ` sb-avatar--${this.size}`
     }
 

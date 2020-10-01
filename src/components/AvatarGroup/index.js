@@ -4,6 +4,7 @@ import './avatar-group.scss'
 
 import { truncate, availableColors } from '../../utils'
 
+// @vue/component
 export const MoreAvatars = {
   name: 'MoreAvatars',
 
@@ -11,7 +12,8 @@ export const MoreAvatars = {
 
   props: {
     size: {
-      type: String
+      type: String,
+      default: null
     },
     visible: {
       type: Boolean,
@@ -45,6 +47,7 @@ export const MoreAvatars = {
   }
 }
 
+// @vue/component
 export const MoreAvatar = {
   name: 'MoreAvatar',
 
@@ -56,7 +59,8 @@ export const MoreAvatar = {
       default: false
     },
     label: {
-      type: String
+      type: String,
+      default: 'null'
     }
   },
 
@@ -74,6 +78,8 @@ export const MoreAvatar = {
 }
 
 /**
+ * @vue/component
+ *
  * SbAvatarGroup component
  *
  * SbAvatarGroup is a component to group SbAvatar
@@ -88,6 +94,7 @@ const SbAvatarGroup = {
     },
     size: {
       type: String,
+      default: null,
       validator: isSizeValid
     }
   },

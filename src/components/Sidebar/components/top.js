@@ -15,6 +15,8 @@ const logoSvgPath = `
 `
 
 /**
+ * @vue/component
+ *
  * SbSidebarLogo component
  *
  * Render the Storyblok Logo
@@ -46,15 +48,18 @@ const SbSidebarLogo = {
   }
 }
 
+// @vue/component
 const SbSidebarUserDropDown = {
   name: 'SbSidebarUserDropDown',
 
   props: {
     email: {
-      type: String
+      type: String,
+      default: null
     },
     name: {
-      type: String
+      type: String,
+      default: null
     },
     active: {
       type: Boolean,
@@ -131,6 +136,8 @@ const SbSidebarUserDropDown = {
 }
 
 /**
+ * @vue/component
+ *
  * SbSidebarUser component
  *
  * Render the Storyblok User information with a Context Menu to actions

@@ -8,6 +8,8 @@ import './button.scss'
 import { sharedProps } from './lib'
 
 /**
+ * @vue/component
+ *
  * SbButton component
  *
  * SbButton is a component used for clickable user interactions
