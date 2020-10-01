@@ -2,6 +2,15 @@ import './card.scss'
 import { capitalize } from '../../utils'
 import SbLink from '../Link'
 import SbIcon from '../Icon'
+// import SbLoading from '../Loading'
+
+/**
+ * @vue/component
+ *
+ * SbCard component
+ *
+ * SbCard is a component to used to divide content elements on page.
+ */
 
 const SbCard = {
   name: 'SbCard',
@@ -19,17 +28,15 @@ const SbCard = {
       type: String,
       default: null
     },
-    isBorderless: {
-      type: Boolean,
-      default: false
-    },
     isLoading: {
-      type: Boolean,
-      default: false
+      type: Boolean
     },
     options: {
-      type: Boolean,
-      default: false
+      type: Array,
+      default: () => []
+    },
+    isFullWidth: {
+      type: Boolean
     }
   },
 
@@ -45,7 +52,7 @@ const SbCard = {
     }
 
     const renderOptions = () => {
-      if (this.options) {
+      if (this.options.length) {
         return h(SbIcon, {
           class: 'sb-card--option',
           props: {
@@ -70,15 +77,32 @@ const SbCard = {
       }
     }
 
+    const renderLoading = () => {
+      return h(SbIcon, {
+        staticClass: 'sb-card--loading',
+        props: {
+          name: 'loading',
+          size: 'x-large',
+          color: 'primary'
+        }
+      })
+      // return h(SbLoading, {
+      //   props: {
+      //     type: 'spinner',
+      //     size: 'small',
+      //   }
+      // })
+    }
+
     const renderCardContent = () => {
       return h('div', {
         staticClass: 'sb-card--content',
         class: {
-          'sb-card--no-content': !this.$slots.default
+          'sb-card--no-content': !this.$slots.default || this.isLoading
         }
       },
       [
-        this.$slots.default
+        this.isLoading ? renderLoading() : this.$slots.default
       ])
     }
 
@@ -86,7 +110,8 @@ const SbCard = {
       return h('div', {
         staticClass: 'sb-card',
         class: {
-          'sb-card--borderless': this.isBorderless
+          'sb-card--full-width': this.isFullWidth,
+          'sb-card--no-labels': (!this.title && !this.options.length)
         }
       },
       [

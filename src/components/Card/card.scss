@@ -1,34 +1,23 @@
 .sb-card {
-  height: 312px;
+  height: auto;
   width: 552px;
   border-radius: 3px;
   border: 1px solid $light;
+  display: inline-block;
 
-  &--borderless {
-    border: none;
+  &--full-width {
+    width: 100%;
 
     .sb-card--content {
-      border-radius: 3px;
-      height: 244px;
-      width: 552px;
-      margin-top: 20px;
-    }
-
-    .sb-card--title {
-      margin-left: 0px;
-      position: relative;
-    }
-
-    .sb-link {
-      margin-right: 0px !important;
+      width: 95%;
     }
   }
 
   &--content {
-    height: 204px;
+    height: 228px;
     width: 512px;
-    margin: auto;
-    margin-top: 54px;
+    margin: 20px;
+    margin-top: 71px;
   }
 
   &--no-content {
@@ -45,10 +34,15 @@
     font-weight: $font-weight-medium;
   }
 
+  &--no-labels {
+    .sb-card--content {
+      margin-top: 20px;
+    }
+  }
+
   .sb-link {
     float: right;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     margin-right: 20px;
   }
 
@@ -58,5 +52,11 @@
     margin-right: 20px;
     margin-top: 20px;
     float: right;
+  }
+
+  &--loading {
+    margin: 0 auto;
+    display: flex;
+    padding: 90px 0;
   }
 }
