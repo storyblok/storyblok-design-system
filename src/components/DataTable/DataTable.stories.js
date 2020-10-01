@@ -11,20 +11,12 @@ export default {
     }
   },
   args: {
-    compact: false,
-    isLoading: false
+    striped: false
   },
   argTypes: {
-    compact: {
-      name: 'compact',
-      description: 'Reduces the height of cells',
-      control: {
-        type: 'boolean'
-      }
-    },
-    isLoading: {
-      name: 'isLoading',
-      description: 'Show a loading',
+    striped: {
+      name: 'striped',
+      description: 'Add zebra-striping to any table row within the `<tbody>`',
       control: {
         type: 'boolean'
       }
@@ -37,30 +29,29 @@ export const Default = (args) => ({
   props: Object.keys(args),
   template: `
     <SbDataTable
-      v-bind="{
-        compact,
-        isLoading
-      }"
+      :striped="striped"
     />
   `
 })
 
-export const Compact = (args) => ({
+export const Striped = args => ({
   components: { SbDataTable },
   props: Object.keys(args),
   template: `
     <SbDataTable
-      v-bind="{
-        compact
-      }"
+      :striped="true"
     />
   `
 })
 
-Compact.parameters = {
+Striped.args = {
+  striped: true
+}
+
+Striped.parameters = {
   docs: {
     description: {
-      story: 'Description here'
+      story: 'Add zebra-striping to any table row within the `<tbody>`'
     }
   }
 }

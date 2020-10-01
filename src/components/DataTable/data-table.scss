@@ -1,0 +1,35 @@
+.sb-data-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  &--striped {
+    tbody {
+      tr:nth-child(even) {
+        background-color: $light-25;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $light-50;
+
+      &:first-child {
+        border-top: 1px solid $light-50;
+      }
+
+      &:hover {
+        background-color: $light-50;
+      }
+    }
+  }
+
+  th, td {
+    color: $light-gray;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: left;
+    padding: 18px 10px;
+  }
+}
