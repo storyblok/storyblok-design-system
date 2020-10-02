@@ -1,9 +1,15 @@
+import SbIcon from '../Icon'
+
 // styles
 import './data-table.scss'
 
 const SbDataTable = {
   name: 'SbDataTable',
   props: {
+    isLoading: {
+      type: Boolean,
+      default: false
+    },
     showHeader: {
       type: Boolean,
       default: true
@@ -14,6 +20,24 @@ const SbDataTable = {
     }
   },
   render (h) {
+    const renderLoading = () => {
+      const renderIcon = () => {
+        return h(SbIcon, {
+          props: {
+            color: 'primary',
+            name: 'loading',
+            size: 'large'
+          }
+        })
+      }
+
+      return h('div', {
+        staticClass: 'sb-data-table__loading'
+      }, [
+        renderIcon()
+      ])
+    }
+
     const renderTableHeader = () => {
       if (this.showHeader) {
         const TableSizeArray = []
@@ -52,6 +76,16 @@ const SbDataTable = {
       [
         renderTableHeader(),
         renderTableBody()
+      ])
+    }
+
+    if (this.isLoading) {
+      return h('div', {
+        staticClass: 'sb-data-table--is-loading'
+      },
+      [
+        renderTable(),
+        renderLoading()
       ])
     }
 
