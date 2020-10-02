@@ -4,6 +4,7 @@ module.exports = {
     node: true
   },
   extends: [
+    'plugin:vue/strongly-recommended',
     'plugin:vue/essential',
     'eslint:recommended',
     '@vue/standard'
@@ -13,7 +14,10 @@ module.exports = {
   },
   rules: {
     'no-console': ['error', { allow: ['warn', 'error'] }],
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'vue/order-in-components': 'warn',
+    'vue/attributes-order': 'warn',
+    'vue/one-component-per-file': 'off'
   },
   overrides: [
     {
