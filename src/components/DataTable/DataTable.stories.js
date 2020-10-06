@@ -5,6 +5,7 @@ const description = {
   headers: 'Array',
   isLoading: 'Show a loading',
   items: 'Array',
+  selectable: 'Enable selectable input rows',
   showHeader: 'Toggle table header',
   striped: 'Add zebra-striping to any table row within the `<tbody>`'
 }
@@ -18,6 +19,7 @@ const DataTableTemplate = args => ({
         headers,
         isLoading,
         items,
+        selectable,
         showHeader,
         striped
       }"
@@ -39,6 +41,7 @@ export default {
     headers: [],
     isLoading: false,
     items: [],
+    selectable: false,
     showHeader: true,
     striped: false
   },
@@ -62,6 +65,13 @@ export default {
       description: description.items,
       control: {
         type: 'array'
+      }
+    },
+    selectable: {
+      name: 'selectable',
+      description: description.selectable,
+      control: {
+        type: 'boolean'
       }
     },
     showHeader: {
@@ -136,46 +146,6 @@ Default.args = {
       carbs: 49,
       protein: 3.9,
       iron: '16%'
-    },
-    {
-      name: 'Jelly bean',
-      calories: 375,
-      fat: 0.0,
-      carbs: 94,
-      protein: 0.0,
-      iron: '0%'
-    },
-    {
-      name: 'Lollipop',
-      calories: 392,
-      fat: 0.2,
-      carbs: 98,
-      protein: 0,
-      iron: '2%'
-    },
-    {
-      name: 'Honeycomb',
-      calories: 408,
-      fat: 3.2,
-      carbs: 87,
-      protein: 6.5,
-      iron: '45%'
-    },
-    {
-      name: 'Donut',
-      calories: 452,
-      fat: 25.0,
-      carbs: 51,
-      protein: 4.9,
-      iron: '22%'
-    },
-    {
-      name: 'KitKat',
-      calories: 518,
-      fat: 26.0,
-      carbs: 65,
-      protein: 7,
-      iron: '6%'
     }
   ]
 }
@@ -191,6 +161,21 @@ IsLoading.parameters = {
   docs: {
     description: {
       story: description.isLoading
+    }
+  }
+}
+
+export const Selectable = DataTableTemplate.bind({})
+
+Selectable.args = {
+  ...Default.args,
+  selectable: true
+}
+
+Selectable.parameters = {
+  docs: {
+    description: {
+      story: description.selectable
     }
   }
 }

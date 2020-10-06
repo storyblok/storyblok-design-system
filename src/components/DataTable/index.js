@@ -18,6 +18,10 @@ const SbDataTable = {
       type: Array,
       default: () => []
     },
+    selectable: {
+      type: Boolean,
+      default: false
+    },
     showHeader: {
       type: Boolean,
       default: true
@@ -28,6 +32,14 @@ const SbDataTable = {
     }
   },
   render (h) {
+    const renderInput = () => {
+      return h('input', {
+        attrs: {
+          type: 'checkbox'
+        }
+      })
+    }
+
     const renderLoading = () => {
       const renderIcon = () => {
         return h(SbIcon, {
@@ -49,6 +61,9 @@ const SbDataTable = {
     const renderTableHeader = () => {
       if (this.showHeader) {
         const rowArray = []
+        if (this.selectable) {
+          rowArray.push(h('th', [renderInput()]))
+        }
         this.headers.forEach(elem => {
           rowArray.push(h('th', elem.text))
         })
@@ -67,6 +82,10 @@ const SbDataTable = {
 
       this.items.forEach(row => {
         const rowArray = []
+        if (this.selectable) {
+          rowArray.push(h('td', [renderInput()]))
+        }
+
         const isMainColumn = this.headers.findIndex(col => col.main)
         Object.values(row).forEach((elem, index) => {
           rowArray.push(h('td', {
