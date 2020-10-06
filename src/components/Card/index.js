@@ -4,65 +4,41 @@ import SbLink from '../Link'
 import SbIcon from '../Icon'
 // import SbLoading from '../Loading'
 
-/**
- * @vue/component
- *
- * SbCard component
- *
- * SbCard is a component to used to divide content elements on page.
- */
+// @vue/component
+const SbCardHeader = {
+  name: 'SbCardHeader',
 
-const SbCard = {
-  name: 'SbCard',
+  render (h) {
+    const renderTitle = () => {
+      if (this.$slots.default) {
+        return h('span', {
+          staticClass: 'sb-card--title'
+        },
+        [capitalize(this.$slots.default[0].text.trim())]
+        )
+      }
+      return null
+    }
+    return this.$slots.default[0].text.trim().split('').length ? renderTitle() : null
+  }
+}
+
+// @vue/component
+const SbCardFooter = {
+  name: 'SbCardFooter',
 
   props: {
-    title: {
+    url: {
       type: String,
       default: null
     },
     linkLabel: {
       type: String,
       default: null
-    },
-    url: {
-      type: String,
-      default: null
-    },
-    isLoading: {
-      type: Boolean
-    },
-    options: {
-      type: Array,
-      default: () => []
-    },
-    isFullWidth: {
-      type: Boolean
     }
   },
 
   render (h) {
-    const renderTitle = () => {
-      if (this.title) {
-        return h('span', {
-          staticClass: 'sb-card--title'
-        },
-        [capitalize(this.title)])
-      }
-      return null
-    }
-
-    const renderOptions = () => {
-      if (this.options.length) {
-        return h(SbIcon, {
-          class: 'sb-card--option',
-          props: {
-            name: 'overflow-menu-vertic',
-            size: 'small'
-          }
-        })
-      }
-    }
-
     const renderLink = () => {
       if (this.url) {
         return h(SbLink, {
@@ -76,7 +52,21 @@ const SbCard = {
         })
       }
     }
+    return renderLink()
+  }
+}
 
+// @vue/component
+const SbCardContent = {
+  name: 'SbCardContent',
+
+  props: {
+    isLoading: {
+      type: Boolean
+    }
+  },
+
+  render (h) {
     const renderLoading = () => {
       return h(SbIcon, {
         staticClass: 'sb-card--loading',
@@ -106,19 +96,60 @@ const SbCard = {
       ])
     }
 
+    return renderCardContent()
+  }
+}
+
+// @vue/component
+const SbCardOptions = {
+  name: 'SbCardOptions',
+
+  render (h) {
+    const renderOptions = () => {
+      return h(SbIcon, {
+        class: 'sb-card--option',
+        props: {
+          name: 'overflow-menu-vertic',
+          size: 'small'
+        }
+      })
+    }
+
+    return renderOptions()
+  }
+}
+
+/**
+ * @vue/component
+ *
+ * SbCard component
+ *
+ * SbCard is a component to used to divide content elements on page.
+ */
+
+const SbCard = {
+  name: 'SbCard',
+
+  props: {
+    isFullWidth: {
+      type: Boolean
+    },
+    isThin: {
+      type: Boolean
+    }
+  },
+
+  render (h) {
     const renderCard = () => {
       return h('div', {
         staticClass: 'sb-card',
         class: {
           'sb-card--full-width': this.isFullWidth,
-          'sb-card--no-labels': (!this.title && !this.options.length)
+          'sb-card--no-labels': this.isThin
         }
       },
       [
-        renderTitle(),
-        renderOptions(),
-        renderCardContent(),
-        renderLink()
+        this.$slots.default
       ])
     }
 
@@ -126,4 +157,10 @@ const SbCard = {
   }
 }
 
-export default SbCard
+export {
+  SbCard,
+  SbCardHeader,
+  SbCardOptions,
+  SbCardFooter,
+  SbCardContent
+}

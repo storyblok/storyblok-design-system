@@ -1,18 +1,28 @@
-import SbCard from '.'
+import {
+  SbCard,
+  SbCardHeader,
+  SbCardContent,
+  SbCardFooter,
+  SbCardOptions
+} from '.'
 
 const CardTemplate = args => ({
-  components: { SbCard },
+  components: { SbCard, SbCardHeader, SbCardContent, SbCardFooter, SbCardOptions },
   props: Object.keys(args),
   template: `
-    <SbCard 
-      v-bind="{
-        title,
-        linkLabel,
-        url,
-        isLoading,
-        options,
-        isFullWidth
-      }"/>`
+    <SbCard :is-full-width="isFullWidth" :is-thin="isThin">
+      <SbCardHeader>
+        {{ title }}
+      </SbCardHeader>
+      <SbCardOptions v-if="options.lenght">
+        
+      </SbCardOptions>
+      <SbCardContent :is-loading="isLoading">
+        
+      </SbCardContent>
+      <SbCardFooter :url="url" :link-label="linkLabel"/>
+  </SbCard >
+  `
 })
 
 export default {
@@ -31,7 +41,8 @@ export default {
     url: 'https://storyblok.com',
     isLoading: false,
     options: [],
-    isFullWidth: false
+    isFullWidth: false,
+    isThin: false
   },
   argTypes: {
     title: {
@@ -71,7 +82,14 @@ export default {
     },
     isFullWidth: {
       name: 'isFullWidth',
-      description: 'This `isFullWidth` prop changes the type of visualization, to full width view.',
+      description: 'This `isFullWidth` prop changes the type of visualization of the `SbCard`, to full width view.',
+      control: {
+        type: 'boolean'
+      }
+    },
+    isThin: {
+      name: 'isThin',
+      description: 'The `isThin` prop belongs to the `SbCard` component, it reduces the size of the margin above, it is to be used when you don`t have the header and options.',
       control: {
         type: 'boolean'
       }
@@ -81,14 +99,15 @@ export default {
 
 export const Default = CardTemplate.bind({})
 
-export const CardWithoutTitleAndLink = CardTemplate.bind({})
+export const CardWithoutHeaderAndFooter = CardTemplate.bind({})
 
-CardWithoutTitleAndLink.args = {
+CardWithoutHeaderAndFooter.args = {
   title: '',
-  url: ''
+  url: '',
+  isThin: true
 }
 
-CardWithoutTitleAndLink.parameters = {
+CardWithoutHeaderAndFooter.parameters = {
   docs: {
     description: {
       story: 'Cards without the header and footer are for showing only the content, but continue to divide the content while maintaining the style of cards.'
