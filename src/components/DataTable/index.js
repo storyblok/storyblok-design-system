@@ -6,9 +6,17 @@ import './data-table.scss'
 const SbDataTable = {
   name: 'SbDataTable',
   props: {
+    headers: {
+      type: Array,
+      default: () => []
+    },
     isLoading: {
       type: Boolean,
       default: false
+    },
+    items: {
+      type: Array,
+      default: () => []
     },
     showHeader: {
       type: Boolean,
@@ -40,30 +48,32 @@ const SbDataTable = {
 
     const renderTableHeader = () => {
       if (this.showHeader) {
-        const TableSizeArray = []
+        const rowArray = []
+        this.headers.forEach(elem => {
+          rowArray.push(h('th', elem.text))
+        })
 
-        const RowSizeArray = []
-        for (let j = 1; j <= 3; j++) {
-          RowSizeArray.push(h('th', 'Header col: ' + j))
-        }
-        TableSizeArray.push(h('tr', [RowSizeArray]))
-        return h('thead', [TableSizeArray])
+        const tableArray = []
+        tableArray.push(h('tr', [rowArray]))
+
+        return h('thead', [tableArray])
       }
 
       return null
     }
 
     const renderTableBody = () => {
-      const TableSizeArray = []
+      const tableArray = []
 
-      for (let i = 1; i < 9; i += 3) {
-        const RowSizeArray = []
-        for (let j = 0; j < 3; j++) {
-          RowSizeArray.push(h('td', 'Body cell: ' + (i + j)))
-        }
-        TableSizeArray.push(h('tr', [RowSizeArray]))
-      }
-      return h('tbody', [TableSizeArray])
+      this.items.forEach(row => {
+        const rowArray = []
+        Object.values(row).forEach(elem => {
+          rowArray.push(h('th', elem))
+        })
+
+        tableArray.push(h('tr', [rowArray]))
+      })
+      return h('tbody', [tableArray])
     }
 
     const renderTable = () => {
