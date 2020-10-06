@@ -66,5 +66,10 @@
     font-weight: normal;
     text-align: left;
     padding: 18px 10px;
+
+    &.sb-data-table__main-col {
+      font-weight: 500;
+      color: $sb-dark-blue;
+    }
   }
 }

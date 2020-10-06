@@ -67,8 +67,11 @@ const SbDataTable = {
 
       this.items.forEach(row => {
         const rowArray = []
-        Object.values(row).forEach(elem => {
-          rowArray.push(h('th', elem))
+        const isMainColumn = this.headers.findIndex(col => col.main)
+        Object.values(row).forEach((elem, index) => {
+          rowArray.push(h('td', {
+            class: { 'sb-data-table__main-col': isMainColumn === index }
+          }, elem))
         })
 
         tableArray.push(h('tr', [rowArray]))
