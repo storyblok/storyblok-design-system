@@ -1,8 +1,19 @@
-import SbIcon from '../Icon'
 
 // styles
 import './data-table.scss'
 
+import {
+  SbDataTableBody,
+  SbDataTableHead
+} from './components'
+
+import SbIcon from '../Icon'
+
+/**
+ * SbDataTable
+ *
+ * The data table element
+ */
 const SbDataTable = {
   name: 'SbDataTable',
   props: {
@@ -32,70 +43,22 @@ const SbDataTable = {
     }
   },
   render (h) {
-    const renderInput = () => {
-      return h('input', {
-        attrs: {
-          type: 'checkbox'
+    const renderIcon = () => {
+      return h(SbIcon, {
+        props: {
+          color: 'primary',
+          name: 'loading',
+          size: 'large'
         }
       })
     }
 
     const renderLoading = () => {
-      const renderIcon = () => {
-        return h(SbIcon, {
-          props: {
-            color: 'primary',
-            name: 'loading',
-            size: 'large'
-          }
-        })
-      }
-
       return h('div', {
         staticClass: 'sb-data-table__loading'
       }, [
         renderIcon()
       ])
-    }
-
-    const renderTableHeader = () => {
-      if (this.showHeader) {
-        const rowArray = []
-        if (this.selectable) {
-          rowArray.push(h('th', [renderInput()]))
-        }
-        this.headers.forEach(elem => {
-          rowArray.push(h('th', elem.text))
-        })
-
-        const tableArray = []
-        tableArray.push(h('tr', [rowArray]))
-
-        return h('thead', [tableArray])
-      }
-
-      return null
-    }
-
-    const renderTableBody = () => {
-      const tableArray = []
-
-      this.items.forEach(row => {
-        const rowArray = []
-        if (this.selectable) {
-          rowArray.push(h('td', [renderInput()]))
-        }
-
-        const isMainColumn = this.headers.findIndex(col => col.main)
-        Object.values(row).forEach((elem, index) => {
-          rowArray.push(h('td', {
-            class: { 'sb-data-table__main-col': isMainColumn === index }
-          }, elem))
-        })
-
-        tableArray.push(h('tr', [rowArray]))
-      })
-      return h('tbody', [tableArray])
     }
 
     const renderTable = () => {
@@ -106,8 +69,20 @@ const SbDataTable = {
         }
       },
       [
-        renderTableHeader(),
-        renderTableBody()
+        h(SbDataTableHead, {
+          props: {
+            headers: this.headers,
+            selectable: this.selectable,
+            showHeader: this.showHeader
+          }
+        }),
+        h(SbDataTableBody, {
+          props: {
+            headers: this.headers,
+            items: this.items,
+            selectable: this.selectable
+          }
+        })
       ])
     }
 
