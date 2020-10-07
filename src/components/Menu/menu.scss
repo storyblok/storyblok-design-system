@@ -1,0 +1,47 @@
+.sb-menu-list {
+  @include popoverComponent();
+  min-width: 250px;
+  padding: 10px 0;
+}
+
+.sb-menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  appearance: none;
+  border: 0;
+  background-color: $white;
+  padding: 10px;
+  margin: 0;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: $light-50;
+  }
+
+  .sb-icon {
+    margin-right: 10px;
+  }
+
+  &--negative {
+    color: $red;
+  }
+}
+
+.sb-menu-separator {
+  background-color: $light;
+  margin: 10px 10px;
+  height: 1px;
+  border: none;
+}
+
+.sb-menu-group {
+  &__title {
+    padding: 10px;
+    color: $light-gray;
+    font-size: 13px;
+    margin: 0;
+  }
+}
