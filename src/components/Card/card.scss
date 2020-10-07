@@ -18,6 +18,7 @@
     width: 512px;
     margin: 20px;
     margin-top: 71px;
+    overflow: auto;
   }
 
   &--no-content {
@@ -27,7 +28,7 @@
   &--title {
     margin-left: 20px;
     position: fixed;
-    margin-top: 20px;
+    margin-top: 25px;
     color: $primary-text-color;
     font-family: $primary-font-family;
     font-size: $font-size-md;
