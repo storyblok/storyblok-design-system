@@ -1,22 +1,6 @@
 import './tooltip.scss'
-import { includes, getRandomNumber } from '../../utils'
+import { includes, randomString } from '../../utils'
 import { availablePositions } from './lib'
-
-/**
- * @method randomString
- * @param  {Number} length
- * @return {String}
- */
-const randomString = length => {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-
-  let result = ''
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(getRandomNumber(0, length))
-  }
-
-  return result
-}
 
 /**
  * SbTooltip component
