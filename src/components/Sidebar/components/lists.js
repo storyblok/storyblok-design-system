@@ -1,6 +1,8 @@
 import SbIcon from '../../Icon'
 
 /**
+ * @vue/component
+ *
  * SbSidebarList component
  *
  * Render a list container to SbSidebarLink component
@@ -21,12 +23,16 @@ const SbSidebarList = {
 }
 
 /**
+ * @vue/component
+ *
  * SbSidebarLink component
  *
  * Render a list item to SbSidebar list and may render a single item
  */
 const SbSidebarLink = {
   name: 'SbSidebarLink',
+
+  functional: true,
 
   props: {
     active: {
@@ -46,7 +52,8 @@ const SbSidebarLink = {
       default: null
     },
     href: {
-      type: String
+      type: String,
+      default: null
     },
     icon: {
       type: String,
@@ -57,8 +64,6 @@ const SbSidebarLink = {
       default: null
     }
   },
-
-  functional: true,
 
   render (h, { props, listeners, data }) {
     const renderLabel = () => {

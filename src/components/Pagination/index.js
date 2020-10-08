@@ -11,6 +11,8 @@ import {
 const DEFAULT_ROWS_PER_PAGE_DROPDOWN = [10, 20, 30, 40, 50]
 
 /**
+ * @vue/component
+ *
  * SbPagination
  *
  * The pagination element
@@ -147,7 +149,8 @@ const SbPagination = {
           h(SbPaginationPagesText, {
             props: {
               pages: this.pages,
-              currentPage: this.value
+              currentPage: this.value,
+              showCurrentPage: true
             }
           }),
           rightArrowButton
