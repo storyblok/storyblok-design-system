@@ -2,8 +2,9 @@ import './menu.scss'
 
 import { SbPopover } from '../Popover'
 import SbButton from '../Button'
-import SbGroupButton from '../GroupButton'
 import SbIcon from '../Icon'
+
+import { sharedProps } from '../Button/lib'
 import { randomString } from '../../utils'
 
 /**
@@ -179,15 +180,17 @@ const SbMenuButton = {
   inject: ['$MenuContext'],
 
   props: {
+    // button shared props
+    ...sharedProps,
+
+    // only apply when uses the hasIconOnly property
     hasIconOnly: Boolean,
     isRounded: Boolean,
+
+    // only apply when does not use the hasIconOnly property
     label: {
       type: String,
       default: null
-    },
-    type: {
-      type: String,
-      default: 'ghost'
     }
   },
 
@@ -206,6 +209,7 @@ const SbMenuButton = {
     if (this.hasIconOnly) {
       return h(SbButton, {
         attrs: {
+          ...this.$attrs,
           id: this.menuListId,
           'aria-controls': this.menuListId,
           'aria-haspopup': 'true',
@@ -218,6 +222,7 @@ const SbMenuButton = {
           type: this.type
         },
         on: {
+          ...this.$listeners,
           click: (event) => {
             this.$emit('click', event)
 
@@ -227,38 +232,27 @@ const SbMenuButton = {
       })
     }
 
-    return h(SbGroupButton, {
+    return h(SbButton, {
+      attrs: {
+        ...this.$attrs,
+        id: this.menuListId,
+        'aria-haspopup': 'true',
+        'aria-expanded': isOpen ? 'true' : null
+      },
       props: {
+        iconRight: 'chevron-down',
+        label: this.label,
         type: this.type
       },
-      attrs: {
-        id: this.menuListId
+      on: {
+        ...this.$listeners,
+        click: (event) => {
+          this.$emit('click', event)
+
+          toggleMenu()
+        }
       }
-    }, [
-      h(SbButton, {
-        props: {
-          label: this.label
-        },
-        on: {
-          click: (event) => {
-            this.$emit('click', event)
-          }
-        }
-      }),
-      h(SbButton, {
-        attrs: {
-          'aria-haspopup': 'true',
-          'aria-expanded': isOpen ? 'true' : null
-        },
-        props: {
-          icon: 'chevron-down',
-          hasIconOnly: true
-        },
-        on: {
-          click: () => toggleMenu()
-        }
-      })
-    ])
+    }, this.$slots.default)
   }
 }
 
