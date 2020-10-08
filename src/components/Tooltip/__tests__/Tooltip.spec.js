@@ -116,4 +116,106 @@ describe('test SbTooltip component', () => {
       expect(wrapper.classes('sb-tooltip--right')).toBe(true)
     })
   })
+
+  describe('when using along with a button component', () => {
+    const label = 'This is a label to SbButton'
+    const buttonText = 'Hover Me!'
+    const template = `
+      <SbTooltip label="${label}">
+        <button aria-label="Test label" type="submit" @click="onClick">
+          ${buttonText}
+        </button>
+      </SbTooltip>
+    `
+
+    const onClick = jest.fn()
+    const additionalInfo = {
+      methods: {
+        onClick
+      }
+    }
+
+    const wrapper = factory(template, {}, additionalInfo)
+    const ButtonComponent = wrapper.find('button')
+
+    it('should emits the click event when clicks on button', async () => {
+      await ButtonComponent.trigger('click')
+
+      expect(onClick).toBeCalled()
+    })
+
+    it('should the button has the correct attributes', () => {
+      expect(ButtonComponent.attributes('aria-label')).toBe('Test label')
+      expect(ButtonComponent.attributes('type')).toBe('submit')
+    })
+  })
+
+  describe('when test the navigation', () => {
+    const label = 'This is a label to SbButton'
+    const buttonText = 'Hover Me!'
+    const template = `
+      <SbTooltip label="${label}">
+        <button aria-label="Test label" type="submit" @click="onClick">
+          ${buttonText}
+        </button>
+      </SbTooltip>
+    `
+
+    const onClick = jest.fn()
+    const additionalInfo = {
+      methods: {
+        onClick
+      }
+    }
+
+    const wrapper = factory(template, {}, additionalInfo)
+    const ButtonComponent = wrapper.find('button')
+    const TooltipComponent = wrapper.find('[role="tooltip"]')
+
+    it('should perform the show on focus hide on blur', async () => {
+      expect(
+        TooltipComponent.attributes('aria-hidden')
+      ).toBe('true')
+
+      ButtonComponent.element.focus()
+
+      await wrapper.vm.$nextTick()
+
+      expect(
+        TooltipComponent.attributes('aria-hidden')
+      ).toBe('false')
+
+      ButtonComponent.element.blur()
+
+      await wrapper.vm.$nextTick()
+
+      expect(
+        TooltipComponent.attributes('aria-hidden')
+      ).toBe('true')
+    })
+
+    it('should perform the show on focus hide on escape key is pressed', async () => {
+      expect(
+        TooltipComponent.attributes('aria-hidden')
+      ).toBe('true')
+
+      ButtonComponent.element.focus()
+
+      await wrapper.vm.$nextTick()
+
+      expect(
+        TooltipComponent.attributes('aria-hidden')
+      ).toBe('false')
+
+      await ButtonComponent.trigger('keydown', {
+        key: 'Escape'
+      })
+
+      await wrapper.vm.$nextTick()
+
+      expect(
+        TooltipComponent.attributes('aria-hidden')
+      ).toBe('true')
+    })
+  })
 })

@@ -5,6 +5,7 @@ import SbIcon from '../Icon'
 import { badgeTypes, mapIconByTypes } from './lib'
 import { isValidNumber } from '../../utils'
 
+// @vue/component
 const SbBadge = {
   name: 'SbBadge',
 

@@ -2,6 +2,8 @@ import { getSvgIcon, iconSizes } from './utils'
 import { availableColors } from '../../utils'
 
 /**
+ * @vue/component
+ *
  * SbIcon component
  *
  * SbIcon component is used for rendering icons.
@@ -12,15 +14,20 @@ const SbIcon = {
   props: {
     color: {
       type: String,
+      default: null,
       validator: (color) => availableColors.indexOf(color) !== -1
     },
-    name: String,
+    name: {
+      type: String,
+      default: null
+    },
     role: {
       type: String,
       default: 'presentation'
     },
     size: {
       type: String,
+      default: null,
       validator: (size) => iconSizes.indexOf(size) !== -1
     }
   },
