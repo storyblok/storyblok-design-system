@@ -2,6 +2,8 @@ import { SbBreadcrumbItem } from './BreadcrumItem'
 import SbIcon from '../Icon'
 
 /**
+ * @vue/component
+ *
  * SbBreadcrumbDropdown component
  *
  * Dropdown that renders the additional items
@@ -12,7 +14,10 @@ const SbBreadcrumbDropdown = {
   functional: true,
 
   props: {
-    items: Array,
+    items: {
+      type: Array,
+      default: () => []
+    },
     active: Boolean
   },
 
@@ -35,6 +40,8 @@ const SbBreadcrumbDropdown = {
 }
 
 /**
+ * @vue/component
+ *
  * SbBreadcrumbSeparator component
  *
  * Separator
@@ -69,6 +76,8 @@ const SbBreadcrumbSeparator = {
 }
 
 /**
+ * @vue/component
+ *
  * SbBreadcrumbs component
  *
  * Breadcrumbs container
@@ -77,7 +86,10 @@ const SbBreadcrumbs = {
   name: 'SbBreadcrumbs',
 
   props: {
-    items: Array,
+    items: {
+      type: Array,
+      default: () => []
+    },
     isLargeSection: Boolean
   },
 

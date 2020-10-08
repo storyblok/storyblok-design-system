@@ -10,17 +10,14 @@ import { availablePositions } from './lib'
 export default {
   name: 'SbTooltip',
 
-  data: () => ({
-    isVisibleTooltip: false
-  }),
-
   props: {
     id: {
       type: String,
       default: () => `sb-tooltip-${randomString(5)}`
     },
     label: {
-      type: String
+      type: String,
+      required: true
     },
     position: {
       type: String,
@@ -29,13 +26,29 @@ export default {
     }
   },
 
+  data: () => ({
+    isVisibleTooltip: false
+  }),
+
   methods: {
+    /**
+     * shows the tooltip
+     */
     showTooltip () {
       this.isVisibleTooltip = true
     },
+
+    /**
+     * hides the tooltip
+     */
     hideTooltip () {
       this.isVisibleTooltip = false
     },
+
+    /**
+     * handles with the keydown event to close the tooltip when esc key is pressed
+     * @param  {Event} event
+     */
     handleKeydown (event) {
       if (event.key === 'Escape') {
         this.hideTooltip()
@@ -77,8 +90,9 @@ export default {
         }, childrenElement.componentOptions.children)
       }
 
+      const childrenData = childrenElement.data || {}
       return h(childrenElement.tag, {
-        ...(childrenElement.data || {}),
+        ...childrenData,
         attrs: {
           ...(childrenElement.data ? childrenElement.data.attrs : {}),
           'aria-describedby': id
@@ -88,7 +102,8 @@ export default {
           blur: this.hideTooltip,
           mouseenter: this.showTooltip,
           mouseleave: this.hideTooltip,
-          keydown: this.handleKeydown
+          keydown: this.handleKeydown,
+          ...(childrenData.on || {})
         }
       }, childrenElement.children)
     }

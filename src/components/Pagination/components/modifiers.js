@@ -1,4 +1,6 @@
 /**
+ * @vue/component
+ *
  * SbPaginationDot
  *
  * Render a dot button to change the page
@@ -11,7 +13,8 @@ export const SbPaginationDot = {
   props: {
     currentPage: {
       type: Number,
-      default: false
+      required: true,
+      default: 1
     },
     page: {
       type: Number,
@@ -41,6 +44,8 @@ export const SbPaginationDot = {
 }
 
 /**
+ * @vue/component
+ *
  * SbPaginationCarousel
  *
  * Render a Pagination carousel style

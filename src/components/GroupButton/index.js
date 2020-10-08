@@ -4,6 +4,8 @@ import './group-button.scss'
 import { sharedProps } from '../Button/lib'
 
 /**
+ * @vue/component
+ *
  * SbGroupButton component
  *
  * SbGroupButton is a component used to group buttons and links

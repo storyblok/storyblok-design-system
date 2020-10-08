@@ -1,0 +1,93 @@
+.sb-loading {
+  
+  &--progress-bar {
+    width: 100%;
+  }
+
+  &--bar {
+    border-radius: 0px;
+    height: 5px;
+    width: 100%;
+  }
+
+  &--bar::-webkit-progress-value {  
+    background: $sb-green;
+  }
+
+  &--bar[value]::-webkit-progress-bar {
+    background: $light;
+  }
+
+  &--bar-label {
+    margin: auto;
+    margin-top: 15px;
+    width: 23px;
+    display: block;
+    font-size: $text-text-small;
+  }
+
+  &--spinner-label {
+    margin: auto;
+    top: -60%;
+    display: block;
+    text-align: center;
+    position: relative;
+    width: 30px;
+    font-size: $text-text-small;
+  }
+
+  &--spinner-small {
+    width: 26px;
+    height: 26px;
+
+    .sb-loading--spinner-label {
+      top: -64%;
+      font-size: 7px;
+      width: 25px;
+    }
+
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  &--spinner-normal {
+    width: 32px;
+    height: 32px;
+
+    .sb-loading--spinner-label {
+      top: -70%;
+      font-size: 10px;
+    }
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  &--spinner-large {
+    width: 46px;
+    height: 46px;
+
+    .sb-loading--spinner-label {
+      top:-67%;
+    }
+
+    svg {
+      width: 46px;
+      height: 46px;
+    }
+  }
+
+  &--spinner-x-large {
+    width: 76px;
+    height: 76px;
+
+    svg {
+      width: 76px;
+      height: 76px;
+    }
+  }
+}
