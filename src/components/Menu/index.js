@@ -182,6 +182,10 @@ const SbMenuButton = {
   props: {
     // button shared props
     ...sharedProps,
+    type: {
+      type: String,
+      default: 'ghost'
+    },
 
     // only apply when uses the hasIconOnly property
     hasIconOnly: Boolean,
