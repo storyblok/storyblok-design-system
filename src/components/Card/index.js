@@ -2,7 +2,7 @@ import './card.scss'
 import { capitalize } from '../../utils'
 import SbLink from '../Link'
 import SbIcon from '../Icon'
-// import SbLoading from '../Loading'
+import SbLoading from '../Loading'
 
 // @vue/component
 const SbCardHeader = {
@@ -68,20 +68,14 @@ const SbCardContent = {
 
   render (h) {
     const renderLoading = () => {
-      return h(SbIcon, {
+      return h(SbLoading, {
         staticClass: 'sb-card--loading',
         props: {
-          name: 'loading',
-          size: 'x-large',
+          type: 'spinner',
+          size: 'large',
           color: 'primary'
         }
       })
-      // return h(SbLoading, {
-      //   props: {
-      //     type: 'spinner',
-      //     size: 'small',
-      //   }
-      // })
     }
 
     const renderCardContent = () => {
