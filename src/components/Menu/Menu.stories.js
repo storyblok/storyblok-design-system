@@ -7,6 +7,9 @@ import {
   SbMenuSeparator
 } from '.'
 
+import SbButton from '../Button'
+import SbGroupButton from '../GroupButton'
+
 export default {
   title: 'SbMenu',
   component: SbMenu,
@@ -154,6 +157,40 @@ export const ButtonWithJustIcon = (args) => ({
 
           <SbMenuItem icon="search"> Option 1 </SbMenuItem>
           <SbMenuItem icon="folder"> Option 2 </SbMenuItem>
+        </SbMenuList>
+      </SbMenu>
+    </div>
+  `
+})
+
+export const AlongWithGroup = (args) => ({
+  props: Object.keys(args),
+  components: {
+    SbMenu,
+    SbMenuButton,
+    SbMenuList,
+    SbMenuItem,
+    SbMenuGroup,
+    SbMenuSeparator,
+    SbButton,
+    SbGroupButton
+  },
+  template: `
+    <div style="display: flex; justify-content: center;">
+      <SbMenu>
+        <SbGroupButton type="ghost">
+          <SbButton label="Define Schema" />
+          <SbMenuButton has-icon-only />
+        </SbGroupButton>
+
+        <SbMenuList placement="bottom-end">
+          <SbMenuItem> Option 1 </SbMenuItem>
+          <SbMenuItem> Option 2 </SbMenuItem>
+
+          <SbMenuSeparator />
+
+          <SbMenuItem> Option 1 </SbMenuItem>
+          <SbMenuItem> Option 2 </SbMenuItem>
         </SbMenuList>
       </SbMenu>
     </div>
