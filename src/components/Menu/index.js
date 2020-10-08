@@ -54,7 +54,17 @@ const SbMenuItem = {
       staticClass: 'sb-menu-item',
       class: [typeClass],
       attrs: {
+        ...this.$attrs,
         role: 'menuitemradio'
+      },
+      on: {
+        ...this.$listeners,
+        click (event) {
+          this.$emit('click', event)
+        },
+        keydown (event) {
+          this.$emit('keydown', event)
+        }
       }
     }, [
       this.icon && renderIcon(),
@@ -154,13 +164,14 @@ const SbMenuList = {
       props: {
         offset: [0, 5],
         placement: this.placement,
-        reference: `#${menuListId}`
+        reference: `#${menuButtonId}`
       },
 
       ref: 'popover'
     }, [
       h('div', {
         attrs: {
+          id: menuListId,
           role: 'menu',
           'aria-labelledby': menuButtonId
         }
@@ -201,20 +212,17 @@ const SbMenuButton = {
   computed: {
     context () {
       return this.$MenuContext()
-    },
-    menuListId () {
-      return this.context.menuListId
     }
   },
 
   render (h) {
-    const { isOpen, toggleMenu } = this.context
+    const { isOpen, toggleMenu, menuButtonId } = this.context
 
     if (this.hasIconOnly) {
       return h(SbButton, {
         attrs: {
           ...this.$attrs,
-          id: this.menuListId,
+          id: menuButtonId,
           'aria-controls': this.menuListId,
           'aria-haspopup': 'true',
           'aria-expanded': isOpen ? 'true' : null
@@ -239,7 +247,7 @@ const SbMenuButton = {
     return h(SbButton, {
       attrs: {
         ...this.$attrs,
-        id: this.menuListId,
+        id: menuButtonId,
         'aria-haspopup': 'true',
         'aria-expanded': isOpen ? 'true' : null
       },
@@ -283,8 +291,14 @@ const SbMenu = {
   computed: {
     MenuContext () {
       return {
+        // controls the state of menu
         isOpen: this.isOpen,
+
+        // references identifiers
         menuListId: this.menuListId,
+        menuButtonId: this.menuButtonId,
+
+        // methods to control the menu state
         closeMenu: this.closeMenu,
         openMenu: this.openMenu,
         toggleMenu: this.toggleMenu
@@ -298,6 +312,8 @@ const SbMenu = {
      */
     closeMenu () {
       this.isOpen = false
+
+      this.$emit('close')
     },
 
     /**
@@ -305,6 +321,8 @@ const SbMenu = {
      */
     openMenu () {
       this.isOpen = true
+
+      this.$emit('open')
     },
 
     /**
@@ -321,7 +339,10 @@ const SbMenu = {
 
   render (h) {
     return h('div', {
-      staticClass: 'sb-menu'
+      staticClass: 'sb-menu',
+      attrs: {
+        ...this.$attrs
+      }
     }, this.$slots.default)
   }
 }
