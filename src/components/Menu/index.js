@@ -416,6 +416,13 @@ const SbMenu = {
     }
   },
 
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   data: () => ({
     activeIndex: -1,
     focusableElements: [],
@@ -466,10 +473,24 @@ const SbMenu = {
 
         this.$_resetTabIndex()
       })
+    },
+
+    isOpen (state) {
+      this.$emit('input', state)
+    },
+
+    value (state) {
+      if (state) {
+        this.focusOnFirstItem()
+      } else {
+        this.closeMenu()
+      }
     }
   },
 
   mounted () {
+    this.isOpen = this.value || false
+
     this.$_loadListItems()
   },
 
@@ -570,10 +591,10 @@ const SbMenu = {
      * get all menu item elements
      */
     $_loadListItems () {
-      if (this.menuListId) {
-        const menuNode = canUseDOM &&
+      const menuNode = canUseDOM &&
         document.querySelector(`#${this.menuListId}`)
 
+      if (this.menuListId && menuNode) {
         this.focusableElements = getFocusableElements(menuNode)
           .filter(node =>
             ['menuitemradio'].includes(
