@@ -13,26 +13,22 @@ import SbGroupButton from '../GroupButton'
 export default {
   title: 'SbMenu',
   component: SbMenu,
-  subcomponents: {
-    SbMenuButton: {
-      title: SbMenuButton,
-      argTypes: {
-        label: {
-          name: 'label',
-          description: 'Label (inner test)',
-          control: {
-            type: 'text'
-          }
-        }
+  parameters: {
+    docs: {
+      description: {
+        component: 'Use the overflow menu component when additional options are available to the user but there is a space constraint.'
       }
     }
   },
+  args: {
+    value: true
+  },
   argTypes: {
-    label: {
-      name: 'label',
-      description: 'Label (inner test)',
+    value: {
+      name: 'value',
+      description: 'Controls the open menu state. The value property has to be used for `v-model` directive',
       control: {
-        type: 'text'
+        type: 'boolean'
       }
     }
   }
@@ -50,7 +46,7 @@ export const Default = (args) => ({
   },
   template: `
     <div>
-      <SbMenu>
+      <SbMenu :value="value">
         <SbMenuButton label="Combo button" />
 
         <SbMenuList placement="bottom-start">
@@ -58,8 +54,6 @@ export const Default = (args) => ({
             <SbMenuItem> Option 1 </SbMenuItem>
             <SbMenuItem> Option 2 </SbMenuItem>
           </SbMenuGroup>
-
-          <SbMenuSeparator />
 
           <SbMenuGroup title="More">
             <SbMenuItem> Option 3 </SbMenuItem>
@@ -84,7 +78,7 @@ export const WithSeparators = (args) => ({
   },
   template: `
     <div>
-      <SbMenu>
+      <SbMenu :value="value">
         <SbMenuButton label="Combo button" />
 
         <SbMenuList placement="bottom-start">
@@ -117,7 +111,7 @@ export const WithIcons = (args) => ({
   },
   template: `
     <div>
-      <SbMenu>
+      <SbMenu :value="value">
         <SbMenuButton label="Combo button" />
 
         <SbMenuList placement="bottom-start">
@@ -146,7 +140,7 @@ export const ButtonWithJustIcon = (args) => ({
   },
   template: `
     <div>
-      <SbMenu>
+      <SbMenu :value="value">
         <SbMenuButton has-icon-only is-rounded />
 
         <SbMenuList placement="bottom-start">
@@ -177,7 +171,7 @@ export const AlongWithGroup = (args) => ({
   },
   template: `
     <div style="display: flex; justify-content: center;">
-      <SbMenu>
+      <SbMenu :value="value">
         <SbGroupButton type="ghost">
           <SbButton label="Define Schema" />
           <SbMenuButton has-icon-only />
