@@ -11,14 +11,17 @@ export const SbDataTableHead = {
   name: 'SbDataTableHead',
   props: {
     headers: {
+      required: false,
       type: Array,
       default: () => []
     },
-    selectable: {
+    allowSelection: {
+      required: false,
       type: Boolean,
       default: false
     },
     showHeader: {
+      required: false,
       type: Boolean,
       default: true
     }
@@ -27,7 +30,7 @@ export const SbDataTableHead = {
     const renderTableHead = () => {
       if (this.showHeader) {
         const rowArray = []
-        if (this.selectable) {
+        if (this.allowSelection) {
           rowArray.push(h('th', [
             h(SbDataTableInput)
           ]))
