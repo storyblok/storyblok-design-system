@@ -5,21 +5,25 @@ import SbButton from '../Button'
 import SbIcon from '../Icon'
 
 import { sharedProps } from '../Button/lib'
-import { randomString } from '../../utils'
+import { randomString, getFocusableElements, canUseDOM } from '../../utils'
 
 /**
  * @vue/component
  *
  * SbMenuItem is the item component for SbMenuList
+ * This component implements the navigation using keyboard like specified in W3C documentation about WAI-ARIA practices: https://www.w3.org/TR/wai-aria-practices/#menu
  */
 const SbMenuItem = {
   name: 'SbMenuItem',
+
+  inject: ['$MenuContext'],
 
   props: {
     icon: {
       type: String,
       default: null
     },
+    isDisabled: Boolean,
     label: {
       type: String,
       default: null
@@ -27,6 +31,53 @@ const SbMenuItem = {
     type: {
       type: String,
       default: null
+    }
+  },
+
+  computed: {
+    context () {
+      return this.$MenuContext()
+    }
+  },
+
+  methods: {
+    /**
+     * handles click event and close menu
+     * @param {Event} event
+     */
+    handleClick (event) {
+      const { closeMenu } = this.context
+
+      this.$emit('click', event)
+
+      if (this.isDisabled) {
+        event.preventDefault()
+        event.stopPropagation()
+        return
+      }
+
+      closeMenu()
+    },
+
+    /**
+     * handles keydown event and close menu
+     * @param {Event} event
+     */
+    handleKeyDown (event) {
+      const { closeMenu } = this.context
+
+      this.$emit('keydown', event)
+
+      if (this.isDisabled) return
+
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault()
+
+        // handle keydown as click event
+        this.$emit('click')
+
+        closeMenu()
+      }
     }
   },
 
@@ -59,12 +110,8 @@ const SbMenuItem = {
       },
       on: {
         ...this.$listeners,
-        click (event) {
-          this.$emit('click', event)
-        },
-        keydown (event) {
-          this.$emit('keydown', event)
-        }
+        click: this.handleClick,
+        keydown: this.handleKeyDown
       }
     }, [
       this.icon && renderIcon(),
@@ -155,6 +202,51 @@ const SbMenuList = {
     }
   },
 
+  methods: {
+    /**
+     * listen to keydown event and handle with keys to perform the navigation
+     * @param {Event} event
+     */
+    handleKeyDown (event) {
+      const {
+        activeIndex,
+        focusAtIndex,
+        focusOnFirstItem,
+        focusOnLastItem,
+        closeMenu,
+        focusableElements
+      } = this.context
+      const count = focusableElements.length
+
+      switch (event.key) {
+        case 'ArrowDown':
+          event.preventDefault()
+          focusAtIndex((activeIndex + 1) % count)
+          break
+        case 'ArrowUp':
+          event.preventDefault()
+          focusAtIndex((activeIndex - 1 + count) % count)
+          break
+        case 'Home':
+          focusOnFirstItem()
+          break
+        case 'End':
+          focusOnLastItem()
+          break
+        case 'Tab':
+          event.preventDefault()
+          break
+        case 'Escape':
+          closeMenu()
+          break
+        default:
+          break
+      }
+
+      this.$emit('keydown', event)
+    }
+  },
+
   render (h) {
     const { menuListId, menuButtonId } = this.context
 
@@ -171,9 +263,13 @@ const SbMenuList = {
     }, [
       h('div', {
         attrs: {
+          ...this.$attrs,
           id: menuListId,
           role: 'menu',
           'aria-labelledby': menuButtonId
+        },
+        on: {
+          keydown: this.handleKeyDown
         }
       }, this.$slots.default)
     ])
@@ -212,11 +308,55 @@ const SbMenuButton = {
   computed: {
     context () {
       return this.$MenuContext()
+    },
+    isOpen () {
+      return this.context.isOpen || false
+    }
+  },
+
+  methods: {
+    /**
+     * triggers a click event and toggle menu state
+     * @param {Event} event
+     */
+    handleClick (event) {
+      const { closeMenu, focusOnFirstItem } = this.context
+
+      this.$emit('click', event)
+
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (this.isOpen) {
+        closeMenu()
+      } else {
+        focusOnFirstItem()
+      }
+    },
+
+    /**
+     * triggers a keydown event
+     * @param {Event} event
+     */
+    handleKeyDown (event) {
+      const { focusOnFirstItem, focusOnLastItem } = this.context
+
+      this.$emit('keydown', event)
+
+      if (event.key === 'ArrowUp') {
+        event.preventDefault()
+        focusOnLastItem()
+      }
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault()
+        focusOnFirstItem()
+      }
     }
   },
 
   render (h) {
-    const { isOpen, toggleMenu, menuButtonId } = this.context
+    const { isOpen, menuButtonId } = this.context
 
     if (this.hasIconOnly) {
       return h(SbButton, {
@@ -235,11 +375,8 @@ const SbMenuButton = {
         },
         on: {
           ...this.$listeners,
-          click: (event) => {
-            this.$emit('click', event)
-
-            toggleMenu()
-          }
+          click: this.handleClick,
+          keydown: this.handleKeyDown
         }
       })
     }
@@ -258,11 +395,8 @@ const SbMenuButton = {
       },
       on: {
         ...this.$listeners,
-        click: (event) => {
-          this.$emit('click', event)
-
-          toggleMenu()
-        }
+        click: this.handleClick,
+        keydown: this.handleKeyDown
       }
     }, this.$slots.default)
   }
@@ -283,6 +417,8 @@ const SbMenu = {
   },
 
   data: () => ({
+    activeIndex: -1,
+    focusableElements: [],
     isOpen: false,
     menuListId: `sb-menu-list-${randomString(4)}`,
     menuButtonId: `sb-menu-button-${randomString(4)}`
@@ -298,12 +434,43 @@ const SbMenu = {
         menuListId: this.menuListId,
         menuButtonId: this.menuButtonId,
 
+        // controls elements
+        activeIndex: this.activeIndex,
+        focusableElements: this.focusableElements,
+
         // methods to control the menu state
         closeMenu: this.closeMenu,
         openMenu: this.openMenu,
-        toggleMenu: this.toggleMenu
+        toggleMenu: this.toggleMenu,
+        focusAtIndex: this.focusAtIndex,
+        focusOnFirstItem: this.focusOnFirstItem,
+        focusOnLastItem: this.focusOnLastItem
       }
     }
+  },
+
+  watch: {
+    activeIndex (index) {
+      if (index !== -1) {
+        this.$nextTick(() => {
+          this.focusableElements[this.activeIndex] && this.focusableElements[this.activeIndex].focus()
+
+          this.$_updateTabIndex(this.activeIndex)
+        })
+
+        return
+      }
+
+      this.$nextTick(() => {
+        this.$_focusButton()
+
+        this.$_resetTabIndex()
+      })
+    }
+  },
+
+  mounted () {
+    this.$_loadListItems()
   },
 
   methods: {
@@ -312,6 +479,7 @@ const SbMenu = {
      */
     closeMenu () {
       this.isOpen = false
+      this.activeIndex = -1
 
       this.$emit('close')
     },
@@ -333,6 +501,85 @@ const SbMenu = {
         this.closeMenu()
       } else {
         this.openMenu()
+      }
+    },
+
+    /**
+     * set focus to first menu item
+     */
+    focusOnFirstItem () {
+      this.openMenu()
+
+      this.activeIndex = 0
+    },
+
+    /**
+     * set focus to last menu item
+     */
+    focusOnLastItem () {
+      this.openMenu()
+
+      this.activeIndex = this.focusableElements.length - 1
+    },
+
+    /**
+     * set focus a specific menu item index
+     * @param {Number} index Position index of menu list item
+     */
+    focusAtIndex (index) {
+      this.$_updateTabIndex(index)
+
+      this.activeIndex = index
+    },
+
+    /**
+     * updates tab index for menu items
+     * @param {Number} index Position index of menu list item
+     */
+    $_updateTabIndex (index) {
+      if (this.focusableElements.length > 0) {
+        const nodeAtIndex = this.focusableElements[index]
+        this.focusableElements.forEach((node) => {
+          if (node !== nodeAtIndex) {
+            node.setAttribute('tabindex', -1)
+          }
+        })
+        nodeAtIndex.setAttribute('tabindex', 0)
+      }
+    },
+
+    /**
+     * set all menu items to tabindex -1
+     */
+    $_resetTabIndex () {
+      if (this.focusableElements.length > 0) {
+        this.focusableElements.forEach((node) => {
+          node.setAttribute('tabindex', -1)
+        })
+      }
+    },
+
+    /**
+     * set focus to trigger button element
+     */
+    $_focusButton () {
+      document.querySelector(`#${this.menuButtonId}`).focus()
+    },
+
+    /**
+     * get all menu item elements
+     */
+    $_loadListItems () {
+      if (this.menuListId) {
+        const menuNode = canUseDOM &&
+        document.querySelector(`#${this.menuListId}`)
+
+        this.focusableElements = getFocusableElements(menuNode)
+          .filter(node =>
+            ['menuitemradio'].includes(
+              node.getAttribute('role')
+            )
+          )
       }
     }
   },
