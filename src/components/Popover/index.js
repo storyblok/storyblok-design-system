@@ -134,6 +134,8 @@ const SbPopover = {
      */
     hide () {
       this.isOpen = false
+
+      this.$emit('hide')
     },
 
     /**
@@ -141,6 +143,8 @@ const SbPopover = {
      */
     show () {
       this.isOpen = true
+
+      this.$emit('show')
     },
 
     /**
