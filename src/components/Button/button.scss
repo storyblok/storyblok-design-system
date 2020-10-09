@@ -2,10 +2,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 13px 28px;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  font-size: 16px;
+  font-size: $font-size-lg;
   cursor: pointer;
   transition: all .1s ease-in-out;
   vertical-align: middle;
@@ -19,7 +16,7 @@
     }
 
     &[disabled] {
-      color: #004e4c;
+      color: $green-disabled;
       background-color: rgba($sb-green, 0.5);
 
       .sb-button__label {
@@ -98,7 +95,7 @@
   }
 
   &__label {
-    font-weight: 500;
+    font-weight: $font-weight-medium;
     vertical-align: middle;
   }
 

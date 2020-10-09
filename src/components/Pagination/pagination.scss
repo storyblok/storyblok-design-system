@@ -1,8 +1,7 @@
 .sb-pagination {
   display: inline-flex;
   align-items: center;
-  height: 53px;
-  font-size: 14px;
+  font-size: $font-size-md;
   color: $color-primary-dark;
   box-shadow: 0px -1px 0px 0px $light, 0px 1px 0px 0px $light;
 
@@ -22,9 +21,9 @@
   }
 
   &__placeholder {
-    font-size: 13px;
+    font-size: $font-size-sm;
     color: $light-gray;
-    font-weight: normal;
+    font-weight: $font-weight-regular;
   }
 
   &__button {

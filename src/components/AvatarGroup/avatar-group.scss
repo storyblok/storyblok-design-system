@@ -31,8 +31,8 @@
     @include avatarComponent();
     @include avatarComponentSize($sb-avatar-normal);
     background-color: $light-75;
-    font-size: 12px;
-    font-weight: normal;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
     color: $color-primary-dark;
   }
 

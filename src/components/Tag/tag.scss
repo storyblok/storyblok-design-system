@@ -11,8 +11,8 @@
   padding: 3px 20px;
   border-radius: 5px;
   vertical-align: middle;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
 
   &--primary {
     @include setColor($color-primary, $white);

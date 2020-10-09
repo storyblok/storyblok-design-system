@@ -79,13 +79,13 @@
   color: $light-gray;
   font-family: $primary-font-family;
   font-size: $text-text-medium-small;
-  font-weight: normal;
+  font-weight: $font-weight-regular;
   cursor: pointer;
 
   // modifiers
   &--is-active {
     color: $primary-text-color;
-    font-weight: 500;
+    font-weight: $font-weight-medium;
     
     &::after {
       content: '';

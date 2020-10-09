@@ -95,8 +95,8 @@
   }
 
   &--title {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
     vertical-align: middle;
     width: 75%;
     display: inline-block;
@@ -106,11 +106,8 @@
   }
 
   &--description {
-    font-size: 14px;
-    font-weight: normal;
-    margin-left: 52px;
-    margin-right: 34px;
-    margin-top: 13px;
+    font-size: $font-size-md;
+    font-weight: $font-weight-regular;
     line-height: 1.5em;
     overflow: hidden; 
     text-overflow: ellipsis;
@@ -124,8 +121,8 @@
     margin-right: 34px;
     
     a {
-      font-size: 14px;
-      font-weight: normal;
+      font-size: $font-size-md;
+      font-weight: $font-weight-regular;
       text-decoration: none;
       text-decoration-color: $primary-text-color;
       color: $primary-text-color;

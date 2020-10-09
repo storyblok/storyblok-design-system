@@ -6,8 +6,8 @@
   display: inline-block;
 
   &--container {
-    color: rgb(177, 181, 190);
-    font-size: 14px;
+    color: $light-gray;
+    font-size: $font-size-md;
     height: 150px;
     width: 250px;
     display: inline-grid;

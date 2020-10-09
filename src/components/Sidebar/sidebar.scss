@@ -55,14 +55,14 @@
       &-name {
         margin: 0;
         margin-bottom: 5px;
-        font-size: 14px;
-        font-weight: 500;
+        font-size: $font-size-md;
+        font-weight: $font-weight-medium;
       }
 
       &-email {
         margin: 0;
-        font-size: 12px;
-        font-weight: normal;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-regular;
         color: $light-gray;
       }
     }
@@ -77,7 +77,7 @@
       }
 
       .sb-link {
-        font-weight: normal;
+        font-weight: $font-weight-regular;
         color: $color-primary-dark;
       }
 
@@ -110,8 +110,8 @@
     align-items: center;
     padding: 15px 30px;
     color: $white;
-    font-size: 14px;
-    font-weight: normal;
+    font-size: $font-size-md;
+    font-weight: $font-weight-regular;
     letter-spacing: 0px;
     text-decoration: none;
     vertical-align: middle;

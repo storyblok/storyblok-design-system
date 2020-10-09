@@ -17,7 +17,7 @@ $green:                                        #2DB47D;
 $green-75:                                     #62C79E;
 $green-50:                                     #96D9BE;
 $green-25:                                     #CAECDE;
-
+$green-disabled:                               #004e4c;
 // yellow
 $yellow:                                       #FBCE41;
 $yellow-75:                                    #FCDB71;
@@ -51,25 +51,25 @@ $light-gray:                                   #B1B5BE;
 
 $black:                                        #101525;
 $white:                                        #FFF;
-$black-trasparent:                           rgba(0,0,0,.1);
+$black-trasparent:                             rgba(0,0,0,.1);
 // ----
 
 // Typography
 $primary-font-family:                            'Roboto';
 $primary-text-color:                             $sb-dark-blue;
-$font-size-default:                              16px;
+$font-size-default:                              1.6rem;
 $line-height-default:                            1;
 
-$text-header:                                    25px;
-$text-subheader:                                 18px;
-$text-text-medium:                               16px;
-$text-text-medium-small:                         14px;
-$text-text-small:                                13px;
+$text-header:                                    2.5rem;
+$text-subheader:                                 1.8rem;
+$text-text-medium:                               1.6rem;
+$text-text-medium-small:                         1.4rem;
+$text-text-small:                                1.3rem;
 
-$font-size-xs:                                   0.75rem;
-$font-size-sm:                                   0.8125rem;
-$font-size-md:                                   0.875rem;
-$font-size-lg:                                   1rem;
+$font-size-xs:                                   1.2rem;
+$font-size-sm:                                   1.3rem;
+$font-size-md:                                   1.4rem;
+$font-size-lg:                                   1.6rem;
 
 // Font weight
 $font-weight-thin:                               100;
@@ -79,6 +79,12 @@ $font-weight-medium:                             500;
 $font-weight-bold:                               700;
 
 // ----
+
+// Icon Sizes
+$icon-small-size: 1.6em;
+$icon-default-size: 2.4em;
+$icon-large-size: 3.2em;
+$icon-extra-large-size: 4.8em;
 
 // Global Variables
 

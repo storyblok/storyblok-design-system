@@ -1,11 +1,11 @@
-$icon-small-size: 16px;
-$icon-default-size: 24px;
-$icon-large-size: 32px;
-$icon-extra-large-size: 48px;
-
 @mixin setIconSize ($size) {
   width: $size;
   height: $size;
+}
+
+@mixin setIconColor ($color) {
+  color: $color;
+  fill: $color;
 }
 
 .sb-icon {
@@ -13,8 +13,7 @@ $icon-extra-large-size: 48px;
   display: inline-block;
   vertical-align: middle;
   stroke-width: 2px;
-  color: currentColor;
-  fill: currentColor;
+  @include setIconColor(currentColor);
 
   &--small {
     @include setIconSize($icon-small-size);
@@ -26,5 +25,29 @@ $icon-extra-large-size: 48px;
 
   &--x-large {
     @include setIconSize($icon-extra-large-size);
+  }
+
+  &--color {
+    &-primary {
+      @include setIconColor($color-primary);
+    }
+    &-primary-dark {
+      @include setIconColor($color-primary-dark);
+    }
+    &-secondary {
+      @include setIconColor($color-secondary);
+    }
+    &-positive {
+      @include setIconColor($color-positive);
+    }
+    &-negative {
+      @include setIconColor($color-negative);
+    }
+    &-warning {
+      @include setIconColor($color-warning);
+    }
+    &-white {
+      @include setIconColor($color-white);
+    }
   }
 }

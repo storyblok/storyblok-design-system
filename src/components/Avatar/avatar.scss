@@ -24,8 +24,8 @@
 
   // initials
   &__initials {
-    color: #FFF;
-    font-size: 14px;
+    color: $white;
+    font-size: $font-size-md;
     text-align: center;
     text-transform: uppercase;
   }
@@ -39,15 +39,15 @@
 
   &__text {
     display: block;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
     color: $primary-text-color;
   }
 
   &__description {
     display: block;
-    font-size: 13px;
-    font-weight: normal;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-regular;
     color: $light-gray;
   }
 
