@@ -29,17 +29,12 @@ export const SbDataTableBodyRow = {
     }
   },
   methods: {
-    handleRowSelected (event) {
+    handleRowSelected () {
       if (!this.allowSelection) return
 
-      const source = event.target || event.srcElement
-      if (source.tagName.toLowerCase() === 'td' || source.tagName.toLowerCase() === 'input') {
-        if (this.isSelected) {
-          this.deselectRow(this.row)
-        } else {
-          this.selectRow(this.row)
-        }
-      }
+      this.isSelected
+        ? this.deselectRow(this.row)
+        : this.selectRow(this.row)
     }
   },
   inject: ['selectRow', 'deselectRow'],
@@ -49,7 +44,10 @@ export const SbDataTableBodyRow = {
     const renderInput = () => {
       return h(SbDataTableInput, {
         props: {
-          isChecked: this.isSelected
+          value: this.isSelected
+        },
+        on: {
+          input: this.handleRowSelected
         }
       })
     }

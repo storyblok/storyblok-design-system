@@ -10,15 +10,15 @@ import {
 export const SbDataTableHead = {
   name: 'SbDataTableHead',
   props: {
-    headers: {
-      required: false,
-      type: Array,
-      default: () => []
-    },
     allowSelection: {
       required: false,
       type: Boolean,
       default: false
+    },
+    headers: {
+      required: false,
+      type: Array,
+      default: () => []
     },
     showHeader: {
       required: false,
