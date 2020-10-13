@@ -56,6 +56,15 @@ const SbDataTable = {
       default: false
     }
   },
+  computed: {
+    allRowsSelected () {
+      if (this.selectionMode === 'single' || !this.selectedRows.length) return false
+
+      return this.selectedRows.length === this.items.length
+        ? true
+        : null
+    }
+  },
   methods: {
     selectRow (row) {
       if (this.selectionMode === 'single') {
@@ -84,8 +93,8 @@ const SbDataTable = {
         this.deselectRow(row)
       }
     },
-    selectAll (all) {
-      this.selectedRows = all
+    selectAll () {
+      this.selectedRows = [...this.items]
     },
     deselectAll () {
       this.selectedRows = []
@@ -94,7 +103,9 @@ const SbDataTable = {
   provide: function () {
     return {
       selectRow: this.selectRow,
-      deselectRow: this.deselectRow
+      deselectRow: this.deselectRow,
+      selectAll: this.selectAll,
+      deselectAll: this.deselectAll
     }
   },
   render (h) {
@@ -130,7 +141,9 @@ const SbDataTable = {
         h(SbDataTableHead, {
           props: {
             allowSelection: this.allowSelection,
+            allRowsSelected: this.allRowsSelected,
             headers: this.headers,
+            selectionMode: this.selectionMode,
             showHeader: this.showHeader
           }
         }),
