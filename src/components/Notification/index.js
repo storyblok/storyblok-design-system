@@ -3,6 +3,7 @@ import { capitalize } from '../../utils'
 import SbIcon from '../Icon'
 import SbBadge from '../Badge'
 
+// @vue/component
 const SbNotification = {
   name: 'SbNotification',
 

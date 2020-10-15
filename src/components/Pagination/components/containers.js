@@ -7,6 +7,8 @@ import {
 } from './shared'
 
 /**
+ * @vue/component
+ *
  * SbPagesContainer
  *
  * A container element to pages information when in default Pagination style
@@ -16,10 +18,13 @@ export const SbPagesContainer = {
 
   props: {
     currentPage: {
-      type: Number
+      type: Number,
+      required: true,
+      default: 1
     },
     pages: {
       type: Number,
+      required: true,
       default: 10
     }
   },
@@ -62,6 +67,8 @@ export const SbPagesContainer = {
 }
 
 /**
+ * @vue/component
+ *
  * SbPerPageContainer
  *
  * A container element to items and per page information when in default Pagination style
@@ -71,20 +78,28 @@ export const SbPerPageContainer = {
 
   props: {
     currentPage: {
-      type: Number
+      type: Number,
+      required: true,
+      default: 1
     },
     pages: {
-      type: Number
+      type: Number,
+      required: true,
+      default: 10
     },
     perPage: {
-      type: Number
+      type: Number,
+      required: true,
+      default: 1
     },
     perPageAvailable: {
       type: Array,
       default: () => []
     },
     total: {
-      type: Number
+      type: Number,
+      required: true,
+      default: 100
     }
   },
 

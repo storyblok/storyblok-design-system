@@ -5,6 +5,8 @@ import SbIcon from '../Icon'
 import './link-button.scss'
 
 /**
+ * @vue/component
+ *
  * SbLink component
  *
  * SbLink is a component used primarly to navigation
@@ -22,7 +24,8 @@ const SbLink = {
       default: null
     },
     href: {
-      type: String
+      type: String,
+      default: null
     },
     icon: {
       type: String,
