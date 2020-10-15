@@ -381,6 +381,23 @@ const icons = {
       <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8.2222222 1L11 3.77777778 3.77777778 11H1V8.2222222z"/>
     </g>
     `
+  },
+  'img-icon': {
+    viewBox: '0 0 83 103',
+    path: `
+    <g width="83" height="103" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M3 0h50.453a3 3 0 012.068.827L82.07 26.105A3 3 0 0183 28.277V100a3 3 0 01-3 3H3a3 3 0 01-3-3V3a3 3 0 013-3z" fill="#EFF1F3"/>
+        <path d="M27.239 66.06l9.063 15.952A2 2 0 0134.563 85H16.437a2 2 0 01-1.74-2.988l9.064-15.952a2 2 0 013.478 0z" fill="#B1B5BE" opacity=".488"/>
+        <circle fill="#B1B5BE" cx="23.5" cy="32.5" r="6.5"/>
+        <path d="M50.603 46.06L71.03 82.012A2 2 0 0169.29 85H28.438a2 2 0 01-1.74-2.988L47.126 46.06a2 2 0 013.478 0z" fill="#B1B5BE"/>
+      </g>
+    </g>`
+  },
+  refresh: {
+    viewBox: '0 0 0 0',
+    path: `
+    `
   }
 }
 
