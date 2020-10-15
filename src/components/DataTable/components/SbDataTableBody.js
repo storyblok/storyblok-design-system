@@ -41,18 +41,18 @@ export const SbDataTableBodyRow = {
   render (h) {
     const rowArray = []
 
-    const renderInput = () => {
-      return h(SbDataTableInput, {
-        props: {
-          value: this.isSelected
-        },
-        on: {
-          input: this.handleRowSelected
-        }
-      })
-    }
-
     if (this.allowSelection) {
+      const renderInput = () => {
+        return h(SbDataTableInput, {
+          props: {
+            value: this.isSelected
+          },
+          on: {
+            input: this.handleRowSelected
+          }
+        })
+      }
+
       rowArray.push(h('td', {
         staticClass: 'sb-data-table__col-selection'
       }, [

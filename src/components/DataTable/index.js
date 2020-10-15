@@ -4,7 +4,7 @@ import './data-table.scss'
 
 import {
   SbDataTableBody,
-  SbDataTableHead
+  SbDataTableHeader
 } from './components'
 
 import SbIcon from '../Icon'
@@ -27,6 +27,11 @@ const SbDataTable = {
     sortOrder: null
   }),
   props: {
+    allowSelection: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
     headers: {
       required: false,
       type: Array,
@@ -41,11 +46,6 @@ const SbDataTable = {
       required: false,
       type: Array,
       default: () => []
-    },
-    allowSelection: {
-      required: false,
-      type: Boolean,
-      default: false
     },
     selectionMode: {
       required: false,
@@ -132,7 +132,7 @@ const SbDataTable = {
     deselectAll () {
       this.selectedRows = []
     },
-    toggleOrder (order, key) {
+    toggleTableOrder (order, key) {
       this.sortOrder = order
       this.sortKey = key
     }
@@ -143,7 +143,7 @@ const SbDataTable = {
       deselectRow: this.deselectRow,
       selectAll: this.selectAll,
       deselectAll: this.deselectAll,
-      toggleOrder: this.toggleOrder
+      toggleTableOrder: this.toggleTableOrder
     }
   },
   render (h) {
@@ -176,12 +176,13 @@ const SbDataTable = {
         }
       },
       [
-        h(SbDataTableHead, {
+        h(SbDataTableHeader, {
           props: {
             allowSelection: this.allowSelection,
             allRowsSelected: this.allRowsSelected,
             headers: this.headers,
             selectionMode: this.selectionMode,
+            sortedKey: this.sortKey,
             showHeader: this.showHeader
           }
         }),
