@@ -78,6 +78,23 @@
       color: $sb-dark-blue;
     }
   }
+
+  th {
+    &:hover {
+      .sb-data-table__sort-icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__sort-icon {
+    margin-left: 10px;
+    opacity: 0;
+
+    .sb-data-table--sortable & {
+      opacity: 1;
+    }
+  }
 }
 
 $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;

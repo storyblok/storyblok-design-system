@@ -9,6 +9,11 @@ import {
 
 import SbIcon from '../Icon'
 
+import {
+  getPropertyValue,
+  isNumeric
+} from '../../utils'
+
 /**
  * SbDataTable
  *
@@ -17,7 +22,9 @@ import SbIcon from '../Icon'
 const SbDataTable = {
   name: 'SbDataTable',
   data: () => ({
-    selectedRows: []
+    selectedRows: [],
+    sortKey: null,
+    sortOrder: null
   }),
   props: {
     headers: {
@@ -63,9 +70,35 @@ const SbDataTable = {
       return this.selectedRows.length === this.items.length
         ? true
         : null
+    },
+    sortedData () {
+      if (this.sortKey && this.sortOrder !== 0) {
+        return this.doSort()
+      }
+      return this.items
     }
   },
   methods: {
+    doSort () {
+      const local = [...this.items]
+
+      return local.sort((a, b) => {
+        let val1 = getPropertyValue(a, this.sortKey)
+        let val2 = getPropertyValue(b, this.sortKey)
+
+        if (val1 === null || val1 === undefined) val1 = ''
+        if (val2 === null || val2 === undefined) val2 = ''
+
+        if (isNumeric(val1) && isNumeric(val2)) {
+          return (val1 - val2) * this.sortOrder
+        }
+
+        const str1 = val1.toString()
+        const str2 = val2.toString()
+
+        return str1.localeCompare(str2) * this.sortOrder
+      })
+    },
     selectRow (row) {
       if (this.selectionMode === 'single') {
         this.selectedRows = [row]
@@ -98,6 +131,10 @@ const SbDataTable = {
     },
     deselectAll () {
       this.selectedRows = []
+    },
+    toggleOrder (order, key) {
+      this.sortOrder = order
+      this.sortKey = key
     }
   },
   provide: function () {
@@ -105,7 +142,8 @@ const SbDataTable = {
       selectRow: this.selectRow,
       deselectRow: this.deselectRow,
       selectAll: this.selectAll,
-      deselectAll: this.deselectAll
+      deselectAll: this.deselectAll,
+      toggleOrder: this.toggleOrder
     }
   },
   render (h) {
@@ -151,7 +189,7 @@ const SbDataTable = {
           props: {
             allowSelection: this.allowSelection,
             headers: this.headers,
-            items: this.items,
+            items: this.sortedData,
             selectedRows: this.selectedRows
           }
         })

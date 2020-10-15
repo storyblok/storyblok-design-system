@@ -100,9 +100,10 @@ const defaultTableHeadersData = [
   {
     text: 'Dessert (100g serving)',
     value: 'name',
-    main: true
+    main: true,
+    sortable: true
   },
-  { text: 'Calories', value: 'calories' },
+  { text: 'Calories', value: 'calories', sortable: true },
   { text: 'Fat (g)', value: 'fat' },
   { text: 'Carbs (g)', value: 'carbs' },
   { text: 'Protein (g)', value: 'protein' },
@@ -112,7 +113,7 @@ const defaultTableHeadersData = [
 const defaultTableItemsData = [
   {
     name: 'Frozen Yogurt',
-    calories: 159,
+    calories: 262,
     fat: 6.0,
     carbs: 24,
     protein: 4.0,
@@ -128,7 +129,7 @@ const defaultTableItemsData = [
   },
   {
     name: 'Eclair',
-    calories: 262,
+    calories: 159,
     fat: 16.0,
     carbs: 23,
     protein: 6.0,
