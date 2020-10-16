@@ -5,9 +5,11 @@ import SbButton from '../../Button'
 
 describe('SbPopover component', () => {
   describe('when toggle the open and close states', () => {
-    afterAll(() => {
-      document.body.innerHTML = ''
-    })
+    const divElement = document.createElement('div')
+
+    divElement.id = 'root'
+
+    document.body.appendChild(divElement)
 
     const WrapperComponent = {
       components: {
@@ -18,7 +20,8 @@ describe('SbPopover component', () => {
         active: false,
         placement: 'auto',
         reference: '#buttontest',
-        parentElementTag: 'div'
+        parentElementTag: 'div',
+        usePortal: false
       }),
       methods: {
         handleClick () {
@@ -34,6 +37,7 @@ describe('SbPopover component', () => {
             class="menu"
             :reference="reference"
             :placement="placement"
+            :use-portal="usePortal"
           >
             <ul role="navigation">
               <li>Item 1</li>
@@ -45,9 +49,9 @@ describe('SbPopover component', () => {
       `
     }
 
-    const wrapper = mount(WrapperComponent)
-
-    document.body.innerHTML = wrapper.html()
+    const wrapper = mount(WrapperComponent, {
+      attachTo: '#root'
+    })
 
     it('should have a ul with role navigation', () => {
       expect(wrapper.find('[role=navigation]').exists()).toBe(true)
