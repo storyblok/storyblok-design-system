@@ -395,9 +395,14 @@ const icons = {
     </g>`
   },
   refresh: {
-    viewBox: '0 0 0 0',
+    viewBox: '0 0 18 15',
     path: `
-    `
+    <g width="18" height="15" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#00B3B0" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16.889 1.722v4.334h-4.333M1 13.278V8.944h4.333"/>
+        <path d="M2.813 5.333a6.5 6.5 0 0110.725-2.426l3.35 3.149M1 8.944l3.351 3.15a6.5 6.5 0 0010.725-2.427"/>
+      </g>
+    </g>`
   }
 }
 
