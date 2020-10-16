@@ -1,22 +1,23 @@
 .sb-pagination {
   display: inline-flex;
   align-items: center;
+  height: 53px;
   font-size: $font-size-md;
   color: $color-primary-dark;
   box-shadow: 0px -1px 0px 0px $light, 0px 1px 0px 0px $light;
 
   // elements
   &__per-page-container {
-    margin-right: 120px;
-    padding-left: 10px;
+    margin-right: 12rem;
+    padding-left: 1rem;
   }
 
   &__pages-container {
-    margin-right: 30px;
+    margin-right: 3rem;
   }
 
   &__select {
-    margin: 0 10px;
+    margin: 0 1rem;
     border: none;
   }
 
@@ -47,7 +48,7 @@
 
   &-carousel-container {
     display: flex;
-    margin: 0 20px;
+    margin: 0 2rem;
   }
 
   &-dot {
@@ -60,7 +61,7 @@
     cursor: pointer;
 
     &:not(:first-child) {
-      margin-left: 15px;
+      margin-left: 1.5rem;
     }
 
     &--active {
@@ -83,7 +84,7 @@
   }
 
   &--compact > span {
-    margin: 0 20px;
+    margin: 0 2rem;
   }
 
   &--compact &__button {

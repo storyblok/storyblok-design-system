@@ -11,7 +11,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 3px 10px;
+  padding: 0.3rem 1rem;
   color: $white;
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
@@ -40,7 +40,7 @@
   }
 
   &:not(&--only-icon) .sb-icon {
-    margin-right: 5px;
+    margin-right: 0.5rem;
   }
 
   .sb-icon {
@@ -59,6 +59,7 @@
     padding: 0;
 
     .sb-badge__label {
+      margin-left: 0.5rem;
       color: $color-primary-dark;
       font-weight: $font-weight-medium;
     }

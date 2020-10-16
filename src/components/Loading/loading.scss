@@ -20,7 +20,7 @@
 
   &--bar-label {
     margin: auto;
-    margin-top: 15px;
+    margin-top: 1.5rem;
     width: 23px;
     display: block;
     font-size: $text-text-small;
@@ -42,6 +42,7 @@
 
     .sb-loading--spinner-label {
       top: -64%;
+      width: 25px;
       font-size: 0.7rem;
     }
 

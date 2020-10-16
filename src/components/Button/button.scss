@@ -2,6 +2,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 13px 28px;
+  border: 1px solid transparent;
+  border-radius: 5px;
   font-size: $font-size-lg;
   cursor: pointer;
   transition: all .1s ease-in-out;
@@ -79,11 +82,11 @@
   }
 
   &--small {
-    padding: 8px 16px;
+    padding: 0.8rem 1.6rem;
   }
   
   &--large {
-    padding: 20px 43px;
+    padding: 2rem 4.3rem;
   }
 
   &[disabled] {
@@ -109,18 +112,18 @@
 
   &--has-icon {
     .sb-icon {
-      margin-right: 5px;
+      margin-right: 0.5rem;
     }
   }
 
   &--has-icon-right {
     .sb-icon {
-      margin-left: 5px;
+      margin-left: 0.5rem;
     }
   }
 
   &--has-icon-only {
-    padding: 14px 14px;
+    padding: 1.4rem 1.4rem;
 
     .sb-icon {
       margin: 0;
@@ -128,7 +131,7 @@
   }
 
   &--loading {
-    padding-top: 9px;
-    padding-bottom: 9px;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
   }
 }

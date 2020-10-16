@@ -2,7 +2,7 @@
   display: inline-flex;
 
   .sb-link {
-    margin: 0 15px;
+    margin: 0 1.5rem;
   }
 
   &:not(&--has-spaces) {
@@ -27,7 +27,7 @@
 
   &--has-spaces {
     .sb-button:not(:last-child) {
-      margin-right: 5px;
+      margin-right: 0.5rem;
     }
   }
 }
