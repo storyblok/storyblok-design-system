@@ -193,12 +193,15 @@ const SbMenuList = {
   },
 
   watch: {
-    isOpen (state) {
-      if (state) {
-        this.$refs.popover.show()
-      } else {
-        this.$refs.popover.hide()
-      }
+    isOpen: {
+      handler (state) {
+        if (state) {
+          this.$refs.popover && this.$refs.popover.show()
+        } else {
+          this.$refs.popover && this.$refs.popover.hide()
+        }
+      },
+      immediate: true
     }
   },
 
@@ -248,7 +251,7 @@ const SbMenuList = {
   },
 
   render (h) {
-    const { menuListId, menuButtonId } = this.context
+    const { menuListId, menuButtonId, closeMenu } = this.context
 
     return h(SbPopover, {
       staticClass: 'sb-menu-list',
@@ -257,6 +260,10 @@ const SbMenuList = {
         offset: [0, 5],
         placement: this.placement,
         reference: `#${menuButtonId}`
+      },
+
+      on: {
+        hide: closeMenu
       },
 
       ref: 'popover'
