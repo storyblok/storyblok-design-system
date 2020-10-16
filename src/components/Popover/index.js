@@ -10,6 +10,8 @@ import SbPortal from '../Portal'
 
 import { randomString, canUseDOM, includes } from '../../utils'
 
+import { ClickOutside } from '../../directives'
+
 /**
  * popper.js placement options
  * @see https://popper.js.org/docs/v2/constructors/#placement
@@ -41,6 +43,10 @@ export const placementOptions = [
  */
 const SbPopover = {
   name: 'SbPopover',
+
+  directives: {
+    ClickOutside
+  },
 
   props: {
     // popper.js options
@@ -133,18 +139,22 @@ const SbPopover = {
      * hides the Popover
      */
     hide () {
-      this.isOpen = false
+      if (this.isOpen) {
+        this.isOpen = false
 
-      this.$emit('hide')
+        this.$emit('hide')
+      }
     },
 
     /**
      * shows the Popover
      */
     show () {
-      this.isOpen = true
+      if (!this.isOpen) {
+        this.isOpen = true
 
-      this.$emit('show')
+        this.$emit('show')
+      }
     },
 
     /**
@@ -182,6 +192,15 @@ const SbPopover = {
         this.popoverInstance.destroy()
         this.popoverInstance = null
       }
+    },
+
+    /**
+     * handler for click-outside directive
+     */
+    $_wrapClose (e) {
+      if (this.popoverInstance && !(this.referenceEl.contains(e.target))) {
+        this.hide()
+      }
     }
   },
 
@@ -208,7 +227,11 @@ const SbPopover = {
         },
         style: {
           display: this.isOpen ? 'unset' : 'none'
-        }
+        },
+        directives: [{
+          name: 'click-outside',
+          value: this.$_wrapClose
+        }]
       }, this.$slots.default)
     ])
   }

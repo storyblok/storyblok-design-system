@@ -70,11 +70,10 @@ export const Default = args => ({
 
       <SbPopover
         ref="popover"
-        class="menu"
         :reference="reference"
         :placement="placement"
       >
-        <ul>
+        <ul style="background-color: #BBBBBB;">
           <li>Item 1</li>
           <li>Item 2</li>
           <li>Item 3</li>
