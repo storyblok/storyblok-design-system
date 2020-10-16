@@ -584,7 +584,7 @@ const SbMenu = {
      * set focus to trigger button element
      */
     $_focusButton () {
-      document.querySelector(`#${this.menuButtonId}`).focus()
+      canUseDOM && document.querySelector(`#${this.menuButtonId}`).focus()
     },
 
     /**
