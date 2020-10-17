@@ -1,7 +1,7 @@
 .sb-menu-list {
   @include popoverComponent();
-  min-width: 250px;
-  padding: 10px 0;
+  min-width: 25rem;
+  padding: 1rem 0;
 }
 
 .sb-menu-item {
@@ -11,11 +11,11 @@
   appearance: none;
   border: 0;
   background-color: $white;
-  padding: 10px;
+  padding: 1rem;
   margin: 0;
   text-align: left;
   cursor: pointer;
-  font-size: 14px;
+  font-size: $font-size-md;
 
   &:hover,
   &:focus {
@@ -23,7 +23,7 @@
   }
 
   .sb-icon {
-    margin-right: 10px;
+    margin-right: 1rem;
   }
 
   &--negative {
@@ -33,16 +33,16 @@
 
 .sb-menu-separator {
   background-color: $light;
-  margin: 10px 10px;
+  margin: 1rem 1rem;
   height: 1px;
   border: none;
 }
 
 .sb-menu-group {
   &__title {
-    padding: 10px;
-    color: $light-gray;
-    font-size: 13px;
+    padding: 1rem;
+    color: $sb-dark-blue-50;
+    font-size: $font-size-sm;
     margin: 0;
   }
 }
