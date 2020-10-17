@@ -61,7 +61,7 @@
     .sb-tab--editable {
       .sb-tooltip {
         position: relative;
-        margin-left: 5px;
+        margin-left: 0.5rem;
         top: auto;
         right: 0;
         transform: none;
@@ -74,18 +74,18 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 14px 23px;
+  padding: 1.4rem 2.3rem;
   text-align: center;
-  color: $light-gray;
+  color: $sb-dark-blue-50;
   font-family: $primary-font-family;
-  font-size: $text-text-medium-small;
-  font-weight: normal;
+  font-size: $text-medium-small;
+  font-weight: $font-weight-regular;
   cursor: pointer;
 
   // modifiers
   &--is-active {
     color: $primary-text-color;
-    font-weight: 500;
+    font-weight: $font-weight-medium;
     
     &::after {
       content: '';
@@ -120,7 +120,7 @@
 .sb-tab-add {
   position: relative;
   text-align: center;
-  padding: 14px 10px;
+  padding: 1.4rem 1rem;
   display: flex;
   align-items: center;
 }
@@ -138,7 +138,7 @@
   opacity: 0;
 
   svg {
-    width: 12px;
-    height: 12px;
+    width: 1.2rem;
+    height: 1.2rem;
   }
 }

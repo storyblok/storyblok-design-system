@@ -20,10 +20,11 @@
 
   &--bar-label {
     margin: auto;
-    margin-top: 15px;
-    width: 23px;
+    margin-top: 1.5rem;
+    text-align: center;
     display: block;
-    font-size: $text-text-small;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
   }
 
   &--spinner-label {
@@ -32,62 +33,63 @@
     display: block;
     text-align: center;
     position: relative;
-    width: 30px;
-    font-size: $text-text-small;
+    width: 3rem;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
   }
 
   &--spinner-small {
-    width: 26px;
-    height: 26px;
+    width: 2.6rem;
+    height: 2.6rem;
 
     .sb-loading--spinner-label {
       top: -64%;
-      font-size: 7px;
-      width: 25px;
+      width: 2.5rem;
+      font-size: 0.7rem;
     }
 
     svg {
-      width: 26px;
-      height: 26px;
+      width: 2.6rem;
+      height: 2.6rem;
     }
   }
 
   &--spinner-normal {
-    width: 32px;
-    height: 32px;
+    width: 3.2rem;
+    height: 3.2rem;
 
     .sb-loading--spinner-label {
       top: -70%;
-      font-size: 10px;
+      font-size: 1rem;
     }
 
     svg {
-      width: 32px;
-      height: 32px;
+      width: 3.2rem;
+      height: 3.2rem;
     }
   }
 
   &--spinner-large {
-    width: 46px;
-    height: 46px;
+    width: 4.6rem;
+    height: 4.6rem;
 
     .sb-loading--spinner-label {
       top:-67%;
     }
 
     svg {
-      width: 46px;
-      height: 46px;
+      width: 4.6rem;
+      height: 4.6rem;
     }
   }
 
   &--spinner-x-large {
-    width: 76px;
-    height: 76px;
+    width: 7.6rem;
+    height: 7.6rem;
 
     svg {
-      width: 76px;
-      height: 76px;
+      width: 7.6rem;
+      height: 7.6rem;
     }
   }
 }

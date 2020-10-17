@@ -24,30 +24,31 @@
 
   // initials
   &__initials {
-    color: #FFF;
-    font-size: 14px;
+    color: $white;
+    font-size: $font-size-xs;
     text-align: center;
     text-transform: uppercase;
+    font-weight: $font-weight-medium;
   }
 
   // text (on the left)
   &__text-container {
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 1rem;
     vertical-align: middle;
   }
 
   &__text {
     display: block;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
     color: $primary-text-color;
   }
 
   &__description {
     display: block;
-    font-size: 13px;
-    font-weight: normal;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
     color: $light-gray;
   }
 
