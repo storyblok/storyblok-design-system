@@ -103,6 +103,9 @@ export default {
   title: 'SbSidebar',
   component: SbSidebar,
   excludeStories: /.*Data$/,
+  parameters: {
+    layout: 'fullscreen'
+  },
   args: {
     user: { ...userData },
     listItems: [...listItemsData],
