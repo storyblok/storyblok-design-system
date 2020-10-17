@@ -23,13 +23,13 @@
 
   &__placeholder {
     font-size: $font-size-sm;
-    color: $light-gray;
+    color: $sb-dark-blue-50;
     font-weight: $font-weight-regular;
   }
 
   &__button {
-    width: 55px;
-    height: 55px;
+    width: 5.5rem;
+    height: 5.5rem;
     background-color: transparent;
     border: none;
     border-left: 1px solid $light;
@@ -52,8 +52,8 @@
   }
 
   &-dot {
-    width: 10px;
-    height: 10px;
+    width: 1rem;
+    height: 1rem;
     padding: 0;
     background-color: $light;
     border-radius: 100%;

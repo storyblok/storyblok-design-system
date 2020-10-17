@@ -25,9 +25,10 @@
   // initials
   &__initials {
     color: $white;
-    font-size: $font-size-md;
+    font-size: $font-size-xs;
     text-align: center;
     text-transform: uppercase;
+    font-weight: $font-weight-medium;
   }
 
   // text (on the left)
@@ -46,7 +47,7 @@
 
   &__description {
     display: block;
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
     font-weight: $font-weight-regular;
     color: $light-gray;
   }

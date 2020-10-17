@@ -48,8 +48,8 @@
   }
 
   &--contract {
-    width: 12px;
-    height: 12px;
+    width: 1.2rem;
+    height: 1.2rem;
     padding: 0;
     border-radius: 100%;
   }
@@ -61,6 +61,7 @@
     .sb-badge__label {
       margin-left: 0.5rem;
       color: $color-primary-dark;
+      font-size: $font-size-md;
       font-weight: $font-weight-medium;
     }
   }

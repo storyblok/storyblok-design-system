@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 13px 28px;
+  padding: 1.4rem 2.8rem;
   border: 1px solid transparent;
   border-radius: 5px;
   font-size: $font-size-lg;
@@ -131,7 +131,7 @@
   }
 
   &--loading {
-    padding-top: 0.9rem;
-    padding-bottom: 0.9rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 }

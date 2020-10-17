@@ -76,9 +76,9 @@
   align-items: center;
   padding: 1.4rem 2.3rem;
   text-align: center;
-  color: $light-gray;
+  color: $sb-dark-blue-50;
   font-family: $primary-font-family;
-  font-size: $text-text-medium-small;
+  font-size: $text-medium-small;
   font-weight: $font-weight-regular;
   cursor: pointer;
 
@@ -138,7 +138,7 @@
   opacity: 0;
 
   svg {
-    width: 12px;
-    height: 12px;
+    width: 1.2rem;
+    height: 1.2rem;
   }
 }
