@@ -2,25 +2,40 @@ import {
   SbCard,
   SbCardHeader,
   SbCardContent,
-  SbCardFooter,
-  SbCardOptions
+  SbCardFooter
 } from '.'
 
+import SbLink from '../Link'
+import SbLoading from '../Loading'
+
 const CardTemplate = args => ({
-  components: { SbCard, SbCardHeader, SbCardContent, SbCardFooter, SbCardOptions },
+  components: {
+    SbLink,
+    SbCard,
+    SbCardHeader,
+    SbCardContent,
+    SbCardFooter
+  },
   props: Object.keys(args),
   template: `
-    <SbCard :is-full-width="isFullWidth" :is-thin="isThin">
-      <SbCardHeader>
-        {{ title }}
-      </SbCardHeader>
-      <SbCardOptions v-if="options.lenght">
-        
-      </SbCardOptions>
-      <SbCardContent :is-loading="isLoading">
-        
+    <SbCard :is-full-width="isFullWidth">
+      <SbCardHeader :as="as" :title="title" />
+
+      <SbCardContent>
+        <div
+          style="background-color: #f5f5f5;
+          width: 100%;
+          height: 300px;"
+        />
       </SbCardContent>
-      <SbCardFooter :url="url" :link-label="linkLabel"/>
+
+      <SbCardFooter>
+        <SbLink
+          href="https://storyblok.com"
+          label="Storyblok Website"
+          icon-right="chevron-right"
+        />
+      </SbCardFooter>
   </SbCard >
   `
 })
@@ -36,48 +51,16 @@ export default {
     }
   },
   args: {
-    title: 'Title',
-    linkLabel: 'Card Title Footer Action',
-    url: 'https://storyblok.com',
-    isLoading: false,
-    options: [],
-    isFullWidth: false,
-    isThin: false
+    as: 'span',
+    title: 'Card Title',
+    isFullWidth: false
   },
   argTypes: {
-    title: {
-      name: 'title',
-      description: 'Title for the card.',
+    as: {
+      name: 'as',
+      description: 'Define which tag element will be used to title text.',
       control: {
         type: 'text'
-      }
-    },
-    linkLabel: {
-      name: 'linkLabel',
-      description: 'Name that will appear for the links, it will be converted to the `title` of the `a` tag.',
-      control: {
-        type: 'text'
-      }
-    },
-    url: {
-      name: 'url',
-      description: 'Link address.',
-      control: {
-        type: 'text'
-      }
-    },
-    isLoading: {
-      name: 'isLoading',
-      description: 'When the card content is dynamic you can use the `isLoading` props to wait for the card content to render.',
-      control: {
-        type: 'boolean'
-      }
-    },
-    options: {
-      name: 'options',
-      description: 'Props `options` are used to pass options for the content to be rendered.',
-      control: {
-        type: 'array'
       }
     },
     isFullWidth: {
@@ -87,11 +70,11 @@ export default {
         type: 'boolean'
       }
     },
-    isThin: {
-      name: 'isThin',
-      description: 'The `isThin` prop belongs to the `SbCard` component, it reduces the size of the margin above, it is to be used when you don`t have the header and options.',
+    title: {
+      name: 'title',
+      description: 'Title for the card.',
       control: {
-        type: 'boolean'
+        type: 'text'
       }
     }
   }
@@ -99,15 +82,28 @@ export default {
 
 export const Default = CardTemplate.bind({})
 
-export const CardWithoutHeaderAndFooter = CardTemplate.bind({})
+export const WithoutHeaderAndFooter = args => ({
+  components: {
+    SbCard,
+    SbCardContent
+  },
 
-CardWithoutHeaderAndFooter.args = {
-  title: '',
-  url: '',
-  isThin: true
-}
+  props: Object.keys(args),
 
-CardWithoutHeaderAndFooter.parameters = {
+  template: `
+    <SbCard>
+      <SbCardContent :is-loading="isLoading">
+        <div
+          style="background-color: #f5f5f5;
+          width: 100%;
+          height: 50px;"
+        />
+      </SbCardContent>
+    </SbCard >
+  `
+})
+
+WithoutHeaderAndFooter.parameters = {
   docs: {
     description: {
       story: 'Cards without the header and footer are for showing only the content, but continue to divide the content while maintaining the style of cards.'
@@ -115,34 +111,65 @@ CardWithoutHeaderAndFooter.parameters = {
   }
 }
 
-export const CardLoading = CardTemplate.bind({})
+export const FullWidth = CardTemplate.bind({})
 
-CardLoading.args = {
-  title: 'Card Title',
-  url: 'https://storyblok.com',
-  isLoading: true
+FullWidth.args = {
+  isFullWidth: true
 }
 
-CardLoading.parameters = {
+FullWidth.parameters = {
   docs: {
     description: {
-      story: 'The card loading was done thinking about when the content of the card is dynamic, while the content is not loaded, pass the prop `isLoading` and the card will assume the loading behavior.'
+      story: 'The full width card was designed for content with a large area, for example a Data table.'
     }
   }
 }
 
-export const CardInFullWidth = CardTemplate.bind({})
+export const WithLoadingComponent = args => ({
+  components: {
+    SbLoading,
+    SbCard,
+    SbCardHeader,
+    SbCardContent,
+    SbCardFooter
+  },
 
-CardInFullWidth.args = {
-  title: 'Card Title',
-  url: 'https://storyblok.com',
-  isFullWidth: true
-}
+  props: Object.keys(args),
 
-CardInFullWidth.parameters = {
+  template: `
+    <SbCard :is-full-width="isFullWidth">
+      <SbCardHeader :title="title" />
+
+      <SbCardContent>
+        <div
+          style="
+            background-color: #f5f5f5;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <SbLoading type="spinner" size="large" color="primary" />
+        </div>
+      </SbCardContent>
+
+      <SbCardFooter>
+        <SbLink
+          href="https://storyblok.com"
+          label="Storyblok Website"
+          icon-right="chevron-right"
+        />
+      </SbCardFooter>
+  </SbCard >
+  `
+})
+
+WithLoadingComponent.parameters = {
   docs: {
     description: {
-      story: 'The full width card was designed for content with a large area, for example a Data table.'
+      story: 'You can use the `SbLoading` component inside the `SbCardContent` to perform a loading state to card'
     }
   }
 }

@@ -1,63 +1,29 @@
 .sb-card {
-  height: auto;
-  width: 552px;
+  width: 100%;
+  max-width: 512px;
+  padding: 2rem;
   border-radius: 3px;
   border: 1px solid $light;
-  display: inline-block;
 
   &--full-width {
-    width: 100%;
-
-    .sb-card--content {
-      width: 95%;
-    }
-  }
-
-  &--content {
-    height: 228px;
-    width: 512px;
-    margin: 20px;
-    margin-top: 71px;
-    overflow: auto;
-  }
-
-  &--no-content {
-    background: $light-50;
+    max-width: none;
   }
   
-  &--title {
-    margin-left: 20px;
-    position: absolute;
-    margin-top: 25px;
+  // components
+  &__header {
+    padding: 1rem 0 3rem 0;
+  }
+
+  &__title {
     color: $primary-text-color;
     font-family: $primary-font-family;
     font-size: $font-size-md;
     font-weight: $font-weight-medium;
   }
 
-  &--no-labels {
-    .sb-card--content {
-      margin-top: 20px;
-    }
-  }
-
-  .sb-link {
-    float: right;
-    margin-bottom: 20px;
-    margin-right: 20px;
-  }
-
-  &--option {
-    transform: rotate(90deg);
-    cursor: pointer;
-    margin-right: 20px;
-    margin-top: 20px;
-    float: right;
-  }
-
-  &--loading {
-    margin: 0 auto;
+  &__footer {
     display: flex;
-    padding: 90px 0;
+    justify-content: flex-end;
+    padding-top: 2rem;
   }
 }
