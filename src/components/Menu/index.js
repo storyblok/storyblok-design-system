@@ -16,7 +16,7 @@ import { randomString, getFocusableElements, canUseDOM } from '../../utils'
 const SbMenuItem = {
   name: 'SbMenuItem',
 
-  inject: ['$MenuContext'],
+  inject: ['menuContext'],
 
   props: {
     icon: {
@@ -36,7 +36,7 @@ const SbMenuItem = {
 
   computed: {
     context () {
-      return this.$MenuContext()
+      return this.menuContext()
     }
   },
 
@@ -174,7 +174,7 @@ const SbMenuGroup = {
 const SbMenuList = {
   name: 'SbMenuList',
 
-  inject: ['$MenuContext'],
+  inject: ['menuContext'],
 
   props: {
     placement: {
@@ -185,7 +185,7 @@ const SbMenuList = {
 
   computed: {
     context () {
-      return this.$MenuContext()
+      return this.menuContext()
     },
     isOpen () {
       return this.context.isOpen
@@ -291,7 +291,7 @@ const SbMenuList = {
 const SbMenuButton = {
   name: 'SbMenuButton',
 
-  inject: ['$MenuContext'],
+  inject: ['menuContext'],
 
   props: {
     // button shared props
@@ -314,7 +314,7 @@ const SbMenuButton = {
 
   computed: {
     context () {
-      return this.$MenuContext()
+      return this.menuContext()
     },
     isOpen () {
       return this.context.isOpen || false
@@ -419,7 +419,7 @@ const SbMenu = {
 
   provide () {
     return {
-      $MenuContext: () => this.MenuContext
+      menuContext: () => this.menuContext
     }
   },
 
@@ -439,7 +439,7 @@ const SbMenu = {
   }),
 
   computed: {
-    MenuContext () {
+    menuContext () {
       return {
         // controls the state of menu
         isOpen: this.isOpen,
