@@ -1,4 +1,4 @@
-import { acceptedFiles, uploadFilesToStoryblok } from './lib'
+import { acceptedFiles } from './lib'
 import { capitalize } from '../../utils'
 
 // other components
@@ -26,7 +26,7 @@ const SbDropArea = {
     },
     maxFileSize: {
       type: [String, Number],
-      default: null
+      default: null // Find out maximum size of files in the storyblok
     },
     maxFile: {
       type: [String, Number],
@@ -34,10 +34,6 @@ const SbDropArea = {
     },
     maxTotalSize: {
       type: [String, Number],
-      default: null
-    },
-    url: {
-      type: String,
       default: null
     },
     title: {
@@ -69,7 +65,7 @@ const SbDropArea = {
     },
 
     changeUploadLabel (index, size, name) {
-      this.uploadLabel = `Uploading ${index + 1}/${size} - ${name}`
+      return `Uploading ${parseInt(index) + 1}/${size} - ${name}`
     },
 
     async dropFile (e) {
@@ -81,21 +77,31 @@ const SbDropArea = {
       const data = e.dataTransfer
 
       if (data.items) {
-        for (let i = 0; i < data.items.length; i++) {
-          if (data.items[i].kind === 'file') {
-            const file = data.items[i].getAsFile()
-            this.changeUploadLabel(i, data.items.length, file.name)
-            await uploadFilesToStoryblok(file)
+        if (data.items.length > this.maxFile) { // check if the number of files to be sent is greater than the restriction
+          this.isLoading = false
+          // triggers notification that the maximum number of files has been reached
+          return
+        }
+        for (const [key, value] of Object.entries(data.items)) {
+          if (value.kind === 'file') {
+            const file = value.getAsFile()
+
+            if (file.size > this.maxFileSize) { // check if the size of each file sent is smaller than the restriction
+              return
+            }
+
+            this.uploadLabel = this.changeUploadLabel(key, data.items.length, file.name)
+            this.$emit('upload-file', file)
           }
         }
-        // this.isLoading = false
       } else {
-        for (let i = 0; i < data.files.length; i++) {
-          this.changeUploadLabel(i, data.files.length, data.files[i].name)
-          await uploadFilesToStoryblok(data.files[i])
+        for (const [key, value] of Object.entries(data.files)) {
+          this.uploadLabel = this.changeUploadLabel(key, data.files.length, value.name)
+          this.$emit('upload-file', value)
         }
-        // this.isLoading = false
       }
+
+      this.isLoading = false
     }
   },
 

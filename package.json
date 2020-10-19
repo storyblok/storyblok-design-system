@@ -11,9 +11,7 @@
     "storybook": "start-storybook -p 6006 --ci"
   },
   "dependencies": {
-    "axios": "^0.20.0",
     "core-js": "^3.6.5",
-    "form-data": "^3.0.0",
     "vue": "^2.6.12"
   },
   "devDependencies": {
