@@ -70,7 +70,8 @@
   &--upload {
     border-radius: 5px;
     background-color: $white;
-    width: 602px;
+    width: 100%;
+    max-width: 602px;
     height: 49px;
     margin: 0 auto;
     top: 50%;
@@ -87,5 +88,20 @@
       font-size: 14px;
       margin-top: 17px;
     }
+
+    .sb-loading--bar {
+      overflow: auto;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+  &__time-left {
+    color: $sb-dark-blue-50;
+    font-size: $text-text-medium-small;
+    font-weight: $font-weight-regular;
+    float: right;
+    margin-right: 19px;
+    margin-top: 17px;
   }
 }

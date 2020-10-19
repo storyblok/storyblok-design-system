@@ -8,6 +8,90 @@ import SbLoading from '../Loading'
 // styles
 import './drop-area.scss'
 
+// @vue/component
+const SbDropUploadLabel = {
+  name: 'SbDropUploadLabel',
+
+  props: {
+    totalFiles: {
+      type: Number,
+      default: 0
+    },
+    actualFile: {
+      type: Number,
+      default: 0
+    },
+    fileName: {
+      type: String,
+      default: null
+    },
+    percentageValue: {
+      type: Number,
+      default: 0
+    },
+    timeLeft: {
+      type: Number,
+      default: 0
+    }
+  },
+
+  render (h) {
+    const renderIcon = () => {
+      return h(SbIcon, {
+        props: {
+          name: 'refresh',
+          size: 'small',
+          color: 'primary'
+        }
+      })
+    }
+
+    const renderLoading = () => {
+      return h(SbLoading, {
+        props: {
+          type: 'bar',
+          value: this.percentageValue
+        }
+      })
+    }
+
+    const renderTimeLeft = () => {
+      if (this.timeLeft) {
+        return h('span', {
+          staticClass: 'sb-drop-area__time-left'
+        },
+          `${this.timeLeft} sec left`
+        )
+      }
+
+      return null
+    }
+
+    const renderlabel = () => {
+      return h('span', {
+        staticClass: 'sb-drop-area--upload-label'
+      },
+        `Uploading ${this.actualFile}/${this.totalFiles} - ${this.fileName}`
+      )
+    }
+
+    const renderUploadLabel = () => {
+      return h('div', {
+        staticClass: 'sb-drop-area--upload'
+      },
+      [
+        renderIcon(),
+        renderlabel(),
+        renderTimeLeft(),
+        renderLoading()
+      ]
+      )
+    }
+
+    return renderUploadLabel()
+  }
+}
+
 /**
  * @vue/component
  *
@@ -64,10 +148,6 @@ const SbDropArea = {
       this.isOver = false
     },
 
-    changeUploadLabel (index, size, name) {
-      return `Uploading ${parseInt(index) + 1}/${size} - ${name}`
-    },
-
     async dropFile (e) {
       e.preventDefault()
       e.stopPropagation()
@@ -75,33 +155,34 @@ const SbDropArea = {
       this.isOver = false
 
       const data = e.dataTransfer
+      const files = []
 
       if (data.items) {
         if (data.items.length > this.maxFile) { // check if the number of files to be sent is greater than the restriction
-          this.isLoading = false
+          // this.isLoading = false
           // triggers notification that the maximum number of files has been reached
           return
         }
-        for (const [key, value] of Object.entries(data.items)) {
-          if (value.kind === 'file') {
-            const file = value.getAsFile()
+        for (const item of Object.entries(data.items)) {
+          if (item.kind === 'file') {
+            files.push(item.getAsFile())
 
-            if (file.size > this.maxFileSize) { // check if the size of each file sent is smaller than the restriction
+            if (item.size > this.maxFileSize) { // check if the size of each file sent is smaller than the restriction
               return
             }
 
-            this.uploadLabel = this.changeUploadLabel(key, data.items.length, file.name)
-            this.$emit('upload-file', file)
+            // this.uploadLabel = this.changeUploadLabel(key, data.items.length, file.name)
           }
         }
       } else {
-        for (const [key, value] of Object.entries(data.files)) {
-          this.uploadLabel = this.changeUploadLabel(key, data.files.length, value.name)
-          this.$emit('upload-file', value)
+        for (const item of Object.entries(data.files)) {
+          // this.uploadLabel = this.changeUploadLabel(key, data.files.length, value.name)
+          files.push(item)
         }
       }
 
-      this.isLoading = false
+      // this.isLoading = false
+      this.$emit('upload-file', files)
     }
   },
 
@@ -148,14 +229,15 @@ const SbDropArea = {
     }
 
     const renderUploadNotification = () => {
-      return h('div', {
-        staticClass: 'sb-drop-area--upload'
-      },
-      [
-        h(SbIcon, { props: { name: 'refresh', size: 'small', color: 'primary' } }),
-        h('span', { staticClass: 'sb-drop-area--upload-label' }, this.uploadLabel),
-        h(SbLoading, { props: { type: 'bar', value: '20' } })
-      ])
+      return h(SbDropUploadLabel, {
+        props: {
+          totalFiles: 2,
+          actualFile: 1,
+          fileName: 'test.png',
+          percentageValue: 33,
+          timeLeft: 25
+        }
+      })
     }
 
     const renderDropContainer = () => {
@@ -179,4 +261,7 @@ const SbDropArea = {
   }
 }
 
-export default SbDropArea
+export {
+  SbDropArea,
+  SbDropUploadLabel
+}

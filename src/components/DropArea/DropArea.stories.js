@@ -1,10 +1,10 @@
-import SbDropArea from './index'
+import { SbDropArea } from './index'
 
 const DropTemplate = args => ({
   components: { SbDropArea },
   props: Object.keys(args),
   template: `
-    <SbDropArea 
+    <SbDropArea
       v-bind="{
         accept,
         maxFileSize,
