@@ -9,7 +9,7 @@
         &::after {
             top: 100%;
             left: 50%;
-            margin-left: -5px;
+            margin-left: -0.5rem;
         }
       }
     }
@@ -23,7 +23,7 @@
         &::after {
           bottom: 100%;
           left: 50%;
-          margin-left: -5px;
+          margin-left: -0.5rem;
           transform: rotate(180deg);
         }
       }
@@ -72,9 +72,9 @@
     display: none;
     width: auto;
     position: absolute;
-    padding: 6px 20px;
+    padding: 0.6rem 2rem;
     color: $white;
-    font-size: 13px;
+    font-size: $font-size-sm;
     background-color: $color-primary-dark;
     border-radius: 2px;
     white-space: nowrap;

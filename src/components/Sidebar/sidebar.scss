@@ -16,11 +16,11 @@
   // sidebar top
   &__top {
     display: flex;
-    padding: 30px;
+    padding: 3rem;
 
     .sb-avatar {
       display: block;
-      margin-left: 30px;
+      margin-left: 3rem;
       cursor: pointer;
     }
   }
@@ -49,35 +49,35 @@
     }
 
     &__top {
-      padding: 14px 20px;
+      padding: 1.4rem 2rem;
       border-bottom: 1px solid #e0e0e0;
 
       &-name {
         margin: 0;
-        margin-bottom: 5px;
-        font-size: 14px;
-        font-weight: 500;
+        margin-bottom: 0.5rem;
+        font-size: $font-size-md;
+        font-weight: $font-weight-medium;
       }
 
       &-email {
         margin: 0;
-        font-size: 12px;
-        font-weight: normal;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-regular;
         color: $light-gray;
       }
     }
 
     &__list {
       margin: 0;
-      padding: 14px 20px;
+      padding: 1.4rem 2rem;
       list-style: none;
 
       li:not(:last-child) {
-        margin-bottom: 15px;
+        margin-bottom: 1.5rem;
       }
 
       .sb-link {
-        font-weight: normal;
+        font-weight: $font-weight-regular;
         color: $color-primary-dark;
       }
 
@@ -108,10 +108,10 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: 15px 30px;
+    padding: 1.5rem 3rem;
     color: $white;
-    font-size: 14px;
-    font-weight: normal;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
     letter-spacing: 0px;
     text-decoration: none;
     vertical-align: middle;
@@ -136,7 +136,7 @@
     }
 
     .sb-icon {
-      margin-right: 14px;
+      margin-right: 1.4rem;
     }
 
     &--active {
@@ -155,7 +155,7 @@
     }
 
     .sb-button {
-      padding: 5px 5px;
+      padding: 0.5rem 0.5rem;
       transition: opacity 0.2s ease-in;
       opacity: 0;
     }
@@ -188,7 +188,7 @@
     flex-direction: column;
 
     .sb-avatar {
-      margin: 30px 0 0;
+      margin: 3rem 0 0;
     }
   }
 

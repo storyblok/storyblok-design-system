@@ -88,6 +88,7 @@ const SbButton = {
       return h('button', {
         staticClass: `sb-button sb-button--${this.type}`,
         attrs: {
+          ...this.$attrs,
           disabled: this.isDisabled,
           'aria-disabled': this.isDisabled
         },
@@ -103,6 +104,7 @@ const SbButton = {
           'sb-button--loading': this.isLoading
         },
         on: {
+          ...this.$listeners,
           click: (!this.isDisabled || !this.isLoading ? $event => this.$emit('click', $event) : '')
         }
       }, content)

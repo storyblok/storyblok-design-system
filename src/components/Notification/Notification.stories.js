@@ -4,7 +4,7 @@ const NotificationTemplate = args => ({
   components: { SbNotification },
   props: Object.keys(args),
   template: `
-    <SbNotification 
+    <SbNotification
       v-bind="{
         status,
         title,
@@ -95,7 +95,7 @@ export const AllStatus = args => ({
   components: { SbNotification },
   props: Object.keys(args),
   template: `<div>
-    <SbNotification 
+    <SbNotification
       v-bind="{
         status: 'positive',
         title,
@@ -105,7 +105,7 @@ export const AllStatus = args => ({
         isExpandable,
         isFull
       }"/>
-    <SbNotification 
+    <SbNotification
       v-bind="{
         status: 'general',
         title,
@@ -115,7 +115,7 @@ export const AllStatus = args => ({
         isExpandable,
         isFull
       }"/>
-    <SbNotification 
+    <SbNotification
       v-bind="{
         status: 'warning',
         title,
@@ -125,7 +125,7 @@ export const AllStatus = args => ({
         isExpandable,
         isFull
       }"/>
-    <SbNotification 
+    <SbNotification
       v-bind="{
         status: 'info',
         title,
@@ -135,7 +135,7 @@ export const AllStatus = args => ({
         isExpandable,
         isFull
     }"/>
-    <SbNotification 
+    <SbNotification
       v-bind="{
         status: 'negative',
         title,
@@ -160,7 +160,7 @@ export const AllSizes = args => ({
   components: { SbNotification },
   props: Object.keys(args),
   template: `<div>
-    <SbNotification 
+    <SbNotification
         v-bind="{
           status: 'positive',
           title,
@@ -170,7 +170,7 @@ export const AllSizes = args => ({
           isExpandable,
           isFull
     }"/>
-    <SbNotification 
+    <SbNotification
       v-bind="{
         status: 'positive',
         title,
@@ -180,7 +180,7 @@ export const AllSizes = args => ({
         isExpandable,
         isFull
     }"/>
-    <SbNotification 
+    <SbNotification
       v-bind="{
         status: 'negative',
         title,
@@ -190,7 +190,7 @@ export const AllSizes = args => ({
         isExpandable,
         isFull: true
     }"/>
-    <SbNotification 
+    <SbNotification
         v-bind="{
           status: 'negative',
           title,
@@ -215,7 +215,7 @@ export const ExpandableNotification = args => ({
   components: { SbNotification },
   props: Object.keys(args),
   template: `<div>
-    <SbNotification 
+    <SbNotification
         v-bind="{
           status: 'info',
           title,
@@ -225,7 +225,10 @@ export const ExpandableNotification = args => ({
           isExpandable: true,
           isFull
     }"/>
-    <SbNotification 
+
+    <br />
+
+    <SbNotification
         v-bind="{
           status: 'info',
           title,
