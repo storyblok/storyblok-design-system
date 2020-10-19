@@ -2,34 +2,34 @@
   display: inline-flex;
   align-items: center;
   height: 53px;
-  font-size: 14px;
+  font-size: $font-size-md;
   color: $color-primary-dark;
   box-shadow: 0px -1px 0px 0px $light, 0px 1px 0px 0px $light;
 
   // elements
   &__per-page-container {
-    margin-right: 120px;
-    padding-left: 10px;
+    margin-right: 12rem;
+    padding-left: 1rem;
   }
 
   &__pages-container {
-    margin-right: 30px;
+    margin-right: 3rem;
   }
 
   &__select {
-    margin: 0 10px;
+    margin: 0 1rem;
     border: none;
   }
 
   &__placeholder {
-    font-size: 13px;
-    color: $light-gray;
-    font-weight: normal;
+    font-size: $font-size-sm;
+    color: $sb-dark-blue-50;
+    font-weight: $font-weight-regular;
   }
 
   &__button {
-    width: 55px;
-    height: 55px;
+    width: 5.5rem;
+    height: 5.5rem;
     background-color: transparent;
     border: none;
     border-left: 1px solid $light;
@@ -48,12 +48,12 @@
 
   &-carousel-container {
     display: flex;
-    margin: 0 20px;
+    margin: 0 2rem;
   }
 
   &-dot {
-    width: 10px;
-    height: 10px;
+    width: 1rem;
+    height: 1rem;
     padding: 0;
     background-color: $light;
     border-radius: 100%;
@@ -61,7 +61,7 @@
     cursor: pointer;
 
     &:not(:first-child) {
-      margin-left: 15px;
+      margin-left: 1.5rem;
     }
 
     &--active {
@@ -84,7 +84,7 @@
   }
 
   &--compact > span {
-    margin: 0 20px;
+    margin: 0 2rem;
   }
 
   &--compact &__button {

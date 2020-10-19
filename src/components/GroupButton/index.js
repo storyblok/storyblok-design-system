@@ -22,9 +22,11 @@ const SbGroupButton = {
 
   render (h, context) {
     const { props, slots } = context
+    const data = context.data || {}
+
     const children = slots().default.filter(e => e.tag)
 
-    const data = children.map(element => {
+    const childrenData = children.map(element => {
       element.componentOptions.propsData = {
         ...element.componentOptions.propsData,
         ...props
@@ -37,8 +39,11 @@ const SbGroupButton = {
       staticClass: 'sb-group-button',
       class: {
         'sb-group-button--has-spaces': props.hasSpaces
+      },
+      attrs: {
+        ...data.attrs || {}
       }
-    }, data)
+    }, childrenData)
   }
 }
 
