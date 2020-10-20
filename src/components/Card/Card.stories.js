@@ -25,7 +25,7 @@ const CardTemplate = args => ({
   },
   props: Object.keys(args),
   template: `
-    <SbCard :is-full-width="isFullWidth">
+    <SbCard>
       <SbCardHeader :as="as" :title="title" />
 
       <SbCardContent>
@@ -91,7 +91,7 @@ export const WithoutHeaderAndFooter = args => ({
 
   template: `
     <SbCard>
-      <SbCardContent :is-loading="isLoading">
+      <SbCardContent>
         <div
           style="background-color: #f5f5f5;
           width: 100%;
@@ -122,7 +122,7 @@ export const WithLoadingComponent = args => ({
   props: Object.keys(args),
 
   template: `
-    <SbCard :is-full-width="isFullWidth">
+    <SbCard>
       <SbCardHeader :title="title" />
 
       <SbCardContent>
@@ -213,7 +213,7 @@ export const WithMenuComponent = args => ({
   props: Object.keys(args),
 
   template: `
-    <SbCard :is-full-width="isFullWidth">
+    <SbCard>
       <SbCardHeader :title="title" :options="options" />
 
       <SbCardContent>
