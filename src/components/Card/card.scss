@@ -1,4 +1,5 @@
 .sb-card {
+  position: relative;
   width: 100%;
   max-width: 512px;
   padding: 2rem;
@@ -11,7 +12,8 @@
   
   // components
   &__header {
-    padding: 1rem 0 3rem 0;
+    position: relative;
+    margin: 1rem 0 3rem 0;
   }
 
   &__title {
@@ -25,5 +27,21 @@
     display: flex;
     justify-content: flex-end;
     padding-top: 2rem;
+  }
+
+  &__options {
+    position: absolute;
+    right: 0;
+    top: -15px;
+
+    .sb-button {
+      border: none;
+      transform: rotate(90deg);
+      z-index: 4;
+  
+      &:hover {
+        background: none;
+      }
+    }
   }
 }

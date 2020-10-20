@@ -8,6 +8,13 @@ import {
 import SbLink from '../Link'
 import SbLoading from '../Loading'
 
+import {
+  SbMenu,
+  SbMenuButton,
+  SbMenuItem,
+  SbMenuList
+} from '../Menu'
+
 const CardTemplate = args => ({
   components: {
     SbLink,
@@ -167,6 +174,97 @@ export const WithLoadingComponent = args => ({
 })
 
 WithLoadingComponent.parameters = {
+  docs: {
+    description: {
+      story: 'You can use the `SbLoading` component inside the `SbCardContent` to perform a loading state to card'
+    }
+  }
+}
+
+export const WithMenuComponent = args => ({
+  components: {
+    SbLoading,
+    SbCard,
+    SbCardHeader,
+    SbCardContent,
+    SbCardFooter,
+    SbMenu,
+    SbMenuButton,
+    SbMenuItem,
+    SbMenuList
+  },
+
+  data: () => ({
+    options: [
+      {
+        icon: 'plus',
+        label: 'Option 1'
+      },
+      {
+        icon: 'calendar',
+        label: 'Option 2',
+        isDisabled: true
+      },
+      {
+        separator: true
+      },
+      {
+        icon: 'close',
+        label: 'Delete',
+        type: 'negative'
+      },
+      {
+        group: {
+          title: 'Group title',
+          items: [
+            {
+              icon: 'close',
+              label: 'Group Item 1'
+            },
+            {
+              icon: 'close',
+              label: 'Group Item 2',
+              type: 'negative'
+            }
+          ]
+        }
+      }
+    ]
+  }),
+
+  props: Object.keys(args),
+
+  template: `
+    <SbCard :is-full-width="isFullWidth">
+      <SbCardHeader :title="title" :options="options" />
+
+      <SbCardContent>
+        <div
+          style="
+            background-color: #f5f5f5;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <SbLoading type="spinner" size="large" color="primary" />
+        </div>
+      </SbCardContent>
+
+      <SbCardFooter>
+        <SbLink
+          href="https://storyblok.com"
+          label="Storyblok Website"
+          icon-right="chevron-right"
+        />
+      </SbCardFooter>
+  </SbCard >
+  `
+})
+
+WithMenuComponent.parameters = {
   docs: {
     description: {
       story: 'You can use the `SbLoading` component inside the `SbCardContent` to perform a loading state to card'

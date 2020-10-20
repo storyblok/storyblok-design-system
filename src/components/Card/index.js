@@ -1,3 +1,4 @@
+import { SbMenu, SbMenuButton, SbMenuList } from '../Menu'
 import './card.scss'
 
 // @vue/component
@@ -8,6 +9,10 @@ const SbCardHeader = {
     as: {
       type: String,
       default: 'span'
+    },
+    options: {
+      type: Array,
+      default: null
     },
     title: {
       type: String,
@@ -32,7 +37,44 @@ const SbCardHeader = {
         ...this.$attrs
       }
     }, [
-      renderTitle()
+      renderTitle(),
+      this.options && h(SbCardOptions, {
+        props: {
+          options: this.options
+        }
+      })
+    ])
+  }
+}
+
+// @vue/component
+const SbCardOptions = {
+  name: 'SbCardOptions',
+
+  props: {
+    options: {
+      type: Array,
+      default: () => []
+    }
+  },
+
+  render (h) {
+    return h('div', {
+      staticClass: 'sb-card__options'
+    }, [
+      h(SbMenu, [
+        h(SbMenuButton, {
+          props: {
+            hasIconOnly: true
+          }
+        }),
+        h(SbMenuList, {
+          props: {
+            items: this.options,
+            placement: 'bottom-end'
+          }
+        })
+      ])
     ])
   }
 }
@@ -94,6 +136,7 @@ const SbCard = {
 export {
   SbCard,
   SbCardHeader,
+  SbCardOptions,
   SbCardFooter,
   SbCardContent
 }

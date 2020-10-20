@@ -2,12 +2,50 @@ import {
   SbCard,
   SbCardHeader,
   SbCardContent,
-  SbCardFooter
+  SbCardFooter,
+  SbCardOptions
 } from '../'
 
 import SbLink from '../../Link'
 
 import { mount } from '@vue/test-utils'
+import { SbMenu, SbMenuButton, SbMenuGroup, SbMenuItem, SbMenuSeparator } from '../../Menu'
+
+const cardOptionsMock = [
+  {
+    icon: 'plus',
+    label: 'Option 1'
+  },
+  {
+    icon: 'calendar',
+    label: 'Option 2',
+    isDisabled: true
+  },
+  {
+    separator: true
+  },
+  {
+    icon: 'close',
+    label: 'Delete',
+    type: 'negative'
+  },
+  {
+    group: {
+      title: 'Group title',
+      items: [
+        {
+          icon: 'close',
+          label: 'Group Item 1'
+        },
+        {
+          icon: 'close',
+          label: 'Group Item 2',
+          type: 'negative'
+        }
+      ]
+    }
+  }
+]
 
 describe('SbCardHeader component', () => {
   const factory = (propsData) => {
@@ -60,6 +98,77 @@ describe('SbCardHeader component', () => {
         wrapper.find('span').text()
       ).toBe(title)
     })
+  })
+
+  describe('when use the options property', () => {
+    it('should render the SbCardOptions component', () => {
+      const wrapper = mount(SbCardHeader, {
+        propsData: {
+          title: 'Awesome title',
+          options: [...cardOptionsMock]
+        }
+      })
+
+      const optionComponent = wrapper.findComponent(SbCardOptions)
+
+      expect(optionComponent.exists()).toBe(true)
+
+      expect(optionComponent.props('options')).toEqual(cardOptionsMock)
+    })
+  })
+})
+
+describe('SbCardOptions component', () => {
+  const wrapper = mount(SbCardOptions, {
+    propsData: {
+      options: [...cardOptionsMock]
+    }
+  })
+
+  it('should render the SbMenu component', () => {
+    expect(
+      wrapper.findComponent(SbMenu).exists()
+    ).toBe(true)
+  })
+
+  it('should render the SbMenuButton component', () => {
+    const button = wrapper.findComponent(SbMenuButton)
+
+    expect(button.exists()).toBe(true)
+    expect(button.props('hasIconOnly')).toBe(true)
+  })
+
+  it('should render the SbMenuItem with the expected properties', () => {
+    const firstItem = wrapper.findAllComponents(SbMenuItem).at(0)
+
+    expect(firstItem.exists()).toBe(true)
+
+    expect(firstItem.props('label')).toBe('Option 1')
+
+    expect(firstItem.props('icon')).toBe('plus')
+  })
+
+  it('should render the SbMenuSeparator with separator true property', () => {
+    expect(
+      wrapper.findComponent(SbMenuSeparator).exists()
+    ).toBe(true)
+  })
+
+  it('should render the SbMenuGroup along with SbMenuItems', () => {
+    const group = wrapper.findComponent(SbMenuGroup)
+    const groupItems = group.findAllComponents(SbMenuItem)
+
+    expect(group.exists()).toBe(true)
+
+    expect(groupItems.length).toBe(2)
+
+    expect(
+      groupItems.at(0).props('label')
+    ).toBe('Group Item 1')
+
+    expect(
+      groupItems.at(1).props('label')
+    ).toBe('Group Item 2')
   })
 })
 
