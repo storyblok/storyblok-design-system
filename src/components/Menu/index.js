@@ -92,11 +92,11 @@ const SbMenuItem = {
     }
 
     const renderLabel = () => {
-      const children = this.$slots.default[0] || {}
+      if (this.label) {
+        return h('span', this.label)
+      }
 
-      const label = children.text || this.label
-
-      return h('span', label)
+      return h('span', this.$slots.default)
     }
 
     const typeClass = this.type ? `sb-menu-item--${this.type}` : null
