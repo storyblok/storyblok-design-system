@@ -59,8 +59,7 @@ export default {
   },
   args: {
     as: 'span',
-    title: 'Card Title',
-    isFullWidth: false
+    title: 'Card Title'
   },
   argTypes: {
     as: {
@@ -68,13 +67,6 @@ export default {
       description: 'Define which tag element will be used to title text.',
       control: {
         type: 'text'
-      }
-    },
-    isFullWidth: {
-      name: 'isFullWidth',
-      description: 'This `isFullWidth` prop changes the type of visualization of the `SbCard`, to full width view.',
-      control: {
-        type: 'boolean'
       }
     },
     title: {
@@ -114,20 +106,6 @@ WithoutHeaderAndFooter.parameters = {
   docs: {
     description: {
       story: 'Cards without the header and footer are for showing only the content, but continue to divide the content while maintaining the style of cards.'
-    }
-  }
-}
-
-export const FullWidth = CardTemplate.bind({})
-
-FullWidth.args = {
-  isFullWidth: true
-}
-
-FullWidth.parameters = {
-  docs: {
-    description: {
-      story: 'The full width card was designed for content with a large area, for example a Data table.'
     }
   }
 }

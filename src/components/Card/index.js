@@ -1,5 +1,6 @@
-import { SbMenu, SbMenuButton, SbMenuList } from '../Menu'
 import './card.scss'
+
+import { SbMenu, SbMenuButton, SbMenuList } from '../Menu'
 
 // @vue/component
 const SbCardHeader = {
@@ -112,17 +113,10 @@ const SbCardContent = {
 const SbCard = {
   name: 'SbCard',
 
-  props: {
-    isFullWidth: Boolean
-  },
-
   render (h) {
     const renderCard = () => {
       return h('div', {
-        staticClass: 'sb-card',
-        class: {
-          'sb-card--full-width': this.isFullWidth
-        }
+        staticClass: 'sb-card'
       },
       [
         this.$slots.default

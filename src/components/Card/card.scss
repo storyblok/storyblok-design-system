@@ -1,14 +1,8 @@
 .sb-card {
   position: relative;
-  width: 100%;
-  max-width: 512px;
   padding: 2rem;
   border-radius: 3px;
   border: 1px solid $light;
-
-  &--full-width {
-    max-width: none;
-  }
   
   // components
   &__header {
