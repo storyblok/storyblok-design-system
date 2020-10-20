@@ -177,6 +177,10 @@ const SbMenuList = {
   inject: ['menuContext'],
 
   props: {
+    items: {
+      type: Array,
+      default: () => []
+    },
     placement: {
       type: String,
       default: 'bottom-end'
@@ -253,6 +257,32 @@ const SbMenuList = {
   render (h) {
     const { menuListId, menuButtonId, closeMenu } = this.context
 
+    const items = this.items || []
+
+    const renderMenuItems = (menuItems) => {
+      return menuItems.map(menuItem => {
+        if (menuItem.separator) {
+          return h(SbMenuSeparator)
+        }
+
+        if (menuItem.group && menuItem.group.title) {
+          const { group } = menuItem
+
+          return h(SbMenuGroup, {
+            props: {
+              title: group.title
+            }
+          }, renderMenuItems(group.items))
+        }
+
+        return h(SbMenuItem, {
+          props: {
+            ...menuItem
+          }
+        })
+      })
+    }
+
     return h(SbPopover, {
       staticClass: 'sb-menu-list',
 
@@ -278,7 +308,10 @@ const SbMenuList = {
         on: {
           keydown: this.handleKeyDown
         }
-      }, this.$slots.default)
+      }, [
+        items.length && renderMenuItems(items),
+        this.$slots.default
+      ])
     ])
   }
 }
