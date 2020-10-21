@@ -3,6 +3,7 @@
 import './data-table.scss'
 
 import {
+  SbDataTableActions,
   SbDataTableBody,
   SbDataTableHeader
 } from './components'
@@ -147,6 +148,14 @@ const SbDataTable = {
     }
   },
   render (h) {
+    const renderActions = () => {
+      return h(SbDataTableActions, {
+        props: {
+          selectedRowsLength: this.selectedRows.length
+        }
+      })
+    }
+
     const renderIcon = () => {
       return h(SbIcon, {
         props: {
@@ -205,6 +214,14 @@ const SbDataTable = {
         renderTable(),
         renderLoading()
       ])
+    }
+
+    if (this.selectedRows.length) {
+      return h('div',
+        [
+          renderActions(),
+          renderTable()
+        ])
     }
 
     return renderTable()

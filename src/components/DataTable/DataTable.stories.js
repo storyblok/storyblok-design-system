@@ -2,6 +2,7 @@ import SbDataTable from '.'
 
 const description = {
   allowSelection: 'Allow row selection.',
+  actionsMenu: 'Select a row to show the actions menu',
   component: 'Data tables are used to organize and display data efficiently. `SbDataTable` component allows for customization with additional functionality, as needed by your product’s users.',
   headers: 'It must be an array that represents the header content.',
   isLoading: 'Show a loading over the table.',
@@ -158,6 +159,22 @@ export const Default = DataTableTemplate.bind({})
 Default.args = {
   headers: [...defaultTableHeadersData],
   items: [...defaultTableItemsData]
+}
+
+export const ActionsMenu = DataTableTemplate.bind({})
+
+ActionsMenu.args = {
+  ...Default.args,
+  allowSelection: true,
+  selectionMode: 'multiple'
+}
+
+ActionsMenu.parameters = {
+  docs: {
+    description: {
+      story: description.actionsMenu
+    }
+  }
 }
 
 export const IsLoading = DataTableTemplate.bind({})

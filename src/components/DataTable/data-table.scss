@@ -193,3 +193,47 @@ $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
     opacity: .75 !important;
   }
 }
+
+.sb-actions-menu {
+  align-items: center;
+  background-color: $sb-dark-blue;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: $white;
+  display: flex;
+  justify-content: flex-end;
+  min-height: 50px;
+  padding: 10px 20px;
+  width: 100%;
+
+  &__rows-selected {
+    margin-right: auto;
+  }
+
+  &__btn {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 8px 20px;
+    margin: 0 5px;
+    line-height: 1;
+    outline: none;
+  }
+
+  &__rows-selected,
+  &__btn {
+    color: $white;
+    font-size: 14px;
+    font-family: $primary-font-family;
+  }
+
+  &__btn-delete {
+    margin-right: 0;
+  }
+  
+  &__btn-cancel {
+    border-left: 1px solid rgba(255, 255, 255, 10%);
+    margin-right: -20px;
+    margin-left: 0;
+  }
+}
