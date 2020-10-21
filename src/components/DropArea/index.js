@@ -1,9 +1,9 @@
-import { acceptedFiles } from './lib'
 import { capitalize } from '../../utils'
 
 // other components
 import SbIcon from '../Icon'
 import SbLoading from '../Loading'
+import SbBlockUi from '../BlockUI'
 
 // styles
 import './drop-area.scss'
@@ -76,16 +76,18 @@ const SbDropUploadLabel = {
     }
 
     const renderUploadLabel = () => {
-      return h('div', {
-        staticClass: 'sb-drop-area--upload'
-      },
-      [
-        renderIcon(),
-        renderlabel(),
-        renderTimeLeft(),
-        renderLoading()
-      ]
-      )
+      return h(SbBlockUi, [
+        h('div', {
+          staticClass: 'sb-drop-area--upload'
+        },
+        [
+          renderIcon(),
+          renderlabel(),
+          renderTimeLeft(),
+          renderLoading()
+        ]
+        )
+      ])
     }
 
     return renderUploadLabel()
@@ -105,18 +107,13 @@ const SbDropArea = {
   props: {
     accept: {
       type: String, // separeted by ',' example: :accept="image/jpeg,.pdf"
-      validator: acceptedFiles,
       default: null
     },
     maxFileSize: {
       type: [String, Number],
-      default: null // Find out maximum size of files in the storyblok
-    },
-    maxFile: {
-      type: [String, Number],
       default: null
     },
-    maxTotalSize: {
+    maxFile: {
       type: [String, Number],
       default: null
     },
@@ -132,9 +129,7 @@ const SbDropArea = {
 
   data () {
     return {
-      isOver: false,
-      isLoading: false,
-      uploadLabel: ''
+      isOver: false
     }
   },
 
@@ -148,40 +143,57 @@ const SbDropArea = {
       this.isOver = false
     },
 
-    async dropFile (e) {
+    checkMaximumFileSize (size) {
+      return (Math.ceil(size / 1000)) > parseInt(this.maxFileSize)
+    },
+
+    checkMaximumNumberOfFiles (files) {
+      return files > parseInt(this.maxFile)
+    },
+
+    checkAcceptedFiles (ext) {
+      const accepted = this.accept.split(',')
+
+      return accepted.indexOf(ext) !== -1
+    },
+
+    fileFilter (fileArray, from = 'files') {
+      const files = []
+
+      if (this.maxFile && this.checkMaximumNumberOfFiles(fileArray.length)) {
+        return
+      }
+
+      fileArray.forEach(item => {
+        let file = []
+
+        if (from === 'items' && item.kind === 'file') {
+          file = item.getAsFile()
+        }
+
+        if (this.accept && !this.checkAcceptedFiles(file.type || item.type)) {
+          return
+        }
+
+        if (this.maxFileSize && this.checkMaximumFileSize(file.size || item.size)) {
+          return
+        }
+
+        files.push(file)
+      })
+
+      return files
+    },
+
+    dropFile (e) {
       e.preventDefault()
       e.stopPropagation()
-      this.isLoading = true
       this.isOver = false
 
       const data = e.dataTransfer
-      const files = []
 
-      if (data.items) {
-        if (data.items.length > this.maxFile) { // check if the number of files to be sent is greater than the restriction
-          // this.isLoading = false
-          // triggers notification that the maximum number of files has been reached
-          return
-        }
-        for (const item of Object.entries(data.items)) {
-          if (item.kind === 'file') {
-            files.push(item.getAsFile())
+      const files = data.items ? this.fileFilter(data.items, 'items') : this.fileFilter(data.files)
 
-            if (item.size > this.maxFileSize) { // check if the size of each file sent is smaller than the restriction
-              return
-            }
-
-            // this.uploadLabel = this.changeUploadLabel(key, data.items.length, file.name)
-          }
-        }
-      } else {
-        for (const item of Object.entries(data.files)) {
-          // this.uploadLabel = this.changeUploadLabel(key, data.files.length, value.name)
-          files.push(item)
-        }
-      }
-
-      // this.isLoading = false
       this.$emit('upload-file', files)
     }
   },
@@ -228,23 +240,11 @@ const SbDropArea = {
       ])
     }
 
-    const renderUploadNotification = () => {
-      return h(SbDropUploadLabel, {
-        props: {
-          totalFiles: 2,
-          actualFile: 1,
-          fileName: 'test.png',
-          percentageValue: 33,
-          timeLeft: 25
-        }
-      })
-    }
-
     const renderDropContainer = () => {
       return h('div', {
         staticClass: 'sb-drop-area',
         class: {
-          'sb-drop-area--over': this.isOver && !this.isLoading
+          'sb-drop-area--over': this.isOver
         },
         on: {
           dragover: this.dragOver,
@@ -253,7 +253,7 @@ const SbDropArea = {
         }
       },
       [
-        !this.isLoading ? renderContent() : renderUploadNotification()
+        renderContent()
       ])
     }
 

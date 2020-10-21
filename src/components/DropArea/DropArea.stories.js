@@ -9,7 +9,6 @@ const DropTemplate = args => ({
         accept,
         maxFileSize,
         maxFile,
-        maxTotalSize
       }"/>`
 })
 
@@ -18,8 +17,7 @@ export default {
   args: {
     accept: null,
     maxFileSize: null,
-    maxFile: null,
-    maxTotalSize: null
+    maxFile: null
   },
   argTypes: {
     accept: {
@@ -38,13 +36,6 @@ export default {
     },
     maxFile: {
       name: 'maxFile',
-      description: '',
-      control: {
-        type: 'text'
-      }
-    },
-    maxTotalSize: {
-      name: 'maxTotalSize',
       description: '',
       control: {
         type: 'text'
