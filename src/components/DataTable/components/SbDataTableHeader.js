@@ -30,6 +30,9 @@ export const SbDataTableHeaderCell = {
     isSortedKey () {
       return this.sortKey === this.sortedKey
     },
+    showSortIcon () {
+      return this.isSortable && this.order && this.isSortedKey
+    },
     sortKey () {
       return this.column.value
     }
@@ -62,15 +65,16 @@ export const SbDataTableHeaderCell = {
     }
 
     return h('th', {
+      staticClass: 'sb-data-table__head-cell',
       class: {
-        'sb-data-table--sortable': this.isSortable && this.order && this.isSortedKey
+        'sb-data-table--show-icon': this.showSortIcon
       },
       on: {
         click: this.toggleSort
       }
     }, [
       this.column.text,
-      this.isSortable ? renderIcon(this.$options.iconsSort[this.order + 1]) : ''
+      this.isSortable && renderIcon(this.$options.iconsSort[this.order + 1])
     ])
   }
 }
@@ -124,8 +128,10 @@ export const SbDataTableHeaderRow = {
         })
       }
 
-      rowArray.push(h('th', [
-        this.selectionMode === 'multiple' ? renderInput() : null
+      rowArray.push(h('th', {
+        staticClass: 'sb-data-table__head-cell'
+      }, [
+        this.selectionMode === 'multiple' && renderInput()
       ]))
     }
 

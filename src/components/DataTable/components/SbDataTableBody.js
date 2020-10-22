@@ -54,7 +54,8 @@ export const SbDataTableBodyRow = {
       }
 
       rowArray.push(h('td', {
-        staticClass: 'sb-data-table__col-selection'
+        staticClass: 'sb-data-table__body-cell',
+        class: 'sb-data-table__col-selection'
       }, [
         renderInput()
       ]))
@@ -63,14 +64,15 @@ export const SbDataTableBodyRow = {
     const isMainColumn = this.headers.findIndex(col => col.main)
     this.headers.map((elem, index) => {
       rowArray.push(h('td', {
+        staticClass: 'sb-data-table__body-cell',
         class: { 'sb-data-table__col-main': isMainColumn === index }
       }, this.row[elem.value]))
     })
 
     return h('tr', {
-      staticClass: 'sb-data-table__tr',
+      staticClass: 'sb-data-table__row',
       class: {
-        'sb-data-table__tr--selected': this.isSelected && this.allowSelection
+        'sb-data-table__row--selected': this.isSelected && this.allowSelection
       },
       on: {
         click: this.handleRowSelected
