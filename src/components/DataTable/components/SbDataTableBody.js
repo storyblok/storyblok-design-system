@@ -61,10 +61,10 @@ export const SbDataTableBodyRow = {
     }
 
     const isMainColumn = this.headers.findIndex(col => col.main)
-    Object.values(this.row).forEach((elem, index) => {
+    this.headers.map((elem, index) => {
       rowArray.push(h('td', {
         class: { 'sb-data-table__col-main': isMainColumn === index }
-      }, elem))
+      }, this.row[elem.value]))
     })
 
     return h('tr', {
@@ -111,7 +111,7 @@ export const SbDataTableBody = {
   render (h) {
     const tableBodyArray = []
 
-    this.items.forEach(row => {
+    this.items.map(row => {
       tableBodyArray.push(h(SbDataTableBodyRow, {
         props: {
           allowSelection: this.allowSelection,
