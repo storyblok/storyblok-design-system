@@ -1,4 +1,4 @@
-import { SbDropArea } from './index'
+import { SbDropArea, SbDropUploadLabel } from './index'
 
 const DropTemplate = args => ({
   components: { SbDropArea },
@@ -9,7 +9,7 @@ const DropTemplate = args => ({
         accept,
         maxFileSize,
         maxFile,
-      }"/>`
+      }" />`
 })
 
 export default {
@@ -45,3 +45,38 @@ export default {
 }
 
 export const Default = DropTemplate.bind({})
+
+export const DropAreaWithUploadModal = args => ({
+  components: { SbDropArea, SbDropUploadLabel },
+  props: Object.keys(args),
+  data () {
+    return {
+      hasFiles: true
+    }
+  },
+  template: `
+    <div>
+      <SbDropArea
+        v-bind="{
+          accept,
+          maxFileSize,
+          maxFile,
+        }"/>
+      <SbDropUploadLabel
+        total-files="5"
+        actual-file="1"
+        file-name="test.png"
+        percentage-value="45"
+        time-left="10"
+        v-if="hasFiles"
+      />
+    </div>`
+})
+
+DropAreaWithUploadModal.parameters = {
+  docs: {
+    description: {
+      story: 'In this story you can see how the SbDropUploadLabel component looks after dropping the files in the `SbDropArea` component, the use of this component is optional, the user can use or create new ones, as `SbDropArea` returns a callback with the dropped files.`'
+    }
+  }
+}

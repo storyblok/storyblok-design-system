@@ -14,11 +14,11 @@ const SbDropUploadLabel = {
 
   props: {
     totalFiles: {
-      type: Number,
+      type: [String, Number],
       default: 0
     },
     actualFile: {
-      type: Number,
+      type: [String, Number],
       default: 0
     },
     fileName: {
@@ -26,11 +26,11 @@ const SbDropUploadLabel = {
       default: null
     },
     percentageValue: {
-      type: Number,
+      type: [String, Number],
       default: 0
     },
     timeLeft: {
-      type: Number,
+      type: [String, Number],
       default: 0
     }
   },
@@ -140,7 +140,9 @@ const SbDropArea = {
     },
 
     dragLeave (e) {
-      this.isOver = false
+      if (!this.$el.contains(e.target) || e.target === this.$el) {
+        this.isOver = false
+      }
     },
 
     checkMaximumFileSize (size) {
