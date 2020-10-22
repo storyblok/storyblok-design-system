@@ -2,9 +2,9 @@ import SbLoading from '../index'
 import { mount } from '@vue/test-utils'
 import { loadingSizes } from '../utils'
 
-const factory = propsData => {
+const factory = (propsData) => {
   return mount(SbLoading, {
-    propsData
+    propsData,
   })
 }
 
@@ -23,7 +23,7 @@ describe('Testing loading component', () => {
     const wrapper = factory({
       type: 'bar',
       value: 50,
-      showPercentage: true
+      showPercentage: true,
     })
 
     expect(wrapper.find('progress').attributes('class')).toBe('sb-loading--bar')
@@ -35,11 +35,15 @@ describe('Testing loading component', () => {
       type: 'spinner',
       size: 'normal',
       value: 35,
-      showPercentage: true
+      showPercentage: true,
     })
 
-    expect(wrapper.find('div').attributes('class')).toBe('sb-loading sb-loading--spinner-normal sb-loading--spinner')
-    expect(wrapper.find('svg').attributes('class')).toBe('sb-icon sb-icon--normal')
+    expect(wrapper.find('div').attributes('class')).toBe(
+      'sb-loading sb-loading--spinner-normal sb-loading--spinner'
+    )
+    expect(wrapper.find('svg').attributes('class')).toBe(
+      'sb-icon sb-icon--normal'
+    )
     expect(wrapper.find('label').text()).toBe('35%')
   })
 
@@ -48,7 +52,7 @@ describe('Testing loading component', () => {
       type: 'spinner',
       size: 'normal',
       value: 35,
-      uiBlock: true
+      uiBlock: true,
     })
 
     expect(wrapper.find('div').attributes('class')).toBe('sb-block-ui')

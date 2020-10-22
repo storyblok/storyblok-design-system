@@ -16,49 +16,57 @@ export const SbPaginationButton = {
   props: {
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     icon: {
       type: String,
-      required: true
+      required: true,
     },
     tooltipLabel: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
-  render (h, { props, listeners, data }) {
+  render(h, { props, listeners, data }) {
     const { icon, tooltipLabel, disabled } = props
 
-    return h(SbTooltip, {
-      props: {
-        label: tooltipLabel,
-        position: 'bottom'
-      }
-    }, [
-      h('button', {
-        staticClass: 'sb-pagination__button',
-        attrs: {
-          disabled,
-          ...data.attrs || {}
+    return h(
+      SbTooltip,
+      {
+        props: {
+          label: tooltipLabel,
+          position: 'bottom',
         },
-        class: {
-          'sb-pagination__button--disabled': disabled
-        },
-        on: {
-          ...listeners
-        }
-      }, [
-        h(SbIcon, {
-          props: {
-            name: icon,
-            size: 'small'
-          }
-        })
-      ])
-    ])
-  }
+      },
+      [
+        h(
+          'button',
+          {
+            staticClass: 'sb-pagination__button',
+            attrs: {
+              disabled,
+              ...(data.attrs || {}),
+            },
+            class: {
+              'sb-pagination__button--disabled': disabled,
+            },
+            on: {
+              ...listeners,
+            },
+          },
+          [
+            h(SbIcon, {
+              props: {
+                name: icon,
+                size: 'small',
+              },
+            }),
+          ]
+        ),
+      ]
+    )
+  },
 }
 
 /**
@@ -76,37 +84,41 @@ export const SbPaginationPagesText = {
   props: {
     currentPage: {
       type: Number,
-      default: 1
+      default: 1,
     },
     isPlaceholder: {
       type: Boolean,
-      default: false
+      default: false,
     },
     pages: {
       type: Number,
-      default: 1
+      default: 1,
     },
     showCurrentPage: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
-  render (h, { props }) {
+  render(h, { props }) {
     const { currentPage, showCurrentPage, isPlaceholder, pages } = props
     const text = showCurrentPage
       ? `${currentPage} of ${pages} pages` // to compact container
       : `of ${pages} pages` // to other container types
 
-    return h('span', {
-      class: {
-        'sb-pagination__placeholder': isPlaceholder
+    return h(
+      'span',
+      {
+        class: {
+          'sb-pagination__placeholder': isPlaceholder,
+        },
+        attrs: {
+          'data-testid': 'pagination-pages-information',
+        },
       },
-      attrs: {
-        'data-testid': 'pagination-pages-information'
-      }
-    }, text)
-  }
+      text
+    )
+  },
 }
 
 /**
@@ -125,51 +137,51 @@ export const SbPaginationItemsText = {
     currentPage: {
       type: Number,
       required: true,
-      default: 1
+      default: 1,
     },
     isPlaceholder: {
       type: Boolean,
-      default: false
+      default: false,
     },
     pages: {
       type: Number,
       required: true,
-      default: 10
+      default: 10,
     },
     perPage: {
       type: Number,
-      default: 10
+      default: 10,
     },
     total: {
       type: Number,
-      default: 100
-    }
+      default: 100,
+    },
   },
 
-  render (h, { props }) {
+  render(h, { props }) {
     const { currentPage, isPlaceholder, pages, perPage, total } = props
     const isTheLastPage = currentPage === pages
-    const currentPageItems = (currentPage * perPage)
-    const firstCurrentPageItem = currentPage === 1
-      ? 1
-      : (currentPageItems - perPage) + 1
-    const lastCurrentPageItem = currentPage === 1
-      ? perPage
-      : isTheLastPage
-        ? total
-        : currentPageItems
+    const currentPageItems = currentPage * perPage
+    const firstCurrentPageItem =
+      currentPage === 1 ? 1 : currentPageItems - perPage + 1
+    const lastCurrentPageItem =
+      currentPage === 1 ? perPage : isTheLastPage ? total : currentPageItems
 
     const text = `${firstCurrentPageItem}-${lastCurrentPageItem} of ${total} items`
 
-    return h('span', {
-      class: {
-        'sb-pagination__placeholder': isPlaceholder
+    return h(
+      'span',
+      {
+        class: {
+          'sb-pagination__placeholder': isPlaceholder,
+        },
+        attrs: {
+          'data-testid': 'pagination-items-information',
+        },
       },
-      attrs: {
-        'data-testid': 'pagination-items-information'
-      }
-    }, text)
-  }
+      text
+    )
+  },
 }
 
 /**
@@ -187,15 +199,15 @@ export const SbPaginationSelect = {
   props: {
     options: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     value: {
       type: Number,
-      default: 1
-    }
+      default: 1,
+    },
   },
 
-  render (h, { props, listeners, data }) {
+  render(h, { props, listeners, data }) {
     const { options } = props
 
     const processAriaLabel = (option) => {
@@ -203,22 +215,32 @@ export const SbPaginationSelect = {
       return props.value === value ? `${ariaLabel}, Current` : ariaLabel
     }
 
-    return h('select', {
-      attrs: { ...data.attrs || {} },
-      staticClass: 'sb-pagination__select',
-      on: {
-        ...listeners
-      }
-    }, [
-      ...options.map(option => {
-        return h('option', {
-          attrs: {
-            ...(option.ariaLabel && { 'aria-label': processAriaLabel(option) }),
-            value: option.value,
-            selected: props.value === option.value
-          }
-        }, option.label)
-      })
-    ])
-  }
+    return h(
+      'select',
+      {
+        attrs: { ...(data.attrs || {}) },
+        staticClass: 'sb-pagination__select',
+        on: {
+          ...listeners,
+        },
+      },
+      [
+        ...options.map((option) => {
+          return h(
+            'option',
+            {
+              attrs: {
+                ...(option.ariaLabel && {
+                  'aria-label': processAriaLabel(option),
+                }),
+                value: option.value,
+                selected: props.value === option.value,
+              },
+            },
+            option.label
+          )
+        }),
+      ]
+    )
+  },
 }

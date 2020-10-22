@@ -14,16 +14,16 @@ describe('SbMenuItem component', () => {
   // @vue/component
   const Component = {
     components: {
-      ...MenuComponents
+      ...MenuComponents,
     },
 
     data: () => ({
-      isOpen: true
+      isOpen: true,
     }),
 
     methods: {
       onSelectOptionFirst: onSelectOptionFirst,
-      onSelectOptionSecond: onSelectOptionSecond
+      onSelectOptionSecond: onSelectOptionSecond,
     },
 
     template: `
@@ -44,7 +44,7 @@ describe('SbMenuItem component', () => {
           </SbMenuList>
         </SbMenu>
       </div>
-    `
+    `,
   }
 
   const wrapper = factoryMountComponent(Component)
@@ -53,15 +53,13 @@ describe('SbMenuItem component', () => {
     // get the third element
     const itemComponent = wrapper.findAll('[role="menuitemradio"]').at(2)
 
-    expect(
-      itemComponent.findComponent(SbIcon).exists()
-    ).toBe(true)
+    expect(itemComponent.findComponent(SbIcon).exists()).toBe(true)
   })
 
   it('should have the correct text', async () => {
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(0).text()
-    ).toBe('Option 1')
+    expect(wrapper.findAll('[role="menuitemradio"]').at(0).text()).toBe(
+      'Option 1'
+    )
   })
 
   it('should not emit the click event when is disabled', async () => {
@@ -81,7 +79,7 @@ describe('SbMenuItem component', () => {
 
     // when try to press the Enter key in a disabled button
     await itemComponent.trigger('keydown', {
-      keydown: 'Enter'
+      keydown: 'Enter',
     })
 
     // should not emit the click event
@@ -89,7 +87,7 @@ describe('SbMenuItem component', () => {
 
     // when try to press the Space key in a disabled button
     await itemComponent.trigger('keydown', {
-      keydown: 'Space'
+      keydown: 'Space',
     })
 
     // should not emit the click event
@@ -107,7 +105,7 @@ describe('SbMenuItem component', () => {
 
     // when try to press the Enter key
     await itemComponent.trigger('keydown', {
-      key: 'Enter'
+      key: 'Enter',
     })
 
     // should emit the click event
@@ -118,12 +116,12 @@ describe('SbMenuItem component', () => {
 
     // changing the state to menu open
     await wrapper.setData({
-      isOpen: true
+      isOpen: true,
     })
 
     // when try to press the Space key
     await itemComponent.trigger('keydown', {
-      key: ' '
+      key: ' ',
     })
 
     // should emit the click event

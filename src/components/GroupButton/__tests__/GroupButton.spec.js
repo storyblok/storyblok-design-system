@@ -6,13 +6,13 @@ const factory = (template, propsData = {}) => {
   const Wrapper = {
     components: {
       SbButton,
-      SbGroupButton
+      SbGroupButton,
     },
-    template
+    template,
   }
 
   return mount(Wrapper, {
-    propsData
+    propsData,
   })
 }
 
@@ -43,7 +43,7 @@ describe('Tests SbGroupButton component', () => {
       `
       const wrapper = factory(template)
 
-      wrapper.findAllComponents(SbButton).wrappers.forEach(wrapper => {
+      wrapper.findAllComponents(SbButton).wrappers.forEach((wrapper) => {
         expect(wrapper.props('size')).toBe('large')
       })
     })
@@ -58,7 +58,7 @@ describe('Tests SbGroupButton component', () => {
       `
       const wrapper = factory(template)
 
-      wrapper.findAllComponents(SbButton).wrappers.forEach(wrapper => {
+      wrapper.findAllComponents(SbButton).wrappers.forEach((wrapper) => {
         expect(wrapper.props('size')).toBe('small')
         expect(wrapper.props('type')).toBe('ghost')
       })
@@ -76,9 +76,7 @@ describe('Tests SbGroupButton component', () => {
       `
       const wrapper = factory(template)
 
-      expect(
-        wrapper.classes('sb-group-button--has-spaces')
-      ).toBe(true)
+      expect(wrapper.classes('sb-group-button--has-spaces')).toBe(true)
     })
   })
 })

@@ -1,8 +1,4 @@
-import {
-  getRandomNumber,
-  availableSizes,
-  availableBgColors
-} from '../../utils'
+import { getRandomNumber, availableSizes, availableBgColors } from '../../utils'
 
 /**
  * @description check if a size is valid
@@ -10,7 +6,7 @@ import {
  * @param  {string} size
  * @return {boolean}
  */
-export const isSizeValid = size => availableSizes.indexOf(size) !== -1
+export const isSizeValid = (size) => availableSizes.indexOf(size) !== -1
 
 /**
  * @description generates a random bg color class
@@ -29,7 +25,7 @@ export const generateRandomBgColor = () => {
  * @param  {string} username
  * @return {string}
  */
-export const getInitials = username => {
+export const getInitials = (username) => {
   const [firstWord, secondWord] = username.split(' ')
 
   if (firstWord && secondWord) {

@@ -5,18 +5,18 @@ import SbTooltip from '../Tooltip'
  * @param  {string} label
  * @return {string}
  */
-const getLabelTruncated = label => `${label.slice(0, 13)}...`
+const getLabelTruncated = (label) => `${label.slice(0, 13)}...`
 
 const sharedLinkProps = {
   // general props
   as: {
     type: String,
-    default: 'a'
+    default: 'a',
   },
   label: {
     type: String,
     required: true,
-    default: null
+    default: null,
   },
 
   // <a> tag props
@@ -31,7 +31,7 @@ const sharedLinkProps = {
   link: Boolean,
   href: String,
   to: [String, Object],
-  replace: Boolean
+  replace: Boolean,
 }
 
 /**
@@ -45,29 +45,37 @@ const SbBreadcrumbLink = {
   name: 'SbBreadcrumbLink',
   functional: true,
   props: {
-    ...sharedLinkProps
+    ...sharedLinkProps,
   },
-  render (h, { props }) {
+  render(h, { props }) {
     const { label } = props
 
     // if href exists, we understand that's expected a <a> tag
     if (props.href) {
-      return h(props.as, {
-        attrs: {
-          title: props.title,
-          href: props.href,
-          target: props.target
-        }
-      }, label)
+      return h(
+        props.as,
+        {
+          attrs: {
+            title: props.title,
+            href: props.href,
+            target: props.target,
+          },
+        },
+        label
+      )
     }
 
     // otherwise, that's expected a <router-link> tag and derivatives, like <nuxt-link>
-    return h(props.as, {
-      props: {
-        ...props
-      }
-    }, label)
-  }
+    return h(
+      props.as,
+      {
+        props: {
+          ...props,
+        },
+      },
+      label
+    )
+  },
 }
 
 /**
@@ -84,10 +92,10 @@ const SbBreadcrumbItem = {
 
   props: {
     isActive: Boolean,
-    ...sharedLinkProps
+    ...sharedLinkProps,
   },
 
-  render (h, { props }) {
+  render(h, { props }) {
     const { isActive, label, title, href, to, as } = props
     const isTruncated = (label || '').length > 15
     const labelFormated = isTruncated ? getLabelTruncated(label) : label
@@ -95,12 +103,12 @@ const SbBreadcrumbItem = {
     const breadcrumbsItemProps = {
       staticClass: 'sb-breadcrumbs__item',
       class: {
-        'sb-breadcrumbs__item--active': isActive
+        'sb-breadcrumbs__item--active': isActive,
       },
       attrs: {
         // to identify that the last link is the current page
-        'aria-current': isActive ? 'page' : null
-      }
+        'aria-current': isActive ? 'page' : null,
+      },
     }
 
     const renderLabel = () => {
@@ -111,8 +119,8 @@ const SbBreadcrumbItem = {
             href,
             to,
             as,
-            label: labelFormated
-          }
+            label: labelFormated,
+          },
         })
       }
 
@@ -122,12 +130,16 @@ const SbBreadcrumbItem = {
     const renderChildren = () => {
       if (isTruncated) {
         return [
-          h(SbTooltip, {
-            props: {
-              position: 'bottom',
-              label
-            }
-          }, [renderLabel()])
+          h(
+            SbTooltip,
+            {
+              props: {
+                position: 'bottom',
+                label,
+              },
+            },
+            [renderLabel()]
+          ),
         ]
       }
 
@@ -135,10 +147,7 @@ const SbBreadcrumbItem = {
     }
 
     return h('li', breadcrumbsItemProps, renderChildren())
-  }
+  },
 }
 
-export {
-  SbBreadcrumbLink,
-  SbBreadcrumbItem
-}
+export { SbBreadcrumbLink, SbBreadcrumbItem }

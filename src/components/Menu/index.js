@@ -21,23 +21,23 @@ const SbMenuItem = {
   props: {
     icon: {
       type: String,
-      default: null
+      default: null,
     },
     isDisabled: Boolean,
     label: {
       type: String,
-      default: null
+      default: null,
     },
     type: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
 
   computed: {
-    context () {
+    context() {
       return this.menuContext()
-    }
+    },
   },
 
   methods: {
@@ -45,7 +45,7 @@ const SbMenuItem = {
      * handles click event and close menu
      * @param {Event} event
      */
-    handleClick (event) {
+    handleClick(event) {
       const { closeMenu } = this.context
 
       this.$emit('click', event)
@@ -63,7 +63,7 @@ const SbMenuItem = {
      * handles keydown event and close menu
      * @param {Event} event
      */
-    handleKeyDown (event) {
+    handleKeyDown(event) {
       const { closeMenu } = this.context
 
       this.$emit('keydown', event)
@@ -78,16 +78,16 @@ const SbMenuItem = {
 
         closeMenu()
       }
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     const renderIcon = () => {
       return h(SbIcon, {
         props: {
           name: this.icon,
-          size: 'small'
-        }
+          size: 'small',
+        },
       })
     }
 
@@ -101,23 +101,24 @@ const SbMenuItem = {
 
     const typeClass = this.type ? `sb-menu-item--${this.type}` : null
 
-    return h('button', {
-      staticClass: 'sb-menu-item',
-      class: [typeClass],
-      attrs: {
-        ...this.$attrs,
-        role: 'menuitemradio'
+    return h(
+      'button',
+      {
+        staticClass: 'sb-menu-item',
+        class: [typeClass],
+        attrs: {
+          ...this.$attrs,
+          role: 'menuitemradio',
+        },
+        on: {
+          ...this.$listeners,
+          click: this.handleClick,
+          keydown: this.handleKeyDown,
+        },
       },
-      on: {
-        ...this.$listeners,
-        click: this.handleClick,
-        keydown: this.handleKeyDown
-      }
-    }, [
-      this.icon && renderIcon(),
-      renderLabel()
-    ])
-  }
+      [this.icon && renderIcon(), renderLabel()]
+    )
+  },
 }
 
 /**
@@ -130,11 +131,11 @@ const SbMenuSeparator = {
 
   functional: true,
 
-  render (h) {
+  render(h) {
     return h('hr', {
-      staticClass: 'sb-menu-separator'
+      staticClass: 'sb-menu-separator',
     })
-  }
+  },
 }
 
 /**
@@ -148,22 +149,30 @@ const SbMenuGroup = {
   props: {
     title: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
-  render (h) {
-    return h('div', {
-      attrs: {
-        role: 'group'
-      }
-    }, [
-      h('p', {
-        staticClass: 'sb-menu-group__title'
-      }, this.title),
-      ...this.$slots.default
-    ])
-  }
+  render(h) {
+    return h(
+      'div',
+      {
+        attrs: {
+          role: 'group',
+        },
+      },
+      [
+        h(
+          'p',
+          {
+            staticClass: 'sb-menu-group__title',
+          },
+          this.title
+        ),
+        ...this.$slots.default,
+      ]
+    )
+  },
 }
 
 /**
@@ -179,30 +188,30 @@ const SbMenuList = {
   props: {
     placement: {
       type: String,
-      default: 'bottom-end'
-    }
+      default: 'bottom-end',
+    },
   },
 
   computed: {
-    context () {
+    context() {
       return this.menuContext()
     },
-    isOpen () {
+    isOpen() {
       return this.context.isOpen
-    }
+    },
   },
 
   watch: {
     isOpen: {
-      handler (state) {
+      handler(state) {
         if (state) {
           this.$refs.popover && this.$refs.popover.show()
         } else {
           this.$refs.popover && this.$refs.popover.hide()
         }
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
 
   methods: {
@@ -210,14 +219,14 @@ const SbMenuList = {
      * listen to keydown event and handle with keys to perform the navigation
      * @param {Event} event
      */
-    handleKeyDown (event) {
+    handleKeyDown(event) {
       const {
         activeIndex,
         focusAtIndex,
         focusOnFirstItem,
         focusOnLastItem,
         closeMenu,
-        focusableElements
+        focusableElements,
       } = this.context
       const count = focusableElements.length
 
@@ -247,40 +256,48 @@ const SbMenuList = {
       }
 
       this.$emit('keydown', event)
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     const { menuListId, menuButtonId, closeMenu } = this.context
 
-    return h(SbPopover, {
-      staticClass: 'sb-menu-list',
+    return h(
+      SbPopover,
+      {
+        staticClass: 'sb-menu-list',
 
-      props: {
-        offset: [0, 5],
-        placement: this.placement,
-        reference: `#${menuButtonId}`
-      },
-
-      on: {
-        hide: closeMenu
-      },
-
-      ref: 'popover'
-    }, [
-      h('div', {
-        attrs: {
-          ...this.$attrs,
-          id: menuListId,
-          role: 'menu',
-          'aria-labelledby': menuButtonId
+        props: {
+          offset: [0, 5],
+          placement: this.placement,
+          reference: `#${menuButtonId}`,
         },
+
         on: {
-          keydown: this.handleKeyDown
-        }
-      }, this.$slots.default)
-    ])
-  }
+          hide: closeMenu,
+        },
+
+        ref: 'popover',
+      },
+      [
+        h(
+          'div',
+          {
+            attrs: {
+              ...this.$attrs,
+              id: menuListId,
+              role: 'menu',
+              'aria-labelledby': menuButtonId,
+            },
+            on: {
+              keydown: this.handleKeyDown,
+            },
+          },
+          this.$slots.default
+        ),
+      ]
+    )
+  },
 }
 
 /**
@@ -298,7 +315,7 @@ const SbMenuButton = {
     ...sharedProps,
     type: {
       type: String,
-      default: 'ghost'
+      default: 'ghost',
     },
 
     // only apply when uses the hasIconOnly property
@@ -308,17 +325,17 @@ const SbMenuButton = {
     // only apply when does not use the hasIconOnly property
     label: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
 
   computed: {
-    context () {
+    context() {
       return this.menuContext()
     },
-    isOpen () {
+    isOpen() {
       return this.context.isOpen || false
-    }
+    },
   },
 
   methods: {
@@ -326,7 +343,7 @@ const SbMenuButton = {
      * triggers a click event and toggle menu state
      * @param {Event} event
      */
-    handleClick (event) {
+    handleClick(event) {
       const { closeMenu, focusOnFirstItem } = this.context
 
       this.$emit('click', event)
@@ -345,7 +362,7 @@ const SbMenuButton = {
      * triggers a keydown event
      * @param {Event} event
      */
-    handleKeyDown (event) {
+    handleKeyDown(event) {
       const { focusOnFirstItem, focusOnLastItem } = this.context
 
       this.$emit('keydown', event)
@@ -359,10 +376,10 @@ const SbMenuButton = {
         event.preventDefault()
         focusOnFirstItem()
       }
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     const { isOpen, menuButtonId } = this.context
 
     if (this.hasIconOnly) {
@@ -372,41 +389,45 @@ const SbMenuButton = {
           id: menuButtonId,
           'aria-controls': this.menuListId,
           'aria-haspopup': 'true',
-          'aria-expanded': isOpen ? 'true' : null
+          'aria-expanded': isOpen ? 'true' : null,
         },
         props: {
           isRounded: this.isRounded,
           hasIconOnly: true,
           icon: 'overflow-menu-vertic',
-          type: this.type
+          type: this.type,
         },
         on: {
           ...this.$listeners,
           click: this.handleClick,
-          keydown: this.handleKeyDown
-        }
+          keydown: this.handleKeyDown,
+        },
       })
     }
 
-    return h(SbButton, {
-      attrs: {
-        ...this.$attrs,
-        id: menuButtonId,
-        'aria-haspopup': 'true',
-        'aria-expanded': isOpen ? 'true' : null
+    return h(
+      SbButton,
+      {
+        attrs: {
+          ...this.$attrs,
+          id: menuButtonId,
+          'aria-haspopup': 'true',
+          'aria-expanded': isOpen ? 'true' : null,
+        },
+        props: {
+          iconRight: 'chevron-down',
+          label: this.label,
+          type: this.type,
+        },
+        on: {
+          ...this.$listeners,
+          click: this.handleClick,
+          keydown: this.handleKeyDown,
+        },
       },
-      props: {
-        iconRight: 'chevron-down',
-        label: this.label,
-        type: this.type
-      },
-      on: {
-        ...this.$listeners,
-        click: this.handleClick,
-        keydown: this.handleKeyDown
-      }
-    }, this.$slots.default)
-  }
+      this.$slots.default
+    )
+  },
 }
 
 /**
@@ -417,17 +438,17 @@ const SbMenuButton = {
 const SbMenu = {
   name: 'SbMenu',
 
-  provide () {
+  provide() {
     return {
-      menuContext: () => this.menuContext
+      menuContext: () => this.menuContext,
     }
   },
 
   props: {
     value: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   data: () => ({
@@ -435,11 +456,11 @@ const SbMenu = {
     focusableElements: [],
     isOpen: false,
     menuListId: `sb-menu-list-${randomString(4)}`,
-    menuButtonId: `sb-menu-button-${randomString(4)}`
+    menuButtonId: `sb-menu-button-${randomString(4)}`,
   }),
 
   computed: {
-    menuContext () {
+    menuContext() {
       return {
         // controls the state of menu
         isOpen: this.isOpen,
@@ -458,16 +479,17 @@ const SbMenu = {
         toggleMenu: this.toggleMenu,
         focusAtIndex: this.focusAtIndex,
         focusOnFirstItem: this.focusOnFirstItem,
-        focusOnLastItem: this.focusOnLastItem
+        focusOnLastItem: this.focusOnLastItem,
       }
-    }
+    },
   },
 
   watch: {
-    activeIndex (index) {
+    activeIndex(index) {
       if (index !== -1) {
         this.$nextTick(() => {
-          this.focusableElements[this.activeIndex] && this.focusableElements[this.activeIndex].focus()
+          this.focusableElements[this.activeIndex] &&
+            this.focusableElements[this.activeIndex].focus()
 
           this.$_updateTabIndex(this.activeIndex)
         })
@@ -482,20 +504,20 @@ const SbMenu = {
       })
     },
 
-    isOpen (state) {
+    isOpen(state) {
       this.$emit('input', state)
     },
 
-    value (state) {
+    value(state) {
       if (state) {
         this.focusOnFirstItem()
       } else {
         this.closeMenu()
       }
-    }
+    },
   },
 
-  mounted () {
+  mounted() {
     this.isOpen = this.value || false
 
     this.$_loadListItems()
@@ -505,7 +527,7 @@ const SbMenu = {
     /**
      * toggle menu state
      */
-    closeMenu () {
+    closeMenu() {
       this.isOpen = false
       this.activeIndex = -1
 
@@ -515,7 +537,7 @@ const SbMenu = {
     /**
      * opens menu
      */
-    openMenu () {
+    openMenu() {
       this.isOpen = true
 
       this.$emit('open')
@@ -524,7 +546,7 @@ const SbMenu = {
     /**
      * toggle menu state
      */
-    toggleMenu () {
+    toggleMenu() {
       if (this.isOpen) {
         this.closeMenu()
       } else {
@@ -535,7 +557,7 @@ const SbMenu = {
     /**
      * set focus to first menu item
      */
-    focusOnFirstItem () {
+    focusOnFirstItem() {
       this.openMenu()
 
       this.activeIndex = 0
@@ -544,7 +566,7 @@ const SbMenu = {
     /**
      * set focus to last menu item
      */
-    focusOnLastItem () {
+    focusOnLastItem() {
       this.openMenu()
 
       this.activeIndex = this.focusableElements.length - 1
@@ -554,7 +576,7 @@ const SbMenu = {
      * set focus a specific menu item index
      * @param {Number} index Position index of menu list item
      */
-    focusAtIndex (index) {
+    focusAtIndex(index) {
       this.$_updateTabIndex(index)
 
       this.activeIndex = index
@@ -564,7 +586,7 @@ const SbMenu = {
      * updates tab index for menu items
      * @param {Number} index Position index of menu list item
      */
-    $_updateTabIndex (index) {
+    $_updateTabIndex(index) {
       if (this.focusableElements.length > 0) {
         const nodeAtIndex = this.focusableElements[index]
         this.focusableElements.forEach((node) => {
@@ -579,7 +601,7 @@ const SbMenu = {
     /**
      * set all menu items to tabindex -1
      */
-    $_resetTabIndex () {
+    $_resetTabIndex() {
       if (this.focusableElements.length > 0) {
         this.focusableElements.forEach((node) => {
           node.setAttribute('tabindex', -1)
@@ -590,36 +612,37 @@ const SbMenu = {
     /**
      * set focus to trigger button element
      */
-    $_focusButton () {
+    $_focusButton() {
       canUseDOM && document.querySelector(`#${this.menuButtonId}`).focus()
     },
 
     /**
      * get all menu item elements
      */
-    $_loadListItems () {
-      const menuNode = canUseDOM &&
-        document.querySelector(`#${this.menuListId}`)
+    $_loadListItems() {
+      const menuNode =
+        canUseDOM && document.querySelector(`#${this.menuListId}`)
 
       if (this.menuListId && menuNode) {
-        this.focusableElements = getFocusableElements(menuNode)
-          .filter(node =>
-            ['menuitemradio'].includes(
-              node.getAttribute('role')
-            )
-          )
+        this.focusableElements = getFocusableElements(menuNode).filter((node) =>
+          ['menuitemradio'].includes(node.getAttribute('role'))
+        )
       }
-    }
+    },
   },
 
-  render (h) {
-    return h('div', {
-      staticClass: 'sb-menu',
-      attrs: {
-        ...this.$attrs
-      }
-    }, this.$slots.default)
-  }
+  render(h) {
+    return h(
+      'div',
+      {
+        staticClass: 'sb-menu',
+        attrs: {
+          ...this.$attrs,
+        },
+      },
+      this.$slots.default
+    )
+  },
 }
 
 export {
@@ -628,5 +651,5 @@ export {
   SbMenuList,
   SbMenuSeparator,
   SbMenuGroup,
-  SbMenuItem
+  SbMenuItem,
 }

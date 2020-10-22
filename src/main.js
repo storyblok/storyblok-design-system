@@ -5,7 +5,7 @@ import './assets/styles/global.scss'
 import components from './components'
 
 // Declare install function executed by Vue.use()
-export function install (Vue) {
+export function install(Vue) {
   if (install.installed) return
 
   install.installed = true
@@ -16,7 +16,7 @@ export function install (Vue) {
 
 // Create module definition for Vue.use()
 const plugin = {
-  install
+  install,
 }
 
 // Auto-install when vue is found (eg. in browser via <script> tag)

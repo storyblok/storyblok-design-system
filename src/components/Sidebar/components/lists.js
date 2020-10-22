@@ -12,14 +12,18 @@ const SbSidebarList = {
 
   functional: true,
 
-  render (h, { slots }) {
-    return h('ul', {
-      staticClass: 'sb-sidebar-list',
-      attrs: {
-        role: 'navigation'
-      }
-    }, slots().default)
-  }
+  render(h, { slots }) {
+    return h(
+      'ul',
+      {
+        staticClass: 'sb-sidebar-list',
+        attrs: {
+          role: 'navigation',
+        },
+      },
+      slots().default
+    )
+  },
 }
 
 /**
@@ -37,47 +41,51 @@ const SbSidebarLink = {
   props: {
     active: {
       type: Boolean,
-      default: false
+      default: false,
     },
     ariaLabel: {
       type: String,
-      default: null
+      default: null,
     },
     as: {
       type: String,
-      default: 'a'
+      default: 'a',
     },
     label: {
       type: String,
-      default: null
+      default: null,
     },
     href: {
       type: String,
-      default: null
+      default: null,
     },
     icon: {
       type: String,
-      default: null
+      default: null,
     },
     to: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
 
-  render (h, { props, listeners, data }) {
+  render(h, { props, listeners, data }) {
     const renderLabel = () => {
-      return h('span', {
-        staticClass: 'sb-sidebar-link__label'
-      }, props.label)
+      return h(
+        'span',
+        {
+          staticClass: 'sb-sidebar-link__label',
+        },
+        props.label
+      )
     }
 
     const renderIcon = () => {
       return h(SbIcon, {
         props: {
           size: 'small',
-          name: props.icon
-        }
+          name: props.icon,
+        },
       })
     }
 
@@ -85,31 +93,29 @@ const SbSidebarLink = {
       ? props.ariaLabel + ', Current Page'
       : props.ariaLabel
 
-    return h(props.as, {
-      staticClass: 'sb-sidebar-link',
-      class: {
-        'sb-sidebar-link--active': props.active
+    return h(
+      props.as,
+      {
+        staticClass: 'sb-sidebar-link',
+        class: {
+          'sb-sidebar-link--active': props.active,
+        },
+        attrs: {
+          ...data.attrs,
+          'aria-label': ariaLabel || null,
+          'aria-current': props.active && props.active + '',
+          href: props.href || null,
+        },
+        props: {
+          to: props.to || null,
+        },
+        on: {
+          ...listeners,
+        },
       },
-      attrs: {
-        ...data.attrs,
-        'aria-label': ariaLabel || null,
-        'aria-current': props.active && props.active + '',
-        href: props.href || null
-      },
-      props: {
-        to: props.to || null
-      },
-      on: {
-        ...listeners
-      }
-    }, [
-      renderIcon(),
-      renderLabel()
-    ])
-  }
+      [renderIcon(), renderLabel()]
+    )
+  },
 }
 
-export {
-  SbSidebarList,
-  SbSidebarLink
-}
+export { SbSidebarList, SbSidebarLink }
