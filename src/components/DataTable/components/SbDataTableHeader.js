@@ -28,6 +28,10 @@ export const SbDataTableHeaderCell = {
   },
 
   computed: {
+    context () {
+      return this.dataTableContext()
+    },
+
     isSortable () {
       return this.column.sortable
     },
@@ -49,7 +53,7 @@ export const SbDataTableHeaderCell = {
     toggleSort () {
       if (this.sortKey && this.isSortable) {
         this.order = this.order === 0 || this.order === -1 ? this.order + 1 : -1
-        this.toggleTableOrder(this.order, this.sortKey)
+        this.context.toggleTableOrder(this.order, this.sortKey)
       } else if (!this.sortKey && this.isSortable) {
         throw new Error('Must provide the value property when sortable is defined.')
       }
@@ -62,7 +66,7 @@ export const SbDataTableHeaderCell = {
     }
   },
 
-  inject: ['toggleTableOrder'],
+  inject: ['dataTableContext'],
 
   render (h) {
     return h('th', {
@@ -114,15 +118,21 @@ export const SbDataTableHeaderRow = {
     }
   },
 
-  methods: {
-    handleAllRowsSelected () {
-      this.allRowsSelected
-        ? this.deselectAll()
-        : this.selectAll()
+  computed: {
+    context () {
+      return this.dataTableContext()
     }
   },
 
-  inject: ['selectAll', 'deselectAll'],
+  methods: {
+    handleAllRowsSelected () {
+      this.allRowsSelected
+        ? this.context.deselectAll()
+        : this.context.selectAll()
+    }
+  },
+
+  inject: ['dataTableContext'],
 
   render (h) {
     return h('tr', [

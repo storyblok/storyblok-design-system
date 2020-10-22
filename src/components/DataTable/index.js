@@ -76,6 +76,19 @@ const SbDataTable = {
         : null
     },
 
+    dataTableContext () {
+      return {
+        // methods to control row selection
+        selectRow: this.selectRow,
+        deselectRow: this.deselectRow,
+        selectAll: this.selectAll,
+        deselectAll: this.deselectAll,
+
+        // method to control sorting
+        toggleTableOrder: this.toggleTableOrder
+      }
+    },
+
     sortedData () {
       if (this.sortKey && this.sortOrder !== 0) {
         return this.doSort()
@@ -85,6 +98,9 @@ const SbDataTable = {
   },
 
   methods: {
+    /**
+     * method to sort array of items
+     */
     doSort () {
       const local = [...this.items]
 
@@ -106,6 +122,10 @@ const SbDataTable = {
       })
     },
 
+    /**
+     * method to select body row(s)
+     * @param {Object} row
+     */
     selectRow (row) {
       if (this.selectionMode === 'single') {
         this.selectedRows = [row]
@@ -117,12 +137,10 @@ const SbDataTable = {
       }
     },
 
-    selectRows (rows) {
-      for (const row of rows) {
-        this.selectRow(row)
-      }
-    },
-
+    /**
+     * method to deselect body row(s)
+     * @param {Object} row
+     */
     deselectRow (row) {
       const index = this.selectedRows.indexOf(row)
 
@@ -131,32 +149,34 @@ const SbDataTable = {
       }
     },
 
-    deselectRows (rows) {
-      for (const row of rows) {
-        this.deselectRow(row)
-      }
-    },
-
+    /**
+     * method to select all body row(s)
+     */
     selectAll () {
       this.selectedRows = [...this.items]
     },
 
+    /**
+     * method to deselect all body row(s)
+     */
     deselectAll () {
       this.selectedRows = []
     },
 
+    /**
+     * method to toggle table order
+     * @param {Number} order
+     * @param {String} key
+     */
     toggleTableOrder (order, key) {
       this.sortOrder = order
       this.sortKey = key
     }
   },
+
   provide () {
     return {
-      selectRow: this.selectRow,
-      deselectRow: this.deselectRow,
-      selectAll: this.selectAll,
-      deselectAll: this.deselectAll,
-      toggleTableOrder: this.toggleTableOrder
+      dataTableContext: () => this.dataTableContext
     }
   },
 

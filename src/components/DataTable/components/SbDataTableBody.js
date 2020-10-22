@@ -26,6 +26,10 @@ export const SbDataTableBodyRow = {
   },
 
   computed: {
+    context () {
+      return this.dataTableContext()
+    },
+
     isSelected () {
       return this.selectedRows.some(row => row === this.row)
     }
@@ -36,12 +40,12 @@ export const SbDataTableBodyRow = {
       if (!this.allowSelection) return
 
       this.isSelected
-        ? this.deselectRow(this.row)
-        : this.selectRow(this.row)
+        ? this.context.deselectRow(this.row)
+        : this.context.selectRow(this.row)
     }
   },
 
-  inject: ['selectRow', 'deselectRow'],
+  inject: ['dataTableContext'],
 
   render (h) {
     const mainColumnIndex = this.headers.findIndex(col => col.main)
