@@ -12,9 +12,9 @@ import SbIcon from '../../Icon'
 export const SbDataTableHeaderCell = {
   name: 'SbDataTableHeaderCell',
   data: () => ({
-    order: 0,
-    iconsSort: ['chevron-down', 'chevron-sort', 'chevron-up']
+    order: 0
   }),
+  iconsSort: ['chevron-down', 'chevron-sort', 'chevron-up'],
   props: {
     column: {
       type: Object
@@ -70,7 +70,7 @@ export const SbDataTableHeaderCell = {
       }
     }, [
       this.column.text,
-      this.isSortable ? renderIcon(this.iconsSort[this.order + 1]) : ''
+      this.isSortable ? renderIcon(this.$options.iconsSort[this.order + 1]) : ''
     ])
   }
 }
