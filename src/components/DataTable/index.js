@@ -179,9 +179,6 @@ const SbDataTable = {
         staticClass: 'sb-data-table',
         class: {
           'sb-data-table--striped': this.striped
-        },
-        on: {
-          'select-row': this.selectRow
         }
       },
       [
