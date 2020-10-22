@@ -54,16 +54,6 @@ export const SbDataTableHeaderCell = {
   },
   inject: ['toggleTableOrder'],
   render (h) {
-    const renderIcon = (icon) => {
-      return h(SbIcon, {
-        class: 'sb-data-table__sort-icon',
-        props: {
-          size: 'small',
-          name: icon
-        }
-      })
-    }
-
     return h('th', {
       staticClass: 'sb-data-table__head-cell',
       class: {
@@ -74,7 +64,13 @@ export const SbDataTableHeaderCell = {
       }
     }, [
       this.column.text,
-      this.isSortable && renderIcon(this.$options.iconsSort[this.order + 1])
+      this.isSortable && h(SbIcon, {
+        class: 'sb-data-table__sort-icon',
+        props: {
+          size: 'small',
+          name: this.$options.iconsSort[this.order + 1]
+        }
+      })
     ])
   }
 }
@@ -114,11 +110,11 @@ export const SbDataTableHeaderRow = {
   },
   inject: ['selectAll', 'deselectAll'],
   render (h) {
-    const rowArray = []
-
-    if (this.allowSelection) {
-      const renderInput = () => {
-        return h(SbDataTableInput, {
+    return h('tr', [
+      this.allowSelection && h('th', {
+        staticClass: 'sb-data-table__head-cell'
+      }, [
+        this.selectionMode === 'multiple' && h(SbDataTableInput, {
           props: {
             value: this.allRowsSelected
           },
@@ -126,26 +122,15 @@ export const SbDataTableHeaderRow = {
             input: this.handleAllRowsSelected
           }
         })
-      }
-
-      rowArray.push(h('th', {
-        staticClass: 'sb-data-table__head-cell'
-      }, [
-        this.selectionMode === 'multiple' && renderInput()
-      ]))
-    }
-
-    this.headers.forEach(elem => {
-      rowArray.push(h(SbDataTableHeaderCell, {
-        props: {
-          column: elem,
-          sortedKey: this.sortedKey
-        }
-      }))
-    })
-
-    return h('tr', [
-      rowArray
+      ]),
+      this.headers.map(elem => {
+        return h(SbDataTableHeaderCell, {
+          props: {
+            column: elem,
+            sortedKey: this.sortedKey
+          }
+        })
+      })
     ])
   }
 }
@@ -185,22 +170,19 @@ export const SbDataTableHeader = {
     }
   },
   render (h) {
-    if (!this.hideHeader) {
-      const tableHeaderArray = h(SbDataTableHeaderRow, {
-        props: {
-          allowSelection: this.allowSelection,
-          allRowsSelected: this.allRowsSelected,
-          headers: this.headers,
-          selectionMode: this.selectionMode,
-          sortedKey: this.sortedKey,
-          selectedRows: this.selectedRows
-        }
-      })
+    const tableHeaderArray = h(SbDataTableHeaderRow, {
+      props: {
+        allowSelection: this.allowSelection,
+        allRowsSelected: this.allRowsSelected,
+        headers: this.headers,
+        selectionMode: this.selectionMode,
+        sortedKey: this.sortedKey,
+        selectedRows: this.selectedRows
+      }
+    })
 
-      return h('thead', [
-        tableHeaderArray
-      ])
-    }
-    return null
+    return !this.hideHeader && h('thead', [
+      tableHeaderArray
+    ])
   }
 }

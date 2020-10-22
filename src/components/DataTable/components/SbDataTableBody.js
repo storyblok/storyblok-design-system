@@ -39,35 +39,7 @@ export const SbDataTableBodyRow = {
   },
   inject: ['selectRow', 'deselectRow'],
   render (h) {
-    const rowArray = []
-
-    if (this.allowSelection) {
-      const renderInput = () => {
-        return h(SbDataTableInput, {
-          props: {
-            value: this.isSelected
-          },
-          on: {
-            input: this.handleRowSelected
-          }
-        })
-      }
-
-      rowArray.push(h('td', {
-        staticClass: 'sb-data-table__body-cell',
-        class: 'sb-data-table__col-selection'
-      }, [
-        renderInput()
-      ]))
-    }
-
-    const isMainColumn = this.headers.findIndex(col => col.main)
-    this.headers.map((elem, index) => {
-      rowArray.push(h('td', {
-        staticClass: 'sb-data-table__body-cell',
-        class: { 'sb-data-table__col-main': isMainColumn === index }
-      }, this.row[elem.value]))
-    })
+    const mainColumnIndex = this.headers.findIndex(col => col.main)
 
     return h('tr', {
       staticClass: 'sb-data-table__row',
@@ -77,7 +49,29 @@ export const SbDataTableBodyRow = {
       on: {
         click: this.handleRowSelected
       }
-    }, [rowArray])
+    }, [
+      this.allowSelection && h('td', {
+        staticClass: 'sb-data-table__body-cell',
+        class: 'sb-data-table__col-selection'
+      }, [
+        h(SbDataTableInput, {
+          props: {
+            value: this.isSelected
+          },
+          on: {
+            input: this.handleRowSelected
+          }
+        })
+      ]),
+      this.headers.map((elem, index) => {
+        return h('td', {
+          staticClass: 'sb-data-table__body-cell',
+          class: {
+            'sb-data-table__col-main': mainColumnIndex === index
+          }
+        }, this.row[elem.value])
+      })
+    ])
   }
 }
 
@@ -111,18 +105,17 @@ export const SbDataTableBody = {
     }
   },
   render (h) {
-    const tableBodyArray = []
-
-    this.items.map(row => {
-      tableBodyArray.push(h(SbDataTableBodyRow, {
-        props: {
-          allowSelection: this.allowSelection,
-          headers: this.headers,
-          row: row,
-          selectedRows: this.selectedRows
-        }
-      }))
-    })
-    return h('tbody', tableBodyArray)
+    return h('tbody', [
+      this.items.map(row => {
+        return h(SbDataTableBodyRow, {
+          props: {
+            allowSelection: this.allowSelection,
+            headers: this.headers,
+            row: row,
+            selectedRows: this.selectedRows
+          }
+        })
+      })
+    ])
   }
 }
