@@ -1,4 +1,4 @@
-import { SbDropArea, SbDropUploadLabel } from './index'
+import { SbDropArea, SbDropAreaUpload } from './index'
 
 const DropTemplate = args => ({
   components: { SbDropArea },
@@ -14,6 +14,13 @@ const DropTemplate = args => ({
 
 export default {
   title: 'SbDropArea',
+  parameters: {
+    docs: {
+      description: {
+        component: 'The `SbDropArea` component serves as a container for uploading files, works with the drop file event, and issues a callback with the files, you must implement the upload function because the component does not have the same!'
+      }
+    }
+  },
   args: {
     accept: null,
     maxFileSize: null,
@@ -47,7 +54,7 @@ export default {
 export const Default = DropTemplate.bind({})
 
 export const DropAreaWithUploadModal = args => ({
-  components: { SbDropArea, SbDropUploadLabel },
+  components: { SbDropArea, SbDropAreaUpload },
   props: Object.keys(args),
   data () {
     return {
@@ -62,7 +69,7 @@ export const DropAreaWithUploadModal = args => ({
           maxFileSize,
           maxFile,
         }"/>
-      <SbDropUploadLabel
+      <SbDropAreaUpload
         total-files="5"
         actual-file="1"
         file-name="test.png"
@@ -76,7 +83,7 @@ export const DropAreaWithUploadModal = args => ({
 DropAreaWithUploadModal.parameters = {
   docs: {
     description: {
-      story: 'In this story you can see how the SbDropUploadLabel component looks after dropping the files in the `SbDropArea` component, the use of this component is optional, the user can use or create new ones, as `SbDropArea` returns a callback with the dropped files.`'
+      story: 'In this story you can see how the SbDropAreaUpload component looks after dropping the files in the `SbDropArea` component, the use of this component is optional, the user can use or create new ones, as `SbDropArea` returns a callback with the dropped files.`'
     }
   }
 }

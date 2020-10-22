@@ -1,4 +1,4 @@
-import { SbDropArea, SbDropUploadLabel } from '../index'
+import { SbDropArea, SbDropAreaUpload } from '../index'
 import { mount } from '@vue/test-utils'
 
 const factory = propsData => {
@@ -8,7 +8,7 @@ const factory = propsData => {
 }
 
 const uploadFactory = propsData => {
-  return mount(SbDropUploadLabel, {
+  return mount(SbDropAreaUpload, {
     propsData
   })
 }
@@ -28,12 +28,11 @@ describe('Test if drop-area renderer correctly', () => {
       totalFiles: 5,
       actualFile: 1,
       fileName: 'test.png',
-      timeLeft: 10,
       percentageValue: 45
     })
 
     expect(upload.find('div').classes('sb-block-ui')).toBe(true)
 
-    expect(upload.find('div').text()).toBe('Uploading 1/5 - test.png10 sec left')
+    expect(upload.find('span').text()).toBe('Uploading 1/5 - test.png')
   })
 })
