@@ -5,10 +5,10 @@ const description = {
   actionsMenu: 'Select a row to show the actions menu',
   component: 'Data tables are used to organize and display data efficiently. `SbDataTable` component allows for customization with additional functionality, as needed by your product’s users.',
   headers: 'It must be an array that represents the header content.',
+  hideHeader: 'Toggle table header.',
   isLoading: 'Show a loading over the table.',
   items: 'It must be an array. Each entry in the array represents a row in the table.',
   selectionMode: 'By default the selection mode is single, meaning only one row at a time can be selected. Use multiple, so multiple rows can be selected. `allowSelection: true` is required.',
-  showHeader: 'Toggle table header.',
   striped: 'Add zebra-striping to any table row within the `<tbody>.`'
 }
 
@@ -23,7 +23,7 @@ const DataTableTemplate = args => ({
         isLoading,
         items,
         selectionMode,
-        showHeader,
+        hideHeader,
         striped
       }"
     />
@@ -43,10 +43,10 @@ export default {
   args: {
     allowSelection: false,
     headers: [],
+    hideHeader: false,
     isLoading: false,
     items: [],
     selectionMode: 'single',
-    showHeader: true,
     striped: false
   },
   argTypes: {
@@ -60,6 +60,13 @@ export default {
     headers: {
       name: 'headers',
       description: description.headers
+    },
+    hideHeader: {
+      name: 'hideHeader',
+      description: description.hideHeader,
+      control: {
+        type: 'boolean'
+      }
     },
     isLoading: {
       name: 'isLoading',
@@ -78,13 +85,6 @@ export default {
       control: {
         type: 'select',
         options: ['single', 'multiple']
-      }
-    },
-    showHeader: {
-      name: 'showHeader',
-      description: description.showHeader,
-      control: {
-        type: 'boolean'
       }
     },
     striped: {
@@ -177,6 +177,21 @@ ActionsMenu.parameters = {
   }
 }
 
+export const HideHeader = DataTableTemplate.bind({})
+
+HideHeader.args = {
+  ...Default.args,
+  hideHeader: true
+}
+
+HideHeader.parameters = {
+  docs: {
+    description: {
+      story: description.hideHeader
+    }
+  }
+}
+
 export const IsLoading = DataTableTemplate.bind({})
 
 IsLoading.args = {
@@ -204,21 +219,6 @@ SelectionMode.parameters = {
   docs: {
     description: {
       story: description.selectionMode
-    }
-  }
-}
-
-export const ShowHeader = DataTableTemplate.bind({})
-
-ShowHeader.args = {
-  ...Default.args,
-  showHeader: true
-}
-
-ShowHeader.parameters = {
-  docs: {
-    description: {
-      story: description.showHeader
     }
   }
 }

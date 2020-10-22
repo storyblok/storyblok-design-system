@@ -38,6 +38,11 @@ const SbDataTable = {
       type: Array,
       default: () => []
     },
+    hideHeader: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
     isLoading: {
       required: false,
       type: Boolean,
@@ -52,11 +57,6 @@ const SbDataTable = {
       required: false,
       type: String,
       default: 'single'
-    },
-    showHeader: {
-      required: false,
-      type: Boolean,
-      default: true
     },
     striped: {
       required: false,
@@ -185,7 +185,7 @@ const SbDataTable = {
             headers: this.headers,
             selectionMode: this.selectionMode,
             sortedKey: this.sortKey,
-            showHeader: this.showHeader
+            hideHeader: this.hideHeader
           }
         }),
         h(SbDataTableBody, {

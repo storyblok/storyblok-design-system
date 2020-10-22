@@ -165,6 +165,10 @@ export const SbDataTableHeader = {
       required: false,
       type: Array
     },
+    hideHeader: {
+      required: false,
+      type: Boolean
+    },
     selectionMode: {
       required: false,
       type: String
@@ -172,14 +176,10 @@ export const SbDataTableHeader = {
     sortedKey: {
       required: false,
       type: String
-    },
-    showHeader: {
-      required: false,
-      type: Boolean
     }
   },
   render (h) {
-    if (this.showHeader) {
+    if (!this.hideHeader) {
       const tableHeaderArray = h(SbDataTableHeaderRow, {
         props: {
           allowSelection: this.allowSelection,
