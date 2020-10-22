@@ -9,6 +9,7 @@ import {
  */
 export const SbDataTableBodyRow = {
   name: 'SbDataTableBodyRow',
+
   props: {
     allowSelection: {
       type: Boolean
@@ -23,11 +24,13 @@ export const SbDataTableBodyRow = {
       type: Array
     }
   },
+
   computed: {
     isSelected () {
       return this.selectedRows.some(row => row === this.row)
     }
   },
+
   methods: {
     handleRowSelected () {
       if (!this.allowSelection) return
@@ -37,7 +40,9 @@ export const SbDataTableBodyRow = {
         : this.selectRow(this.row)
     }
   },
+
   inject: ['selectRow', 'deselectRow'],
+
   render (h) {
     const mainColumnIndex = this.headers.findIndex(col => col.main)
 
@@ -82,6 +87,7 @@ export const SbDataTableBodyRow = {
  */
 export const SbDataTableBody = {
   name: 'SbDataTableBody',
+
   props: {
     allowSelection: {
       required: false,
@@ -104,6 +110,7 @@ export const SbDataTableBody = {
       default: () => []
     }
   },
+
   render (h) {
     return h('tbody', [
       this.items.map(row => {

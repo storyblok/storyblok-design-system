@@ -11,10 +11,13 @@ import SbIcon from '../../Icon'
  */
 export const SbDataTableHeaderCell = {
   name: 'SbDataTableHeaderCell',
+
   data: () => ({
     order: 0
   }),
+
   iconsSort: ['chevron-down', 'chevron-sort', 'chevron-up'],
+
   props: {
     column: {
       type: Object
@@ -23,20 +26,25 @@ export const SbDataTableHeaderCell = {
       type: String
     }
   },
+
   computed: {
     isSortable () {
       return this.column.sortable
     },
+
     isSortedKey () {
       return this.sortKey === this.sortedKey
     },
+
     showSortIcon () {
       return this.isSortable && this.order && this.isSortedKey
     },
+
     sortKey () {
       return this.column.value
     }
   },
+
   methods: {
     toggleSort () {
       if (this.sortKey && this.isSortable) {
@@ -47,12 +55,15 @@ export const SbDataTableHeaderCell = {
       }
     }
   },
+
   watch: {
     sortedKey () {
       if (!this.isSortedKey) this.order = 0
     }
   },
+
   inject: ['toggleTableOrder'],
+
   render (h) {
     return h('th', {
       staticClass: 'sb-data-table__head-cell',
@@ -82,6 +93,7 @@ export const SbDataTableHeaderCell = {
  */
 export const SbDataTableHeaderRow = {
   name: 'SbDataTableHeaderRow',
+
   props: {
     allowSelection: {
       type: Boolean
@@ -101,6 +113,7 @@ export const SbDataTableHeaderRow = {
       type: String
     }
   },
+
   methods: {
     handleAllRowsSelected () {
       this.allRowsSelected
@@ -108,7 +121,9 @@ export const SbDataTableHeaderRow = {
         : this.selectAll()
     }
   },
+
   inject: ['selectAll', 'deselectAll'],
+
   render (h) {
     return h('tr', [
       this.allowSelection && h('th', {
@@ -142,6 +157,7 @@ export const SbDataTableHeaderRow = {
  */
 export const SbDataTableHeader = {
   name: 'SbDataTableHeader',
+
   props: {
     allowSelection: {
       required: false,
@@ -169,20 +185,19 @@ export const SbDataTableHeader = {
       type: String
     }
   },
-  render (h) {
-    const tableHeaderArray = h(SbDataTableHeaderRow, {
-      props: {
-        allowSelection: this.allowSelection,
-        allRowsSelected: this.allRowsSelected,
-        headers: this.headers,
-        selectionMode: this.selectionMode,
-        sortedKey: this.sortedKey,
-        selectedRows: this.selectedRows
-      }
-    })
 
+  render (h) {
     return !this.hideHeader && h('thead', [
-      tableHeaderArray
+      h(SbDataTableHeaderRow, {
+        props: {
+          allowSelection: this.allowSelection,
+          allRowsSelected: this.allRowsSelected,
+          headers: this.headers,
+          selectedRows: this.selectedRows,
+          selectionMode: this.selectionMode,
+          sortedKey: this.sortedKey
+        }
+      })
     ])
   }
 }

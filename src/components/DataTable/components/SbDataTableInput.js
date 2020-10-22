@@ -27,17 +27,21 @@ export const SbDataTableInput = {
       default: null
     }
   },
+
   computed: {
     isTrue () {
       return this.value === this.trueValue
     },
+
     isFalse () {
       return this.value === this.falseValue
     },
+
     innerClass () {
       const state = this.isTrue === true ? 'truthy' : (this.isFalse === true ? 'falsy' : 'indet')
       return `sb-input-checkbox__inner--${state}`
     },
+
     formAttrs () {
       const prop = { type: 'checkbox' }
 
@@ -50,6 +54,7 @@ export const SbDataTableInput = {
       return prop
     }
   },
+
   methods: {
     getNextValue () {
       if (this.isTrue && !this.toggleIndeterminate) {
@@ -60,20 +65,24 @@ export const SbDataTableInput = {
 
       return this.indeterminateValue
     },
+
     handleKeydown (e) {
       if (e.keyCode === 13 || e.keyCode === 32) {
         this.stopAndPrevent(e)
       }
     },
+
     handleKeyup (e) {
       if (e.keyCode === 13 || e.keyCode === 32) {
         this.toggle(e)
       }
     },
+
     stopAndPrevent (e) {
       e.cancelable && e.preventDefault()
       e.stopPropagation()
     },
+
     toggle (e) {
       if (e) {
         this.stopAndPrevent(e)

@@ -10,32 +10,40 @@ export const SbDataTableActions = {
       default: 0
     }
   },
+
   computed: {
     labelSelectedRowsLength () {
       const labelItem = (this.selectedRowsLength > 1) ? 'items' : 'item'
       return `${this.selectedRowsLength} ${labelItem} selected`
     }
   },
+
   methods: {
     handleCancel () {
       console.warn('handleCancel')
     },
+
     handleCopy () {
       console.warn('handleCopy')
     },
+
     handleDelete () {
       console.warn('handleDelete')
     },
+
     handleMove () {
       console.warn('handleMove')
     },
+
     handlePublish () {
       console.warn('handlePublish')
     },
+
     handleUnpublish () {
       console.warn('handleUnpublish')
     }
   },
+
   render (h) {
     const renderSelectedRowsLength = () => {
       return h('span', {

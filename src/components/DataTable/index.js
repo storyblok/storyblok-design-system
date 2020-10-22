@@ -22,11 +22,13 @@ import {
  */
 const SbDataTable = {
   name: 'SbDataTable',
+
   data: () => ({
     selectedRows: [],
     sortKey: null,
     sortOrder: null
   }),
+
   props: {
     allowSelection: {
       required: false,
@@ -64,6 +66,7 @@ const SbDataTable = {
       default: false
     }
   },
+
   computed: {
     allRowsSelected () {
       if (this.selectionMode === 'single' || !this.selectedRows.length) return false
@@ -72,6 +75,7 @@ const SbDataTable = {
         ? true
         : null
     },
+
     sortedData () {
       if (this.sortKey && this.sortOrder !== 0) {
         return this.doSort()
@@ -79,6 +83,7 @@ const SbDataTable = {
       return this.items
     }
   },
+
   methods: {
     doSort () {
       const local = [...this.items]
@@ -100,6 +105,7 @@ const SbDataTable = {
         return str1.localeCompare(str2) * this.sortOrder
       })
     },
+
     selectRow (row) {
       if (this.selectionMode === 'single') {
         this.selectedRows = [row]
@@ -110,11 +116,13 @@ const SbDataTable = {
         this.selectedRows.push(row)
       }
     },
+
     selectRows (rows) {
       for (const row of rows) {
         this.selectRow(row)
       }
     },
+
     deselectRow (row) {
       const index = this.selectedRows.indexOf(row)
 
@@ -122,23 +130,27 @@ const SbDataTable = {
         this.selectedRows.splice(index, 1)
       }
     },
+
     deselectRows (rows) {
       for (const row of rows) {
         this.deselectRow(row)
       }
     },
+
     selectAll () {
       this.selectedRows = [...this.items]
     },
+
     deselectAll () {
       this.selectedRows = []
     },
+
     toggleTableOrder (order, key) {
       this.sortOrder = order
       this.sortKey = key
     }
   },
-  provide: function () {
+  provide () {
     return {
       selectRow: this.selectRow,
       deselectRow: this.deselectRow,
@@ -147,6 +159,7 @@ const SbDataTable = {
       toggleTableOrder: this.toggleTableOrder
     }
   },
+
   render (h) {
     const renderActions = () => {
       return h(SbDataTableActions, {
