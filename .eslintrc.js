@@ -1,32 +1,35 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
   },
   extends: [
     'plugin:vue/strongly-recommended',
     'eslint:recommended',
-    '@vue/standard'
+    '@vue/standard',
+    'prettier',
+    'plugin:prettier/recommended',
+    'prettier/vue',
   ],
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
   },
   rules: {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'vue/order-in-components': 'warn',
     'vue/attributes-order': 'warn',
-    'vue/one-component-per-file': 'off'
+    'vue/one-component-per-file': 'off',
   },
   overrides: [
     {
       files: [
         '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)'
+        '**/tests/unit/**/*.spec.{j,t}s?(x)',
       ],
       env: {
-        jest: true
-      }
-    }
-  ]
+        jest: true,
+      },
+    },
+  ],
 }
