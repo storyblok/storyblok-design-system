@@ -13,10 +13,10 @@
     left: 0;
   }
 
-  &--is-loading {
+  &-container--loading {
     position: relative;
 
-    .sb-icon {
+    .sb-loading {
       position: absolute;
       @include middleXY();
     }
@@ -35,6 +35,11 @@
         top: 50%;
         transform: translateY(-50%);
       }
+    }
+
+    .sb-data-table__col-selection:before,
+    .sb-input-checkbox {
+      opacity: 0;
     }
   }
 

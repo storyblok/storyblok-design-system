@@ -8,7 +8,7 @@ import {
   SbDataTableHeader
 } from './components'
 
-import SbIcon from '../Icon'
+import SbLoading from '../Loading'
 
 import {
   getPropertyValue,
@@ -156,21 +156,17 @@ const SbDataTable = {
       })
     }
 
-    const renderIcon = () => {
-      return h(SbIcon, {
-        props: {
-          color: 'primary',
-          name: 'loading',
-          size: 'large'
-        }
-      })
-    }
-
     const renderLoading = () => {
       return h('div', {
         staticClass: 'sb-data-table__loading'
       }, [
-        renderIcon()
+        h(SbLoading, {
+          props: {
+            type: 'spinner',
+            size: 'normal',
+            color: 'primary'
+          }
+        })
       ])
     }
 
@@ -203,25 +199,16 @@ const SbDataTable = {
       ])
     }
 
-    if (this.isLoading) {
-      return h('div', {
-        staticClass: 'sb-data-table--is-loading'
-      },
-      [
-        renderTable(),
-        renderLoading()
-      ])
-    }
-
-    if (this.selectedRows.length) {
-      return h('div',
-        [
-          renderActions(),
-          renderTable()
-        ])
-    }
-
-    return renderTable()
+    return h('div', {
+      staticClass: 'sb-data-table-container',
+      class: {
+        'sb-data-table-container--loading': this.isLoading
+      }
+    }, [
+      this.selectedRows.length > 0 && renderActions(),
+      renderTable(),
+      this.isLoading && renderLoading()
+    ])
   }
 }
 
