@@ -23,7 +23,7 @@ describe('Test if drop-area renderer correctly', () => {
     expect(wrapper.findAll('p').length).toBe(2)
   })
 
-  fit('test drop-area upload modal', () => {
+  it('test drop-area upload modal', () => {
     const upload = uploadFactory({
       totalFiles: 5,
       actualFile: 1,
