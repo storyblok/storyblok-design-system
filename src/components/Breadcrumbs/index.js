@@ -158,7 +158,10 @@ const SbBreadcrumbs = {
       }))
     }
 
-    return h('nav', breadcrumbsProps, children)
+    return h('nav', breadcrumbsProps, [
+      ...children,
+      this.$slots.default
+    ])
   }
 }
 
