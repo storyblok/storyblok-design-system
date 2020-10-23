@@ -47,7 +47,7 @@ const SbBreadcrumbLink = {
   props: {
     ...sharedLinkProps
   },
-  render (h, { props }) {
+  render (h, { props, listeners }) {
     const { label } = props
 
     // if href exists, we understand that's expected a <a> tag
@@ -57,6 +57,9 @@ const SbBreadcrumbLink = {
           title: props.title,
           href: props.href,
           target: props.target
+        },
+        on: {
+          ...listeners
         }
       }, label)
     }
@@ -65,6 +68,9 @@ const SbBreadcrumbLink = {
     return h(props.as, {
       props: {
         ...props
+      },
+      on: {
+        ...listeners
       }
     }, label)
   }
@@ -87,7 +93,7 @@ const SbBreadcrumbItem = {
     ...sharedLinkProps
   },
 
-  render (h, { props }) {
+  render (h, { props, listeners }) {
     const { isActive, label, title, href, to, as } = props
     const isTruncated = (label || '').length > 15
     const labelFormated = isTruncated ? getLabelTruncated(label) : label
@@ -112,6 +118,9 @@ const SbBreadcrumbItem = {
             to,
             as,
             label: labelFormated
+          },
+          on: {
+            ...listeners
           }
         })
       }
