@@ -1,5 +1,13 @@
 <template>
-  <div class="sb-modal-header">
+  <div
+    class="sb-modal-header"
+    :class="{ 'sb-modal-header--left': returnAlignment }"
+  >
+    <SbIcon
+      v-if="icon"
+      :name="icon"
+      size="x-large"
+    />
     <h1 class="sb-modal-header__title">
       {{ title }}
     </h1>
@@ -8,9 +16,14 @@
 </template>
 
 <script>
+import SbIcon from '../../Icon'
 
 export default {
   name: 'SbModalHeader',
+
+  components: {
+    SbIcon
+  },
 
   props: {
     title: {
@@ -25,6 +38,11 @@ export default {
       type: String,
       default: 'center'
     }
+  },
+  computed: {
+    returnAlignment () {
+      return this.align === 'left'
+    }
   }
 }
 </script>
@@ -36,6 +54,24 @@ export default {
   margin: 0;
   padding: 35px;
   box-sizing: border-box;
+
+  svg {
+      margin: 0 auto;
+      display: block;
+      margin-bottom: 30px;
+    }
+
+    &--left {
+      display: inline-flex;
+      text-align: left;
+      vertical-align: middle;
+      line-height: 2;
+
+      svg {
+        margin: 0;
+        margin-right: 25px;
+      }
+    }
 
   &__title {
     font-size: $text-header;
