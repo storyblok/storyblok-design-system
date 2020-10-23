@@ -29,3 +29,16 @@ export const randomString = length => {
 
   return result
 }
+
+/**
+ * @method toLowerCase
+ * @param  {String}       text
+ * @return {String}
+ */
+export const toLowerCase = (text = '') => {
+  if (typeof text === 'string') {
+    return text.toLowerCase()
+  }
+
+  return text
+}
