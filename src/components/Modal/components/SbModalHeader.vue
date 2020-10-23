@@ -66,6 +66,7 @@ export default {
       text-align: left;
       vertical-align: middle;
       line-height: 2;
+      padding-top: 0;
 
       svg {
         margin: 0;

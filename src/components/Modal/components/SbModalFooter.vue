@@ -24,5 +24,9 @@ export default {
   box-sizing: border-box;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+
+  .sb-button:not(:first-child) {
+    margin-left: 5px;
+  }
 }
 </style>

@@ -11,7 +11,7 @@ const ModalTemplate = args => ({
   props: Object.keys(args),
   template: `
     <div>
-      <SbModal>
+      <SbModal v-bind="{ isOpenModal }">
         <SbModalHeader 
           v-bind="{
             title,
@@ -47,7 +47,8 @@ export default {
   args: {
     title: 'Main title',
     icon: 'success-pictogram',
-    align: 'center'
+    align: 'center',
+    isOpenModal: true
   },
   argTypes: {
     title: {
@@ -70,6 +71,13 @@ export default {
       control: {
         type: 'select',
         options: ['center', 'left']
+      }
+    },
+    isOpenModal: {
+      name: 'isOpenModal',
+      description: '',
+      control: {
+        type: 'boolean'
       }
     }
   }
