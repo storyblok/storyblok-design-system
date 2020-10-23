@@ -34,14 +34,14 @@ import SbMinibrowserListContainer from './components/MinibrowserListContainer'
 
 /**
  * @description return all items in the options array recursively
- * @method flatItems
+ * @method flatOptions
  * @param  {Array<Object>} items
  * @return {Array<Object>}
  */
-const flatItems = (items = []) => {
+const flatOptions = (items = []) => {
   return items.reduce((acc, item) => {
     if (item.items) {
-      acc = acc.concat(flatItems(item.items))
+      acc = acc.concat(flatOptions(item.items))
     } else {
       acc.push(item)
     }
@@ -99,7 +99,6 @@ export default {
     currentParentItem: null,
     filteredItems: [],
     isOnFilter: false,
-    isNotFoundFilter: false,
     navigationItems: [],
     filterHandler: null,
     searchInput: ''
@@ -199,12 +198,18 @@ export default {
       this.$emit('select-item', item)
     },
 
+    /**
+     * init the filterHandler with a triggerFilter debounced
+     */
     $_registerFilter () {
       this.filterHandler = debounce(this.filterDebounce, () => {
         this.$_triggerFilter()
       })
     },
 
+    /**
+     * implement the filter logic
+     */
     $_triggerFilter () {
       if (this.filterMethod) {
         this.filterMethod(this.searchInput, items => {
@@ -213,18 +218,14 @@ export default {
         return
       }
 
-      const flated = this.$_getFlattedItems()
+      const options = flatOptions(this.options)
       const searchText = toLowerCase(this.searchInput)
 
-      this.filteredItems = flated.filter(item => {
+      this.filteredItems = options.filter(item => {
         const label = toLowerCase(item.label || '')
 
         return label.indexOf(searchText) !== -1
       })
-    },
-
-    $_getFlattedItems () {
-      return flatItems(this.options)
     }
   }
 }
