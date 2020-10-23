@@ -3,9 +3,10 @@
     <input
       ref="input"
       class="sb-minibrowser__input"
-      type="search"
+      type="text"
       :value="value"
       :placeholder="placeholder"
+      v-on="$listeners"
     >
 
     <SbIcon

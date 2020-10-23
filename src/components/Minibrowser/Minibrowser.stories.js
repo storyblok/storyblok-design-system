@@ -65,6 +65,7 @@ export default {
   component: SbMinibrowser,
   excludeStories: /.*Data$/,
   args: {
+    filterDebounce: 300,
     isExpanded: false,
     isList: false,
     options: [...browserOptionsData],
@@ -83,6 +84,14 @@ export default {
       description: 'Show the items as a list',
       control: {
         type: 'boolean'
+      }
+    },
+    filterDebounce: {
+      name: 'filterDebounce',
+      description: 'Implement a debounce on the filter',
+      control: {
+        type: 'number',
+        defaultValue: 300
       }
     },
     options: {
@@ -120,6 +129,7 @@ export const Default = args => ({
       :options="options"
       :is-list="isList"
       :is-expanded="isExpanded"
+      :filter-debounce="filterDebounce"
       @select-item="onSelectItem"
       @navigate="onNavigate"
     />
@@ -136,6 +146,7 @@ export const WithGroups = args => ({
       :options="options"
       :is-list="isList"
       :is-expanded="isExpanded"
+      :filter-debounce="filterDebounce"
       @select-item="onSelectItem"
       @navigate="onNavigate"
     />

@@ -76,6 +76,14 @@
     }
   }
 
+  &__not-found {
+    margin: 0;
+    padding-bottom: 2.7rem;
+    text-align: center;
+    font-size: $font-size-sm;
+    color: $sb-dark-blue-50;
+  }
+
   // modifiers
   &--expanded {
     max-width: none;

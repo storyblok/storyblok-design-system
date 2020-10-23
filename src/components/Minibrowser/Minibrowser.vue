@@ -15,12 +15,40 @@
       :items="internalItems"
       :navigation-items="navigationItems"
     />
+
+    <p
+      v-if="hasNotFilteredElements"
+      class="sb-minibrowser__not-found"
+    >
+      {{ notFoundMessage }}
+    </p>
   </div>
 </template>
 
 <script>
+import { debounce } from 'throttle-debounce'
+import { toLowerCase } from '../../utils'
+
 import SbMinibrowserSearch from './components/MinibrowserSearch'
 import SbMinibrowserListContainer from './components/MinibrowserListContainer'
+
+/**
+ * @description return all items in the options array recursively
+ * @method flatItems
+ * @param  {Array<Object>} items
+ * @return {Array<Object>}
+ */
+const flatItems = (items = []) => {
+  return items.reduce((acc, item) => {
+    if (item.items) {
+      acc = acc.concat(flatItems(item.items))
+    } else {
+      acc.push(item)
+    }
+
+    return acc
+  }, [])
+}
 
 export default {
   name: 'SbMinibrowser',
@@ -42,6 +70,18 @@ export default {
     isList: Boolean,
 
     // options
+    filterDebounce: {
+      type: Number,
+      default: 300
+    },
+    filterMethod: {
+      type: Function,
+      default: null
+    },
+    notFoundMessage: {
+      type: String,
+      default: 'There are no elements'
+    },
     options: {
       type: Array,
       required: true,
@@ -57,7 +97,11 @@ export default {
 
   data: () => ({
     currentParentItem: null,
+    filteredItems: [],
+    isOnFilter: false,
+    isNotFoundFilter: false,
     navigationItems: [],
+    filterHandler: null,
     searchInput: ''
   }),
 
@@ -75,12 +119,24 @@ export default {
     },
 
     internalItems () {
+      if (this.isOnFilter) {
+        return [...this.filteredItems]
+      }
+
       if (this.currentParentItem) {
         return [...this.currentParentItem.items]
       }
 
       return [...this.options]
+    },
+
+    hasNotFilteredElements () {
+      return this.isOnFilter && this.filteredItems.length === 0
     }
+  },
+
+  mounted () {
+    this.$_registerFilter()
   },
 
   methods: {
@@ -98,7 +154,17 @@ export default {
      * handles input event in search input
      */
     handleSearchInput (event) {
-      this.searchInput = event.target.value
+      const value = event.target.value
+      this.searchInput = value
+      this.isOnFilter = true
+
+      if (value && this.filterHandler) {
+        this.filterHandler()
+        return
+      }
+
+      this.filteredItems = []
+      this.isOnFilter = false
     },
 
     /**
@@ -131,6 +197,34 @@ export default {
       }
 
       this.$emit('select-item', item)
+    },
+
+    $_registerFilter () {
+      this.filterHandler = debounce(this.filterDebounce, () => {
+        this.$_triggerFilter()
+      })
+    },
+
+    $_triggerFilter () {
+      if (this.filterMethod) {
+        this.filterMethod(this.searchInput, items => {
+          this.filteredItems = [...items]
+        })
+        return
+      }
+
+      const flated = this.$_getFlattedItems()
+      const searchText = toLowerCase(this.searchInput)
+
+      this.filteredItems = flated.filter(item => {
+        const label = toLowerCase(item.label || '')
+
+        return label.indexOf(searchText) !== -1
+      })
+    },
+
+    $_getFlattedItems () {
+      return flatItems(this.options)
     }
   }
 }
