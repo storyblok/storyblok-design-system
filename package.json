@@ -14,6 +14,7 @@
     "@popperjs/core": "^2.5.3",
     "core-js": "^3.6.5",
     "portal-vue": "^2.1.7",
+    "throttle-debounce": "^2.3.0",
     "vue": "^2.6.12"
   },
   "devDependencies": {
