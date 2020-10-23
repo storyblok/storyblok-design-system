@@ -20,5 +20,8 @@ export default {
   border-radius: 5px;
   background-color: $white;
   box-shadow: 0px 2px 17px 3px rgba(34, 42, 69, 0.07);
+  display: block;
+  margin: 0 auto;
+  position: relative;
 }
 </style>

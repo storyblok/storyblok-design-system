@@ -1,8 +1,8 @@
 <template>
   <div class="sb-modal-header">
-    <p class="sb-modal-header__title">
+    <h1 class="sb-modal-header__title">
       {{ title }}
-    </p>
+    </h1>
     <slot />
   </div>
 </template>
@@ -17,9 +17,13 @@ export default {
       type: String,
       default: null
     },
-    align: {
+    icon: {
       type: String,
       default: null
+    },
+    align: {
+      type: String,
+      default: 'center'
     }
   }
 }
@@ -28,10 +32,15 @@ export default {
 <style lang="scss">
 .sb-modal-header {
   width: 100%;
+  min-height: 65px;
+  margin: 0;
+  padding: 35px;
+  box-sizing: border-box;
 
   &__title {
     font-size: $text-header;
     font-weight: $font-weight-bold;
+    text-align: center;
   }
 }
 </style>

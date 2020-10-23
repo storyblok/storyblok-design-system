@@ -12,7 +12,7 @@ const ModalTemplate = args => ({
   template: `
     <div>
       <SbModal>
-        <SbModalHeader />
+        <SbModalHeader title="Main Title"/>
 
         <SbModalContent>
           <p>It works!</p>
