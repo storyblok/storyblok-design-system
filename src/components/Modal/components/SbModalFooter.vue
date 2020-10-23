@@ -15,7 +15,6 @@ export default {
   width: 100%;
   min-height: 76px;
   background-color: $light-50;
-  // position: absolute;
   bottom: 0;
   flex-direction: row;
   display: flex;
@@ -23,5 +22,7 @@ export default {
   justify-content: flex-end;
   padding: 0 30px 0 30px;
   box-sizing: border-box;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 </style>

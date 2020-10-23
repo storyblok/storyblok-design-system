@@ -21,7 +21,7 @@ const ModalTemplate = args => ({
         />
 
         <SbModalContent>
-          <p>It works!</p>
+          <p style="font-size: 16px; color: rgb(84, 91, 111); text-align: center;">The body copy that explains empty state</p>
         </SbModalContent>
         
         <SbModalFooter>

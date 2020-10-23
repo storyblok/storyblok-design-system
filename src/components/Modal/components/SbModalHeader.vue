@@ -52,7 +52,7 @@ export default {
   width: 100%;
   min-height: 65px;
   margin: 0;
-  padding: 35px;
+  padding: 35px 35px 10px 35px;
   box-sizing: border-box;
 
   svg {
