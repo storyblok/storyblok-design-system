@@ -10,7 +10,7 @@
   position: relative;
 
   > .sb-avatar {
-    margin-left: -15px;
+    margin-left: -1.5rem;
     z-index: 2;
     cursor: pointer;
     
@@ -26,13 +26,13 @@
   &__more {
     z-index: 1;
     @include avatarGroupItem;
-    margin-left: -15px;
+    margin-left: -1.5rem;
     cursor: pointer;
     @include avatarComponent();
     @include avatarComponentSize($sb-avatar-normal);
     background-color: $light-75;
-    font-size: 12px;
-    font-weight: normal;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
     color: $color-primary-dark;
   }
 
@@ -59,7 +59,7 @@
 
   &--large &__more,
   &--large > .sb-avatar {
-    margin-left: -20px;
+    margin-left: -2rem;
   }
 
   &--small &__more {
@@ -68,7 +68,7 @@
 
   &--small &__more,
   &--small > .sb-avatar {
-    margin-left: -10px;
+    margin-left: -1rem;
   }
 
   &__avatars {
@@ -77,7 +77,7 @@
     top: 120%;
     right: 0;
     display: inline-block;
-    padding: 10px;
+    padding: 1.5rem;
     display: none;
     width: 100%;
     max-width: 184px;
@@ -90,7 +90,7 @@
 
     .sb-avatar {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 1rem;
     }
 
     .sb-avatar:last-child {

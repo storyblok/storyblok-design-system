@@ -2,8 +2,8 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
   line-height: 20px;
   text-align: center;
   background-color: transparent;
@@ -41,13 +41,13 @@
 
   &--has-icon {
     .sb-icon {
-      margin-right: 3px;
+      margin-right: 0.3rem;
     }
   }
 
   &--has-icon-right {
     .sb-icon {
-      margin-left: 3px;
+      margin-left: 0.3rem;
     }
   }
 
