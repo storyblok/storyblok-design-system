@@ -162,16 +162,12 @@ const SbCard = {
   },
 
   render (h) {
-    const renderCard = () => {
-      return h('div', {
-        staticClass: 'sb-card',
-        class: {
-          'sb-card--loading': this.isLoading
-        }
-      }, this.$slots.default)
-    }
-
-    return renderCard()
+    return h('div', {
+      staticClass: 'sb-card',
+      class: {
+        'sb-card--loading': this.isLoading
+      }
+    }, this.$slots.default)
   }
 }
 
