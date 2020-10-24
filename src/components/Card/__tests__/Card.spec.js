@@ -10,6 +10,7 @@ import SbLink from '../../Link'
 
 import { mount } from '@vue/test-utils'
 import { SbMenu, SbMenuButton, SbMenuGroup, SbMenuItem, SbMenuSeparator } from '../../Menu'
+import SbLoading from '../../Loading'
 
 const cardOptionsMock = [
   {
@@ -173,15 +174,21 @@ describe('SbCardOptions component', () => {
 })
 
 describe('SbCardContent component', () => {
-  const wrapper = mount(SbCardContent, {
-    slots: {
-      default: '<p> Awesome content </p>'
-    }
+  const wrapper = mount({
+    components: {
+      SbCard,
+      SbCardContent
+    },
+    template: `
+      <SbCard>
+        <SbCardContent>
+          <p> Awesome content </p>
+        </SbCardContent>
+      </SbCard>
+    `
   })
 
   it('should render the content correctly', () => {
-    expect(wrapper.classes('sb-card__content')).toBe(true)
-
     expect(
       wrapper.find('p').text()
     ).toBe('Awesome content')
@@ -213,33 +220,36 @@ describe('SbCardFooter component', () => {
 })
 
 describe('SbCard component', () => {
+  const wrapper = mount({
+    components: {
+      SbLink,
+      SbCard,
+      SbCardContent,
+      SbCardFooter,
+      SbCardHeader
+    },
+    data: () => ({
+      isLoading: false
+    }),
+    template: `
+      <SbCard :is-loading="isLoading">
+        <SbCardHeader title="Awesome title" as="h2" />
+
+        <SbCardContent>
+          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis sapien libero. Integer egestas dui leo, vitae blandit nisl cursus vel. Cras turpis ligula, accumsan eget eros eleifend, gravida gravida magna. </p>
+        </SbCardContent>
+
+        <SbCardFooter>
+          <SbLink
+            label="Awesome link name"
+            href="https://storyblok.com"
+          />
+        </SbCardFooter>
+      </SbCard >
+    `
+  })
+
   it('should render the all card correctly', () => {
-    const wrapper = mount({
-      components: {
-        SbLink,
-        SbCard,
-        SbCardContent,
-        SbCardFooter,
-        SbCardHeader
-      },
-      template: `
-        <SbCard>
-          <SbCardHeader title="Awesome title" as="h2" />
-
-          <SbCardContent>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis sapien libero. Integer egestas dui leo, vitae blandit nisl cursus vel. Cras turpis ligula, accumsan eget eros eleifend, gravida gravida magna. </p>
-          </SbCardContent>
-
-          <SbCardFooter>
-            <SbLink
-              label="Awesome link name"
-              href="https://storyblok.com"
-            />
-          </SbCardFooter>
-        </SbCard >
-      `
-    })
-
     expect(wrapper.classes('sb-card')).toBe(true)
 
     // title tests
@@ -257,5 +267,15 @@ describe('SbCard component', () => {
     expect(
       wrapper.findComponent(SbLink).props('href')
     ).toBe('https://storyblok.com')
+  })
+
+  it('should render the SbLoading component in isLoading state', async () => {
+    await wrapper.setData({
+      isLoading: true
+    })
+
+    expect(
+      wrapper.findComponent(SbLoading).exists()
+    ).toBe(true)
   })
 })
