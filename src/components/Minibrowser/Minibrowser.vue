@@ -78,6 +78,10 @@ export default {
       type: Function,
       default: null
     },
+    lazyLoadMethod: {
+      type: Function,
+      default: null
+    },
     notFoundMessage: {
       type: String,
       default: 'There are no elements'
@@ -99,6 +103,7 @@ export default {
     currentParentItem: null,
     filteredItems: [],
     isOnFilter: false,
+    isOnLazyLoad: false,
     navigationItems: [],
     filterHandler: null,
     searchInput: ''
@@ -132,6 +137,10 @@ export default {
     hasNotFilteredElements () {
       return this.isOnFilter && this.filteredItems.length === 0
     }
+  },
+
+  watch: {
+    currentParentItem: '$_watchCurrentParent'
   },
 
   mounted () {
@@ -225,6 +234,26 @@ export default {
         const label = toLowerCase(item.label || '')
 
         return label.indexOf(searchText) !== -1
+      })
+    },
+
+    /**
+     * watcher method to currentParentItem
+     */
+    $_watchCurrentParent (parentItem) {
+      if (parentItem && typeof this.lazyLoadMethod === 'function') {
+        this.$_triggerLazyLoad(parentItem)
+      }
+    },
+    /**
+     * trigger the lazy load logic
+     */
+    $_triggerLazyLoad (parentItem) {
+      this.isOnLazyLoad = true
+
+      this.lazyLoadMethod(parentItem, items => {
+        this.currentParentItem.items = items
+        this.isOnLazyLoad = false
       })
     }
   }

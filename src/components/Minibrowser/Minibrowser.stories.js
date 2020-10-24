@@ -174,3 +174,58 @@ WithGroups.args = {
     }
   ]
 }
+
+export const Lazy = args => ({
+  components: { SbMinibrowser },
+
+  props: Object.keys(args),
+
+  template: `
+    <SbMinibrowser
+      :options="options"
+      :is-list="isList"
+      :is-expanded="isExpanded"
+      :filter-debounce="filterDebounce"
+      :lazy-load-method="lazyLoadMethod"
+      @select-item="onSelectItem"
+      @navigate="onNavigate"
+    />
+  `
+})
+
+Lazy.args = {
+  options: [
+    {
+      label: 'Landing Page',
+      isParent: true,
+      items: []
+    },
+    {
+      label: 'Case Studies'
+    },
+    {
+      label: 'Jobs'
+    },
+    {
+      label: 'Quotes'
+    },
+    {
+      label: 'Plugin'
+    }
+  ],
+  lazyLoadMethod: (node, resolve) => {
+    setTimeout(() => {
+      resolve([
+        {
+          label: 'e-commerce'
+        },
+        {
+          label: 'for-developers'
+        },
+        {
+          label: 'for-content-writers'
+        }
+      ])
+    }, 1000)
+  }
+}
