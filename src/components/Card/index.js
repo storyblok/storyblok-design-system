@@ -1,6 +1,7 @@
 import './card.scss'
 
 import { SbMenu, SbMenuButton, SbMenuList } from '../Menu'
+import SbLoading from '../Loading'
 
 // @vue/component
 const SbCardHeader = {
@@ -95,10 +96,35 @@ const SbCardFooter = {
 const SbCardContent = {
   name: 'SbCardContent',
 
+  inject: ['cardContext'],
+
+  computed: {
+    context () {
+      return this.cardContext()
+    },
+
+    isLoading () {
+      return this.context.isLoading
+    }
+  },
+
   render (h) {
     return h('div', {
       staticClass: 'sb-card__content'
-    }, this.$slots.default)
+    }, [
+      this.$slots.default,
+
+      this.isLoading && h('div', {
+        staticClass: 'sb-card__loading'
+      }, [
+        h(SbLoading, {
+          props: {
+            size: 'x-large',
+            color: 'primary'
+          }
+        })
+      ])
+    ])
   }
 }
 
@@ -113,14 +139,36 @@ const SbCardContent = {
 const SbCard = {
   name: 'SbCard',
 
+  provide () {
+    return {
+      cardContext: () => this.cardContext
+    }
+  },
+
+  props: {
+    isLoading: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  computed: {
+    cardContext () {
+      return {
+        // states
+        isLoading: this.isLoading
+      }
+    }
+  },
+
   render (h) {
     const renderCard = () => {
       return h('div', {
-        staticClass: 'sb-card'
-      },
-      [
-        this.$slots.default
-      ])
+        staticClass: 'sb-card',
+        class: {
+          'sb-card--loading': this.isLoading
+        }
+      }, this.$slots.default)
     }
 
     return renderCard()
