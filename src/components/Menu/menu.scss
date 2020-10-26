@@ -2,6 +2,8 @@
   @include popoverComponent();
   min-width: 25rem;
   padding: 1rem 0;
+  background-color: $white;
+  z-index: 2;
 }
 
 .sb-menu-item {
