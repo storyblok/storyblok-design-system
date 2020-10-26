@@ -17,6 +17,7 @@
 
     <SbIcon
       v-if="showCloseIcon"
+      class="sb-minibrowser__icon-close"
       size="small"
       name="close"
       color="primary-dark"

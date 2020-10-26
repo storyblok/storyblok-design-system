@@ -33,6 +33,10 @@
     font-size: $font-size-sm;
   }
 
+  &__icon-close {
+    cursor: pointer;
+  }
+
   &__list-container {
     max-height: 250px;
     padding: 1.35rem 0;
