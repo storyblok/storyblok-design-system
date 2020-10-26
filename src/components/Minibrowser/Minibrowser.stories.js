@@ -65,10 +65,18 @@ export default {
   component: SbMinibrowser,
   excludeStories: /.*Data$/,
   args: {
-    options: [...browserOptionsData]
+    filterDebounce: 300,
+    isExpanded: false,
+    isList: false,
+    options: [...browserOptionsData],
+    placeholder: 'Search content items',
+    notFoundPrefix: 'No matches for'
   },
   argTypes: {
     // actions
+    onClearNavigation: {
+      action: 'onClearNavigation'
+    },
     onSelectItem: {
       action: 'onSelectItem'
     },
@@ -91,8 +99,9 @@ export const Default = args => ({
       :filter-debounce="filterDebounce"
       :not-found-prefix="notFoundPrefix"
       :placeholder="placeholder"
-      @select-item="onSelectItem"
+      @clear-navigation="onClearNavigation"
       @navigate="onNavigate"
+      @select-item="onSelectItem"
     />
   `
 })
@@ -110,8 +119,9 @@ export const WithGroups = args => ({
       :filter-debounce="filterDebounce"
       :not-found-prefix="notFoundPrefix"
       :placeholder="placeholder"
-      @select-item="onSelectItem"
+      @clear-navigation="onClearNavigation"
       @navigate="onNavigate"
+      @select-item="onSelectItem"
     />
   `
 })
@@ -152,8 +162,9 @@ export const Lazy = args => ({
       :lazy-load-method="lazyLoadMethod"
       :not-found-prefix="notFoundPrefix"
       :placeholder="placeholder"
-      @select-item="onSelectItem"
+      @clear-navigation="onClearNavigation"
       @navigate="onNavigate"
+      @select-item="onSelectItem"
     />
   `
 })
