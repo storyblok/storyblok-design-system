@@ -20,7 +20,7 @@
       v-if="hasNotFilteredElements"
       class="sb-minibrowser__not-found"
     >
-      {{ notFoundMessage }}
+      {{ notFoundText }}
     </p>
   </div>
 </template>
@@ -50,6 +50,9 @@ const flatOptions = (items = []) => {
   }, [])
 }
 
+/**
+ * SbMinibrowser is a visualization of a structure ‘hierarchy’. User can view and search content pages, folders etc.
+ */
 export default {
   name: 'SbMinibrowser',
 
@@ -82,9 +85,9 @@ export default {
       type: Function,
       default: null
     },
-    notFoundMessage: {
+    notFoundPrefix: {
       type: String,
-      default: 'There are no elements'
+      default: 'No matches for'
     },
     options: {
       type: Array,
@@ -143,6 +146,10 @@ export default {
 
     hasNotFilteredElements () {
       return this.isOnFilter && this.filteredItems.length === 0
+    },
+
+    notFoundText () {
+      return `${this.notFoundPrefix} "${this.searchInput}"`
     }
   },
 

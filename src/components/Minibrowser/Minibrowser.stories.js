@@ -65,50 +65,9 @@ export default {
   component: SbMinibrowser,
   excludeStories: /.*Data$/,
   args: {
-    filterDebounce: 300,
-    isExpanded: false,
-    isList: false,
-    options: [...browserOptionsData],
-    placeholder: 'Search content items'
+    options: [...browserOptionsData]
   },
   argTypes: {
-    isExpanded: {
-      name: 'isExpanded',
-      description: 'Expanded state',
-      control: {
-        type: 'boolean'
-      }
-    },
-    isList: {
-      name: 'isList',
-      description: 'Show the items as a list',
-      control: {
-        type: 'boolean'
-      }
-    },
-    filterDebounce: {
-      name: 'filterDebounce',
-      description: 'Implement a debounce on the filter',
-      control: {
-        type: 'number',
-        defaultValue: 300
-      }
-    },
-    options: {
-      name: 'options',
-      description: 'Minibrowser options',
-      control: {
-        type: 'array'
-      }
-    },
-    placeholder: {
-      name: 'placeholder',
-      description: 'Placeholder for input',
-      control: {
-        type: 'text'
-      }
-    },
-
     // actions
     onSelectItem: {
       action: 'onSelectItem'
@@ -130,6 +89,8 @@ export const Default = args => ({
       :is-list="isList"
       :is-expanded="isExpanded"
       :filter-debounce="filterDebounce"
+      :not-found-prefix="notFoundPrefix"
+      :placeholder="placeholder"
       @select-item="onSelectItem"
       @navigate="onNavigate"
     />
@@ -147,6 +108,8 @@ export const WithGroups = args => ({
       :is-list="isList"
       :is-expanded="isExpanded"
       :filter-debounce="filterDebounce"
+      :not-found-prefix="notFoundPrefix"
+      :placeholder="placeholder"
       @select-item="onSelectItem"
       @navigate="onNavigate"
     />
@@ -187,6 +150,8 @@ export const Lazy = args => ({
       :is-expanded="isExpanded"
       :filter-debounce="filterDebounce"
       :lazy-load-method="lazyLoadMethod"
+      :not-found-prefix="notFoundPrefix"
+      :placeholder="placeholder"
       @select-item="onSelectItem"
       @navigate="onNavigate"
     />
