@@ -114,6 +114,8 @@ export default {
       return {
         // browser states
         isList: this.isList || false,
+        isOnFilter: this.isOnFilter || false,
+        isOnLazyLoad: this.isOnLazyLoad || false,
 
         // browser methods
         clearNavigation: this.clearNavigation,

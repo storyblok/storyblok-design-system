@@ -1,5 +1,10 @@
 <template>
-  <div class="sb-minibrowser__input-container">
+  <div
+    class="sb-minibrowser__input-container"
+    :class="{
+      'sb-minibrowser__input-container--loading': isLoading
+    }"
+  >
     <input
       ref="input"
       class="sb-minibrowser__input"
@@ -10,8 +15,8 @@
     >
 
     <SbIcon
-      name="search"
       size="small"
+      v-bind="icon"
     />
   </div>
 </template>
@@ -26,6 +31,8 @@ export default {
     SbIcon
   },
 
+  inject: ['browserContext'],
+
   props: {
     placeholder: {
       type: String,
@@ -34,6 +41,23 @@ export default {
     value: {
       type: String,
       required: true
+    }
+  },
+
+  computed: {
+    context () {
+      return this.browserContext()
+    },
+
+    icon () {
+      return {
+        name: this.isLoading ? 'loading' : 'search',
+        color: this.isLoading ? 'primary' : null
+      }
+    },
+
+    isLoading () {
+      return this.context.isOnFilter || this.context.isOnLazyLoad
     }
   },
 

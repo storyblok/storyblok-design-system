@@ -13,6 +13,15 @@
       top: 2rem;
       right: 2rem;
     }
+
+    &--loading {
+      .sb-icon {
+        width: 2.6rem;
+        height: 2.6rem;
+        top: 1.4rem;
+        right: 1.4rem;
+      }
+    }
   }
 
   &__input {
