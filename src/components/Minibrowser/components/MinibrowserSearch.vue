@@ -8,13 +8,23 @@
     <input
       ref="input"
       class="sb-minibrowser__input"
-      type="text"
+      type="search"
       :value="value"
       :placeholder="placeholder"
-      v-on="$listeners"
+      @input="handleSearchInput"
+      @keydown="handleSearchKeydown"
     >
 
     <SbIcon
+      v-if="showCloseIcon"
+      size="small"
+      name="close"
+      color="primary-dark"
+      @click="clearSearchInputValue"
+    />
+
+    <SbIcon
+      v-else
       size="small"
       v-bind="icon"
     />
@@ -57,12 +67,47 @@ export default {
     },
 
     isLoading () {
-      return this.context.isOnFilter || this.context.isOnLazyLoad
+      return this.context.isOnLoadingFilter || this.context.isOnLazyLoad
+    },
+
+    isOnFilter () {
+      return this.context.isOnFilter
+    },
+
+    showCloseIcon () {
+      return this.isOnFilter && !this.isLoading
     }
   },
 
   mounted () {
     this.$refs.input.focus()
+  },
+
+  methods: {
+    /**
+     * emits an input event with the empty state
+     */
+    clearSearchInputValue () {
+      this.$emit('input', '')
+    },
+
+    /**
+     * handles input event in search input
+     * @param {Event} event
+     */
+    handleSearchInput (event) {
+      this.$emit('input', event.target.value)
+    },
+
+    /**
+     * handles input event in search input
+     * @param {Event} event
+     */
+    handleSearchKeydown (event) {
+      if (event.key === 'Escape') {
+        this.clearSearchInputValue()
+      }
+    }
   }
 }
 </script>

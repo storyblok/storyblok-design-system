@@ -102,7 +102,7 @@ export default {
   data: () => ({
     currentParentItem: null,
     filteredItems: [],
-    isOnFilter: false,
+    isOnLoadingFilter: false,
     isOnLazyLoad: false,
     navigationItems: [],
     filterHandler: null,
@@ -116,6 +116,7 @@ export default {
         isList: this.isList || false,
         isOnFilter: this.isOnFilter || false,
         isOnLazyLoad: this.isOnLazyLoad || false,
+        isOnLoadingFilter: this.isOnLoadingFilter || false,
 
         // browser methods
         clearNavigation: this.clearNavigation,
@@ -134,6 +135,10 @@ export default {
       }
 
       return [...this.options]
+    },
+
+    isOnFilter () {
+      return this.searchInput && this.searchInput.length > 0
     },
 
     hasNotFilteredElements () {
@@ -162,11 +167,11 @@ export default {
 
     /**
      * handles input event in search input
+     * @param {String} value
      */
-    handleSearchInput (event) {
-      const value = event.target.value
+    handleSearchInput (value) {
       this.searchInput = value
-      this.isOnFilter = true
+      this.isOnLoadingFilter = true
 
       if (value && this.filterHandler) {
         this.filterHandler()
@@ -174,7 +179,7 @@ export default {
       }
 
       this.filteredItems = []
-      this.isOnFilter = false
+      this.isOnLoadingFilter = false
     },
 
     /**
@@ -225,6 +230,7 @@ export default {
       if (this.filterMethod) {
         this.filterMethod(this.searchInput, items => {
           this.filteredItems = [...items]
+          this.isOnLoadingFilter = false
         })
         return
       }
@@ -237,6 +243,7 @@ export default {
 
         return label.indexOf(searchText) !== -1
       })
+      this.isOnLoadingFilter = false
     },
 
     /**
