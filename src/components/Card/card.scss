@@ -1,0 +1,60 @@
+.sb-card {
+  position: relative;
+  padding: 2rem;
+  border-radius: 3px;
+  border: 1px solid $light;
+  
+  // components
+  &__header {
+    position: relative;
+    margin: 1rem 0 3rem 0;
+  }
+
+  &__title {
+    color: $primary-text-color;
+    font-family: $primary-font-family;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+  }
+
+  .sb-card__content {
+    position: relative;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 2rem;
+  }
+
+  &__options {
+    position: absolute;
+    right: 0;
+    top: -15px;
+
+    .sb-button {
+      border: none;
+      transform: rotate(90deg);
+  
+      &:hover {
+        background: none;
+      }
+    }
+  }
+
+  // modifiers
+  &--loading {
+    .sb-card__loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $light-25;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+  }
+}
