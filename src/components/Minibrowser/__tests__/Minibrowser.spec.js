@@ -129,4 +129,33 @@ describe('SbMinibrowser component', () => {
 
     expect(wrapper.findAll(itemClass).at(0).text()).toBe('Test Lazy 1')
   })
+
+  it('should execute the filterMethod function properly', async () => {
+    const filterMethod = jest.fn((_, resolve) => {
+      resolve([
+        {
+          label: 'Test Filter 1'
+        }
+      ])
+    })
+
+    const wrapper = mount(SbMinibrowser, {
+      propsData: {
+        options: [...browserOptionsData],
+        filterMethod
+      }
+    })
+
+    await wrapper.find('input[type="search"]').setValue('Test')
+
+    await waitMs(300)
+
+    expect(filterMethod).toHaveBeenCalled()
+
+    const execution = filterMethod.mock.calls[0]
+
+    expect(execution[0]).toBe('Test')
+
+    expect(wrapper.findAll(itemClass).at(0).text()).toBe('Test Filter 1')
+  })
 })
