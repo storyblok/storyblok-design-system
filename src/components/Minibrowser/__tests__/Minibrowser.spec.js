@@ -102,4 +102,31 @@ describe('SbMinibrowser component', () => {
 
     expect(wrapper.vm.searchInput).toBe('')
   })
+
+  it('should execute the lazyLoadMethod function properly', async () => {
+    const lazyLoadMethod = jest.fn((_, resolve) => {
+      resolve([
+        {
+          label: 'Test Lazy 1'
+        }
+      ])
+    })
+
+    const wrapper = mount(SbMinibrowser, {
+      propsData: {
+        options: [...browserOptionsData],
+        lazyLoadMethod
+      }
+    })
+
+    await wrapper.findAll(itemClass).at(0).trigger('click')
+
+    expect(lazyLoadMethod).toHaveBeenCalled()
+
+    const execution = lazyLoadMethod.mock.calls[0]
+
+    expect(execution[0].label).toBe('Landing Page')
+
+    expect(wrapper.findAll(itemClass).at(0).text()).toBe('Test Lazy 1')
+  })
 })
