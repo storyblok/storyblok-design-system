@@ -36,7 +36,7 @@ const SbDataTable = {
       default: false
     },
     headers: {
-      required: false,
+      required: true,
       type: Array,
       default: () => []
     },
@@ -51,7 +51,7 @@ const SbDataTable = {
       default: false
     },
     items: {
-      required: false,
+      required: true,
       type: Array,
       default: () => []
     },
@@ -205,20 +205,16 @@ const SbDataTable = {
 
     const renderTable = () => {
       return h('table', {
-        staticClass: 'sb-data-table',
-        class: {
-          'sb-data-table--striped': this.striped
-        }
+        staticClass: 'sb-data-table__container'
       },
       [
-        h(SbDataTableHeader, {
+        !this.hideHeader && h(SbDataTableHeader, {
           props: {
             allowSelection: this.allowSelection,
             allRowsSelected: this.allRowsSelected,
             headers: this.headers,
             selectionMode: this.selectionMode,
-            sortedKey: this.sortKey,
-            hideHeader: this.hideHeader
+            sortedKey: this.sortKey
           }
         }),
         h(SbDataTableBody, {
@@ -233,9 +229,10 @@ const SbDataTable = {
     }
 
     return h('div', {
-      staticClass: 'sb-data-table-container',
+      staticClass: 'sb-data-table',
       class: {
-        'sb-data-table-container--loading': this.isLoading
+        'sb-data-table--loading': this.isLoading,
+        'sb-data-table--striped': this.striped
       }
     }, [
       this.selectedRows.length > 0 && renderActions(),

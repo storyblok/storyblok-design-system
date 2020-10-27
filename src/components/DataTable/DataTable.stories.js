@@ -33,6 +33,7 @@ const DataTableTemplate = args => ({
 export default {
   title: 'SbDataTable',
   components: SbDataTable,
+  excludeStories: /.*Data$/,
   parameters: {
     docs: {
       description: {
@@ -97,7 +98,7 @@ export default {
   }
 }
 
-const defaultTableHeadersData = [
+export const defaultTableHeadersData = [
   {
     text: 'Dessert (100g serving)',
     value: 'name',
@@ -111,7 +112,7 @@ const defaultTableHeadersData = [
   { text: 'Iron (%)', value: 'iron' }
 ]
 
-const defaultTableItemsData = [
+export const defaultTableItemsData = [
   {
     name: 'Frozen Yogurt',
     calories: 262,

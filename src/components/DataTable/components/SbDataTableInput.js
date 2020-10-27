@@ -89,7 +89,7 @@ export const SbDataTableInput = {
       }
 
       if (!this.disable) {
-        this.$emit('input', this.getNextValue(), e)
+        this.$emit('click', this.getNextValue(), e)
       }
     }
   },

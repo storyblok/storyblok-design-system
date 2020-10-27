@@ -144,7 +144,7 @@ export const SbDataTableHeaderRow = {
             value: this.allRowsSelected
           },
           on: {
-            input: this.handleAllRowsSelected
+            click: this.handleAllRowsSelected
           }
         })
       ]),
@@ -182,10 +182,6 @@ export const SbDataTableHeader = {
       required: false,
       type: Array
     },
-    hideHeader: {
-      required: false,
-      type: Boolean
-    },
     selectionMode: {
       required: false,
       type: String
@@ -197,7 +193,7 @@ export const SbDataTableHeader = {
   },
 
   render (h) {
-    return !this.hideHeader && h('thead', [
+    return h('thead', [
       h(SbDataTableHeaderRow, {
         props: {
           allowSelection: this.allowSelection,
