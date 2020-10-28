@@ -24,7 +24,7 @@ export default {
   props: {
     inputValue: {
       type: [String, Number, Array],
-      required: true
+      default: null
     },
     label: {
       type: String,

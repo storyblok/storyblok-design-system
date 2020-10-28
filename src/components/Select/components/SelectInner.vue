@@ -6,9 +6,17 @@
     }"
     v-on="$listeners"
   >
+    <SbIcon
+      v-if="leftIcon"
+      class="sb-select-inner__icon-left"
+      :name="leftIcon"
+      size="small"
+    />
+
     <span>{{ innerLabel }}</span>
 
     <SbIcon
+      class="sb-select-inner__icon-right"
       name="chevron-down"
       size="small"
     />
@@ -28,6 +36,11 @@ export default {
     label: {
       type: String,
       default: ''
+    },
+
+    leftIcon: {
+      type: String,
+      default: null
     },
 
     multiple: Boolean,

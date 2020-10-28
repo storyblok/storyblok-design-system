@@ -32,6 +32,7 @@ const SelectTemplate = args => ({
       :label="label"
       :options="options"
       :multiple="multiple"
+      :left-icon="leftIcon"
       v-model="internalValue"
     />
   `
@@ -76,7 +77,8 @@ export default {
     label: 'Choose an option',
     options: [...defaultSelectOptionsData],
     value: null,
-    multiple: false
+    multiple: false,
+    leftIcon: null
   }
 }
 
@@ -86,4 +88,10 @@ export const Multiple = SelectTemplate.bind({})
 
 Multiple.args = {
   multiple: true
+}
+
+export const WithIcon = SelectTemplate.bind({})
+
+WithIcon.args = {
+  leftIcon: 'calendar'
 }

@@ -9,6 +9,7 @@
       :multiple="multiple"
       :label="label"
       :value="value"
+      :left-icon="leftIcon"
       @click="handleSelectInnerClick"
     />
 
@@ -48,6 +49,10 @@ export default {
       type: String,
       default: '',
       required: true
+    },
+    leftIcon: {
+      type: String,
+      default: null
     },
 
     // list props
