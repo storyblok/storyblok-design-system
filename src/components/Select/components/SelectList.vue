@@ -5,7 +5,8 @@
         v-for="(option, key) in options"
         :key="key"
         v-bind="option"
-        :selected="option.value === value"
+        :input-value="value"
+        :multiple="multiple"
         @emit-value="handleEmitValue"
       />
     </ul>
@@ -22,9 +23,11 @@ export default {
 
   props: {
     value: {
-      type: [String, Number],
+      type: [String, Number, Array],
       default: null
     },
+
+    multiple: Boolean,
 
     options: {
       type: Array,

@@ -1,5 +1,6 @@
 import { SbSelect } from '.'
 
+// @vue/component
 const SelectTemplate = args => ({
   components: {
     SbSelect
@@ -17,11 +18,22 @@ const SelectTemplate = args => ({
         this.internalValue = newValue
       },
       immediate: true
+    },
+    multiple: {
+      handler (isMultiple) {
+        this.internalValue = isMultiple ? [] : null
+      },
+      immediate: true
     }
   },
 
   template: `
-    <SbSelect :label="label" :options="options" v-model="internalValue" />
+    <SbSelect
+      :label="label"
+      :options="options"
+      :multiple="multiple"
+      v-model="internalValue"
+    />
   `
 })
 
@@ -37,6 +49,22 @@ export const defaultSelectOptionsData = [
   {
     label: 'Option 3',
     value: 'Option 3'
+  },
+  {
+    label: 'Option 4',
+    value: 'Option 4'
+  },
+  {
+    label: 'Option 5',
+    value: 'Option 5'
+  },
+  {
+    label: 'Option 6',
+    value: 'Option 6'
+  },
+  {
+    label: 'Option 7',
+    value: 'Option 7'
   }
 ]
 
@@ -47,9 +75,15 @@ export default {
   args: {
     label: 'Choose an option',
     options: [...defaultSelectOptionsData],
-    value: null
+    value: null,
+    multiple: false
   }
 }
 
-// @vue/component
 export const Default = SelectTemplate.bind({})
+
+export const Multiple = SelectTemplate.bind({})
+
+Multiple.args = {
+  multiple: true
+}

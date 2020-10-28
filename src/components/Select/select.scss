@@ -4,6 +4,13 @@
   flex-direction: column;
   width: 100%;
   max-width: 300px;
+
+  // modifiers
+  &--multiple {
+    .sb-select-list__item--selected {
+      background-color: $white;
+    }
+  }
 }
 
 .sb-select-inner {

@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { isArray } from '../../../utils'
 import SbIcon from '../../Icon'
 
 export default {
@@ -29,19 +30,33 @@ export default {
       default: ''
     },
 
+    multiple: Boolean,
+
     value: {
-      type: [String, Number],
+      type: [String, Number, Array],
       default: null
     }
   },
 
   computed: {
     hasValue () {
+      if (this.multiple || isArray(this.value)) {
+        return this.value.length > 0
+      }
+
       return this.value !== null
     },
 
     innerLabel () {
-      return this.hasValue ? this.value : this.label
+      if (!this.hasValue) {
+        return this.label
+      }
+
+      return this.multiple ? this.itemsValue : this.value
+    },
+
+    itemsValue () {
+      return isArray(this.value) && this.value.join(', ')
     }
   }
 }

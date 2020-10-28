@@ -29,3 +29,10 @@ export const randomString = length => {
 
   return result
 }
+
+/**
+ * @method isString
+ * @param  {any} value
+ * @return {Boolean}
+ */
+export const isString = value => typeof value === 'string'

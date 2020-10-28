@@ -1,6 +1,12 @@
 <template>
-  <div class="sb-select">
+  <div
+    class="sb-select"
+    :class="{
+      'sb-select--multiple': multiple
+    }"
+  >
     <SbSelectInner
+      :multiple="multiple"
       :label="label"
       :value="value"
       @click="handleSelectInnerClick"
@@ -10,12 +16,14 @@
       v-if="isOpen"
       :value="value"
       :options="options"
+      :multiple="multiple"
       @emit-value="handleEmitValue"
     />
   </div>
 </template>
 
 <script>
+import { includes } from '../../utils'
 import SbSelectInner from './components/SelectInner'
 import SbSelectList from './components/SelectList'
 
@@ -30,9 +38,10 @@ export default {
   props: {
     // component props
     value: {
-      type: [String, Number],
+      type: [String, Number, Array],
       default: null
     },
+    multiple: Boolean,
 
     // inner props
     label: {
@@ -85,8 +94,28 @@ export default {
      * emits the input event to make this component compatible with v-model directive
      */
     handleEmitValue (value) {
+      // doesn't close the list
+      if (this.multiple) {
+        this.$emit('input', this.processMultipleValue(value))
+        return
+      }
+
       this.$emit('input', value)
       this.isOpen = false
+    },
+
+    /**
+     * returns the processed value to input event
+     */
+    processMultipleValue (value) {
+      if (includes(this.value, value)) {
+        return this.value.filter(val => val !== value)
+      }
+
+      return [
+        ...this.value || [],
+        value
+      ]
     }
   }
 }
