@@ -20,10 +20,11 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 30px 0 30px;
-  box-sizing: border-box;
+  padding: 0 35px 0 35px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  margin-bottom: -35px;
+  margin-left: -35px;
 
   .sb-button:not(:first-child) {
     margin-left: 5px;

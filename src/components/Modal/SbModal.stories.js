@@ -1,4 +1,5 @@
-import SbModal, {
+import {
+  SbModal,
   SbModalHeader,
   SbModalContent,
   SbModalFooter
@@ -9,9 +10,24 @@ import SbButton from '../Button'
 const ModalTemplate = args => ({
   components: { SbModal, SbModalContent, SbModalFooter, SbModalHeader, SbButton },
   props: Object.keys(args),
+  methods: {
+    handleShowModal () {
+      this.showModal = true
+    }
+  },
+  data: () => ({
+    showModal: false
+  }),
   template: `
     <div>
-      <SbModal v-bind="{ isOpenModal }">
+      <SbButton
+        label="Open Modal!"
+        type="primary"
+        @click="handleShowModal"
+        v-if="!showModal"
+        style="margin: 0 auto; display: flex; margin-top: 30%;"
+      />
+      <SbModal :is-open-modal="showModal" v-on:hide="showModal = false">
         <SbModalHeader 
           v-bind="{
             title,
@@ -48,7 +64,7 @@ export default {
     title: 'Main title',
     icon: 'success-pictogram',
     align: 'center',
-    isOpenModal: true
+    isOpenModal: false
   },
   argTypes: {
     title: {
@@ -84,3 +100,36 @@ export default {
 }
 
 export const Default = ModalTemplate.bind({})
+
+export const ModalWithoutFooter = args => ({
+  components: { SbModal, SbModalHeader, SbModalContent, SbButton },
+  props: Object.keys(args),
+  template: `
+  <SbModal v-bind="{ isOpenModal }">
+    <SbModalHeader 
+      v-bind="{
+        title,
+      }"
+    />
+
+    <SbModalContent>
+      <p style="font-size: 16px; color: rgb(84, 91, 111); text-align: center;">The body copy that explains empty state</p>
+    </SbModalContent>
+    
+    <SbButton label="Click me!" type="primary"/>
+  </SbModal>
+  `
+})
+
+ModalWithoutFooter.args = {
+  isOpenModal: true,
+  title: 'This Modal dont have footer !'
+}
+
+ModalWithoutFooter.parameters = {
+  docs: {
+    description: {
+      story: 'SbModal components are versatile, the user can add or not a footer'
+    }
+  }
+}

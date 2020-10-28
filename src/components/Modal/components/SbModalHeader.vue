@@ -50,9 +50,8 @@ export default {
 <style lang="scss">
 .sb-modal-header {
   width: 100%;
-  min-height: 65px;
   margin: 0;
-  padding: 35px 35px 10px 35px;
+  padding-bottom: 10px;
   box-sizing: border-box;
 
   svg {

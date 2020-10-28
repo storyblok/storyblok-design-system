@@ -3,28 +3,32 @@
     ref="portalRef"
     :target="modalTarget"
   >
-    <div
-      v-if="open"
-      v-click-outside="handleCloseModal"
-      class="sb-modal"
-    >
-      <button
-        class="sb-modal__close-button"
-        @click="handleCloseModal"
+    <SbBlokUi v-if="open">
+      <div
+
+        class="sb-modal"
+        role="dialog"
+        v-bind="{...$attrs}"
       >
-        <SbIcon
-          name="close"
-          size="normal"
-          color="primary-dark"
-        />
-      </button>
-      <slot />
-    </div>
+        <button
+          class="sb-modal__close-button"
+          @click="handleCloseModal"
+        >
+          <SbIcon
+            name="close"
+            size="normal"
+            color="primary-dark"
+          />
+        </button>
+        <slot />
+      </div>
+    </SbBlokUi>
   </SbPortal>
 </template>
 
 <script>
 import SbIcon from '../Icon'
+import SbBlokUi from '../BlockUI'
 import ClickOutside from '../../directives/click-outside'
 import SbPortal from '../Portal'
 import { randomString } from '../../utils'
@@ -34,17 +38,18 @@ export default {
 
   components: {
     SbIcon,
-    SbPortal
+    SbPortal,
+    SbBlokUi
   },
 
+  // v-click-outside="handleCloseModal"
   directives: {
     ClickOutside
   },
 
   props: {
     isOpenModal: {
-      type: Boolean,
-      required: true
+      type: Boolean
     },
     modalTarget: {
       type: String,
@@ -54,7 +59,7 @@ export default {
 
   data () {
     return {
-      open: this.isOpenModal
+      open: false || this.isOpenModal
     }
   },
 
@@ -95,17 +100,29 @@ export default {
   display: block;
   margin: 0 auto;
   position: relative;
+  padding: 35px;
+  box-sizing: border-box;
+  animation: fadein .5s;
 
   &__close-button {
     float: right;
-    margin-right: 20px;
     z-index: 1;
-    margin-top: 20px;
     overflow: hidden;
     border: none;
     background-color: $white;
     cursor: pointer;
     padding: 0;
+    margin-top: -20px;
+    margin-right: -20px;
+  }
+
+  @keyframes fadein {
+    from {
+      opacity:0;
+    }
+    to {
+      opacity:1;
+    }
   }
 }
 </style>
