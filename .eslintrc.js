@@ -15,7 +15,12 @@ module.exports = {
     parser: 'babel-eslint',
   },
   rules: {
-    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'no-console': [
+      'error',
+      {
+        allow: ['warn', 'error'],
+      },
+    ],
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'vue/order-in-components': 'warn',
     'vue/attributes-order': 'warn',

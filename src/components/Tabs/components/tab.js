@@ -58,7 +58,10 @@ const SbEditableInput = {
   name: 'SbEditableInput',
 
   props: {
-    value: String,
+    value: {
+      type: String,
+      default: '',
+    },
   },
 
   mounted() {
@@ -138,9 +141,11 @@ export const SbTab = {
     },
     label: {
       type: String,
+      default: '',
     },
     name: {
       type: [String, Number],
+      default: '',
     },
     showEditInput: {
       type: Boolean,

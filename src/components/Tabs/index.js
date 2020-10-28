@@ -30,6 +30,7 @@ const SbTabs = {
     },
     value: {
       type: [String, Number],
+      default: '',
     },
   },
 
