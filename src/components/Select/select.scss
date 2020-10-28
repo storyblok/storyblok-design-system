@@ -1,0 +1,67 @@
+.sb-select {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+}
+
+.sb-select-inner {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  color: $sb-dark-blue-50;
+  font-size: $font-size-md;
+  border: 1px solid $light;
+  border-radius: 5px;
+  cursor: pointer;
+
+  .sb-icon {
+    color: $color-primary-dark;
+  }
+
+  &--with-value {
+    color: $color-primary-dark;
+  }
+}
+
+.sb-select-list {
+  @include popoverComponent();
+
+  flex: 1;
+  width: 100%;
+  padding: 1rem 0;
+  position: absolute;
+  top: calc(100% + 1rem);
+  left: 0;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    appearance: none;
+    border: 0;
+    background-color: $white;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-align: left;
+    cursor: pointer;
+    font-size: $font-size-md;
+
+    &:hover,
+    &:focus {
+      background-color: $light-50;
+    }
+
+    &--selected {
+      background-color: $light-50;
+    }
+  }
+}
