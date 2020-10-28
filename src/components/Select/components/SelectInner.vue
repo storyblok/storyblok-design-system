@@ -6,7 +6,7 @@
     }"
     v-on="$listeners"
   >
-    {{ innerLabel }}
+    <span>{{ innerLabel }}</span>
 
     <SbIcon
       name="chevron-down"

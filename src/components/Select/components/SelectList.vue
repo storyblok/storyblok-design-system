@@ -21,11 +21,6 @@ export default {
   components: { SbSelectListItem },
 
   props: {
-    innerSelectElement: {
-      type: HTMLElement,
-      default: null
-    },
-
     value: {
       type: [String, Number],
       default: null

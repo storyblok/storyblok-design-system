@@ -9,7 +9,6 @@
     <SbSelectList
       v-if="isOpen"
       :value="value"
-      :inner-select-element="innerSelectElement"
       :options="options"
       @emit-value="handleEmitValue"
     />
