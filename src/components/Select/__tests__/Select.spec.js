@@ -56,4 +56,89 @@ describe('SbSelect component', () => {
       expect(innerElement.text()).toBe('Option 3')
     })
   })
+
+  describe('multiple option logic', () => {
+    const wrapper = mount({
+      components: {
+        SbSelect
+      },
+
+      data: () => ({
+        label: 'Choose an option',
+        options: [...defaultSelectOptionsData],
+        value: [],
+        multiple: true
+      }),
+
+      template: `
+        <SbSelect
+          v-bind="{
+            label,
+            options,
+            multiple
+          }"
+          v-model="value"
+        />
+      `
+    })
+
+    const innerElement = wrapper.find('.sb-select-inner')
+
+    it('should perform a multiple selection', async () => {
+      // opens the items menu
+      await innerElement.trigger('click')
+
+      // get three elements
+      const element1 = wrapper.findAll('li').at(1)
+      const element2 = wrapper.findAll('li').at(3)
+      const element3 = wrapper.findAll('li').at(5)
+
+      // clicking on the element1
+      await element1.trigger('click')
+
+      // should continue the list visible
+      expect(wrapper.find('ul').exists()).toBe(true)
+
+      // should emit the input event with the correct value
+      expect(wrapper.vm.value).toEqual([
+        'Option 2'
+      ])
+
+      // clicking on the element1
+      await element2.trigger('click')
+
+      // should emit the input event with the correct value
+      expect(wrapper.vm.value).toEqual([
+        'Option 2',
+        'Option 4'
+      ])
+
+      // clicking on the element1
+      await element3.trigger('click')
+
+      // should emit the input event with the correct value
+      expect(wrapper.vm.value).toEqual([
+        'Option 2',
+        'Option 4',
+        'Option 6'
+      ])
+
+      // clicking on the element1
+      await element2.trigger('click')
+
+      // should emit the input event with the correct value
+      expect(wrapper.vm.value).toEqual([
+        'Option 2',
+        'Option 6'
+      ])
+    })
+
+    it('should change the select inner with the value', async () => {
+      await wrapper.setData({
+        value: ['Option 1', 'Option 4']
+      })
+
+      expect(innerElement.text()).toBe('Option 1, Option 4')
+    })
+  })
 })
