@@ -10,7 +10,7 @@ export default {
   args: {
     type: 'ghost',
     size: null,
-    hasSpaces: false
+    hasSpaces: false,
   },
   argTypes: {
     size: {
@@ -18,28 +18,28 @@ export default {
       description: 'Size to each `SbButton` inside the `SbGroupButton`',
       control: {
         type: 'select',
-        options: [...availableSizes]
-      }
+        options: [...availableSizes],
+      },
     },
     type: {
       name: 'type',
       description: '`SbButton` type',
       control: {
         type: 'select',
-        options: [...availableTypes]
-      }
+        options: [...availableTypes],
+      },
     },
     hasSpaces: {
       name: 'hasSpaces',
       description: 'Set if it has spaces between `SbButton` components',
       control: {
-        type: 'boolean'
-      }
-    }
-  }
+        type: 'boolean',
+      },
+    },
+  },
 }
 
-export const Default = args => ({
+export const Default = (args) => ({
   components: { SbGroupButton, SbButton },
   props: Object.keys(args),
   template: `
@@ -48,10 +48,10 @@ export const Default = args => ({
       <SbButton label="Secondary Button" />
       <SbButton label="Third Button" />
     </SbGroupButton>
-  `
+  `,
 })
 
-export const WithIcons = args => ({
+export const WithIcons = (args) => ({
   components: { SbGroupButton, SbButton },
   props: Object.keys(args),
   template: `
@@ -60,28 +60,28 @@ export const WithIcons = args => ({
       <SbButton :label="secondaryLabel" />
       <SbButton has-icon-only icon="close" />
     </SbGroupButton>
-  `
+  `,
 })
 
 WithIcons.args = {
   firstLabel: 'First Button',
-  secondaryLabel: 'Secondary Button'
+  secondaryLabel: 'Secondary Button',
 }
 
 WithIcons.argTypes = {
   firstLabel: {
     control: {
-      type: 'text'
-    }
+      type: 'text',
+    },
   },
   secondaryLabel: {
     control: {
-      type: 'text'
-    }
-  }
+      type: 'text',
+    },
+  },
 }
 
-export const JustIcons = args => ({
+export const JustIcons = (args) => ({
   components: { SbGroupButton, SbButton },
   props: Object.keys(args),
   template: `
@@ -90,5 +90,5 @@ export const JustIcons = args => ({
       <SbButton has-icon-only icon="plus" iconDescription="Plus Icon" />
       <SbButton has-icon-only icon="overflow-menu-vertic" iconDescription="Overflow Icon" />
     </SbGroupButton>
-  `
+  `,
 })

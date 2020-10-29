@@ -7,11 +7,11 @@ describe('SbMenu component', () => {
   // @vue/component
   const Component = {
     components: {
-      ...MenuComponents
+      ...MenuComponents,
     },
 
     methods: {
-      onSelectOption: onSelectOption
+      onSelectOption: onSelectOption,
     },
 
     template: `
@@ -41,7 +41,7 @@ describe('SbMenu component', () => {
           </SbMenuList>
         </SbMenu>
       </div>
-    `
+    `,
   }
 
   const wrapper = factoryMountComponent(Component)
@@ -59,9 +59,9 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeTruthy()
 
     // should move the focus to the first item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(0).element
-    ).toEqual(document.activeElement)
+    expect(wrapper.findAll('[role="menuitemradio"]').at(0).element).toEqual(
+      document.activeElement
+    )
 
     // when clicks the button again
     await buttonComponent.trigger('click')
@@ -79,7 +79,7 @@ describe('SbMenu component', () => {
 
     // when press the ArrowUp key when the button is focused
     await buttonComponent.trigger('keydown', {
-      key: 'ArrowUp'
+      key: 'ArrowUp',
     })
 
     await wrapper.vm.$nextTick()
@@ -88,37 +88,37 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeTruthy()
 
     // and should move the focus to the last item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(3).element
-    ).toEqual(document.activeElement)
+    expect(wrapper.findAll('[role="menuitemradio"]').at(3).element).toEqual(
+      document.activeElement
+    )
 
     // when continues press the ArrowUp key
     await menuListComponent.trigger('keydown', {
-      key: 'ArrowUp'
+      key: 'ArrowUp',
     })
 
     await wrapper.vm.$nextTick()
 
     // should move the focus to the third item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(2).element
-    ).toEqual(document.activeElement)
+    expect(wrapper.findAll('[role="menuitemradio"]').at(2).element).toEqual(
+      document.activeElement
+    )
 
     // when press the ArrowDown key
     await menuListComponent.trigger('keydown', {
-      key: 'ArrowDown'
+      key: 'ArrowDown',
     })
 
     await wrapper.vm.$nextTick()
 
     // should back the focus to the last item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(3).element
-    ).toEqual(document.activeElement)
+    expect(wrapper.findAll('[role="menuitemradio"]').at(3).element).toEqual(
+      document.activeElement
+    )
 
     // when press the Escape key
     await menuListComponent.trigger('keydown', {
-      key: 'Escape'
+      key: 'Escape',
     })
 
     await wrapper.vm.$nextTick()
@@ -131,7 +131,7 @@ describe('SbMenu component', () => {
 
     // when press the ArrowDown key when the button is focused
     await buttonComponent.trigger('keydown', {
-      key: 'ArrowDown'
+      key: 'ArrowDown',
     })
 
     await wrapper.vm.$nextTick()
@@ -140,17 +140,17 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeTruthy()
 
     // and should move the focus to the first item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(0).element
-    ).toEqual(document.activeElement)
+    expect(wrapper.findAll('[role="menuitemradio"]').at(0).element).toEqual(
+      document.activeElement
+    )
 
     await menuListComponent.trigger('keydown', {
-      key: 'Escape'
+      key: 'Escape',
     })
 
     // when press the Escape key
     await menuListComponent.trigger('keydown', {
-      key: 'Escape'
+      key: 'Escape',
     })
 
     await wrapper.vm.$nextTick()
@@ -176,31 +176,31 @@ describe('SbMenu component', () => {
 
     // when press the End key
     await menuListComponent.trigger('keydown', {
-      key: 'End'
+      key: 'End',
     })
 
     await wrapper.vm.$nextTick()
 
     // should move the focus to the last item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(3).element
-    ).toEqual(document.activeElement)
+    expect(wrapper.findAll('[role="menuitemradio"]').at(3).element).toEqual(
+      document.activeElement
+    )
 
     // when press the Home key
     await menuListComponent.trigger('keydown', {
-      key: 'Home'
+      key: 'Home',
     })
 
     await wrapper.vm.$nextTick()
 
     // should move the focus to the first item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(0).element
-    ).toEqual(document.activeElement)
+    expect(wrapper.findAll('[role="menuitemradio"]').at(0).element).toEqual(
+      document.activeElement
+    )
 
     // when press the Escape key
     await menuListComponent.trigger('keydown', {
-      key: 'Escape'
+      key: 'Escape',
     })
 
     await wrapper.vm.$nextTick()

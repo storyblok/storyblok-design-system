@@ -3,9 +3,9 @@ import { mount } from '@vue/test-utils'
 import SbTag from '..'
 import SbIcon from '../../Icon'
 
-const factory = propsData => {
+const factory = (propsData) => {
   return mount(SbTag, {
-    propsData
+    propsData,
   })
 }
 
@@ -14,7 +14,7 @@ describe('SbTag component', () => {
     const label = 'Tag label'
     const wrapper = factory({
       type: 'primary',
-      label
+      label,
     })
 
     it('should have the properly class', () => {
@@ -32,11 +32,11 @@ describe('SbTag component', () => {
       const wrapper = mount(SbTag, {
         propsData: {
           type: 'primary',
-          label
+          label,
         },
         slots: {
-          default: [label]
-        }
+          default: [label],
+        },
       })
 
       expect(wrapper.text()).toBe(label)
@@ -48,7 +48,7 @@ describe('SbTag component', () => {
     const wrapper = factory({
       type: 'info',
       label,
-      closable: true
+      closable: true,
     })
 
     const IconComponent = wrapper.findComponent(SbIcon)

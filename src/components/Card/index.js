@@ -10,43 +10,52 @@ const SbCardHeader = {
   props: {
     as: {
       type: String,
-      default: 'span'
+      default: 'span',
     },
     options: {
       type: Array,
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
 
-  render (h) {
+  render(h) {
     const renderTitle = () => {
       if (this.title) {
-        return h(this.as, {
-          staticClass: 'sb-card__title'
-        }, this.title)
+        return h(
+          this.as,
+          {
+            staticClass: 'sb-card__title',
+          },
+          this.title
+        )
       }
 
       return this.$slots.default
     }
 
-    return h('div', {
-      staticClass: 'sb-card__header',
-      attrs: {
-        ...this.$attrs
-      }
-    }, [
-      renderTitle(),
-      this.options && h(SbCardOptions, {
-        props: {
-          options: this.options
-        }
-      })
-    ])
-  }
+    return h(
+      'div',
+      {
+        staticClass: 'sb-card__header',
+        attrs: {
+          ...this.$attrs,
+        },
+      },
+      [
+        renderTitle(),
+        this.options &&
+          h(SbCardOptions, {
+            props: {
+              options: this.options,
+            },
+          }),
+      ]
+    )
+  },
 }
 
 // @vue/component
@@ -56,40 +65,48 @@ const SbCardOptions = {
   props: {
     options: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
 
-  render (h) {
-    return h('div', {
-      staticClass: 'sb-card__options'
-    }, [
-      h(SbMenu, [
-        h(SbMenuButton, {
-          props: {
-            hasIconOnly: true
-          }
-        }),
-        h(SbMenuList, {
-          props: {
-            items: this.options,
-            placement: 'bottom-end'
-          }
-        })
-      ])
-    ])
-  }
+  render(h) {
+    return h(
+      'div',
+      {
+        staticClass: 'sb-card__options',
+      },
+      [
+        h(SbMenu, [
+          h(SbMenuButton, {
+            props: {
+              hasIconOnly: true,
+            },
+          }),
+          h(SbMenuList, {
+            props: {
+              items: this.options,
+              placement: 'bottom-end',
+            },
+          }),
+        ]),
+      ]
+    )
+  },
 }
 
 // @vue/component
 const SbCardFooter = {
   name: 'SbCardFooter',
 
-  render (h) {
-    return h('div', {
-      staticClass: 'sb-card__footer'
-    }, this.$slots.default)
-  }
+  render(h) {
+    return h(
+      'div',
+      {
+        staticClass: 'sb-card__footer',
+      },
+      this.$slots.default
+    )
+  },
 }
 
 // @vue/component
@@ -99,33 +116,42 @@ const SbCardContent = {
   inject: ['cardContext'],
 
   computed: {
-    context () {
+    context() {
       return this.cardContext()
     },
 
-    isLoading () {
+    isLoading() {
       return this.context.isLoading
-    }
+    },
   },
 
-  render (h) {
-    return h('div', {
-      staticClass: 'sb-card__content'
-    }, [
-      this.$slots.default,
+  render(h) {
+    return h(
+      'div',
+      {
+        staticClass: 'sb-card__content',
+      },
+      [
+        this.$slots.default,
 
-      this.isLoading && h('div', {
-        staticClass: 'sb-card__loading'
-      }, [
-        h(SbLoading, {
-          props: {
-            size: 'x-large',
-            color: 'primary'
-          }
-        })
-      ])
-    ])
-  }
+        this.isLoading &&
+          h(
+            'div',
+            {
+              staticClass: 'sb-card__loading',
+            },
+            [
+              h(SbLoading, {
+                props: {
+                  size: 'x-large',
+                  color: 'primary',
+                },
+              }),
+            ]
+          ),
+      ]
+    )
+  },
 }
 
 /**
@@ -139,42 +165,40 @@ const SbCardContent = {
 const SbCard = {
   name: 'SbCard',
 
-  provide () {
+  provide() {
     return {
-      cardContext: () => this.cardContext
+      cardContext: () => this.cardContext,
     }
   },
 
   props: {
     isLoading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   computed: {
-    cardContext () {
+    cardContext() {
       return {
         // states
-        isLoading: this.isLoading
+        isLoading: this.isLoading,
       }
-    }
+    },
   },
 
-  render (h) {
-    return h('div', {
-      staticClass: 'sb-card',
-      class: {
-        'sb-card--loading': this.isLoading
-      }
-    }, this.$slots.default)
-  }
+  render(h) {
+    return h(
+      'div',
+      {
+        staticClass: 'sb-card',
+        class: {
+          'sb-card--loading': this.isLoading,
+        },
+      },
+      this.$slots.default
+    )
+  },
 }
 
-export {
-  SbCard,
-  SbCardHeader,
-  SbCardOptions,
-  SbCardFooter,
-  SbCardContent
-}
+export { SbCard, SbCardHeader, SbCardOptions, SbCardFooter, SbCardContent }

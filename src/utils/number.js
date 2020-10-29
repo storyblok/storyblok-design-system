@@ -15,4 +15,4 @@ export const getRandomNumber = (min, max) => {
  * @param  {any} value
  * @return {number}
  */
-export const isValidNumber = value => typeof value === 'number'
+export const isValidNumber = (value) => typeof value === 'number'

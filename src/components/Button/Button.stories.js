@@ -1,6 +1,6 @@
 import SbButton from './index'
 
-const ButtonTemplate = args => ({
+const ButtonTemplate = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `
@@ -42,7 +42,7 @@ const ButtonTemplate = args => ({
         :size="size"
       />
     </div>
-  `
+  `,
 })
 
 export default {
@@ -51,9 +51,10 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Buttons are used to initialize an action. Button labels express what action will occur when the user interacts with it.'
-      }
-    }
+        component:
+          'Buttons are used to initialize an action. Button labels express what action will occur when the user interacts with it.',
+      },
+    },
   },
   args: {
     isLoading: false,
@@ -66,92 +67,93 @@ export default {
     hasIconOnly: false,
     label: 'Default',
     size: null,
-    type: 'primary'
+    type: 'primary',
   },
   argTypes: {
     isDisabled: {
       name: 'isDisabled',
       description: 'Disable button',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     iconDescription: {
       name: 'iconDescription',
-      description: 'Description to Icon when the `SbButton` has the `hasIconOnly` property setted to true',
+      description:
+        'Description to Icon when the `SbButton` has the `hasIconOnly` property setted to true',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     iconRight: {
       name: 'iconRight',
       description: 'Icon on the right',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     icon: {
       name: 'icon',
       description: 'Icon before label (default on the left)',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     isFullWidth: {
       name: 'isFullWidth',
       description: 'Expand button to 100% width',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     isLoading: {
       name: 'isLoading',
       description: 'Show a loading',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     isRounded: {
       name: 'isRounded',
       description: 'Transform button to rounded',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     hasIconOnly: {
       name: 'hasIconOnly',
       description: 'Set the button to have only icon with a specific padding',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     label: {
       name: 'label',
       description: 'Label (inner test)',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     size: {
       name: 'size',
       description: 'Size',
       control: {
         type: 'select',
-        options: ['small', 'normal', 'large']
-      }
+        options: ['small', 'normal', 'large'],
+      },
     },
     type: {
       name: 'type',
       description: '`SbButton` type',
       control: {
         type: 'select',
-        options: ['primary', 'secondary', 'ghost', 'danger']
-      }
-    }
-  }
+        options: ['primary', 'secondary', 'ghost', 'danger'],
+      },
+    },
+  },
 }
 
-export const Default = args => ({
+export const Default = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `
@@ -167,7 +169,7 @@ export const Default = args => ({
       :size="size"
       :type="type"
     />
-  `
+  `,
 })
 
 export const Primary = ButtonTemplate.bind({})
@@ -175,15 +177,16 @@ export const Primary = ButtonTemplate.bind({})
 Primary.args = {
   label: 'Primary',
   icon: 'checkmark',
-  iconRight: 'calendar'
+  iconRight: 'calendar',
 }
 
 Primary.parameters = {
   docs: {
     description: {
-      story: 'For the principal call to action on the page. Primary buttons should only appear once per screen (not including the application header or in a modal dialog).'
-    }
-  }
+      story:
+        'For the principal call to action on the page. Primary buttons should only appear once per screen (not including the application header or in a modal dialog).',
+    },
+  },
 }
 
 export const Secondary = ButtonTemplate.bind({})
@@ -192,15 +195,16 @@ Secondary.args = {
   type: 'secondary',
   label: 'Secondary',
   icon: 'checkmark',
-  iconRight: 'calendar'
+  iconRight: 'calendar',
 }
 
 Secondary.parameters = {
   docs: {
     description: {
-      story: 'For secondary actions on each page, these can only be used in conjunction with a primary button.'
-    }
-  }
+      story:
+        'For secondary actions on each page, these can only be used in conjunction with a primary button.',
+    },
+  },
 }
 
 export const Ghost = ButtonTemplate.bind({})
@@ -209,15 +213,16 @@ Ghost.args = {
   label: 'Ghost',
   type: 'ghost',
   icon: 'checkmark',
-  iconRight: 'calendar'
+  iconRight: 'calendar',
 }
 
 Ghost.parameters = {
   docs: {
     description: {
-      story: 'For less prominent actions, ghost buttons can be used in isolation or paired with a primary button when there are multiple calls to action.'
-    }
-  }
+      story:
+        'For less prominent actions, ghost buttons can be used in isolation or paired with a primary button when there are multiple calls to action.',
+    },
+  },
 }
 
 export const Danger = ButtonTemplate.bind({})
@@ -226,36 +231,37 @@ Danger.args = {
   label: 'Danger',
   type: 'danger',
   icon: 'close',
-  iconRight: 'close'
+  iconRight: 'close',
 }
 
 Danger.parameters = {
   docs: {
     description: {
-      story: 'Destructive actions'
-    }
-  }
+      story: 'Destructive actions',
+    },
+  },
 }
 
-export const Sizes = args => ({
+export const Sizes = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `<div>
     <SbButton label="Small" size="small" :type="type" />
     <SbButton label="Default" :type="type" />
     <SbButton label="Large" size="large" :type="type" />
-  </div>`
+  </div>`,
 })
 
 Sizes.parameters = {
   docs: {
     description: {
-      story: 'You can set the `size` attribute to change the padding inside the button'
-    }
-  }
+      story:
+        'You can set the `size` attribute to change the padding inside the button',
+    },
+  },
 }
 
-export const FullWidth = args => ({
+export const FullWidth = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `<div style="max-width: 500px;">
@@ -267,23 +273,24 @@ export const FullWidth = args => ({
       :is-full-width="isFullWidth"
       :label="label"
     />
-  </div>`
+  </div>`,
 })
 
 FullWidth.args = {
   label: 'Full width',
-  isFullWidth: true
+  isFullWidth: true,
 }
 
 FullWidth.parameters = {
   docs: {
     description: {
-      story: 'When you define the button as `isFullWidth`, it will be expanded to full width to fill its parent container.'
-    }
-  }
+      story:
+        'When you define the button as `isFullWidth`, it will be expanded to full width to fill its parent container.',
+    },
+  },
 }
 
-export const JustIcons = args => ({
+export const JustIcons = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `<div style="max-width: 500px;">
@@ -315,24 +322,25 @@ export const JustIcons = args => ({
       is-rounded
       has-icon-only
     />
-  </div>`
+  </div>`,
 })
 
 JustIcons.args = {
   icon: 'plus',
   isRounded: false,
-  iconDescription: 'Hey! I have a description!'
+  iconDescription: 'Hey! I have a description!',
 }
 
 JustIcons.parameters = {
   docs: {
     description: {
-      story: 'If you use the button just with icon, you can use the `hasIconOnly` boolean attribute. Optionally, you can use the `isRounded` attribute too.'
-    }
-  }
+      story:
+        'If you use the button just with icon, you can use the `hasIconOnly` boolean attribute. Optionally, you can use the `isRounded` attribute too.',
+    },
+  },
 }
 
-export const InlineLabel = args => ({
+export const InlineLabel = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `<div style="max-width: 500px;">
@@ -345,22 +353,22 @@ export const InlineLabel = args => ({
     >
       {{ label }}
     </SbButton>
-  </div>`
+  </div>`,
 })
 
 InlineLabel.args = {
-  label: 'Inline label'
+  label: 'Inline label',
 }
 
 InlineLabel.parameters = {
   docs: {
     description: {
-      story: 'You can use the label inline, not as prop.'
-    }
-  }
+      story: 'You can use the label inline, not as prop.',
+    },
+  },
 }
 
-export const LoadingButton = args => ({
+export const LoadingButton = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `
@@ -371,20 +379,20 @@ export const LoadingButton = args => ({
       :is-disabled="isDisabled"
       :size="size"
       :type="type"
-    />`
+    />`,
 })
 
 LoadingButton.args = ButtonTemplate.bind({})
 
 LoadingButton.args = {
   type: 'primary',
-  isLoading: true
+  isLoading: true,
 }
 
 LoadingButton.parameters = {
   docs: {
     description: {
-      story: 'Types of buttons with loading'
-    }
-  }
+      story: 'Types of buttons with loading',
+    },
+  },
 }

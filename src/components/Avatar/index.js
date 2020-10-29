@@ -21,56 +21,56 @@ const SbAvatar = {
   props: {
     bgColor: {
       type: String,
-      default: null
+      default: null,
     },
     description: {
       type: String,
-      default: null
+      default: null,
     },
     descriptionPosition: {
       type: String,
       default: 'top',
-      validator: position => includes(positionTypes, position)
+      validator: (position) => includes(positionTypes, position),
     },
     name: {
       type: String,
-      default: null
+      default: null,
     },
     size: {
       type: String,
       default: null,
-      validator: isSizeValid
+      validator: isSizeValid,
     },
     showName: {
       type: Boolean,
-      default: false
+      default: false,
     },
     src: {
       type: String,
-      default: null
+      default: null,
     },
     status: {
       type: String,
-      default: null
+      default: null,
     },
     useTooltip: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   data: () => ({
-    isImageLoaded: false
+    isImageLoaded: false,
   }),
 
-  created () {
+  created() {
     if (process.browser) {
       this.loadImage(this.src)
     }
   },
 
   methods: {
-    loadImage (src) {
+    loadImage(src) {
       if (!canUseDOM) {
         return
       }
@@ -87,17 +87,17 @@ const SbAvatar = {
       }
     },
 
-    getBgColor () {
+    getBgColor() {
       return this.bgColor ? `bg-${this.bgColor}` : generateRandomBgColor()
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     const avatarProps = {
       staticClass: 'sb-avatar',
       on: {
-        ...this.$listeners
-      }
+        ...this.$listeners,
+      },
     }
 
     if (this.size && this.size !== 'normal') {
@@ -108,8 +108,8 @@ const SbAvatar = {
       return h(SbBadge, {
         props: {
           type: this.status,
-          contract: true
-        }
+          contract: true,
+        },
       })
     }
 
@@ -122,8 +122,8 @@ const SbAvatar = {
         return h('img', {
           attrs: {
             alt: this.name,
-            src: this.src
-          }
+            src: this.src,
+          },
         })
       }
 
@@ -131,21 +131,29 @@ const SbAvatar = {
         staticClass: this.getBgColor(),
         attrs: {
           alt: this.name,
-          src: avatarFallback
-        }
+          src: avatarFallback,
+        },
       })
     }
 
     const renderName = () => {
-      return h('span', {
-        staticClass: 'sb-avatar__text'
-      }, this.name)
+      return h(
+        'span',
+        {
+          staticClass: 'sb-avatar__text',
+        },
+        this.name
+      )
     }
 
     const renderDescription = () => {
-      return h('span', {
-        staticClass: `sb-avatar__description sb-avatar__description--${this.descriptionPosition}`
-      }, this.description)
+      return h(
+        'span',
+        {
+          staticClass: `sb-avatar__description sb-avatar__description--${this.descriptionPosition}`,
+        },
+        this.description
+      )
     }
 
     const renderTextContainer = () => {
@@ -153,66 +161,72 @@ const SbAvatar = {
       const position = this.descriptionPosition
 
       return h(
-        'div', {
-          staticClass: 'sb-avatar__text-container'
+        'div',
+        {
+          staticClass: 'sb-avatar__text-container',
         },
         [
           showDescription && position === 'top' && renderDescription(),
           renderName(),
-          showDescription && position === 'bottom' && renderDescription()
+          showDescription && position === 'bottom' && renderDescription(),
         ]
       )
     }
 
     const renderAvatar = () => {
       if (this.src || this.$slots.default) {
-        return h('div', {
-          staticClass: 'sb-avatar__image',
-          attrs: {
-            ...(this.useTooltip && { tabindex: 0 })
-          }
-        }, [
-          renderAvatarImage(),
-          !!this.status && renderBadgeStatus()
-        ])
+        return h(
+          'div',
+          {
+            staticClass: 'sb-avatar__image',
+            attrs: {
+              ...(this.useTooltip && { tabindex: 0 }),
+            },
+          },
+          [renderAvatarImage(), !!this.status && renderBadgeStatus()]
+        )
       }
 
       if (this.name) {
-        return h('div', {
-          staticClass: 'sb-avatar__initials ' + this.getBgColor(),
-          attrs: {
-            ...(this.useTooltip && { tabindex: 0 })
-          }
-        }, [
-          h('span', getInitials(this.name)),
-          !!this.status && renderBadgeStatus()
-        ])
+        return h(
+          'div',
+          {
+            staticClass: 'sb-avatar__initials ' + this.getBgColor(),
+            attrs: {
+              ...(this.useTooltip && { tabindex: 0 }),
+            },
+          },
+          [
+            h('span', getInitials(this.name)),
+            !!this.status && renderBadgeStatus(),
+          ]
+        )
       }
     }
 
     if (this.name && this.useTooltip) {
       return h('div', avatarProps, [
-        h(SbTooltip, {
-          props: {
-            label: this.name,
-            position: 'bottom'
-          }
-        }, [renderAvatar()])
+        h(
+          SbTooltip,
+          {
+            props: {
+              label: this.name,
+              position: 'bottom',
+            },
+          },
+          [renderAvatar()]
+        ),
       ])
     }
 
-    const children = [
-      renderAvatar()
-    ]
+    const children = [renderAvatar()]
 
     if (this.showName && this.name && !this.useTooltip) {
-      children.push(
-        renderTextContainer()
-      )
+      children.push(renderTextContainer())
     }
 
     return h('div', avatarProps, children)
-  }
+  },
 }
 
 export default SbAvatar

@@ -1,7 +1,7 @@
 import SbLoading from './index'
 import { availableColors } from '../../utils'
 
-const LoadingTemplate = args => ({
+const LoadingTemplate = (args) => ({
   components: { SbLoading },
   props: Object.keys(args),
   template: `
@@ -15,7 +15,7 @@ const LoadingTemplate = args => ({
         uiBlock
       }"
     />
-  `
+  `,
 })
 
 export default {
@@ -24,9 +24,10 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Loading spinners are used when retrieving data or performing slow computations, and help to notify users that loading is underway.'
-      }
-    }
+        component:
+          'Loading spinners are used when retrieving data or performing slow computations, and help to notify users that loading is underway.',
+      },
+    },
   },
   args: {
     type: 'spinner',
@@ -34,61 +35,67 @@ export default {
     value: 0,
     showPercentage: false,
     color: 'primary',
-    uiBlock: false
+    uiBlock: false,
   },
   argTypes: {
     type: {
       name: 'type',
-      description: 'With the prop `type` you can choose which type of loading will be rendered.',
+      description:
+        'With the prop `type` you can choose which type of loading will be rendered.',
       control: {
         type: 'select',
-        options: ['spinner', 'bar']
-      }
+        options: ['spinner', 'bar'],
+      },
     },
     size: {
       name: 'size',
-      description: 'With the prop `size` you can define the sizes of the component loading.',
+      description:
+        'With the prop `size` you can define the sizes of the component loading.',
       control: {
         type: 'select',
-        options: ['small', 'normal', 'large', 'x-large']
-      }
+        options: ['small', 'normal', 'large', 'x-large'],
+      },
     },
     value: {
       name: 'value',
-      description: 'The prop `value` must be entered to change the loading status, it ranges from 0 to 100.',
+      description:
+        'The prop `value` must be entered to change the loading status, it ranges from 0 to 100.',
       control: {
         type: 'range',
-        options: [0, 100, 1] // [min, max, step]
-      }
+        options: [0, 100, 1], // [min, max, step]
+      },
     },
     showPercentage: {
       name: 'show-percentage',
-      description: 'With the prop `show-percentage` you can choose whether you want the loading percentage to appear or not.',
+      description:
+        'With the prop `show-percentage` you can choose whether you want the loading percentage to appear or not.',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     color: {
       name: 'color',
-      description: 'Select the color of the loading spinner with the colors available in our Desing system.',
+      description:
+        'Select the color of the loading spinner with the colors available in our Desing system.',
       control: {
         type: 'select',
-        options: availableColors
-      }
+        options: availableColors,
+      },
     },
     uiBlock: {
       name: 'uiBlock',
-      description: 'With this property the user`s ui will be locked when starting loading.',
+      description:
+        'With this property the user`s ui will be locked when starting loading.',
       control: {
-        type: 'boolean'
-      }
-    }
-  }
+        type: 'boolean',
+      },
+    },
+  },
 }
 
 export const Default = LoadingTemplate.bind({})
 
-export const ProgressBar = args => ({
+export const ProgressBar = (args) => ({
   components: { SbLoading },
   props: Object.keys(args),
   template: `
@@ -102,24 +109,25 @@ export const ProgressBar = args => ({
         }"
       />
     </div>
-  `
+  `,
 })
 
 ProgressBar.args = {
   type: 'bar',
   value: 25,
-  showPercentage: true
+  showPercentage: true,
 }
 
 ProgressBar.parameters = {
   docs: {
     description: {
-      story: 'When passing the prop `bar` the component starts to render a progress bar.'
-    }
-  }
+      story:
+        'When passing the prop `bar` the component starts to render a progress bar.',
+    },
+  },
 }
 
-export const SpinnerWithSizes = args => ({
+export const SpinnerWithSizes = (args) => ({
   components: { SbLoading },
   props: Object.keys(args),
   template: `
@@ -161,18 +169,19 @@ export const SpinnerWithSizes = args => ({
         }"
       />
     </div>
-  `
+  `,
 })
 
 SpinnerWithSizes.parameters = {
   docs: {
     description: {
-      story: 'When passing the prop `spinner` the component starts to render an animated spinner'
-    }
-  }
+      story:
+        'When passing the prop `spinner` the component starts to render an animated spinner',
+    },
+  },
 }
 
-export const SpinnerWithPercentage = args => ({
+export const SpinnerWithPercentage = (args) => ({
   components: { SbLoading },
   props: Object.keys(args),
   template: `
@@ -214,35 +223,37 @@ export const SpinnerWithPercentage = args => ({
         }"
       />
     </div>
-  `
+  `,
 })
 
 SpinnerWithPercentage.parameters = {
   docs: {
     description: {
-      story: 'The spinners also show the percentage of the loanding, pass the `showPercentage` property so that the percentage is shown.'
-    }
-  }
+      story:
+        'The spinners also show the percentage of the loanding, pass the `showPercentage` property so that the percentage is shown.',
+    },
+  },
 }
 
 export const BlockingUiLoadingSpinner = LoadingTemplate.bind({})
 
 BlockingUiLoadingSpinner.args = {
   uiBlock: true,
-  size: 'x-large'
+  size: 'x-large',
 }
 
 BlockingUiLoadingSpinner.parameters = {
   docs: {
     description: {
-      story: 'The `uiBlock` feature causes the user`s screen to be blocked during loading.'
-    }
-  }
+      story:
+        'The `uiBlock` feature causes the user`s screen to be blocked during loading.',
+    },
+  },
 }
 
 export const BlockingUiLoadingProgressBar = LoadingTemplate.bind({})
 
 BlockingUiLoadingProgressBar.args = {
   uiBlock: true,
-  type: 'bar'
+  type: 'bar',
 }

@@ -9,7 +9,7 @@ export default {
     href: 'https://storyblok.com',
     label: 'Go to Storyblok website',
     as: undefined,
-    title: null
+    title: null,
   },
   argTypes: {
     size: {
@@ -17,63 +17,63 @@ export default {
       description: 'Size',
       control: {
         type: 'select',
-        options: ['small', 'normal', 'large']
-      }
+        options: ['small', 'normal', 'large'],
+      },
     },
     label: {
       name: 'label',
       description: 'Label',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     as: {
       name: 'as',
       description: 'The tag that should be used (the `<a>` tag is default)',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     href: {
       name: 'href',
       description: 'href attribute for <a> tag',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     title: {
       name: 'title',
       description: 'Title to `SbLink`',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     type: {
       name: 'type',
       description: '`SbLink` type',
       control: {
         type: 'select',
-        options: ['primary', 'secondary']
-      }
+        options: ['primary', 'secondary'],
+      },
     },
     icon: {
       name: 'icon',
       description: 'Icon to `SbLink` (default on the left)',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     iconRight: {
       name: 'iconRight',
       description: 'Icon on the right',
       control: {
-        type: 'text'
-      }
-    }
-  }
+        type: 'text',
+      },
+    },
+  },
 }
 
-export const Default = args => ({
+export const Default = (args) => ({
   components: { SbLink },
   props: Object.keys(args),
   template: `
@@ -86,10 +86,10 @@ export const Default = args => ({
         type
       }"
     />
-  `
+  `,
 })
 
-export const InlineLabel = args => ({
+export const InlineLabel = (args) => ({
   components: { SbLink },
   props: Object.keys(args),
   template: `
@@ -103,7 +103,7 @@ export const InlineLabel = args => ({
     >
       {{ label }}
     </SbLink>
-  `
+  `,
 })
 
 // export const Secondary = args => ({
@@ -124,7 +124,7 @@ export const InlineLabel = args => ({
 //   type: 'secondary'
 // }
 
-export const WithIcon = args => ({
+export const WithIcon = (args) => ({
   components: { SbLink },
   props: Object.keys(args),
   template: `<div>
@@ -150,25 +150,25 @@ export const WithIcon = args => ({
           }"
         />
       </div>
-  </div>`
+  </div>`,
 })
 
 WithIcon.args = {
   icon: 'checkmark',
   iconRight: 'calendar',
   primaryLabel: 'Icon before',
-  secondaryLabel: 'Icon after'
+  secondaryLabel: 'Icon after',
 }
 
 WithIcon.argTypes = {
   primaryLabel: {
     control: {
-      type: 'text'
-    }
+      type: 'text',
+    },
   },
   secondaryLabel: {
     control: {
-      type: 'text'
-    }
-  }
+      type: 'text',
+    },
+  },
 }

@@ -7,7 +7,11 @@ const validateBinding = (binding = {}) => {
   const { value } = binding
 
   if (!value || typeof value !== 'function') {
-    console.warn('[v-click-outside]: provided expression', binding.expression, 'must be a function.')
+    console.warn(
+      '[v-click-outside]: provided expression',
+      binding.expression,
+      'must be a function.'
+    )
     return false
   }
 
@@ -20,11 +24,14 @@ const validateBinding = (binding = {}) => {
  * @return {Boolean}
  */
 const isServer = (vNode) => {
-  return typeof vNode.componentInstance !== 'undefined' && vNode.componentInstance.$isServer
+  return (
+    typeof vNode.componentInstance !== 'undefined' &&
+    vNode.componentInstance.$isServer
+  )
 }
 
 const ClickOutside = {
-  inserted (el, binding, vNode) {
+  inserted(el, binding, vNode) {
     if (!validateBinding(binding)) return
 
     const handler = (e) => {
@@ -37,17 +44,17 @@ const ClickOutside = {
 
     el.__clickOutside = {
       handler: handler,
-      callback: binding.value
+      callback: binding.value,
     }
   },
 
-  update (el, binding) {
+  update(el, binding) {
     if (validateBinding(binding)) {
       el.__clickOutside.callback = binding.value
     }
   },
 
-  unbind (el, _, vNode) {
+  unbind(el, _, vNode) {
     if (!el.__clickOutside) return
 
     if (!isServer(vNode)) {
@@ -55,7 +62,7 @@ const ClickOutside = {
     }
 
     delete el.__clickOutside
-  }
+  },
 }
 
 export default ClickOutside

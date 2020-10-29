@@ -8,31 +8,31 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'The `SbAvatarGroup` component is to list the `SbAvatar`'
-      }
-    }
+        component: 'The `SbAvatarGroup` component is to list the `SbAvatar`',
+      },
+    },
   },
   args: {
     size: 'normal',
-    maxElements: 5
+    maxElements: 5,
   },
   argTypes: {
     maxElements: {
       name: 'maxElements',
       description: 'Max of `SbAvatar` components to view',
       control: {
-        type: 'number'
-      }
+        type: 'number',
+      },
     },
     size: {
       name: 'size',
       description: 'Size of the `SbAvatar`',
       control: {
         type: 'select',
-        options: ['small', 'normal', 'large']
-      }
-    }
-  }
+        options: ['small', 'normal', 'large'],
+      },
+    },
+  },
 }
 
 export const Default = (args) => ({
@@ -55,7 +55,7 @@ export const Default = (args) => ({
       name="Elvis Presley"
     />
   </SbAvatarGroup>
-  `
+  `,
 })
 
 export const WithSizes = () => ({
@@ -104,18 +104,19 @@ export const WithSizes = () => ({
       />
     </SbAvatarGroup>
   </div>
-  `
+  `,
 })
 
 WithSizes.parameters = {
   docs: {
     description: {
-      story: 'You can change the size for all `SbAvatar` components just passing the `size` attribute for `SbAvatarGroup`'
-    }
-  }
+      story:
+        'You can change the size for all `SbAvatar` components just passing the `size` attribute for `SbAvatarGroup`',
+    },
+  },
 }
 
-export const WithMoreAvatars = args => ({
+export const WithMoreAvatars = (args) => ({
   components: { SbAvatarGroup, SbAvatar },
   props: Object.keys(args),
   template: `
@@ -154,13 +155,14 @@ export const WithMoreAvatars = args => ({
       </SbAvatarGroup>
     </div>
   </div>
-  `
+  `,
 })
 
 WithMoreAvatars.parameters = {
   docs: {
     description: {
-      story: 'When you have more than **5** `SbAvatar` components, it will be render a placeholder as last element indicating how many more components are there. The number of max elements can be changed with the `maxElements` property'
-    }
-  }
+      story:
+        'When you have more than **5** `SbAvatar` components, it will be render a placeholder as last element indicating how many more components are there. The number of max elements can be changed with the `maxElements` property',
+    },
+  },
 }
