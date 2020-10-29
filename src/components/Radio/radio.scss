@@ -1,0 +1,86 @@
+.sb-radio {
+  &-type{
+    &--inline{
+      position: relative;
+      display: inline-block;
+    }
+  }
+  &__input{
+    &:checked, &:not(:checked){
+      position: absolute;
+      & + label{
+        position: relative;
+        padding-left: 28px;
+        display: inline-block;
+        font-family: Roboto;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.3px;
+        color: $sb-dark-blue;
+      }
+    }
+    &:checked{
+      & + label{
+        &:before, &:after{
+          content: '';
+          position: absolute;
+          border-radius: 100%;
+        }
+        &:before{
+          left: 0;
+          top: 0;
+          width: 16px;
+          height: 16px;
+          border: solid 1px #00b3b0;
+          background-color: #00b3b0;
+        }
+        &:after{
+          top: 6px;
+          left: 6px;
+          transition: all 0.2s ease;
+          width: 6px;
+          height: 6px;
+          opacity: 1;
+          transform: scale(1);
+          background-color: #ffffff;
+        }
+      }
+      &[disabled]{
+        & + label{
+          &:before{
+            background-color: #b1b5be;
+            border: solid 1px #b1b5be;
+          }
+        }
+      }
+    }
+    &:not(:checked){
+      & + label{
+        &:before, &:after{
+          content: '';
+          position: absolute;
+          border-radius: 100%;
+        }
+        &:before{
+          left: 0;
+          top: 0;
+          width: 16px;
+          height: 16px;
+          border: solid 1px #dfe3e8;
+          background-color: #ffffff;
+        }
+      }
+      &[disabled]{
+        & + label{
+          &:before{
+            border: solid 1px #dfe3e8;
+            background-color: #f5f5f5;
+          }
+        }
+      }
+    }
+  }
+}
