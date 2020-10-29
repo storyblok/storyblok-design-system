@@ -68,7 +68,7 @@ export const SbDataTableBodyRow = {
             value: this.isSelected
           },
           on: {
-            input: this.handleRowSelected
+            click: this.handleRowSelected
           }
         })
       ]),
