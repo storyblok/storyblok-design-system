@@ -32,3 +32,13 @@
   border: 1px solid $light;
   border-radius: 4px;
 }
+
+// the following are the recommended styles for visually hiding content that will be read by a screen reader
+@mixin screenReaderOnly {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

@@ -129,12 +129,7 @@ $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
   }
 
   &__native {
-    width: 1px;
-    height: 1px;
-    display: none;
-    position: absolute;
-    padding: 0;
-    margin: 0;
+    @include screenReaderOnly();
   }
 
   &__svg {
