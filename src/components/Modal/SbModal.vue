@@ -48,9 +48,8 @@ export default {
   },
 
   props: {
-    isOpenModal: {
-      type: Boolean
-    },
+    isOpenModal: Boolean,
+    fullWidth: Boolean,
     modalTarget: {
       type: String,
       default: () => `#sb-portal-target-${randomString(4)}`
