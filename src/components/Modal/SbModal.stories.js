@@ -28,7 +28,7 @@ const ModalTemplate = args => ({
         v-if="!showModal"
         style="margin: 0 auto; display: flex; margin-top: 30%;"
       />
-      <SbModal :is-open-modal="showModal" v-on:hide="showModal = false">
+      <SbModal :is-open-modal="showModal" v-on:hide="showModal = false" v-bind="{ fullWidth }">
         <SbModalHeader 
           v-bind="{
             title,
@@ -65,7 +65,8 @@ export default {
     title: 'Main title',
     icon: 'success-pictogram',
     align: 'center',
-    isOpenModal: false
+    isOpenModal: false,
+    fullWidth: false
   },
   argTypes: {
     title: {
@@ -92,7 +93,14 @@ export default {
     },
     isOpenModal: {
       name: 'isOpenModal',
-      description: '',
+      description: 'The `isOpenModal` prop works to open the modal with the prop.',
+      control: {
+        type: 'boolean'
+      }
+    },
+    fullWidth: {
+      name: 'fullWidth',
+      description: 'The `fullWidth` prop works to remove the default size from the modal, thus being able to adapt the `width` of the content.',
       control: {
         type: 'boolean'
       }
