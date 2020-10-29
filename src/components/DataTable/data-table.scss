@@ -130,6 +130,14 @@ $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
 
   &__native {
     @include screenReaderOnly();
+
+    &:focus + .sb-input-checkbox__bg {
+      border-color: $color-primary;
+
+      .sb-input-checkbox__inner--truthy & {
+        border-color: darken($color-primary, 7%);
+      }
+    }
   }
 
   &__svg {
