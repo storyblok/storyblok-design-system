@@ -1,9 +1,6 @@
 <template>
   <div class="sb-minibrowser__list-container">
-    <SbMinibrowserBreadcrumbs
-      v-if="hasBreadcrumbs"
-      :items="navigationItems"
-    />
+    <SbMinibrowserBreadcrumbs v-if="hasBreadcrumbs" :items="navigationItems" />
 
     <template v-if="hasGroupItems">
       <SbMinibrowserList
@@ -13,10 +10,7 @@
       />
     </template>
 
-    <SbMinibrowserList
-      v-if="hasOtherItems"
-      :items="otherItems"
-    />
+    <SbMinibrowserList v-if="hasOtherItems" :items="otherItems" />
   </div>
 </template>
 
@@ -29,40 +23,40 @@ export default {
 
   components: {
     SbMinibrowserList,
-    SbMinibrowserBreadcrumbs
+    SbMinibrowserBreadcrumbs,
   },
 
   props: {
     items: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     navigationItems: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
 
   computed: {
-    groupItems () {
-      return this.items.filter(item => item.group)
+    groupItems() {
+      return this.items.filter((item) => item.group)
     },
 
-    hasGroupItems () {
+    hasGroupItems() {
       return this.groupItems.length > 0
     },
 
-    otherItems () {
-      return this.items.filter(item => !item.group)
+    otherItems() {
+      return this.items.filter((item) => !item.group)
     },
 
-    hasOtherItems () {
+    hasOtherItems() {
       return this.otherItems.length > 0
     },
 
-    hasBreadcrumbs () {
+    hasBreadcrumbs() {
       return this.navigationItems.length > 0
-    }
-  }
+    },
+  },
 }
 </script>

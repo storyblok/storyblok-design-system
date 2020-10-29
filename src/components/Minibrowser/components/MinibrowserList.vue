@@ -1,13 +1,7 @@
 <template>
   <div class="sb-minibrowser__list">
-    <p
-      v-if="title"
-      class="sb-minibrowser__list-title"
-    >
-      <SbIcon
-        name="chevron-down"
-        size="small"
-      />
+    <p v-if="title" class="sb-minibrowser__list-title">
+      <SbIcon name="chevron-down" size="small" />
 
       <span>{{ title }}</span>
     </p>
@@ -31,19 +25,19 @@ export default {
 
   components: {
     SbIcon,
-    SbMiniBrowserListItem
+    SbMiniBrowserListItem,
   },
 
   props: {
     items: {
       type: Array,
-      required: true
+      required: true,
     },
     group: Boolean,
     title: {
       type: String,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>

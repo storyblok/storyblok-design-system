@@ -2,7 +2,7 @@
   <div
     class="sb-minibrowser"
     :class="{
-      'sb-minibrowser--expanded': this.isExpanded
+      'sb-minibrowser--expanded': this.isExpanded,
     }"
   >
     <SbMinibrowserSearch
@@ -16,10 +16,7 @@
       :navigation-items="navigationItems"
     />
 
-    <p
-      v-if="hasNotFilteredElements"
-      class="sb-minibrowser__not-found"
-    >
+    <p v-if="hasNotFilteredElements" class="sb-minibrowser__not-found">
       {{ notFoundText }}
     </p>
   </div>
@@ -58,12 +55,12 @@ export default {
 
   components: {
     SbMinibrowserSearch,
-    SbMinibrowserListContainer
+    SbMinibrowserListContainer,
   },
 
-  provide () {
+  provide() {
     return {
-      browserContext: () => this.browserContext
+      browserContext: () => this.browserContext,
     }
   },
 
@@ -75,31 +72,31 @@ export default {
     // options
     filterDebounce: {
       type: Number,
-      default: 300
+      default: 300,
     },
     filterMethod: {
       type: Function,
-      default: null
+      default: null,
     },
     lazyLoadMethod: {
       type: Function,
-      default: null
+      default: null,
     },
     notFoundPrefix: {
       type: String,
-      default: 'No matches for'
+      default: 'No matches for',
     },
     options: {
       type: Array,
       required: true,
-      default: () => []
+      default: () => [],
     },
 
     // input properties
     placeholder: {
       type: String,
-      default: 'Search content items'
-    }
+      default: 'Search content items',
+    },
   },
 
   data: () => ({
@@ -109,11 +106,11 @@ export default {
     isOnLazyLoad: false,
     navigationItems: [],
     filterHandler: null,
-    searchInput: ''
+    searchInput: '',
   }),
 
   computed: {
-    browserContext () {
+    browserContext() {
       return {
         // browser states
         isList: this.isList || false,
@@ -124,11 +121,11 @@ export default {
         // browser methods
         clearNavigation: this.clearNavigation,
         navigateTo: this.navigateTo,
-        selectItem: this.selectItem
+        selectItem: this.selectItem,
       }
     },
 
-    internalItems () {
+    internalItems() {
       if (this.isOnFilter) {
         return [...this.filteredItems]
       }
@@ -140,24 +137,24 @@ export default {
       return [...this.options]
     },
 
-    isOnFilter () {
+    isOnFilter() {
       return this.searchInput && this.searchInput.length > 0
     },
 
-    hasNotFilteredElements () {
+    hasNotFilteredElements() {
       return this.isOnFilter && this.filteredItems.length === 0
     },
 
-    notFoundText () {
+    notFoundText() {
       return `${this.notFoundPrefix} "${this.searchInput}"`
-    }
+    },
   },
 
   watch: {
-    currentParentItem: '$_watchCurrentParent'
+    currentParentItem: '$_watchCurrentParent',
   },
 
-  mounted () {
+  mounted() {
     this.$_registerFilter()
   },
 
@@ -165,7 +162,7 @@ export default {
     /**
      * clears navigationItems property to hide the breadcrumbs
      */
-    clearNavigation () {
+    clearNavigation() {
       this.currentParentItem = null
       this.navigationItems = []
 
@@ -176,7 +173,7 @@ export default {
      * handles input event in search input
      * @param {String} value
      */
-    handleSearchInput (value) {
+    handleSearchInput(value) {
       this.searchInput = value
       this.isOnLoadingFilter = true
 
@@ -194,7 +191,7 @@ export default {
      * property with the new item from index
      * @param {Number} index
      */
-    navigateTo (index = 0) {
+    navigateTo(index = 0) {
       this.navigationItems = this.navigationItems.filter((_, itemIndex) => {
         return itemIndex <= index
       })
@@ -208,7 +205,7 @@ export default {
     /**
      * emits the selected item and handle with item when it's a parent
      */
-    selectItem (item) {
+    selectItem(item) {
       if (item.isParent) {
         this.currentParentItem = item
         this.navigationItems.push(item)
@@ -224,7 +221,7 @@ export default {
     /**
      * init the filterHandler with a triggerFilter debounced
      */
-    $_registerFilter () {
+    $_registerFilter() {
       this.filterHandler = debounce(this.filterDebounce, () => {
         this.$_triggerFilter()
       })
@@ -233,9 +230,9 @@ export default {
     /**
      * implement the filter logic
      */
-    $_triggerFilter () {
+    $_triggerFilter() {
       if (this.filterMethod) {
-        this.filterMethod(this.searchInput, items => {
+        this.filterMethod(this.searchInput, (items) => {
           this.filteredItems = [...items]
           this.isOnLoadingFilter = false
         })
@@ -245,7 +242,7 @@ export default {
       const options = flatOptions(this.options)
       const searchText = toLowerCase(this.searchInput)
 
-      this.filteredItems = options.filter(item => {
+      this.filteredItems = options.filter((item) => {
         const label = toLowerCase(item.label || '')
 
         return label.indexOf(searchText) !== -1
@@ -256,7 +253,7 @@ export default {
     /**
      * watcher method to currentParentItem
      */
-    $_watchCurrentParent (parentItem) {
+    $_watchCurrentParent(parentItem) {
       if (parentItem && typeof this.lazyLoadMethod === 'function') {
         this.$_triggerLazyLoad(parentItem)
       }
@@ -264,14 +261,14 @@ export default {
     /**
      * trigger the lazy load logic
      */
-    $_triggerLazyLoad (parentItem) {
+    $_triggerLazyLoad(parentItem) {
       this.isOnLazyLoad = true
 
-      this.lazyLoadMethod(parentItem, items => {
+      this.lazyLoadMethod(parentItem, (items) => {
         this.currentParentItem.items = items
         this.isOnLazyLoad = false
       })
-    }
-  }
+    },
+  },
 }
 </script>

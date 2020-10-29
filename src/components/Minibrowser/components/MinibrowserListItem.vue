@@ -5,10 +5,7 @@
       class="sb-minibrowser__list-item-name"
       @click="handleClick"
     >
-      <SbIcon
-        v-if="!isList"
-        v-bind="iconProps"
-      />
+      <SbIcon v-if="!isList" v-bind="iconProps" />
 
       <span> {{ label }} </span>
     </component>
@@ -22,7 +19,7 @@ export default {
   name: 'SbMinibrowserListItem',
 
   components: {
-    SbIcon
+    SbIcon,
   },
 
   inject: ['browserContext'],
@@ -30,44 +27,44 @@ export default {
   props: {
     as: {
       type: String,
-      default: 'a'
+      default: 'a',
     },
     isParent: Boolean,
     isEntry: Boolean,
     items: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     label: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   computed: {
-    context () {
+    context() {
       return this.browserContext()
     },
 
-    isList () {
+    isList() {
       return this.context.isList || false
     },
 
-    iconProps () {
+    iconProps() {
       return {
         name: this.isParent ? 'folder' : 'status-circle',
         size: 'small',
-        color: this.isParent ? 'primary-dark' : 'primary'
+        color: this.isParent ? 'primary-dark' : 'primary',
       }
-    }
+    },
   },
 
   methods: {
-    handleClick () {
+    handleClick() {
       this.context.selectItem({
-        ...this.$props
+        ...this.$props,
       })
-    }
-  }
+    },
+  },
 }
 </script>

@@ -1,10 +1,7 @@
 <template>
   <div class="sb-minibrowser__breadcrumbs">
     <SbBreadcrumbs>
-      <SbBreadcrumbItem
-        label="Global"
-        @click="clearNavigation"
-      />
+      <SbBreadcrumbItem label="Global" @click="clearNavigation" />
 
       <SbBreadcrumbSeparator />
 
@@ -29,7 +26,7 @@
 import {
   SbBreadcrumbs,
   SbBreadcrumbItem,
-  SbBreadcrumbSeparator
+  SbBreadcrumbSeparator,
 } from '../../Breadcrumbs'
 
 export default {
@@ -37,7 +34,7 @@ export default {
   components: {
     SbBreadcrumbs,
     SbBreadcrumbItem,
-    SbBreadcrumbSeparator
+    SbBreadcrumbSeparator,
   },
 
   inject: ['browserContext'],
@@ -45,35 +42,35 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
 
   computed: {
-    context () {
+    context() {
       return this.browserContext()
     },
 
-    breadcrumbItems () {
-      return this.items.map(navItem => {
+    breadcrumbItems() {
+      return this.items.map((navItem) => {
         return {
           label: navItem.label,
           href: navItem.label,
-          title: navItem.label
+          title: navItem.label,
         }
       })
     },
 
-    lastIndex () {
+    lastIndex() {
       return this.breadcrumbItems.length - 1
-    }
+    },
   },
 
   methods: {
     /**
      * fires the clearNavigation method in the SbMinibrowser component
      */
-    clearNavigation () {
+    clearNavigation() {
       this.context.clearNavigation()
     },
 
@@ -82,11 +79,11 @@ export default {
      * @param {Event} event
      * @param {Number} index
      */
-    navigateTo (event, index = 0) {
+    navigateTo(event, index = 0) {
       event.preventDefault()
       event.stopPropagation()
       this.context.navigateTo(index)
-    }
-  }
+    },
+  },
 }
 </script>

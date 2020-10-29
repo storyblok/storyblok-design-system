@@ -10,54 +10,54 @@ export const browserOptionsData = [
         label: 'PPC',
         items: [
           {
-            label: 'e-commerce'
+            label: 'e-commerce',
           },
           {
-            label: 'for-developers'
+            label: 'for-developers',
           },
           {
-            label: 'for-content-writers'
-          }
-        ]
+            label: 'for-content-writers',
+          },
+        ],
       },
       {
-        label: 'Hp v1'
+        label: 'Hp v1',
       },
       {
-        label: 'Hp v2'
+        label: 'Hp v2',
       },
       {
-        label: 'Hp v3'
-      }
-    ]
+        label: 'Hp v3',
+      },
+    ],
   },
   {
-    label: 'Case Studies'
+    label: 'Case Studies',
   },
   {
-    label: 'Jobs'
+    label: 'Jobs',
   },
   {
-    label: 'Quotes'
+    label: 'Quotes',
   },
   {
-    label: 'Plugin'
+    label: 'Plugin',
   },
   {
-    label: 'About'
+    label: 'About',
   },
   {
-    label: 'Pricing'
+    label: 'Pricing',
   },
   {
-    label: 'Stories'
+    label: 'Stories',
   },
   {
-    label: 'Marketing'
+    label: 'Marketing',
   },
   {
-    label: 'Open Source'
-  }
+    label: 'Open Source',
+  },
 ]
 
 export default {
@@ -70,23 +70,23 @@ export default {
     isList: false,
     options: [...browserOptionsData],
     placeholder: 'Search content items',
-    notFoundPrefix: 'No matches for'
+    notFoundPrefix: 'No matches for',
   },
   argTypes: {
     // actions
     onClearNavigation: {
-      action: 'onClearNavigation'
+      action: 'onClearNavigation',
     },
     onSelectItem: {
-      action: 'onSelectItem'
+      action: 'onSelectItem',
     },
     onNavigate: {
-      action: 'onNavigate'
-    }
-  }
+      action: 'onNavigate',
+    },
+  },
 }
 
-export const Default = args => ({
+export const Default = (args) => ({
   components: { SbMinibrowser },
 
   props: Object.keys(args),
@@ -103,10 +103,10 @@ export const Default = args => ({
       @navigate="onNavigate"
       @select-item="onSelectItem"
     />
-  `
+  `,
 })
 
-export const WithGroups = args => ({
+export const WithGroups = (args) => ({
   components: { SbMinibrowser },
 
   props: Object.keys(args),
@@ -123,7 +123,7 @@ export const WithGroups = args => ({
       @navigate="onNavigate"
       @select-item="onSelectItem"
     />
-  `
+  `,
 })
 
 WithGroups.args = {
@@ -133,22 +133,22 @@ WithGroups.args = {
       title: 'Recent Content',
       items: [
         {
-          label: 'Case Studies'
+          label: 'Case Studies',
         },
         {
-          label: 'Jobs'
-        }
-      ]
+          label: 'Jobs',
+        },
+      ],
     },
     {
       group: true,
       title: 'All Content',
-      items: [...browserOptionsData]
-    }
-  ]
+      items: [...browserOptionsData],
+    },
+  ],
 }
 
-export const Lazy = args => ({
+export const Lazy = (args) => ({
   components: { SbMinibrowser },
 
   props: Object.keys(args),
@@ -166,7 +166,7 @@ export const Lazy = args => ({
       @navigate="onNavigate"
       @select-item="onSelectItem"
     />
-  `
+  `,
 })
 
 Lazy.args = {
@@ -174,34 +174,34 @@ Lazy.args = {
     {
       label: 'Landing Page',
       isParent: true,
-      items: []
+      items: [],
     },
     {
-      label: 'Case Studies'
+      label: 'Case Studies',
     },
     {
-      label: 'Jobs'
+      label: 'Jobs',
     },
     {
-      label: 'Quotes'
+      label: 'Quotes',
     },
     {
-      label: 'Plugin'
-    }
+      label: 'Plugin',
+    },
   ],
   lazyLoadMethod: (node, resolve) => {
     setTimeout(() => {
       resolve([
         {
-          label: 'e-commerce'
+          label: 'e-commerce',
         },
         {
-          label: 'for-developers'
+          label: 'for-developers',
         },
         {
-          label: 'for-content-writers'
-        }
+          label: 'for-content-writers',
+        },
       ])
     }, 1000)
-  }
+  },
 }

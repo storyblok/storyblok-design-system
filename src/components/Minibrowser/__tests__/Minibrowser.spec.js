@@ -10,8 +10,8 @@ describe('SbMinibrowser component', () => {
   it('should perform the correct navigation', async () => {
     const wrapper = mount(SbMinibrowser, {
       propsData: {
-        options: [...browserOptionsData]
-      }
+        options: [...browserOptionsData],
+      },
     })
 
     // PROCESS FOR FIRST LEVEL
@@ -44,13 +44,11 @@ describe('SbMinibrowser component', () => {
   it('should filter the items by using the search input', async () => {
     const wrapper = mount(SbMinibrowser, {
       propsData: {
-        options: [...browserOptionsData]
-      }
+        options: [...browserOptionsData],
+      },
     })
 
-    await wrapper
-      .find('input[type="search"]')
-      .setValue('Jobs')
+    await wrapper.find('input[type="search"]').setValue('Jobs')
 
     await wrapper.vm.$nextTick()
 
@@ -64,26 +62,24 @@ describe('SbMinibrowser component', () => {
   it('should show a not found message', async () => {
     const wrapper = mount(SbMinibrowser, {
       propsData: {
-        options: [...browserOptionsData]
-      }
+        options: [...browserOptionsData],
+      },
     })
 
-    await wrapper
-      .find('input[type="search"]')
-      .setValue('foobar')
+    await wrapper.find('input[type="search"]').setValue('foobar')
 
     await wrapper.vm.$nextTick()
 
-    expect(
-      wrapper.find('.sb-minibrowser__not-found').text()
-    ).toBe('No matches for "foobar"')
+    expect(wrapper.find('.sb-minibrowser__not-found').text()).toBe(
+      'No matches for "foobar"'
+    )
   })
 
   it('should clear the input element when clicks on Escape key', async () => {
     const wrapper = mount(SbMinibrowser, {
       propsData: {
-        options: [...browserOptionsData]
-      }
+        options: [...browserOptionsData],
+      },
     })
 
     const searchInput = wrapper.find('input[type="search"]')
@@ -95,7 +91,7 @@ describe('SbMinibrowser component', () => {
     searchInput.element.focus()
 
     await searchInput.trigger('keydown', {
-      key: 'Escape'
+      key: 'Escape',
     })
 
     expect(wrapper.find(itemClass).text()).toBe('Landing Page')
@@ -107,16 +103,16 @@ describe('SbMinibrowser component', () => {
     const lazyLoadMethod = jest.fn((_, resolve) => {
       resolve([
         {
-          label: 'Test Lazy 1'
-        }
+          label: 'Test Lazy 1',
+        },
       ])
     })
 
     const wrapper = mount(SbMinibrowser, {
       propsData: {
         options: [...browserOptionsData],
-        lazyLoadMethod
-      }
+        lazyLoadMethod,
+      },
     })
 
     await wrapper.findAll(itemClass).at(0).trigger('click')
@@ -134,16 +130,16 @@ describe('SbMinibrowser component', () => {
     const filterMethod = jest.fn((_, resolve) => {
       resolve([
         {
-          label: 'Test Filter 1'
-        }
+          label: 'Test Filter 1',
+        },
       ])
     })
 
     const wrapper = mount(SbMinibrowser, {
       propsData: {
         options: [...browserOptionsData],
-        filterMethod
-      }
+        filterMethod,
+      },
     })
 
     await wrapper.find('input[type="search"]').setValue('Test')

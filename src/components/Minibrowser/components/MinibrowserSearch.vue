@@ -2,7 +2,7 @@
   <div
     class="sb-minibrowser__input-container"
     :class="{
-      'sb-minibrowser__input-container--loading': isLoading
+      'sb-minibrowser__input-container--loading': isLoading,
     }"
   >
     <input
@@ -13,7 +13,7 @@
       :placeholder="placeholder"
       @input="handleSearchInput"
       @keydown="handleSearchKeydown"
-    >
+    />
 
     <SbIcon
       v-if="showCloseIcon"
@@ -24,11 +24,7 @@
       @click="clearSearchInputValue"
     />
 
-    <SbIcon
-      v-else
-      size="small"
-      v-bind="icon"
-    />
+    <SbIcon v-else size="small" v-bind="icon" />
   </div>
 </template>
 
@@ -39,7 +35,7 @@ export default {
   name: 'SbMinibrowserSearch',
 
   components: {
-    SbIcon
+    SbIcon,
   },
 
   inject: ['browserContext'],
@@ -47,40 +43,40 @@ export default {
   props: {
     placeholder: {
       type: String,
-      default: null
+      default: null,
     },
     value: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   computed: {
-    context () {
+    context() {
       return this.browserContext()
     },
 
-    icon () {
+    icon() {
       return {
         name: this.isLoading ? 'loading' : 'search',
-        color: this.isLoading ? 'primary' : null
+        color: this.isLoading ? 'primary' : null,
       }
     },
 
-    isLoading () {
+    isLoading() {
       return this.context.isOnLoadingFilter || this.context.isOnLazyLoad
     },
 
-    isOnFilter () {
+    isOnFilter() {
       return this.context.isOnFilter
     },
 
-    showCloseIcon () {
+    showCloseIcon() {
       return this.isOnFilter && !this.isLoading
-    }
+    },
   },
 
-  mounted () {
+  mounted() {
     this.$refs.input.focus()
   },
 
@@ -88,7 +84,7 @@ export default {
     /**
      * emits an input event with the empty state
      */
-    clearSearchInputValue () {
+    clearSearchInputValue() {
       this.$emit('input', '')
     },
 
@@ -96,7 +92,7 @@ export default {
      * handles input event in search input
      * @param {Event} event
      */
-    handleSearchInput (event) {
+    handleSearchInput(event) {
       this.$emit('input', event.target.value)
     },
 
@@ -104,11 +100,11 @@ export default {
      * handles input event in search input
      * @param {Event} event
      */
-    handleSearchKeydown (event) {
+    handleSearchKeydown(event) {
       if (event.key === 'Escape') {
         this.clearSearchInputValue()
       }
-    }
-  }
+    },
+  },
 }
 </script>
