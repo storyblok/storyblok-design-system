@@ -1,4 +1,5 @@
-import { SbDropArea, SbDropAreaUpload } from './index'
+import SbDropArea from './index'
+import SbUploadDialog from '../UploadDialog'
 
 const DropTemplate = args => ({
   components: { SbDropArea },
@@ -54,7 +55,7 @@ export default {
 export const Default = DropTemplate.bind({})
 
 export const DropAreaWithUploadModal = args => ({
-  components: { SbDropArea, SbDropAreaUpload },
+  components: { SbDropArea, SbUploadDialog },
   props: Object.keys(args),
   data () {
     return {
@@ -69,7 +70,7 @@ export const DropAreaWithUploadModal = args => ({
           maxFileSize,
           maxFile,
         }"/>
-      <SbDropAreaUpload
+      <SbUploadDialog
         total-files="5"
         actual-file="1"
         file-name="test.png"
@@ -83,7 +84,7 @@ export const DropAreaWithUploadModal = args => ({
 DropAreaWithUploadModal.parameters = {
   docs: {
     description: {
-      story: 'In this story you can see how the SbDropAreaUpload component looks after dropping the files in the `SbDropArea` component, the use of this component is optional, the user can use or create new ones, as `SbDropArea` returns a callback with the dropped files.`'
+      story: 'In this story you can see how the SbUploadDialog component looks after dropping the files in the `SbDropArea` component, the use of this component is optional, the user can use or create new ones, as `SbDropArea` returns a callback with the dropped files.`'
     }
   }
 }

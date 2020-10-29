@@ -1,0 +1,42 @@
+.sb-drop-area__upload {
+    border-radius: 5px;
+    background-color: $white;
+    width: 100%;
+    max-width: 60.2rem;
+    height: 4.9rem;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0px 3px 44px 13px rgba(0, 0, 0, 0.08);
+
+    svg {
+      float: left;
+      margin-top: 1.7rem;
+      margin-left: 2rem;
+      margin-right: 1.4rem;
+    }
+
+    &-label {
+      float: left;
+      display: inline-block;
+      font-size: $font-size-md;
+      margin-top: 1.7rem;
+    }
+
+    .sb-loading--bar {
+      overflow: auto;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      bottom: -8px;
+      position: relative;
+    }
+
+  }
+
+  .sb-drop-area__time-left {
+    color: $sb-dark-blue-50;
+    font-size: $font-size-md;
+    font-weight: $font-weight-regular;
+    float: right;
+    margin-right: 1.9rem;
+    margin-top: 1.7rem;
+  }

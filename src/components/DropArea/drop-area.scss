@@ -1,0 +1,68 @@
+.sb-drop-area {
+  width: 100%;
+  background-color: $white;
+
+  &__over {
+    cursor: copy;
+    background-color: $light-gray;
+
+    .sb-drop-area__content {
+      border-radius: 50%;
+    }
+
+    .sb-drop-area__icon {
+      background-color: $sb-green-25;
+
+      svg {
+        padding-top: 2.5rem;
+        width: 4.8rem;
+        height: 4.8rem;
+      }
+    }
+
+  }
+
+  &__content {
+    margin: 0 auto;
+    height: 50rem;
+    width: 50rem;
+    border: 1px solid transparent;
+    background-color: $white;
+    transition: all .05s ease;
+  }
+
+  &__title {
+    text-align: center;
+    vertical-align: middle;
+    color: $primary-text-color;
+    font-size: $text-medium-header;
+    font-weight: $font-weight-medium;
+  }
+
+  &__label {
+    text-align: center;
+    vertical-align: middle;
+    color: $light-gray;
+    font-size: $font-size-default;
+    font-weight: $font-weight-regular;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  &__icon {
+    margin: 0 auto;
+    margin-top: 15.9rem;
+    background-color: $white;
+    border-radius: 50%;
+    height: 10.4rem;
+    width: 10.4rem;
+    transition: all .1s ease;
+
+    svg {
+      margin: 0 auto;
+      display: block;
+      width: 8.3rem;
+      height: 10.5rem;
+    }
+  }
+}

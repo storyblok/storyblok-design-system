@@ -1,5 +1,3 @@
-import SbDropArea from './SbDropArea.vue'
-import SbDropAreaUpload from './components/SbDropAreaUpload.vue'
+import SbDropArea from './DropArea.vue'
 
-export { SbDropArea, SbDropAreaUpload }
 export default SbDropArea
