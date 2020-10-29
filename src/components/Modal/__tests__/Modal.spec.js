@@ -8,14 +8,9 @@ import {
 } from '../index'
 
 import SbButton from '../../Button'
+import SbIcon from '../../Icon'
 
 describe('Tests for SbModal', () => {
-  const divElement = document.createElement('div')
-
-  divElement.id = 'root'
-
-  document.body.appendChild(divElement)
-
   const WrapperComponent = {
     components: {
       SbModal,
@@ -58,7 +53,7 @@ describe('Tests for SbModal', () => {
 
   const wrapper = shallowMount(WrapperComponent)
 
-  it('Test if Modal component renderer correctly', async () => {
+  it('Test if SBModal component renderer correctly', () => {
     expect(wrapper.findComponent(SbModal).name()).toBe('SbModal')
 
     expect(wrapper.findComponent(SbModalHeader).props().title).toBe('Awesome Title')
@@ -76,5 +71,25 @@ describe('Tests for SbModal', () => {
     await wrapper.vm.$nextTick()
 
     expect(wrapper.emitted().hide).toBeTruthy()
+  })
+
+  it('Test if SbHeader renderer correctly', () => {
+    expect(wrapper.findComponent(SbModalHeader).findComponent(SbIcon).exists()).toBe(false)
+
+    expect(wrapper.findComponent(SbModalHeader).props().title).toBe('Awesome Title')
+
+    expect(wrapper.findComponent(SbModalHeader).props().align).toBe('center')
+  })
+
+  it('Test if SbContent renderer correctly', () => {
+    expect(wrapper.findComponent(SbModalContent).text()).toBe('The body copy that explains empty state')
+
+    expect(wrapper.findComponent(SbModalContent).find('p').exists()).toBe(true)
+  })
+
+  it('Test if SbFooter renderer correctly', () => {
+    expect(wrapper.findComponent(SbModalFooter).exists()).toBe(true)
+
+    expect(wrapper.findComponent(SbModalFooter).findComponent(SbButton).exists()).toBe(true)
   })
 })
