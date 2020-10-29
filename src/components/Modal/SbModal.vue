@@ -6,6 +6,7 @@
     <SbBlokUi v-if="open">
       <div
         class="sb-modal"
+        :class="{'sb-modal__full-width' : fullWidth}"
         role="dialog"
         v-bind="{...$attrs}"
       >
