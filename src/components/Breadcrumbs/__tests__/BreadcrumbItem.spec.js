@@ -4,7 +4,7 @@ import SbTooltip from '../../Tooltip'
 
 const factory = (propsData = {}) => {
   return mount(SbBreadcrumbItem, {
-    propsData
+    propsData,
   })
 }
 
@@ -12,9 +12,9 @@ const factoryShallowMount = (propsData = {}) => {
   return shallowMount(SbBreadcrumbLink, {
     stubs: {
       RouterLink: RouterLinkStub,
-      NuxtLink: RouterLinkStub
+      NuxtLink: RouterLinkStub,
     },
-    propsData
+    propsData,
   })
 }
 
@@ -23,7 +23,7 @@ describe('SbBreadcrumbItem component', () => {
     const wrapper = factory({
       href: '/test-link',
       label: 'Just a link',
-      title: 'A simple title'
+      title: 'A simple title',
     })
 
     it('should render the tag with correct href and title attributes', () => {
@@ -40,7 +40,7 @@ describe('SbBreadcrumbItem component', () => {
     const wrapper = factory({
       href: '/test-link',
       label,
-      title
+      title,
     })
 
     it('should render the first 13 letters', () => {
@@ -62,11 +62,13 @@ describe('SbBreadcrumbItem component', () => {
   describe('when render a active item', () => {
     const wrapper = factory({
       label: 'Just a link',
-      isActive: true
+      isActive: true,
     })
 
     it('should render a <li> tag with --active class', () => {
-      expect(wrapper.attributes('class')).toBe('sb-breadcrumbs__item sb-breadcrumbs__item--active')
+      expect(wrapper.attributes('class')).toBe(
+        'sb-breadcrumbs__item sb-breadcrumbs__item--active'
+      )
     })
 
     it('should render a <li> tag with aria-current=page attribute', () => {
@@ -78,14 +80,14 @@ describe('SbBreadcrumbItem component', () => {
     it('should render a <router-link> tag with the correct attributes', () => {
       const wrapper = factoryShallowMount({
         to: {
-          name: 'TestView'
+          name: 'TestView',
         },
         label: 'Just router-link link',
-        as: 'router-link'
+        as: 'router-link',
       })
 
       expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
-        name: 'TestView'
+        name: 'TestView',
       })
       expect(wrapper.text()).toBe('Just router-link link')
     })
@@ -93,14 +95,14 @@ describe('SbBreadcrumbItem component', () => {
     it('should render a <nuxt-link> tag with the correct attributes', () => {
       const wrapper = factoryShallowMount({
         to: {
-          name: 'TestNuxtView'
+          name: 'TestNuxtView',
         },
         label: 'Just nuxt-link link',
-        as: 'nuxt-link'
+        as: 'nuxt-link',
       })
 
       expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
-        name: 'TestNuxtView'
+        name: 'TestNuxtView',
       })
       expect(wrapper.text()).toBe('Just nuxt-link link')
     })

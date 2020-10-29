@@ -1,7 +1,7 @@
 import SbTag from '.'
 import { tagTypes } from './lib'
 
-const BadgeTemplate = args => ({
+const BadgeTemplate = (args) => ({
   components: { SbTag },
   props: Object.keys(args),
   template: `
@@ -14,7 +14,7 @@ const BadgeTemplate = args => ({
 
       @close="onClick"
     />
-  `
+  `,
 })
 
 export default {
@@ -23,42 +23,42 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: ''
-      }
-    }
+        component: '',
+      },
+    },
   },
   args: {
     closable: false,
     label: 'Tag Label',
-    type: 'light'
+    type: 'light',
   },
   argTypes: {
     closable: {
       name: 'closable',
       description: 'Render a close icon on the right',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     label: {
       name: 'label',
       description: 'Label to `SbTag`',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     type: {
       name: 'type',
       description: 'Type of the `SbTag`',
       control: {
         type: 'select',
-        options: tagTypes
-      }
+        options: tagTypes,
+      },
     },
     onClick: {
-      action: 'clicked'
-    }
-  }
+      action: 'clicked',
+    },
+  },
 }
 
 export const Default = BadgeTemplate.bind({})
@@ -67,13 +67,14 @@ export const Closable = BadgeTemplate.bind({})
 
 Closable.args = {
   closable: true,
-  label: 'Closable tag'
+  label: 'Closable tag',
 }
 
 Closable.parameters = {
   docs: {
     description: {
-      story: 'When you set the `closable` property, it will be render a close icon on the right'
-    }
-  }
+      story:
+        'When you set the `closable` property, it will be render a close icon on the right',
+    },
+  },
 }

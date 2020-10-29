@@ -11,7 +11,7 @@ const factory = (
   const WrapperComponent = {
     components: { SbTooltip, ...additionalComponents },
     template,
-    ...additionalInformation
+    ...additionalInformation,
   }
 
   return mount(WrapperComponent)
@@ -34,8 +34,8 @@ describe('test SbTooltip component', () => {
     const additionalInfo = {
       methods: {
         onClick,
-        onFocus
-      }
+        onFocus,
+      },
     }
 
     const wrapper = factory(template, { SbButton }, additionalInfo)
@@ -131,8 +131,8 @@ describe('test SbTooltip component', () => {
     const onClick = jest.fn()
     const additionalInfo = {
       methods: {
-        onClick
-      }
+        onClick,
+      },
     }
 
     const wrapper = factory(template, {}, additionalInfo)
@@ -164,8 +164,8 @@ describe('test SbTooltip component', () => {
     const onClick = jest.fn()
     const additionalInfo = {
       methods: {
-        onClick
-      }
+        onClick,
+      },
     }
 
     const wrapper = factory(template, {}, additionalInfo)
@@ -173,49 +173,37 @@ describe('test SbTooltip component', () => {
     const TooltipComponent = wrapper.find('[role="tooltip"]')
 
     it('should perform the show on focus hide on blur', async () => {
-      expect(
-        TooltipComponent.attributes('aria-hidden')
-      ).toBe('true')
+      expect(TooltipComponent.attributes('aria-hidden')).toBe('true')
 
       ButtonComponent.element.focus()
 
       await wrapper.vm.$nextTick()
 
-      expect(
-        TooltipComponent.attributes('aria-hidden')
-      ).toBe('false')
+      expect(TooltipComponent.attributes('aria-hidden')).toBe('false')
 
       ButtonComponent.element.blur()
 
       await wrapper.vm.$nextTick()
 
-      expect(
-        TooltipComponent.attributes('aria-hidden')
-      ).toBe('true')
+      expect(TooltipComponent.attributes('aria-hidden')).toBe('true')
     })
 
     it('should perform the show on focus hide on escape key is pressed', async () => {
-      expect(
-        TooltipComponent.attributes('aria-hidden')
-      ).toBe('true')
+      expect(TooltipComponent.attributes('aria-hidden')).toBe('true')
 
       ButtonComponent.element.focus()
 
       await wrapper.vm.$nextTick()
 
-      expect(
-        TooltipComponent.attributes('aria-hidden')
-      ).toBe('false')
+      expect(TooltipComponent.attributes('aria-hidden')).toBe('false')
 
       await ButtonComponent.trigger('keydown', {
-        key: 'Escape'
+        key: 'Escape',
       })
 
       await wrapper.vm.$nextTick()
 
-      expect(
-        TooltipComponent.attributes('aria-hidden')
-      ).toBe('true')
+      expect(TooltipComponent.attributes('aria-hidden')).toBe('true')
     })
   })
 })

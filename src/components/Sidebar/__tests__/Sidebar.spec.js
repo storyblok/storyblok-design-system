@@ -8,7 +8,7 @@ describe('Test SbSidebar component', () => {
     const wrapper = mount(SbSidebar, {
       propsData: {
         user: { ...userData },
-        listItems: [...listItemsData]
+        listItems: [...listItemsData],
       },
       slots: {
         bottom: `
@@ -18,11 +18,11 @@ describe('Test SbSidebar component', () => {
             icon="sidebar-report"
             label="Report a problem"
           />
-        `
+        `,
       },
       stubs: {
-        SbSidebarLink: SbSidebarLink
-      }
+        SbSidebarLink: SbSidebarLink,
+      },
     })
 
     const avatarUser = wrapper.findComponent(SbAvatar)
@@ -69,7 +69,7 @@ describe('Test SbSidebar component', () => {
       propsData: {
         user: { ...userData },
         listItems: [...listItemsData],
-        minimize: true
+        minimize: true,
       },
       slots: {
         bottom: `
@@ -79,11 +79,11 @@ describe('Test SbSidebar component', () => {
             icon="sidebar-report"
             label="Report a problem"
           />
-        `
+        `,
       },
       stubs: {
-        SbSidebarLink: SbSidebarLink
-      }
+        SbSidebarLink: SbSidebarLink,
+      },
     })
 
     it('should have the --minimize class', () => {
@@ -105,7 +105,7 @@ describe('Test SbSidebar component', () => {
       expect(tooltip.props('label')).toBe('Expand Sidebar')
 
       await wrapper.setProps({
-        minimize: false
+        minimize: false,
       })
 
       await button.trigger('click')

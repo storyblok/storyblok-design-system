@@ -7,7 +7,7 @@
  * @return {Array<SelectOptionObject>}
  */
 export const buildSelectOptions = (iterations, ...args) => {
-  return [...Array(iterations).keys()].map(number => {
+  return [...Array(iterations).keys()].map((number) => {
     const value = number + 1
     return factorySelectOption(value, ...args)
   })
@@ -31,6 +31,6 @@ export const factorySelectOption = (value, factoryAriaLabel) => {
   return {
     value: value,
     label: value,
-    ariaLabel: factoryAriaLabel(value)
+    ariaLabel: factoryAriaLabel(value),
   }
 }

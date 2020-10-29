@@ -15,6 +15,6 @@ export const factoryMountComponent = (Component, options = {}) => {
 
   return mount(Component, {
     attachTo: '#root',
-    ...options
+    ...options,
   })
 }

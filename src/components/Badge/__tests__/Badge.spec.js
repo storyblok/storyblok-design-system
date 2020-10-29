@@ -3,9 +3,9 @@ import { mount } from '@vue/test-utils'
 import SbIcon from '../../Icon'
 import SbBadge from '..'
 
-const factory = propsData => {
+const factory = (propsData) => {
   return mount(SbBadge, {
-    propsData
+    propsData,
   })
 }
 
@@ -13,7 +13,7 @@ describe('SbBadge component', () => {
   describe('default behavior, when just pass type and label properties', () => {
     const wrapper = factory({
       type: 'negative',
-      label: 'Badge error label'
+      label: 'Badge error label',
     })
 
     it('should have a properly type class', () => {
@@ -36,11 +36,11 @@ describe('SbBadge component', () => {
       const label = 'Badge from slot'
       const wrapper = mount(SbBadge, {
         propsData: {
-          type: 'positive'
+          type: 'positive',
         },
         slots: {
-          default: [label]
-        }
+          default: [label],
+        },
       })
 
       expect(wrapper.text()).toBe(label)
@@ -51,7 +51,7 @@ describe('SbBadge component', () => {
     const wrapper = factory({
       contract: true,
       type: 'info',
-      label: 'Badge info label'
+      label: 'Badge info label',
     })
 
     it('should have the correct type class', () => {
@@ -75,7 +75,7 @@ describe('SbBadge component', () => {
     const wrapper = factory({
       type: 'info',
       onlyIcon: true,
-      label: 'Badge info label'
+      label: 'Badge info label',
     })
 
     it('should have the correct type class', () => {
@@ -100,7 +100,7 @@ describe('SbBadge component', () => {
     const wrapper = factory({
       type: 'warning',
       inlineLabel: true,
-      label
+      label,
     })
 
     it('should have the correct type class', () => {
@@ -126,7 +126,7 @@ describe('SbBadge component', () => {
     const wrapper = factory({
       type: 'warning',
       inlineLabel: true,
-      number
+      number,
     })
 
     it('should have the correct type class', () => {

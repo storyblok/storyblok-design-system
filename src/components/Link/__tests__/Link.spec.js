@@ -2,12 +2,12 @@ import SbLink from '..'
 import SbIcon from '../../Icon'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 
-const factory = propsData => {
+const factory = (propsData) => {
   return mount(SbLink, {
     propsData,
     stubs: {
-      RouterLink: RouterLinkStub
-    }
+      RouterLink: RouterLinkStub,
+    },
   })
 }
 
@@ -16,7 +16,7 @@ describe('Test SbLink component', () => {
     const wrapper = factory({
       label: 'Primary',
       href: 'http://storyblok.com',
-      title: 'To home page'
+      title: 'To home page',
     })
     const Link = wrapper.find('a')
 
@@ -34,7 +34,7 @@ describe('Test SbLink component', () => {
       label,
       href: 'http://storyblok.com/',
       title: 'Link with icon',
-      icon: 'checkmark'
+      icon: 'checkmark',
     })
 
     const Icon = wrapper.findComponent(SbIcon)
@@ -55,25 +55,19 @@ describe('Test SbLink component', () => {
       label,
       to: '/auth',
       title: 'Link with icon',
-      as: 'router-link'
+      as: 'router-link',
     })
 
     const routerLinkComponent = wrapper.findComponent(RouterLinkStub)
 
     it('should the component exists', () => {
-      expect(
-        routerLinkComponent.exists()
-      ).toBe(true)
+      expect(routerLinkComponent.exists()).toBe(true)
 
-      expect(
-        routerLinkComponent.text()
-      ).toBe(label)
+      expect(routerLinkComponent.text()).toBe(label)
     })
 
     it('should the component has the correct props', () => {
-      expect(
-        routerLinkComponent.props('to')
-      ).toBe('/auth')
+      expect(routerLinkComponent.props('to')).toBe('/auth')
     })
   })
 
@@ -83,11 +77,11 @@ describe('Test SbLink component', () => {
     const wrapper = mount(SbLink, {
       propsData: {
         to: '/auth',
-        title: 'Link with icon'
+        title: 'Link with icon',
       },
       slots: {
-        default: [label]
-      }
+        default: [label],
+      },
     })
 
     it('should render the correct label', () => {

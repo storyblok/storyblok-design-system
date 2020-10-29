@@ -19,7 +19,7 @@ export const truncate = (letters, word) => {
  * @param  {Number} length
  * @return {String}
  */
-export const randomString = length => {
+export const randomString = (length) => {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
   let result = ''

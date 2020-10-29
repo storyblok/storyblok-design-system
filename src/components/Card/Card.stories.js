@@ -1,18 +1,8 @@
-import {
-  SbCard,
-  SbCardHeader,
-  SbCardContent,
-  SbCardFooter
-} from '.'
+import { SbCard, SbCardHeader, SbCardContent, SbCardFooter } from '.'
 
 import SbLink from '../Link'
 
-import {
-  SbMenu,
-  SbMenuButton,
-  SbMenuItem,
-  SbMenuList
-} from '../Menu'
+import { SbMenu, SbMenuButton, SbMenuItem, SbMenuList } from '../Menu'
 
 export default {
   title: 'SbCard',
@@ -20,47 +10,48 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Cards or simple content box, used to divide content elements on page.'
-      }
-    }
+        component:
+          'Cards or simple content box, used to divide content elements on page.',
+      },
+    },
   },
   args: {
     as: 'span',
     title: 'Card Title',
-    isLoading: false
+    isLoading: false,
   },
   argTypes: {
     as: {
       name: 'as',
       description: 'Define which tag element will be used to title text.',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     isLoading: {
       name: 'isLoading',
       description: 'Define if the card has a loading state',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     title: {
       name: 'title',
       description: 'Title for the card.',
       control: {
-        type: 'text'
-      }
-    }
-  }
+        type: 'text',
+      },
+    },
+  },
 }
 
-export const Default = args => ({
+export const Default = (args) => ({
   components: {
     SbLink,
     SbCard,
     SbCardHeader,
     SbCardContent,
-    SbCardFooter
+    SbCardFooter,
   },
   props: Object.keys(args),
   template: `
@@ -90,13 +81,13 @@ export const Default = args => ({
         />
       </SbCardFooter>
   </SbCard >
-  `
+  `,
 })
 
-export const WithoutHeaderAndFooter = args => ({
+export const WithoutHeaderAndFooter = (args) => ({
   components: {
     SbCard,
-    SbCardContent
+    SbCardContent,
   },
 
   props: Object.keys(args),
@@ -118,24 +109,25 @@ export const WithoutHeaderAndFooter = args => ({
         </div>
       </SbCardContent>
     </SbCard >
-  `
+  `,
 })
 
 WithoutHeaderAndFooter.parameters = {
   docs: {
     description: {
-      story: 'Cards without the header and footer are for showing only the content, but continue to divide the content while maintaining the style of cards.'
-    }
-  }
+      story:
+        'Cards without the header and footer are for showing only the content, but continue to divide the content while maintaining the style of cards.',
+    },
+  },
 }
 
-export const Loading = args => ({
+export const Loading = (args) => ({
   components: {
     SbLink,
     SbCard,
     SbCardHeader,
     SbCardContent,
-    SbCardFooter
+    SbCardFooter,
   },
 
   props: Object.keys(args),
@@ -167,22 +159,23 @@ export const Loading = args => ({
         />
       </SbCardFooter>
   </SbCard >
-  `
+  `,
 })
 
 Loading.args = {
-  isLoading: true
+  isLoading: true,
 }
 
 Loading.parameters = {
   docs: {
     description: {
-      story: 'You can set the `isLoading` property that shows a `SbLoading` component on the top of content'
-    }
-  }
+      story:
+        'You can set the `isLoading` property that shows a `SbLoading` component on the top of content',
+    },
+  },
 }
 
-export const WithMenuComponent = args => ({
+export const WithMenuComponent = (args) => ({
   components: {
     SbCard,
     SbLink,
@@ -192,27 +185,27 @@ export const WithMenuComponent = args => ({
     SbMenu,
     SbMenuButton,
     SbMenuItem,
-    SbMenuList
+    SbMenuList,
   },
 
   data: () => ({
     options: [
       {
         icon: 'plus',
-        label: 'Option 1'
+        label: 'Option 1',
       },
       {
         icon: 'calendar',
         label: 'Option 2',
-        isDisabled: true
+        isDisabled: true,
       },
       {
-        separator: true
+        separator: true,
       },
       {
         icon: 'close',
         label: 'Delete',
-        type: 'negative'
+        type: 'negative',
       },
       {
         group: {
@@ -220,17 +213,17 @@ export const WithMenuComponent = args => ({
           items: [
             {
               icon: 'close',
-              label: 'Group Item 1'
+              label: 'Group Item 1',
             },
             {
               icon: 'close',
               label: 'Group Item 2',
-              type: 'negative'
-            }
-          ]
-        }
-      }
-    ]
+              type: 'negative',
+            },
+          ],
+        },
+      },
+    ],
   }),
 
   props: Object.keys(args),
@@ -262,13 +255,14 @@ export const WithMenuComponent = args => ({
         />
       </SbCardFooter>
   </SbCard >
-  `
+  `,
 })
 
 WithMenuComponent.parameters = {
   docs: {
     description: {
-      story: 'You can use the `SbLoading` component inside the `SbCardContent` to perform a loading state to card'
-    }
-  }
+      story:
+        'You can use the `SbLoading` component inside the `SbCardContent` to perform a loading state to card',
+    },
+  },
 }
