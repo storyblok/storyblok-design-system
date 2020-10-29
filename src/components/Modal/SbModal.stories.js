@@ -152,7 +152,7 @@ ModalWithoutFooter.parameters = {
 }
 
 export const ModalWithoutHeader = args => ({
-  components: { SbModal, SbModalContent, SbButton },
+  components: { SbModal, SbModalContent, SbButton, SbModalFooter },
   props: Object.keys(args),
   methods: {
     handleShowModal () {
@@ -176,7 +176,9 @@ export const ModalWithoutHeader = args => ({
         <p style="text-align: center;">This awesome dont have Title or Header!</p>
       </SbModalContent>
       
-      <SbButton label="Click me!" type="primary"/>
+      <SbModalFooter>
+        <SbButton label="Click me!" type="primary"/>
+      </SbModalFooter>
     </SbModal>
   </div>`
 })
