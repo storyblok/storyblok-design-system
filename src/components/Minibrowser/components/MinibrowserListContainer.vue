@@ -13,9 +13,10 @@
       />
     </template>
 
-    <template v-if="hasOtherItems">
-      <SbMinibrowserList :items="otherItems" />
-    </template>
+    <SbMinibrowserList
+      v-if="hasOtherItems"
+      :items="otherItems"
+    />
   </div>
 </template>
 
