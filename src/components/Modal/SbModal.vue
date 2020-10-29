@@ -5,7 +5,6 @@
   >
     <SbBlokUi v-if="open">
       <div
-
         class="sb-modal"
         role="dialog"
         v-bind="{...$attrs}"
@@ -42,7 +41,6 @@ export default {
     SbBlokUi
   },
 
-  // v-click-outside="handleCloseModal"
   directives: {
     ClickOutside
   },
@@ -89,39 +87,5 @@ export default {
 </script>
 
 <style lang="scss">
-.sb-modal {
-  width: 100%;
-  max-width: 620px;
-  min-height: 199px;
-  border-radius: 5px;
-  background-color: $white;
-  box-shadow: 0px 2px 17px 3px rgba(34, 42, 69, 0.07);
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  padding: 35px;
-  box-sizing: border-box;
-  animation: fadein .5s;
-
-  &__close-button {
-    float: right;
-    z-index: 1;
-    overflow: hidden;
-    border: none;
-    background-color: $white;
-    cursor: pointer;
-    padding: 0;
-    margin-top: -20px;
-    margin-right: -20px;
-  }
-
-  @keyframes fadein {
-    from {
-      opacity:0;
-    }
-    to {
-      opacity:1;
-    }
-  }
-}
+  @import './modal.scss';
 </style>

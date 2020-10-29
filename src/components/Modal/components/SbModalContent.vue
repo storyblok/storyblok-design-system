@@ -25,12 +25,5 @@ export default {
 </script>
 
 <style lang="scss">
-.sb-modal-content {
-  width: 100%;
-  padding: 5px 0px 20px 0px;
-  box-sizing: border-box;
-  min-height: 30px;
-  font-size: $font-size-default;
-  color: $sb-dark-blue-75;
-}
+  @import '../modal.scss';
 </style>

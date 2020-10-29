@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="title"
     class="sb-modal-header"
     :class="{ 'sb-modal-header--left': returnAlignment }"
   >
@@ -48,35 +49,5 @@ export default {
 </script>
 
 <style lang="scss">
-.sb-modal-header {
-  width: 100%;
-  margin: 0;
-  padding-bottom: 10px;
-  box-sizing: border-box;
-
-  svg {
-      margin: 0 auto;
-      display: block;
-      margin-bottom: 30px;
-    }
-
-    &--left {
-      display: inline-flex;
-      text-align: left;
-      vertical-align: middle;
-      line-height: 2;
-      padding-top: 0;
-
-      svg {
-        margin: 0;
-        margin-right: 25px;
-      }
-    }
-
-  &__title {
-    font-size: $text-header;
-    font-weight: $font-weight-bold;
-    text-align: center;
-  }
-}
+  @import '../modal.scss';
 </style>

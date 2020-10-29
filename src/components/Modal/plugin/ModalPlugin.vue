@@ -1,20 +1,16 @@
 <template>
   <SbModal
     :is-open-modal="open"
-    :modal-target="modalTarget"
+    :modal-target="modalTarget || '#root'"
     @hide="hide"
   >
     <SbModalHeader
-      v-if="title"
       :title="title"
       :icon="icon"
       :align="align"
     />
     <SbModalContent :modal-content="content" />
-    <SbModalFooter
-      v-if="footerContent"
-      :footer="footerContent"
-    />
+    <SbModalFooter :footer="footerContent" />
   </SbModal>
 </template>
 
@@ -32,18 +28,36 @@ export default {
 
   props: {
     // modal
-    modalTarget: String,
+    modalTarget: {
+      type: String,
+      default: null
+    },
 
     // modal-header
-    title: String,
-    icon: String,
-    align: String,
+    align: {
+      type: String,
+      default: null
+    },
+    icon: {
+      type: String,
+      default: null
+    },
+    title: {
+      type: String,
+      default: null
+    },
 
     // modal-content
-    content: String,
+    content: {
+      type: String,
+      default: null
+    },
 
     // modal-footer
-    footerContent: String
+    footerContent: {
+      type: String,
+      default: null
+    }
   },
 
   data: () => ({
