@@ -10,8 +10,8 @@ describe('SbSelect component', () => {
       propsData: {
         label: 'Choose an option',
         options: [...defaultSelectOptionsData],
-        value: null
-      }
+        value: null,
+      },
     })
 
     const innerElement = wrapper.find('.sb-select-inner')
@@ -50,7 +50,7 @@ describe('SbSelect component', () => {
 
     it('should make visible the value in the inner element', async () => {
       await wrapper.setProps({
-        value: 'Option 3'
+        value: 'Option 3',
       })
 
       expect(innerElement.text()).toBe('Option 3')
@@ -60,14 +60,14 @@ describe('SbSelect component', () => {
   describe('multiple option logic', () => {
     const wrapper = mount({
       components: {
-        SbSelect
+        SbSelect,
       },
 
       data: () => ({
         label: 'Choose an option',
         options: [...defaultSelectOptionsData],
         value: [],
-        multiple: true
+        multiple: true,
       }),
 
       template: `
@@ -79,7 +79,7 @@ describe('SbSelect component', () => {
           }"
           v-model="value"
         />
-      `
+      `,
     })
 
     const innerElement = wrapper.find('.sb-select-inner')
@@ -100,42 +100,30 @@ describe('SbSelect component', () => {
       expect(wrapper.find('ul').exists()).toBe(true)
 
       // should emit the input event with the correct value
-      expect(wrapper.vm.value).toEqual([
-        'Option 2'
-      ])
+      expect(wrapper.vm.value).toEqual(['Option 2'])
 
       // clicking on the element1
       await element2.trigger('click')
 
       // should emit the input event with the correct value
-      expect(wrapper.vm.value).toEqual([
-        'Option 2',
-        'Option 4'
-      ])
+      expect(wrapper.vm.value).toEqual(['Option 2', 'Option 4'])
 
       // clicking on the element1
       await element3.trigger('click')
 
       // should emit the input event with the correct value
-      expect(wrapper.vm.value).toEqual([
-        'Option 2',
-        'Option 4',
-        'Option 6'
-      ])
+      expect(wrapper.vm.value).toEqual(['Option 2', 'Option 4', 'Option 6'])
 
       // clicking on the element1
       await element2.trigger('click')
 
       // should emit the input event with the correct value
-      expect(wrapper.vm.value).toEqual([
-        'Option 2',
-        'Option 6'
-      ])
+      expect(wrapper.vm.value).toEqual(['Option 2', 'Option 6'])
     })
 
     it('should change the select inner with the value', async () => {
       await wrapper.setData({
-        value: ['Option 1', 'Option 4']
+        value: ['Option 1', 'Option 4'],
       })
 
       expect(innerElement.text()).toBe('Option 1, Option 4')

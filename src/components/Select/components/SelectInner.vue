@@ -2,7 +2,7 @@
   <div
     class="sb-select-inner"
     :class="{
-      'sb-select-inner--with-value': hasValue
+      'sb-select-inner--with-value': hasValue,
     }"
     v-on="$listeners"
   >
@@ -35,24 +35,24 @@ export default {
   props: {
     label: {
       type: String,
-      default: ''
+      default: '',
     },
 
     leftIcon: {
       type: String,
-      default: null
+      default: null,
     },
 
     multiple: Boolean,
 
     value: {
       type: [String, Number, Array],
-      default: null
-    }
+      default: null,
+    },
   },
 
   computed: {
-    hasValue () {
+    hasValue() {
       if (this.multiple || isArray(this.value)) {
         return this.value.length > 0
       }
@@ -60,7 +60,7 @@ export default {
       return this.value !== null
     },
 
-    innerLabel () {
+    innerLabel() {
       if (!this.hasValue) {
         return this.label
       }
@@ -68,9 +68,9 @@ export default {
       return this.multiple ? this.itemsValue : this.value
     },
 
-    itemsValue () {
+    itemsValue() {
       return isArray(this.value) && this.value.join(', ')
-    }
-  }
+    },
+  },
 }
 </script>

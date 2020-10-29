@@ -24,7 +24,7 @@ export default {
   props: {
     value: {
       type: [String, Number, Array],
-      default: null
+      default: null,
     },
 
     multiple: Boolean,
@@ -32,17 +32,17 @@ export default {
     options: {
       type: Array,
       required: true,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
 
   methods: {
     /**
      * forward the 'emit-value' event
      */
-    handleEmitValue (value) {
+    handleEmitValue(value) {
       this.$emit('emit-value', value)
-    }
-  }
+    },
+  },
 }
 </script>

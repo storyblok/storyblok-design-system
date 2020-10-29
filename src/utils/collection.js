@@ -21,4 +21,4 @@ export const includes = (iterable, value) => {
  * @param   {any} value
  * @returns {Boolean}
  */
-export const isArray = value => Array.isArray(value)
+export const isArray = (value) => Array.isArray(value)

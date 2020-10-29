@@ -2,7 +2,7 @@
   <div
     class="sb-select"
     :class="{
-      'sb-select--multiple': multiple
+      'sb-select--multiple': multiple,
     }"
   >
     <SbSelectInner
@@ -33,14 +33,14 @@ export default {
 
   components: {
     SbSelectInner,
-    SbSelectList
+    SbSelectList,
   },
 
   props: {
     // component props
     value: {
       type: [String, Number, Array],
-      default: null
+      default: null,
     },
     multiple: Boolean,
 
@@ -48,30 +48,30 @@ export default {
     label: {
       type: String,
       default: '',
-      required: true
+      required: true,
     },
     leftIcon: {
       type: String,
-      default: null
+      default: null,
     },
 
     // list props
     options: {
       type: Array,
       required: true,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
 
   data: () => ({
-    isOpen: false
+    isOpen: false,
   }),
 
   methods: {
     /**
      * shows the items list
      */
-    show () {
+    show() {
       this.isOpen = true
       this.$emit('show')
     },
@@ -79,7 +79,7 @@ export default {
     /**
      * hides the items list
      */
-    hide () {
+    hide() {
       this.isOpen = false
       this.$emit('hide')
     },
@@ -87,7 +87,7 @@ export default {
     /**
      * shows or hides the items list according to internal state
      */
-    handleSelectInnerClick () {
+    handleSelectInnerClick() {
       if (this.isOpen) {
         this.hide()
       } else {
@@ -98,7 +98,7 @@ export default {
     /**
      * emits the input event to make this component compatible with v-model directive
      */
-    handleEmitValue (value) {
+    handleEmitValue(value) {
       // doesn't close the list
       if (this.multiple) {
         this.$emit('input', this.processMultipleValue(value))
@@ -112,16 +112,13 @@ export default {
     /**
      * returns the processed value to input event
      */
-    processMultipleValue (value) {
+    processMultipleValue(value) {
       if (includes(this.value, value)) {
-        return this.value.filter(val => val !== value)
+        return this.value.filter((val) => val !== value)
       }
 
-      return [
-        ...this.value || [],
-        value
-      ]
-    }
-  }
+      return [...(this.value || []), value]
+    },
+  },
 }
 </script>

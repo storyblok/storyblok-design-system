@@ -1,30 +1,30 @@
 import { SbSelect } from '.'
 
 // @vue/component
-const SelectTemplate = args => ({
+const SelectTemplate = (args) => ({
   components: {
-    SbSelect
+    SbSelect,
   },
 
   props: Object.keys(args),
 
   data: () => ({
-    internalValue: null
+    internalValue: null,
   }),
 
   watch: {
     value: {
-      handler (newValue) {
+      handler(newValue) {
         this.internalValue = newValue
       },
-      immediate: true
+      immediate: true,
     },
     multiple: {
-      handler (isMultiple) {
+      handler(isMultiple) {
         this.internalValue = isMultiple ? [] : null
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
 
   template: `
@@ -35,38 +35,38 @@ const SelectTemplate = args => ({
       :left-icon="leftIcon"
       v-model="internalValue"
     />
-  `
+  `,
 })
 
 export const defaultSelectOptionsData = [
   {
     label: 'Option 1',
-    value: 'Option 1'
+    value: 'Option 1',
   },
   {
     label: 'Option 2',
-    value: 'Option 2'
+    value: 'Option 2',
   },
   {
     label: 'Option 3',
-    value: 'Option 3'
+    value: 'Option 3',
   },
   {
     label: 'Option 4',
-    value: 'Option 4'
+    value: 'Option 4',
   },
   {
     label: 'Option 5',
-    value: 'Option 5'
+    value: 'Option 5',
   },
   {
     label: 'Option 6',
-    value: 'Option 6'
+    value: 'Option 6',
   },
   {
     label: 'Option 7',
-    value: 'Option 7'
-  }
+    value: 'Option 7',
+  },
 ]
 
 export default {
@@ -78,8 +78,8 @@ export default {
     options: [...defaultSelectOptionsData],
     value: null,
     multiple: false,
-    leftIcon: null
-  }
+    leftIcon: null,
+  },
 }
 
 export const Default = SelectTemplate.bind({})
@@ -87,11 +87,11 @@ export const Default = SelectTemplate.bind({})
 export const Multiple = SelectTemplate.bind({})
 
 Multiple.args = {
-  multiple: true
+  multiple: true,
 }
 
 export const WithIcon = SelectTemplate.bind({})
 
 WithIcon.args = {
-  leftIcon: 'calendar'
+  leftIcon: 'calendar',
 }
