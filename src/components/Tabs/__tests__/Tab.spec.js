@@ -7,8 +7,8 @@ describe('Test SbTab component', () => {
       propsData: {
         label: 'Tab Editable',
         name: 'editable-tab',
-        editable: true
-      }
+        editable: true,
+      },
     })
 
     // select the button to edit the tag
@@ -27,15 +27,17 @@ describe('Test SbTab component', () => {
 
       // and, when it triggers an enter
       await inputElement.trigger('keydown', {
-        key: 'Enter'
+        key: 'Enter',
       })
 
       // the SbTab should emit an edit-tab event with the new data from input
       expect(wrapper.emitted('edit-tab')).toEqual([
-        [{
-          label: 'New value from test',
-          name: 'editable-tab'
-        }]
+        [
+          {
+            label: 'New value from test',
+            name: 'editable-tab',
+          },
+        ],
       ])
     })
 
@@ -52,7 +54,7 @@ describe('Test SbTab component', () => {
 
       // and, when it triggers an escape
       await inputElement.trigger('keydown', {
-        key: 'Escape'
+        key: 'Escape',
       })
 
       // the SbTab should emit a cancel-edit-tab event

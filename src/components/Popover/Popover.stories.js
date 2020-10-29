@@ -7,62 +7,62 @@ export default {
   args: {
     offset: [0, 10],
     placement: 'auto',
-    reference: '#buttontest'
+    reference: '#buttontest',
   },
   argTypes: {
     anchor: {
       name: 'anchor',
       description: 'Reference to element itself',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     offset: {
       name: 'offset',
       description: 'An array of numbers',
       control: {
-        type: 'array'
-      }
+        type: 'array',
+      },
     },
     placement: {
       name: 'placement',
       description: 'Title for notification',
       control: {
         type: 'select',
-        options: placementOptions
-      }
+        options: placementOptions,
+      },
     },
     parentElementTag: {
       name: 'parentElementTag',
       description: 'Tag element for parent tag in Popover',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     reference: {
       name: 'reference',
       description: 'Reference to element trigger popover',
       control: {
-        type: 'text'
-      }
-    }
-  }
+        type: 'text',
+      },
+    },
+  },
 }
 
 // @vue/component
-export const Default = args => ({
+export const Default = (args) => ({
   components: {
     SbButton,
-    SbPopover
+    SbPopover,
   },
   props: Object.keys(args),
   data: () => ({
-    active: false
+    active: false,
   }),
   methods: {
-    handleClick () {
+    handleClick() {
       this.$refs.popover.toggle()
-    }
+    },
   },
   template: `
     <div>
@@ -80,5 +80,5 @@ export const Default = args => ({
         </ul>
       </SbPopover>
     </div>
-  `
+  `,
 })

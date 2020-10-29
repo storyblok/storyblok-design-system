@@ -15,24 +15,24 @@ const SbIcon = {
     color: {
       type: String,
       default: null,
-      validator: (color) => availableColors.indexOf(color) !== -1
+      validator: (color) => availableColors.indexOf(color) !== -1,
     },
     name: {
       type: String,
-      default: null
+      default: null,
     },
     role: {
       type: String,
-      default: 'presentation'
+      default: 'presentation',
     },
     size: {
       type: String,
       default: null,
-      validator: (size) => iconSizes.indexOf(size) !== -1
-    }
+      validator: (size) => iconSizes.indexOf(size) !== -1,
+    },
   },
 
-  render (h) {
+  render(h) {
     const iconDeff = getSvgIcon(this.name)
     const sizeClass = this.size ? `sb-icon--${this.size}` : null
     const colorClass = this.color ? `sb-icon--color-${this.color}` : null
@@ -42,16 +42,16 @@ const SbIcon = {
       class: [sizeClass, colorClass],
       attrs: {
         role: this.role || 'presentation',
-        viewBox: iconDeff.viewBox
+        viewBox: iconDeff.viewBox,
       },
       domProps: {
-        innerHTML: iconDeff.path
+        innerHTML: iconDeff.path,
       },
       on: {
-        ...this.$listeners
-      }
+        ...this.$listeners,
+      },
     })
-  }
+  },
 }
 
 export default SbIcon

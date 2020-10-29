@@ -1,6 +1,4 @@
-import {
-  SbDataTableInput
-} from '.'
+import { SbDataTableInput } from '.'
 
 /**
  * SbDataTableBodyRow
@@ -12,76 +10,90 @@ export const SbDataTableBodyRow = {
 
   props: {
     allowSelection: {
-      type: Boolean
+      type: Boolean,
     },
     headers: {
-      type: Array
+      type: Array,
     },
     row: {
-      type: Object
+      type: Object,
     },
     selectedRows: {
-      type: Array
-    }
+      type: Array,
+    },
   },
 
   computed: {
-    context () {
+    context() {
       return this.dataTableContext()
     },
 
-    isSelected () {
-      return this.selectedRows.some(row => row === this.row)
-    }
+    isSelected() {
+      return this.selectedRows.some((row) => row === this.row)
+    },
   },
 
   methods: {
-    handleRowSelected () {
+    handleRowSelected() {
       if (!this.allowSelection) return
 
       this.isSelected
         ? this.context.deselectRow(this.row)
         : this.context.selectRow(this.row)
-    }
+    },
   },
 
   inject: ['dataTableContext'],
 
-  render (h) {
-    const mainColumnIndex = this.headers.findIndex(col => col.main)
+  render(h) {
+    const mainColumnIndex = this.headers.findIndex((col) => col.main)
 
-    return h('tr', {
-      staticClass: 'sb-data-table__row',
-      class: {
-        'sb-data-table__row--selected': this.isSelected && this.allowSelection
+    return h(
+      'tr',
+      {
+        staticClass: 'sb-data-table__row',
+        class: {
+          'sb-data-table__row--selected':
+            this.isSelected && this.allowSelection,
+        },
+        on: {
+          click: this.handleRowSelected,
+        },
       },
-      on: {
-        click: this.handleRowSelected
-      }
-    }, [
-      this.allowSelection && h('td', {
-        staticClass: 'sb-data-table__body-cell',
-        class: 'sb-data-table__col-selection'
-      }, [
-        h(SbDataTableInput, {
-          props: {
-            value: this.isSelected
-          },
-          on: {
-            click: this.handleRowSelected
-          }
-        })
-      ]),
-      this.headers.map((elem, index) => {
-        return h('td', {
-          staticClass: 'sb-data-table__body-cell',
-          class: {
-            'sb-data-table__col-main': mainColumnIndex === index
-          }
-        }, this.row[elem.value])
-      })
-    ])
-  }
+      [
+        this.allowSelection &&
+          h(
+            'td',
+            {
+              staticClass: 'sb-data-table__body-cell',
+              class: 'sb-data-table__col-selection',
+            },
+            [
+              h(SbDataTableInput, {
+                props: {
+                  value: this.isSelected,
+                },
+                on: {
+                  click: this.handleRowSelected,
+                },
+              }),
+            ]
+          ),
+        this.headers.map((elem, index) => {
+          return h(
+            'td',
+            {
+              staticClass: 'sb-data-table__body-cell',
+              class: {
+                'sb-data-table__col-main': mainColumnIndex === index,
+              },
+            },
+            this.row[elem.value]
+          )
+        }),
+      ]
+    )
+  },
 }
 
 /**
@@ -96,37 +108,37 @@ export const SbDataTableBody = {
     allowSelection: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
     headers: {
       required: false,
       type: Array,
-      default: () => []
+      default: () => [],
     },
     items: {
       required: false,
       type: Array,
-      default: () => []
+      default: () => [],
     },
     selectedRows: {
       required: false,
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
 
-  render (h) {
+  render(h) {
     return h('tbody', [
-      this.items.map(row => {
+      this.items.map((row) => {
         return h(SbDataTableBodyRow, {
           props: {
             allowSelection: this.allowSelection,
             headers: this.headers,
             row: row,
-            selectedRows: this.selectedRows
-          }
+            selectedRows: this.selectedRows,
+          },
         })
-      })
+      }),
     ])
-  }
+  },
 }

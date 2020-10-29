@@ -12,48 +12,48 @@ const SbTag = {
   props: {
     closable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     label: {
       type: String,
-      default: null
+      default: null,
     },
     type: {
       type: String,
       default: 'light',
-      validator: type => includes(tagTypes, type)
-    }
+      validator: (type) => includes(tagTypes, type),
+    },
   },
 
-  render (h) {
+  render(h) {
     const tagProps = {
       staticClass: `sb-tag sb-tag--${this.type}`,
       class: {
-        'sb-tag--closable': this.closable
-      }
+        'sb-tag--closable': this.closable,
+      },
     }
 
     const renderClosableIcon = () => {
       return h(SbIcon, {
         props: {
           name: 'close',
-          size: 'small'
+          size: 'small',
         },
         on: {
           click: (event) => {
             this.$emit('close', event)
-          }
-        }
+          },
+        },
       })
     }
 
     const children = [
       this.label || this.$slots.default,
-      this.closable && renderClosableIcon()
+      this.closable && renderClosableIcon(),
     ]
 
     return h('div', tagProps, children)
-  }
+  },
 }
 
 export default SbTag

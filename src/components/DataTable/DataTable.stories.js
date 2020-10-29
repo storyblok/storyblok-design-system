@@ -3,16 +3,19 @@ import SbDataTable from '.'
 const description = {
   allowSelection: 'Allow row selection.',
   actionsMenu: 'Select a row to show the actions menu',
-  component: 'Data tables are used to organize and display data efficiently. `SbDataTable` component allows for customization with additional functionality, as needed by your product’s users.',
+  component:
+    'Data tables are used to organize and display data efficiently. `SbDataTable` component allows for customization with additional functionality, as needed by your product’s users.',
   headers: 'It must be an array that represents the header content.',
   hideHeader: 'Toggle table header.',
   isLoading: 'Show a loading over the table.',
-  items: 'It must be an array. Each entry in the array represents a row in the table.',
-  selectionMode: 'By default the selection mode is single, meaning only one row at a time can be selected. Use multiple, so multiple rows can be selected. `allowSelection: true` is required.',
-  striped: 'Add zebra-striping to any table row within the `<tbody>.`'
+  items:
+    'It must be an array. Each entry in the array represents a row in the table.',
+  selectionMode:
+    'By default the selection mode is single, meaning only one row at a time can be selected. Use multiple, so multiple rows can be selected. `allowSelection: true` is required.',
+  striped: 'Add zebra-striping to any table row within the `<tbody>.`',
 }
 
-const DataTableTemplate = args => ({
+const DataTableTemplate = (args) => ({
   components: { SbDataTable },
   props: Object.keys(args),
   template: `
@@ -27,7 +30,7 @@ const DataTableTemplate = args => ({
         striped
       }"
     />
-  `
+  `,
 })
 
 export default {
@@ -37,9 +40,9 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: description.component
-      }
-    }
+        component: description.component,
+      },
+    },
   },
   args: {
     allowSelection: false,
@@ -48,54 +51,54 @@ export default {
     isLoading: false,
     items: [],
     selectionMode: 'single',
-    striped: false
+    striped: false,
   },
   argTypes: {
     allowSelection: {
       name: 'allowSelection',
       description: description.allowSelection,
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     headers: {
       name: 'headers',
-      description: description.headers
+      description: description.headers,
     },
     hideHeader: {
       name: 'hideHeader',
       description: description.hideHeader,
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     isLoading: {
       name: 'isLoading',
       description: description.isLoading,
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     items: {
       name: 'items',
-      description: description.items
+      description: description.items,
     },
     selectionMode: {
       name: 'selectionMode',
       description: description.selectionMode,
       control: {
         type: 'select',
-        options: ['single', 'multiple']
-      }
+        options: ['single', 'multiple'],
+      },
     },
     striped: {
       name: 'striped',
       description: description.striped,
       control: {
-        type: 'boolean'
-      }
-    }
-  }
+        type: 'boolean',
+      },
+    },
+  },
 }
 
 export const defaultTableHeadersData = [
@@ -103,13 +106,13 @@ export const defaultTableHeadersData = [
     text: 'Dessert (100g serving)',
     value: 'name',
     main: true,
-    sortable: true
+    sortable: true,
   },
   { text: 'Calories', value: 'calories', sortable: true },
   { text: 'Fat (g)', value: 'fat' },
   { text: 'Carbs (g)', value: 'carbs' },
   { text: 'Protein (g)', value: 'protein' },
-  { text: 'Iron (%)', value: 'iron' }
+  { text: 'Iron (%)', value: 'iron' },
 ]
 
 export const defaultTableItemsData = [
@@ -119,7 +122,7 @@ export const defaultTableItemsData = [
     fat: 6.0,
     carbs: 24,
     protein: 4.0,
-    iron: '1%'
+    iron: '1%',
   },
   {
     name: 'Ice cream sandwich',
@@ -127,7 +130,7 @@ export const defaultTableItemsData = [
     fat: 9.0,
     carbs: 37,
     protein: 4.3,
-    iron: '1%'
+    iron: '1%',
   },
   {
     name: 'Eclair',
@@ -135,7 +138,7 @@ export const defaultTableItemsData = [
     fat: 16.0,
     carbs: 23,
     protein: 6.0,
-    iron: '7%'
+    iron: '7%',
   },
   {
     name: 'Cupcake',
@@ -143,7 +146,7 @@ export const defaultTableItemsData = [
     fat: 3.7,
     carbs: 67,
     protein: 4.3,
-    iron: '8%'
+    iron: '8%',
   },
   {
     name: 'Gingerbread',
@@ -151,15 +154,15 @@ export const defaultTableItemsData = [
     fat: 16.0,
     carbs: 49,
     protein: 3.9,
-    iron: '16%'
-  }
+    iron: '16%',
+  },
 ]
 
 export const Default = DataTableTemplate.bind({})
 
 Default.args = {
   headers: [...defaultTableHeadersData],
-  items: [...defaultTableItemsData]
+  items: [...defaultTableItemsData],
 }
 
 export const ActionsMenu = DataTableTemplate.bind({})
@@ -167,45 +170,45 @@ export const ActionsMenu = DataTableTemplate.bind({})
 ActionsMenu.args = {
   ...Default.args,
   allowSelection: true,
-  selectionMode: 'multiple'
+  selectionMode: 'multiple',
 }
 
 ActionsMenu.parameters = {
   docs: {
     description: {
-      story: description.actionsMenu
-    }
-  }
+      story: description.actionsMenu,
+    },
+  },
 }
 
 export const HideHeader = DataTableTemplate.bind({})
 
 HideHeader.args = {
   ...Default.args,
-  hideHeader: true
+  hideHeader: true,
 }
 
 HideHeader.parameters = {
   docs: {
     description: {
-      story: description.hideHeader
-    }
-  }
+      story: description.hideHeader,
+    },
+  },
 }
 
 export const IsLoading = DataTableTemplate.bind({})
 
 IsLoading.args = {
   ...Default.args,
-  isLoading: true
+  isLoading: true,
 }
 
 IsLoading.parameters = {
   docs: {
     description: {
-      story: description.isLoading
-    }
-  }
+      story: description.isLoading,
+    },
+  },
 }
 
 export const SelectionMode = DataTableTemplate.bind({})
@@ -213,28 +216,28 @@ export const SelectionMode = DataTableTemplate.bind({})
 SelectionMode.args = {
   ...Default.args,
   allowSelection: true,
-  selectionMode: 'single'
+  selectionMode: 'single',
 }
 
 SelectionMode.parameters = {
   docs: {
     description: {
-      story: description.selectionMode
-    }
-  }
+      story: description.selectionMode,
+    },
+  },
 }
 
 export const Striped = DataTableTemplate.bind({})
 
 Striped.args = {
   ...Default.args,
-  striped: true
+  striped: true,
 }
 
 Striped.parameters = {
   docs: {
     description: {
-      story: description.striped
-    }
-  }
+      story: description.striped,
+    },
+  },
 }

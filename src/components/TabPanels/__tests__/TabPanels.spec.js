@@ -5,10 +5,10 @@ describe('Test SbTabPanels component', () => {
   const WrapperPanels = {
     components: {
       SbTabPanel,
-      SbTabPanels
+      SbTabPanels,
     },
     data: () => ({
-      currentTab: 'first'
+      currentTab: 'first',
     }),
     template: `
       <SbTabPanels v-model="currentTab">
@@ -22,7 +22,7 @@ describe('Test SbTabPanels component', () => {
           <p> Third Tab Panel </p>
         </SbTabPanel>
       </SbTabPanels>
-    `
+    `,
   }
 
   const wrapper = mount(WrapperPanels)
@@ -33,7 +33,7 @@ describe('Test SbTabPanels component', () => {
 
   it('should change the view of the panel when changes value property', async () => {
     await wrapper.setData({
-      currentTab: 'third'
+      currentTab: 'third',
     })
 
     expect(wrapper.find('[aria-hidden="false"]').text()).toBe('Third Tab Panel')

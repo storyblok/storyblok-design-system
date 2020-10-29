@@ -6,13 +6,13 @@ const factory = (template, propsData = {}) => {
   const Wrapper = {
     components: {
       SbBlockUi,
-      SbLoading
+      SbLoading,
     },
-    template
+    template,
   }
 
   return mount(Wrapper, {
-    propsData
+    propsData,
   })
 }
 

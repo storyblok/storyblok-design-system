@@ -1,6 +1,4 @@
-import {
-  SbDataTableInput
-} from '.'
+import { SbDataTableInput } from '.'
 
 import SbIcon from '../../Icon'
 
@@ -13,81 +11,88 @@ export const SbDataTableHeaderCell = {
   name: 'SbDataTableHeaderCell',
 
   data: () => ({
-    order: 0
+    order: 0,
   }),
 
   iconsSort: ['chevron-down', 'chevron-sort', 'chevron-up'],
 
   props: {
     column: {
-      type: Object
+      type: Object,
     },
     sortedKey: {
-      type: String
-    }
+      type: String,
+    },
   },
 
   computed: {
-    context () {
+    context() {
       return this.dataTableContext()
     },
 
-    isSortable () {
+    isSortable() {
       return this.column.sortable
     },
 
-    isSortedKey () {
+    isSortedKey() {
       return this.sortKey === this.sortedKey
     },
 
-    showSortIcon () {
+    showSortIcon() {
       return this.isSortable && this.order && this.isSortedKey
     },
 
-    sortKey () {
+    sortKey() {
       return this.column.value
-    }
+    },
   },
 
   methods: {
-    toggleSort () {
+    toggleSort() {
       if (this.sortKey && this.isSortable) {
         this.order = this.order === 0 || this.order === -1 ? this.order + 1 : -1
         this.context.toggleTableOrder(this.order, this.sortKey)
       } else if (!this.sortKey && this.isSortable) {
-        throw new Error('Must provide the value property when sortable is defined.')
+        throw new Error(
+          'Must provide the value property when sortable is defined.'
+        )
       }
-    }
+    },
   },
 
   watch: {
-    sortedKey () {
+    sortedKey() {
       if (!this.isSortedKey) this.order = 0
-    }
+    },
   },
 
   inject: ['dataTableContext'],
 
-  render (h) {
-    return h('th', {
-      staticClass: 'sb-data-table__head-cell',
-      class: {
-        'sb-data-table--show-icon': this.showSortIcon
+  render(h) {
+    return h(
+      'th',
+      {
+        staticClass: 'sb-data-table__head-cell',
+        class: {
+          'sb-data-table--show-icon': this.showSortIcon,
+        },
+        on: {
+          click: this.toggleSort,
+        },
       },
-      on: {
-        click: this.toggleSort
-      }
-    }, [
-      this.column.text,
-      this.isSortable && h(SbIcon, {
-        class: 'sb-data-table__sort-icon',
-        props: {
-          size: 'small',
-          name: this.$options.iconsSort[this.order + 1]
-        }
-      })
-    ])
-  }
+      [
+        this.column.text,
+        this.isSortable &&
+          h(SbIcon, {
+            class: 'sb-data-table__sort-icon',
+            props: {
+              size: 'small',
+              name: this.$options.iconsSort[this.order + 1],
+            },
+          }),
+      ]
+    )
+  },
 }
 
 /**
@@ -100,64 +105,70 @@ export const SbDataTableHeaderRow = {
 
   props: {
     allowSelection: {
-      type: Boolean
+      type: Boolean,
     },
     allRowsSelected: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
     headers: {
-      type: Array
+      type: Array,
     },
     selectionMode: {
-      type: String
+      type: String,
     },
     sortedKey: {
-      type: String
-    }
+      type: String,
+    },
   },
 
   computed: {
-    context () {
+    context() {
       return this.dataTableContext()
-    }
+    },
   },
 
   methods: {
-    handleAllRowsSelected () {
+    handleAllRowsSelected() {
       this.allRowsSelected
         ? this.context.deselectAll()
         : this.context.selectAll()
-    }
+    },
   },
 
   inject: ['dataTableContext'],
 
-  render (h) {
+  render(h) {
     return h('tr', [
-      this.allowSelection && h('th', {
-        staticClass: 'sb-data-table__head-cell'
-      }, [
-        this.selectionMode === 'multiple' && h(SbDataTableInput, {
-          props: {
-            value: this.allRowsSelected
+      this.allowSelection &&
+        h(
+          'th',
+          {
+            staticClass: 'sb-data-table__head-cell',
           },
-          on: {
-            click: this.handleAllRowsSelected
-          }
-        })
-      ]),
-      this.headers.map(elem => {
+          [
+            this.selectionMode === 'multiple' &&
+              h(SbDataTableInput, {
+                props: {
+                  value: this.allRowsSelected,
+                },
+                on: {
+                  click: this.handleAllRowsSelected,
+                },
+              }),
+          ]
+        ),
+      this.headers.map((elem) => {
         return h(SbDataTableHeaderCell, {
           props: {
             column: elem,
-            sortedKey: this.sortedKey
-          }
+            sortedKey: this.sortedKey,
+          },
         })
-      })
+      }),
     ])
-  }
+  },
 }
 
 /**
@@ -171,28 +182,28 @@ export const SbDataTableHeader = {
   props: {
     allowSelection: {
       required: false,
-      type: Boolean
+      type: Boolean,
     },
     allRowsSelected: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
     headers: {
       required: false,
-      type: Array
+      type: Array,
     },
     selectionMode: {
       required: false,
-      type: String
+      type: String,
     },
     sortedKey: {
       required: false,
-      type: String
-    }
+      type: String,
+    },
   },
 
-  render (h) {
+  render(h) {
     return h('thead', [
       h(SbDataTableHeaderRow, {
         props: {
@@ -201,9 +212,9 @@ export const SbDataTableHeader = {
           headers: this.headers,
           selectedRows: this.selectedRows,
           selectionMode: this.selectionMode,
-          sortedKey: this.sortedKey
-        }
-      })
+          sortedKey: this.sortedKey,
+        },
+      }),
     ])
-  }
+  },
 }

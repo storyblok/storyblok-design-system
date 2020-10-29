@@ -5,17 +5,17 @@ import SbAvatar from '../../Avatar'
 const factory = (template, propsData = {}) => {
   const Wrapper = {
     props: {
-      size: String
+      size: String,
     },
     components: {
       SbAvatar,
-      SbAvatarGroup
+      SbAvatarGroup,
     },
-    template
+    template,
   }
 
   return mount(Wrapper, {
-    propsData
+    propsData,
   })
 }
 
@@ -43,7 +43,7 @@ describe('SbAvatarGroup component', () => {
     `
     const wrappers = factory(template)
 
-    wrappers.findAllComponents(SbAvatar).wrappers.forEach(wrapper => {
+    wrappers.findAllComponents(SbAvatar).wrappers.forEach((wrapper) => {
       expect(wrapper.props('size')).toBe('large')
     })
   })
@@ -52,11 +52,11 @@ describe('SbAvatarGroup component', () => {
     const wrapper = {
       components: {
         SbAvatar,
-        SbAvatarGroup
+        SbAvatarGroup,
       },
       props: {
         size: 'large',
-        maxElements: 5
+        maxElements: 5,
       },
       template: `
         <SbAvatarGroup :size="size" :max-elements="maxElements">
@@ -70,7 +70,7 @@ describe('SbAvatarGroup component', () => {
           <SbAvatar src="LOAD_SUCCESS_SRC" />
           <SbAvatar src="LOAD_SUCCESS_SRC" />
         </SbAvatarGroup>
-      `
+      `,
     }
     const wrappers = mount(wrapper)
 
@@ -90,15 +90,11 @@ describe('SbAvatarGroup component', () => {
 
     it('should render the correct SbAvatar when changes the maxElements property', async () => {
       await wrappers.setProps({
-        maxElements: 7
+        maxElements: 7,
       })
 
-      expect(
-        wrappers.findAll('.sb-avatar-group > .sb-avatar').length
-      ).toBe(7)
-      expect(
-        wrappers.findComponent(MoreAvatar).text()
-      ).toBe('+2')
+      expect(wrappers.findAll('.sb-avatar-group > .sb-avatar').length).toBe(7)
+      expect(wrappers.findComponent(MoreAvatar).text()).toBe('+2')
       expect(
         wrappers.findComponent(MoreAvatars).findAll('.sb-avatar').length
       ).toBe(2)

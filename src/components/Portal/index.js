@@ -18,7 +18,7 @@ const SbPortal = {
     // component props
     as: {
       type: String,
-      default: 'div'
+      default: 'div',
     },
     unmountOnDestroy: Boolean,
 
@@ -32,34 +32,34 @@ const SbPortal = {
     targetSlim: Boolean,
     target: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
-  data () {
+  data() {
     return {
       portalTarget: undefined,
-      targetId: undefined
+      targetId: undefined,
     }
   },
 
-  created () {
+  created() {
     if (!this.disabled) {
       this.mountTarget()
     }
   },
 
-  beforeDestroy () {
+  beforeDestroy() {
     this.unmountTarget()
   },
 
   methods: {
-  /**
-   * creates portal target node
-   * @param {String} target
-   * @returns {HTMLElement}
-   */
-    $_createPortalTarget (target, tag) {
+    /**
+     * creates portal target node
+     * @param {String} target
+     * @returns {HTMLElement}
+     */
+    $_createPortalTarget(target, tag) {
       if (!canUseDOM) {
         return
       }
@@ -84,7 +84,7 @@ const SbPortal = {
     /**
      * mounts the portal target
      */
-    mountTarget () {
+    mountTarget() {
       if (!canUseDOM) {
         return
       }
@@ -94,33 +94,37 @@ const SbPortal = {
     /**
      * remove from the DOM the portal target
      */
-    unmountTarget () {
+    unmountTarget() {
       if (!this.disabled && this.unmountOnDestroy) {
         canUseDOM && document.body.removeChild(this.portalTarget)
       }
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     const children = this.$slots.default
 
     if (this.disabled) {
       return children[0]
     }
 
-    return h(MountingPortal, {
-      props: {
-        append: this.append,
-        mountTo: this.target,
-        disabled: this.disabled,
-        name: this.name,
-        order: this.order,
-        slim: this.slim,
-        bail: this.bail,
-        targetSlim: this.targetSlim
-      }
-    }, children)
-  }
+    return h(
+      MountingPortal,
+      {
+        props: {
+          append: this.append,
+          mountTo: this.target,
+          disabled: this.disabled,
+          name: this.name,
+          order: this.order,
+          slim: this.slim,
+          bail: this.bail,
+          targetSlim: this.targetSlim,
+        },
+      },
+      children
+    )
+  },
 }
 
 export default SbPortal

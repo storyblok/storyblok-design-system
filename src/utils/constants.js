@@ -13,15 +13,17 @@ export const availableColors = [
   'positive',
   'negative',
   'warning',
-  'white'
+  'white',
 ]
 
 /**
  * @type {Array<string>}
  */
-export const availableBgColors = availableColors.map(color => `bg-${color}`)
+export const availableBgColors = availableColors.map((color) => `bg-${color}`)
 
 /**
  * @type {Array<string>}
  */
-export const availableTextColors = availableColors.map(color => `text-${color}`)
+export const availableTextColors = availableColors.map(
+  (color) => `text-${color}`
+)

@@ -3,7 +3,7 @@ import { buildSelectOptions, factorySelectOption } from '../utils'
 import {
   SbPaginationSelect,
   SbPaginationPagesText,
-  SbPaginationItemsText
+  SbPaginationItemsText,
 } from './shared'
 
 /**
@@ -20,50 +20,54 @@ export const SbPagesContainer = {
     currentPage: {
       type: Number,
       required: true,
-      default: 1
+      default: 1,
     },
     pages: {
       type: Number,
       required: true,
-      default: 10
-    }
+      default: 10,
+    },
   },
 
   methods: {
-    onSelectChange (event) {
+    onSelectChange(event) {
       this.$emit('page-change', Number(event.target.value))
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     const pagesOptions = buildSelectOptions(
       this.pages,
-      page => `Go to page ${page}`
+      (page) => `Go to page ${page}`
     )
 
-    return h('div', {
-      staticClass: 'sb-pagination__pages-container'
-    }, [
-      h(SbPaginationSelect, {
-        attrs: {
-          'data-testid': 'page-select'
-        },
-        props: {
-          options: pagesOptions,
-          value: this.currentPage
-        },
-        on: {
-          change: this.onSelectChange
-        }
-      }),
-      h(SbPaginationPagesText, {
-        props: {
-          pages: this.pages,
-          isPlaceholder: true
-        }
-      })
-    ])
-  }
+    return h(
+      'div',
+      {
+        staticClass: 'sb-pagination__pages-container',
+      },
+      [
+        h(SbPaginationSelect, {
+          attrs: {
+            'data-testid': 'page-select',
+          },
+          props: {
+            options: pagesOptions,
+            value: this.currentPage,
+          },
+          on: {
+            change: this.onSelectChange,
+          },
+        }),
+        h(SbPaginationPagesText, {
+          props: {
+            pages: this.pages,
+            isPlaceholder: true,
+          },
+        }),
+      ]
+    )
+  },
 }
 
 /**
@@ -80,67 +84,72 @@ export const SbPerPageContainer = {
     currentPage: {
       type: Number,
       required: true,
-      default: 1
+      default: 1,
     },
     pages: {
       type: Number,
       required: true,
-      default: 10
+      default: 10,
     },
     perPage: {
       type: Number,
       required: true,
-      default: 1
+      default: 1,
     },
     perPageAvailable: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     total: {
       type: Number,
       required: true,
-      default: 100
-    }
+      default: 100,
+    },
   },
 
   methods: {
-    onSelectChange (event) {
+    onSelectChange(event) {
       this.$emit('per-page-change', Number(event.target.value))
-    }
+    },
   },
 
-  render (h) {
-    const perPageOptions = this.perPageAvailable.map(perPage => {
+  render(h) {
+    const perPageOptions = this.perPageAvailable.map((perPage) => {
       return factorySelectOption(
-        perPage, value => `Select per page ${value} items`
+        perPage,
+        (value) => `Select per page ${value} items`
       )
     })
 
-    return h('div', {
-      staticClass: 'sb-pagination__per-page-container'
-    }, [
-      h('span', 'Items per page:'),
-      h(SbPaginationSelect, {
-        attrs: {
-          'data-testid': 'per-page-select'
-        },
-        props: {
-          options: perPageOptions,
-          value: this.perPage
-        },
-        on: {
-          change: this.onSelectChange
-        }
-      }),
-      h(SbPaginationItemsText, {
-        props: {
-          total: this.total,
-          currentPage: this.currentPage,
-          pages: this.pages,
-          perPage: this.perPage,
-          isPlaceholder: true
-        }
-      })
-    ])
-  }
+    return h(
+      'div',
+      {
+        staticClass: 'sb-pagination__per-page-container',
+      },
+      [
+        h('span', 'Items per page:'),
+        h(SbPaginationSelect, {
+          attrs: {
+            'data-testid': 'per-page-select',
+          },
+          props: {
+            options: perPageOptions,
+            value: this.perPage,
+          },
+          on: {
+            change: this.onSelectChange,
+          },
+        }),
+        h(SbPaginationItemsText, {
+          props: {
+            total: this.total,
+            currentPage: this.currentPage,
+            pages: this.pages,
+            perPage: this.perPage,
+            isPlaceholder: true,
+          },
+        }),
+      ]
+    )
+  },
 }

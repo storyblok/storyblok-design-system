@@ -1,19 +1,15 @@
-
 // styles
 import './data-table.scss'
 
 import {
   SbDataTableActions,
   SbDataTableBody,
-  SbDataTableHeader
+  SbDataTableHeader,
 } from './components'
 
 import SbLoading from '../Loading'
 
-import {
-  getPropertyValue,
-  isNumeric
-} from '../../utils'
+import { getPropertyValue, isNumeric } from '../../utils'
 
 /**
  * SbDataTable
@@ -26,57 +22,56 @@ const SbDataTable = {
   data: () => ({
     selectedRows: [],
     sortKey: null,
-    sortOrder: null
+    sortOrder: null,
   }),
 
   props: {
     allowSelection: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
     headers: {
       required: true,
       type: Array,
-      default: () => []
+      default: () => [],
     },
     hideHeader: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
     isLoading: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
     items: {
       required: true,
       type: Array,
-      default: () => []
+      default: () => [],
     },
     selectionMode: {
       required: false,
       type: String,
-      default: 'single'
+      default: 'single',
     },
     striped: {
       required: false,
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   computed: {
-    allRowsSelected () {
-      if (this.selectionMode === 'single' || !this.selectedRows.length) return false
+    allRowsSelected() {
+      if (this.selectionMode === 'single' || !this.selectedRows.length)
+        return false
 
-      return this.selectedRows.length === this.items.length
-        ? true
-        : null
+      return this.selectedRows.length === this.items.length ? true : null
     },
 
-    dataTableContext () {
+    dataTableContext() {
       return {
         // methods to control row selection
         selectRow: this.selectRow,
@@ -85,23 +80,23 @@ const SbDataTable = {
         deselectAll: this.deselectAll,
 
         // method to control sorting
-        toggleTableOrder: this.toggleTableOrder
+        toggleTableOrder: this.toggleTableOrder,
       }
     },
 
-    sortedData () {
+    sortedData() {
       if (this.sortKey && this.sortOrder !== 0) {
         return this.doSort()
       }
       return this.items
-    }
+    },
   },
 
   methods: {
     /**
      * method to sort array of items
      */
-    doSort () {
+    doSort() {
       const local = [...this.items]
 
       return local.sort((a, b) => {
@@ -126,7 +121,7 @@ const SbDataTable = {
      * method to select body row(s)
      * @param {Object} row
      */
-    selectRow (row) {
+    selectRow(row) {
       if (this.selectionMode === 'single') {
         this.selectedRows = [row]
         return
@@ -141,7 +136,7 @@ const SbDataTable = {
      * method to deselect body row(s)
      * @param {Object} row
      */
-    deselectRow (row) {
+    deselectRow(row) {
       const index = this.selectedRows.indexOf(row)
 
       if (index > -1) {
@@ -152,14 +147,14 @@ const SbDataTable = {
     /**
      * method to select all body row(s)
      */
-    selectAll () {
+    selectAll() {
       this.selectedRows = [...this.items]
     },
 
     /**
      * method to deselect all body row(s)
      */
-    deselectAll () {
+    deselectAll() {
       this.selectedRows = []
     },
 
@@ -168,78 +163,90 @@ const SbDataTable = {
      * @param {Number} order
      * @param {String} key
      */
-    toggleTableOrder (order, key) {
+    toggleTableOrder(order, key) {
       this.sortOrder = order
       this.sortKey = key
-    }
+    },
   },
 
-  provide () {
+  provide() {
     return {
-      dataTableContext: () => this.dataTableContext
+      dataTableContext: () => this.dataTableContext,
     }
   },
 
-  render (h) {
+  render(h) {
     const renderActions = () => {
       return h(SbDataTableActions, {
         props: {
-          selectedRowsLength: this.selectedRows.length
-        }
+          selectedRowsLength: this.selectedRows.length,
+        },
       })
     }
 
     const renderLoading = () => {
-      return h('div', {
-        staticClass: 'sb-data-table__loading'
-      }, [
-        h(SbLoading, {
-          props: {
-            type: 'spinner',
-            size: 'normal',
-            color: 'primary'
-          }
-        })
-      ])
+      return h(
+        'div',
+        {
+          staticClass: 'sb-data-table__loading',
+        },
+        [
+          h(SbLoading, {
+            props: {
+              type: 'spinner',
+              size: 'normal',
+              color: 'primary',
+            },
+          }),
+        ]
+      )
     }
 
     const renderTable = () => {
-      return h('table', {
-        staticClass: 'sb-data-table__container'
-      },
-      [
-        !this.hideHeader && h(SbDataTableHeader, {
-          props: {
-            allowSelection: this.allowSelection,
-            allRowsSelected: this.allRowsSelected,
-            headers: this.headers,
-            selectionMode: this.selectionMode,
-            sortedKey: this.sortKey
-          }
-        }),
-        h(SbDataTableBody, {
-          props: {
-            allowSelection: this.allowSelection,
-            headers: this.headers,
-            items: this.sortedData,
-            selectedRows: this.selectedRows
-          }
-        })
-      ])
+      return h(
+        'table',
+        {
+          staticClass: 'sb-data-table__container',
+        },
+        [
+          !this.hideHeader &&
+            h(SbDataTableHeader, {
+              props: {
+                allowSelection: this.allowSelection,
+                allRowsSelected: this.allRowsSelected,
+                headers: this.headers,
+                selectionMode: this.selectionMode,
+                sortedKey: this.sortKey,
+              },
+            }),
+          h(SbDataTableBody, {
+            props: {
+              allowSelection: this.allowSelection,
+              headers: this.headers,
+              items: this.sortedData,
+              selectedRows: this.selectedRows,
+            },
+          }),
+        ]
+      )
     }
 
-    return h('div', {
-      staticClass: 'sb-data-table',
-      class: {
-        'sb-data-table--loading': this.isLoading,
-        'sb-data-table--striped': this.striped
-      }
-    }, [
-      this.selectedRows.length > 0 && renderActions(),
-      renderTable(),
-      this.isLoading && renderLoading()
-    ])
-  }
+    return h(
+      'div',
+      {
+        staticClass: 'sb-data-table',
+        class: {
+          'sb-data-table--loading': this.isLoading,
+          'sb-data-table--striped': this.striped,
+        },
+      },
+      [
+        this.selectedRows.length > 0 && renderActions(),
+        renderTable(),
+        this.isLoading && renderLoading(),
+      ]
+    )
+  },
 }
 
 export default SbDataTable

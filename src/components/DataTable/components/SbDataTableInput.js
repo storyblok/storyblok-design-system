@@ -7,56 +7,62 @@ export const SbDataTableInput = {
   props: {
     disable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     falseValue: {
       type: Boolean,
-      default: false
+      default: false,
     },
     indeterminateValue: {
-      default: null
+      default: null,
     },
     toggleIndeterminate: {
-      type: Boolean
+      type: Boolean,
     },
     trueValue: {
       type: Boolean,
-      default: true
+      default: true,
     },
     value: {
-      default: null
-    }
+      default: null,
+    },
   },
 
   computed: {
-    isTrue () {
+    isTrue() {
       return this.value === this.trueValue
     },
 
-    isFalse () {
+    isFalse() {
       return this.value === this.falseValue
     },
 
-    innerClass () {
-      const state = this.isTrue === true ? 'truthy' : (this.isFalse === true ? 'falsy' : 'indet')
+    innerClass() {
+      const state =
+        this.isTrue === true
+          ? 'truthy'
+          : this.isFalse === true
+          ? 'falsy'
+          : 'indet'
       return `sb-input-checkbox__inner--${state}`
     },
 
-    formAttrs () {
+    formAttrs() {
       const prop = { type: 'checkbox' }
 
-      this.name && Object.assign(prop, {
-        checked: this.isTrue,
-        name: this.name,
-        value: this.trueValue
-      })
+      this.name &&
+        Object.assign(prop, {
+          checked: this.isTrue,
+          name: this.name,
+          value: this.trueValue,
+        })
 
       return prop
-    }
+    },
   },
 
   methods: {
-    getNextValue () {
+    getNextValue() {
       if (this.isTrue && !this.toggleIndeterminate) {
         return this.falseValue
       } else if (this.isFalse && !this.toggleIndeterminate) {
@@ -66,24 +72,24 @@ export const SbDataTableInput = {
       return this.indeterminateValue
     },
 
-    handleKeydown (e) {
+    handleKeydown(e) {
       if (e.keyCode === 13 || e.keyCode === 32) {
         this.stopAndPrevent(e)
       }
     },
 
-    handleKeyup (e) {
+    handleKeyup(e) {
       if (e.keyCode === 13 || e.keyCode === 32) {
         this.toggle(e)
       }
     },
 
-    stopAndPrevent (e) {
+    stopAndPrevent(e) {
       e.cancelable && e.preventDefault()
       e.stopPropagation()
     },
 
-    toggle (e) {
+    toggle(e) {
       if (e) {
         this.stopAndPrevent(e)
       }
@@ -91,68 +97,82 @@ export const SbDataTableInput = {
       if (!this.disable) {
         this.$emit('click', this.getNextValue(), e)
       }
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     const renderInputCheckbox = () => {
       return [
-        h('div', {
-          staticClass: 'sb-input-checkbox__bg'
-        }, [
-          h('svg', {
-            staticClass: 'sb-input-checkbox__svg',
-            attrs: {
-              focusable: 'false',
-              viewBox: '0 0 24 24'
-            }
-          }, [
-            h('path', {
-              staticClass: 'sb-input-checkbox__truthy',
-              attrs: {
-                fill: 'none',
-                d: 'M1.73,12.91 8.1,19.28 22.79,4.59'
-              }
-            }),
+        h(
+          'div',
+          {
+            staticClass: 'sb-input-checkbox__bg',
+          },
+          [
+            h(
+              'svg',
+              {
+                staticClass: 'sb-input-checkbox__svg',
+                attrs: {
+                  focusable: 'false',
+                  viewBox: '0 0 24 24',
+                },
+              },
+              [
+                h('path', {
+                  staticClass: 'sb-input-checkbox__truthy',
+                  attrs: {
+                    fill: 'none',
+                    d: 'M1.73,12.91 8.1,19.28 22.79,4.59',
+                  },
+                }),
 
-            h('path', {
-              staticClass: 'sb-input-checkbox__indet',
-              attrs: {
-                d: 'M5,14H18V10H5'
-              }
-            })
-          ])
-        ])
+                h('path', {
+                  staticClass: 'sb-input-checkbox__indet',
+                  attrs: {
+                    d: 'M5,14H18V10H5',
+                  },
+                }),
+              ]
+            ),
+          ]
+        ),
       ]
     }
 
     const inner = renderInputCheckbox(h)
 
-    !this.disable && inner.unshift(
-      h('input', {
-        staticClass: 'hidden',
-        class: 'sb-input-checkbox__native',
-        attrs: this.formAttrs
-      })
-    )
+    !this.disable &&
+      inner.unshift(
+        h('input', {
+          staticClass: 'hidden',
+          class: 'sb-input-checkbox__native',
+          attrs: this.formAttrs,
+        })
+      )
 
     const children = [
-      h('div', {
-        staticClass: 'sb-input-checkbox__inner',
-        class: [
-          this.innerClass,
-          this.disable ? ' disabled' : ''
-        ]
-      }, inner)
+      h(
+        'div',
+        {
+          staticClass: 'sb-input-checkbox__inner',
+          class: [this.innerClass, this.disable ? ' disabled' : ''],
+        },
+        inner
+      ),
     ]
 
-    return h('div', {
-      staticClass: 'sb-input-checkbox',
-      on: {
-        click: this.toggle,
-        keydown: this.handleKeydown,
-        keyup: this.handleKeyup
-      }
-    }, children)
-  }
+    return h(
+      'div',
+      {
+        staticClass: 'sb-input-checkbox',
+        on: {
+          click: this.toggle,
+          keydown: this.handleKeydown,
+          keyup: this.handleKeyup,
+        },
+      },
+      children
+    )
+  },
 }

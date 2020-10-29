@@ -1,7 +1,7 @@
 import {
   capitalize,
   capitalizeAllAfterSpaces,
-  getRandomNumber
+  getRandomNumber,
 } from '../../src/utils'
 
 describe('Utils function', () => {
@@ -23,9 +23,9 @@ describe('Utils function', () => {
 
   describe('test capitalizeAllAfterSpaces function', () => {
     it('should capitalize every word in a string', () => {
-      expect(
-        capitalizeAllAfterSpaces('storyblok is amazing')
-      ).toEqual('Storyblok Is Amazing')
+      expect(capitalizeAllAfterSpaces('storyblok is amazing')).toEqual(
+        'Storyblok Is Amazing'
+      )
     })
 
     it('should return an empty string when is pass an empty string or nothing', () => {
@@ -35,9 +35,9 @@ describe('Utils function', () => {
     })
 
     it('should keep the same input when the string is already capitalized', () => {
-      expect(
-        capitalizeAllAfterSpaces('Storyblok Is Amazing')
-      ).toEqual('Storyblok Is Amazing')
+      expect(capitalizeAllAfterSpaces('Storyblok Is Amazing')).toEqual(
+        'Storyblok Is Amazing'
+      )
     })
   })
 

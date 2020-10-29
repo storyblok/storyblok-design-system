@@ -15,36 +15,40 @@ const SbGroupButton = {
   functional: true,
   props: {
     hasSpaces: {
-      type: Boolean
+      type: Boolean,
     },
-    ...sharedProps
+    ...sharedProps,
   },
 
-  render (h, context) {
+  render(h, context) {
     const { props, slots } = context
     const data = context.data || {}
 
-    const children = slots().default.filter(e => e.tag)
+    const children = slots().default.filter((e) => e.tag)
 
-    const childrenData = children.map(element => {
+    const childrenData = children.map((element) => {
       element.componentOptions.propsData = {
         ...element.componentOptions.propsData,
-        ...props
+        ...props,
       }
 
       return element
     })
 
-    return h('div', {
-      staticClass: 'sb-group-button',
-      class: {
-        'sb-group-button--has-spaces': props.hasSpaces
+    return h(
+      'div',
+      {
+        staticClass: 'sb-group-button',
+        class: {
+          'sb-group-button--has-spaces': props.hasSpaces,
+        },
+        attrs: {
+          ...(data.attrs || {}),
+        },
       },
-      attrs: {
-        ...data.attrs || {}
-      }
-    }, childrenData)
-  }
+      childrenData
+    )
+  },
 }
 
 export default SbGroupButton

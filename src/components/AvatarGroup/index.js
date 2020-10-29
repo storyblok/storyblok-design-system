@@ -13,16 +13,16 @@ export const MoreAvatars = {
   props: {
     size: {
       type: String,
-      default: null
+      default: null,
     },
     visible: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
-  render (h, { props, children }) {
-    const data = children.map(element => {
+  render(h, { props, children }) {
+    const data = children.map((element) => {
       const elementProps = element.componentOptions.propsData
 
       if (elementProps.name) {
@@ -32,19 +32,23 @@ export const MoreAvatars = {
       element.componentOptions.propsData = {
         ...element.componentOptions.propsData,
         size: props.size || null,
-        showName: true
+        showName: true,
       }
 
       return element
     })
 
-    return h('div', {
-      staticClass: 'sb-avatar-group__avatars',
-      attrs: {
-        'aria-hidden': !props.visible + ''
-      }
-    }, data)
-  }
+    return h(
+      'div',
+      {
+        staticClass: 'sb-avatar-group__avatars',
+        attrs: {
+          'aria-hidden': !props.visible + '',
+        },
+      },
+      data
+    )
+  },
 }
 
 // @vue/component
@@ -56,25 +60,29 @@ export const MoreAvatar = {
   props: {
     expanded: {
       type: Boolean,
-      default: false
+      default: false,
     },
     label: {
       type: String,
-      default: 'null'
-    }
+      default: 'null',
+    },
   },
 
-  render (h, { props, listeners }) {
-    return h('button', {
-      staticClass: 'sb-avatar-group__more',
-      attrs: {
-        'aria-expanded': props.expanded + ''
+  render(h, { props, listeners }) {
+    return h(
+      'button',
+      {
+        staticClass: 'sb-avatar-group__more',
+        attrs: {
+          'aria-expanded': props.expanded + '',
+        },
+        on: {
+          ...listeners,
+        },
       },
-      on: {
-        ...listeners
-      }
-    }, props.label)
-  }
+      props.label
+    )
+  },
 }
 
 /**
@@ -90,35 +98,35 @@ const SbAvatarGroup = {
   props: {
     maxElements: {
       type: Number,
-      default: 5
+      default: 5,
     },
     size: {
       type: String,
       default: null,
-      validator: isSizeValid
-    }
+      validator: isSizeValid,
+    },
   },
 
   data: () => ({
-    isVisibleDropdown: false
+    isVisibleDropdown: false,
   }),
 
   methods: {
-    toggleDropdown () {
+    toggleDropdown() {
       this.isVisibleDropdown = !this.isVisibleDropdown
     },
-    onMoreAvatarKeyDown (event) {
+    onMoreAvatarKeyDown(event) {
       if (event.key === 'Escape') {
         this.closeDropdown()
       }
     },
-    closeDropdown () {
+    closeDropdown() {
       this.isVisibleDropdown = false
-    }
+    },
   },
 
-  render (h) {
-    const children = this.$slots.default.filter(e => e.tag)
+  render(h) {
+    const children = this.$slots.default.filter((e) => e.tag)
     const sizeClass = this.size ? `sb-avatar-group--${this.size}` : null
 
     const childrenCount = children.length
@@ -130,7 +138,7 @@ const SbAvatarGroup = {
           ...element.componentOptions.propsData,
           useTooltip: true,
           size: this.size,
-          bgColor: availableColors[index]
+          bgColor: availableColors[index],
         }
 
         return element
@@ -140,12 +148,12 @@ const SbAvatarGroup = {
         return h(MoreAvatar, {
           props: {
             label: `+${childrenCount - maxElements}`,
-            expanded: this.isVisibleDropdown
+            expanded: this.isVisibleDropdown,
           },
           on: {
             click: this.toggleDropdown,
-            keydown: this.onMoreAvatarKeyDown
-          }
+            keydown: this.onMoreAvatarKeyDown,
+          },
         })
       }
     })
@@ -153,21 +161,27 @@ const SbAvatarGroup = {
     const moreAvatars = children.filter((_, index) => index >= maxElements)
 
     const renderDropdown = () => {
-      return h(MoreAvatars, {
-        props: {
-          ...this.$props, visible: this.isVisibleDropdown
-        }
-      }, [...moreAvatars])
+      return h(
+        MoreAvatars,
+        {
+          props: {
+            ...this.$props,
+            visible: this.isVisibleDropdown,
+          },
+        },
+        [...moreAvatars]
+      )
     }
 
-    return h('div', {
-      staticClass: 'sb-avatar-group',
-      class: [sizeClass]
-    }, [
-      data,
-      moreAvatars.length > 0 && renderDropdown()
-    ])
-  }
+    return h(
+      'div',
+      {
+        staticClass: 'sb-avatar-group',
+        class: [sizeClass],
+      },
+      [data, moreAvatars.length > 0 && renderDropdown()]
+    )
+  },
 }
 
 export default SbAvatarGroup
