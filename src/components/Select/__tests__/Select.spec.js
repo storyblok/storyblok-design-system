@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 
 import { SbSelect } from '..'
+import SbIcon from '../../Icon'
 
 import { defaultSelectOptionsData } from '../Select.stories'
 
@@ -58,75 +59,107 @@ describe('SbSelect component', () => {
   })
 
   describe('multiple option logic', () => {
-    const wrapper = mount({
-      components: {
-        SbSelect,
-      },
+    const defaultsPropsData = {
+      label: 'Choose an option',
+      options: [...defaultSelectOptionsData],
+      multiple: true,
+    }
 
-      data: () => ({
-        label: 'Choose an option',
-        options: [...defaultSelectOptionsData],
-        value: [],
-        multiple: true,
-      }),
+    const getFirstValue = (wrapper, event) => wrapper.emitted(event)[0][0]
 
-      template: `
-        <SbSelect
-          v-bind="{
-            label,
-            options,
-            multiple
-          }"
-          v-model="value"
-        />
-      `,
-    })
+    it('should emit an input event with an array of values', async () => {
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          ...defaultsPropsData,
+          value: [],
+        },
+      })
 
-    const innerElement = wrapper.find('.sb-select-inner')
+      const innerElement = wrapper.find('.sb-select-inner')
 
-    it('should perform a multiple selection', async () => {
       // opens the items menu
       await innerElement.trigger('click')
 
-      // get three elements
-      const element1 = wrapper.findAll('li').at(1)
-      const element2 = wrapper.findAll('li').at(3)
-      const element3 = wrapper.findAll('li').at(5)
-
       // clicking on the element1
-      await element1.trigger('click')
+      await wrapper.findAll('li').at(1).trigger('click')
 
       // should continue the list visible
       expect(wrapper.find('ul').exists()).toBe(true)
 
       // should emit the input event with the correct value
-      expect(wrapper.vm.value).toEqual(['Option 2'])
+      expect(getFirstValue(wrapper, 'input')).toEqual(['Option 2'])
+    })
 
-      // clicking on the element1
-      await element2.trigger('click')
+    it('should emit appended array with the new element that was selected', async () => {
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          ...defaultsPropsData,
+          value: ['Option 2'],
+        },
+      })
+
+      const innerElement = wrapper.find('.sb-select-inner')
+
+      // opens the items menu
+      await innerElement.trigger('click')
+
+      // clicking on the fourth element on the list
+      await wrapper.findAll('li').at(3).trigger('click')
+
+      // should continue the list visible
+      expect(wrapper.find('ul').exists()).toBe(true)
 
       // should emit the input event with the correct value
-      expect(wrapper.vm.value).toEqual(['Option 2', 'Option 4'])
+      expect(getFirstValue(wrapper, 'input')).toEqual(['Option 2', 'Option 4'])
+    })
 
-      // clicking on the element1
-      await element3.trigger('click')
+    it('should emit an array without a previous element when it is selected', async () => {
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          ...defaultsPropsData,
+          value: ['Option 2', 'Option 4'],
+        },
+      })
+
+      const innerElement = wrapper.find('.sb-select-inner')
+
+      // opens the items menu
+      await innerElement.trigger('click')
+
+      // clicking on the fourth element on the list
+      await wrapper.findAll('li').at(3).trigger('click')
+
+      // should continue the list visible
+      expect(wrapper.find('ul').exists()).toBe(true)
 
       // should emit the input event with the correct value
-      expect(wrapper.vm.value).toEqual(['Option 2', 'Option 4', 'Option 6'])
-
-      // clicking on the element1
-      await element2.trigger('click')
-
-      // should emit the input event with the correct value
-      expect(wrapper.vm.value).toEqual(['Option 2', 'Option 6'])
+      expect(getFirstValue(wrapper, 'input')).toEqual(['Option 2'])
     })
 
     it('should change the select inner with the value', async () => {
-      await wrapper.setData({
-        value: ['Option 1', 'Option 4'],
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          ...defaultsPropsData,
+          value: ['Option 1', 'Option 4'],
+        },
       })
 
-      expect(innerElement.text()).toBe('Option 1, Option 4')
+      expect(wrapper.find('.sb-select-inner').text()).toBe('Option 1, Option 4')
+    })
+  })
+
+  describe('leftIcon property', () => {
+    const wrapper = mount(SbSelect, {
+      propsData: {
+        label: 'Choose an option',
+        options: [...defaultSelectOptionsData],
+        value: null,
+        leftIcon: 'calendar',
+      },
+    })
+
+    it('should have the inner select with correct text', () => {
+      expect(wrapper.findComponent(SbIcon).exists()).toBeTruthy()
     })
   })
 })
