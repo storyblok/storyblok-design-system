@@ -1,3 +1,30 @@
+<template>
+  <div class="sb-minibrowser__breadcrumbs">
+    <SbBreadcrumbs>
+      <SbBreadcrumbItem
+        label="Global"
+        @click="clearNavigation"
+      />
+
+      <SbBreadcrumbSeparator />
+
+      <template v-for="(item, index) in breadcrumbItems">
+        <SbBreadcrumbItem
+          :key="index"
+          :is-active="index === lastIndex"
+          v-bind="item"
+          @click="navigateTo($event, index)"
+        />
+
+        <SbBreadcrumbSeparator
+          v-if="index < lastIndex"
+          :key="`separator-${index}`"
+        />
+      </template>
+    </SbBreadcrumbs>
+  </div>
+</template>
+
 <script>
 import {
   SbBreadcrumbs,
@@ -7,6 +34,11 @@ import {
 
 export default {
   name: 'SbMinibrowserBreadcrumbs',
+  components: {
+    SbBreadcrumbs,
+    SbBreadcrumbItem,
+    SbBreadcrumbSeparator
+  },
 
   inject: ['browserContext'],
 
@@ -47,56 +79,14 @@ export default {
 
     /**
      * fires the navigateTo method in the SbMinibrowser component
+     * @param {Event} event
      * @param {Number} index
      */
-    navigateTo (index = 0) {
+    navigateTo (event, index = 0) {
+      event.preventDefault()
+      event.stopPropagation()
       this.context.navigateTo(index)
     }
-  },
-
-  render (h) {
-    return h('div', {
-      staticClass: 'sb-minibrowser__breadcrumbs'
-    }, [
-      h(SbBreadcrumbs, [
-        h(SbBreadcrumbItem, {
-          props: {
-            label: 'Global'
-          },
-          on: {
-            click: this.clearNavigation
-          }
-        }),
-
-        h(SbBreadcrumbSeparator),
-
-        ...this.breadcrumbItems.reduce((acc, item, index) => {
-          acc.push(
-            h(SbBreadcrumbItem, {
-              props: {
-                ...item,
-                isActive: index === this.lastIndex
-              },
-              on: {
-                click: (event) => {
-                  event.preventDefault()
-                  event.stopPropagation()
-                  this.navigateTo(index)
-                }
-              }
-            })
-          )
-
-          if (index < this.lastIndex) {
-            acc.push(
-              h(SbBreadcrumbSeparator)
-            )
-          }
-
-          return acc
-        }, [])
-      ])
-    ])
   }
 }
 </script>
