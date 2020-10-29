@@ -1,6 +1,6 @@
 import SbNotification from './index'
 
-const NotificationTemplate = args => ({
+const NotificationTemplate = (args) => ({
   components: { SbNotification },
   props: Object.keys(args),
   template: `
@@ -13,7 +13,7 @@ const NotificationTemplate = args => ({
         link,
         isExpandable,
         isFull,
-      }"/>`
+      }"/>`,
 })
 
 export default {
@@ -22,9 +22,10 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Notification component sends various types of notification, with texts, descriptions and various links and diferent status.'
-      }
-    }
+        component:
+          'Notification component sends various types of notification, with texts, descriptions and various links and diferent status.',
+      },
+    },
   },
   args: {
     status: 'general',
@@ -33,7 +34,7 @@ export default {
     link: null,
     linkName: null,
     isExpandable: false,
-    isFull: false
+    isFull: false,
   },
   argTypes: {
     status: {
@@ -41,57 +42,57 @@ export default {
       description: 'Status color',
       control: {
         type: 'select',
-        options: ['general', 'positive', 'warning', 'info', 'negative']
-      }
+        options: ['general', 'positive', 'warning', 'info', 'negative'],
+      },
     },
     title: {
       name: 'title',
       description: 'Title for notification',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     description: {
       name: 'description',
       description: 'Notification description',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     link: {
       name: 'link',
       description: 'The link URL',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     linkName: {
       name: 'linkName',
       description: 'Name for the link URL',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     isExpandable: {
       name: 'isExpandable',
       description: 'Change notification to expadable and show content',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     isFull: {
       name: 'isFull',
       description: 'Change notification format to full view',
       control: {
-        type: 'boolean'
-      }
-    }
-  }
+        type: 'boolean',
+      },
+    },
+  },
 }
 
 export const Default = NotificationTemplate.bind({})
 
-export const AllStatus = args => ({
+export const AllStatus = (args) => ({
   components: { SbNotification },
   props: Object.keys(args),
   template: `<div>
@@ -145,18 +146,19 @@ export const AllStatus = args => ({
         isExpandable,
         isFull
       }"/>
-  </div>`
+  </div>`,
 })
 
 AllStatus.parameters = {
   docs: {
     description: {
-      story: 'You can set the `status` property to change the type of the `SbNotification`'
-    }
-  }
+      story:
+        'You can set the `status` property to change the type of the `SbNotification`',
+    },
+  },
 }
 
-export const AllSizes = args => ({
+export const AllSizes = (args) => ({
   components: { SbNotification },
   props: Object.keys(args),
   template: `<div>
@@ -200,18 +202,19 @@ export const AllSizes = args => ({
           isExpandable,
           isFull: true
     }"/>
-  </div>`
+  </div>`,
 })
 
 AllSizes.parameters = {
   docs: {
     description: {
-      story: 'You can create notifications of standard size or full size, with or without content'
-    }
-  }
+      story:
+        'You can create notifications of standard size or full size, with or without content',
+    },
+  },
 }
 
-export const ExpandableNotification = args => ({
+export const ExpandableNotification = (args) => ({
   components: { SbNotification },
   props: Object.keys(args),
   template: `<div>
@@ -238,13 +241,14 @@ export const ExpandableNotification = args => ({
           isExpandable: true,
           isFull: true
     }"/>
-  </div>`
+  </div>`,
 })
 
 ExpandableNotification.parameters = {
   docs: {
     description: {
-      story: 'You can create expansive notifications, to hide part of the content, for this pass the `isExpandable` prop'
-    }
-  }
+      story:
+        'You can create expansive notifications, to hide part of the content, for this pass the `isExpandable` prop',
+    },
+  },
 }

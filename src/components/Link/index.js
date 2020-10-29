@@ -17,35 +17,35 @@ const SbLink = {
   props: {
     as: {
       type: String,
-      default: 'a'
+      default: 'a',
     },
     label: {
       type: String,
-      default: null
+      default: null,
     },
     href: {
       type: String,
-      default: null
+      default: null,
     },
     icon: {
       type: String,
-      default: null
+      default: null,
     },
     iconRight: {
       type: String,
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: null
+      default: null,
     },
     to: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
 
-  render (h) {
+  render(h) {
     const getAttrs = () => {
       const attrs = {}
 
@@ -64,22 +64,30 @@ const SbLink = {
       return h(SbIcon, {
         props: {
           size: 'small',
-          name: icon
-        }
+          name: icon,
+        },
       })
     }
 
     const renderLabel = () => {
       if (this.label) {
-        return h('span', {
-          staticClass: 'sb-link__label'
-        }, this.label)
+        return h(
+          'span',
+          {
+            staticClass: 'sb-link__label',
+          },
+          this.label
+        )
       }
 
       if (this.$slots.default) {
-        return h('span', {
-          staticClass: 'sb-link__label'
-        }, this.$slots.default)
+        return h(
+          'span',
+          {
+            staticClass: 'sb-link__label',
+          },
+          this.$slots.default
+        )
       }
 
       return null
@@ -95,20 +103,24 @@ const SbLink = {
       return props
     }
 
-    return h(this.as || 'a', {
-      staticClass: 'sb-link',
-      class: {
-        'sb-button--has-icon': this.icon,
-        'sb-button--has-icon-right': this.iconRight
+    return h(
+      this.as || 'a',
+      {
+        staticClass: 'sb-link',
+        class: {
+          'sb-button--has-icon': this.icon,
+          'sb-button--has-icon-right': this.iconRight,
+        },
+        attrs: getAttrs(),
+        props: getProps(),
       },
-      attrs: getAttrs(),
-      props: getProps()
-    }, [
-      this.icon && renderIcon(this.icon),
-      renderLabel(),
-      this.iconRight && renderIcon(this.iconRight)
-    ])
-  }
+      [
+        this.icon && renderIcon(this.icon),
+        renderLabel(),
+        this.iconRight && renderIcon(this.iconRight),
+      ]
+    )
+  },
 }
 
 export default SbLink

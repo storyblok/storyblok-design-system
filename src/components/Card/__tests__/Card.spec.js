@@ -3,32 +3,38 @@ import {
   SbCardHeader,
   SbCardContent,
   SbCardFooter,
-  SbCardOptions
+  SbCardOptions,
 } from '../'
 
 import SbLink from '../../Link'
 
 import { mount } from '@vue/test-utils'
-import { SbMenu, SbMenuButton, SbMenuGroup, SbMenuItem, SbMenuSeparator } from '../../Menu'
+import {
+  SbMenu,
+  SbMenuButton,
+  SbMenuGroup,
+  SbMenuItem,
+  SbMenuSeparator,
+} from '../../Menu'
 import SbLoading from '../../Loading'
 
 const cardOptionsMock = [
   {
     icon: 'plus',
-    label: 'Option 1'
+    label: 'Option 1',
   },
   {
     icon: 'calendar',
     label: 'Option 2',
-    isDisabled: true
+    isDisabled: true,
   },
   {
-    separator: true
+    separator: true,
   },
   {
     icon: 'close',
     label: 'Delete',
-    type: 'negative'
+    type: 'negative',
   },
   {
     group: {
@@ -36,31 +42,31 @@ const cardOptionsMock = [
       items: [
         {
           icon: 'close',
-          label: 'Group Item 1'
+          label: 'Group Item 1',
         },
         {
           icon: 'close',
           label: 'Group Item 2',
-          type: 'negative'
-        }
-      ]
-    }
-  }
+          type: 'negative',
+        },
+      ],
+    },
+  },
 ]
 
 describe('SbCardHeader component', () => {
   const factory = (propsData) => {
     return mount(SbCardHeader, {
       propsData: {
-        ...propsData
-      }
+        ...propsData,
+      },
     })
   }
 
   const title = 'A awesome title'
   describe('default behavior', () => {
     const wrapper = factory({
-      title
+      title,
     })
 
     it('should render with correct class', () => {
@@ -68,36 +74,30 @@ describe('SbCardHeader component', () => {
     })
 
     it('should render a span with text', () => {
-      expect(
-        wrapper.find('span').text()
-      ).toBe(title)
+      expect(wrapper.find('span').text()).toBe(title)
     })
   })
 
   describe('when use as property', () => {
     const wrapper = factory({
       title,
-      as: 'h2'
+      as: 'h2',
     })
 
     it('should render the correct tag', async () => {
-      expect(
-        wrapper.find('h2').text()
-      ).toBe(title)
+      expect(wrapper.find('h2').text()).toBe(title)
     })
   })
 
   describe('when set the title by default slot', () => {
     const wrapper = mount(SbCardHeader, {
       slots: {
-        default: `<span> ${title} </span>`
-      }
+        default: `<span> ${title} </span>`,
+      },
     })
 
     it('should render the correct text', async () => {
-      expect(
-        wrapper.find('span').text()
-      ).toBe(title)
+      expect(wrapper.find('span').text()).toBe(title)
     })
   })
 
@@ -106,8 +106,8 @@ describe('SbCardHeader component', () => {
       const wrapper = mount(SbCardHeader, {
         propsData: {
           title: 'Awesome title',
-          options: [...cardOptionsMock]
-        }
+          options: [...cardOptionsMock],
+        },
       })
 
       const optionComponent = wrapper.findComponent(SbCardOptions)
@@ -122,14 +122,12 @@ describe('SbCardHeader component', () => {
 describe('SbCardOptions component', () => {
   const wrapper = mount(SbCardOptions, {
     propsData: {
-      options: [...cardOptionsMock]
-    }
+      options: [...cardOptionsMock],
+    },
   })
 
   it('should render the SbMenu component', () => {
-    expect(
-      wrapper.findComponent(SbMenu).exists()
-    ).toBe(true)
+    expect(wrapper.findComponent(SbMenu).exists()).toBe(true)
   })
 
   it('should render the SbMenuButton component', () => {
@@ -150,9 +148,7 @@ describe('SbCardOptions component', () => {
   })
 
   it('should render the SbMenuSeparator with separator true property', () => {
-    expect(
-      wrapper.findComponent(SbMenuSeparator).exists()
-    ).toBe(true)
+    expect(wrapper.findComponent(SbMenuSeparator).exists()).toBe(true)
   })
 
   it('should render the SbMenuGroup along with SbMenuItems', () => {
@@ -163,13 +159,9 @@ describe('SbCardOptions component', () => {
 
     expect(groupItems.length).toBe(2)
 
-    expect(
-      groupItems.at(0).props('label')
-    ).toBe('Group Item 1')
+    expect(groupItems.at(0).props('label')).toBe('Group Item 1')
 
-    expect(
-      groupItems.at(1).props('label')
-    ).toBe('Group Item 2')
+    expect(groupItems.at(1).props('label')).toBe('Group Item 2')
   })
 })
 
@@ -177,7 +169,7 @@ describe('SbCardContent component', () => {
   const wrapper = mount({
     components: {
       SbCard,
-      SbCardContent
+      SbCardContent,
     },
     template: `
       <SbCard>
@@ -185,13 +177,11 @@ describe('SbCardContent component', () => {
           <p> Awesome content </p>
         </SbCardContent>
       </SbCard>
-    `
+    `,
   })
 
   it('should render the content correctly', () => {
-    expect(
-      wrapper.find('p').text()
-    ).toBe('Awesome content')
+    expect(wrapper.find('p').text()).toBe('Awesome content')
   })
 })
 
@@ -204,8 +194,8 @@ describe('SbCardFooter component', () => {
           label="Awesome link name"
           href="https://storyblok.com"
         />
-      `
-    }
+      `,
+    },
   })
 
   it('should render the footer renderer correctly', () => {
@@ -226,10 +216,10 @@ describe('SbCard component', () => {
       SbCard,
       SbCardContent,
       SbCardFooter,
-      SbCardHeader
+      SbCardHeader,
     },
     data: () => ({
-      isLoading: false
+      isLoading: false,
     }),
     template: `
       <SbCard :is-loading="isLoading">
@@ -246,7 +236,7 @@ describe('SbCard component', () => {
           />
         </SbCardFooter>
       </SbCard >
-    `
+    `,
   })
 
   it('should render the all card correctly', () => {
@@ -261,21 +251,19 @@ describe('SbCard component', () => {
 
     // footer tests
     expect(wrapper.findComponent(SbCardFooter).exists()).toBe(true)
-    expect(
-      wrapper.findComponent(SbLink).props('label')
-    ).toBe('Awesome link name')
-    expect(
-      wrapper.findComponent(SbLink).props('href')
-    ).toBe('https://storyblok.com')
+    expect(wrapper.findComponent(SbLink).props('label')).toBe(
+      'Awesome link name'
+    )
+    expect(wrapper.findComponent(SbLink).props('href')).toBe(
+      'https://storyblok.com'
+    )
   })
 
   it('should render the SbLoading component in isLoading state', async () => {
     await wrapper.setData({
-      isLoading: true
+      isLoading: true,
     })
 
-    expect(
-      wrapper.findComponent(SbLoading).exists()
-    ).toBe(true)
+    expect(wrapper.findComponent(SbLoading).exists()).toBe(true)
   })
 })

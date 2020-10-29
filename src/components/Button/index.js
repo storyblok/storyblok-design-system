@@ -21,93 +21,108 @@ const SbButton = {
   props: {
     hasIconOnly: {
       type: Boolean,
-      default: false
+      default: false,
     },
     icon: {
       type: String,
-      default: null
+      default: null,
     },
     iconRight: {
       type: String,
-      default: null
+      default: null,
     },
     iconDescription: {
       type: String,
-      default: null
+      default: null,
     },
     isDisabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isFullWidth: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isLoading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isRounded: {
       type: Boolean,
-      default: false
+      default: false,
     },
     label: {
       type: String,
-      default: null
+      default: null,
     },
-    ...sharedProps
+    ...sharedProps,
   },
 
-  render (h) {
+  render(h) {
     const renderIcon = (icon) => {
       return h(SbIcon, {
         props: {
           size: 'small',
-          name: icon
-        }
+          name: icon,
+        },
       })
     }
 
     const renderLabel = () => {
       if (this.label) {
-        return h('span', {
-          staticClass: 'sb-button__label'
-        }, this.label)
+        return h(
+          'span',
+          {
+            staticClass: 'sb-button__label',
+          },
+          this.label
+        )
       }
 
       if (this.$slots.default) {
-        return h('span', {
-          staticClass: 'sb-button__label'
-        }, this.$slots.default)
+        return h(
+          'span',
+          {
+            staticClass: 'sb-button__label',
+          },
+          this.$slots.default
+        )
       }
 
       return null
     }
 
     const renderButton = (content) => {
-      return h('button', {
-        staticClass: `sb-button sb-button--${this.type}`,
-        attrs: {
-          ...this.$attrs,
-          disabled: this.isDisabled,
-          'aria-disabled': this.isDisabled
+      return h(
+        'button',
+        {
+          staticClass: `sb-button sb-button--${this.type}`,
+          attrs: {
+            ...this.$attrs,
+            disabled: this.isDisabled,
+            'aria-disabled': this.isDisabled,
+          },
+          class: {
+            'sb-button--disabled': this.isDisabled,
+            'sb-button--small': this.size === 'small',
+            'sb-button--large': this.size === 'large',
+            'sb-button--full': this.isFullWidth,
+            'sb-button--rounded': this.isRounded,
+            'sb-button--has-icon-only': this.hasIconOnly,
+            'sb-button--has-icon': this.icon,
+            'sb-button--has-icon-right': this.iconRight,
+            'sb-button--loading': this.isLoading,
+          },
+          on: {
+            ...this.$listeners,
+            click:
+              !this.isDisabled || !this.isLoading
+                ? ($event) => this.$emit('click', $event)
+                : '',
+          },
         },
-        class: {
-          'sb-button--disabled': this.isDisabled,
-          'sb-button--small': this.size === 'small',
-          'sb-button--large': this.size === 'large',
-          'sb-button--full': this.isFullWidth,
-          'sb-button--rounded': this.isRounded,
-          'sb-button--has-icon-only': this.hasIconOnly,
-          'sb-button--has-icon': this.icon,
-          'sb-button--has-icon-right': this.iconRight,
-          'sb-button--loading': this.isLoading
-        },
-        on: {
-          ...this.$listeners,
-          click: (!this.isDisabled || !this.isLoading ? $event => this.$emit('click', $event) : '')
-        }
-      }, content)
+        content
+      )
     }
 
     if (this.isLoading) {
@@ -116,29 +131,38 @@ const SbButton = {
           props: {
             type: 'spinner',
             size: 'small',
-            color: (this.type === 'primary' || this.type === 'secondary' || this.type === 'danger') ? 'white' : 'primary-dark'
-          }
-        })
+            color:
+              this.type === 'primary' ||
+              this.type === 'secondary' ||
+              this.type === 'danger'
+                ? 'white'
+                : 'primary-dark',
+          },
+        }),
       ])
     }
 
     const content = [
       this.icon && renderIcon(this.icon),
       !this.hasIconOnly && renderLabel(),
-      this.iconRight && renderIcon(this.iconRight)
+      this.iconRight && renderIcon(this.iconRight),
     ]
 
     if (this.hasIconOnly && this.iconDescription) {
-      return h(SbTooltip, {
-        props: {
-          label: this.iconDescription,
-          position: 'bottom'
-        }
-      }, [renderButton(content)])
+      return h(
+        SbTooltip,
+        {
+          props: {
+            label: this.iconDescription,
+            position: 'bottom',
+          },
+        },
+        [renderButton(content)]
+      )
     }
 
     return renderButton(content)
-  }
+  },
 }
 
 export default SbButton

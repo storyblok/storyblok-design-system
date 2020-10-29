@@ -13,25 +13,29 @@ const SbTabPanel = {
   props: {
     activate: {
       type: Boolean,
-      default: false
+      default: false,
     },
     name: {
       type: [String, Number],
-      required: true
-    }
+      required: true,
+    },
   },
 
-  render (h) {
-    return h('div', {
-      staticClass: 'sb-tab-panel',
-      attrs: {
-        ...this.$attrs,
-        role: 'tabpanel',
-        tabindex: this.activate ? 0 : -1,
-        'aria-hidden': !this.activate + ''
-      }
-    }, this.$slots.default)
-  }
+  render(h) {
+    return h(
+      'div',
+      {
+        staticClass: 'sb-tab-panel',
+        attrs: {
+          ...this.$attrs,
+          role: 'tabpanel',
+          tabindex: this.activate ? 0 : -1,
+          'aria-hidden': !this.activate + '',
+        },
+      },
+      this.$slots.default
+    )
+  },
 }
 
 /**
@@ -49,37 +53,38 @@ const SbTabPanels = {
   props: {
     value: {
       type: [String, Number],
-      required: true
-    }
+      required: true,
+    },
   },
 
-  render (h, { slots, props, data }) {
-    const children = slots().default.filter(e => e.tag) || []
+  render(h, { slots, props, data }) {
+    const children = slots().default.filter((e) => e.tag) || []
 
     const processChilren = () => {
-      return children.map(element => {
+      return children.map((element) => {
         const elementProps = element.componentOptions.propsData
         const elementId = elementProps.name
 
         element.componentOptions.propsData = {
           ...element.componentOptions.propsData,
-          activate: elementId === props.value
+          activate: elementId === props.value,
         }
 
         return element
       })
     }
 
-    return h('div', {
-      staticClass: 'sb-tab-panels',
-      attrs: {
-        ...data.$attrs
-      }
-    }, processChilren())
-  }
+    return h(
+      'div',
+      {
+        staticClass: 'sb-tab-panels',
+        attrs: {
+          ...data.$attrs,
+        },
+      },
+      processChilren()
+    )
+  },
 }
 
-export {
-  SbTabPanels,
-  SbTabPanel
-}
+export { SbTabPanels, SbTabPanel }

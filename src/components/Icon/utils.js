@@ -7,7 +7,7 @@ import iconPaths from '../../lib/internal-icons'
  * @param   {string} name name of the icon
  * @returns {IconDeff}
  */
-export const getSvgIcon = name => {
+export const getSvgIcon = (name) => {
   const iconDeff = iconPaths[name]
 
   if (!iconDeff) {
@@ -15,13 +15,13 @@ export const getSvgIcon = name => {
 
     return {
       path: iconPaths['fallback-black'].path,
-      viewBox: iconPaths['fallback-black'].viewBox
+      viewBox: iconPaths['fallback-black'].viewBox,
     }
   }
 
   return {
     path: iconDeff.path,
-    viewBox: iconDeff.viewBox || '0 0 20 20'
+    viewBox: iconDeff.viewBox || '0 0 20 20',
   }
 }
 

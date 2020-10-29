@@ -14,19 +14,19 @@ describe('SbPopover component', () => {
     const WrapperComponent = {
       components: {
         SbButton,
-        SbPopover
+        SbPopover,
       },
       data: () => ({
         active: false,
         placement: 'auto',
         reference: '#buttontest',
         parentElementTag: 'div',
-        usePortal: false
+        usePortal: false,
       }),
       methods: {
-        handleClick () {
+        handleClick() {
           this.$refs.popover.toggle()
-        }
+        },
       },
       template: `
         <div>
@@ -46,11 +46,11 @@ describe('SbPopover component', () => {
             </ul>
           </SbPopover>
         </div>
-      `
+      `,
     }
 
     const wrapper = mount(WrapperComponent, {
-      attachTo: '#root'
+      attachTo: '#root',
     })
 
     it('should have a ul with role navigation', () => {

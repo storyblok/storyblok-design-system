@@ -5,7 +5,7 @@ import {
   SbPaginationCarousel,
   SbPaginationPagesText,
   SbPagesContainer,
-  SbPerPageContainer
+  SbPerPageContainer,
 } from './components'
 
 const DEFAULT_ROWS_PER_PAGE_DROPDOWN = [10, 20, 30, 40, 50]
@@ -23,107 +23,107 @@ const SbPagination = {
   props: {
     carousel: {
       type: Boolean,
-      default: false
+      default: false,
     },
     compact: {
       type: Boolean,
-      default: false
+      default: false,
     },
     customPerPageOptions: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     isFullWidth: {
       type: Boolean,
-      default: false
+      default: false,
     },
     perPage: {
       type: Number,
-      default: 10
+      default: 10,
     },
     total: {
       type: Number,
-      default: 100
+      default: 100,
     },
     value: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
 
   computed: {
-    pages () {
+    pages() {
       return Math.ceil(this.total / this.perPage)
     },
-    isFirstDisabled () {
+    isFirstDisabled() {
       return this.value <= 1
     },
-    isLastDisabled () {
+    isLastDisabled() {
       return this.value >= this.pages
     },
-    perPageAvailable () {
+    perPageAvailable() {
       if (
         this.customPerPageOptions !== null &&
-        (Array.isArray(this.customPerPageOptions) &&
-        this.customPerPageOptions.length !== 0)
+        Array.isArray(this.customPerPageOptions) &&
+        this.customPerPageOptions.length !== 0
       ) {
         return this.customPerPageOptions
       }
 
       return DEFAULT_ROWS_PER_PAGE_DROPDOWN
-    }
+    },
   },
 
   methods: {
-    handlePreviousPage () {
+    handlePreviousPage() {
       if (!this.isFirstDisabled) {
         this.updateValue(this.value - 1)
       }
     },
-    handleNextPage () {
+    handleNextPage() {
       if (!this.isLastDisabled) {
         this.updateValue(this.value + 1)
       }
     },
-    onPageChange (page) {
+    onPageChange(page) {
       this.updateValue(page)
     },
-    onPerPageChange (perPage) {
+    onPerPageChange(perPage) {
       this.$emit('per-page-change', perPage)
       this.updateValue(1)
     },
-    updateValue (value) {
+    updateValue(value) {
       this.$emit('input', value)
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     const leftArrowButton = h(SbPaginationButton, {
       attrs: {
-        'data-testid': 'pagination-previous-button'
+        'data-testid': 'pagination-previous-button',
       },
       props: {
         icon: 'chevron-left',
         tooltipLabel: 'Previous page',
-        disabled: this.isFirstDisabled
+        disabled: this.isFirstDisabled,
       },
       on: {
-        click: this.handlePreviousPage
-      }
+        click: this.handlePreviousPage,
+      },
     })
 
     const rightArrowButton = h(SbPaginationButton, {
       attrs: {
-        'data-testid': 'pagination-next-button'
+        'data-testid': 'pagination-next-button',
       },
       props: {
         icon: 'chevron-right',
         tooltipLabel: 'Next page',
-        disabled: this.isLastDisabled
+        disabled: this.isLastDisabled,
       },
       on: {
-        click: this.handleNextPage
-      }
+        click: this.handleNextPage,
+      },
     })
 
     const renderChildren = () => {
@@ -133,13 +133,13 @@ const SbPagination = {
           h(SbPaginationCarousel, {
             props: {
               pages: this.pages,
-              currentPage: this.value
+              currentPage: this.value,
             },
             on: {
-              'change-page': this.onPageChange
-            }
+              'change-page': this.onPageChange,
+            },
           }),
-          rightArrowButton
+          rightArrowButton,
         ]
       }
 
@@ -150,10 +150,10 @@ const SbPagination = {
             props: {
               pages: this.pages,
               currentPage: this.value,
-              showCurrentPage: true
-            }
+              showCurrentPage: true,
+            },
           }),
-          rightArrowButton
+          rightArrowButton,
         ]
       }
 
@@ -164,35 +164,39 @@ const SbPagination = {
             perPage: this.perPage,
             currentPage: this.value,
             pages: this.pages,
-            perPageAvailable: this.perPageAvailable
+            perPageAvailable: this.perPageAvailable,
           },
           on: {
-            'per-page-change': this.onPerPageChange
-          }
+            'per-page-change': this.onPerPageChange,
+          },
         }),
         h(SbPagesContainer, {
           props: {
             pages: this.pages,
-            currentPage: this.value
+            currentPage: this.value,
           },
           on: {
-            'page-change': this.onPageChange
-          }
+            'page-change': this.onPageChange,
+          },
         }),
         leftArrowButton,
-        rightArrowButton
+        rightArrowButton,
       ]
     }
 
-    return h('div', {
-      staticClass: 'sb-pagination',
-      class: {
-        'sb-pagination--full-width': this.isFullWidth,
-        'sb-pagination--carousel': this.carousel,
-        'sb-pagination--compact': this.compact
-      }
-    }, renderChildren())
-  }
+    return h(
+      'div',
+      {
+        staticClass: 'sb-pagination',
+        class: {
+          'sb-pagination--full-width': this.isFullWidth,
+          'sb-pagination--carousel': this.carousel,
+          'sb-pagination--compact': this.compact,
+        },
+      },
+      renderChildren()
+    )
+  },
 }
 
 export default SbPagination

@@ -7,5 +7,5 @@ export const tagTypes = [
   'warning',
   'info',
   'light',
-  'light-info'
+  'light-info',
 ]

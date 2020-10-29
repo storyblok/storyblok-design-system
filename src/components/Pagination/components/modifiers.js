@@ -14,33 +14,35 @@ export const SbPaginationDot = {
     currentPage: {
       type: Number,
       required: true,
-      default: 1
+      default: 1,
     },
     page: {
       type: Number,
       required: true,
-      default: 1
-    }
+      default: 1,
+    },
   },
 
-  render (h, { props, listeners }) {
+  render(h, { props, listeners }) {
     const { page, currentPage } = props
     const isCurrent = currentPage === page
     return h('button', {
       staticClass: 'sb-pagination-dot',
       class: {
-        'sb-pagination-dot--active': isCurrent
+        'sb-pagination-dot--active': isCurrent,
       },
       attrs: {
         page,
-        'aria-label': isCurrent ? `Curent page, Page ${page}` : `Goto page ${page}`,
-        'aria-current': isCurrent + ''
+        'aria-label': isCurrent
+          ? `Curent page, Page ${page}`
+          : `Goto page ${page}`,
+        'aria-current': isCurrent + '',
       },
       on: {
-        ...listeners
-      }
+        ...listeners,
+      },
     })
-  }
+  },
 }
 
 /**
@@ -57,22 +59,22 @@ export const SbPaginationCarousel = {
     currentPage: {
       type: Number,
       required: true,
-      default: 1
+      default: 1,
     },
     pages: {
       type: Number,
       required: true,
-      default: 10
-    }
+      default: 10,
+    },
   },
 
   methods: {
-    onChangePageButton (page) {
+    onChangePageButton(page) {
       this.$emit('change-page', page)
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     const paginationDots = []
 
     for (let pageNumber = 1; pageNumber <= this.pages; pageNumber++) {
@@ -80,23 +82,27 @@ export const SbPaginationCarousel = {
         h(SbPaginationDot, {
           props: {
             page: pageNumber,
-            currentPage: this.currentPage
+            currentPage: this.currentPage,
           },
           on: {
             click: () => {
               this.onChangePageButton(pageNumber)
-            }
-          }
+            },
+          },
         })
       )
     }
 
-    return h('nav', {
-      staticClass: 'sb-pagination-carousel-container',
-      attrs: {
-        role: 'navigation',
-        'aria-label': 'Pagination Navigation'
-      }
-    }, paginationDots)
-  }
+    return h(
+      'nav',
+      {
+        staticClass: 'sb-pagination-carousel-container',
+        attrs: {
+          role: 'navigation',
+          'aria-label': 'Pagination Navigation',
+        },
+      },
+      paginationDots
+    )
+  },
 }

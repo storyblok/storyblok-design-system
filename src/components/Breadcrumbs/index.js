@@ -16,27 +16,32 @@ const SbBreadcrumbDropdown = {
   props: {
     items: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
-    active: Boolean
+    active: Boolean,
   },
 
-  render (h, { props }) {
+  render(h, { props }) {
     const renderChildren = () => {
-      return h('ul', {
-        staticClass: 'sb-breadcrumbs__dropdown'
-      }, props.items.map(itemProps => {
-        return h(SbBreadcrumbItem, { props: itemProps })
-      }))
+      return h(
+        'ul',
+        {
+          staticClass: 'sb-breadcrumbs__dropdown',
+        },
+        props.items.map((itemProps) => {
+          return h(SbBreadcrumbItem, { props: itemProps })
+        })
+      )
     }
 
-    return h('li', {
-      staticClass: 'sb-breadcrumbs__item'
-    }, [
-      '...',
-      props.active && renderChildren()
-    ])
-  }
+    return h(
+      'li',
+      {
+        staticClass: 'sb-breadcrumbs__item',
+      },
+      ['...', props.active && renderChildren()]
+    )
+  },
 }
 
 /**
@@ -52,27 +57,31 @@ const SbBreadcrumbSeparator = {
   functional: true,
 
   props: {
-    active: Boolean
+    active: Boolean,
   },
 
-  render (h, { props, listeners }) {
-    return h('li', {
-      staticClass: 'sb-breadcrumbs__separator',
-      class: {
-        'sb-breadcrumbs__separator--active': props.active
+  render(h, { props, listeners }) {
+    return h(
+      'li',
+      {
+        staticClass: 'sb-breadcrumbs__separator',
+        class: {
+          'sb-breadcrumbs__separator--active': props.active,
+        },
+        on: {
+          ...listeners,
+        },
       },
-      on: {
-        ...listeners
-      }
-    }, [
-      h(SbIcon, {
-        props: {
-          size: 'small',
-          name: 'chevron-right'
-        }
-      })
-    ])
-  }
+      [
+        h(SbIcon, {
+          props: {
+            size: 'small',
+            name: 'chevron-right',
+          },
+        }),
+      ]
+    )
+  },
 }
 
 /**
@@ -88,30 +97,30 @@ const SbBreadcrumbs = {
   props: {
     items: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
-    isLargeSection: Boolean
+    isLargeSection: Boolean,
   },
 
   data: () => ({
-    showDropdown: false
+    showDropdown: false,
   }),
 
   methods: {
-    toggleDropdown () {
+    toggleDropdown() {
       this.showDropdown = !this.showDropdown
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     const breadcrumbsProps = {
       staticClass: 'sb-breadcrumbs',
       class: {
-        'sb-breadcrumbs--large-section': this.isLargeSection
+        'sb-breadcrumbs--large-section': this.isLargeSection,
       },
       attrs: {
-        'aria-label': 'breadcrumb'
-      }
+        'aria-label': 'breadcrumb',
+      },
     }
 
     // render the dropdown
@@ -121,26 +130,26 @@ const SbBreadcrumbs = {
       const restElements = this.items.slice(1, -1)
       const children = [
         h(SbBreadcrumbItem, {
-          props: firstElementProps
+          props: firstElementProps,
         }),
         h(SbBreadcrumbSeparator),
         h(SbBreadcrumbDropdown, {
           props: {
             items: restElements,
-            active: this.showDropdown
-          }
+            active: this.showDropdown,
+          },
         }),
         h(SbBreadcrumbSeparator, {
           props: {
-            active: this.showDropdown
+            active: this.showDropdown,
           },
           on: {
-            click: this.toggleDropdown
-          }
+            click: this.toggleDropdown,
+          },
         }),
         h(SbBreadcrumbItem, {
-          props: lastElementProps
-        })
+          props: lastElementProps,
+        }),
       ]
 
       return h('nav', breadcrumbsProps, children)
@@ -153,18 +162,20 @@ const SbBreadcrumbs = {
         children.push(h(SbBreadcrumbSeparator))
       }
 
-      children.push(h(SbBreadcrumbItem, {
-        props: itemProps
-      }))
+      children.push(
+        h(SbBreadcrumbItem, {
+          props: itemProps,
+        })
+      )
     }
 
     return h('nav', breadcrumbsProps, children)
-  }
+  },
 }
 
 export {
   SbBreadcrumbs,
   SbBreadcrumbItem,
   SbBreadcrumbDropdown,
-  SbBreadcrumbSeparator
+  SbBreadcrumbSeparator,
 }

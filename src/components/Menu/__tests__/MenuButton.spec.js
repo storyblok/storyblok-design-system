@@ -9,22 +9,22 @@ describe('SbMenuButton component', () => {
     const wrapperComponent = {
       components: {
         SbMenu,
-        SbMenuButton
+        SbMenuButton,
       },
 
       data: () => ({
-        isOpen: false
+        isOpen: false,
       }),
 
       methods: {
-        onClick: onClick
+        onClick: onClick,
       },
 
       template: `
         <SbMenu v-model="isOpen">
           <SbMenuButton label="Combo button" @click="onClick" />
         </SbMenu>
-      `
+      `,
     }
 
     const wrapper = factoryMountComponent(wrapperComponent)
@@ -63,18 +63,18 @@ describe('SbMenuButton component', () => {
     const wrapperComponent = {
       components: {
         SbMenu,
-        SbMenuButton
+        SbMenuButton,
       },
 
       methods: {
-        onClick: onClick
+        onClick: onClick,
       },
 
       template: `
         <SbMenu>
           <SbMenuButton has-icon-only @click="onClick" />
         </SbMenu>
-      `
+      `,
     }
 
     const wrapper = factoryMountComponent(wrapperComponent)
