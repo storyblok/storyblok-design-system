@@ -32,7 +32,7 @@ export default {
       })
     },
 
-    lasIndex () {
+    lastIndex () {
       return this.breadcrumbItems.length - 1
     }
   },
@@ -75,7 +75,7 @@ export default {
             h(SbBreadcrumbItem, {
               props: {
                 ...item,
-                isActive: index === this.lasIndex
+                isActive: index === this.lastIndex
               },
               on: {
                 click: (event) => {
@@ -87,7 +87,7 @@ export default {
             })
           )
 
-          if (index < this.lasIndex) {
+          if (index < this.lastIndex) {
             acc.push(
               h(SbBreadcrumbSeparator)
             )
