@@ -37,7 +37,7 @@ const SbTag = {
       return h(SbIcon, {
         props: {
           name: 'close',
-          size: 'small',
+          size: 'x-small',
         },
         on: {
           click: (event) => {
