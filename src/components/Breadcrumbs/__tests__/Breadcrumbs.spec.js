@@ -1,30 +1,23 @@
 import { mount } from '@vue/test-utils'
 
-import {
-  SbBreadcrumbs,
-  SbBreadcrumbItem,
-  SbBreadcrumbDropdown
-} from '..'
+import { SbBreadcrumbs, SbBreadcrumbItem, SbBreadcrumbDropdown } from '..'
 import { defaultBreadcrumbItemsData } from '../Breadcrumbs.stories'
 
 const factory = (propsData = {}) => {
   return mount(SbBreadcrumbs, {
-    propsData
+    propsData,
   })
 }
 
 const defaultLastItem = {
   label: 'CTA Section',
-  isActive: true
+  isActive: true,
 }
 
 describe('SbBreadrumbs component', () => {
   describe('when render a simple breadcrumbs list', () => {
     const wrapper = factory({
-      items: [
-        ...defaultBreadcrumbItemsData.slice(0, 2),
-        defaultLastItem
-      ]
+      items: [...defaultBreadcrumbItemsData.slice(0, 2), defaultLastItem],
     })
 
     it('should render the correct list of SbBreadcrumbItem', () => {
@@ -38,10 +31,10 @@ describe('SbBreadrumbs component', () => {
         ...defaultBreadcrumbItemsData,
         {
           label: 'Long hero section name tooltip',
-          href: '#test-truncated'
+          href: '#test-truncated',
         },
-        defaultLastItem
-      ]
+        defaultLastItem,
+      ],
     })
 
     it('should show only two SbBreadcrumbItem in the first level', () => {
@@ -52,34 +45,42 @@ describe('SbBreadrumbs component', () => {
 
     it('should render the dropdown when it clicks in the first separator', async () => {
       expect(
-        wrapper.findComponent(SbBreadcrumbDropdown).find('.sb-breadcrumbs__dropdown').exists()
+        wrapper
+          .findComponent(SbBreadcrumbDropdown)
+          .find('.sb-breadcrumbs__dropdown')
+          .exists()
       ).toBe(false)
 
       await wrapper.vm.toggleDropdown()
 
       expect(
-        wrapper.findComponent(SbBreadcrumbDropdown).find('.sb-breadcrumbs__dropdown').exists()
+        wrapper
+          .findComponent(SbBreadcrumbDropdown)
+          .find('.sb-breadcrumbs__dropdown')
+          .exists()
       ).toBe(true)
 
       await wrapper.vm.toggleDropdown()
 
       expect(
-        wrapper.findComponent(SbBreadcrumbDropdown).find('.sb-breadcrumbs__dropdown').exists()
+        wrapper
+          .findComponent(SbBreadcrumbDropdown)
+          .find('.sb-breadcrumbs__dropdown')
+          .exists()
       ).toBe(false)
     })
   })
 
   describe('when render a large section', () => {
     const wrapper = factory({
-      items: [
-        ...defaultBreadcrumbItemsData.slice(0, 2),
-        defaultLastItem
-      ],
-      isLargeSection: true
+      items: [...defaultBreadcrumbItemsData.slice(0, 2), defaultLastItem],
+      isLargeSection: true,
     })
 
     it('should the container contains a class with --large-section modifier', () => {
-      expect(wrapper.attributes('class')).toBe('sb-breadcrumbs sb-breadcrumbs--large-section')
+      expect(wrapper.attributes('class')).toBe(
+        'sb-breadcrumbs sb-breadcrumbs--large-section'
+      )
     })
   })
 })

@@ -12,47 +12,47 @@ const SbBadge = {
   props: {
     inlineLabel: {
       type: Boolean,
-      default: false
+      default: false,
     },
     contract: {
       type: Boolean,
-      default: false
+      default: false,
     },
     label: {
       type: String,
-      default: null
+      default: null,
     },
     number: {
       type: Number,
-      default: null
+      default: null,
     },
     onlyIcon: {
       type: Boolean,
-      default: false
+      default: false,
     },
     type: {
       type: String,
       required: true,
-      validator: type => badgeTypes.indexOf(type) !== -1
-    }
+      validator: (type) => badgeTypes.indexOf(type) !== -1,
+    },
   },
 
-  render (h) {
+  render(h) {
     const badgeProps = {
       staticClass: `sb-badge sb-badge--${this.type}`,
       class: {
         'sb-badge--contract': this.contract,
         'sb-badge--only-icon': this.onlyIcon,
-        'sb-badge--inline-label': this.inlineLabel
-      }
+        'sb-badge--inline-label': this.inlineLabel,
+      },
     }
 
     const renderIcon = () => {
       return h(SbIcon, {
         props: {
           name: mapIconByTypes[this.type],
-          size: 'small'
-        }
+          size: 'small',
+        },
       })
     }
 
@@ -60,21 +60,26 @@ const SbBadge = {
       const textLabel = this.label || this.$slots.default
       const label = isValidNumber(this.number) ? this.number : textLabel
 
-      return h('span', {
-        staticClass: 'sb-badge__label'
-      }, label)
+      return h(
+        'span',
+        {
+          staticClass: 'sb-badge__label',
+        },
+        label
+      )
     }
 
     const isRenderIcon = !this.contract && !isValidNumber(this.number)
-    const hasLabelToRender = this.label || this.$slots.default || isValidNumber(this.number)
+    const hasLabelToRender =
+      this.label || this.$slots.default || isValidNumber(this.number)
 
     const children = [
       isRenderIcon && renderIcon(),
-      hasLabelToRender && !this.contract && !this.onlyIcon && renderLabel()
+      hasLabelToRender && !this.contract && !this.onlyIcon && renderLabel(),
     ]
 
     return h('div', badgeProps, children)
-  }
+  },
 }
 
 export default SbBadge

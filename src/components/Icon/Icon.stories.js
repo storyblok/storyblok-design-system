@@ -9,7 +9,7 @@ export default {
     size: 'normal',
     color: 'primary',
     name: 'chevron-down',
-    role: null
+    role: null,
   },
   argTypes: {
     color: {
@@ -17,47 +17,47 @@ export default {
       description: 'Color for SbIcon',
       control: {
         type: 'select',
-        options: availableColors
-      }
+        options: availableColors,
+      },
     },
     name: {
       name: 'name',
       description: 'Icon name',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     role: {
       name: 'role',
       description: 'HTML role for the icon',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     size: {
       name: 'size',
       description: 'Size for SbIcon',
       control: {
         type: 'select',
-        options: iconSizes
-      }
-    }
-  }
+        options: iconSizes,
+      },
+    },
+  },
 }
 
-export const Default = args => ({
+export const Default = (args) => ({
   components: { SbIcon },
   props: Object.keys(args),
-  template: '<SbIcon v-bind="{ name, color, size, role }" />'
+  template: '<SbIcon v-bind="{ name, color, size, role }" />',
 })
 
 Default.args = {
-  size: 'normal'
+  size: 'normal',
 }
 
 export const FallackIcon = () => ({
   components: { SbIcon },
-  template: '<SbIcon name="fallback" size="x-large" />'
+  template: '<SbIcon name="fallback" size="x-large" />',
 })
 
 export const IconSizes = () => ({
@@ -77,10 +77,10 @@ export const IconSizes = () => ({
         <SbIcon name="chevron-down" size="x-large" />
       </div>
     </div>
-  `
+  `,
 })
 
-export const AllIcons = args => ({
+export const AllIcons = (args) => ({
   components: { SbIcon },
   props: Object.keys(args),
   template: `
@@ -116,5 +116,5 @@ export const AllIcons = args => ({
       <SbIcon name="delete-pictogram" v-bind="{ size, color }" />
     </div>
   </div>
-  `
+  `,
 })

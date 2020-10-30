@@ -1,82 +1,80 @@
-import {
-  SbSidebar,
-  SbSidebarLink
-} from '.'
+import { SbSidebar, SbSidebarLink } from '.'
 
 export const listItemsData = [
   {
     href: '#',
     icon: 'sidebar-arrow',
-    label: 'Back to Spaces'
+    label: 'Back to Spaces',
   },
   {
     href: '#',
     icon: 'sidebar-dashboard',
     label: 'Dashboard',
     ariaLabel: 'Goto dashboard',
-    active: true
+    active: true,
   },
   {
     href: '#',
     icon: 'sidebar-content',
-    label: 'Content'
+    label: 'Content',
   },
   {
     href: '#',
     icon: 'sidebar-tags',
-    label: 'Tags'
+    label: 'Tags',
   },
   {
     href: '#',
     icon: 'sidebar-assets',
-    label: 'Assets'
+    label: 'Assets',
   },
   {
     href: '#',
     icon: 'sidebar-components',
-    label: 'Components'
+    label: 'Components',
   },
   {
     href: '#',
     icon: 'sidebar-datasources',
-    label: 'Datasources'
+    label: 'Datasources',
   },
   {
     href: '#',
     icon: 'sidebar-activity',
-    label: 'Activities'
+    label: 'Activities',
   },
   {
     href: '#',
     icon: 'sidebar-addons',
-    label: 'Apps'
+    label: 'Apps',
   },
   {
     href: '#',
     icon: 'sidebar-settings',
-    label: 'Settings'
-  }
+    label: 'Settings',
+  },
 ]
 
 export const userData = {
   name: 'Dominik Angerer',
-  src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
-  email: 'fake@fake.com'
+  src:
+    'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
+  email: 'fake@fake.com',
 }
 
-const SidebarTemplate = args => ({
+const SidebarTemplate = (args) => ({
   components: { SbSidebar, SbSidebarLink },
   props: Object.keys(args),
   data: () => ({
-    internalMinimize: false
+    internalMinimize: false,
   }),
   watch: {
     minimize: {
       immediate: true,
-      handler (value) {
+      handler(value) {
         this.internalMinimize = value
-      }
-    }
+      },
+    },
   },
   template: `
     <SbSidebar
@@ -96,7 +94,7 @@ const SidebarTemplate = args => ({
         />
       </template>
     </SbSidebar>
-  `
+  `,
 })
 
 export default {
@@ -104,29 +102,30 @@ export default {
   component: SbSidebar,
   excludeStories: /.*Data$/,
   parameters: {
-    layout: 'fullscreen'
+    layout: 'fullscreen',
   },
   args: {
     user: { ...userData },
     listItems: [...listItemsData],
-    minimize: false
+    minimize: false,
   },
   argTypes: {
     user: {
       name: 'user',
       description: 'User information object',
       control: {
-        type: 'object'
-      }
+        type: 'object',
+      },
     },
     minimize: {
       name: 'minimize',
-      description: 'Minimize the Sidebar to just show the icons. When use this property, you should put the `sync` modifier (like `:minimize.sync`) to allow the sidebar change the state itself',
+      description:
+        'Minimize the Sidebar to just show the icons. When use this property, you should put the `sync` modifier (like `:minimize.sync`) to allow the sidebar change the state itself',
       control: {
-        type: 'boolean'
-      }
-    }
-  }
+        type: 'boolean',
+      },
+    },
+  },
 }
 
 export const Default = SidebarTemplate.bind({})
@@ -134,13 +133,14 @@ export const Default = SidebarTemplate.bind({})
 export const Minimized = SidebarTemplate.bind({})
 
 Minimized.args = {
-  minimize: true
+  minimize: true,
 }
 
 Minimized.parameters = {
   docs: {
     description: {
-      story: 'When you define the sidebar as `minimize`, it will collapse the sidebar to just show the link icons.'
-    }
-  }
+      story:
+        'When you define the sidebar as `minimize`, it will collapse the sidebar to just show the link icons.',
+    },
+  },
 }

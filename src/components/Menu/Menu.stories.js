@@ -4,7 +4,7 @@ import {
   SbMenuList,
   SbMenuItem,
   SbMenuGroup,
-  SbMenuSeparator
+  SbMenuSeparator,
 } from '.'
 
 import SbButton from '../Button'
@@ -16,22 +16,24 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Use the overflow menu component when additional options are available to the user but there is a space constraint.'
-      }
-    }
+        component:
+          'Use the overflow menu component when additional options are available to the user but there is a space constraint.',
+      },
+    },
   },
   args: {
-    value: true
+    value: true,
   },
   argTypes: {
     value: {
       name: 'value',
-      description: 'Controls the open menu state. The value property has to be used for `v-model` directive',
+      description:
+        'Controls the open menu state. The value property has to be used for `v-model` directive',
       control: {
-        type: 'boolean'
-      }
-    }
-  }
+        type: 'boolean',
+      },
+    },
+  },
 }
 
 export const Default = (args) => ({
@@ -42,7 +44,7 @@ export const Default = (args) => ({
     SbMenuList,
     SbMenuItem,
     SbMenuGroup,
-    SbMenuSeparator
+    SbMenuSeparator,
   },
   template: `
     <div>
@@ -63,7 +65,7 @@ export const Default = (args) => ({
         </SbMenuList>
       </SbMenu>
     </div>
-  `
+  `,
 })
 
 export const WithSeparators = (args) => ({
@@ -74,7 +76,7 @@ export const WithSeparators = (args) => ({
     SbMenuList,
     SbMenuItem,
     SbMenuGroup,
-    SbMenuSeparator
+    SbMenuSeparator,
   },
   template: `
     <div>
@@ -96,7 +98,7 @@ export const WithSeparators = (args) => ({
         </SbMenuList>
       </SbMenu>
     </div>
-  `
+  `,
 })
 
 export const WithIcons = (args) => ({
@@ -107,7 +109,7 @@ export const WithIcons = (args) => ({
     SbMenuList,
     SbMenuItem,
     SbMenuGroup,
-    SbMenuSeparator
+    SbMenuSeparator,
   },
   template: `
     <div>
@@ -125,7 +127,7 @@ export const WithIcons = (args) => ({
         </SbMenuList>
       </SbMenu>
     </div>
-  `
+  `,
 })
 
 export const ButtonWithJustIcon = (args) => ({
@@ -136,7 +138,7 @@ export const ButtonWithJustIcon = (args) => ({
     SbMenuList,
     SbMenuItem,
     SbMenuGroup,
-    SbMenuSeparator
+    SbMenuSeparator,
   },
   template: `
     <div>
@@ -154,7 +156,7 @@ export const ButtonWithJustIcon = (args) => ({
         </SbMenuList>
       </SbMenu>
     </div>
-  `
+  `,
 })
 
 export const AlongWithGroup = (args) => ({
@@ -167,7 +169,7 @@ export const AlongWithGroup = (args) => ({
     SbMenuGroup,
     SbMenuSeparator,
     SbButton,
-    SbGroupButton
+    SbGroupButton,
   },
   template: `
     <div style="display: flex; justify-content: center;">
@@ -188,5 +190,5 @@ export const AlongWithGroup = (args) => ({
         </SbMenuList>
       </SbMenu>
     </div>
-  `
+  `,
 })

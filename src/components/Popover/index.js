@@ -1,10 +1,6 @@
 // popper imports
 import { createPopper } from '@popperjs/core/lib/popper-lite'
-import {
-  flip,
-  offset,
-  preventOverflow
-} from '@popperjs/core/lib/modifiers'
+import { flip, offset, preventOverflow } from '@popperjs/core/lib/modifiers'
 
 import SbPortal from '../Portal'
 
@@ -31,7 +27,7 @@ export const placementOptions = [
   'right-end',
   'left',
   'left-start',
-  'left-end'
+  'left-end',
 ]
 
 /**
@@ -45,59 +41,59 @@ const SbPopover = {
   name: 'SbPopover',
 
   directives: {
-    ClickOutside
+    ClickOutside,
   },
 
   props: {
     // popper.js options
     modifiers: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     placement: {
       type: String,
       default: 'auto',
-      validator: val => includes(placementOptions, val)
+      validator: (val) => includes(placementOptions, val),
     },
     strategy: {
       type: String,
-      default: 'absolute'
+      default: 'absolute',
     },
 
     // component itself properties
     anchorId: {
       type: String,
-      default: `sb-popover-${randomString(4)}`
+      default: `sb-popover-${randomString(4)}`,
     },
     offset: {
       type: Array,
-      default: () => [0, 10]
+      default: () => [0, 10],
     },
     parentElementTag: {
       type: String,
-      default: 'div'
+      default: 'div',
     },
     portalTarget: {
       type: String,
-      default: `sb-portal-target-${randomString(4)}`
+      default: `sb-portal-target-${randomString(4)}`,
     },
     reference: {
       type: String,
-      required: true
+      required: true,
     },
     usePortal: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   data: () => ({
     popoverInstance: null,
-    isOpen: false
+    isOpen: false,
   }),
 
   computed: {
-    computedModifiers () {
+    computedModifiers() {
       const defaultModifierValues = [
         flip,
         preventOverflow,
@@ -105,32 +101,29 @@ const SbPopover = {
         {
           name: 'offset',
           options: {
-            offset: this.offset
-          }
-        }
+            offset: this.offset,
+          },
+        },
       ]
 
-      return [
-        ...defaultModifierValues,
-        ...this.modifiers
-      ]
+      return [...defaultModifierValues, ...this.modifiers]
     },
 
-    referenceEl () {
+    referenceEl() {
       return canUseDOM && document.querySelector(this.reference)
     },
 
-    popoverEl () {
+    popoverEl() {
       const ref = this.usePortal
         ? canUseDOM && document.querySelector(`#${this.anchorId}`)
         : this.$el
 
       return ref
-    }
+    },
   },
 
   // clean
-  beforeDestroy () {
+  beforeDestroy() {
     this.$_destroyPopoverInstance()
   },
 
@@ -138,7 +131,7 @@ const SbPopover = {
     /**
      * hides the Popover
      */
-    hide () {
+    hide() {
       if (this.isOpen) {
         this.isOpen = false
 
@@ -149,7 +142,7 @@ const SbPopover = {
     /**
      * shows the Popover
      */
-    show () {
+    show() {
       if (!this.isOpen) {
         this.isOpen = true
 
@@ -160,7 +153,7 @@ const SbPopover = {
     /**
      * toggles open state the Popover
      */
-    toggle () {
+    toggle() {
       if (this.isOpen) {
         return this.hide()
       }
@@ -171,7 +164,7 @@ const SbPopover = {
     /**
      * creates the Popover instance
      */
-    $_createPopoverInstance () {
+    $_createPopoverInstance() {
       if (this.usePortal && this.$refs.portalRef) {
         this.$refs.portalRef.mountTarget()
       }
@@ -179,7 +172,7 @@ const SbPopover = {
       if (this.referenceEl && this.popoverEl) {
         this.popoverInstance = createPopper(this.referenceEl, this.popoverEl, {
           placement: this.placement,
-          modifiers: this.computedModifiers
+          modifiers: this.computedModifiers,
         })
       }
     },
@@ -187,7 +180,7 @@ const SbPopover = {
     /**
      * destroys the Popover instance
      */
-    $_destroyPopoverInstance () {
+    $_destroyPopoverInstance() {
       if (this.popoverInstance) {
         this.popoverInstance.destroy()
         this.popoverInstance = null
@@ -197,46 +190,54 @@ const SbPopover = {
     /**
      * handler for click-outside directive
      */
-    $_wrapClose (e) {
-      if (this.popoverInstance && !(this.referenceEl.contains(e.target))) {
+    $_wrapClose(e) {
+      if (this.popoverInstance && !this.referenceEl.contains(e.target)) {
         this.hide()
       }
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     if (this.isOpen && !this.popoverInstance) {
       this.$_createPopoverInstance()
     }
 
-    return h(SbPortal, {
-      props: {
-        append: true,
-        target: `#${this.portalTarget}`,
-        disabled: !this.usePortal,
-        slim: true,
-        unmountOnDestroy: true,
-        targetSlim: true
+    return h(
+      SbPortal,
+      {
+        props: {
+          append: true,
+          target: `#${this.portalTarget}`,
+          disabled: !this.usePortal,
+          slim: true,
+          unmountOnDestroy: true,
+          targetSlim: true,
+        },
+        ref: 'portalRef',
       },
-      ref: 'portalRef'
-    }, [
-      h(this.parentElementTag, {
-        attrs: {
-          id: this.anchorId,
-          ...this.$attrs
-        },
-        style: {
-          display: this.isOpen ? 'unset' : 'none'
-        },
-        directives: [{
-          name: 'click-outside',
-          value: this.$_wrapClose
-        }]
-      }, this.$slots.default)
-    ])
-  }
+      [
+        h(
+          this.parentElementTag,
+          {
+            attrs: {
+              id: this.anchorId,
+              ...this.$attrs,
+            },
+            style: {
+              display: this.isOpen ? 'unset' : 'none',
+            },
+            directives: [
+              {
+                name: 'click-outside',
+                value: this.$_wrapClose,
+              },
+            ],
+          },
+          this.$slots.default
+        ),
+      ]
+    )
+  },
 }
 
-export {
-  SbPopover
-}
+export { SbPopover }
