@@ -6,16 +6,31 @@
     }"
     @click="handleClick"
   >
-    <input v-if="multiple" type="checkbox" :checked="isSelected" />
-    <span class="sb-select-list__item-name">{{ label }}</span>
+    <SbAvatar
+      v-if="useAvatars"
+      :src="src"
+      :name="label"
+      show-name
+      size="small"
+    />
+
+    <template v-else>
+      <input v-if="multiple" type="checkbox" :checked="isSelected" />
+      <span class="sb-select-list__item-name">{{ label }}</span>
+    </template>
   </li>
 </template>
 
 <script>
 import { includes, isArray } from '../../../utils'
+import SbAvatar from '../../Avatar'
 
 export default {
   name: 'SbSelectInner',
+
+  components: {
+    SbAvatar,
+  },
 
   props: {
     inputValue: {
@@ -30,6 +45,13 @@ export default {
     value: {
       type: [String, Number],
       default: '',
+    },
+
+    // Avatar properties
+    useAvatars: Boolean,
+    src: {
+      type: String,
+      default: null,
     },
   },
 

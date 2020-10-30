@@ -10,6 +10,8 @@
       :label="label"
       :value="value"
       :left-icon="leftIcon"
+      :use-avatars="useAvatars"
+      :options="options"
       @click="handleSelectInnerClick"
       @clear-all-values="handleClearAllValues"
       @remove-item-value="handleRemoveItemValue"
@@ -22,6 +24,7 @@
       :multiple="multiple"
       :filterable="filterable"
       :filter-placeholder="filterPlaceholder"
+      :use-avatars="useAvatars"
       @emit-value="handleEmitValue"
     />
   </div>
@@ -70,6 +73,7 @@ export default {
       type: String,
       default: 'Filter options',
     },
+    useAvatars: Boolean,
   },
 
   data: () => ({

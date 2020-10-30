@@ -23,7 +23,18 @@
       />
     </div>
 
-    <span v-else class="sb-select-inner__label">{{ innerLabel }}</span>
+    <span v-if="isInnerLabelVisible" class="sb-select-inner__label">
+      {{ innerLabel }}
+    </span>
+
+    <div v-if="isAvatarVisible" class="sb-select-inner__avatar">
+      <SbAvatar
+        :src="avatarData.src"
+        :name="avatarData.label"
+        show-name
+        size="small"
+      />
+    </div>
 
     <div class="sb-select-inner__icons">
       <button
@@ -44,11 +55,12 @@
 import { isArray } from '../../../utils'
 import SbIcon from '../../Icon'
 import SbTag from '../../Tag'
+import SbAvatar from '../../Avatar'
 
 export default {
   name: 'SbSelectInner',
 
-  components: { SbIcon, SbTag },
+  components: { SbIcon, SbTag, SbAvatar },
 
   props: {
     label: {
@@ -67,8 +79,12 @@ export default {
       type: [String, Number, Array],
       default: null,
     },
+    options: {
+      type: Array,
+      default: () => [],
+    },
 
-    useTag: Boolean,
+    useAvatars: Boolean,
   },
 
   computed: {
@@ -98,6 +114,20 @@ export default {
       }
 
       return this.multiple ? this.value : []
+    },
+
+    isAvatarVisible() {
+      return this.hasValue && this.useAvatars
+    },
+
+    isInnerLabelVisible() {
+      return !this.isTagsVisible && !this.isAvatarVisible
+    },
+
+    avatarData() {
+      return this.options.find((option) => {
+        return option.value === this.value
+      })
     },
   },
 

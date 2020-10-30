@@ -54,6 +54,10 @@
     flex: 1;
   }
 
+  &__avatar {
+    flex: 1;
+  }
+
   // modifiers
   &--with-value {
     color: $color-primary-dark;

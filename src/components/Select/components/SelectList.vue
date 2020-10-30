@@ -16,6 +16,7 @@
         v-bind="option"
         :input-value="value"
         :multiple="multiple"
+        :use-avatars="useAvatars"
         @emit-value="handleEmitValue"
       />
     </ul>
@@ -51,6 +52,7 @@ export default {
       required: true,
       default: () => [],
     },
+    useAvatars: Boolean,
   },
 
   data: () => ({
