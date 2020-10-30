@@ -13,24 +13,42 @@
       size="small"
     />
 
-    <span>{{ innerLabel }}</span>
+    <div v-if="isTagsVisible" class="sb-select-inner__tags">
+      <SbTag
+        v-for="(tagLabel, key) in tagLabels"
+        :key="key"
+        :label="tagLabel"
+        closable
+        @close="removeItem($event, tagLabel)"
+      />
+    </div>
 
-    <SbIcon
-      class="sb-select-inner__icon-right"
-      name="chevron-down"
-      size="small"
-    />
+    <span v-else class="sb-select-inner__label">{{ innerLabel }}</span>
+
+    <div class="sb-select-inner__icons">
+      <button
+        v-if="isTagsVisible"
+        aria-label="Clear all values"
+        class="sb-select-inner__clear"
+        @click="clearAllValues"
+      >
+        <SbIcon name="close" size="small" />
+      </button>
+
+      <SbIcon name="chevron-down" size="small" color="primary-dark" />
+    </div>
   </div>
 </template>
 
 <script>
 import { isArray } from '../../../utils'
 import SbIcon from '../../Icon'
+import SbTag from '../../Tag'
 
 export default {
   name: 'SbSelectInner',
 
-  components: { SbIcon },
+  components: { SbIcon, SbTag },
 
   props: {
     label: {
@@ -49,6 +67,8 @@ export default {
       type: [String, Number, Array],
       default: null,
     },
+
+    useTag: Boolean,
   },
 
   computed: {
@@ -65,11 +85,32 @@ export default {
         return this.label
       }
 
-      return this.multiple ? this.itemsValue : this.value
+      return this.value
     },
 
-    itemsValue() {
-      return isArray(this.value) && this.value.join(', ')
+    isTagsVisible() {
+      return this.hasValue && this.multiple
+    },
+
+    tagLabels() {
+      if (!this.hasValue) {
+        return []
+      }
+
+      return this.multiple ? this.value : []
+    },
+  },
+
+  methods: {
+    clearAllValues(event) {
+      event.stopPropagation()
+      event.preventDefault()
+      this.$emit('clear-all-values')
+    },
+    removeItem(event, tagValue) {
+      event.stopPropagation()
+      event.preventDefault()
+      this.$emit('remove-item-value', tagValue)
     },
   },
 }

@@ -11,6 +11,8 @@
       :value="value"
       :left-icon="leftIcon"
       @click="handleSelectInnerClick"
+      @clear-all-values="handleClearAllValues"
+      @remove-item-value="handleRemoveItemValue"
     />
 
     <SbSelectList
@@ -125,6 +127,24 @@ export default {
       }
 
       return [...(this.value || []), value]
+    },
+
+    /**
+     * emit an input event with the item from tag that was removed
+     */
+    handleRemoveItemValue(itemValue) {
+      if (this.multiple) {
+        this.$emit('input', this.processMultipleValue(itemValue))
+      }
+    },
+
+    /**
+     * emit an input event to clear all selected values
+     */
+    handleClearAllValues() {
+      if (this.multiple) {
+        this.$emit('input', [])
+      }
     },
   },
 }
