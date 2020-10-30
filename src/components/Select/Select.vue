@@ -18,6 +18,8 @@
       :value="value"
       :options="options"
       :multiple="multiple"
+      :filterable="filterable"
+      :filter-placeholder="filterPlaceholder"
       @emit-value="handleEmitValue"
     />
   </div>
@@ -60,6 +62,11 @@ export default {
       type: Array,
       required: true,
       default: () => [],
+    },
+    filterable: Boolean,
+    filterPlaceholder: {
+      type: String,
+      default: 'Filter options',
     },
   },
 

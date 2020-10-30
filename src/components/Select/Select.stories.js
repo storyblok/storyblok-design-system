@@ -33,6 +33,8 @@ const SelectTemplate = (args) => ({
       :options="options"
       :multiple="multiple"
       :left-icon="leftIcon"
+      :filterable="filterable"
+      :filter-placeholder="filterPlaceholder"
       v-model="internalValue"
     />
   `,
@@ -78,7 +80,9 @@ export default {
     options: [...defaultSelectOptionsData],
     value: null,
     multiple: false,
+    filterable: false,
     leftIcon: null,
+    filterPlaceholder: 'Filter Options',
   },
 }
 
@@ -94,4 +98,11 @@ export const WithIcon = SelectTemplate.bind({})
 
 WithIcon.args = {
   leftIcon: 'calendar',
+}
+
+export const Filterable = SelectTemplate.bind({})
+
+Filterable.args = {
+  filterable: true,
+  filterPlaceholder: 'Filter Options',
 }

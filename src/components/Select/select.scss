@@ -81,4 +81,27 @@
       background-color: $light-50;
     }
   }
+
+  &--filterable {
+    padding-top: 0;
+  }
+}
+
+.sb-select-list-search {
+  position: relative;
+  display: block;
+  border-bottom: 1px solid $light;
+  
+  input {
+    padding: 2rem;
+    border: none;
+    font-size: $font-size-sm;
+    width: 100%;
+  }
+
+  .sb-icon {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
 }
