@@ -2,10 +2,10 @@ import SbRadio from './index'
 
 export default {
   title: 'SbRadio',
-  component: SbRadio
+  component: SbRadio,
 }
 
-export const Default = args => ({
+export const Default = (args) => ({
   components: { SbRadio },
   props: Object.keys(args),
   template: `
@@ -13,65 +13,80 @@ export const Default = args => ({
       <SbRadio
         name="radio-default"
         id="default"
-        label="Inactive"
+        label="Default Inactive"
       />
       <SbRadio
         name="radio-default"
         id="default-disabled"
-        label="Inactive - Disabled"
+        label="Default Inactive - Disabled"
         disabled
       />
     </div>
-  `
+  `,
 })
 
-export const Checked = args => ({
+export const Selected = (args) => ({
   components: { SbRadio },
   props: Object.keys(args),
   template: `
     <div>
       <SbRadio
-        name="radio-checked"
-        id="checked"
-        label="Selected"
+        id="selected"
+        label="Default Selected"
         checked
       />
       <SbRadio
-        name="radio-checked"
-        id="checked-disabled"
-        label="Selected - Disabled"
+        id="selected-disabled"
+        label="Default Selected - Disabled"
         checked
         disabled
       />
     </div>
-  `
+  `,
 })
 
-export const Inline = args => ({
+export const Inline = (args) => ({
   components: { SbRadio },
   props: Object.keys(args),
   template: `
     <div>
-      <SbRadio
-        name="radio-inline"
-        id="inline"
-        label="Inactive"
-        inline
-      />
-      <SbRadio
-        name="radio-inline"
-        id="inline-checked"
-        label="Selected"
-        inline
-        checked
-      />
-      <SbRadio
-        name="radio-inline"
-        id="inline-disabled"
-        label="Inactive - Disabled"
-        inline
-        disabled
-      />
+      <div>
+        <SbRadio
+          name="radio-inline"
+          id="inline"
+          label="Inline Inactive"
+          classRadioType="sb-radio-type--inline"
+        />
+        <SbRadio
+          name="radio-inline"
+          id="inline-selected"
+          label="Inline Selected"
+          classRadioType="sb-radio-type--inline"
+          checked
+        />
+        <SbRadio
+          name="radio-inline"
+          id="inline-disabled"
+          label="Inline Inactive - Disabled"
+          classRadioType="sb-radio-type--inline"
+          disabled
+        />
+      </div>
+      <div>
+        <SbRadio
+          name="radio-inline-outline"
+          id="inline-outline"
+          label="Inline Outline Inactive"
+          classRadioType="sb-radio-type--inline sb-radio-type--outline"
+        />
+        <SbRadio
+          name="radio-inline-outline"
+          id="inline-outline-selected"
+          label="Inline Outline Selected"
+          classRadioType="sb-radio-type--inline sb-radio-type--outline"
+          checked
+        />
+      </div>
     </div>
-  `
+  `,
 })

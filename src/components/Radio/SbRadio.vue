@@ -1,5 +1,5 @@
 <template>
-  <div :class="inline ? 'sb-radio-type--inline' : ''">
+  <div :class="classRadioType ? classRadioType : 'sb-radio-type--default'">
     <input
       :id="id"
       type="radio"
@@ -9,11 +9,8 @@
       :checked="checked"
       :required="required"
       :disabled="disabled"
-    >
-    <label
-      :for="id"
-      class="sb-radio__label"
-    >{{ label }}</label>
+    />
+    <label :for="id" class="sb-radio__label">{{ label }}</label>
   </div>
 </template>
 
@@ -22,37 +19,36 @@ export default {
   name: 'SbRadio',
   props: {
     inline: {
-      type: Boolean
+      type: Boolean,
     },
-    // className: {
-    //   type: String,
-    //   default: null
-    // },
+    classRadioType: {
+      type: String,
+    },
     label: {
       type: String,
-      default: null
+      default: null,
     },
     id: {
       type: String,
-      default: null
+      default: null,
     },
     name: {
       type: String,
-      default: null
+      default: null,
     },
     value: {
       type: String,
-      default: null
+      default: null,
     },
     checked: {
-      type: Boolean
+      type: Boolean,
     },
     required: {
-      type: Boolean
+      type: Boolean,
     },
     disabled: {
-      type: Boolean
-    }
-  }
+      type: Boolean,
+    },
+  },
 }
 </script>
