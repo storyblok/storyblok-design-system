@@ -35,10 +35,6 @@ export default {
   },
 
   props: {
-    totalFiles: {
-      type: [String, Number],
-      default: 0
-    },
     actualFile: {
       type: [String, Number],
       default: 0
@@ -54,6 +50,10 @@ export default {
     timeLeft: {
       type: [String, Number],
       default: 0
+    },
+    totalFiles: {
+      type: [String, Number],
+      default: 0
     }
   },
 
@@ -63,6 +63,15 @@ export default {
     },
 
     returnTimeLeft () {
+      const time = parseInt(this.timeLeft)
+
+      if (time > 59) {
+        const minutes = Math.floor(time / 60)
+        const seconds = (time % 60)
+
+        return `${minutes} min and ${seconds} sec left`
+      }
+
       return `${this.timeLeft} sec left`
     }
   }
