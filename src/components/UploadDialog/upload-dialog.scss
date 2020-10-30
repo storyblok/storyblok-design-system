@@ -1,4 +1,4 @@
-.sb-drop-area__upload {
+.sb-upload-dialog {
     border-radius: 5px;
     background-color: $white;
     width: 100%;
@@ -15,7 +15,7 @@
       margin-right: 1.4rem;
     }
 
-    &-label {
+    &__label {
       float: left;
       display: inline-block;
       font-size: $font-size-md;
@@ -30,9 +30,7 @@
       position: relative;
     }
 
-  }
-
-  .sb-drop-area__time-left {
+    &__time-left {
     color: $sb-dark-blue-50;
     font-size: $font-size-md;
     font-weight: $font-weight-regular;
@@ -40,3 +38,5 @@
     margin-right: 1.9rem;
     margin-top: 1.7rem;
   }
+
+}

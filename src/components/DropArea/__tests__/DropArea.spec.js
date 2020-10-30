@@ -1,4 +1,5 @@
-import { SbDropArea, SbDropAreaUpload } from '../index'
+import SbDropArea from '..'
+import SbIcon from '../../Icon'
 import { mount } from '@vue/test-utils'
 
 const factory = propsData => {
@@ -7,32 +8,63 @@ const factory = propsData => {
   })
 }
 
-const uploadFactory = propsData => {
-  return mount(SbDropAreaUpload, {
-    propsData
-  })
+const fakeProps = {
+  title: 'Drop here',
+  label: 'Your files',
+  accept: 'image/png',
+  maxFile: '1',
+  maxFileSize: '100'
 }
 
-describe('Test if drop-area renderer correctly', () => {
-  it('test default state of drop-area', () => {
-    const wrapper = factory({})
+const fakeEvent = {
+  preventDefault: () => { },
+  stopPropagation: () => { },
+  dataTransfer: {
+    files: [
+      {
+        lastModified: 1593647426743,
+        name: 'test',
+        size: 12763,
+        type: 'image/png'
+      }
+    ]
+  }
+}
+
+describe('Test if SbDropArea renderer correctly', () => {
+  it('Test default state of drop-area', () => {
+    const wrapper = factory(fakeProps)
 
     expect(wrapper.find('div').classes('sb-drop-area')).toBe(true)
-    expect(wrapper.findAll('div').length).toBe(3)
 
-    expect(wrapper.findAll('p').length).toBe(2)
+    expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
+
+    expect(wrapper.vm.$props.title).toBe(fakeProps.title)
+
+    expect(wrapper.vm.$props.label).toBe(fakeProps.label)
   })
 
-  it('test drop-area upload modal', () => {
-    const upload = uploadFactory({
-      totalFiles: 5,
-      actualFile: 1,
-      fileName: 'test.png',
-      percentageValue: 45
-    })
+  it('Test handleDropFile function is called', () => {
+    const wrapper = factory(fakeProps)
 
-    expect(upload.find('div').classes('sb-block-ui')).toBe(true)
+    wrapper.vm.handleDropFile = jest.fn()
 
-    expect(upload.find('span').text()).toBe('Uploading 1/5 - test.png')
+    wrapper.vm.handleDropFile(fakeEvent)
+
+    expect(wrapper.vm.handleDropFile).toBeCalled()
+  })
+
+  it('Test if the DropArea emit the event of upload-file', async () => {
+    const wrapper = factory(fakeProps)
+
+    wrapper.vm.handleDropFile(fakeEvent)
+
+    wrapper.vm.$emit('upload-file', fakeEvent.dataTransfer.files[0])
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('upload-file')).toBeTruthy()
+
+    expect(wrapper.emitted('upload-file')[1]).toEqual([fakeEvent.dataTransfer.files[0]])
   })
 })

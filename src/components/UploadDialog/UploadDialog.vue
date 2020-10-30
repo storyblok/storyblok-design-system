@@ -1,15 +1,15 @@
 <template>
   <SbBlockUi>
-    <div class="sb-drop-area__upload">
+    <div class="sb-upload-dialog">
       <SbIcon
         name="refresh"
         size="small"
         color="primary"
       />
-      <span class="sb-drop-area__upload-label">
+      <span class="sb-upload-dialog__label">
         {{ returnLabelToUpload }}
       </span>
-      <span class="sb-drop-area__time-left">
+      <span class="sb-upload-dialog__time-left">
         {{ returnTimeLeft }}
       </span>
       <SbLoading
