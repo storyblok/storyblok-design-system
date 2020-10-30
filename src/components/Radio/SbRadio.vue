@@ -1,5 +1,5 @@
 <template>
-  <div :class="classRadioType ? classRadioType : 'sb-radio-type--default'">
+  <div :class="componentClasses">
     <input
       :id="id"
       type="radio"
@@ -21,7 +21,7 @@ export default {
     inline: {
       type: Boolean,
     },
-    classRadioType: {
+    type: {
       type: String,
     },
     label: {
@@ -48,6 +48,20 @@ export default {
     },
     disabled: {
       type: Boolean,
+    },
+  },
+  computed: {
+    componentClasses() {
+      if (this.type) {
+        var classTypes = this.type.split(' ')
+        var classes = 'sb-radio'
+        for (var i = 0; i < classTypes.length; i++) {
+          classes = classes + ' sb-radio--' + classTypes[i]
+        }
+        return [classes]
+      } else {
+        return 'sb-radio'
+      }
     },
   },
 }
