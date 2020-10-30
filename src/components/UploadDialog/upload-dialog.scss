@@ -25,10 +25,21 @@
 
   .sb-loading--bar {
     overflow: auto;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
     bottom: -8px;
     position: relative;
+    border-radius: 0px 0px 5px 5px;
+  }
+
+  .sb-loading--bar::-webkit-progress-bar {
+    border-radius: 0px 0px 5px 5px;
+  }
+
+  .sb-loading--bar::-webkit-progress-value {
+    border-radius: 0px 0px 5px 5px;
+  }
+
+  .sb-loading--bar::-moz-progress-bar {
+    border-radius: 0px 0px 5px 5px;
   }
 
   &__time-left {
