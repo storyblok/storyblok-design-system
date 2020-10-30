@@ -48,8 +48,8 @@ const ModalTemplate = (args) => ({
         </SbModalContent>
         
         <SbModalFooter>
-          <SbButton label="Save" type="primary"/>
-          <SbButton label="Cancel" type="danger"/>
+          <SbButton label="Label" type="primary"/>
+          <SbButton label="Label" type="ghost"/>
         </SbModalFooter>
 
       </SbModal>
@@ -214,7 +214,13 @@ ModalWithoutHeader.parameters = {
 }
 
 export const ModalWithMediumSize = (args) => ({
-  components: { SbModal, SbModalHeader, SbModalContent, SbButton },
+  components: {
+    SbModal,
+    SbModalHeader,
+    SbModalContent,
+    SbButton,
+    SbModalFooter,
+  },
   props: Object.keys(args),
   methods: {
     handleShowModal() {
@@ -237,13 +243,17 @@ export const ModalWithMediumSize = (args) => ({
       <SbModalHeader 
           v-bind="{
             title,
+            align,
           }"
       />
       <SbModalContent>
-        <div style="width: 100%; height: 300px; background-color: #D9F4F3;"><p style="text-align: center; padding-top: 150px; box-sizing: border-box;">Awesome modal</p></div>
+        <div style="width: 100%; height: 300px;"><p style="text-align: left; margin: 0;">The body copy that explains empty state</p></div>
       </SbModalContent>
       
-      <SbButton label="Click me!" type="primary"/>
+      <SbModalFooter>
+          <SbButton label="Label" type="primary"/>
+          <SbButton label="Label" type="ghost"/>
+        </SbModalFooter>
     </SbModal>
   </div>`,
 })
@@ -255,6 +265,11 @@ ModalWithMediumSize.parameters = {
         'The `SbModal` component has a variable `height` so you can add content with the height you want the member to adjust to.',
     },
   },
+}
+
+ModalWithMediumSize.args = {
+  title: 'Main Title',
+  align: 'left',
 }
 
 export const ModalTypeComponentConfirm = (args) => ({
