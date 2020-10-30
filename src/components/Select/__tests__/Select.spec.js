@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils'
 
 import { SbSelect } from '..'
 import SbIcon from '../../Icon'
+import SbTag from '../../Tag'
 
 import { defaultSelectOptionsData } from '../Select.stories'
 
@@ -144,7 +145,43 @@ describe('SbSelect component', () => {
         },
       })
 
-      expect(wrapper.find('.sb-select-inner').text()).toBe('Option 1, Option 4')
+      expect(wrapper.findAllComponents(SbTag).at(0).text()).toBe('Option 1')
+
+      expect(wrapper.findAllComponents(SbTag).at(1).text()).toBe('Option 4')
+    })
+
+    it('should remove the tag from value when click on it', async () => {
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: ['Option 1', 'Option 4', 'Option 6'],
+          multiple: true,
+        },
+      })
+
+      const tagComponent = wrapper.findAllComponents(SbTag).at(1)
+
+      await tagComponent.findComponent(SbIcon).trigger('click')
+
+      expect(wrapper.emitted('input')[0][0]).toEqual(['Option 1', 'Option 6'])
+    })
+
+    it('should remove all values when click on Clear all values button', async () => {
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: ['Option 1', 'Option 4', 'Option 6'],
+          multiple: true,
+        },
+      })
+
+      const buttonComponent = wrapper.find('button')
+
+      await buttonComponent.trigger('click')
+
+      expect(wrapper.emitted('input')[0][0]).toEqual([])
     })
   })
 
