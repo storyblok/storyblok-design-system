@@ -4,6 +4,7 @@
     class="sb-select"
     :class="{
       'sb-select--multiple': multiple,
+      'sb-select--inline': inline,
     }"
   >
     <SbSelectInner
@@ -79,6 +80,7 @@ export default {
       type: String,
       default: 'Filter options',
     },
+    inline: Boolean,
     useAvatars: Boolean,
   },
 

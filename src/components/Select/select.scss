@@ -11,6 +11,24 @@
       background-color: $white;
     }
   }
+
+  &--inline {
+    width: auto;
+
+    .sb-select-inner {
+      border: none;
+      
+      &__label {
+        color: $color-primary-dark;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .sb-select-list {
+      position: absolute;
+      top: 0;
+    }
+  }
 }
 
 .sb-select-inner {

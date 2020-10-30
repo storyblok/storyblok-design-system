@@ -329,4 +329,21 @@ describe('SbSelect component', () => {
       ).toBe('Alexander Feiglstorfer')
     })
   })
+
+  describe('inline option', () => {
+    it('should have the correct class on wrapper', async () => {
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultAvatarsData],
+          value: null,
+          leftIcon: 'calendar',
+          filterable: true,
+          inline: true,
+        },
+      })
+
+      expect(wrapper.classes('sb-select--inline')).toBeTruthy()
+    })
+  })
 })

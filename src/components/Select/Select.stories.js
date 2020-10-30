@@ -36,6 +36,7 @@ const SelectTemplate = (args) => ({
       :filterable="filterable"
       :filter-placeholder="filterPlaceholder"
       :use-avatars="useAvatars"
+      :inline="inline"
       v-model="internalValue"
     />
   `,
@@ -106,6 +107,7 @@ export default {
     leftIcon: null,
     filterPlaceholder: 'Filter Options',
     useAvatars: false,
+    inline: false,
   },
 }
 
@@ -135,4 +137,10 @@ export const WithAvatars = SelectTemplate.bind({})
 WithAvatars.args = {
   useAvatars: true,
   options: [...defaultAvatarsData],
+}
+
+export const Inline = SelectTemplate.bind({})
+
+Inline.args = {
+  inline: true,
 }
