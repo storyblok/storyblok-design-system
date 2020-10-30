@@ -3,8 +3,9 @@ import { mount } from '@vue/test-utils'
 import { SbSelect } from '..'
 import SbIcon from '../../Icon'
 import SbTag from '../../Tag'
+import SbAvatar from '../../Avatar'
 
-import { defaultSelectOptionsData } from '../Select.stories'
+import { defaultSelectOptionsData, defaultAvatarsData } from '../Select.stories'
 
 describe('SbSelect component', () => {
   describe('default behavior (single option)', () => {
@@ -253,6 +254,79 @@ describe('SbSelect component', () => {
       expect(
         wrapper.find('input[type="search"]').attributes('placeholder')
       ).toBe('Filter Tags')
+    })
+  })
+
+  describe('useAvatars option', () => {
+    it('should have the correct list of Avatars', async () => {
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultAvatarsData],
+          value: null,
+          leftIcon: 'calendar',
+          filterable: true,
+          useAvatars: true,
+        },
+      })
+
+      wrapper.vm.show()
+
+      await wrapper.vm.$nextTick()
+
+      expect(wrapper.findAllComponents(SbAvatar).length).toBe(3)
+    })
+
+    it('should have the correct selected Avatar', async () => {
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultAvatarsData],
+          value: '001',
+          leftIcon: 'calendar',
+          filterable: true,
+          useAvatars: true,
+        },
+      })
+
+      wrapper.vm.show()
+
+      await wrapper.vm.$nextTick()
+
+      const avatarComponent = wrapper
+        .find('.sb-select-inner')
+        .findComponent(SbAvatar)
+
+      expect(avatarComponent.props('name')).toBe('Dominik Angerer')
+    })
+
+    it('should filter the list using the name', async () => {
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultAvatarsData],
+          value: '001',
+          leftIcon: 'calendar',
+          filterable: true,
+          useAvatars: true,
+        },
+      })
+
+      wrapper.vm.show()
+
+      await wrapper.vm.$nextTick()
+
+      const listComponent = wrapper.find('.sb-select-list')
+
+      wrapper.find('input[type="search"]').setValue('Alex')
+
+      await wrapper.vm.$nextTick()
+
+      expect(listComponent.findAllComponents(SbAvatar).length).toBe(1)
+
+      expect(
+        listComponent.findAllComponents(SbAvatar).at(0).props('name')
+      ).toBe('Alexander Feiglstorfer')
     })
   })
 })
