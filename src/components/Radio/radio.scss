@@ -3,9 +3,30 @@
     &--inline{
       position: relative;
       display: inline-block;
+      margin-right: 4em;
+      margin-bottom: 2em;
+    }
+    &--outline{
+      border-radius: 5px;
+      border: solid 1px #eff1f5;
+      background-color: #ffffff;
+      width: fit-content;
+      padding: 1.5em 2em;
+    }
+    &--default{
+      margin-bottom: 2em;
     }
   }
   &__input{
+    &:focus, &:hover{
+      &:not([disabled]){
+        & + label{
+          &:before{
+            box-shadow: 0px 0px 0px 3px rgba(217,244,243,1);
+          }
+        }
+      }
+    }
     &:checked, &:not(:checked){
       position: absolute;
       & + label{
@@ -50,6 +71,9 @@
       }
       &[disabled]{
         & + label{
+          &:before, &:after{
+            cursor: not-allowed;
+          }
           &:before{
             background-color: #b1b5be;
             border: solid 1px #b1b5be;
@@ -75,6 +99,9 @@
       }
       &[disabled]{
         & + label{
+          &:before, &:after{
+            cursor: not-allowed;
+          }
           &:before{
             border: solid 1px #dfe3e8;
             background-color: #f5f5f5;
