@@ -1,6 +1,7 @@
 <template>
   <div class="sb-select-list-search">
     <input
+      ref="input"
       type="search"
       :placeholder="placeholder"
       :value="value"
@@ -28,6 +29,10 @@ export default {
       type: String,
       default: 'Filter Options',
     },
+  },
+
+  mounted() {
+    this.$refs.input.focus()
   },
 
   methods: {
