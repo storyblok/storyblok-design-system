@@ -58,16 +58,22 @@ export default {
   },
 
   created() {
-    this.createPortalInstance()
+    this.$_createPortalInstance()
   },
 
   methods: {
+    /**
+     * handler for close modal
+     */
     handleCloseModal() {
       this.open = false
       this.$emit('hide')
     },
 
-    createPortalInstance() {
+    /**
+     * function to create the portal instance
+     */
+    $_createPortalInstance() {
       if (this.$refs.portalRef) {
         this.$refs.portalRef.mountTarget()
       }
