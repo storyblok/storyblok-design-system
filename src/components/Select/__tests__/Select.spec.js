@@ -162,4 +162,60 @@ describe('SbSelect component', () => {
       expect(wrapper.findComponent(SbIcon).exists()).toBeTruthy()
     })
   })
+
+  describe('filterable property', () => {
+    it('should change the list when type in the input', async () => {
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: null,
+          leftIcon: 'calendar',
+          filterable: true,
+        },
+      })
+
+      // making the options list visible
+      wrapper.vm.show()
+
+      await wrapper.vm.$nextTick()
+
+      // get the input component
+      const inputComponent = wrapper.find('input[type="search"]')
+
+      // type a value on it
+      await inputComponent.setValue('option 1')
+
+      const listItems = wrapper.findAll('li')
+
+      // it should have just one list item
+      expect(listItems.length).toBe(1)
+
+      // with the expected text
+      expect(listItems.at(0).text()).toBe('Option 1')
+    })
+
+    it('should change the placeholder using filterPlaceholder property', async () => {
+      const wrapper = mount(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: null,
+          leftIcon: 'calendar',
+          filterable: true,
+          filterPlaceholder: 'Filter Tags',
+        },
+      })
+
+      // making the options list visible
+      wrapper.vm.show()
+
+      await wrapper.vm.$nextTick()
+
+      // make the assert on placeholder attribute
+      expect(
+        wrapper.find('input[type="search"]').attributes('placeholder')
+      ).toBe('Filter Tags')
+    })
+  })
 })
