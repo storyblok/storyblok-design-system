@@ -1,7 +1,7 @@
 import SbDropArea from './index'
 import SbUploadDialog from '../UploadDialog'
 
-const DropTemplate = args => ({
+const DropTemplate = (args) => ({
   components: { SbDropArea },
   props: Object.keys(args),
   template: `
@@ -10,7 +10,7 @@ const DropTemplate = args => ({
         accept,
         maxFileSize,
         maxFile,
-      }" />`
+      }" />`,
 })
 
 export default {
@@ -18,48 +18,52 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'The `SbDropArea` component serves as a container for uploading files, works with the drop file event, and issues a callback with the files, you must implement the upload function because the component does not have the same!'
-      }
-    }
+        component:
+          'The `SbDropArea` component serves as a container for uploading files, works with the drop file event, and issues a callback with the files, you must implement the upload function because the component does not have the same!',
+      },
+    },
   },
   args: {
     accept: null,
     maxFileSize: null,
-    maxFile: null
+    maxFile: null,
   },
   argTypes: {
     accept: {
       name: 'accept',
-      description: 'Prop `accept` works as a filter, pass the files you want to be added, for example: `:accept="image/png, image/jpeg"`, so only `.png` and `.jpeg`images  will be accepted',
+      description:
+        'Prop `accept` works as a filter, pass the files you want to be added, for example: `:accept="image/png, image/jpeg"`, so only `.png` and `.jpeg`images  will be accepted',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     maxFileSize: {
       name: 'maxFileSize',
-      description: 'The `maxFileSize` prop defines the maximum size that each file can have, the prop receives the size in `KB` kylobytes.',
+      description:
+        'The `maxFileSize` prop defines the maximum size that each file can have, the prop receives the size in `KB` kylobytes.',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     maxFile: {
       name: 'maxFile',
-      description: 'The `maxFile` prop defines the maximum number of files that can be sent at once, that is, at each drop event. Note if the number is greater, no files will be returned.',
+      description:
+        'The `maxFile` prop defines the maximum number of files that can be sent at once, that is, at each drop event. Note if the number is greater, no files will be returned.',
       control: {
-        type: 'text'
-      }
-    }
-  }
+        type: 'text',
+      },
+    },
+  },
 }
 
 export const Default = DropTemplate.bind({})
 
-export const DropAreaWithUploadModal = args => ({
+export const DropAreaWithUploadModal = (args) => ({
   components: { SbDropArea, SbUploadDialog },
   props: Object.keys(args),
-  data () {
+  data() {
     return {
-      hasFiles: true
+      hasFiles: true,
     }
   },
   template: `
@@ -78,13 +82,14 @@ export const DropAreaWithUploadModal = args => ({
         time-left="125"
         v-if="hasFiles"
       />
-    </div>`
+    </div>`,
 })
 
 DropAreaWithUploadModal.parameters = {
   docs: {
     description: {
-      story: 'In this story you can see how the SbUploadDialog component looks after dropping the files in the `SbDropArea` component, the use of this component is optional, the user can use or create new ones, as `SbDropArea` returns a callback with the dropped files.`'
-    }
-  }
+      story:
+        'In this story you can see how the SbUploadDialog component looks after dropping the files in the `SbDropArea` component, the use of this component is optional, the user can use or create new ones, as `SbDropArea` returns a callback with the dropped files.`',
+    },
+  },
 }

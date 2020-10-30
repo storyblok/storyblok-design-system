@@ -2,9 +2,9 @@ import SbDropArea from '..'
 import SbIcon from '../../Icon'
 import { mount } from '@vue/test-utils'
 
-const factory = propsData => {
+const factory = (propsData) => {
   return mount(SbDropArea, {
-    propsData
+    propsData,
   })
 }
 
@@ -13,22 +13,22 @@ const fakeProps = {
   label: 'Your files',
   accept: 'image/png',
   maxFile: '1',
-  maxFileSize: '100'
+  maxFileSize: '100',
 }
 
 const fakeEvent = {
-  preventDefault: () => { },
-  stopPropagation: () => { },
+  preventDefault: () => {},
+  stopPropagation: () => {},
   dataTransfer: {
     files: [
       {
         lastModified: 1593647426743,
         name: 'test',
         size: 12763,
-        type: 'image/png'
-      }
-    ]
-  }
+        type: 'image/png',
+      },
+    ],
+  },
 }
 
 describe('Test if SbDropArea renderer correctly', () => {
@@ -65,6 +65,8 @@ describe('Test if SbDropArea renderer correctly', () => {
 
     expect(wrapper.emitted('upload-file')).toBeTruthy()
 
-    expect(wrapper.emitted('upload-file')[1]).toEqual([fakeEvent.dataTransfer.files[0]])
+    expect(wrapper.emitted('upload-file')[1]).toEqual([
+      fakeEvent.dataTransfer.files[0],
+    ])
   })
 })

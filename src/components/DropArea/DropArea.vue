@@ -8,11 +8,7 @@
   >
     <div class="sb-drop-area__content">
       <div class="sb-drop-area__icon">
-        <SbIcon
-          size="x-large"
-          color="primary-dark"
-          :name="returnIconName"
-        />
+        <SbIcon size="x-large" color="primary-dark" :name="returnIconName" />
       </div>
       <p class="sb-drop-area__title">
         {{ returnTitle }}
@@ -31,51 +27,54 @@ export default {
   name: 'SbDropArea',
 
   components: {
-    SbIcon
+    SbIcon,
   },
 
   props: {
     accept: {
       type: String,
-      default: null
+      default: null,
     },
     label: {
       type: String,
-      default: null
+      default: null,
     },
     maxFile: {
       type: [String, Number],
-      default: null
+      default: null,
     },
     maxFileSize: {
       type: [String, Number],
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
 
-  data () {
+  data() {
     return {
       isOver: false,
-      iconName: 'img-icon'
+      iconName: 'img-icon',
     }
   },
 
   computed: {
-    returnIconName () {
+    returnIconName() {
       return this.isOver ? 'chevron-down' : 'img-icon'
     },
 
-    returnTitle () {
+    returnTitle() {
       return this.title || 'Drop your asset in'
     },
 
-    returnLabel () {
-      return this.label || 'You can drop in miltiple JPEGs, PNGs, SVGs, PDFs and all other files.'
-    }
+    returnLabel() {
+      return (
+        this.label ||
+        'You can drop in miltiple JPEGs, PNGs, SVGs, PDFs and all other files.'
+      )
+    },
   },
 
   // watch: {
@@ -89,7 +88,7 @@ export default {
      * handles DragOver the event triggers the dragover action to change the layout
      * @param {Event} e
      */
-    handleDragOver (e) {
+    handleDragOver(e) {
       e.preventDefault()
       this.isOver = true
     },
@@ -98,7 +97,7 @@ export default {
      * handles DragLeave the event removes the change from the dragover event
      * @param {Event} e
      */
-    handleDragLeave (e) {
+    handleDragLeave(e) {
       if (!this.$el.contains(e.target) || e.target === this.$el) {
         this.isOver = false
       }
@@ -109,8 +108,8 @@ export default {
      * one passed by the maxFileSize prop
      * @param {Size} size
      */
-    $_checkMaximumFileSize (size) {
-      return (Math.ceil(size / 1000)) > parseInt(this.maxFileSize)
+    $_checkMaximumFileSize(size) {
+      return Math.ceil(size / 1000) > parseInt(this.maxFileSize)
     },
 
     /**
@@ -118,7 +117,7 @@ export default {
      * maxFile
      * @param {Files} files
      */
-    $_checkMaximumNumberOfFiles (files) {
+    $_checkMaximumNumberOfFiles(files) {
       return files > parseInt(this.maxFile)
     },
 
@@ -126,7 +125,7 @@ export default {
      * checkAcceptedFiles checks if the files the user is sending are valid files
      * @param {Ext} ext
      */
-    $_checkAcceptedFiles (ext) {
+    $_checkAcceptedFiles(ext) {
       const accepted = this.accept.split(',')
 
       return accepted.indexOf(ext) !== -1
@@ -136,14 +135,14 @@ export default {
      * fileFilter filters the files, 'and where files with an extension not accepted,
      * maximum size exceeded and number of files are filtered.
      */
-    $_fileFilter (fileArray, from = 'files') {
+    $_fileFilter(fileArray, from = 'files') {
       const files = []
 
       if (this.maxFile && this.$_checkMaximumNumberOfFiles(fileArray.length)) {
         return
       }
 
-      fileArray.forEach(item => {
+      fileArray.forEach((item) => {
         let file = []
 
         if (from === 'items' && item.kind === 'file') {
@@ -154,7 +153,10 @@ export default {
           return
         }
 
-        if (this.maxFileSize && this.$_checkMaximumFileSize(file.size || item.size)) {
+        if (
+          this.maxFileSize &&
+          this.$_checkMaximumFileSize(file.size || item.size)
+        ) {
           return
         }
 
@@ -168,21 +170,23 @@ export default {
      * handles DropFile function triggered when the user drops a file over the accepted area
      * @param {Event} e
      */
-    handleDropFile (e) {
+    handleDropFile(e) {
       e.preventDefault()
       e.stopPropagation()
       this.isOver = false
 
       const data = e.dataTransfer
 
-      const files = data.items ? this.$_fileFilter(data.items, 'items') : this.$_fileFilter(data.files)
+      const files = data.items
+        ? this.$_fileFilter(data.items, 'items')
+        : this.$_fileFilter(data.files)
 
       this.$emit('upload-file', files)
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="scss">
-  @import './drop-area.scss';
+@import './drop-area.scss';
 </style>

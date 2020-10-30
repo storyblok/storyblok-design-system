@@ -6,9 +6,9 @@ import SbIcon from '../../Icon'
 import SbLoading from '../../Loading'
 import SbBlockUi from '../../BlockUI'
 
-const factory = propsData => {
+const factory = (propsData) => {
   return mount(SbUploadDialog, {
-    propsData
+    propsData,
   })
 }
 
@@ -17,7 +17,7 @@ const fakeProps = {
   actualFile: 1,
   actualFileName: 'test.png',
   percentageValue: '25',
-  timeLeft: '50'
+  timeLeft: '50',
 }
 
 describe('Tests for UploadDialog', () => {
@@ -28,7 +28,9 @@ describe('Tests for UploadDialog', () => {
 
     expect(wrapper.findComponent(SbLoading).exists()).toBe(true)
 
-    expect(wrapper.findComponent(SbLoading).props('value')).toBe(fakeProps.percentageValue)
+    expect(wrapper.findComponent(SbLoading).props('value')).toBe(
+      fakeProps.percentageValue
+    )
 
     expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
 
@@ -36,13 +38,11 @@ describe('Tests for UploadDialog', () => {
 
     const spanLabelHelper = [
       `Uploading ${fakeProps.actualFile}/${fakeProps.totalFiles} - ${fakeProps.actualFileName}`,
-      `${fakeProps.timeLeft} sec left`
+      `${fakeProps.timeLeft} sec left`,
     ]
 
-    wrapper
-      .findAll('span')
-      .filter((span, index) => {
-        expect(span.text()).toBe(spanLabelHelper[index])
-      })
+    wrapper.findAll('span').filter((span, index) => {
+      expect(span.text()).toBe(spanLabelHelper[index])
+    })
   })
 })
