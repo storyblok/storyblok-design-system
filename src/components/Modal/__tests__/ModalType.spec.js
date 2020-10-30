@@ -4,7 +4,7 @@ import {
   SbModalHeader,
   SbModalFooter,
   SbModalType,
-  SbModalContent
+  SbModalContent,
 } from '../index'
 
 import SbButton from '../../Button'
@@ -14,7 +14,7 @@ describe('Tests for SbModalType', () => {
     propsData: {},
     mocks: {},
     stubs: {},
-    methods: {}
+    methods: {},
   })
 
   it('Test if SbModalType renderer correctly', async () => {
@@ -25,8 +25,8 @@ describe('Tests for SbModalType', () => {
       align: 'center',
       message: 'A delete message',
       type: 'delete',
-      cancelButtonLabel: 'No, don\'t delete it',
-      actionButtonLabel: 'Ok, delete it!'
+      cancelButtonLabel: "No, don't delete it",
+      actionButtonLabel: 'Ok, delete it!',
     })
 
     wrapper.vm.show = jest.fn()

@@ -13,5 +13,5 @@ export {
   SbModalFooter,
   SbModalType,
   createModalPlugin,
-  ModalPlugin
+  ModalPlugin,
 }

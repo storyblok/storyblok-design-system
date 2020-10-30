@@ -3,21 +3,27 @@ import {
   SbModalHeader,
   SbModalContent,
   SbModalFooter,
-  SbModalType
+  SbModalType,
 } from './index'
 
 import SbButton from '../Button'
 
-const ModalTemplate = args => ({
-  components: { SbModal, SbModalContent, SbModalFooter, SbModalHeader, SbButton },
+const ModalTemplate = (args) => ({
+  components: {
+    SbModal,
+    SbModalContent,
+    SbModalFooter,
+    SbModalHeader,
+    SbButton,
+  },
   props: Object.keys(args),
   methods: {
-    handleShowModal () {
+    handleShowModal() {
       this.showModal = true
-    }
+    },
   },
   data: () => ({
-    showModal: false
+    showModal: false,
   }),
   template: `
     <div>
@@ -48,7 +54,7 @@ const ModalTemplate = args => ({
 
       </SbModal>
     </div>
-  `
+  `,
 })
 
 export default {
@@ -57,69 +63,75 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Modals focus the user’s attention exclusively on one task or piece of information via a window that sits on top of the page content.'
-      }
-    }
+        component:
+          'Modals focus the user’s attention exclusively on one task or piece of information via a window that sits on top of the page content.',
+      },
+    },
   },
   args: {
     title: 'Main title',
     icon: 'success-pictogram',
     align: 'center',
     isOpenModal: false,
-    fullWidth: false
+    fullWidth: false,
   },
   argTypes: {
     title: {
       name: 'title',
-      description: 'The prop `title` is exactly what the name says, it will be the title rendered in the `SbModalHeader` component, the rendered tag is an `<h1>`',
+      description:
+        'The prop `title` is exactly what the name says, it will be the title rendered in the `SbModalHeader` component, the rendered tag is an `<h1>`',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     icon: {
       name: 'icon',
-      description: 'The prop `icon` is the name of the icon you want to render.',
+      description:
+        'The prop `icon` is the name of the icon you want to render.',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     align: {
       name: 'align',
-      description: 'Prop `align` works to change the type of header alignment, center alignment is the default.',
+      description:
+        'Prop `align` works to change the type of header alignment, center alignment is the default.',
       control: {
         type: 'select',
-        options: ['center', 'left']
-      }
+        options: ['center', 'left'],
+      },
     },
     isOpenModal: {
       name: 'isOpenModal',
-      description: 'The `isOpenModal` prop works to open the modal with the prop.',
+      description:
+        'The `isOpenModal` prop works to open the modal with the prop.',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     fullWidth: {
       name: 'fullWidth',
-      description: 'The `fullWidth` prop works to remove the default size from the modal, thus being able to adapt the `width` of the content.',
+      description:
+        'The `fullWidth` prop works to remove the default size from the modal, thus being able to adapt the `width` of the content.',
       control: {
-        type: 'boolean'
-      }
-    }
-  }
+        type: 'boolean',
+      },
+    },
+  },
 }
 
 export const Default = ModalTemplate.bind({})
 
-export const ModalWithoutFooter = args => ({
+export const ModalWithoutFooter = (args) => ({
   components: { SbModal, SbModalHeader, SbModalContent, SbButton },
   props: Object.keys(args),
   methods: {
-    handleShowModal () {
+    handleShowModal() {
       this.showModal = true
-    }
+    },
   },
   data: () => ({
-    showModal: false
+    showModal: false,
   }),
   template: `
   <div>
@@ -144,31 +156,32 @@ export const ModalWithoutFooter = args => ({
       <SbButton label="Click me!" type="primary"/>
     </SbModal>
   </div>
-  `
+  `,
 })
 
 ModalWithoutFooter.args = {
-  title: 'This Modal dont have footer !'
+  title: 'This Modal dont have footer !',
 }
 
 ModalWithoutFooter.parameters = {
   docs: {
     description: {
-      story: 'SbModal components are versatile, the user can add or not a footer'
-    }
-  }
+      story:
+        'SbModal components are versatile, the user can add or not a footer',
+    },
+  },
 }
 
-export const ModalWithoutHeader = args => ({
+export const ModalWithoutHeader = (args) => ({
   components: { SbModal, SbModalContent, SbButton, SbModalFooter },
   props: Object.keys(args),
   methods: {
-    handleShowModal () {
+    handleShowModal() {
       this.showModal = true
-    }
+    },
   },
   data: () => ({
-    showModal: false
+    showModal: false,
   }),
   template: `
   <div>
@@ -188,27 +201,28 @@ export const ModalWithoutHeader = args => ({
         <SbButton label="Click me!" type="primary"/>
       </SbModalFooter>
     </SbModal>
-  </div>`
+  </div>`,
 })
 
 ModalWithoutHeader.parameters = {
   docs: {
     description: {
-      story: 'The `SbModal` component was built to be versatile, so you can use it without the header, and or footer.'
-    }
-  }
+      story:
+        'The `SbModal` component was built to be versatile, so you can use it without the header, and or footer.',
+    },
+  },
 }
 
-export const ModalWithMediumSize = args => ({
+export const ModalWithMediumSize = (args) => ({
   components: { SbModal, SbModalHeader, SbModalContent, SbButton },
   props: Object.keys(args),
   methods: {
-    handleShowModal () {
+    handleShowModal() {
       this.showModal = true
-    }
+    },
   },
   data: () => ({
-    showModal: false
+    showModal: false,
   }),
   template: `
   <div>
@@ -231,21 +245,22 @@ export const ModalWithMediumSize = args => ({
       
       <SbButton label="Click me!" type="primary"/>
     </SbModal>
-  </div>`
+  </div>`,
 })
 
 ModalWithMediumSize.parameters = {
   docs: {
     description: {
-      story: 'The `SbModal` component has a variable `height` so you can add content with the height you want the member to adjust to.'
-    }
-  }
+      story:
+        'The `SbModal` component has a variable `height` so you can add content with the height you want the member to adjust to.',
+    },
+  },
 }
 
-export const ModalTypeComponentConfirm = args => ({
+export const ModalTypeComponentConfirm = (args) => ({
   props: Object.keys(args),
   components: { SbModalType },
-  mounted () {
+  mounted() {
     this.$refs.modal.show()
   },
   template: `
@@ -260,7 +275,7 @@ export const ModalTypeComponentConfirm = args => ({
         :actionButtonLabel="actionButtonLabel"
       />
     </div>
-  `
+  `,
 })
 
 ModalTypeComponentConfirm.args = {
@@ -268,22 +283,23 @@ ModalTypeComponentConfirm.args = {
   align: 'center',
   message: 'A confirm message',
   type: 'confirmation',
-  cancelButtonLabel: 'No, don\'t create',
-  actionButtonLabel: 'Ok, create it!'
+  cancelButtonLabel: "No, don't create",
+  actionButtonLabel: 'Ok, create it!',
 }
 
 ModalTypeComponentConfirm.parameters = {
   docs: {
     description: {
-      story: 'The component `SbModaType` is a type of modal with a predefined style, the idea is to standardize the type of modal to `confirm` an action, so we can maintain the consistency of the DS.'
-    }
-  }
+      story:
+        'The component `SbModaType` is a type of modal with a predefined style, the idea is to standardize the type of modal to `confirm` an action, so we can maintain the consistency of the DS.',
+    },
+  },
 }
 
-export const ModalTypeComponentDelete = args => ({
+export const ModalTypeComponentDelete = (args) => ({
   props: Object.keys(args),
   components: { SbModalType },
-  mounted () {
+  mounted() {
     this.$refs.modal.show()
   },
   template: `
@@ -298,7 +314,7 @@ export const ModalTypeComponentDelete = args => ({
         :actionButtonLabel="actionButtonLabel"
       />
     </div>
-  `
+  `,
 })
 
 ModalTypeComponentDelete.args = {
@@ -306,14 +322,15 @@ ModalTypeComponentDelete.args = {
   align: 'center',
   message: 'A delete message',
   type: 'delete',
-  cancelButtonLabel: 'No, don\'t delete it',
-  actionButtonLabel: 'Ok, delete it!'
+  cancelButtonLabel: "No, don't delete it",
+  actionButtonLabel: 'Ok, delete it!',
 }
 
 ModalTypeComponentDelete.parameters = {
   docs: {
     description: {
-      story: 'The component `SbModaType` is a type of modal with a predefined style, the idea is to standardize the type of modal to `delete` an action, so we can maintain the consistency of the DS.'
-    }
-  }
+      story:
+        'The component `SbModaType` is a type of modal with a predefined style, the idea is to standardize the type of modal to `delete` an action, so we can maintain the consistency of the DS.',
+    },
+  },
 }

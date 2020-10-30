@@ -1,24 +1,14 @@
 <template>
-  <SbPortal
-    ref="portalRef"
-    :target="modalTarget"
-  >
+  <SbPortal ref="portalRef" :target="modalTarget">
     <SbBlokUi v-if="open">
       <div
         class="sb-modal"
-        :class="{'sb-modal__full-width' : fullWidth}"
+        :class="{ 'sb-modal__full-width': fullWidth }"
         role="dialog"
-        v-bind="{...$attrs}"
+        v-bind="{ ...$attrs }"
       >
-        <button
-          class="sb-modal__close-button"
-          @click="handleCloseModal"
-        >
-          <SbIcon
-            name="close"
-            size="normal"
-            color="primary-dark"
-          />
+        <button class="sb-modal__close-button" @click="handleCloseModal">
+          <SbIcon name="close" size="normal" color="primary-dark" />
         </button>
         <slot />
       </div>
@@ -39,11 +29,11 @@ export default {
   components: {
     SbIcon,
     SbPortal,
-    SbBlokUi
+    SbBlokUi,
   },
 
   directives: {
-    ClickOutside
+    ClickOutside,
   },
 
   props: {
@@ -51,42 +41,41 @@ export default {
     fullWidth: Boolean,
     modalTarget: {
       type: String,
-      default: () => `#sb-portal-target-${randomString(4)}`
-    }
+      default: () => `#sb-portal-target-${randomString(4)}`,
+    },
   },
 
-  data () {
+  data() {
     return {
-      open: false || this.isOpenModal
+      open: false || this.isOpenModal,
     }
   },
 
   watch: {
     isOpenModal: function () {
       this.open = this.isOpenModal
-    }
+    },
   },
 
-  created () {
+  created() {
     this.createPortalInstance()
   },
 
   methods: {
-    handleCloseModal () {
+    handleCloseModal() {
       this.open = false
       this.$emit('hide')
     },
 
-    createPortalInstance () {
+    createPortalInstance() {
       if (this.$refs.portalRef) {
         this.$refs.portalRef.mountTarget()
       }
-    }
-
-  }
+    },
+  },
 }
 </script>
 
 <style lang="scss">
-  @import './modal.scss';
+@import './modal.scss';
 </style>

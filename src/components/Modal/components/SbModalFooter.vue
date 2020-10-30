@@ -1,13 +1,7 @@
 <template>
-  <div
-    class="sb-modal-footer"
-    v-on="$listeners"
-  >
+  <div class="sb-modal-footer" v-on="$listeners">
     <slot v-if="!footer" />
-    <div
-      v-else
-      v-html="footer"
-    />
+    <div v-else v-html="footer" />
   </div>
 </template>
 
@@ -18,12 +12,10 @@ export default {
   props: {
     footer: {
       type: String,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

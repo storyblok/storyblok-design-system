@@ -1,11 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 
-import {
-  SbModal,
-  SbModalHeader,
-  SbModalContent,
-  SbModalFooter
-} from '../index'
+import { SbModal, SbModalHeader, SbModalContent, SbModalFooter } from '../index'
 
 import SbButton from '../../Button'
 import SbIcon from '../../Icon'
@@ -17,15 +12,15 @@ describe('Tests for SbModal', () => {
       SbModalHeader,
       SbModalContent,
       SbModalFooter,
-      SbButton
+      SbButton,
     },
     methods: {
-      handleShowModal () {
+      handleShowModal() {
         this.showModal = true
-      }
+      },
     },
     data: () => ({
-      showModal: true
+      showModal: true,
     }),
     template: `
       <SbModal is-open-modal v-on:hide="showModal = false">
@@ -48,7 +43,7 @@ describe('Tests for SbModal', () => {
             />
         </SbModalFooter>
       </SbModal>
-    `
+    `,
   }
 
   const wrapper = shallowMount(WrapperComponent)
@@ -56,9 +51,13 @@ describe('Tests for SbModal', () => {
   it('Test if SBModal component renderer correctly', () => {
     expect(wrapper.findComponent(SbModal).name()).toBe('SbModal')
 
-    expect(wrapper.findComponent(SbModalHeader).props().title).toBe('Awesome Title')
+    expect(wrapper.findComponent(SbModalHeader).props().title).toBe(
+      'Awesome Title'
+    )
 
-    expect(wrapper.findComponent(SbModalContent).text()).toBe('The body copy that explains empty state')
+    expect(wrapper.findComponent(SbModalContent).text()).toBe(
+      'The body copy that explains empty state'
+    )
 
     expect(wrapper.findComponent(SbModalFooter).exists()).toBe(true)
 
@@ -74,15 +73,21 @@ describe('Tests for SbModal', () => {
   })
 
   it('Test if SbHeader renderer correctly', () => {
-    expect(wrapper.findComponent(SbModalHeader).findComponent(SbIcon).exists()).toBe(false)
+    expect(
+      wrapper.findComponent(SbModalHeader).findComponent(SbIcon).exists()
+    ).toBe(false)
 
-    expect(wrapper.findComponent(SbModalHeader).props().title).toBe('Awesome Title')
+    expect(wrapper.findComponent(SbModalHeader).props().title).toBe(
+      'Awesome Title'
+    )
 
     expect(wrapper.findComponent(SbModalHeader).props().align).toBe('center')
   })
 
   it('Test if SbContent renderer correctly', () => {
-    expect(wrapper.findComponent(SbModalContent).text()).toBe('The body copy that explains empty state')
+    expect(wrapper.findComponent(SbModalContent).text()).toBe(
+      'The body copy that explains empty state'
+    )
 
     expect(wrapper.findComponent(SbModalContent).find('p').exists()).toBe(true)
   })
@@ -90,6 +95,8 @@ describe('Tests for SbModal', () => {
   it('Test if SbFooter renderer correctly', () => {
     expect(wrapper.findComponent(SbModalFooter).exists()).toBe(true)
 
-    expect(wrapper.findComponent(SbModalFooter).findComponent(SbButton).exists()).toBe(true)
+    expect(
+      wrapper.findComponent(SbModalFooter).findComponent(SbButton).exists()
+    ).toBe(true)
   })
 })

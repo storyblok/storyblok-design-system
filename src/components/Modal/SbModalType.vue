@@ -1,14 +1,7 @@
 <template>
   <div>
-    <SbModal
-      :is-open-modal="open"
-      @hide="hide"
-    >
-      <SbModalHeader
-        :icon="returnIconName"
-        :title="title"
-        :align="align"
-      />
+    <SbModal :is-open-modal="open" @hide="hide">
+      <SbModalHeader :icon="returnIconName" :title="title" :align="align" />
       <SbModalContent>
         {{ message }}
       </SbModalContent>
@@ -40,70 +33,70 @@ export default {
     SbModal,
     SbModalHeader,
     SbModalContent,
-    SbButton
+    SbButton,
   },
 
   props: {
     actionButtonLabel: {
       type: String,
-      default: null
+      default: null,
     },
     align: {
       type: String,
-      default: null
+      default: null,
     },
     cancelButtonLabel: {
       type: String,
-      default: null
+      default: null,
     },
     message: {
       type: String,
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: null
+      default: null,
     },
     type: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
 
   data: () => ({
-    open: false
+    open: false,
   }),
 
   computed: {
-    returnIconName () {
-      return this.type === 'confirmation' ? 'success-pictogram' : 'delete-pictogram'
+    returnIconName() {
+      return this.type === 'confirmation'
+        ? 'success-pictogram'
+        : 'delete-pictogram'
     },
 
-    returnButtonType () {
+    returnButtonType() {
       return this.type === 'confirmation' ? 'primary' : 'danger'
-    }
+    },
   },
 
   methods: {
-    show () {
+    show() {
       this.open = true
     },
 
-    hide () {
+    hide() {
       this.$emit('on-hide')
     },
 
-    handleCancelAction () {
+    handleCancelAction() {
       this.$emit('cancel')
     },
 
-    handleDispatchAction () {
+    handleDispatchAction() {
       this.$emit('confirm')
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -4,7 +4,7 @@ import {
   SbModal,
   SbModalHeader,
   SbModalContent,
-  SbModalFooter
+  SbModalFooter,
 } from '..'
 
 describe('Tests for ModalPlugin', () => {
@@ -12,7 +12,7 @@ describe('Tests for ModalPlugin', () => {
     propsData: {},
     mocks: {},
     stubs: {},
-    methods: {}
+    methods: {},
   })
 
   it('Test if the show function is called', async () => {
@@ -34,7 +34,7 @@ describe('Tests for ModalPlugin', () => {
       icon: null,
       align: null,
       content: '<p>A content</p>',
-      footerContent: '<SbButton label="Click" />'
+      footerContent: '<SbButton label="Click" />',
     }
 
     wrapper.vm.open = true
@@ -42,7 +42,7 @@ describe('Tests for ModalPlugin', () => {
     wrapper.setProps({
       title: 'Delete This Project',
       content: '<p>A content</p>',
-      footerContent: '<SbButton label="Click" />'
+      footerContent: '<SbButton label="Click" />',
     })
 
     expect(wrapper.props()).toEqual(propsReference)

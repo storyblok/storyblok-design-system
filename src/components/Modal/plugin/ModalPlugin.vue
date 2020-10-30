@@ -4,11 +4,7 @@
     :modal-target="modalTarget || '#root'"
     @hide="hide"
   >
-    <SbModalHeader
-      :title="title"
-      :icon="icon"
-      :align="align"
-    />
+    <SbModalHeader :title="title" :icon="icon" :align="align" />
     <SbModalContent :modal-content="content" />
     <SbModalFooter :footer="footerContent" />
   </SbModal>
@@ -23,59 +19,57 @@ export default {
     SbModal,
     SbModalHeader,
     SbModalContent,
-    SbModalFooter
+    SbModalFooter,
   },
 
   props: {
     // modal
     modalTarget: {
       type: String,
-      default: null
+      default: null,
     },
 
     // modal-header
     align: {
       type: String,
-      default: null
+      default: null,
     },
     icon: {
       type: String,
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: null
+      default: null,
     },
 
     // modal-content
     content: {
       type: String,
-      default: null
+      default: null,
     },
 
     // modal-footer
     footerContent: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
 
   data: () => ({
-    open: false
+    open: false,
   }),
 
   methods: {
-    show () {
+    show() {
       this.open = true
     },
 
-    hide () {
+    hide() {
       this.$emit('on-hide')
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

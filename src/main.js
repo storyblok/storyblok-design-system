@@ -18,7 +18,7 @@ export function install(Vue) {
 
   Vue.prototype.$sb = {
     // modal will be available in this.$sb.modal(options)
-    modal: createModalPlugin
+    modal: createModalPlugin,
   }
 }
 

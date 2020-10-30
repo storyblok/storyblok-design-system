@@ -28,32 +28,32 @@ const createModalPlugin = (props, type) => {
       vm.$destroy()
       vm.$el.remove()
       vm = null
-    }
+    },
   }
 
   vm = new Vue({
     el: node,
 
-    mounted () {
+    mounted() {
       this.$refs.modal.show()
     },
 
-    render (h) {
+    render(h) {
       if (type && (type === 'confirmation' || type === 'delete')) {
         props.type = type
         return h(SbModalType, {
           ref: 'modal',
           props,
-          on
+          on,
         })
       }
 
       return h(ModalPlugin, {
         ref: 'modal',
         props,
-        on
+        on,
       })
-    }
+    },
   })
 }
 
