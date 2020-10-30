@@ -260,11 +260,19 @@ ModalWithMediumSize.parameters = {
 export const ModalTypeComponentConfirm = (args) => ({
   props: Object.keys(args),
   components: { SbModalType },
-  mounted() {
-    this.$refs.modal.show()
+  methods: {
+    handleShowModal() {
+      this.$refs.modal.show()
+    },
   },
   template: `
     <div>
+      <SbButton
+        label="Open Modal!"
+        type="primary"
+        @click="handleShowModal"
+        style="margin: 0 auto; display: flex; margin-top: 30%;"
+      />
       <SbModalType
         ref="modal"
         :title="title"
@@ -299,11 +307,19 @@ ModalTypeComponentConfirm.parameters = {
 export const ModalTypeComponentDelete = (args) => ({
   props: Object.keys(args),
   components: { SbModalType },
-  mounted() {
-    this.$refs.modal.show()
+  methods: {
+    handleShowModal() {
+      this.$refs.modal.show()
+    },
   },
   template: `
     <div>
+      <SbButton
+        label="Open Modal!"
+        type="primary"
+        @click="handleShowModal"
+        style="margin: 0 auto; display: flex; margin-top: 30%;"
+      />
       <SbModalType
         ref="modal"
         :title="title"

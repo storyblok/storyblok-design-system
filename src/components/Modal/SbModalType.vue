@@ -85,6 +85,7 @@ export default {
     },
 
     hide() {
+      this.open = false
       this.$emit('on-hide')
     },
 
