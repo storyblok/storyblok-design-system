@@ -2,45 +2,47 @@ import { SbTabs, SbTab } from '.'
 import { SbTabPanels, SbTabPanel } from '../TabPanels'
 
 // @vue/component
-const TabsTemplate = template => args => ({
+const TabsTemplate = (template) => (args) => ({
   components: { SbTabs, SbTab, SbTabPanel, SbTabPanels },
   props: Object.keys(args),
-  data () {
+  data() {
     return {
       tabs: [
         {
           label: 'First',
-          name: 'first'
+          name: 'first',
         },
         {
           label: 'Secondary',
-          name: 'secondary'
+          name: 'secondary',
         },
         {
           label: 'Third',
-          name: 'third'
-        }
+          name: 'third',
+        },
       ],
-      currentTab: 'first'
+      currentTab: 'first',
     }
   },
   watch: {
-    value (newValue) {
+    value(newValue) {
       this.currentTab = newValue
-    }
+    },
   },
   methods: {
-    onNewTab (val) {
+    onNewTab(val) {
       this.tabs.push(val)
     },
-    onEditTab (val) {
-      const index = this.tabs.findIndex(tab => tab.name === val.name)
+    onEditTab(val) {
+      const index = this.tabs.findIndex((tab) => tab.name === val.name)
       this.tabs[index] = {
-        ...val
+        ...val,
       }
-    }
+    },
   },
-  template: template || `
+  template:
+    template ||
+    `
     <div>
       <SbTabs
         v-model="currentTab"
@@ -59,7 +61,7 @@ const TabsTemplate = template => args => ({
         />
       </SbTabs>
     </div>
-  `
+  `,
 })
 
 export default {
@@ -69,47 +71,50 @@ export default {
     orientation: 'horizontal',
     showAddButton: false,
     type: null,
-    value: 'first'
+    value: 'first',
   },
   parameters: {
     docs: {
       description: {
-        component: 'Tabs keeps related content in a single container that is shown and hidden through navigation.'
-      }
-    }
+        component:
+          'Tabs keeps related content in a single container that is shown and hidden through navigation.',
+      },
+    },
   },
   argTypes: {
     orientation: {
       name: 'orientation',
-      description: 'Define how the tabs should be views, as horizontal or vertical.',
+      description:
+        'Define how the tabs should be views, as horizontal or vertical.',
       control: {
         type: 'select',
-        options: ['horizontal', 'vertical']
-      }
+        options: ['horizontal', 'vertical'],
+      },
     },
     showAddButton: {
       name: 'showAddButton',
       description: 'Prop to show the button for adding new tabs.',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     type: {
       name: 'type',
       description: 'With prop `type` you can change the type of tab view',
       control: {
         type: 'select',
-        options: ['container']
-      }
+        options: ['container'],
+      },
     },
     value: {
       name: 'value',
-      description: 'Current tab. The value property has to be used for `v-model` directive',
+      description:
+        'Current tab. The value property has to be used for `v-model` directive',
       control: {
-        type: 'text'
-      }
-    }
-  }
+        type: 'text',
+      },
+    },
+  },
 }
 
 export const Default = TabsTemplate().bind({})
@@ -117,14 +122,14 @@ export const Default = TabsTemplate().bind({})
 export const Container = TabsTemplate().bind({})
 
 Container.args = {
-  type: 'container'
+  type: 'container',
 }
 
 export const Vertical = TabsTemplate().bind({})
 
 Vertical.args = {
   orientation: 'vertical',
-  type: 'vertical'
+  type: 'vertical',
 }
 
 export const WithTabPanels = TabsTemplate(`
@@ -158,8 +163,7 @@ export const WithTabPanels = TabsTemplate(`
       </SbTabPanel>
     </SbTabPanels>
   </div>
-  `
-).bind({})
+  `).bind({})
 
 export const EditableTabs = TabsTemplate(`
 <div>
@@ -179,5 +183,4 @@ export const EditableTabs = TabsTemplate(`
     />
   </SbTabs>
 </div>
-`
-).bind({})
+`).bind({})

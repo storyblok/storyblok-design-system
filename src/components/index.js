@@ -5,5 +5,5 @@ import { SbBreadcrumbs } from './Breadcrumbs'
 export default {
   SbButton,
   SbBreadcrumbs,
-  SbIcon
+  SbIcon,
 }

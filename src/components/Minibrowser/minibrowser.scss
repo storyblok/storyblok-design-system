@@ -1,0 +1,104 @@
+.sb-minibrowser {
+  @include popoverComponent();
+  width: 100%;
+  max-width: 300px;
+
+  // components
+  &__input-container {
+    position: relative;
+    color: $sb-dark-blue-50;
+
+    .sb-icon {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+    }
+
+    &--loading {
+      .sb-icon {
+        width: 2.6rem;
+        height: 2.6rem;
+        top: 1.4rem;
+        right: 1.4rem;
+      }
+    }
+  }
+
+  &__input {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 2rem;
+    border: none;
+    font-size: $font-size-sm;
+  }
+
+  &__icon-close {
+    cursor: pointer;
+  }
+
+  &__list-container {
+    max-height: 250px;
+    padding: 1.35rem 0;
+    border-top: 1px solid $light;
+    overflow-y: scroll;
+  }
+
+  &__breadcrumbs {
+    padding: 1rem 2rem 1.35rem 2rem;
+
+    .sb-breadcrumbs__item--active {
+      color: $sb-dark-blue-50;
+    }
+  }
+
+  &__list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__list-title {
+    display: flex;
+    align-items: center;
+    color: $sb-dark-blue-50;
+    font-size: $font-size-sm;
+    padding: 0.75rem 2rem;
+    margin: 0;
+    text-transform: uppercase;
+
+    .sb-icon {
+      margin-right: 1rem;
+    }
+  }
+
+  &__list-item-name {
+    display: block;
+    padding: 0.75rem 2rem;
+    font-size: $font-size-md;
+    color: $color-primary-dark;
+    background-color: $white;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $light-50;
+    }
+
+    .sb-icon {
+      margin-right: 1rem;
+    }
+  }
+
+  &__not-found {
+    margin: 0;
+    padding-bottom: 2.7rem;
+    text-align: center;
+    font-size: $font-size-sm;
+    color: $sb-dark-blue-50;
+  }
+
+  // modifiers
+  &--expanded {
+    max-width: none;
+  }
+}

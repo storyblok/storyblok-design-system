@@ -12,7 +12,7 @@ export const focusableElList = [
   'select:not([disabled])',
   'textarea:not([disabled])',
   '*[tabindex]:not([aria-disabled])',
-  '*[contenteditable]'
+  '*[contenteditable]',
 ]
 
 /**
@@ -32,12 +32,12 @@ const focusableElSelector = focusableElList.join()
  * @param {HTMLElement} element HTML element to get focusable list of DOM nodes from.
  * @returns {NodeList} List of all focusable DOM nodes
  */
-export function getFocusableElements (element) {
+export function getFocusableElements(element) {
   const focusableEls = Array.from(element.querySelectorAll(focusableElSelector))
 
   // filter out elements with display: none
 
   return focusableEls.filter(
-    focusableEl => window.getComputedStyle(focusableEl).display !== 'none'
+    (focusableEl) => window.getComputedStyle(focusableEl).display !== 'none'
   )
 }

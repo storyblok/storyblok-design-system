@@ -2,9 +2,9 @@ import { mount } from '@vue/test-utils'
 
 import SbPagination from '..'
 
-const factory = propsData => {
+const factory = (propsData) => {
   return mount(SbPagination, {
-    propsData
+    propsData,
   })
 }
 
@@ -13,7 +13,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 10
+      perPage: 10,
     })
 
     it('should have a per page select information with correct state', () => {
@@ -23,14 +23,15 @@ describe('SbPagination component', () => {
     })
 
     it('should have a page select information with correct state', () => {
-      expect(
-        wrapper.find('[data-testid="page-select"]').element.value
-      ).toBe('1')
+      expect(wrapper.find('[data-testid="page-select"]').element.value).toBe(
+        '1'
+      )
     })
 
     it('should have the previous button disabled', () => {
       expect(
-        wrapper.find('[data-testid="pagination-previous-button"]').element.disabled
+        wrapper.find('[data-testid="pagination-previous-button"]').element
+          .disabled
       ).toBe(true)
     })
 
@@ -51,18 +52,19 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 3,
       total: 100,
-      perPage: 10
+      perPage: 10,
     })
 
     it('should have the page select with this specific page', () => {
-      expect(
-        wrapper.find('[data-testid="page-select"]').element.value
-      ).toBe('3')
+      expect(wrapper.find('[data-testid="page-select"]').element.value).toBe(
+        '3'
+      )
     })
 
     it('should not have the previous and next buttons disabled', () => {
       expect(
-        wrapper.find('[data-testid="pagination-previous-button"]').element.disabled
+        wrapper.find('[data-testid="pagination-previous-button"]').element
+          .disabled
       ).toBe(false)
 
       expect(
@@ -81,13 +83,13 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 4,
       total: 100,
-      perPage: 30
+      perPage: 30,
     })
 
     it('should have the page select with this specific page', () => {
-      expect(
-        wrapper.find('[data-testid="page-select"]').element.value
-      ).toBe('4')
+      expect(wrapper.find('[data-testid="page-select"]').element.value).toBe(
+        '4'
+      )
     })
 
     it('should have the next button disabled', () => {
@@ -107,7 +109,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 20
+      perPage: 20,
     })
 
     it('should have the per page select with this specific value', () => {
@@ -127,7 +129,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 10
+      perPage: 10,
     })
 
     beforeEach(async () => {
@@ -143,7 +145,7 @@ describe('SbPagination component', () => {
 
     it('should update the text with how many pages information', async () => {
       await wrapper.setProps({
-        perPage: 20
+        perPage: 20,
       })
       expect(
         wrapper.find('[data-testid="pagination-pages-information"]').text()
@@ -155,7 +157,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 10
+      perPage: 10,
     })
 
     beforeEach(async () => {
@@ -173,7 +175,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 10
+      perPage: 10,
     })
 
     it('should emit the input event when next button is clicked', async () => {
@@ -190,7 +192,7 @@ describe('SbPagination component', () => {
     it('should emit the input event when previous button is clicked', async () => {
       // setting the value manually to the previous button is not disable
       await wrapper.setProps({
-        value: 5
+        value: 5,
       })
 
       await wrapper
@@ -209,7 +211,7 @@ describe('SbPagination component', () => {
       value: 1,
       total: 60,
       perPage: 5,
-      customPerPageOptions: [5, 15, 30]
+      customPerPageOptions: [5, 15, 30],
     })
 
     it('should have three options with respective values', () => {
@@ -232,7 +234,7 @@ describe('SbPagination component', () => {
       value: 1,
       total: 100,
       perPage: 10,
-      isFullWidth: true
+      isFullWidth: true,
     })
 
     it('should add the --full-width modifier class', () => {
@@ -245,7 +247,7 @@ describe('SbPagination component', () => {
       value: 1,
       total: 100,
       perPage: 10,
-      compact: true
+      compact: true,
     })
 
     it('should add the --compact modifier class', () => {
@@ -264,7 +266,7 @@ describe('SbPagination component', () => {
       value: 1,
       total: 100,
       perPage: 10,
-      carousel: true
+      carousel: true,
     })
 
     it('should add the --carousel modifier class', () => {

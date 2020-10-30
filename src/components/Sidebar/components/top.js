@@ -29,23 +29,23 @@ const SbSidebarLogo = {
   props: {
     minimize: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
-  render (h, { props }) {
+  render(h, { props }) {
     return h('svg', {
       staticClass: 'sb-sidebar-logo',
       attrs: {
         role: 'img',
         'aria-label': 'Storyblok Official Logo',
-        viewBox: props.minimize ? '0 0 29 33' : '0 0 158 33'
+        viewBox: props.minimize ? '0 0 29 33' : '0 0 158 33',
       },
       domProps: {
-        innerHTML: logoSvgPath
-      }
+        innerHTML: logoSvgPath,
+      },
     })
-  }
+  },
 }
 
 // @vue/component
@@ -55,84 +55,101 @@ const SbSidebarUserDropDown = {
   props: {
     email: {
       type: String,
-      default: null
+      default: null,
     },
     name: {
       type: String,
-      default: null
+      default: null,
     },
     active: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
-  render (h) {
+  render(h) {
     const renderUserInfo = () => {
-      return h('div', {
-        staticClass: 'sb-sidebar-user-dropdown__top'
-      }, [
-        h('p', {
-          staticClass: 'sb-sidebar-user-dropdown__top-name'
-        }, this.name),
-        h('p', {
-          staticClass: 'sb-sidebar-user-dropdown__top-email'
-        }, this.email)
-      ])
+      return h(
+        'div',
+        {
+          staticClass: 'sb-sidebar-user-dropdown__top',
+        },
+        [
+          h(
+            'p',
+            {
+              staticClass: 'sb-sidebar-user-dropdown__top-name',
+            },
+            this.name
+          ),
+          h(
+            'p',
+            {
+              staticClass: 'sb-sidebar-user-dropdown__top-email',
+            },
+            this.email
+          ),
+        ]
+      )
     }
 
     const links = [
       {
         label: 'Account',
-        href: '#'
+        href: '#',
       },
       {
         label: 'Security Settings',
-        href: '#'
+        href: '#',
       },
       {
         label: 'Personal access tokens',
-        href: '#'
+        href: '#',
       },
       {
         label: 'Privacy',
-        href: '#'
+        href: '#',
       },
       {
         label: 'Sign Out',
-        href: '#'
-      }
+        href: '#',
+      },
     ]
 
     const renderUserList = () => {
-      return h('ul', {
-        attrs: {
-          role: 'navigation'
+      return h(
+        'ul',
+        {
+          attrs: {
+            role: 'navigation',
+          },
+          staticClass: 'sb-sidebar-user-dropdown__list',
         },
-        staticClass: 'sb-sidebar-user-dropdown__list'
-      }, links.map(link => {
-        return h('li', [
-          h(SbLink, {
-            props: {
-              ...link
-            }
-          })
-        ])
-      }))
+        links.map((link) => {
+          return h('li', [
+            h(SbLink, {
+              props: {
+                ...link,
+              },
+            }),
+          ])
+        })
+      )
     }
 
-    return h('div', {
-      attrs: {
-        'data-testid': 'sidebar-user-dropdown',
-        tabindex: 0,
-        'aria-hidden': !this.active + ''
+    return h(
+      'div',
+      {
+        attrs: {
+          'data-testid': 'sidebar-user-dropdown',
+          tabindex: 0,
+          'aria-hidden': !this.active + '',
+        },
+        staticClass: 'sb-sidebar-user-dropdown',
       },
-      staticClass: 'sb-sidebar-user-dropdown'
-    }, [
-      renderUserInfo(),
-      renderUserList()
-    ])
-  }
+      [renderUserInfo(), renderUserList()]
+    )
+  },
 }
 
 /**
@@ -148,66 +165,67 @@ const SbSidebarUser = {
   props: {
     src: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     email: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data: () => ({
-    isDropDownActive: false
+    isDropDownActive: false,
   }),
 
   methods: {
-    toggleDropdownState (event) {
+    toggleDropdownState(event) {
       if (event.key === 'Tab') {
         return
       }
 
       this.isDropDownActive = !this.isDropDownActive
-    }
+    },
   },
 
-  render (h) {
+  render(h) {
     const { name, email, src } = this
 
-    return h('div', {
-      staticClass: 'sb-sidebar-user'
-    }, [
-      h(SbAvatar, {
-        attrs: {
-          tabindex: 0,
-          'aria-label': `Open actions to current user ${name}, email ${email}`,
-          'aria-expanded': this.isDropDownActive + ''
-        },
-        props: {
-          src,
-          name
-        },
-        on: {
-          keydown: this.toggleDropdownState,
-          click: this.toggleDropdownState
-        }
-      }),
-      h(SbSidebarUserDropDown, {
-        ref: 'userDropdown',
-        props: {
-          email,
-          name,
-          active: this.isDropDownActive
-        }
-      })
-    ])
-  }
+    return h(
+      'div',
+      {
+        staticClass: 'sb-sidebar-user',
+      },
+      [
+        h(SbAvatar, {
+          attrs: {
+            tabindex: 0,
+            'aria-label': `Open actions to current user ${name}, email ${email}`,
+            'aria-expanded': this.isDropDownActive + '',
+          },
+          props: {
+            src,
+            name,
+          },
+          on: {
+            keydown: this.toggleDropdownState,
+            click: this.toggleDropdownState,
+          },
+        }),
+        h(SbSidebarUserDropDown, {
+          ref: 'userDropdown',
+          props: {
+            email,
+            name,
+            active: this.isDropDownActive,
+          },
+        }),
+      ]
+    )
+  },
 }
 
-export {
-  SbSidebarLogo,
-  SbSidebarUser
-}
+export { SbSidebarLogo, SbSidebarUser }

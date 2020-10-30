@@ -1,16 +1,16 @@
 import { mount } from '@vue/test-utils'
 import SbIcon from '..'
 
-const factory = propsData => {
+const factory = (propsData) => {
   return mount(SbIcon, {
-    propsData
+    propsData,
   })
 }
 
 describe('SbIcon component', () => {
   it('should not appent the size class when do not pass the correct size', () => {
     const wrapper = factory({
-      name: 'calendar'
+      name: 'calendar',
     })
 
     expect(wrapper.classes('sb-icon')).toBe(true)
@@ -20,7 +20,7 @@ describe('SbIcon component', () => {
     it('should append --small class', () => {
       const wrapper = factory({
         name: 'calendar',
-        size: 'small'
+        size: 'small',
       })
 
       expect(wrapper.classes('sb-icon--small')).toBe(true)
@@ -29,7 +29,7 @@ describe('SbIcon component', () => {
     it('should append --large class', () => {
       const wrapper = factory({
         name: 'calendar',
-        size: 'large'
+        size: 'large',
       })
 
       expect(wrapper.classes('sb-icon--large')).toBe(true)
@@ -38,7 +38,7 @@ describe('SbIcon component', () => {
     it('should append --x-large class', () => {
       const wrapper = factory({
         name: 'calendar',
-        size: 'x-large'
+        size: 'x-large',
       })
 
       expect(wrapper.classes('sb-icon--x-large')).toBe(true)
@@ -49,7 +49,7 @@ describe('SbIcon component', () => {
     it('should append color-NAME class', () => {
       const wrapper = factory({
         name: 'calendar',
-        color: 'primary'
+        color: 'primary',
       })
 
       expect(wrapper.classes('sb-icon--color-primary')).toBe(true)
