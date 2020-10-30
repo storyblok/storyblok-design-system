@@ -1,5 +1,6 @@
 <template>
   <div
+    v-click-outside="hide"
     class="sb-select"
     :class="{
       'sb-select--multiple': multiple,
@@ -31,12 +32,17 @@
 </template>
 
 <script>
+import { ClickOutside } from '../../directives'
 import { includes } from '../../utils'
 import SbSelectInner from './components/SelectInner'
 import SbSelectList from './components/SelectList'
 
 export default {
   name: 'SbSelect',
+
+  directives: {
+    ClickOutside,
+  },
 
   components: {
     SbSelectInner,
