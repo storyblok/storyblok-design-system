@@ -28,16 +28,20 @@ describe('SbSelect component', () => {
       await innerElement.trigger('click')
 
       // check if has an ul element in the document
-      expect(wrapper.find('ul').isVisible()).toBe(true)
+      expect(wrapper.vm.isOpen).toBe(true)
 
       // check if the first element on the list exists
-      expect(wrapper.findAll('li').at(0).text()).toBe('Option 1')
+      const firstElement = wrapper.findAll('li').at(0)
+      expect(firstElement.text()).toBe('Option 1')
+
+      // check if the first element is focused
+      expect(firstElement.element).toEqual(document.activeElement)
 
       // turn the list not visible
       await innerElement.trigger('click')
 
       // check if has an ul element in the document
-      expect(wrapper.find('ul').isVisible()).toBe(false)
+      expect(wrapper.vm.isOpen).toBe(false)
     })
 
     it('should be emit an input event when click on element on list', async () => {

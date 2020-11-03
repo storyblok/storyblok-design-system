@@ -13,7 +13,6 @@ export const waitMs = (ms = 0) => {
  * @method mountAttachingComponent
  * @param  {VueClass} Component
  * @param  {MountOptions} options
- * @return {MountInstance}
  */
 export const mountAttachingComponent = (Component, options = {}) => {
   const divElement = document.createElement('div')
