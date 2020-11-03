@@ -71,6 +71,8 @@ export default {
      * fires the clearNavigation method in the SbMinibrowser component
      */
     clearNavigation() {
+      event.preventDefault()
+      event.stopPropagation()
       this.context.clearNavigation()
     },
 
