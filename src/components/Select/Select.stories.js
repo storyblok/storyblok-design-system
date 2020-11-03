@@ -1,4 +1,6 @@
 import { SbSelect } from '.'
+import { SbMinibrowser } from '../Minibrowser'
+import { browserOptionsData } from '../Minibrowser/Minibrowser.stories'
 
 // @vue/component
 const SelectTemplate = (args) => ({
@@ -144,3 +146,55 @@ export const Inline = SelectTemplate.bind({})
 Inline.args = {
   inline: true,
 }
+
+export const WithMinibrowser = (args) => ({
+  components: {
+    SbSelect,
+    SbMinibrowser,
+  },
+
+  props: Object.keys(args),
+
+  data: () => ({
+    internalValue: null,
+    minibrowserOptions: [...browserOptionsData],
+  }),
+
+  watch: {
+    value: {
+      handler(newValue) {
+        this.internalValue = newValue
+      },
+      immediate: true,
+    },
+  },
+
+  methods: {
+    onSelectItem(item) {
+      if (!item.items.length) {
+        this.internalValue = item.label
+
+        this.$refs.select.hideList()
+      }
+    },
+  },
+
+  template: `
+    <SbSelect
+      ref="select"
+      :label="label"
+      :left-icon="leftIcon"
+      :filterable="filterable"
+      :filter-placeholder="filterPlaceholder"
+      :use-avatars="useAvatars"
+      :inline="inline"
+      v-model="internalValue"
+    >
+      <SbMinibrowser
+        slot="minibrowser"
+        :options="minibrowserOptions"
+        @select-item="onSelectItem"
+      />
+    </SbSelect>
+  `,
+})

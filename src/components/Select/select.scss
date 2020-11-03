@@ -1,3 +1,10 @@
+@mixin listPosition {
+  position: absolute;
+  top: calc(100% + 1rem);
+  left: 0;
+  z-index: 4;
+}
+
 .sb-select {
   position: relative;
   display: inline-flex;
@@ -34,6 +41,15 @@
     .sb-select-list {
       display: block;
     }
+
+    .sb-minibrowser {
+      display: block;
+    }
+  }
+
+  .sb-minibrowser {
+    display: none;
+    @include listPosition();
   }
 }
 
@@ -95,9 +111,7 @@
   flex: 1;
   width: 100%;
   padding: 1rem 0;
-  position: absolute;
-  top: calc(100% + 1rem);
-  left: 0;
+  @include listPosition();
 
   ul {
     padding: 0;

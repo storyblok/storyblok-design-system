@@ -1,6 +1,6 @@
 <template>
   <div
-    v-click-outside="hideList"
+    v-click-outside="wrapClose"
     class="sb-select"
     :class="{
       'sb-select--multiple': multiple,
@@ -22,6 +22,7 @@
     />
 
     <SbSelectList
+      v-if="!useMinibrowser"
       ref="list"
       :value="value"
       :options="options"
@@ -31,6 +32,8 @@
       :use-avatars="useAvatars"
       @emit-value="handleEmitValue"
     />
+
+    <slot name="minibrowser" />
   </div>
 </template>
 
@@ -80,7 +83,6 @@ export default {
     // list props
     options: {
       type: Array,
-      required: true,
       default: () => [],
     },
     filterable: Boolean,
@@ -96,6 +98,7 @@ export default {
     isOpen: false,
     activeIndex: -1,
     listItems: [],
+    innerElement: null,
   }),
 
   computed: {
@@ -113,6 +116,10 @@ export default {
         focusOnFirstItem: this.focusOnFirstItem,
         focusOnLastItem: this.focusOnLastItem,
       }
+    },
+
+    useMinibrowser() {
+      return this.$slots.minibrowser && this.innerElement
     },
   },
 
@@ -139,6 +146,10 @@ export default {
 
   mounted() {
     this.$_loadListItems()
+
+    this.$nextTick(() => {
+      this.innerElement = this.$refs.inner.$el
+    })
   },
 
   methods: {
@@ -157,6 +168,10 @@ export default {
       }
 
       this.activeIndex = 0
+    },
+
+    wrapClose() {
+      this.hideList()
     },
 
     /**
@@ -293,10 +308,12 @@ export default {
      * get all list item elements
      */
     $_loadListItems() {
-      const menuNode = canUseDOM && this.$refs.list.$el
+      if (!this.useMinibrowser) {
+        const menuNode = canUseDOM && this.$refs.list.$el
 
-      if (menuNode) {
-        this.listItems = menuNode.querySelectorAll('li')
+        if (menuNode) {
+          this.listItems = menuNode.querySelectorAll('li')
+        }
       }
     },
   },
