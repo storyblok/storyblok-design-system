@@ -1,4 +1,6 @@
+import { SbMinibrowser } from '../../Minibrowser'
 import { mountAttachingComponent } from '../../../utils'
+import { browserOptionsData } from '../../Minibrowser/Minibrowser.stories'
 
 import { SbSelect } from '..'
 import SbIcon from '../../Icon'
@@ -348,6 +350,29 @@ describe('SbSelect component', () => {
       })
 
       expect(wrapper.classes('sb-select--inline')).toBeTruthy()
+    })
+  })
+
+  describe('using minibrowser component', () => {
+    const wrapper = mountAttachingComponent(SbSelect, {
+      propsData: {
+        label: 'Choose an option',
+        options: [...defaultSelectOptionsData],
+        value: null,
+      },
+      slots: {
+        minibrowser: `<SbMinibrowser :options="browserOptionsData" />`,
+      },
+      stubs: {
+        SbMinibrowser: SbMinibrowser,
+      },
+      mocks: {
+        browserOptionsData: [...browserOptionsData],
+      },
+    })
+
+    it('should render the SbMinibroser component in minibrowser slot', () => {
+      expect(wrapper.findComponent(SbMinibrowser).exists()).toBeTruthy()
     })
   })
 })
