@@ -31,6 +31,12 @@ const SbTag = {
       class: {
         'sb-tag--closable': this.closable,
       },
+      attrs: {
+        ...this.$attrs,
+      },
+      on: {
+        ...this.$listeners,
+      },
     }
 
     const renderClosableIcon = () => {
