@@ -4,7 +4,9 @@
     :class="{
       'sb-select-list__item--selected': isSelected,
     }"
+    tabindex="0"
     @click="handleClick"
+    @keydown="handleKeyDown"
   >
     <SbAvatar
       v-if="useAvatars"
@@ -67,8 +69,14 @@ export default {
     /**
      * emits the 'emit-value' event
      */
-    handleClick() {
+    handleClick(event) {
       this.$emit('emit-value', this.value)
+    },
+
+    handleKeyDown(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        this.$emit('emit-value', this.value)
+      }
     },
   },
 }

@@ -4,7 +4,9 @@
     :class="{
       'sb-select-inner--with-value': hasValue,
     }"
+    tabindex="0"
     v-on="$listeners"
+    @keydown="handleKeyDown"
   >
     <SbIcon
       v-if="leftIcon"
@@ -18,7 +20,9 @@
         v-for="(tagLabel, key) in tagLabels"
         :key="key"
         :label="tagLabel"
+        tabindex="0"
         closable
+        @keydown="handleTagKeydown($event, tagLabel)"
         @close="removeItem($event, tagLabel)"
       />
     </div>
@@ -41,6 +45,7 @@
         v-if="isTagsVisible"
         aria-label="Clear all values"
         class="sb-select-inner__clear"
+        @keydown="clearAllValues"
         @click="clearAllValues"
       >
         <SbIcon name="close" size="small" />
@@ -61,6 +66,8 @@ export default {
   name: 'SbSelectInner',
 
   components: { SbIcon, SbTag, SbAvatar },
+
+  inject: ['selectContext'],
 
   props: {
     label: {
@@ -129,18 +136,59 @@ export default {
         return option.value === this.value
       })
     },
+
+    context() {
+      return this.selectContext()
+    },
   },
 
   methods: {
+    /**
+     * clear all items from value
+     */
     clearAllValues(event) {
       event.stopPropagation()
       event.preventDefault()
       this.$emit('clear-all-values')
     },
+
+    /**
+     * remove an item from value
+     */
     removeItem(event, tagValue) {
       event.stopPropagation()
       event.preventDefault()
       this.$emit('remove-item-value', tagValue)
+    },
+
+    /**
+     * handles inner keydown element
+     */
+    handleKeyDown(event) {
+      const { focusOnFirstItem, focusOnLastItem } = this.context
+
+      if (event.key === 'Enter' || event.key === ' ') {
+        this.$emit('click')
+      }
+
+      if (event.key === 'ArrowDown') {
+        focusOnFirstItem()
+      }
+
+      if (event.key === 'ArrowUp') {
+        focusOnLastItem()
+      }
+    },
+
+    /**
+     * handles with keydown and emits the remove-item-value event
+     */
+    handleTagKeydown(event, tagValue) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        this.$emit('remove-item-value', tagValue)
+      }
+
+      event.stopPropagation()
     },
   },
 }

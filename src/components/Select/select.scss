@@ -29,6 +29,12 @@
       top: 0;
     }
   }
+
+  &[aria-expanded="true"] {
+    .sb-select-list {
+      display: block;
+    }
+  }
 }
 
 .sb-select-inner {
@@ -85,6 +91,7 @@
 .sb-select-list {
   @include popoverComponent();
 
+  display: none;
   flex: 1;
   width: 100%;
   padding: 1rem 0;

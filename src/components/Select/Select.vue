@@ -1,13 +1,15 @@
 <template>
   <div
-    v-click-outside="hide"
+    v-click-outside="hideList"
     class="sb-select"
     :class="{
       'sb-select--multiple': multiple,
       'sb-select--inline': inline,
     }"
+    :aria-expanded="isOpen ? 'true' : 'false'"
   >
     <SbSelectInner
+      ref="inner"
       :multiple="multiple"
       :label="label"
       :value="value"
@@ -20,7 +22,7 @@
     />
 
     <SbSelectList
-      v-if="isOpen"
+      ref="list"
       :value="value"
       :options="options"
       :multiple="multiple"
@@ -34,7 +36,7 @@
 
 <script>
 import { ClickOutside } from '../../directives'
-import { includes } from '../../utils'
+import { canUseDOM, includes } from '../../utils'
 import SbSelectInner from './components/SelectInner'
 import SbSelectList from './components/SelectList'
 
@@ -48,6 +50,12 @@ export default {
   components: {
     SbSelectInner,
     SbSelectList,
+  },
+
+  provide() {
+    return {
+      selectContext: () => this.selectContext,
+    }
   },
 
   props: {
@@ -86,23 +94,78 @@ export default {
 
   data: () => ({
     isOpen: false,
+    activeIndex: -1,
+    listItems: [],
   }),
+
+  computed: {
+    selectContext() {
+      return {
+        // controls elements
+        activeIndex: this.activeIndex,
+        listItems: this.listItems,
+
+        // methods to control the menu state
+        hideList: this.hideList,
+        showList: this.showList,
+        toggleMenu: this.toggleMenu,
+        focusAtIndex: this.focusAtIndex,
+        focusOnFirstItem: this.focusOnFirstItem,
+        focusOnLastItem: this.focusOnLastItem,
+      }
+    },
+  },
+
+  watch: {
+    activeIndex(index) {
+      if (index !== -1) {
+        this.$nextTick(() => {
+          this.listItems[this.activeIndex] &&
+            this.listItems[this.activeIndex].focus()
+
+          this.$_updateTabIndex(this.activeIndex)
+        })
+
+        return
+      }
+
+      this.$nextTick(() => {
+        this.$_focusInner()
+
+        this.$_resetTabIndex()
+      })
+    },
+  },
+
+  mounted() {
+    this.$_loadListItems()
+  },
 
   methods: {
     /**
      * shows the items list
      */
-    show() {
+    showList() {
       this.isOpen = true
       this.$emit('show')
+
+      if (this.filterable) {
+        this.$nextTick(() => {
+          canUseDOM && document.querySelector('input[type="search"]').focus()
+        })
+        return
+      }
+
+      this.activeIndex = 0
     },
 
     /**
      * hides the items list
      */
-    hide() {
+    hideList() {
       this.isOpen = false
       this.$emit('hide')
+      this.activeIndex = -1
     },
 
     /**
@@ -110,9 +173,9 @@ export default {
      */
     handleSelectInnerClick() {
       if (this.isOpen) {
-        this.hide()
+        this.hideList()
       } else {
-        this.show()
+        this.showList()
       }
     },
 
@@ -127,6 +190,7 @@ export default {
       }
 
       this.$emit('input', value)
+      this.$_focusInner()
       this.isOpen = false
     },
 
@@ -147,6 +211,7 @@ export default {
     handleRemoveItemValue(itemValue) {
       if (this.multiple) {
         this.$emit('input', this.processMultipleValue(itemValue))
+        this.$_focusInner()
       }
     },
 
@@ -156,6 +221,82 @@ export default {
     handleClearAllValues() {
       if (this.multiple) {
         this.$emit('input', [])
+        this.hideList()
+        this.$_focusInner()
+      }
+    },
+
+    /**
+     * set focus to first list item
+     */
+    focusOnFirstItem() {
+      this.showList()
+
+      this.activeIndex = 0
+    },
+
+    /**
+     * set focus to last list item
+     */
+    focusOnLastItem() {
+      this.showList()
+
+      this.activeIndex = this.listItems.length - 1
+    },
+
+    /**
+     * set focus a specific list item index
+     * @param {Number} index Position index of menu list item
+     */
+    focusAtIndex(index) {
+      this.$_updateTabIndex(index)
+
+      this.activeIndex = index
+    },
+
+    /**
+     * updates tab index for list items
+     * @param {Number} index Position index of menu list item
+     */
+    $_updateTabIndex(index) {
+      if (this.listItems.length > 0) {
+        const nodeAtIndex = this.listItems[index]
+
+        this.listItems.forEach((node) => {
+          if (node !== nodeAtIndex) {
+            node.setAttribute('tabindex', -1)
+          }
+        })
+        nodeAtIndex.setAttribute('tabindex', 0)
+      }
+    },
+
+    /**
+     * set all list items to tabindex -1
+     */
+    $_resetTabIndex() {
+      if (this.listItems.length > 0) {
+        this.listItems.forEach((node) => {
+          node.setAttribute('tabindex', -1)
+        })
+      }
+    },
+
+    /**
+     * set focus to trigger button element
+     */
+    $_focusInner() {
+      canUseDOM && this.$refs.inner.$el.focus()
+    },
+
+    /**
+     * get all list item elements
+     */
+    $_loadListItems() {
+      const menuNode = canUseDOM && this.$refs.list.$el
+
+      if (menuNode) {
+        this.listItems = menuNode.querySelectorAll('li')
       }
     },
   },

@@ -31,10 +31,6 @@ export default {
     },
   },
 
-  mounted() {
-    this.$refs.input.focus()
-  },
-
   methods: {
     handleInput(event) {
       this.$emit('input', event.target.value)

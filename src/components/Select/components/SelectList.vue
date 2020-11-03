@@ -2,6 +2,7 @@
   <div
     class="sb-select-list"
     :class="{ 'sb-select-list--filterable': filterable }"
+    @keydown="handleKeyDown"
   >
     <SbSelectListSearch
       v-if="filterable"
@@ -33,6 +34,8 @@ export default {
 
   components: { SbSelectListItem, SbSelectListSearch },
 
+  inject: ['selectContext'],
+
   props: {
     // input itself value
     value: {
@@ -60,6 +63,10 @@ export default {
   }),
 
   computed: {
+    context() {
+      return this.selectContext()
+    },
+
     filteredOptions() {
       if (this.filterable && this.hasValueToSearch) {
         return this.options.filter((opt) => {
@@ -81,6 +88,45 @@ export default {
      */
     handleEmitValue(value) {
       this.$emit('emit-value', value)
+    },
+
+    handleKeyDown(event) {
+      const {
+        activeIndex,
+        focusAtIndex,
+        focusOnFirstItem,
+        focusOnLastItem,
+        hideList,
+        listItems,
+      } = this.context
+      const count = listItems.length
+
+      switch (event.key) {
+        case 'ArrowDown':
+          event.preventDefault()
+          focusAtIndex((activeIndex + 1) % count)
+          break
+        case 'ArrowUp':
+          event.preventDefault()
+          focusAtIndex((activeIndex - 1 + count) % count)
+          break
+        case 'Home':
+          focusOnFirstItem()
+          break
+        case 'End':
+          focusOnLastItem()
+          break
+        case 'Tab':
+          event.preventDefault()
+          break
+        case 'Escape':
+          hideList()
+          break
+        default:
+          break
+      }
+
+      this.$emit('keydown', event)
     },
   },
 }
