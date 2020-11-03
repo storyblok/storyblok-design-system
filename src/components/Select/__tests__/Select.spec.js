@@ -375,4 +375,148 @@ describe('SbSelect component', () => {
       expect(wrapper.findComponent(SbMinibrowser).exists()).toBeTruthy()
     })
   })
+
+  describe('keyboard navigation (single option)', () => {
+    const innerClass = '.sb-select-inner'
+    const listClass = '.sb-select-list'
+    it('should open the list when press Enter and close with Escape', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: null,
+        },
+      })
+
+      const innerElement = wrapper.find('.sb-select-inner')
+
+      // when press the Enter key in the innerElement
+      await innerElement.trigger('keydown', {
+        key: 'Enter',
+      })
+
+      // should change the isOpen state
+      expect(wrapper.vm.isOpen).toBe(true)
+
+      const firstElement = wrapper.findAll('li').at(0)
+
+      // and the focus should change to the first element
+      expect(firstElement.element).toEqual(document.activeElement)
+
+      // when press the Escape key
+      await wrapper.find('.sb-select-list').trigger('keydown', {
+        key: 'Escape',
+      })
+
+      // should change the isOpen state
+      expect(wrapper.vm.isOpen).toBe(false)
+
+      // and the focus should change to inner element
+      expect(innerElement.element).toEqual(document.activeElement)
+    })
+
+    it('should emit an input event when press Enter in a list option', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: null,
+        },
+      })
+
+      const innerElement = wrapper.find(innerClass)
+
+      await innerElement.trigger('keydown', {
+        key: 'Enter',
+      })
+
+      // when press the Escape key
+      await wrapper.find(listClass).trigger('keydown', {
+        key: 'ArrowDown',
+      })
+
+      const secondElement = wrapper.findAll('li').at(1)
+
+      // should change the focus to second element
+      expect(secondElement.element).toEqual(document.activeElement)
+
+      await secondElement.trigger('keydown', {
+        key: 'Enter',
+      })
+
+      // should emit the input event
+      expect(wrapper.emitted('input')).toEqual([['Option 2']])
+
+      // and should close the list
+      expect(wrapper.vm.isOpen).toBe(false)
+    })
+
+    it('should move focus to first element when press ArrowDown', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: null,
+        },
+      })
+
+      const innerElement = wrapper.find(innerClass)
+
+      await innerElement.trigger('keydown', {
+        key: 'ArrowDown',
+      })
+
+      // should change the focus to second element
+      expect(wrapper.findAll('li').at(0).element).toEqual(
+        document.activeElement
+      )
+    })
+
+    it('should move focus to last element when press ArrowUp', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: null,
+        },
+      })
+
+      const innerElement = wrapper.find(innerClass)
+
+      await innerElement.trigger('keydown', {
+        key: 'ArrowUp',
+      })
+
+      // should change the focus to second element
+      expect(wrapper.findAll('li').at(6).element).toEqual(
+        document.activeElement
+      )
+    })
+  })
+
+  describe('keyboard navigation (multiple option)', () => {
+    const innerClass = '.sb-select-inner'
+    // const listClass = '.sb-select-list'
+
+    it('should remove the SbTag item when press Enter', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: ['Option 1', 'Option 3'],
+          multiple: true,
+        },
+      })
+
+      // when press Enter on a tag
+      await wrapper.findAllComponents(SbTag).at(0).trigger('keydown', {
+        key: 'Enter',
+      })
+
+      expect(wrapper.emitted('input')[0]).toEqual([['Option 3']])
+
+      // and the focus should change to inner element
+      expect(wrapper.find(innerClass).element).toEqual(document.activeElement)
+    })
+  })
 })
