@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils'
+import { mountAttachingComponent } from '../../../utils'
 
 import { SbSelect } from '..'
 import SbIcon from '../../Icon'
@@ -9,7 +9,7 @@ import { defaultSelectOptionsData, defaultAvatarsData } from '../Select.stories'
 
 describe('SbSelect component', () => {
   describe('default behavior (single option)', () => {
-    const wrapper = mount(SbSelect, {
+    const wrapper = mountAttachingComponent(SbSelect, {
       propsData: {
         label: 'Choose an option',
         options: [...defaultSelectOptionsData],
@@ -28,7 +28,7 @@ describe('SbSelect component', () => {
       await innerElement.trigger('click')
 
       // check if has an ul element in the document
-      expect(wrapper.find('ul').exists()).toBe(true)
+      expect(wrapper.find('ul').isVisible()).toBe(true)
 
       // check if the first element on the list exists
       expect(wrapper.findAll('li').at(0).text()).toBe('Option 1')
@@ -37,7 +37,7 @@ describe('SbSelect component', () => {
       await innerElement.trigger('click')
 
       // check if has an ul element in the document
-      expect(wrapper.find('ul').exists()).toBe(false)
+      expect(wrapper.find('ul').isVisible()).toBe(false)
     })
 
     it('should be emit an input event when click on element on list', async () => {
@@ -70,7 +70,7 @@ describe('SbSelect component', () => {
     const getFirstValue = (wrapper, event) => wrapper.emitted(event)[0][0]
 
     it('should emit an input event with an array of values', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           ...defaultsPropsData,
           value: [],
@@ -93,7 +93,7 @@ describe('SbSelect component', () => {
     })
 
     it('should emit appended array with the new element that was selected', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           ...defaultsPropsData,
           value: ['Option 2'],
@@ -116,7 +116,7 @@ describe('SbSelect component', () => {
     })
 
     it('should emit an array without a previous element when it is selected', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           ...defaultsPropsData,
           value: ['Option 2', 'Option 4'],
@@ -139,7 +139,7 @@ describe('SbSelect component', () => {
     })
 
     it('should change the select inner with the value', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           ...defaultsPropsData,
           value: ['Option 1', 'Option 4'],
@@ -152,7 +152,7 @@ describe('SbSelect component', () => {
     })
 
     it('should remove the tag from value when click on it', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
@@ -169,7 +169,7 @@ describe('SbSelect component', () => {
     })
 
     it('should remove all values when click on Clear all values button', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
@@ -187,7 +187,7 @@ describe('SbSelect component', () => {
   })
 
   describe('leftIcon property', () => {
-    const wrapper = mount(SbSelect, {
+    const wrapper = mountAttachingComponent(SbSelect, {
       propsData: {
         label: 'Choose an option',
         options: [...defaultSelectOptionsData],
@@ -203,7 +203,7 @@ describe('SbSelect component', () => {
 
   describe('filterable property', () => {
     it('should change the list when type in the input', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
@@ -214,7 +214,7 @@ describe('SbSelect component', () => {
       })
 
       // making the options list visible
-      wrapper.vm.show()
+      wrapper.vm.showList()
 
       await wrapper.vm.$nextTick()
 
@@ -234,7 +234,7 @@ describe('SbSelect component', () => {
     })
 
     it('should change the placeholder using filterPlaceholder property', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
@@ -246,7 +246,7 @@ describe('SbSelect component', () => {
       })
 
       // making the options list visible
-      wrapper.vm.show()
+      wrapper.vm.showList()
 
       await wrapper.vm.$nextTick()
 
@@ -259,7 +259,7 @@ describe('SbSelect component', () => {
 
   describe('useAvatars option', () => {
     it('should have the correct list of Avatars', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
           options: [...defaultAvatarsData],
@@ -270,7 +270,7 @@ describe('SbSelect component', () => {
         },
       })
 
-      wrapper.vm.show()
+      wrapper.vm.showList()
 
       await wrapper.vm.$nextTick()
 
@@ -278,7 +278,7 @@ describe('SbSelect component', () => {
     })
 
     it('should have the correct selected Avatar', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
           options: [...defaultAvatarsData],
@@ -289,7 +289,7 @@ describe('SbSelect component', () => {
         },
       })
 
-      wrapper.vm.show()
+      wrapper.vm.showList()
 
       await wrapper.vm.$nextTick()
 
@@ -301,7 +301,7 @@ describe('SbSelect component', () => {
     })
 
     it('should filter the list using the name', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
           options: [...defaultAvatarsData],
@@ -312,7 +312,7 @@ describe('SbSelect component', () => {
         },
       })
 
-      wrapper.vm.show()
+      wrapper.vm.showList()
 
       await wrapper.vm.$nextTick()
 
@@ -332,7 +332,7 @@ describe('SbSelect component', () => {
 
   describe('inline option', () => {
     it('should have the correct class on wrapper', async () => {
-      const wrapper = mount(SbSelect, {
+      const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
           options: [...defaultAvatarsData],
