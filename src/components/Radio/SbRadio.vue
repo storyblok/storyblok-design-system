@@ -16,8 +16,13 @@
 </template>
 
 <script>
+import CheckboxRadioMixin from '../../mixins/checkbox-radio-mixin'
+
 export default {
   name: 'SbRadio',
+
+  mixins: [CheckboxRadioMixin],
+
   props: {
     inline: Boolean,
     outline: Boolean,
@@ -26,61 +31,14 @@ export default {
       type: String,
       default: null,
     },
-    id: {
-      type: String,
-      default: null,
-    },
-    name: {
-      type: String,
-      default: null,
-    },
-
-    value: {
-      type: String,
-      default: null,
-    },
-    nativeValue: {
-      type: String,
-      default: null,
-    },
-
-    required: Boolean,
-    disabled: Boolean,
-  },
-
-  data() {
-    return {
-      internalValue: this.value,
-    }
   },
 
   computed: {
-    computedValue: {
-      get() {
-        return this.internalValue
-      },
-
-      set(newValue) {
-        this.setInternalValue(newValue)
-        this.$emit('input', newValue)
-      },
-    },
-
     componentClasses() {
       return [
         this.inline && 'sb-radio--inline',
         this.outline && 'sb-radio--outline',
       ]
-    },
-  },
-
-  watch: {
-    value: 'setInternalValue',
-  },
-
-  methods: {
-    setInternalValue(value) {
-      this.internalValue = value
     },
   },
 }
