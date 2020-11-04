@@ -10,7 +10,7 @@ const factory = (propsData) => {
 
 const fakeProps = {
   title: 'Drop here',
-  label: 'Your files',
+  subtitle: 'Your files',
   accept: 'image/png',
   maxFile: '1',
   maxFileSize: '100',
@@ -41,7 +41,7 @@ describe('Test if SbDropArea renderer correctly', () => {
 
     expect(wrapper.vm.$props.title).toBe(fakeProps.title)
 
-    expect(wrapper.vm.$props.label).toBe(fakeProps.label)
+    expect(wrapper.vm.$props.subtitle).toBe(fakeProps.subtitle)
   })
 
   it('Test handleDropFile function is called', () => {

@@ -8,13 +8,13 @@
   >
     <div class="sb-drop-area__content">
       <div class="sb-drop-area__icon">
-        <SbIcon size="x-large" color="primary-dark" :name="returnIconName" />
+        <SbIcon size="x-large" color="primary-dark" :name="iconName" />
       </div>
       <p class="sb-drop-area__title">
-        {{ returnTitle }}
+        {{ title }}
       </p>
-      <p class="sb-drop-area__label">
-        {{ returnLabel }}
+      <p class="sb-drop-area__subtitle">
+        {{ subtitle }}
       </p>
     </div>
   </div>
@@ -35,53 +35,36 @@ export default {
       type: String,
       default: null,
     },
-    label: {
-      type: String,
-      default: null,
-    },
     maxFile: {
-      type: [String, Number],
+      type: Number,
       default: null,
     },
     maxFileSize: {
-      type: [String, Number],
+      type: Number,
       default: null,
+    },
+    subtitle: {
+      type: String,
+      default:
+        'You can drop in miltiple JPEGs, PNGs, SVGs, PDFs and all other files.',
     },
     title: {
       type: String,
-      default: null,
+      default: 'Drop your asset in',
     },
   },
 
   data() {
     return {
       isOver: false,
-      iconName: 'img-icon',
     }
   },
 
   computed: {
-    returnIconName() {
+    iconName() {
       return this.isOver ? 'chevron-down' : 'img-icon'
     },
-
-    returnTitle() {
-      return this.title || 'Drop your asset in'
-    },
-
-    returnLabel() {
-      return (
-        this.label ||
-        'You can drop in miltiple JPEGs, PNGs, SVGs, PDFs and all other files.'
-      )
-    },
   },
-
-  // watch: {
-  //   isOver: function () {
-  //     this.iconName = this.isOver ? 'chevron-down' : 'img-icon'
-  //   }
-  // },
 
   methods: {
     /**

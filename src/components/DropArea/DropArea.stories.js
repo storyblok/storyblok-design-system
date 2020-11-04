@@ -1,18 +1,6 @@
 import SbDropArea from './index'
 import SbUploadDialog from '../UploadDialog'
 
-const DropTemplate = (args) => ({
-  components: { SbDropArea },
-  props: Object.keys(args),
-  template: `
-    <SbDropArea
-      v-bind="{
-        accept,
-        maxFileSize,
-        maxFile,
-      }" />`,
-})
-
 export default {
   title: 'SbDropArea',
   parameters: {
@@ -24,9 +12,12 @@ export default {
     },
   },
   args: {
-    accept: null,
-    maxFileSize: null,
-    maxFile: null,
+    accept: '',
+    maxFileSize: 0,
+    maxFile: 0,
+    title: 'Drop your asset in',
+    subtitle:
+      'You can drop in miltiple JPEGs, PNGs, SVGs, PDFs and all other files.',
   },
   argTypes: {
     accept: {
@@ -42,7 +33,7 @@ export default {
       description:
         'The `maxFileSize` prop defines the maximum size that each file can have, the prop receives the size in `KB` kylobytes.',
       control: {
-        type: 'text',
+        type: 'number',
       },
     },
     maxFile: {
@@ -50,13 +41,40 @@ export default {
       description:
         'The `maxFile` prop defines the maximum number of files that can be sent at once, that is, at each drop event. Note if the number is greater, no files will be returned.',
       control: {
+        type: 'number',
+      },
+    },
+    subtitle: {
+      name: 'subtitle',
+      description:
+        'The `subtitle` property defines the subtitle to add more informations about the upload data',
+      control: {
+        type: 'text',
+      },
+    },
+    title: {
+      name: 'title',
+      description: 'The `title` property defines the title of component',
+      control: {
         type: 'text',
       },
     },
   },
 }
 
-export const Default = DropTemplate.bind({})
+export const Default = (args) => ({
+  components: { SbDropArea },
+  props: Object.keys(args),
+  template: `
+    <SbDropArea
+      :accept="accept"
+      :subtitle="subtitle"
+      :title="title"
+      :max-file="maxFile"
+      :max-file-size="maxFileSize"
+    />
+  `,
+})
 
 export const DropAreaWithUploadModal = (args) => ({
   components: { SbDropArea, SbUploadDialog },
@@ -69,17 +87,19 @@ export const DropAreaWithUploadModal = (args) => ({
   template: `
     <div>
       <SbDropArea
-        v-bind="{
-          accept,
-          maxFileSize,
-          maxFile,
-        }"/>
+        :accept="accept"
+        :max-file="maxFile"
+        :max-file-size="maxFileSize"
+        :subtitle="subtitle"
+        :title="title"
+      />
+
       <SbUploadDialog
-        total-files="5"
-        actual-file="1"
+        :total-files="5"
+        :actual-file="1"
         actual-file-name="test.png"
-        percentage-value="45"
-        time-left="125"
+        :percentage-value="45"
+        :time-left="125"
         v-if="hasFiles"
       />
     </div>`,
