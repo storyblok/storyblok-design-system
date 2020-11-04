@@ -1,16 +1,17 @@
 <template>
-  <div :class="componentClasses">
+  <div class="sb-radio" :class="componentClasses">
     <input
       :id="id"
-      type="radio"
+      v-model="computedValue"
       class="sb-radio__input"
+      type="radio"
       :name="name"
-      :value="value"
-      :checked="checked"
+      :value="nativeValue"
       :required="required"
       :disabled="disabled"
     />
-    <label :for="id" class="sb-radio__label">{{ label }}</label>
+
+    <label v-if="label" :for="id" class="sb-radio__label">{{ label }}</label>
   </div>
 </template>
 
@@ -18,12 +19,9 @@
 export default {
   name: 'SbRadio',
   props: {
-    inline: {
-      type: Boolean,
-    },
-    outline: {
-      type: Boolean,
-    },
+    inline: Boolean,
+    outline: Boolean,
+
     label: {
       type: String,
       default: null,
@@ -36,27 +34,53 @@ export default {
       type: String,
       default: null,
     },
+
     value: {
       type: String,
       default: null,
     },
-    checked: {
-      type: Boolean,
+    nativeValue: {
+      type: String,
+      default: null,
     },
-    required: {
-      type: Boolean,
-    },
-    disabled: {
-      type: Boolean,
-    },
+
+    required: Boolean,
+    disabled: Boolean,
   },
+
+  data() {
+    return {
+      internalValue: this.value,
+    }
+  },
+
   computed: {
+    computedValue: {
+      get() {
+        return this.internalValue
+      },
+
+      set(newValue) {
+        this.setInternalValue(newValue)
+        this.$emit('input', newValue)
+      },
+    },
+
     componentClasses() {
       return [
-        'sb-radio',
         this.inline && 'sb-radio--inline',
         this.outline && 'sb-radio--outline',
       ]
+    },
+  },
+
+  watch: {
+    value: 'setInternalValue',
+  },
+
+  methods: {
+    setInternalValue(value) {
+      this.internalValue = value
     },
   },
 }
