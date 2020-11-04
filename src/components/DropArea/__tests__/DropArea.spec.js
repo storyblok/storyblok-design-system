@@ -12,8 +12,8 @@ const fakeProps = {
   title: 'Drop here',
   subtitle: 'Your files',
   accept: 'image/png',
-  maxFile: '1',
-  maxFileSize: '100',
+  maxFile: 1,
+  maxFileSize: 100,
 }
 
 const fakeEvent = {

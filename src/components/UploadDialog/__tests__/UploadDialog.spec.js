@@ -16,8 +16,8 @@ const fakeProps = {
   totalFiles: 2,
   actualFile: 1,
   actualFileName: 'test.png',
-  percentageValue: '25',
-  timeLeft: '50',
+  percentageValue: 25,
+  timeLeft: 50,
 }
 
 describe('Tests for UploadDialog', () => {
