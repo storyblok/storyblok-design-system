@@ -55,20 +55,20 @@ export const Inline = (args) => ({
           name="radio-inline"
           id="inline"
           label="Inline Inactive"
-          type="inline"
+          inline
         />
         <SbRadio
           name="radio-inline"
           id="inline-selected"
           label="Inline Selected"
-          type="inline"
+          inline
           checked
         />
         <SbRadio
           name="radio-inline"
           id="inline-disabled"
           label="Inline Inactive - Disabled"
-          type="inline"
+          inline
           disabled
         />
       </div>
@@ -77,13 +77,15 @@ export const Inline = (args) => ({
           name="radio-inline-outline"
           id="inline-outline"
           label="Inline Outline Inactive"
-          type="inline outline"
+          inline
+          outline
         />
         <SbRadio
           name="radio-inline-outline"
           id="inline-outline-selected"
           label="Inline Outline Selected"
-          type="inline outline"
+          inline
+          outline
           checked
         />
       </div>

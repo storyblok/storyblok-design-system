@@ -21,8 +21,8 @@ export default {
     inline: {
       type: Boolean,
     },
-    type: {
-      type: String,
+    outline: {
+      type: Boolean,
     },
     label: {
       type: String,
@@ -52,16 +52,11 @@ export default {
   },
   computed: {
     componentClasses() {
-      if (this.type) {
-        var classTypes = this.type.split(' ')
-        var classes = 'sb-radio'
-        for (var i = 0; i < classTypes.length; i++) {
-          classes = classes + ' sb-radio--' + classTypes[i]
-        }
-        return [classes]
-      } else {
-        return 'sb-radio'
-      }
+      return [
+        'sb-radio',
+        this.inline && 'sb-radio--inline',
+        this.outline && 'sb-radio--outline',
+      ]
     },
   },
 }
