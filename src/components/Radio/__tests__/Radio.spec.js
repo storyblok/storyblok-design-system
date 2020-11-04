@@ -7,110 +7,51 @@ const factory = (propsData) => {
   })
 }
 
-describe('Test SbRadio Component', () => {
-  it('test default SbRadio', async () => {
+describe('SbRadio component', () => {
+  it('should have a input with type radio and not checked', () => {
     const wrapper = factory({
-      label: 'Default Inactive',
+      label: 'Default',
+      nativeValue: 'default',
     })
+    const inputElement = wrapper.find('input')
 
-    expect(wrapper.find('input').attributes('type')).toBe('radio')
-    expect(wrapper.find('input').attributes('class')).toBe(
-      'sb-radio-type--default'
-    )
+    expect(inputElement.attributes('type')).toBe('radio')
+    expect(inputElement.attributes('checked')).toBeUndefined()
+    expect(inputElement.attributes('value')).toBe('default')
+    expect(wrapper.text()).toBe('Default')
   })
 
-  it('test if default SbRadio is disabled', async () => {
+  it('should have a disabled attribute', () => {
     const wrapper = factory({
-      label: 'Default Inactive - Disabled',
+      label: 'Default - Disabled',
+      disabled: true,
     })
 
-    expect(wrapper.find('input').attributes('type')).toBe('radio')
-    expect(wrapper.find('input').attributes('class')).toBe(
-      'sb-radio-type--default'
-    )
-    expect(wrapper.find('input').attributes('disabled')).toBe(true)
+    expect(wrapper.find('input').attributes('disabled')).toBe('disabled')
+    expect(wrapper.text()).toBe('Default - Disabled')
   })
 
-  it('test if default SbRadio is selected', async () => {
+  it('should emit the nativeValue property when clicks on input', async () => {
     const wrapper = factory({
-      label: 'Default Selected',
+      label: 'Default - Disabled',
+      nativeValue: 'Jon Doe',
     })
 
-    expect(wrapper.find('input').attributes('type')).toBe('radio')
-    expect(wrapper.find('input').attributes('class')).toBe(
-      'sb-radio-type--default'
-    )
-    expect(wrapper.find('input').attributes('checked')).toBe(true)
+    await wrapper.find('input').trigger('click')
+
+    expect(wrapper.emitted('input')[0]).toEqual(['Jon Doe'])
   })
 
-  it('test if default SbRadio is selected and disabled', async () => {
+  it('should have the outline and inline classes', async () => {
     const wrapper = factory({
-      label: 'Default Selected - Disabled',
+      label: 'Default - Disabled',
+      nativeValue: 'Jon Doe',
+      value: 'Jon Doe',
+      inline: true,
+      outline: true,
     })
 
-    expect(wrapper.find('input').attributes('type')).toBe('radio')
-    expect(wrapper.find('input').attributes('class')).toBe(
-      'sb-radio-type--default'
-    )
-    expect(wrapper.find('input').attributes('checked')).toBe(true)
-    expect(wrapper.find('input').attributes('disabled')).toBe(true)
-  })
-
-  it('test if SbRadio is inline type', async () => {
-    const wrapper = factory({
-      label: 'Inline Inactive',
-    })
-
-    expect(wrapper.find('input').attributes('type')).toBe('radio')
-    expect(wrapper.find('input').attributes('class')).toBe(
-      'sb-radio-type--inline'
-    )
-  })
-
-  it('test if SbRadio is inline type and is selected', async () => {
-    const wrapper = factory({
-      label: 'Inline Selected',
-    })
-
-    expect(wrapper.find('input').attributes('type')).toBe('radio')
-    expect(wrapper.find('input').attributes('class')).toBe(
-      'sb-radio-type--inline'
-    )
-    expect(wrapper.find('input').attributes('checked')).toBe(true)
-  })
-
-  it('test if SbRadio is inline type and is disabled', async () => {
-    const wrapper = factory({
-      label: 'Inline Inactive - Disabled',
-    })
-
-    expect(wrapper.find('input').attributes('type')).toBe('radio')
-    expect(wrapper.find('input').attributes('class')).toBe(
-      'sb-radio-type--inline'
-    )
-    expect(wrapper.find('input').attributes('disabled')).toBe(true)
-  })
-
-  it('test if SbRadio is inline type and has outline', async () => {
-    const wrapper = factory({
-      label: 'Inline Outline Inactive',
-    })
-
-    expect(wrapper.find('input').attributes('type')).toBe('radio')
-    expect(wrapper.find('input').attributes('class')).toBe(
-      'sb-radio-type--inline sb-radio-type--outline'
-    )
-  })
-
-  it('test if SbRadio is inline type and has outline and is selected', async () => {
-    const wrapper = factory({
-      label: 'Inline Outline Inactive',
-    })
-
-    expect(wrapper.find('input').attributes('type')).toBe('radio')
-    expect(wrapper.find('input').attributes('class')).toBe(
-      'sb-radio-type--inline sb-radio-type--outline'
-    )
-    expect(wrapper.find('input').attributes('checked')).toBe(true)
+    expect(wrapper.classes('sb-radio--inline')).toBe(true)
+    expect(wrapper.classes('sb-radio--outline')).toBe(true)
   })
 })
