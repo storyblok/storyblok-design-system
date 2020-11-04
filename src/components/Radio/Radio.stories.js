@@ -3,90 +3,132 @@ import SbRadio from './index'
 export default {
   title: 'SbRadio',
   component: SbRadio,
+  args: {
+    label: 'Simple radio input',
+    id: 'example',
+    name: 'example',
+    outline: false,
+    inline: false,
+    value: 'Jon Doe',
+    nativeValue: 'Jon Doe',
+    disabled: false,
+    required: false,
+  },
 }
 
 export const Default = (args) => ({
   components: { SbRadio },
   props: Object.keys(args),
   template: `
-    <div>
-      <SbRadio
-        name="radio-default"
-        id="default"
-        label="Default Inactive"
-      />
-      <SbRadio
-        name="radio-default"
-        id="default-disabled"
-        label="Default Inactive - Disabled"
-        disabled
-      />
-    </div>
+    <SbRadio
+      :name="name"
+      :id="id"
+      :outline="outline"
+      :inline="inline"
+      :label="label"
+      :disabled="disabled"
+      :required="required"
+    />
   `,
 })
 
 export const Selected = (args) => ({
   components: { SbRadio },
   props: Object.keys(args),
+  data: () => ({
+    internalValue: 'Jon Doe',
+  }),
   template: `
-    <div>
+    <form>
       <SbRadio
         id="selected"
-        label="Default Selected"
-        checked
+        label="Jon Doe"
+        v-model="internalValue"
+        name="input"
+        native-value="Jon Doe"
       />
+
       <SbRadio
-        id="selected-disabled"
-        label="Default Selected - Disabled"
-        checked
-        disabled
+        id="unselected"
+        label="Albert Einstein"
+        v-model="internalValue"
+        name="input"
+        native-value="Albert Einstein"
       />
-    </div>
+    </form>
   `,
 })
 
 export const Inline = (args) => ({
   components: { SbRadio },
   props: Object.keys(args),
+  data: () => ({
+    internalValue: 'Jon Doe',
+  }),
   template: `
     <div>
       <div>
         <SbRadio
           name="radio-inline"
           id="inline"
-          label="Inline Inactive"
+          label="Jon Doe"
+          v-model="internalValue"
+          native-value="Jon Doe"
           inline
         />
+
         <SbRadio
           name="radio-inline"
           id="inline-selected"
-          label="Inline Selected"
+          label="Albert Einstein"
+          v-model="internalValue"
+          native-value="Albert Einstein"
           inline
-          checked
         />
+
         <SbRadio
           name="radio-inline"
           id="inline-disabled"
-          label="Inline Inactive - Disabled"
+          v-model="internalValue"
+          native-value="None of those"
+          label="None of those"
           inline
           disabled
         />
       </div>
+
+      <br />
+
       <div>
         <SbRadio
-          name="radio-inline-outline"
-          id="inline-outline"
-          label="Inline Outline Inactive"
+          name="radio-outline"
+          id="inline"
+          label="Jon Doe"
+          v-model="internalValue"
+          native-value="Jon Doe"
           inline
           outline
         />
+
         <SbRadio
-          name="radio-inline-outline"
-          id="inline-outline-selected"
-          label="Inline Outline Selected"
+          name="radio-outline"
+          id="inline-selected"
+          label="Albert Einstein"
+          v-model="internalValue"
+          native-value="Albert Einstein"
           inline
           outline
-          checked
+        />
+
+        <SbRadio
+          name="radio-outline"
+          id="inline-disabled"
+          v-model="internalValue"
+          native-value="None of those"
+          label="None of those"
+          inline
+          outline
+          disabled
         />
       </div>
     </div>
