@@ -2,11 +2,9 @@
   <SbBlockUi>
     <div class="sb-upload-dialog">
       <SbIcon name="refresh" size="small" color="primary" />
-      <span class="sb-upload-dialog__label">
-        {{ returnLabelToUpload }}
-      </span>
+      <span class="sb-upload-dialog__label"> {{ labelToUpload }} </span>
       <span class="sb-upload-dialog__time-left">
-        {{ returnTimeLeft }}
+        {{ timeLeftLabel }}
       </span>
       <SbLoading type="bar" :value="percentageValue" />
     </div>
@@ -29,7 +27,7 @@ export default {
 
   props: {
     actualFile: {
-      type: [String, Number],
+      type: Number,
       default: 0,
     },
     actualFileName: {
@@ -37,25 +35,25 @@ export default {
       default: null,
     },
     percentageValue: {
-      type: [String, Number],
+      type: Number,
       default: 0,
     },
     timeLeft: {
-      type: [String, Number],
+      type: Number,
       default: 0,
     },
     totalFiles: {
-      type: [String, Number],
+      type: Number,
       default: 0,
     },
   },
 
   computed: {
-    returnLabelToUpload() {
+    labelToUpload() {
       return `Uploading ${this.actualFile}/${this.totalFiles} - ${this.actualFileName}`
     },
 
-    returnTimeLeft() {
+    timeLeftLabel() {
       const time = parseInt(this.timeLeft)
 
       if (time > 59) {
