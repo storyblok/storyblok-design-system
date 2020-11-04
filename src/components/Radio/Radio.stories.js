@@ -67,8 +67,9 @@ export const Inline = (args) => ({
   }),
   template: `
     <div>
-      <div>
+      <div style="margin-bottom: 20px;">
         <SbRadio
+          style="margin-right: 10px;"
           name="radio-inline"
           id="inline"
           label="Jon Doe"
@@ -78,6 +79,7 @@ export const Inline = (args) => ({
         />
 
         <SbRadio
+          style="margin-right: 10px;"
           name="radio-inline"
           id="inline-selected"
           label="Albert Einstein"
@@ -87,6 +89,7 @@ export const Inline = (args) => ({
         />
 
         <SbRadio
+          style="margin-right: 10px;"
           name="radio-inline"
           id="inline-disabled"
           v-model="internalValue"
@@ -97,10 +100,9 @@ export const Inline = (args) => ({
         />
       </div>
 
-      <br />
-
       <div>
         <SbRadio
+          style="margin-right: 10px;"
           name="radio-outline"
           id="inline"
           label="Jon Doe"
@@ -111,6 +113,7 @@ export const Inline = (args) => ({
         />
 
         <SbRadio
+          style="margin-right: 10px;"
           name="radio-outline"
           id="inline-selected"
           label="Albert Einstein"
@@ -121,6 +124,7 @@ export const Inline = (args) => ({
         />
 
         <SbRadio
+          style="margin-right: 10px;"
           name="radio-outline"
           id="inline-disabled"
           v-model="internalValue"
