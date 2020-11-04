@@ -20,10 +20,26 @@
   z-index: 99999;
 }
 
+@mixin middleXY {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 // creates a box-shadow and a border for general suspense menu components
 @mixin popoverComponent {
   box-shadow: 0px 2px 17px 3px rgba(34, 42, 69, 0.07);
   border: 1px solid $light;
   border-radius: 4px;
+  overflow: hidden;
+}
+
+// the following are the recommended styles for visually hiding content that will be read by a screen reader
+@mixin screenReaderOnly {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
   overflow: hidden;
 }

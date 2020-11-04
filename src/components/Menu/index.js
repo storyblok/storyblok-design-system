@@ -327,7 +327,7 @@ const SbMenuList = {
               keydown: this.handleKeyDown,
             },
           },
-          [items.length && renderMenuItems(items), this.$slots.default]
+          [!!items.length && renderMenuItems(items), this.$slots.default]
         ),
       ]
     )
