@@ -1,7 +1,11 @@
 <template>
   <div class="sb-editor-header__desktop">
+    <div v-if="format === 'desktop'" class="header__desktop">
+      <span class="desktop__title">{{ headerTitle }}</span>
+      <span class="desktop__sub-title">{{ headerSubTitle }}</span>
+    </div>
     <SbHeaderItem v-if="users">
-      <SbAvatarGroup>
+      <SbAvatarGroup :max-elements="format === 'tablet' ? 2 : 3">
         <SbAvatar
           v-for="user in users"
           :key="user.id"
@@ -11,12 +15,9 @@
       </SbAvatarGroup>
     </SbHeaderItem>
 
-    <SbHeaderSeparator v-if="users" />
-
-    <SbHeaderItem v-if="languages">
+    <SbHeaderItem v-if="languages" with-separator>
       <SbMenu>
         <SbMenuButton :label="selectedLanguage || languages[0]" />
-
         <SbMenuList placement="bottom-start">
           <SbMenuGroup title="Languages">
             <SbMenuItem
@@ -31,38 +32,16 @@
       </SbMenu>
     </SbHeaderItem>
 
-    <!-- actions -->
-
-    <!-- save button -->
-
-    <!-- status published -->
-
-    <SbHeaderItem v-if="hasSaveButton">
-      <SbButton size="small" label="Publish" type="primary" />
-    </SbHeaderItem>
-
-    <SbHeaderItem v-if="options">
-      <SbMenu>
-        <SbMenuButton has-icon-only />
-
-        <SbMenuList placement="bottom-start">
-          <SbMenuItem
-            v-for="option in options"
-            :key="option.id"
-            :type="option.type"
-          >
-            {{ option.name }}
-          </SbMenuItem>
-        </SbMenuList>
-      </SbMenu>
-    </SbHeaderItem>
+    <div class="sb-editor-header__actions">
+      <SbHeaderItem v-for="act in actions" :key="act.id" with-separator>
+        <SbIcon :name="act.name" size="large" />
+      </SbHeaderItem>
+    </div>
   </div>
 </template>
 
 <script>
 import SbHeaderItem from './HeaderItem'
-import SbHeaderSeparator from './HeaderSeparator'
-import SbButton from '../../Button'
 import SbAvatarGroup from '../../AvatarGroup'
 import SbAvatar from '../../Avatar'
 import {
@@ -72,16 +51,14 @@ import {
   SbMenuItem,
   SbMenuGroup,
 } from '../../Menu'
-
+import SbIcon from '../../Icon'
 import { sharedProps } from '../lib'
 
 export default {
-  name: 'SbDesktopHeader',
+  name: 'DesktopAndTabletViwer',
 
   components: {
     SbHeaderItem,
-    SbHeaderSeparator,
-    SbButton,
     SbAvatarGroup,
     SbAvatar,
     SbMenu,
@@ -89,10 +66,15 @@ export default {
     SbMenuList,
     SbMenuItem,
     SbMenuGroup,
+    SbIcon,
   },
 
   props: {
     ...sharedProps,
+    format: {
+      type: String,
+      default: null,
+    },
   },
 
   data: () => ({
@@ -103,6 +85,10 @@ export default {
     handleSetNewLanguage(lang) {
       this.selectedLanguage = lang
       this.$emit('change-language', { language: lang })
+    },
+
+    handleSaveChanges() {
+      this.$emit('save')
     },
   },
 }

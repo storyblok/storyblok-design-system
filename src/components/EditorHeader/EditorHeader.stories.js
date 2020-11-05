@@ -1,5 +1,4 @@
 import { SbEditorHeader } from './index'
-// import SbEditorHeader from './EditorHeader.vue'
 
 const languagesItems = ['English', 'German']
 
@@ -47,7 +46,13 @@ const optionsList = [
 
 const actionsList = [
   {
-    preview: '',
+    name: 'dimensions',
+  },
+  {
+    name: 'preview',
+  },
+  {
+    name: 'unpublish',
   },
 ]
 
@@ -64,6 +69,8 @@ const EditorTemplate = (args) => ({
         isPublished,
         hasSaveButton,
         showPublishedIcon,
+        headerTitle,
+        headerSubTitle,
       }"
     />
   `,
@@ -87,6 +94,8 @@ export default {
     isPublished: true,
     hasSaveButton: true,
     showPublishedIcon: true,
+    headerTitle: 'API-based & Headless CMS as a Service',
+    headerSubTitle: 'Updated 15m ago',
   },
   argTypes: {
     languages: {
@@ -100,21 +109,21 @@ export default {
       name: 'users',
       description: 'User information array',
       control: {
-        type: 'array',
+        type: 'object',
       },
     },
     actions: {
       name: 'actions',
       description: 'Available actions array',
       control: {
-        type: 'array',
+        type: 'object',
       },
     },
     options: {
       name: 'options',
       description: 'Available options array',
       control: {
-        type: 'array',
+        type: 'object',
       },
     },
     isPublished: {
@@ -137,6 +146,20 @@ export default {
       description: 'Props to show or not the published icon',
       control: {
         type: 'boolean',
+      },
+    },
+    headerTitle: {
+      name: 'headerTitle',
+      description: '',
+      control: {
+        type: 'text',
+      },
+    },
+    headerSubTitle: {
+      name: 'headerSubTitle',
+      description: '',
+      control: {
+        type: 'text',
       },
     },
   },

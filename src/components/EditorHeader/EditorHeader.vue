@@ -1,33 +1,86 @@
 <template>
   <div class="sb-editor__container">
-    <div v-if="returnViewFormat !== 'desktop'" class="sb-editor--title">
-      <SbButton icon="plus" type="secondary" size="small" />
-      <span>{{ sharedProps.titleLabel }}</span>
-    </div>
-    <div class="sb-editor-header">
-      <SbDesktopHeader
-        v-if="returnViewFormat === 'desktop'"
+    <HeaderTitle
+      :title="headerTitle"
+      :sub-title="headerSubTitle"
+      :format="returnViewFormat"
+    />
+
+    <div
+      class="sb-editor-header"
+      :class="{ 'sb-editor-header__mobile': returnViewFormat === 'mobile' }"
+    >
+      <DesktopAndTabletViwer
+        v-if="returnViewFormat !== 'mobile'"
         v-bind="{
           languages,
           users,
           actions,
-          options,
-          isPublished,
-          hasSaveButton,
-          showPublishedIcon,
+          format: returnViewFormat,
         }"
       />
-      <SbTabletHeader v-if="returnViewFormat === 'tablet'" />
-      <SbMobileHeader v-if="returnViewFormat === 'mobile'" />
+      <MobileViwer
+        v-if="returnViewFormat === 'mobile'"
+        v-bind="{
+          languages,
+          users,
+          actions,
+        }"
+      />
+      <div
+        class="sb-editor-header__content"
+        :class="{
+          'sb-editor-header__content--mobile': returnViewFormat === 'mobile',
+        }"
+      >
+        <SbHeaderItem v-if="hasSaveButton" with-separator>
+          <button class="sb-editor-header__save-button">Save</button>
+        </SbHeaderItem>
+
+        <SbHeaderItem v-if="isPublished" with-separator>
+          <SbIcon name="status-circle" size="large" color="primary" />
+        </SbHeaderItem>
+
+        <SbHeaderItem v-if="hasSaveButton">
+          <SbButton size="small" label="Publish" type="primary" />
+        </SbHeaderItem>
+
+        <SbHeaderItem v-if="options">
+          <SbMenu>
+            <SbMenuButton has-icon-only />
+            <SbMenuList placement="bottom-start">
+              <SbMenuItem
+                v-for="option in options"
+                :key="option.id"
+                :type="option.type"
+              >
+                {{ option.name }}
+              </SbMenuItem>
+            </SbMenuList>
+          </SbMenu>
+        </SbHeaderItem>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import SbDesktopHeader from './components/DesktopHeader'
-import SbTabletHeader from './components/TabletHeader'
-import SbMobileHeader from './components/MobileHeader'
+import DesktopAndTabletViwer from './components/DesktopAndTabletViwer'
+import MobileViwer from './components/MobileViwer'
+import HeaderTitle from './components/HeaderTitle'
+
+import SbHeaderItem from './components/HeaderItem'
+import SbIcon from '../Icon'
+
 import SbButton from '../Button'
+
+import {
+  SbMenu,
+  SbMenuButton,
+  SbMenuList,
+  SbMenuItem,
+  // SbMenuGroup,
+} from '../Menu'
 
 import { sharedProps } from './lib'
 
@@ -35,10 +88,17 @@ export default {
   name: 'SbEditorHeader',
 
   components: {
-    SbDesktopHeader,
-    SbTabletHeader,
-    SbMobileHeader,
+    DesktopAndTabletViwer,
+    HeaderTitle,
+    MobileViwer,
     SbButton,
+    SbHeaderItem,
+    SbIcon,
+    SbMenu,
+    SbMenuButton,
+    SbMenuList,
+    SbMenuItem,
+    // SbMenuGroup,
   },
 
   props: {

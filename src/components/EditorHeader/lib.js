@@ -24,9 +24,13 @@ const sharedProps = {
   showPublishedIcon: {
     type: Boolean,
   },
-  titleLabel: {
+  headerTitle: {
     type: String,
     default: 'API-based & Headless CMS as a Service',
+  },
+  headerSubTitle: {
+    type: String,
+    default: 'Updated 15m ago',
   },
 }
 

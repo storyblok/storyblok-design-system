@@ -382,6 +382,38 @@ const icons = {
     </g>
     `,
   },
+  preview: {
+    viewBox: '0 0 32 32',
+    path: `
+    <g width="32" height="32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(5 9)" stroke="#1B243F" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11-1c7.519 0 11.894 8.553 11.894 8.553 0 .894-1.885 4.667-5.343 7.182C15.761 16.037 13.561 17 11 17 3.481 17-.894 8.447-.894 8.447c0-.894 1.885-4.667 5.343-7.182C6.239-.037 8.439-1 11-1z"/>
+        <circle cx="11" cy="8" r="3"/>
+      </g>
+    </g>`,
+  },
+  dimensions: {
+    viewBox: '0 0 32 32',
+    path: `
+    <g width="32" height="32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(3 8)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect stroke="#1B243F" stroke-width="2" x="1" y="11" width="5" height="5" rx="2"/>
+        <rect fill="#1B243F" x="9" y="0" width="9" height="2" rx="1"/>
+        <rect fill="#1B243F" x="6" y="5" width="15" height="2" rx="1"/>
+        <rect stroke="#1B243F" stroke-width="2" x="10" y="11" width="6" height="5" rx="2"/>
+        <rect stroke="#1B243F" stroke-width="2" x="20" y="11" width="5" height="5" rx="2"/>
+      </g>
+    </g>`,
+  },
+  unpublish: {
+    viewBox: '0 0 32 32',
+    path: `
+    <g width="32" height="32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#1B243F" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24.88 23.09A5 5 0 0022 14h-1.26A8 8 0 107 21.29M18.121 18.879L13.88 23.12M18.121 23.121L13.88 18.88"/>
+      </g>
+    </g>`,
+  },
 }
 
 export default icons
