@@ -1,13 +1,25 @@
 <template>
-  <SbPortal ref="portalRef" :target="modalTarget">
-    <SbBlokUi v-if="open">
+  <SbPortal
+    ref="portalRef"
+    slim
+    append
+    unmount-on-destroy
+    target-slim
+    :target="modalTarget"
+  >
+    <SbBlokUi v-if="open" @click="wrapClose">
       <div
+        ref="modal"
         class="sb-modal"
         :class="{ 'sb-modal__full-width': fullWidth }"
         role="dialog"
         v-bind="{ ...$attrs }"
       >
-        <button class="sb-modal__close-button" @click="handleCloseModal">
+        <button
+          class="sb-modal__close-button"
+          aria-label="Close Modal"
+          @click="handleCloseModal"
+        >
           <SbIcon name="close" size="normal" color="primary-dark" />
         </button>
         <slot />
@@ -65,9 +77,15 @@ export default {
     /**
      * handler for close modal
      */
-    handleCloseModal() {
+    handleCloseModal(event) {
       this.open = false
       this.$emit('hide')
+    },
+
+    wrapClose(event) {
+      if (this.$refs.modal && !this.$refs.modal.contains(event.target)) {
+        this.handleCloseModal(event)
+      }
     },
 
     /**
