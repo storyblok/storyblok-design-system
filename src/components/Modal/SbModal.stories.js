@@ -34,8 +34,12 @@ const ModalTemplate = (args) => ({
         v-if="!showModal"
         style="margin: 0 auto; display: flex; margin-top: 30%;"
       />
-      <SbModal :is-open-modal="showModal" v-on:hide="showModal = false" v-bind="{ fullWidth }">
-        <SbModalHeader 
+      <SbModal
+        :is-open-modal="showModal"
+        :full-width="fullWidth"
+        @hide="showModal = false"
+      >
+        <SbModalHeader
           v-bind="{
             title,
             icon,
@@ -44,9 +48,9 @@ const ModalTemplate = (args) => ({
         />
 
         <SbModalContent>
-          <p style="font-size: 16px; color: rgb(84, 91, 111); text-align: center;">The body copy that explains empty state</p>
+          <p>The body copy that explains empty state</p>
         </SbModalContent>
-        
+
         <SbModalFooter>
           <SbButton label="Label" type="primary"/>
           <SbButton label="Label" type="ghost"/>
@@ -143,7 +147,7 @@ export const ModalWithoutFooter = (args) => ({
       style="margin: 0 auto; display: flex; margin-top: 30%;"
     />
     <SbModal :is-open-modal="showModal" v-on:hide="showModal = false">
-      <SbModalHeader 
+      <SbModalHeader
         v-bind="{
           title,
         }"
@@ -152,7 +156,7 @@ export const ModalWithoutFooter = (args) => ({
       <SbModalContent>
         <p style="font-size: 16px; color: rgb(84, 91, 111); text-align: center;">The body copy that explains empty state</p>
       </SbModalContent>
-      
+
       <SbButton label="Click me!" type="primary"/>
     </SbModal>
   </div>
@@ -196,7 +200,7 @@ export const ModalWithoutHeader = (args) => ({
       <SbModalContent>
         <p style="text-align: center;">This awesome dont have Title or Header!</p>
       </SbModalContent>
-      
+
       <SbModalFooter>
         <SbButton label="Click me!" type="primary"/>
       </SbModalFooter>
@@ -240,20 +244,16 @@ export const ModalWithMediumSize = (args) => ({
       style="margin: 0 auto; display: flex; margin-top: 30%;"
     />
     <SbModal :is-open-modal="showModal" v-on:hide="showModal = false">
-      <SbModalHeader 
-          v-bind="{
-            title,
-            align,
-          }"
-      />
+      <SbModalHeader :align="align" :title="title" />
+
       <SbModalContent>
         <div style="width: 100%; height: 300px;"><p style="text-align: left; margin: 0;">The body copy that explains empty state</p></div>
       </SbModalContent>
-      
+
       <SbModalFooter>
-          <SbButton label="Label" type="primary"/>
-          <SbButton label="Label" type="ghost"/>
-        </SbModalFooter>
+        <SbButton label="Label" type="primary"/>
+        <SbButton label="Label" type="ghost"/>
+      </SbModalFooter>
     </SbModal>
   </div>`,
 })
