@@ -93,7 +93,7 @@ export const WithoutHeaderAndFooter = (args) => ({
   props: Object.keys(args),
 
   template: `
-    <SbCard :isLoading="isLoading">>
+    <SbCard :isLoading="isLoading">
       <SbCardContent>
         <div
           style="

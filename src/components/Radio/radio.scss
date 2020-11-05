@@ -1,0 +1,108 @@
+.sb-radio {
+  &--inline{
+    position: relative;
+    display: inline-block;
+  }
+  &--outline{
+    border-radius: 0.5rem;
+    border: solid 0.1rem #eff1f5;
+    background-color: $white;
+    width: fit-content;
+    padding: 1.5rem 2rem;
+  }
+  &__input{
+    &:focus, &:hover{
+      &:not([disabled]){
+        & + label{
+          &:before{
+            box-shadow: 0rem 0rem 0rem 0.3rem rgba(217,244,243,1);
+          }
+        }
+      }
+    }
+    &:checked, &:not(:checked){
+      position: absolute;
+      margin: 0.25rem;
+      opacity: 0;
+      & + label{
+        position: relative;
+        padding-left: 2.8rem;
+        display: inline-block;
+        font-family: Roboto;
+        font-size: $font-size-md;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.03rem;
+        color: $sb-dark-blue;
+      }
+    }
+    &:checked{
+      & + label{
+        &:before, &:after{
+          content: '';
+          position: absolute;
+          border-radius: 100%;
+        }
+        &:before{
+          left: 0;
+          top: 0;
+          width: 1.6rem;
+          height: 1.6rem;
+          border: solid 0.1rem $sb-green;
+          background-color: $sb-green;
+        }
+        &:after{
+          top: 0.6rem;
+          left: 0.6rem;
+          transition: all 0.2s ease;
+          width: 0.6rem;
+          height: 0.6rem;
+          opacity: 1;
+          transform: scale(1);
+          background-color: $white;
+        }
+      }
+      &[disabled]{
+        & + label{
+          &:before, &:after{
+            cursor: not-allowed;
+          }
+          &:before{
+            background-color: $light-gray;
+            border: solid 0.1rem $light-gray;
+          }
+        }
+      }
+    }
+    &:not(:checked){
+      & + label{
+        &:before, &:after{
+          content: '';
+          position: absolute;
+          border-radius: 100%;
+        }
+        &:before{
+          left: 0;
+          top: 0;
+          width: 1.6rem;
+          height: 1.6rem;
+          border: solid 0.1rem $light;
+          background-color: $white;
+        }
+      }
+      &[disabled]{
+        & + label{
+          &:before, &:after{
+            cursor: not-allowed;
+          }
+          &:before{
+            border: solid 0.1rem $light;
+            background-color: #f5f5f5;
+          }
+        }
+      }
+    }
+  }
+}

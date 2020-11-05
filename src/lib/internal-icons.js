@@ -414,6 +414,28 @@ const icons = {
       </g>
     </g>`,
   },
+  'img-icon': {
+    viewBox: '0 0 83 103',
+    path: `
+    <g width="83" height="103" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M3 0h50.453a3 3 0 012.068.827L82.07 26.105A3 3 0 0183 28.277V100a3 3 0 01-3 3H3a3 3 0 01-3-3V3a3 3 0 013-3z" fill="#EFF1F3"/>
+        <path d="M27.239 66.06l9.063 15.952A2 2 0 0134.563 85H16.437a2 2 0 01-1.74-2.988l9.064-15.952a2 2 0 013.478 0z" fill="#B1B5BE" opacity=".488"/>
+        <circle fill="#B1B5BE" cx="23.5" cy="32.5" r="6.5"/>
+        <path d="M50.603 46.06L71.03 82.012A2 2 0 0169.29 85H28.438a2 2 0 01-1.74-2.988L47.126 46.06a2 2 0 013.478 0z" fill="#B1B5BE"/>
+      </g>
+    </g>`,
+  },
+  refresh: {
+    viewBox: '0 0 18 15',
+    path: `
+    <g width="18" height="15" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#00B3B0" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16.889 1.722v4.334h-4.333M1 13.278V8.944h4.333"/>
+        <path d="M2.813 5.333a6.5 6.5 0 0110.725-2.426l3.35 3.149M1 8.944l3.351 3.15a6.5 6.5 0 0010.725-2.427"/>
+      </g>
+    </g>`,
+  },
 }
 
 export default icons
