@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex">
+  <div class="sb-editor-header__mobile--more">
     <SbHeaderItem>
       <SbMenu>
         <SbMenuButton label="More" />
@@ -50,5 +50,3 @@ export default {
   },
 }
 </script>
-
-<style></style>

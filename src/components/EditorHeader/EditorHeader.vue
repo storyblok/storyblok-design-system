@@ -17,7 +17,9 @@
           users,
           actions,
           format: returnViewFormat,
+          size: window.width,
         }"
+        @changes="$_handleListenersOrchestrator"
       />
       <MobileViwer
         v-if="returnViewFormat === 'mobile'"
@@ -26,6 +28,7 @@
           users,
           actions,
         }"
+        @changes="$_handleListenersOrchestrator"
       />
       <div
         class="sb-editor-header__content"
@@ -34,7 +37,12 @@
         }"
       >
         <SbHeaderItem v-if="hasSaveButton" with-separator>
-          <button class="sb-editor-header__save-button">Save</button>
+          <button
+            class="sb-editor-header__save-button"
+            @click="handleSaveChanges"
+          >
+            Save
+          </button>
         </SbHeaderItem>
 
         <SbHeaderItem
@@ -49,8 +57,13 @@
           />
         </SbHeaderItem>
 
-        <SbHeaderItem v-if="hasSaveButton">
-          <SbButton size="small" label="Publish" type="primary" />
+        <SbHeaderItem>
+          <SbButton
+            size="small"
+            label="Publish"
+            type="primary"
+            @click="handlePublishSpace"
+          />
         </SbHeaderItem>
 
         <SbHeaderItem v-if="options">
@@ -61,6 +74,7 @@
                 v-for="option in options"
                 :key="option.id"
                 :type="option.type"
+                @click="handleSelectOptions(option.name)"
               >
                 {{ option.name }}
               </SbMenuItem>
@@ -136,29 +150,71 @@ export default {
     },
 
     returnViewFormat() {
-      return this.window.width > 850
+      return this.window.width > 880
         ? 'desktop'
-        : this.window.width > 600 && this.window.width < 850
+        : this.window.width > 600 && this.window.width < 880
         ? 'tablet'
         : 'mobile'
     },
   },
 
   created() {
-    window.addEventListener('resize', this.handleResize)
-    this.handleResize()
+    window.addEventListener('resize', this.$_handleResize)
+    this.$_handleResize()
   },
 
   destroyed() {
-    window.removeEventListener('resize', this.handleResize)
+    window.removeEventListener('resize', this.$_handleResize)
   },
 
   methods: {
-    handleResize() {
+    /**
+     * method to listen and chenge the window.width
+     */
+    $_handleResize() {
       this.window.width = window.innerWidth
     },
+    /**
+     * this method is triggered when an action is taken on the
+     * desktop and mobile components, it works as an orchestrator,
+     * to distribute the emits.
+     */
+    $_handleListenersOrchestrator(action) {
+      if (action.type === 'lang') {
+        this.handleSetNewLanguage(action.language)
+      }
+      if (action.type === 'act') {
+        this.handleSelectAction(action.action)
+      }
+    },
+    /**
+     * method to emit the selection of new option
+     */
+    handleSelectOptions(opt) {
+      this.$emit('select-options', opt.toLowerCase().replace(' ', '-'))
+    },
+    /**
+     * method to emit save changes on space
+     */
+    handleSaveChanges() {
+      this.$emit('save')
+    },
+    /**
+     * method to emit the publish event
+     */
+    handlePublishSpace() {
+      this.$emit('publish')
+    },
+    /**
+     * method to emit the new action
+     */
+    handleSelectAction(act) {
+      this.$emit('select-action', act.toLowerCase().replace(' ', '-'))
+    },
+    /**
+     * method to emit the selection of a language
+     */
     handleSetNewLanguage(lang) {
-      this.selectedLanguage = lang
       this.$emit('change-language', { language: lang })
     },
   },

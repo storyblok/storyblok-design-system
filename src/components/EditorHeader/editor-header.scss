@@ -31,13 +31,13 @@
 
   &__desktop {
     width: 100%;
-    padding: 17px 0px 16px 26px;
+    padding: 1.7rem 0 1.6rem 2.6rem;
     display: flex;
     justify-content: flex-end;
     box-sizing: border-box;
 
     .header__desktop {
-      padding-top: 5px;
+      padding-top: 0.5rem;
       display: grid;
       flex: auto;
 
@@ -56,13 +56,13 @@
   }
 
   &__item {
-    max-height: 37px;
-    min-width: 37px;
-    padding-left: 10px;
+    max-height: 3.7rem;
+    min-width: 3.7rem;
+    padding-left: 1rem;
 
     .sb-menu, button {
-      min-width: 37px;
-      max-height: 37px;
+      // min-width: 37px;
+      max-height: 3.7rem;
     }
   }
 
@@ -74,24 +74,24 @@
     // margin: 0;
     // width: 0px;
     // border: 0.1px solid $light-75;
-    margin-left: 10px;
+    margin-left: 1rem;
   }
 
   &__title {
     color: $black;
     font-size: $font-size-md;
     font-weight: $font-weight-medium;
-    left: 26px;
+    left: 2.6rem;
     text-align: center;
     position: fixed;
-    padding-top: 10px;
+    padding-top: 1rem;
   }
 
   &__actions {
     display: flex;
     
     svg {
-      padding-top: 2px;
+      padding-top: 0.2rem;
     }
 
     .action__button {
@@ -108,29 +108,59 @@
     cursor: pointer;
     background-color: $white;
     border: none;
-    margin-top: 10px;
+    margin-top: 1rem;
   }
 
   &__mobile {
-    height: 52px;
-    padding: 5px;
+    height: 5.2rem;
+    padding: 0.5rem;
     box-sizing: border-box;
+
+    &--more {
+      display: flex;
+    }
   }
 
   &__content {
     display: flex;
     box-sizing: border-box;
-    padding: 17px 19px 16px 0px;
+    padding: 1.7rem 1.9rem 1.6rem 0;
 
     &--mobile {
-      padding: 0px;
+      padding: 0;
     }
   }
 
   &__status {
     svg {
-      padding-top: 4px;
+      padding-top: 0.4rem;
     }
   }
+}
 
+// for small mobiles
+@media only screen and (max-width: 413px) {
+  .sb-editor-header__mobile {
+    .sb-editor-header__item {
+      padding-left: 0.2rem;
+      margin-left: 0.2rem;
+    }
+
+    .sb-editor-header__mobile--more .sb-editor-header__item {
+      max-width: 7rem;
+      padding-left: 0;
+
+      button {
+        max-width: 7rem;
+      }
+    }
+
+    .sb-menu {
+      max-width: 7rem;
+    }
+
+    .sb-editor-header__separator {
+      margin-left: 0.3rem;
+    }
+  }
 }

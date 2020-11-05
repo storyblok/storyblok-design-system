@@ -23,23 +23,18 @@ const usersList = [
 const optionsList = [
   {
     name: 'Open Draft',
-    link: '',
   },
   {
     name: 'Open Published',
-    link: '',
   },
   {
     name: 'Draft json',
-    link: '',
   },
   {
     name: 'Published json',
-    link: '',
   },
   {
     name: 'Unpublish',
-    link: '',
     type: 'negative',
   },
 ]

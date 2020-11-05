@@ -4,8 +4,8 @@
       <span class="desktop__title">{{ headerTitle }}</span>
       <span class="desktop__sub-title">{{ headerSubTitle }}</span>
     </div>
-    <SbHeaderItem v-if="users">
-      <SbAvatarGroup>
+    <SbHeaderItem v-if="users" style="min-width: 70px">
+      <SbAvatarGroup :max-elements="returnNumberOfAvatars">
         <SbAvatar
           v-for="user in users"
           :key="user.id"
@@ -33,10 +33,30 @@
     </SbHeaderItem>
 
     <div class="sb-editor-header__actions">
-      <SbHeaderItem v-for="act in actions" :key="act.id" with-separator>
-        <button class="action__button">
+      <SbHeaderItem
+        v-for="act in actions"
+        v-show="size > 765"
+        :key="act.id"
+        with-separator
+      >
+        <button class="action__button" @click="handleSelectNewAction(act.name)">
           <SbIcon :name="act.name" size="large" />
         </button>
+      </SbHeaderItem>
+      <SbHeaderItem v-if="size < 765">
+        <SbMenu>
+          <SbMenuButton has-icon-only />
+          <SbMenuList placement="bottom-end">
+            <SbMenuItem
+              v-for="act in actions"
+              :key="act.id"
+              :type="act.type"
+              @click="handleSelectNewAction(act.name)"
+            >
+              <SbIcon :name="act.name" size="large" /> {{ act.name }}
+            </SbMenuItem>
+          </SbMenuList>
+        </SbMenu>
       </SbHeaderItem>
     </div>
   </div>
@@ -77,23 +97,39 @@ export default {
       type: String,
       default: null,
     },
+    size: {
+      type: Number,
+      default: 1015,
+    },
   },
 
   data: () => ({
     selectedLanguage: null,
   }),
 
+  computed: {
+    returnNumberOfAvatars() {
+      return (this.size < 1015 && this.format !== 'tablet') ||
+        (this.size < 625 && this.format === 'tablet')
+        ? 1
+        : 5
+    },
+  },
+
   methods: {
+    /**
+     * method to emit new language
+     */
     handleSetNewLanguage(lang) {
-      this.selectedLanguage = lang
-      this.$emit('change-language', { language: lang })
+      this.$emit('changes', { type: 'lang', language: lang })
     },
 
-    handleSaveChanges() {
-      this.$emit('save')
+    /**
+     * method to emit new action
+     */
+    handleSelectNewAction(act) {
+      this.$emit('changes', { type: 'act', action: act })
     },
   },
 }
 </script>
-
-<style></style>
