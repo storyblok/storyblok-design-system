@@ -64,7 +64,7 @@ export default {
   },
 
   watch: {
-    isOpenModal: function () {
+    isOpenModal() {
       this.open = this.isOpenModal
     },
   },
