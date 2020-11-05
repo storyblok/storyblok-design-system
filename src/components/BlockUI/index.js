@@ -9,6 +9,8 @@ const SbBlockUi = {
       'div',
       {
         class: 'sb-block-ui',
+        on: this.$listeners,
+        attrs: this.$attrs,
       },
       [this.$slots.default]
     )
