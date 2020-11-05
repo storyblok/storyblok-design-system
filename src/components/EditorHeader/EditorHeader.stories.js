@@ -66,7 +66,7 @@ const EditorTemplate = (args) => ({
         users,
         actions,
         options,
-        isPublished,
+        spaceStatus,
         hasSaveButton,
         showPublishedIcon,
         headerTitle,
@@ -91,7 +91,7 @@ export default {
     users: [...usersList],
     actions: [...actionsList],
     options: [...optionsList],
-    isPublished: true,
+    spaceStatus: 'unpublished',
     hasSaveButton: true,
     showPublishedIcon: true,
     headerTitle: 'API-based & Headless CMS as a Service',
@@ -126,12 +126,13 @@ export default {
         type: 'object',
       },
     },
-    isPublished: {
-      name: 'isPublished',
+    spaceStatus: {
+      name: 'spaceStatus',
       description:
         'Change the icon to inform whether the space is published or not',
       control: {
-        type: 'boolean',
+        type: 'select',
+        options: ['unpublished', 'published', 'published-and-changes'],
       },
     },
     hasSaveButton: {

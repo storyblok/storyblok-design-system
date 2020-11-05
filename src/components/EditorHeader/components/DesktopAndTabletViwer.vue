@@ -5,7 +5,7 @@
       <span class="desktop__sub-title">{{ headerSubTitle }}</span>
     </div>
     <SbHeaderItem v-if="users">
-      <SbAvatarGroup :max-elements="format === 'tablet' ? 2 : 3">
+      <SbAvatarGroup>
         <SbAvatar
           v-for="user in users"
           :key="user.id"
@@ -34,7 +34,9 @@
 
     <div class="sb-editor-header__actions">
       <SbHeaderItem v-for="act in actions" :key="act.id" with-separator>
-        <SbIcon :name="act.name" size="large" />
+        <button class="action__button">
+          <SbIcon :name="act.name" size="large" />
+        </button>
       </SbHeaderItem>
     </div>
   </div>

@@ -15,8 +15,9 @@ const sharedProps = {
     type: [Array, String],
     default: null,
   },
-  isPublished: {
-    type: Boolean,
+  spaceStatus: {
+    type: String,
+    default: 'unpublished',
   },
   hasSaveButton: {
     type: Boolean,

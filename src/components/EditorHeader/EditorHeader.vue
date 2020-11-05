@@ -37,8 +37,16 @@
           <button class="sb-editor-header__save-button">Save</button>
         </SbHeaderItem>
 
-        <SbHeaderItem v-if="isPublished" with-separator>
-          <SbIcon name="status-circle" size="large" color="primary" />
+        <SbHeaderItem
+          v-if="spaceStatus"
+          with-separator
+          class="sb-editor-header__status"
+        >
+          <SbIcon
+            :name="returnNameOfIconStatus"
+            size="large"
+            :color="returnColorOfStatus"
+          />
         </SbHeaderItem>
 
         <SbHeaderItem v-if="hasSaveButton">
@@ -48,7 +56,7 @@
         <SbHeaderItem v-if="options">
           <SbMenu>
             <SbMenuButton has-icon-only />
-            <SbMenuList placement="bottom-start">
+            <SbMenuList placement="bottom-end">
               <SbMenuItem
                 v-for="option in options"
                 :key="option.id"
@@ -113,6 +121,20 @@ export default {
   }),
 
   computed: {
+    returnNameOfIconStatus() {
+      return 'status-circle'
+    },
+
+    returnColorOfStatus() {
+      return this.spaceStatus === 'unpublished'
+        ? 'light'
+        : this.spaceStatus === 'published'
+        ? 'primary'
+        : this.spaceStatus === 'published-and-changes'
+        ? 'light-gray'
+        : 'light'
+    },
+
     returnViewFormat() {
       return this.window.width > 850
         ? 'desktop'

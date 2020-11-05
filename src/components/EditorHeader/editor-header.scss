@@ -31,7 +31,7 @@
 
   &__desktop {
     width: 100%;
-    padding: 17px 19px 16px 26px;
+    padding: 17px 0px 16px 26px;
     display: flex;
     justify-content: flex-end;
     box-sizing: border-box;
@@ -93,6 +93,12 @@
     svg {
       padding-top: 2px;
     }
+
+    .action__button {
+      border: none;
+      background-color: $white;
+      cursor: pointer;
+    }
   }
 
   &__save-button {
@@ -118,6 +124,12 @@
 
     &--mobile {
       padding: 0px;
+    }
+  }
+
+  &__status {
+    svg {
+      padding-top: 4px;
     }
   }
 
