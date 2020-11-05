@@ -56,7 +56,7 @@ describe('Tests for ModalPlugin', () => {
     expect(wrapper.findComponent(SbModalFooter).exists()).toBe(true)
   })
 
-  it('Test if hide envet is called', async () => {
+  it('Test if hide event is called', async () => {
     wrapper.vm.$emit('hide')
 
     await wrapper.vm.$nextTick()
