@@ -61,19 +61,12 @@
     padding-left: 1rem;
 
     .sb-menu, button {
-      // min-width: 37px;
       max-height: 3.7rem;
     }
   }
 
   &__separator {
     border-left: 1px solid $light-75;
-    // transform: rotate(180deg);
-    // background-color: $light-25;
-    // height: 35px;
-    // margin: 0;
-    // width: 0px;
-    // border: 0.1px solid $light-75;
     margin-left: 1rem;
   }
 
@@ -150,7 +143,7 @@
       max-width: 7rem;
       padding-left: 0;
 
-      button {
+      .sb-button {
         max-width: 7rem;
       }
     }
