@@ -60,35 +60,16 @@
 }
 
 .sb-tooltip {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  @include tooltip('top');
-  @include tooltip('bottom');
-  @include tooltip('left');
-  @include tooltip('right');
+  display: none;
+  padding: 0.6rem 2rem;
+  color: $white;
+  font-size: $font-size-sm;
+  background-color: $color-primary-dark;
+  border-radius: 2px;
+  white-space: nowrap;
+  z-index: 4;
 
-  &__label {
-    display: none;
-    width: auto;
-    position: absolute;
-    padding: 0.6rem 2rem;
-    color: $white;
-    font-size: $font-size-sm;
-    background-color: $color-primary-dark;
-    border-radius: 2px;
-    white-space: nowrap;
-
-    &::after {
-      content: "";
-      position: absolute;
-      border-width: 5px;
-      border-style: solid;
-      border-color: $color-primary-dark transparent transparent transparent;
-    }
-  }
-
-  &__label[aria-hidden=false] {
+  [data-show] {
     display: block;
   }
 }

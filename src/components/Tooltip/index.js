@@ -1,6 +1,9 @@
 import './tooltip.scss'
-import { includes, randomString } from '../../utils'
+import { canUseDOM, includes, randomString } from '../../utils'
 import { availablePositions } from './lib'
+
+import SbFragment from '../Fragment'
+import { SbPopover } from '../Popover'
 
 /**
  * SbTooltip component
@@ -28,7 +31,24 @@ export default {
 
   data: () => ({
     isVisibleTooltip: false,
+    tooltipAnchor: undefined,
   }),
+
+  computed: {
+    tooltipAnchorId() {
+      return `sb-tooltip-anchor-${randomString(5)}`
+    },
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      if (canUseDOM) {
+        this.tooltipAnchor = document.querySelector(
+          `[x-tooltip-anchor=${this.tooltipAnchorId}]`
+        )
+      }
+    })
+  },
 
   methods: {
     /**
@@ -82,6 +102,7 @@ export default {
             attrs: {
               ...childrenElement.data.attrs,
               'aria-describedby': id,
+              'x-tooltip-anchor': this.tooltipAnchor,
             },
             on: childrenElement.componentOptions.listeners,
             nativeOn: {
@@ -96,6 +117,29 @@ export default {
         )
       }
 
+      // if it is an simple text element
+      if (childrenElement.text) {
+        return h(
+          'span',
+          {
+            staticClass,
+            attrs: {
+              tabindex: 0,
+              'aria-describedby': id,
+              'x-tooltip-anchor': this.tooltipAnchorId,
+            },
+            on: {
+              focus: this.showTooltip,
+              blur: this.hideTooltip,
+              mouseenter: this.showTooltip,
+              mouseleave: this.hideTooltip,
+              keydown: this.handleKeydown,
+            },
+          },
+          childrenElement.text
+        )
+      }
+
       const childrenData = childrenElement.data || {}
       return h(
         childrenElement.tag,
@@ -104,6 +148,7 @@ export default {
           attrs: {
             ...(childrenElement.data ? childrenElement.data.attrs : {}),
             'aria-describedby': id,
+            'x-tooltip-anchor': this.tooltipAnchorId,
           },
           on: {
             focus: this.showTooltip,
@@ -118,49 +163,28 @@ export default {
       )
     }
 
-    const renderTooltipLabel = () => {
-      return h(
-        'span',
+    return h(SbFragment, [
+      processChildren(),
+      h(
+        SbPopover,
         {
-          staticClass: 'sb-tooltip__label',
+          props: {
+            usePortal: true,
+            reference: this.tooltipAnchor,
+            placement: this.position,
+            offset: [0, 10],
+            isOpen: this.isVisibleTooltip,
+          },
           attrs: {
-            id,
+            useAnchorId: id,
+            class: 'sb-tooltip',
             role: 'tooltip',
             'aria-hidden': !this.isVisibleTooltip + '',
           },
+          ref: 'popover',
         },
         label
-      )
-    }
-
-    // if it is an simple text element
-    if (childrenElement.text) {
-      return h(
-        'span',
-        {
-          staticClass,
-          attrs: {
-            tabindex: 0,
-            'aria-describedby': id,
-          },
-          on: {
-            focus: this.showTooltip,
-            blur: this.hideTooltip,
-            mouseenter: this.showTooltip,
-            mouseleave: this.hideTooltip,
-            keydown: this.handleKeydown,
-          },
-        },
-        [childrenElement.text, this.label && renderTooltipLabel()]
-      )
-    }
-
-    return h(
-      'div',
-      {
-        staticClass,
-      },
-      [processChildren(), this.label && renderTooltipLabel()]
-    )
+      ),
+    ])
   },
 }
