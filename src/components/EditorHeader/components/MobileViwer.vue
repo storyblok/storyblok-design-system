@@ -32,7 +32,7 @@ import {
 
 import { sharedProps } from '../lib'
 export default {
-  name: 'MobileViwer',
+  name: 'SbMobileViwer',
 
   components: {
     SbHeaderItem,

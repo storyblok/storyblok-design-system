@@ -1,16 +1,12 @@
 <template>
   <div class="sb-editor__container">
-    <HeaderTitle
-      :title="headerTitle"
-      :sub-title="headerSubTitle"
-      :format="returnViewFormat"
-    />
+    <SbHeaderTitle :title="headerTitle" :format="returnViewFormat" />
 
     <div
       class="sb-editor-header"
       :class="{ 'sb-editor-header__mobile': returnViewFormat === 'mobile' }"
     >
-      <DesktopAndTabletViwer
+      <SbDesktopAndTabletViwer
         v-if="returnViewFormat !== 'mobile'"
         v-bind="{
           languages,
@@ -21,7 +17,7 @@
         }"
         @changes="$_handleListenersOrchestrator"
       />
-      <MobileViwer
+      <SbMobileViwer
         v-if="returnViewFormat === 'mobile'"
         v-bind="{
           languages,
@@ -87,9 +83,9 @@
 </template>
 
 <script>
-import DesktopAndTabletViwer from './components/DesktopAndTabletViwer'
-import MobileViwer from './components/MobileViwer'
-import HeaderTitle from './components/HeaderTitle'
+import SbDesktopAndTabletViwer from './components/DesktopAndTabletViwer'
+import SbMobileViwer from './components/MobileViwer'
+import SbHeaderTitle from './components/HeaderTitle'
 
 import SbHeaderItem from './components/HeaderItem'
 import SbIcon from '../Icon'
@@ -110,9 +106,9 @@ export default {
   name: 'SbEditorHeader',
 
   components: {
-    DesktopAndTabletViwer,
-    HeaderTitle,
-    MobileViwer,
+    SbDesktopAndTabletViwer,
+    SbHeaderTitle,
+    SbMobileViwer,
     SbButton,
     SbHeaderItem,
     SbIcon,
@@ -128,7 +124,6 @@ export default {
   },
 
   data: () => ({
-    selectedLanguage: null,
     window: {
       width: 0,
     },

@@ -8,7 +8,7 @@
 <script>
 import SbButton from '../../Button'
 export default {
-  name: 'HeaderTitle',
+  name: 'SbHeaderTitle',
 
   components: {
     SbButton,
@@ -16,10 +16,6 @@ export default {
 
   props: {
     title: {
-      type: String,
-      default: null,
-    },
-    subTitle: {
       type: String,
       default: null,
     },

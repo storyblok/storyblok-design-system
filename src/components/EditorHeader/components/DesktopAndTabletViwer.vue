@@ -77,7 +77,7 @@ import SbIcon from '../../Icon'
 import { sharedProps } from '../lib'
 
 export default {
-  name: 'DesktopAndTabletViwer',
+  name: 'SbDesktopAndTabletViwer',
 
   components: {
     SbHeaderItem,
