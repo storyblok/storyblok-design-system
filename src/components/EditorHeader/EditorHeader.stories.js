@@ -64,7 +64,7 @@ const EditorTemplate = (args) => ({
         spaceStatus,
         hasSaveButton,
         showPublishedIcon,
-        SbHeaderTitle,
+        headerTitle,
         headerSubTitle,
       }"
     />
@@ -89,7 +89,7 @@ export default {
     spaceStatus: 'unpublished',
     hasSaveButton: true,
     showPublishedIcon: true,
-    SbHeaderTitle: 'API-based & Headless CMS as a Service',
+    headerTitle: 'API-based & Headless CMS as a Service',
     headerSubTitle: 'Updated 15m ago',
   },
   argTypes: {
@@ -144,8 +144,8 @@ export default {
         type: 'boolean',
       },
     },
-    SbHeaderTitle: {
-      name: 'SbHeaderTitle',
+    headerTitle: {
+      name: 'headerTitle',
       description: '',
       control: {
         type: 'text',

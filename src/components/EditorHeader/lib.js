@@ -31,7 +31,7 @@ const sharedProps = {
   },
   headerSubTitle: {
     type: String,
-    default: '',
+    default: null,
   },
 }
 

@@ -9,6 +9,8 @@
       <SbDesktopAndTabletViwer
         v-if="returnViewFormat !== 'mobile'"
         v-bind="{
+          headerTitle,
+          headerSubTitle,
           languages,
           users,
           actions,
