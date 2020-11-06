@@ -3,7 +3,7 @@ import { canUseDOM, includes, randomString } from '../../utils'
 import { availablePositions } from './lib'
 
 import SbFragment from '../Fragment'
-import { SbPopover } from '../Popover'
+import { SbPopover, SbPopoverArrow } from '../Popover'
 
 /**
  * SbTooltip component
@@ -183,7 +183,7 @@ export default {
           },
           ref: 'popover',
         },
-        label
+        [label, h(SbPopoverArrow)]
       ),
     ])
   },

@@ -72,4 +72,34 @@
   [data-show] {
     display: block;
   }
+
+  [data-popper-arrow],
+  [data-popper-arrow]::before {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    z-index: -1;
+  }
+
+  [data-popper-arrow]::before {
+    content: '';
+    transform: rotate(45deg);
+    background: $color-primary-dark;
+  }
+
+  &[data-popper-placement^='top'] > [data-popper-arrow] {
+    bottom: -4px;
+  }
+  
+  &[data-popper-placement^='bottom'] > [data-popper-arrow] {
+    top: -4px;
+  }
+  
+  &[data-popper-placement^='left'] > [data-popper-arrow] {
+    right: -4px;
+  }
+  
+  &[data-popper-placement^='right'] > [data-popper-arrow] {
+    left: -4px;
+  }
 }

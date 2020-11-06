@@ -1,6 +1,11 @@
 // popper imports
 import { createPopper } from '@popperjs/core/lib/popper-lite'
-import { flip, offset, preventOverflow } from '@popperjs/core/lib/modifiers'
+import {
+  flip,
+  offset,
+  preventOverflow,
+  arrow,
+} from '@popperjs/core/lib/modifiers'
 
 import SbPortal from '../Portal'
 
@@ -98,6 +103,7 @@ const SbPopover = {
             offset: this.offset,
           },
         },
+        arrow,
       ]
 
       return [...defaultModifierValues, ...this.modifiers]
@@ -263,4 +269,19 @@ const SbPopover = {
   },
 }
 
-export { SbPopover }
+const SbPopoverArrow = {
+  name: 'SbPopoverArrow',
+  functional: true,
+  render(h, { data, ...rest }) {
+    return h('div', {
+      ...rest,
+      attrs: {
+        ...data.attrs,
+        'data-popper-arrow': true,
+        role: 'presentation',
+      },
+    })
+  },
+}
+
+export { SbPopover, SbPopoverArrow }
