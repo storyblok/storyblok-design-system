@@ -102,7 +102,7 @@ export default {
             attrs: {
               ...childrenElement.data.attrs,
               'aria-describedby': id,
-              'x-tooltip-anchor': this.tooltipAnchor,
+              'x-tooltip-anchor': this.tooltipAnchorId,
             },
             on: childrenElement.componentOptions.listeners,
             nativeOn: {
