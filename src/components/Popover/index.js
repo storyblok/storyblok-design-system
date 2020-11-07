@@ -171,8 +171,11 @@ const SbPopover = {
      * shows the Popover
      */
     showPopover() {
-      this.popoverEl.setAttribute('data-show', '')
       this.$emit('show')
+
+      if (this.popoverInstance) {
+        this.popoverEl.setAttribute('data-show', '')
+      }
 
       this.$nextTick(() => {
         this.$_createPopoverInstance()
