@@ -6,9 +6,9 @@ import {
   SbDataTableActions,
   SbDataTableBody,
   SbDataTableHeader,
-  SbDataTableInput,
 } from '../components'
 
+import SbCheckbox from '../../Checkbox'
 import SbLoading from '../../Loading'
 
 import {
@@ -68,13 +68,13 @@ describe('SbDataTable component', () => {
 
     it('should not render any checkbox in table header', () => {
       expect(
-        wrapperSbDataTableHeader.findAll('.sb-input-checkbox__native').length
+        wrapperSbDataTableHeader.findAll('.sb-checkbox__native').length
       ).toBe(0)
     })
 
     it('should render 5 checkboxes in table body', () => {
       expect(
-        wrapperSbDataTableBody.findAll('.sb-input-checkbox__native').length
+        wrapperSbDataTableBody.findAll('.sb-checkbox__native').length
       ).toBe(5)
     })
 
@@ -89,11 +89,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is checked
-      expect(
-        row
-          .find('.sb-input-checkbox__inner')
-          .classes('sb-input-checkbox__inner--truthy')
-      ).toBe(true)
+      expect(row.findComponent(SbCheckbox).props('value')).toBe(true)
 
       // should add class to selected row
       expect(row.classes('sb-data-table__row--selected')).toBe(true)
@@ -115,9 +111,7 @@ describe('SbDataTable component', () => {
 
       // should checkbox status is unchecked
       expect(
-        row
-          .find('.sb-input-checkbox__inner')
-          .classes('sb-input-checkbox__inner--truthy')
+        row.find('.sb-checkbox__inner').classes('sb-checkbox__inner--truthy')
       ).toBe(false)
 
       // should remove class to selected row
@@ -145,13 +139,13 @@ describe('SbDataTable component', () => {
 
     it('should render 1 checkbox in table header', () => {
       expect(
-        wrapperSbDataTableHeader.findAll('.sb-input-checkbox__native').length
+        wrapperSbDataTableHeader.findAll('.sb-checkbox__native').length
       ).toBe(1)
     })
 
     it('should render 5 checkboxes in table body', () => {
       expect(
-        wrapperSbDataTableBody.findAll('.sb-input-checkbox__native').length
+        wrapperSbDataTableBody.findAll('.sb-checkbox__native').length
       ).toBe(5)
     })
 
@@ -168,16 +162,8 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkboxes status are checked
-      expect(
-        row
-          .find('.sb-input-checkbox__inner')
-          .classes('sb-input-checkbox__inner--truthy')
-      ).toBe(true)
-      expect(
-        row2
-          .find('.sb-input-checkbox__inner')
-          .classes('sb-input-checkbox__inner--truthy')
-      ).toBe(true)
+      expect(row.findComponent(SbCheckbox).props('value')).toBe(true)
+      expect(row2.findComponent(SbCheckbox).props('value')).toBe(true)
 
       // should add class to selected rows
       expect(row.classes('sb-data-table__row--selected')).toBe(true)
@@ -199,11 +185,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is unchecked
-      expect(
-        row
-          .find('.sb-input-checkbox__inner')
-          .classes('sb-input-checkbox__inner--truthy')
-      ).toBe(false)
+      expect(row.findComponent(SbCheckbox).props('value')).toBe(false)
 
       // should remove class to selected row
       expect(row.classes('sb-data-table__row--selected')).toBe(false)
@@ -221,11 +203,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is unchecked
-      expect(
-        row2
-          .find('.sb-input-checkbox__inner')
-          .classes('sb-input-checkbox__inner--truthy')
-      ).toBe(false)
+      expect(row2.findComponent(SbCheckbox).props('value')).toBe(false)
 
       // should remove class to selected row
       expect(row2.classes('sb-data-table__row--selected')).toBe(false)
@@ -252,18 +230,18 @@ describe('SbDataTable component', () => {
 
     it('should render 1 checkbox in table header', () => {
       expect(
-        wrapperSbDataTableHeader.findAll('.sb-input-checkbox__native').length
+        wrapperSbDataTableHeader.findAll('.sb-checkbox__native').length
       ).toBe(1)
     })
 
     it('should render 5 checkboxes in table body', () => {
       expect(
-        wrapperSbDataTableBody.findAll('.sb-input-checkbox__native').length
+        wrapperSbDataTableBody.findAll('.sb-checkbox__native').length
       ).toBe(5)
     })
 
     it('should toggle the color of all checkboxes and toggle the background color of all rows itself', async () => {
-      const selector = wrapperSbDataTableHeader.findComponent(SbDataTableInput)
+      const selector = wrapperSbDataTableHeader.findComponent(SbCheckbox)
       const rows = wrapperSbDataTableBody.findAll('.sb-data-table__row')
 
       // should actions menu is not visible
@@ -275,11 +253,7 @@ describe('SbDataTable component', () => {
 
       // should all checkboxes status are checked
       rows.wrappers.forEach((wrapper) => {
-        expect(
-          wrapper
-            .find('.sb-input-checkbox__inner')
-            .classes('sb-input-checkbox__inner--truthy')
-        ).toBe(true)
+        expect(wrapper.findComponent(SbCheckbox).props('value')).toBe(true)
       })
 
       // should add class to all rows
@@ -306,8 +280,8 @@ describe('SbDataTable component', () => {
       rows.wrappers.forEach((wrapper) => {
         expect(
           wrapper
-            .find('.sb-input-checkbox__inner')
-            .classes('sb-input-checkbox__inner--truthy')
+            .find('.sb-checkbox__inner')
+            .classes('sb-checkbox__inner--truthy')
         ).toBe(false)
       })
 
