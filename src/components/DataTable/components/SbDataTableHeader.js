@@ -129,6 +129,9 @@ export const SbDataTableHeaderRow = {
     context() {
       return this.dataTableContext()
     },
+    isIndeterminate() {
+      return !this.allRowsSelected && !!this.selectedRowsLength
+    },
   },
 
   methods: {
@@ -153,8 +156,7 @@ export const SbDataTableHeaderRow = {
             this.selectionMode === 'multiple' &&
               h(SbCheckbox, {
                 props: {
-                  indeterminate:
-                    this.selectedRowsLength && !this.allRowsSelected,
+                  indeterminate: this.isIndeterminate,
                   value: this.allRowsSelected,
                 },
                 nativeOn: {
