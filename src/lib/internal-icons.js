@@ -436,6 +436,16 @@ const icons = {
       </g>
     </g>`,
   },
+  'published-circle': {
+    viewBox: '0 0 32 32',
+    path: `
+    <g width="32" height="32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(-1)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle fill="#00B3B0" cx="16.5" cy="16.5" r="4.5"/>
+        <circle stroke-opacity=".392" stroke="#00B3B0" cx="16.5" cy="16.5" r="9"/>
+      </g>
+    </g>`,
+  },
 }
 
 export default icons

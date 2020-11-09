@@ -126,7 +126,9 @@ export default {
 
   computed: {
     returnNameOfIconStatus() {
-      return 'status-circle'
+      return this.spaceStatus === 'published'
+        ? 'published-circle'
+        : 'status-circle'
     },
 
     returnColorOfStatus() {
