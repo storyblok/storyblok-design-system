@@ -41,7 +41,7 @@
       >
         <button class="action__button" @click="handleSelectNewAction(act.name)">
           <SbTooltip position="bottom" :label="act.name">
-            <SbIcon :name="act.name" size="large" />
+            <SbIcon :name="act.name.toLowerCase()" size="large" />
           </SbTooltip>
         </button>
       </SbHeaderItem>
@@ -55,7 +55,8 @@
               :type="act.type"
               @click="handleSelectNewAction(act.name)"
             >
-              <SbIcon :name="act.name" size="large" /> {{ act.name }}
+              <SbIcon :name="act.name.toLowerCase()" size="large" />
+              {{ act.name }}
             </SbMenuItem>
           </SbMenuList>
         </SbMenu>

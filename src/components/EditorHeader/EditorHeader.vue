@@ -94,13 +94,7 @@ import SbIcon from '../Icon'
 
 import SbButton from '../Button'
 
-import {
-  SbMenu,
-  SbMenuButton,
-  SbMenuList,
-  SbMenuItem,
-  // SbMenuGroup,
-} from '../Menu'
+import { SbMenu, SbMenuButton, SbMenuList, SbMenuItem } from '../Menu'
 
 import { sharedProps } from './lib'
 
@@ -118,7 +112,6 @@ export default {
     SbMenuButton,
     SbMenuList,
     SbMenuItem,
-    // SbMenuGroup,
   },
 
   props: {

@@ -10,7 +10,8 @@
               :key="act.id"
               @click="handleSelectNewAction(act.name)"
             >
-              <SbIcon :name="act.name" size="large" /> {{ act.name }}
+              <SbIcon :name="act.name.toLowerCase()" size="large" />
+              {{ act.name }}
             </SbMenuItem>
           </SbMenuGroup>
           <SbMenuGroup v-if="languages" title="Languages">

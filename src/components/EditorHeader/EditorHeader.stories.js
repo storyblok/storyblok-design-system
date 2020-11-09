@@ -41,13 +41,13 @@ const optionsList = [
 
 const actionsList = [
   {
-    name: 'dimensions',
+    name: 'Dimensions',
   },
   {
-    name: 'preview',
+    name: 'Preview',
   },
   {
-    name: 'unpublish',
+    name: 'Unpublish',
   },
 ]
 
