@@ -1,5 +1,6 @@
-import SbButton from '..'
 import { mount } from '@vue/test-utils'
+
+import SbButton from '..'
 import SbIcon from '../../Icon'
 
 const factory = (propsData) => {
@@ -124,6 +125,26 @@ describe('Test SbButton Component', () => {
 
     it('should render the correct label', () => {
       expect(wrapper.text()).toBe(label)
+    })
+  })
+
+  describe('with iconDescription', () => {
+    const iconDescription = 'Icon description'
+
+    const wrapper = mount(SbButton, {
+      propsData: {
+        icon: 'close',
+        hasIconOnly: true,
+        iconDescription,
+      },
+      stubs: {
+        SbFragment: true,
+        MountingPortal: true,
+      },
+    })
+
+    it('should have an Tooltip component with correct text', () => {
+      expect(wrapper.find('.sb-tooltip').text()).toBe(iconDescription)
     })
   })
 })
