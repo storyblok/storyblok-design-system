@@ -85,7 +85,6 @@ export default {
     }
 
     const { id, label } = this
-    const staticClass = `sb-tooltip sb-tooltip--${this.position}`
     const childrenElement = children[0]
 
     const processChildren = () => {
@@ -122,7 +121,6 @@ export default {
         return h(
           'span',
           {
-            staticClass,
             attrs: {
               tabindex: 0,
               'aria-describedby': id,
