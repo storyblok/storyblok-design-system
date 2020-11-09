@@ -2,6 +2,7 @@ import { SbDesktopAndTabletViwer, SbHeaderItem } from '..'
 import SbAvatar from '../../Avatar'
 import { SbMenu, SbMenuItem } from '../../Menu'
 import SbIcon from '../../Icon'
+import SbTooltip from '../../Tooltip'
 
 import { mount } from '@vue/test-utils'
 
@@ -61,6 +62,10 @@ describe('Test if SbDesktopAndTabletViwer renderer correctly', () => {
     expect(wrapper.findComponent(SbMenu).exists()).toBe(true)
 
     expect(wrapper.findAllComponents(SbMenuItem).length).toBe(2)
+
+    expect(wrapper.findComponent(SbTooltip).exists()).toBe(true)
+
+    expect(wrapper.findAllComponents(SbTooltip).length).toBe(5)
 
     expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
 

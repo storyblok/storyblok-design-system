@@ -40,7 +40,9 @@
         with-separator
       >
         <button class="action__button" @click="handleSelectNewAction(act.name)">
-          <SbIcon :name="act.name" size="large" />
+          <SbTooltip position="bottom" :label="act.name">
+            <SbIcon :name="act.name" size="large" />
+          </SbTooltip>
         </button>
       </SbHeaderItem>
       <SbHeaderItem v-if="size < 765">
@@ -63,6 +65,7 @@
 </template>
 
 <script>
+import SbTooltip from '../../Tooltip'
 import SbHeaderItem from './HeaderItem'
 import SbAvatarGroup from '../../AvatarGroup'
 import SbAvatar from '../../Avatar'
@@ -89,6 +92,7 @@ export default {
     SbMenuItem,
     SbMenuGroup,
     SbIcon,
+    SbTooltip,
   },
 
   props: {
