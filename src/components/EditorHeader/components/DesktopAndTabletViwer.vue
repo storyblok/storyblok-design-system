@@ -17,7 +17,7 @@
 
     <SbHeaderItem v-if="languages" with-separator>
       <SbMenu>
-        <SbMenuButton :label="selectedLanguage || languages[0]" />
+        <SbMenuButton :label="selectedLanguage || languages[0]" is-borderless />
         <SbMenuList placement="bottom-start">
           <SbMenuGroup title="Languages">
             <SbMenuItem

@@ -2,7 +2,7 @@
   <div class="sb-editor-header__mobile--more">
     <SbHeaderItem>
       <SbMenu>
-        <SbMenuButton label="More" />
+        <SbMenuButton label="More" is-borderless />
         <SbMenuList placement="bottom-start">
           <SbMenuGroup v-if="actions" title="More Actions">
             <SbMenuItem

@@ -361,6 +361,7 @@ const SbMenuButton = {
       type: String,
       default: null,
     },
+    isBorderless: Boolean,
   },
 
   computed: {
@@ -457,6 +458,9 @@ const SbMenuButton = {
           ...this.$listeners,
           click: this.handleClick,
           keydown: this.handleKeyDown,
+        },
+        class: {
+          'sb-menu-button-borderless': this.isBorderless,
         },
       },
       this.$slots.default
