@@ -13,6 +13,8 @@ import { SbPopover, SbPopoverArrow } from '../Popover'
 export default {
   name: 'SbTooltip',
 
+  components: { SbFragment },
+
   props: {
     id: {
       type: String,
@@ -161,7 +163,7 @@ export default {
       )
     }
 
-    return h(SbFragment, [
+    return h('SbFragment', [
       processChildren(),
       h(
         SbPopover,
