@@ -45,9 +45,16 @@
           </SbTooltip>
         </button>
       </SbHeaderItem>
-      <SbHeaderItem v-if="size < 765">
+      <SbHeaderItem v-if="size < 765" with-separator>
         <SbMenu>
-          <SbMenuButton has-icon-only />
+          <SbMenuButton
+            v-if="size < 700"
+            icon-name="chevron-down"
+            has-icon-only
+            is-borderless
+          />
+          <SbMenuButton v-else label="More" is-borderless />
+
           <SbMenuList placement="bottom-end">
             <SbMenuItem
               v-for="act in actions"

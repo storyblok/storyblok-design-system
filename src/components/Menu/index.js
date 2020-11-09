@@ -355,12 +355,17 @@ const SbMenuButton = {
     // only apply when uses the hasIconOnly property
     hasIconOnly: Boolean,
     isRounded: Boolean,
+    iconName: {
+      type: String,
+      default: null,
+    },
 
     // only apply when does not use the hasIconOnly property
     label: {
       type: String,
       default: null,
     },
+
     isBorderless: Boolean,
   },
 
@@ -429,13 +434,16 @@ const SbMenuButton = {
         props: {
           isRounded: this.isRounded,
           hasIconOnly: true,
-          icon: 'overflow-menu-vertic',
+          icon: this.iconName || 'overflow-menu-vertic',
           type: this.type,
         },
         on: {
           ...this.$listeners,
           click: this.handleClick,
           keydown: this.handleKeyDown,
+        },
+        class: {
+          'sb-menu-button-borderless': this.isBorderless,
         },
       })
     }
