@@ -14,6 +14,8 @@ import { canUseDOM } from '../../utils'
 const SbPortal = {
   name: 'SbPortal',
 
+  components: { MountingPortal },
+
   props: {
     // component props
     as: {
@@ -111,7 +113,7 @@ const SbPortal = {
     }
 
     return h(
-      MountingPortal,
+      'MountingPortal',
       {
         props: {
           append: this.append,
