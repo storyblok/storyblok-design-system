@@ -43,7 +43,7 @@ $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
 
       &[disabled] {
         & + .sb-checkbox__input .sb-checkbox__truthy {
-          stroke: #b1b5be;
+          stroke: $light-gray;
         }
       }
     }
@@ -68,7 +68,7 @@ $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
 
       &[disabled] {
         & + .sb-checkbox__input .sb-checkbox__indet {
-          fill: #b1b5be;
+          fill: $light-gray;
         }
       }
     }
