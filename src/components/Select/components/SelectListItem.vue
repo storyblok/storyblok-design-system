@@ -28,7 +28,7 @@ import { includes, isArray } from '../../../utils'
 import SbAvatar from '../../Avatar'
 
 export default {
-  name: 'SbSelectInner',
+  name: 'SbSelectListItem',
 
   components: {
     SbAvatar,
@@ -68,9 +68,8 @@ export default {
   methods: {
     /**
      * emits the 'emit-value' event
-     * @param {Event} event
      */
-    handleClick(event) {
+    handleClick() {
       this.$emit('emit-value', this.value)
     },
 
