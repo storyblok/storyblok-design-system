@@ -19,6 +19,9 @@ export default {
 export const Default = (args) => ({
   components: { SbRadio },
   props: Object.keys(args),
+  data: () => ({
+    internalValue: 'Jon Doe',
+  }),
   template: `
     <SbRadio
       :name="name"
