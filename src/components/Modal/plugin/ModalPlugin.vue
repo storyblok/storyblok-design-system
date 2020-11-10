@@ -1,9 +1,5 @@
 <template>
-  <SbModal
-    :is-open-modal="open"
-    :modal-target="modalTarget || '#root'"
-    @hide="hide"
-  >
+  <SbModal :is-open="open" @hide="hide">
     <SbModalHeader :title="title" :icon="icon" :align="align" />
     <SbModalContent :modal-content="content" />
     <SbModalFooter :footer="footerContent" />
@@ -66,7 +62,7 @@ export default {
     },
 
     hide() {
-      this.$emit('on-hide')
+      this.$emit('hide')
     },
   },
 }

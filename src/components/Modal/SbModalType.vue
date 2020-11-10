@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SbModal :is-open-modal="open" @hide="hide">
+    <SbModal :is-open="open" @hide="hide">
       <SbModalHeader :icon="returnIconName" :title="title" :align="align" />
       <SbModalContent>
         {{ message }}
@@ -13,7 +13,7 @@
           @click="handleCancelAction"
         />
         <SbButton
-          :type="returnButtonType"
+          :type="isConfirmationType"
           :label="actionButtonLabel"
           @click="handleDispatchAction"
         />
@@ -74,7 +74,7 @@ export default {
         : 'delete-pictogram'
     },
 
-    returnButtonType() {
+    isConfirmationType() {
       return this.type === 'confirmation' ? 'primary' : 'danger'
     },
   },
@@ -86,7 +86,7 @@ export default {
 
     hide() {
       this.open = false
-      this.$emit('on-hide')
+      this.$emit('hide')
     },
 
     handleCancelAction() {

@@ -35,7 +35,7 @@ const ModalTemplate = (args) => ({
         style="margin: 0 auto; display: flex; margin-top: 30%;"
       />
       <SbModal
-        :is-open-modal="showModal"
+        :is-open="showModal"
         :full-width="fullWidth"
         @hide="showModal = false"
       >
@@ -76,7 +76,7 @@ export default {
     title: 'Main title',
     icon: 'success-pictogram',
     align: 'center',
-    isOpenModal: false,
+    isOpen: false,
     fullWidth: false,
   },
   argTypes: {
@@ -105,10 +105,9 @@ export default {
         options: ['center', 'left'],
       },
     },
-    isOpenModal: {
-      name: 'isOpenModal',
-      description:
-        'The `isOpenModal` prop works to open the modal with the prop.',
+    isOpen: {
+      name: 'isOpen',
+      description: 'The `isOpen` prop works to open the modal with the prop.',
       control: {
         type: 'boolean',
       },
@@ -146,7 +145,7 @@ export const ModalWithoutFooter = (args) => ({
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
     />
-    <SbModal :is-open-modal="showModal" v-on:hide="showModal = false">
+    <SbModal :is-open="showModal" v-on:hide="showModal = false">
       <SbModalHeader
         v-bind="{
           title,
@@ -196,7 +195,7 @@ export const ModalWithoutHeader = (args) => ({
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
     />
-    <SbModal :is-open-modal="showModal" v-on:hide="showModal = false">
+    <SbModal :is-open="showModal" v-on:hide="showModal = false">
       <SbModalContent>
         <p style="text-align: center;">This awesome dont have Title or Header!</p>
       </SbModalContent>
@@ -243,7 +242,7 @@ export const ModalWithMediumSize = (args) => ({
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
     />
-    <SbModal :is-open-modal="showModal" v-on:hide="showModal = false">
+    <SbModal :is-open="showModal" v-on:hide="showModal = false">
       <SbModalHeader :align="align" :title="title" />
 
       <SbModalContent>

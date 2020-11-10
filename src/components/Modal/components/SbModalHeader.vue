@@ -2,7 +2,7 @@
   <div
     v-if="title"
     class="sb-modal-header"
-    :class="{ 'sb-modal-header--left': returnAlignment }"
+    :class="{ 'sb-modal-header--left': isLeftAlignment }"
   >
     <SbIcon v-if="icon" :name="icon" size="x-large" />
     <h1 class="sb-modal-header__title">
@@ -37,7 +37,7 @@ export default {
     },
   },
   computed: {
-    returnAlignment() {
+    isLeftAlignment() {
       return this.align === 'left'
     },
   },

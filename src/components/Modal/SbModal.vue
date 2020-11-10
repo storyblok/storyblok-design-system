@@ -31,7 +31,6 @@
 <script>
 import SbIcon from '../Icon'
 import SbBlokUi from '../BlockUI'
-import ClickOutside from '../../directives/click-outside'
 import SbPortal from '../Portal'
 import { randomString } from '../../utils'
 
@@ -44,12 +43,8 @@ export default {
     SbBlokUi,
   },
 
-  directives: {
-    ClickOutside,
-  },
-
   props: {
-    isOpenModal: Boolean,
+    isOpen: Boolean,
     fullWidth: Boolean,
     modalTarget: {
       type: String,
@@ -59,13 +54,13 @@ export default {
 
   data() {
     return {
-      open: false || this.isOpenModal,
+      open: false || this.isOpen,
     }
   },
 
   watch: {
-    isOpenModal() {
-      this.open = this.isOpenModal
+    isOpen() {
+      this.open = this.isOpen
     },
   },
 
