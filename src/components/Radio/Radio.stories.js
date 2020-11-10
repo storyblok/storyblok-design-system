@@ -48,7 +48,7 @@ export const Selected = (args) => ({
         label="Jon Doe"
         v-model="internalValue"
         name="input"
-        :native-value="nativeValue"
+        native-value="Jon Doe"
       />
 
       <SbRadio
@@ -56,7 +56,7 @@ export const Selected = (args) => ({
         label="Albert Einstein"
         v-model="internalValue"
         name="input"
-        nativeValue="Albert Einstein"
+        native-value="Albert Einstein"
       />
     </div>
   `,
@@ -77,7 +77,7 @@ export const Inline = (args) => ({
           id="inline"
           label="Jon Doe"
           v-model="internalValue"
-          :native-value="nativeValue"
+          native-value="Jon Doe"
           inline
         />
 
@@ -87,7 +87,7 @@ export const Inline = (args) => ({
           id="inline-selected"
           label="Albert Einstein"
           v-model="internalValue"
-          nativeValue="Albert Einstein"
+          native-value="Albert Einstein"
           inline
         />
 
@@ -96,7 +96,7 @@ export const Inline = (args) => ({
           name="radio-inline"
           id="inline-disabled"
           v-model="internalValue"
-          nativeValue="None of those"
+          native-value="None of those"
           label="None of those"
           inline
           disabled
@@ -110,7 +110,7 @@ export const Inline = (args) => ({
           id="inline"
           label="Jon Doe"
           v-model="internalValue"
-          :native-value="nativeValue"
+          native-value="Jon Doe"
           inline
           outline
         />
@@ -121,7 +121,7 @@ export const Inline = (args) => ({
           id="inline-selected"
           label="Albert Einstein"
           v-model="internalValue"
-          nativeValue="Albert Einstein"
+          native-value="Albert Einstein"
           inline
           outline
         />
@@ -131,7 +131,7 @@ export const Inline = (args) => ({
           name="radio-outline"
           id="inline-disabled"
           v-model="internalValue"
-          nativeValue="None of those"
+          native-value="None of those"
           label="None of those"
           inline
           outline
