@@ -4,6 +4,9 @@ import './assets/styles/global.scss'
 // Import vue component
 import components from './components'
 
+// Import SbModal Plugin
+import createModalPlugin from './components/Modal/plugin/create-modal-plugin'
+
 // Declare install function executed by Vue.use()
 export function install(Vue) {
   if (install.installed) return
@@ -11,6 +14,11 @@ export function install(Vue) {
   install.installed = true
   for (const key in components) {
     Vue.component(key, components[key])
+  }
+
+  Vue.prototype.$sb = {
+    // modal will be available in this.$sb.modal(options)
+    modal: createModalPlugin,
   }
 }
 

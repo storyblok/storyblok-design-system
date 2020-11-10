@@ -8,8 +8,10 @@
   right: 0px;
   bottom: 0px;
   text-align: center;
+  padding: 2rem;
   z-index: 9999;
   width: 100%;
   background-color: $black-trasparent;
   transition: opacity .3s ease;
+  box-sizing: border-box;
 }
