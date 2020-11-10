@@ -28,7 +28,8 @@ export const Default = (args) => ({
       :label="label"
       :disabled="disabled"
       :required="required"
-      :nativeValue="nativeValue"
+      v-model="internalValue"
+      :native-value="nativeValue"
     />
   `,
 })
@@ -40,13 +41,14 @@ export const Selected = (args) => ({
     internalValue: 'Jon Doe',
   }),
   template: `
-    <form>
+    <div>
       <SbRadio
+        style="margin-bottom: 10px;"
         id="selected"
         label="Jon Doe"
         v-model="internalValue"
         name="input"
-        :nativeValue="nativeValue"
+        :native-value="nativeValue"
       />
 
       <SbRadio
@@ -54,9 +56,9 @@ export const Selected = (args) => ({
         label="Albert Einstein"
         v-model="internalValue"
         name="input"
-        nativeValue="Albert Einstein"
+        native-value="Albert Einstein"
       />
-    </form>
+    </div>
   `,
 })
 
@@ -75,7 +77,7 @@ export const Inline = (args) => ({
           id="inline"
           label="Jon Doe"
           v-model="internalValue"
-          :nativeValue="nativeValue"
+          :native-value="nativeValue"
           inline
         />
 
@@ -85,7 +87,7 @@ export const Inline = (args) => ({
           id="inline-selected"
           label="Albert Einstein"
           v-model="internalValue"
-          nativeValue="Albert Einstein"
+          native-value="Albert Einstein"
           inline
         />
 
@@ -94,7 +96,7 @@ export const Inline = (args) => ({
           name="radio-inline"
           id="inline-disabled"
           v-model="internalValue"
-          nativeValue="None of those"
+          native-value="None of those"
           label="None of those"
           inline
           disabled
@@ -108,7 +110,7 @@ export const Inline = (args) => ({
           id="inline"
           label="Jon Doe"
           v-model="internalValue"
-          :nativeValue="nativeValue"
+          :native-value="nativeValue"
           inline
           outline
         />
@@ -119,7 +121,7 @@ export const Inline = (args) => ({
           id="inline-selected"
           label="Albert Einstein"
           v-model="internalValue"
-          nativeValue="Albert Einstein"
+          native-value="Albert Einstein"
           inline
           outline
         />
@@ -129,7 +131,7 @@ export const Inline = (args) => ({
           name="radio-outline"
           id="inline-disabled"
           v-model="internalValue"
-          nativeValue="None of those"
+          native-value="None of those"
           label="None of those"
           inline
           outline
