@@ -28,4 +28,4 @@ export const getSvgIcon = (name) => {
 /**
  * @type {Array<String>}
  */
-export const iconSizes = ['small', 'normal', 'large', 'x-large']
+export const iconSizes = ['x-small', 'small', 'normal', 'large', 'x-large']

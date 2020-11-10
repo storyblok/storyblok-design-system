@@ -1,4 +1,4 @@
-import { SbDataTableInput } from '.'
+import { SbCheckbox } from '../../Checkbox'
 
 /**
  * SbDataTableBodyRow
@@ -69,7 +69,7 @@ export const SbDataTableBodyRow = {
               class: 'sb-data-table__col-selection',
             },
             [
-              h(SbDataTableInput, {
+              h(SbCheckbox, {
                 props: {
                   value: this.isSelected,
                 },
