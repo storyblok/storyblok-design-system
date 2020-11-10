@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { SbSidebar, SbSidebarLink } from '..'
 import SbAvatar from '../../Avatar'
+import SbButton from '../../Button'
 import { listItemsData, userData } from '../Sidebar.stories'
 
 describe('Test SbSidebar component', () => {
@@ -83,6 +84,8 @@ describe('Test SbSidebar component', () => {
       },
       stubs: {
         SbSidebarLink: SbSidebarLink,
+        SbFragment: true,
+        MountingPortal: true,
       },
     })
 
@@ -91,27 +94,27 @@ describe('Test SbSidebar component', () => {
     })
 
     it('should have a SbButton to collapse the Sidebar and a SbTooltip with Collapse and Expand Sidebar messages', async () => {
-      const button = wrapper.find('[data-testid="sidebar-button-toggle"')
+      const button = wrapper.findComponent(SbButton)
 
-      const tooltip = wrapper.find('[data-testid="sidebar-tooltip-toggle"')
+      const tooltip = wrapper.find('.sb-tooltip')
 
       expect(button.exists()).toBe(true)
       expect(tooltip.exists()).toBe(true)
 
-      await button.trigger('click')
+      button.vm.$emit('click')
 
       expect(wrapper.emitted('update:minimize')).toBeTruthy()
       expect(wrapper.emitted('update:minimize')).toEqual([[false]])
-      expect(tooltip.props('label')).toBe('Expand Sidebar')
+      expect(tooltip.text()).toBe('Expand Sidebar')
 
       await wrapper.setProps({
         minimize: false,
       })
 
-      await button.trigger('click')
+      button.vm.$emit('click')
 
       expect(wrapper.emitted('update:minimize')).toEqual([[false], [true]])
-      expect(tooltip.props('label')).toBe('Collapse Sidebar')
+      expect(tooltip.text()).toBe('Collapse Sidebar')
     })
   })
 })

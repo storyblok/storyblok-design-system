@@ -15,6 +15,10 @@
   stroke-width: 2px;
   @include setIconColor(currentColor);
 
+  &--x-small {
+    @include setIconSize($icon-extra-small-size);
+  }
+
   &--small {
     @include setIconSize($icon-small-size);
   }

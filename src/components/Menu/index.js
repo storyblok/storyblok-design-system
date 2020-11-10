@@ -205,19 +205,6 @@ const SbMenuList = {
     },
   },
 
-  watch: {
-    isOpen: {
-      handler(state) {
-        if (state) {
-          this.$refs.popover && this.$refs.popover.show()
-        } else {
-          this.$refs.popover && this.$refs.popover.hide()
-        }
-      },
-      immediate: true,
-    },
-  },
-
   methods: {
     /**
      * listen to keydown event and handle with keys to perform the navigation
@@ -305,6 +292,7 @@ const SbMenuList = {
           offset: [0, 5],
           placement: this.placement,
           reference: `#${menuButtonId}`,
+          isOpen: this.isOpen,
         },
 
         on: {

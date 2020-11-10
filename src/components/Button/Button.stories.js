@@ -1,5 +1,7 @@
 import SbButton from './index'
 
+import { availablePositions as availableTooltipPositions } from '../Tooltip/lib'
+
 const ButtonTemplate = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
@@ -68,6 +70,7 @@ export default {
     label: 'Default',
     size: null,
     type: 'primary',
+    tooltipPosition: 'bottom',
   },
   argTypes: {
     isDisabled: {
@@ -150,6 +153,14 @@ export default {
         options: ['primary', 'secondary', 'ghost', 'danger'],
       },
     },
+    tooltipPosition: {
+      name: 'tooltipPosition',
+      description: 'Position for `SbTooltip` component',
+      control: {
+        type: 'select',
+        options: [...availableTooltipPositions],
+      },
+    },
   },
 }
 
@@ -168,6 +179,7 @@ export const Default = (args) => ({
       :label="label"
       :size="size"
       :type="type"
+      :tooltip-position="tooltipPosition"
     />
   `,
 })
@@ -321,6 +333,7 @@ export const JustIcons = (args) => ({
       :icon-description="iconDescription"
       is-rounded
       has-icon-only
+      :tooltip-position="tooltipPosition"
     />
   </div>`,
 })
