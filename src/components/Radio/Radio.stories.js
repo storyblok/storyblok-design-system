@@ -19,6 +19,9 @@ export default {
 export const Default = (args) => ({
   components: { SbRadio },
   props: Object.keys(args),
+  data: () => ({
+    internalValue: 'Jon Doe',
+  }),
   template: `
     <SbRadio
       :name="name"
@@ -28,6 +31,8 @@ export const Default = (args) => ({
       :label="label"
       :disabled="disabled"
       :required="required"
+      v-model="internalValue"
+      :native-value="nativeValue"
     />
   `,
 })
@@ -39,8 +44,9 @@ export const Selected = (args) => ({
     internalValue: 'Jon Doe',
   }),
   template: `
-    <form>
+    <div>
       <SbRadio
+        style="margin-bottom: 10px;"
         id="selected"
         label="Jon Doe"
         v-model="internalValue"
@@ -55,7 +61,7 @@ export const Selected = (args) => ({
         name="input"
         native-value="Albert Einstein"
       />
-    </form>
+    </div>
   `,
 })
 
