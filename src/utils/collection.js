@@ -15,3 +15,10 @@ export const includes = (iterable, value) => {
 
   return false
 }
+
+/**
+ * @method  isArray
+ * @param   {any} value
+ * @returns {Boolean}
+ */
+export const isArray = (value) => Array.isArray(value)

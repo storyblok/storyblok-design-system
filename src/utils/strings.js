@@ -42,3 +42,10 @@ export const toLowerCase = (text = '') => {
 
   return text
 }
+
+/**
+ * @method isString
+ * @param  {any} value
+ * @return {Boolean}
+ */
+export const isString = (value) => typeof value === 'string'
