@@ -1,6 +1,6 @@
 <template>
   <div class="sb-editor-header__desktop">
-    <div v-if="format === 'desktop'" class="header__desktop">
+    <div v-if="isDesktopFormat" class="header__desktop">
       <span class="desktop__title">{{ headerTitle }}</span>
       <span class="desktop__sub-title">{{ headerSubTitle }}</span>
     </div>
@@ -17,7 +17,7 @@
 
     <SbHeaderItem v-if="languages" with-separator>
       <SbMenu>
-        <SbMenuButton :label="selectedLanguage || languages[0]" is-borderless />
+        <SbMenuButton :label="menuButtonLabel" is-borderless />
         <SbMenuList placement="bottom-start">
           <SbMenuGroup title="Languages">
             <SbMenuItem
@@ -35,7 +35,7 @@
     <div class="sb-editor-header__actions">
       <SbHeaderItem
         v-for="act in actions"
-        v-show="size > 765"
+        v-show="isOnDesktop"
         :key="act.id"
         with-separator
       >
@@ -45,10 +45,10 @@
           </SbTooltip>
         </button>
       </SbHeaderItem>
-      <SbHeaderItem v-if="size < 765" with-separator>
+      <SbHeaderItem v-if="isOnMobileOrTablet" with-separator>
         <SbMenu>
           <SbMenuButton
-            v-if="size < 700"
+            v-if="isLessThanTablet"
             icon-name="chevron-down"
             has-icon-only
             is-borderless
@@ -113,6 +113,9 @@ export default {
       type: Number,
       default: 1015,
     },
+    isOnDesktop: Boolean,
+    isOnTablet: Boolean,
+    isOnMobile: Boolean,
   },
 
   data: () => ({
@@ -125,6 +128,22 @@ export default {
         (this.size < 625 && this.format === 'tablet')
         ? 1
         : 5
+    },
+
+    isDesktopFormat() {
+      return this.format === 'desktop'
+    },
+
+    menuButtonLabel() {
+      return this.selectedLanguage || this.languages[0]
+    },
+
+    isOnMobileOrTablet() {
+      return this.isOnMobile || this.isOnTablet
+    },
+
+    isLessThanTablet() {
+      return this.size < 700
     },
   },
 
