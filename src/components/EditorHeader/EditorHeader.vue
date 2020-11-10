@@ -4,10 +4,10 @@
 
     <div
       class="sb-editor-header"
-      :class="{ 'sb-editor-header__mobile': returnViewFormat === 'mobile' }"
+      :class="{ 'sb-editor-header__mobile': isOnMobile }"
     >
       <SbDesktopAndTabletViewer
-        v-if="returnViewFormat !== 'mobile'"
+        v-if="isOnTabletOrDesktop"
         v-bind="{
           headerTitle,
           headerSubTitle,
@@ -15,12 +15,15 @@
           users,
           actions,
           format: returnViewFormat,
-          size: window.width,
+          size: windowWidth,
+          isOnMobile,
+          isOnTablet,
+          isOnDesktop,
         }"
         @changes="$_handleListenersOrchestrator"
       />
       <SbMobileViewer
-        v-if="returnViewFormat === 'mobile'"
+        v-if="isOnMobile"
         v-bind="{
           languages,
           users,
@@ -31,7 +34,7 @@
       <div
         class="sb-editor-header__content"
         :class="{
-          'sb-editor-header__content--mobile': returnViewFormat === 'mobile',
+          'sb-editor-header__content--mobile': isOnMobile,
         }"
       >
         <SbHeaderItem v-if="hasSaveButton" with-separator>
@@ -98,6 +101,8 @@ import { SbMenu, SbMenuButton, SbMenuList, SbMenuItem } from '../Menu'
 
 import { sharedProps } from './lib'
 
+import { WindowResizeObserverMixin } from '../../mixins'
+
 export default {
   name: 'SbEditorHeader',
 
@@ -113,6 +118,8 @@ export default {
     SbMenuList,
     SbMenuItem,
   },
+
+  mixins: [WindowResizeObserverMixin()],
 
   props: {
     ...sharedProps,
@@ -142,31 +149,17 @@ export default {
     },
 
     returnViewFormat() {
-      return this.window.width > 880
-        ? 'desktop'
-        : this.window.width > 600 && this.window.width < 880
-        ? 'tablet'
-        : 'mobile'
+      if (this.isOnDesktop) return 'desktop'
+
+      return this.isOnTablet ? 'tablet' : 'mobile'
     },
-  },
 
-  created() {
-    window.addEventListener('resize', this.$_handleResize)
-    this.$_handleResize()
-  },
-
-  destroyed() {
-    window.removeEventListener('resize', this.$_handleResize)
+    isOnTabletOrDesktop() {
+      return this.isOnTablet || this.isOnDesktop
+    },
   },
 
   methods: {
-    /**
-     * method to listen and chenge the window.width
-     */
-    $_handleResize() {
-      this.window.width = window.innerWidth
-    },
-
     /**
      * this method is triggered when an action is taken on the
      * desktop and mobile components, it works as an orchestrator,
