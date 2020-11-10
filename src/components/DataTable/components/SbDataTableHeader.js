@@ -1,5 +1,4 @@
-import { SbDataTableInput } from '.'
-
+import { SbCheckbox } from '../../Checkbox'
 import SbIcon from '../../Icon'
 
 /**
@@ -115,6 +114,9 @@ export const SbDataTableHeaderRow = {
     headers: {
       type: Array,
     },
+    selectedRowsLength: {
+      type: Number,
+    },
     selectionMode: {
       type: String,
     },
@@ -126,6 +128,9 @@ export const SbDataTableHeaderRow = {
   computed: {
     context() {
       return this.dataTableContext()
+    },
+    isIndeterminate() {
+      return !this.allRowsSelected && !!this.selectedRowsLength
     },
   },
 
@@ -149,11 +154,12 @@ export const SbDataTableHeaderRow = {
           },
           [
             this.selectionMode === 'multiple' &&
-              h(SbDataTableInput, {
+              h(SbCheckbox, {
                 props: {
+                  indeterminate: this.isIndeterminate,
                   value: this.allRowsSelected,
                 },
-                on: {
+                nativeOn: {
                   click: this.handleAllRowsSelected,
                 },
               }),
@@ -193,6 +199,10 @@ export const SbDataTableHeader = {
       required: false,
       type: Array,
     },
+    selectedRowsLength: {
+      required: false,
+      type: Number,
+    },
     selectionMode: {
       required: false,
       type: String,
@@ -210,7 +220,7 @@ export const SbDataTableHeader = {
           allowSelection: this.allowSelection,
           allRowsSelected: this.allRowsSelected,
           headers: this.headers,
-          selectedRows: this.selectedRows,
+          selectedRowsLength: this.selectedRowsLength,
           selectionMode: this.selectionMode,
           sortedKey: this.sortedKey,
         },
