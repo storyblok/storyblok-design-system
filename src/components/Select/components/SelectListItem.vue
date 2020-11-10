@@ -68,11 +68,16 @@ export default {
   methods: {
     /**
      * emits the 'emit-value' event
+     * @param {Event} event
      */
     handleClick(event) {
       this.$emit('emit-value', this.value)
     },
 
+    /**
+     * handle with keydown event
+     * @param {Event} event
+     */
     handleKeyDown(event) {
       if (event.key === 'Enter' || event.key === ' ') {
         this.$emit('emit-value', this.value)

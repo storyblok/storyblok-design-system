@@ -170,6 +170,9 @@ export default {
       this.activeIndex = 0
     },
 
+    /**
+     * handle when click-outside is activated and close the list
+     */
     wrapClose() {
       this.hideList()
     },
@@ -196,6 +199,7 @@ export default {
 
     /**
      * emits the input event to make this component compatible with v-model directive
+     * @param {Array<String>|String} value
      */
     handleEmitValue(value) {
       // doesn't close the list
@@ -211,6 +215,7 @@ export default {
 
     /**
      * returns the processed value to input event
+     * @param {String} value
      */
     processMultipleValue(value) {
       if (includes(this.value, value)) {
@@ -222,6 +227,7 @@ export default {
 
     /**
      * emit an input event with the item from tag that was removed
+     * @param {String} itemValue
      */
     handleRemoveItemValue(itemValue) {
       if (this.multiple) {

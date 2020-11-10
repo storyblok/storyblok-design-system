@@ -32,11 +32,13 @@ export default {
   },
 
   methods: {
+    /**
+     * handle with input event forward this event with correct value from input
+     * @param {Event} event
+     */
     handleInput(event) {
       this.$emit('input', event.target.value)
     },
   },
 }
 </script>
-
-<style></style>

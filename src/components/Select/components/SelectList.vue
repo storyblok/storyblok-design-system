@@ -85,11 +85,16 @@ export default {
   methods: {
     /**
      * forward the 'emit-value' event
+     * @param {String} value
      */
     handleEmitValue(value) {
       this.$emit('emit-value', value)
     },
 
+    /**
+     * handle with keydown event when list component is focused
+     * @param {Event} event
+     */
     handleKeyDown(event) {
       const {
         activeIndex,
