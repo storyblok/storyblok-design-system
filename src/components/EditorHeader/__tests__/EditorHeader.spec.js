@@ -2,20 +2,14 @@ import {
   SbEditorHeader,
   SbHeaderTitle,
   SbHeaderItem,
-  SbMobileViwer,
-  SbDesktopAndTabletViwer,
+  SbMobileViewer,
+  SbDesktopAndTabletViewer,
 } from '../index'
 
 import SbIcon from '../../Icon'
 import SbButton from '../../Button'
 
-import {
-  SbMenu,
-  SbMenuButton,
-  SbMenuList,
-  SbMenuItem,
-  // SbMenuGroup,
-} from '../../Menu'
+import { SbMenu, SbMenuButton, SbMenuList, SbMenuItem } from '../../Menu'
 
 import { mount } from '@vue/test-utils'
 
@@ -81,8 +75,8 @@ const fakeProps = {
   headerSubTitle: 'Its true',
 }
 
-describe('Test if SbEditorHeader renderer correctly', () => {
-  it('Test if editor header render all components correctly', () => {
+describe('SbEditorHeader component', () => {
+  it('should render all internal components', () => {
     const wrapper = factory(fakeProps)
 
     expect(wrapper.findComponent(SbHeaderTitle).exists()).toBe(true)
@@ -93,9 +87,9 @@ describe('Test if SbEditorHeader renderer correctly', () => {
 
     expect(wrapper.findAllComponents(SbHeaderItem).length).toBe(9)
 
-    expect(wrapper.findComponent(SbDesktopAndTabletViwer).exists()).toBe(true)
+    expect(wrapper.findComponent(SbDesktopAndTabletViewer).exists()).toBe(true)
 
-    expect(wrapper.findComponent(SbMobileViwer).exists()).toBe(false)
+    expect(wrapper.findComponent(SbMobileViewer).exists()).toBe(false)
 
     expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
 
@@ -116,7 +110,7 @@ describe('Test if SbEditorHeader renderer correctly', () => {
     expect(wrapper.findAllComponents(SbMenuItem).length).toBe(7)
   })
 
-  it('Test if editor header emit all events', async () => {
+  it('should emit all internal events', async () => {
     const wrapper = factory(fakeProps)
 
     // save event

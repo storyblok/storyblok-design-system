@@ -53,6 +53,10 @@
         font-weight: $font-weight-regular;
       }
     }
+
+    .header-item--avatar {
+      min-width: 70px;
+    }
   }
 
   &__item {

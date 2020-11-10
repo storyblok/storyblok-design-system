@@ -1,4 +1,4 @@
-import MobileViwer from '../components/MobileViwer'
+import MobileViewer from '../components/MobileViewer'
 import SbHeaderItem from '../components/HeaderItem'
 import SbAvatar from '../../Avatar'
 import { SbMenuItem } from '../../Menu'
@@ -40,12 +40,12 @@ const fakeProps = {
 }
 
 const factory = (propsData) => {
-  return mount(MobileViwer, {
+  return mount(MobileViewer, {
     propsData,
   })
 }
 
-describe('MobileViwer component test', () => {
+describe('MobileViewer component test', () => {
   const wrapper = factory(fakeProps)
 
   it('should render with all components', () => {

@@ -1,4 +1,4 @@
-import { SbDesktopAndTabletViwer, SbHeaderItem } from '..'
+import { SbDesktopAndTabletViewer, SbHeaderItem } from '..'
 import SbAvatar from '../../Avatar'
 import { SbMenu, SbMenuItem } from '../../Menu'
 import SbIcon from '../../Icon'
@@ -7,7 +7,7 @@ import SbTooltip from '../../Tooltip'
 import { mount } from '@vue/test-utils'
 
 const factory = (propsData) => {
-  return mount(SbDesktopAndTabletViwer, {
+  return mount(SbDesktopAndTabletViewer, {
     propsData,
   })
 }
@@ -47,8 +47,8 @@ const fakeProps = {
   headerSubTitle: 'Its true',
 }
 
-describe('Test if SbDesktopAndTabletViwer renderer correctly', () => {
-  it('Test if desktop and tablet view render all components correctly', () => {
+describe('SbDesktopAndTabletViewer component', () => {
+  it('should render all internal components', () => {
     const wrapper = factory(fakeProps)
 
     expect(wrapper.findComponent(SbHeaderItem).exists()).toBe(true)
@@ -72,7 +72,7 @@ describe('Test if SbDesktopAndTabletViwer renderer correctly', () => {
     expect(wrapper.findAllComponents(SbIcon).length).toBe(4)
   })
 
-  it('Test methods of SbDesktopAndTabletViwer', () => {
+  it('should trigger all functions', () => {
     const wrapper = factory(fakeProps)
 
     wrapper.vm.handleSetNewLanguage = jest.fn()
@@ -88,7 +88,7 @@ describe('Test if SbDesktopAndTabletViwer renderer correctly', () => {
     expect(wrapper.vm.handleSelectNewAction).toBeCalled()
   })
 
-  it('Test event emiters of SbDesktopAndTabletViwer', async () => {
+  it('should emit all internal events', async () => {
     const wrapper = factory(fakeProps)
 
     wrapper.vm.$emit('changes', { type: 'act', action: 'unpublish' })

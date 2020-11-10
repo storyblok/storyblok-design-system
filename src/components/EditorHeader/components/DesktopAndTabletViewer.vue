@@ -4,7 +4,7 @@
       <span class="desktop__title">{{ headerTitle }}</span>
       <span class="desktop__sub-title">{{ headerSubTitle }}</span>
     </div>
-    <SbHeaderItem v-if="users" style="min-width: 70px">
+    <SbHeaderItem v-if="users" class="header-item--avatar">
       <SbAvatarGroup :max-elements="returnNumberOfAvatars">
         <SbAvatar
           v-for="user in users"

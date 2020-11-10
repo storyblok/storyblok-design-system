@@ -49,7 +49,7 @@ import SbIcon from '../../Icon'
 
 import { sharedProps } from '../lib'
 export default {
-  name: 'SbMobileViwer',
+  name: 'SbMobileViewer',
 
   components: {
     SbHeaderItem,

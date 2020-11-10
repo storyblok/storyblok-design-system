@@ -6,7 +6,7 @@
       class="sb-editor-header"
       :class="{ 'sb-editor-header__mobile': returnViewFormat === 'mobile' }"
     >
-      <SbDesktopAndTabletViwer
+      <SbDesktopAndTabletViewer
         v-if="returnViewFormat !== 'mobile'"
         v-bind="{
           headerTitle,
@@ -19,7 +19,7 @@
         }"
         @changes="$_handleListenersOrchestrator"
       />
-      <SbMobileViwer
+      <SbMobileViewer
         v-if="returnViewFormat === 'mobile'"
         v-bind="{
           languages,
@@ -85,8 +85,8 @@
 </template>
 
 <script>
-import SbDesktopAndTabletViwer from './components/DesktopAndTabletViwer'
-import SbMobileViwer from './components/MobileViwer'
+import SbDesktopAndTabletViewer from './components/DesktopAndTabletViewer'
+import SbMobileViewer from './components/MobileViewer'
 import SbHeaderTitle from './components/HeaderTitle'
 
 import SbHeaderItem from './components/HeaderItem'
@@ -102,9 +102,9 @@ export default {
   name: 'SbEditorHeader',
 
   components: {
-    SbDesktopAndTabletViwer,
+    SbDesktopAndTabletViewer,
     SbHeaderTitle,
-    SbMobileViwer,
+    SbMobileViewer,
     SbButton,
     SbHeaderItem,
     SbIcon,
@@ -166,6 +166,7 @@ export default {
     $_handleResize() {
       this.window.width = window.innerWidth
     },
+
     /**
      * this method is triggered when an action is taken on the
      * desktop and mobile components, it works as an orchestrator,
@@ -179,30 +180,35 @@ export default {
         this.handleSelectAction(action.action)
       }
     },
+
     /**
      * method to emit the selection of new option
      */
     handleSelectOptions(opt) {
       this.$emit('select-options', opt.toLowerCase().replace(' ', '-'))
     },
+
     /**
      * method to emit save changes on space
      */
     handleSaveChanges() {
       this.$emit('save')
     },
+
     /**
      * method to emit the publish event
      */
     handlePublishSpace() {
       this.$emit('publish')
     },
+
     /**
      * method to emit the new action
      */
     handleSelectAction(act) {
       this.$emit('select-action', act.toLowerCase().replace(' ', '-'))
     },
+
     /**
      * method to emit the selection of a language
      */
@@ -212,7 +218,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-@import './editor-header.scss';
-</style>
