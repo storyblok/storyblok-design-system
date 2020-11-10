@@ -215,6 +215,7 @@ const SbDataTable = {
                 allowSelection: this.allowSelection,
                 allRowsSelected: this.allRowsSelected,
                 headers: this.headers,
+                selectedRowsLength: this.selectedRows.length,
                 selectionMode: this.selectionMode,
                 sortedKey: this.sortKey,
               },
