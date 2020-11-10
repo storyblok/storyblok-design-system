@@ -10,6 +10,10 @@ const LOAD_SUCCESS_SRC = 'LOAD_SUCCESS_SRC'
 const factory = (propsData) => {
   return mount(SbAvatar, {
     propsData,
+    stubs: {
+      SbFragment: true,
+      MountingPortal: true,
+    },
   })
 }
 

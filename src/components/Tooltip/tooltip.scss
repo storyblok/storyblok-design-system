@@ -60,35 +60,46 @@
 }
 
 .sb-tooltip {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  @include tooltip('top');
-  @include tooltip('bottom');
-  @include tooltip('left');
-  @include tooltip('right');
+  display: none;
+  padding: 0.6rem 2rem;
+  color: $white;
+  font-size: $font-size-sm;
+  background-color: $color-primary-dark;
+  border-radius: 2px;
+  white-space: nowrap;
+  z-index: 4;
 
-  &__label {
-    display: none;
-    width: auto;
-    position: absolute;
-    padding: 0.6rem 2rem;
-    color: $white;
-    font-size: $font-size-sm;
-    background-color: $color-primary-dark;
-    border-radius: 2px;
-    white-space: nowrap;
-
-    &::after {
-      content: "";
-      position: absolute;
-      border-width: 5px;
-      border-style: solid;
-      border-color: $color-primary-dark transparent transparent transparent;
-    }
+  [data-show] {
+    display: block;
   }
 
-  &__label[aria-hidden=false] {
-    display: block;
+  [data-popper-arrow],
+  [data-popper-arrow]::before {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    z-index: -1;
+  }
+
+  [data-popper-arrow]::before {
+    content: '';
+    transform: rotate(45deg);
+    background: $color-primary-dark;
+  }
+
+  &[data-popper-placement^='top'] > [data-popper-arrow] {
+    bottom: -4px;
+  }
+  
+  &[data-popper-placement^='bottom'] > [data-popper-arrow] {
+    top: -4px;
+  }
+  
+  &[data-popper-placement^='left'] > [data-popper-arrow] {
+    right: -4px;
+  }
+  
+  &[data-popper-placement^='right'] > [data-popper-arrow] {
+    left: -4px;
   }
 }

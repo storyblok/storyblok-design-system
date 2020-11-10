@@ -14,7 +14,12 @@ const factory = (
     ...additionalInformation,
   }
 
-  return mount(WrapperComponent)
+  return mount(WrapperComponent, {
+    stubs: {
+      SbFragment: true,
+      MountingPortal: true,
+    },
+  })
 }
 
 describe('test SbTooltip component', () => {
@@ -42,8 +47,8 @@ describe('test SbTooltip component', () => {
     const ButtonComponent = wrapper.findComponent(SbButton)
     const IconComponent = wrapper.findComponent(SbIcon)
 
-    it('should render the tooltip label with correct text', () => {
-      expect(wrapper.find('.sb-tooltip__label').text()).toBe(label)
+    it('should render the tooltip label with correct text', async () => {
+      expect(wrapper.find('.sb-tooltip').text()).toBe(label)
     })
 
     it('should render the SbButton component', () => {
@@ -89,31 +94,12 @@ describe('test SbTooltip component', () => {
     const wrapper = factory(template, { SbButton })
 
     it('should render the tooltip label with correct text', () => {
-      expect(wrapper.find('.sb-tooltip__label').text()).toBe(label)
-    })
-
-    it('should wrap the element with a span', () => {
-      expect(wrapper.find('span.sb-tooltip').exists()).toBe(true)
+      expect(wrapper.find('.sb-tooltip').text()).toBe(label)
     })
 
     it('should have the same id and aria-describedby in the container', () => {
-      const id = wrapper.attributes('aria-describedby')
+      const id = wrapper.find('span').attributes('aria-describedby')
       expect(wrapper.find(`#${id}`).exists()).toBe(true)
-    })
-  })
-
-  describe('when render a tooltip with a specific position', () => {
-    const label = 'This is a label with a specific position'
-    const template = `
-      <SbTooltip label="${label}" position="right">
-        <p> Hover me! </p>
-      </SbTooltip>
-    `
-
-    const wrapper = factory(template, { SbButton })
-
-    it('should render with a correct class', () => {
-      expect(wrapper.classes('sb-tooltip--right')).toBe(true)
     })
   })
 

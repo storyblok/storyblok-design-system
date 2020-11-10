@@ -205,18 +205,16 @@ const SbAvatar = {
     }
 
     if (this.name && this.useTooltip) {
-      return h('div', avatarProps, [
-        h(
-          SbTooltip,
-          {
-            props: {
-              label: this.name,
-              position: 'bottom',
-            },
+      return h(
+        SbTooltip,
+        {
+          props: {
+            label: this.name,
+            position: 'bottom',
           },
-          [renderAvatar()]
-        ),
-      ])
+        },
+        [h('div', avatarProps, [renderAvatar()])]
+      )
     }
 
     const children = [renderAvatar()]

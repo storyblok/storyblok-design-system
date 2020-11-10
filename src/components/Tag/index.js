@@ -31,13 +31,19 @@ const SbTag = {
       class: {
         'sb-tag--closable': this.closable,
       },
+      attrs: {
+        ...this.$attrs,
+      },
+      on: {
+        ...this.$listeners,
+      },
     }
 
     const renderClosableIcon = () => {
       return h(SbIcon, {
         props: {
           name: 'close',
-          size: 'small',
+          size: 'x-small',
         },
         on: {
           click: (event) => {

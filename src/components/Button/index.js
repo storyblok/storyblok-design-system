@@ -55,6 +55,10 @@ const SbButton = {
       type: String,
       default: null,
     },
+    tooltipPosition: {
+      type: String,
+      default: 'bottom',
+    },
     ...sharedProps,
   },
 
@@ -154,7 +158,7 @@ const SbButton = {
         {
           props: {
             label: this.iconDescription,
-            position: 'bottom',
+            position: this.tooltipPosition,
           },
         },
         [renderButton(content)]

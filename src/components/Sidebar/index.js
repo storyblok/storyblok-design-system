@@ -9,7 +9,6 @@ import {
 } from './components'
 
 import SbButton from '../Button'
-import SbTooltip from '../Tooltip'
 
 /**
  * @vue/component
@@ -95,34 +94,24 @@ const SbSidebar = {
         },
         [
           this.$slots.bottom,
-          h(
-            SbTooltip,
-            {
-              attrs: {
-                'data-testid': 'sidebar-tooltip-toggle',
-              },
-              props: {
-                label: this.minimize ? 'Expand Sidebar' : 'Collapse Sidebar',
-                position: 'right',
-              },
+          h(SbButton, {
+            attrs: {
+              'data-testid': 'sidebar-button-toggle',
             },
-            [
-              h(SbButton, {
-                attrs: {
-                  'data-testid': 'sidebar-button-toggle',
-                },
-                props: {
-                  icon: this.minimize ? 'chevron-right' : 'chevron-left',
-                  size: 'small',
-                  hasIconOnly: true,
-                  isRounded: true,
-                },
-                on: {
-                  click: this.toggleMinimizedState,
-                },
-              }),
-            ]
-          ),
+            props: {
+              icon: this.minimize ? 'chevron-right' : 'chevron-left',
+              size: 'small',
+              hasIconOnly: true,
+              isRounded: true,
+              iconDescription: this.minimize
+                ? 'Expand Sidebar'
+                : 'Collapse Sidebar',
+              tooltipPosition: 'right',
+            },
+            on: {
+              click: this.toggleMinimizedState,
+            },
+          }),
         ]
       )
     }
