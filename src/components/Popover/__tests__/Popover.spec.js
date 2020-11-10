@@ -25,7 +25,7 @@ describe('SbPopover component', () => {
       }),
       methods: {
         handleClick() {
-          this.$refs.popover.toggle()
+          this.active = !this.active
         },
       },
       template: `
@@ -38,6 +38,7 @@ describe('SbPopover component', () => {
             :reference="reference"
             :placement="placement"
             :use-portal="usePortal"
+            :is-open="active"
           >
             <ul role="navigation">
               <li>Item 1</li>

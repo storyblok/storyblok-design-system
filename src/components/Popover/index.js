@@ -1,6 +1,11 @@
 // popper imports
 import { createPopper } from '@popperjs/core/lib/popper-lite'
-import { flip, offset, preventOverflow } from '@popperjs/core/lib/modifiers'
+import {
+  flip,
+  offset,
+  preventOverflow,
+  arrow,
+} from '@popperjs/core/lib/modifiers'
 
 import SbPortal from '../Portal'
 
@@ -61,26 +66,21 @@ const SbPopover = {
     },
 
     // component itself properties
-    anchorId: {
-      type: String,
-      default: `sb-popover-${randomString(4)}`,
-    },
+    isOpen: Boolean,
     offset: {
       type: Array,
-      default: () => [0, 10],
+      default: () => [0, 8],
     },
     parentElementTag: {
       type: String,
       default: 'div',
     },
-    portalTarget: {
-      type: String,
-      default: `sb-portal-target-${randomString(4)}`,
-    },
-    reference: {
-      type: String,
-      required: true,
-    },
+    // eslint-disable-next-line
+    reference: [String, HTMLElement],
+    // eslint-disable-next-line
+    useAnchorId: String,
+    // eslint-disable-next-line
+    usePortalTarget: String,
     usePortal: {
       type: Boolean,
       default: false,
@@ -89,7 +89,6 @@ const SbPopover = {
 
   data: () => ({
     popoverInstance: null,
-    isOpen: false,
   }),
 
   computed: {
@@ -104,13 +103,26 @@ const SbPopover = {
             offset: this.offset,
           },
         },
+        arrow,
       ]
 
       return [...defaultModifierValues, ...this.modifiers]
     },
 
+    anchorId() {
+      return this.useAnchorId || `sb-popover-${randomString(4)}`
+    },
+
+    portalTarget() {
+      return this.usePortalTarget || `sb-portal-target-${randomString(4)}`
+    },
+
     referenceEl() {
-      return canUseDOM && document.querySelector(this.reference)
+      if (typeof this.reference === 'string') {
+        return canUseDOM && document.querySelector(this.reference)
+      }
+
+      return this.reference
     },
 
     popoverEl() {
@@ -119,6 +131,23 @@ const SbPopover = {
         : this.$el
 
       return ref
+    },
+  },
+
+  watch: {
+    isOpen(newValue) {
+      if (newValue) {
+        this.showPopover()
+      } else {
+        this.hidePopover()
+      }
+    },
+
+    placement(newPlacement) {
+      if (this.popoverInstance) {
+        this.popoverInstance.state.options.placement = newPlacement
+        this.reference.setAttribute('data-show', '')
+      }
     },
   },
 
@@ -131,10 +160,9 @@ const SbPopover = {
     /**
      * hides the Popover
      */
-    hide() {
-      if (this.isOpen) {
-        this.isOpen = false
-
+    hidePopover() {
+      if (this.popoverInstance) {
+        this.popoverEl.removeAttribute('data-show')
         this.$emit('hide')
       }
     },
@@ -142,23 +170,16 @@ const SbPopover = {
     /**
      * shows the Popover
      */
-    show() {
-      if (!this.isOpen) {
-        this.isOpen = true
+    showPopover() {
+      this.$emit('show')
 
-        this.$emit('show')
-      }
-    },
-
-    /**
-     * toggles open state the Popover
-     */
-    toggle() {
-      if (this.isOpen) {
-        return this.hide()
+      if (this.popoverInstance) {
+        this.popoverEl.setAttribute('data-show', '')
       }
 
-      this.show()
+      this.$nextTick(() => {
+        this.$_createPopoverInstance()
+      })
     },
 
     /**
@@ -169,11 +190,22 @@ const SbPopover = {
         this.$refs.portalRef.mountTarget()
       }
 
-      if (this.referenceEl && this.popoverEl) {
-        this.popoverInstance = createPopper(this.referenceEl, this.popoverEl, {
-          placement: this.placement,
-          modifiers: this.computedModifiers,
-        })
+      if (this.popoverInstance) {
+        this.popoverEl.setAttribute('data-show', '')
+        this.popoverInstance.update()
+      } else {
+        if (this.referenceEl && this.popoverEl) {
+          this.popoverInstance = createPopper(
+            this.referenceEl,
+            this.popoverEl,
+            {
+              placement: this.placement,
+              modifiers: this.computedModifiers,
+            }
+          )
+
+          this.popoverInstance.update()
+        }
       }
     },
 
@@ -192,7 +224,7 @@ const SbPopover = {
      */
     $_wrapClose(e) {
       if (this.popoverInstance && !this.referenceEl.contains(e.target)) {
-        this.hide()
+        this.hidePopover()
       }
     },
   },
@@ -240,4 +272,19 @@ const SbPopover = {
   },
 }
 
-export { SbPopover }
+const SbPopoverArrow = {
+  name: 'SbPopoverArrow',
+  functional: true,
+  render(h, { data, ...rest }) {
+    return h('div', {
+      ...rest,
+      attrs: {
+        ...data.attrs,
+        'data-popper-arrow': true,
+        role: 'presentation',
+      },
+    })
+  },
+}
+
+export { SbPopover, SbPopoverArrow }

@@ -7,7 +7,7 @@ const TooltipTemplate = (args) => ({
   template: `
     <div style="padding: 100px; text-align: center;">
       <SbTooltip v-bind="{ label, position, id }">
-        <h6>Hover me!</h6>
+        <span style="font-size: 1.8rem;">Hover me!</span>
       </SbTooltip>
     </div>
   `,

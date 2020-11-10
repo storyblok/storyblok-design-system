@@ -14,6 +14,8 @@ import { canUseDOM } from '../../utils'
 const SbPortal = {
   name: 'SbPortal',
 
+  components: { MountingPortal },
+
   props: {
     // component props
     as: {
@@ -96,7 +98,9 @@ const SbPortal = {
      */
     unmountTarget() {
       if (!this.disabled && this.unmountOnDestroy) {
-        canUseDOM && document.body.removeChild(this.portalTarget)
+        canUseDOM &&
+          this.portalTarget.isConnected &&
+          document.body.removeChild(this.portalTarget)
       }
     },
   },
@@ -109,7 +113,7 @@ const SbPortal = {
     }
 
     return h(
-      MountingPortal,
+      'MountingPortal',
       {
         props: {
           append: this.append,

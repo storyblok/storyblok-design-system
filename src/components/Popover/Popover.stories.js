@@ -57,11 +57,11 @@ export const Default = (args) => ({
   },
   props: Object.keys(args),
   data: () => ({
-    active: false,
+    isOpen: false,
   }),
   methods: {
     handleClick() {
-      this.$refs.popover.toggle()
+      this.isOpen = !this.isOpen
     },
   },
   template: `
@@ -72,6 +72,7 @@ export const Default = (args) => ({
         ref="popover"
         :reference="reference"
         :placement="placement"
+        :is-open="isOpen"
       >
         <ul style="background-color: #BBBBBB;">
           <li>Item 1</li>
