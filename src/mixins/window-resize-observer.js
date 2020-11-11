@@ -50,6 +50,14 @@ const WindowResizeObserverMixin = (options = {}) => {
       isOnDesktop() {
         return this.windowWidth > BREAKPOINTS.DESKTOP
       },
+
+      isOnMobileOrTablet() {
+        return this.isOnMobile || this.isOnTablet
+      },
+
+      isOnTabletOrDesktop() {
+        return this.isOnTablet || this.isOnDesktop
+      },
     },
 
     created() {

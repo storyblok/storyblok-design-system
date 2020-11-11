@@ -36,8 +36,10 @@
 </template>
 
 <script>
-import SbHeaderItem from './HeaderItem'
 import SbAvatar from '../../Avatar'
+import SbHeaderItem from './HeaderItem'
+import SbIcon from '../../Icon'
+
 import {
   SbMenu,
   SbMenuButton,
@@ -45,9 +47,9 @@ import {
   SbMenuItem,
   SbMenuGroup,
 } from '../../Menu'
-import SbIcon from '../../Icon'
 
 import { sharedProps } from '../lib'
+
 export default {
   name: 'SbMobileViewer',
 

@@ -19,6 +19,7 @@
           isOnMobile,
           isOnTablet,
           isOnDesktop,
+          isOnMobileOrTablet,
         }"
         @changes="$_handleListenersOrchestrator"
       />
@@ -152,10 +153,6 @@ export default {
       if (this.isOnDesktop) return 'desktop'
 
       return this.isOnTablet ? 'tablet' : 'mobile'
-    },
-
-    isOnTabletOrDesktop() {
-      return this.isOnTablet || this.isOnDesktop
     },
   },
 

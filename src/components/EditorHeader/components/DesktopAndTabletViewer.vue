@@ -73,10 +73,12 @@
 </template>
 
 <script>
-import SbTooltip from '../../Tooltip'
-import SbHeaderItem from './HeaderItem'
-import SbAvatarGroup from '../../AvatarGroup'
 import SbAvatar from '../../Avatar'
+import SbAvatarGroup from '../../AvatarGroup'
+import SbHeaderItem from './HeaderItem'
+import SbIcon from '../../Icon'
+import SbTooltip from '../../Tooltip'
+
 import {
   SbMenu,
   SbMenuButton,
@@ -84,11 +86,11 @@ import {
   SbMenuItem,
   SbMenuGroup,
 } from '../../Menu'
-import SbIcon from '../../Icon'
+
 import { sharedProps } from '../lib'
 
 export default {
-  name: 'SbDesktopAndTabletViwer',
+  name: 'SbDesktopAndTabletViewer',
 
   components: {
     SbHeaderItem,
@@ -116,6 +118,7 @@ export default {
     isOnDesktop: Boolean,
     isOnTablet: Boolean,
     isOnMobile: Boolean,
+    isOnMobileOrTablet: Boolean,
   },
 
   data: () => ({
@@ -136,10 +139,6 @@ export default {
 
     menuButtonLabel() {
       return this.selectedLanguage || this.languages[0]
-    },
-
-    isOnMobileOrTablet() {
-      return this.isOnMobile || this.isOnTablet
     },
 
     isLessThanTablet() {
