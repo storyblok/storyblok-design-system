@@ -151,6 +151,7 @@ export default {
      * method to emit new language
      */
     handleSetNewLanguage(lang) {
+      this.selectedLanguage = lang
       this.$emit('changes', { type: 'lang', language: lang })
     },
 
