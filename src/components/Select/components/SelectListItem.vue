@@ -17,7 +17,8 @@
     />
 
     <template v-else>
-      <input v-if="multiple" type="checkbox" :checked="isSelected" />
+      <SbCheckbox v-if="multiple" :value="isSelected" />
+
       <span class="sb-select-list__item-name">{{ label }}</span>
     </template>
   </li>
@@ -26,12 +27,14 @@
 <script>
 import { includes, isArray } from '../../../utils'
 import SbAvatar from '../../Avatar'
+import SbCheckbox from '../../Checkbox'
 
 export default {
   name: 'SbSelectListItem',
 
   components: {
     SbAvatar,
+    SbCheckbox,
   },
 
   props: {
