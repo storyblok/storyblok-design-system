@@ -105,4 +105,25 @@ describe('SbMenuButton component', () => {
     // should return to previous state
     expect(buttonComponent.attributes('aria-expanded')).toBeUndefined()
   })
+
+  it('should render one button with isBorderless property', () => {
+    const wrapperComponent = {
+      components: {
+        SbMenu,
+        SbMenuButton,
+      },
+
+      template: `
+        <SbMenu>
+          <SbMenuButton is-borderless />
+        </SbMenu>
+      `,
+    }
+
+    const wrapper = factoryMountComponent(wrapperComponent)
+
+    expect(
+      wrapper.findComponent(SbMenuButton).classes('sb-menu-button-borderless')
+    ).toBe(true)
+  })
 })

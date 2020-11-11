@@ -13,8 +13,10 @@ const SbFragment = {
         Array.from(el.childNodes).forEach((child) =>
           fragment.appendChild(child)
         )
-        el.parentNode.insertBefore(fragment, el)
-        el.parentNode.removeChild(el)
+        if (el.parentNode) {
+          el.parentNode.insertBefore(fragment, el)
+          el.parentNode.removeChild(el)
+        }
       },
     },
   },

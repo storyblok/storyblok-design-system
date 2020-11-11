@@ -76,7 +76,7 @@ const SbPopover = {
       default: 'div',
     },
     // eslint-disable-next-line
-    reference: [String, HTMLElement],
+    reference: [String, Element],
     // eslint-disable-next-line
     useAnchorId: String,
     // eslint-disable-next-line

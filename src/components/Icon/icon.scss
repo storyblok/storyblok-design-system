@@ -53,5 +53,23 @@
     &-white {
       @include setIconColor($color-white);
     }
+    &-green {
+      @include setIconColor($green);
+    }
+    &-yellow {
+      @include setIconColor($yellow);
+    }
+    &-blue {
+      @include setIconColor($blue);
+    }
+    &-orange {
+      @include setIconColor($orange);
+    }
+    &-light {
+      @include setIconColor($light);
+    }
+    &-light-gray {
+      @include setIconColor($light-gray);
+    }
   }
 }

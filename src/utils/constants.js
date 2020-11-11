@@ -14,6 +14,12 @@ export const availableColors = [
   'negative',
   'warning',
   'white',
+  'green',
+  'yellow',
+  'blue',
+  'orange',
+  'light',
+  'light-gray',
 ]
 
 /**
