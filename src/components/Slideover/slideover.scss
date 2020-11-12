@@ -1,0 +1,54 @@
+.sb-slideover {
+  width: 100%;
+  max-width: 62.4rem;
+  height: 100vh;
+  position: fixed;
+  background-color: $white;
+  box-sizing: border-box;
+  padding: 2.5rem;
+  transition: all 2s ease-in-out;
+  transform: translateX(100%);
+  overflow: auto;
+  opacity: 0;
+  
+  &-open {
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-name: slidein;
+    animation-duration: .2s;
+    transform: translateX(0%);
+    opacity: 1;
+    right: 0;
+    top: 0;
+  }
+
+  &__close-button {
+    position: fixed;
+    right: 2.5rem;
+    float: right;
+    border: none;
+    background-color: #FFF;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .sb-modal-footer {
+    padding: 0;
+    position: absolute;
+    box-sizing: border-box;
+    margin-left: -25px;
+    padding-right: 2.5rem;
+    border-radius: 0px;
+  }
+
+  .sb-button:not(:first-child) {
+    margin-left: 2rem;
+  }
+}
+
+@keyframes slidein {
+  0%   {transform: translateX(75%);}
+  25%  {transform: translateX(50%);}
+  50%  {transform: translateX(25%);}
+  100% {transform: translateX(0%);}
+}
