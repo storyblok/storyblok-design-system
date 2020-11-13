@@ -73,11 +73,10 @@ export const SlideoverWithoutFooter = (args) => ({
   template: `
     <div>
       <SbButton label="Open Slideover!" @click="handleOpenSlide" />
-      
       <SbSlideover
         :is-open="show"
         @hide="show = false">
-        
+
         <SbModalHeader title="Hi man" align="left" />
 
         <SbModalContent>
@@ -85,7 +84,6 @@ export const SlideoverWithoutFooter = (args) => ({
           content for every use-case: corporate websites, e-commerce, 
           helpdesks, mobile apps, and screen displays.</p>
         </SbModalContent>
-
       </SbSlideover>
     </div>
   `,

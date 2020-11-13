@@ -6,10 +6,8 @@
   background-color: $white;
   box-sizing: border-box;
   padding: 2.5rem;
-  transition: all 2s ease-in-out;
   transform: translateX(100%);
   overflow: auto;
-  opacity: 0;
   
   &-open {
     animation-timing-function: linear;
@@ -47,8 +45,9 @@
 }
 
 @keyframes slidein {
-  0%   {transform: translateX(75%);}
-  25%  {transform: translateX(50%);}
-  50%  {transform: translateX(25%);}
+  0%   {transform: translateX(100%);}
+  25%  {transform: translateX(75%);}
+  50%  {transform: translateX(50%);}
+  75%  {transform: translateX(25%);}
   100% {transform: translateX(0%);}
 }

@@ -1,7 +1,7 @@
 <template>
   <SbBlokUi v-if="open" @click="$_wrapClose">
     <div ref="blok" class="sb-slideover" :class="{ 'sb-slideover-open': open }">
-      <button class="sb-slideover__close-button" @click="handlecloseSlide">
+      <button class="sb-slideover__close-button" @click="handleCloseSlide">
         <SbIcon name="close" size="normal" color="primary-dark" />
       </button>
 
@@ -41,7 +41,7 @@ export default {
     /**
      * handler for close the component
      */
-    handlecloseSlide() {
+    handleCloseSlide() {
       this.open = false
       this.$emit('hide')
     },
@@ -51,7 +51,7 @@ export default {
      */
     $_wrapClose(e) {
       if (this.$refs.blok && !this.$refs.blok.contains(event.target)) {
-        this.handlecloseSlide()
+        this.handleCloseSlide()
       }
     },
   },
