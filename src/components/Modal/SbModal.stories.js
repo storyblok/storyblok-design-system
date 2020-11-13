@@ -271,6 +271,12 @@ ModalWithMediumSize.args = {
   align: 'left',
 }
 
+export const ModalInFullWidth = ModalTemplate.bind({})
+
+ModalInFullWidth.args = {
+  fullWidth: true,
+}
+
 export const ModalTypeComponentConfirm = (args) => ({
   props: Object.keys(args),
   components: { SbModalType },
