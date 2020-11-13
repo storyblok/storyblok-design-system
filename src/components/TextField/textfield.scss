@@ -1,0 +1,95 @@
+.sb-textfield {
+  width: 100%;
+  max-width: 29.8rem;
+  &__label{
+    display: block;
+    color: rgb(27, 36, 63);
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0rem;
+    margin-bottom: 1rem;
+  }
+  &__inner {
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    &__sb-icon {
+      &--left, &--right {
+        position: absolute;
+        padding-top: 1.5rem;
+      }
+      &--left {
+        padding-left: 1.7rem;
+        // left: 0;
+      }
+      &--right {
+        padding-right: 1.7rem;
+        right: 0;
+      }
+    }
+    &__input{
+      padding: 1.5rem 1.7rem;
+      border-radius: 0.5rem;
+      width: 100%;
+      &:disabled{
+        background: rgb(247, 248, 249);
+        border: 0.1rem solid rgb(223, 227, 232);
+      }
+      &::placeholder{
+        color: rgb(141, 145, 159);
+        font-size: 1.4rem;
+        font-weight: normal;
+        letter-spacing: 0rem;
+      }
+      &--default{
+        border: solid 0.1rem #eff1f5;
+        &:focus, &:hover{
+          background: rgb(255, 255, 255);
+          border-radius: 0.5rem;
+          border: 0.1rem solid rgb(0, 179, 176);
+        }
+        &:focus{
+          outline: 0.3rem solid rgb(217, 244, 243);
+        }
+      }
+      &--error{
+        border: 0.1rem solid rgb(255, 97, 89);
+        &:focus{
+          outline: 0.3rem solid rgb(255, 179, 176, 0.3);
+        }
+      }
+      &--with-icon{
+        &-before{
+          padding-left: 4.3rem;
+        }
+        &-after{
+        }
+      }
+      &--clearable{
+        border-radius: 0.5rem;
+        border: solid 0.1rem #eff1f5;
+        background-color: $white;
+        width: fit-content;
+        padding: 1.5rem 2rem;
+      }
+      &--ghost{
+        border-radius: 0rem;
+        border: none;
+        border-bottom: 0.1rem solid rgb(223, 227, 232);
+        &:focus{
+          outline: none;
+        }
+      }
+    }
+  }
+  &__message {
+    &--error {
+      color: rgb(141, 145, 159);
+      font-size: 1.4rem;
+      font-weight: normal;
+      letter-spacing: 0rem;
+      display: block;
+      margin-top: 0.5rem;
+    }
+  }
+}
