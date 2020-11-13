@@ -1,3 +1,5 @@
+@import 'animations.scss';
+
 .sb-slideover {
   width: 100%;
   max-width: 62.4rem;
@@ -9,10 +11,10 @@
   transform: translateX(100%);
   overflow: auto;
   
-  &-open {
+  &--open {
     animation-timing-function: linear;
     animation-direction: normal;
-    animation-name: slidein;
+    animation-name: slide;
     animation-duration: .2s;
     transform: translateX(0%);
     opacity: 1;
@@ -42,12 +44,4 @@
   .sb-button:not(:first-child) {
     margin-left: 2rem;
   }
-}
-
-@keyframes slidein {
-  0%   {transform: translateX(100%);}
-  25%  {transform: translateX(75%);}
-  50%  {transform: translateX(50%);}
-  75%  {transform: translateX(25%);}
-  100% {transform: translateX(0%);}
 }

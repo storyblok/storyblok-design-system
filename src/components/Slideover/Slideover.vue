@@ -1,6 +1,10 @@
 <template>
   <SbBlokUi v-if="open" @click="$_wrapClose">
-    <div ref="blok" class="sb-slideover" :class="{ 'sb-slideover-open': open }">
+    <div
+      ref="blok"
+      class="sb-slideover"
+      :class="{ 'sb-slideover--open': open }"
+    >
       <button class="sb-slideover__close-button" @click="handleCloseSlide">
         <SbIcon name="close" size="normal" color="primary-dark" />
       </button>
