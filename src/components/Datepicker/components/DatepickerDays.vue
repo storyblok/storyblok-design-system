@@ -1,6 +1,17 @@
 <template>
   <div class="sb-datepicker-days">
-    <span v-for="dayItem in dayList" :key="dayItem">{{ dayItem }}</span>
+    <span
+      v-for="(dayItem, key) in days"
+      :key="key"
+      class="sb-datepicker-day"
+      :class="{
+        'sb-datepicker-day--inactive': !dayItem.inMonth,
+        'sb-datepicker-day--active': dayItem.checked,
+      }"
+      @click="($evt) => handleDayClick(dayItem)"
+    >
+      {{ dayItem.label }}
+    </span>
   </div>
 </template>
 
@@ -8,15 +19,16 @@
 export default {
   name: 'SbDatepickerDays',
 
-  computed: {
-    dayList() {
-      const days = []
+  props: {
+    days: {
+      type: Array,
+      default: () => [],
+    },
+  },
 
-      for (let i = 0; i < 42; i++) {
-        days.push(i)
-      }
-
-      return days
+  methods: {
+    handleDayClick(day) {
+      this.$emit('choose-day', day)
     },
   },
 }

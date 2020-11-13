@@ -14,6 +14,7 @@
 
 .sb-datepicker-overlay {
   @include popoverComponent();
+  box-sizing: border-box;
 }
 
 .sb-datepicker-header {
@@ -82,35 +83,42 @@
 }
 
 .sb-datepicker-days {
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
   box-sizing: border-box;
+  // TODO: use polyfill
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}
 
-  // TODO: adjust border
-  span {
-    flex: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 4.2rem;
-    height: 4.2rem;
-    padding: 13px 17px;
-    font-size: $font-size-md;
-    color: $color-primary-dark;
-    box-sizing: border-box;
-    cursor: pointer;
-    border: 1px solid $light;
+// TODO: adjust border
+.sb-datepicker-day {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.2rem;
+  height: 4.2rem;
+  padding: 13px 17px;
+  font-size: $font-size-md;
+  color: $color-primary-dark;
+  box-sizing: border-box;
+  cursor: pointer;
+  // border: 1px solid $light;
+
+  &:hover {
+    background-color: $sb-dark-blue-25;
+  }
+  
+  &--inactive {
+    color: $sb-dark-blue-50;
+  }
+
+  &--active {
+    @include activeItem();
 
     &:hover {
-      background-color: $sb-dark-blue-25;
-    }
-    
-    &--inactive {
-      color: $sb-dark-blue-50;
-    }
-
-    &--active {
-      @include activeItem();
+      background-color: $sb-green-25;
     }
   }
 }

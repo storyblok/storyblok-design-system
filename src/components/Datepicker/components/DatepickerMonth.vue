@@ -1,12 +1,20 @@
 <template>
   <div class="sb-datepicker-month">
-    <button class="sb-datepicker-month__button" :disabled="disabled">
+    <button
+      class="sb-datepicker-month__button"
+      :disabled="disabled"
+      @click="($evt) => $emit('previous-month', $evt)"
+    >
       <SbIcon name="chevron-left" size="small" :color="iconColor" />
     </button>
 
     <span class="sb-datepicker-month__label">{{ label }}</span>
 
-    <button class="sb-datepicker-month__button" :disabled="disabled">
+    <button
+      class="sb-datepicker-month__button"
+      :disabled="disabled"
+      @click="($evt) => $emit('next-month', $evt)"
+    >
       <SbIcon name="chevron-right" size="small" :color="iconColor" />
     </button>
   </div>
@@ -46,7 +54,7 @@ export default {
         return this.value
       }
 
-      return `${this.currentMonth} ${this.currentYear}`
+      return `${this.currentMonth}, ${this.currentYear}`
     },
   },
 }
