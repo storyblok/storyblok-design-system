@@ -1,5 +1,3 @@
-@import 'animations.scss';
-
 .sb-slideover {
   width: 100%;
   max-width: 62.4rem;
@@ -8,20 +6,9 @@
   background-color: $white;
   box-sizing: border-box;
   padding: 2.5rem;
-  transform: translateX(100%);
   overflow: auto;
+  right: 0;
   
-  &--open {
-    animation-timing-function: linear;
-    animation-direction: normal;
-    animation-name: slide;
-    animation-duration: .2s;
-    transform: translateX(0%);
-    opacity: 1;
-    right: 0;
-    top: 0;
-  }
-
   &__close-button {
     position: fixed;
     right: 2.5rem;
@@ -31,7 +18,7 @@
     cursor: pointer;
     padding: 0;
   }
-
+  
   .sb-modal-footer {
     padding: 0;
     position: absolute;
@@ -40,8 +27,10 @@
     padding-right: 2.5rem;
     border-radius: 0px;
   }
-
+  
   .sb-button:not(:first-child) {
     margin-left: 2rem;
   }
 }
+
+@import 'animations.scss';

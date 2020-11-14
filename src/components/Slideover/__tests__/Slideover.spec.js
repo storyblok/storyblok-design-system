@@ -1,10 +1,9 @@
 import { SbSlideover } from '../index'
 
-import SbBlokUi from '../../BlockUI'
 import SbButton from '../../Button'
 import { SbModalHeader, SbModalContent, SbModalFooter } from '../../Modal'
 
-import { mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
 describe('SbSlideover component', () => {
   const WrapperComponent = {
@@ -33,7 +32,7 @@ describe('SbSlideover component', () => {
     `,
   }
 
-  const wrapper = mount(WrapperComponent)
+  const wrapper = shallowMount(WrapperComponent)
 
   it('should render slideover component', () => {
     expect(wrapper.findComponent(SbSlideover).exists()).toBe(true)
@@ -46,8 +45,6 @@ describe('SbSlideover component', () => {
 
     expect(wrapper.findComponent(SbModalFooter).exists()).toBe(true)
 
-    expect(wrapper.findComponent(SbBlokUi).exists()).toBe(true)
-
     expect(wrapper.findComponent(SbButton).exists()).toBe(true)
 
     expect(wrapper.findAllComponents(SbButton).length).toBe(2)
@@ -59,13 +56,5 @@ describe('SbSlideover component', () => {
     wrapper.vm.handleCloseSlide()
 
     expect(wrapper.vm.handleCloseSlide).toBeCalled()
-  })
-
-  it('should call the method $_wrap-close', async () => {
-    wrapper.vm.$_wrapClose = jest.fn()
-
-    wrapper.vm.$_wrapClose()
-
-    expect(wrapper.vm.$_wrapClose).toBeCalled()
   })
 })
