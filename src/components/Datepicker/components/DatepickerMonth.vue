@@ -3,7 +3,7 @@
     <button
       class="sb-datepicker-month__button"
       :disabled="disabled"
-      @click="($evt) => $emit('previous-month', $evt)"
+      @click="handlePreviousClick"
     >
       <SbIcon name="chevron-left" size="small" :color="iconColor" />
     </button>
@@ -13,7 +13,7 @@
     <button
       class="sb-datepicker-month__button"
       :disabled="disabled"
-      @click="($evt) => $emit('next-month', $evt)"
+      @click="handleNextClick"
     >
       <SbIcon name="chevron-right" size="small" :color="iconColor" />
     </button>
@@ -45,10 +45,20 @@ export default {
 
     label() {
       if (this.disabled) {
-        return dayjs(this.internalDate).format('MMM D, YYYY')
+        return dayjs(this.value).format('MMM D, YYYY')
       }
 
-      return dayjs(this.internalDate).format('MMM, YYYY')
+      return dayjs(this.value).format('MMM, YYYY')
+    },
+  },
+
+  methods: {
+    handlePreviousClick() {
+      this.$emit('previous-month')
+    },
+
+    handleNextClick() {
+      this.$emit('next-month')
     },
   },
 }

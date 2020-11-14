@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-datepicker">
+  <div v-click-outside="$_wrapClose" class="sb-datepicker">
     <div class="sb-datepicker-input">
       <input
         type="text"
@@ -9,9 +9,14 @@
       />
     </div>
 
-    <div v-if="isOverlayVisible" class="sb-datepicker-overlay">
+    <div v-show="isOverlayVisible" class="sb-datepicker-overlay">
       <div class="sb-datepicker-header">
-        <SbDatepickerMonth :disabled="!isShowCalendar" :value="internalValue" />
+        <SbDatepickerMonth
+          :disabled="!isShowCalendar"
+          :value="internalDate"
+          @previous-month="handlePreviousMonth"
+          @next-month="handleNextMonth"
+        />
 
         <SbDatepickerWeek v-if="isShowCalendar" />
 
@@ -54,6 +59,7 @@
 <script>
 import dayjs from 'dayjs'
 
+import { ClickOutside } from '../../directives'
 import SbDatepickerMonth from './components/DatepickerMonth'
 import SbDatepickerTime from './components/DatepickerTime'
 import SbDatepickerDays from './components/DatepickerDays'
@@ -67,6 +73,10 @@ export default {
     SbDatepickerWeek,
     SbDatepickerDays,
     SbDatepickerTime,
+  },
+
+  directives: {
+    ClickOutside,
   },
 
   props: {
@@ -175,11 +185,11 @@ export default {
     },
 
     handlePreviousMonth() {
-      this.internalDate = dayjs(this.internalDate).subtract(1, 'month')
+      this.internalDate = dayjs(this.internalDate).subtract(1, 'month').format()
     },
 
     handleNextMonth() {
-      this.internalDate = dayjs(this.internalDate).add(1, 'month')
+      this.internalDate = dayjs(this.internalDate).add(1, 'month').format()
     },
 
     handleChooseDay(day) {
@@ -205,6 +215,12 @@ export default {
 
     closeOverlay() {
       this.isOverlayVisible = false
+    },
+
+    $_wrapClose(e) {
+      if (!this.$el.contains(e.target)) {
+        this.closeOverlay()
+      }
     },
 
     /**

@@ -8,7 +8,7 @@
         'sb-datepicker-day--inactive': !dayItem.inMonth,
         'sb-datepicker-day--active': dayItem.checked,
       }"
-      @click="($evt) => handleDayClick(dayItem)"
+      @click="($evt) => handleDayClick($evt, dayItem)"
     >
       {{ dayItem.label }}
     </span>
@@ -27,7 +27,8 @@ export default {
   },
 
   methods: {
-    handleDayClick(day) {
+    handleDayClick($event, day) {
+      $event.stopPropagation()
       this.$emit('choose-day', day)
     },
   },
