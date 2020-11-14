@@ -66,11 +66,15 @@
 import dayjs from 'dayjs'
 
 import { ClickOutside } from '../../directives'
+import { includes } from '../../utils'
+
 import { SbPopover } from '../Popover'
 import SbDatepickerMonth from './components/DatepickerMonth'
 import SbDatepickerTime from './components/DatepickerTime'
 import SbDatepickerDays from './components/DatepickerDays'
 import SbDatepickerWeek from './components/DatepickerWeek'
+
+import { datepickerOptions } from './utils'
 
 export default {
   name: 'SbDatepicker',
@@ -102,6 +106,7 @@ export default {
     type: {
       type: String,
       default: 'datetime',
+      validations: (val) => includes(datepickerOptions, val),
     },
   },
 
@@ -133,7 +138,7 @@ export default {
         return false
       }
 
-      return this.type === 'datetime'
+      return this.type === 'datetime' || this.type === 'date'
     },
 
     daysToCalendar() {
@@ -211,9 +216,12 @@ export default {
       this.internalDate = day.date.format()
       this.internalValue = day.date.format()
 
-      if (this.type !== 'date') {
-        this.forceVisibleTime = true
+      if (this.type === 'date') {
+        this.closeOverlay()
+        return
       }
+
+      this.forceVisibleTime = true
     },
 
     handleTimeInput(value) {
