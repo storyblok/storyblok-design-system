@@ -2,6 +2,7 @@
   <div v-click-outside="$_wrapClose" class="sb-datepicker">
     <div class="sb-datepicker-input">
       <input
+        ref="input"
         type="text"
         :placeholder="placeholder"
         :value="internalValueFormated"
@@ -9,7 +10,12 @@
       />
     </div>
 
-    <div v-show="isOverlayVisible" class="sb-datepicker-overlay">
+    <SbPopover
+      :is-open="isOverlayVisible"
+      :reference="inputElement"
+      placement="bottom-start"
+      class="sb-datepicker-overlay"
+    >
       <div class="sb-datepicker-header">
         <SbDatepickerMonth
           :disabled="!isShowCalendar"
@@ -52,7 +58,7 @@
           Done
         </button>
       </div>
-    </div>
+    </SbPopover>
   </div>
 </template>
 
@@ -60,6 +66,7 @@
 import dayjs from 'dayjs'
 
 import { ClickOutside } from '../../directives'
+import { SbPopover } from '../Popover'
 import SbDatepickerMonth from './components/DatepickerMonth'
 import SbDatepickerTime from './components/DatepickerTime'
 import SbDatepickerDays from './components/DatepickerDays'
@@ -69,6 +76,7 @@ export default {
   name: 'SbDatepicker',
 
   components: {
+    SbPopover,
     SbDatepickerMonth,
     SbDatepickerWeek,
     SbDatepickerDays,
@@ -101,6 +109,7 @@ export default {
     forceVisibleTime: false,
     internalDate: dayjs().format(),
     internalValue: dayjs().format(),
+    inputElement: null,
     isOverlayVisible: false,
   }),
 
@@ -169,6 +178,12 @@ export default {
 
       return days
     },
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      this.inputElement = this.$refs.input
+    })
   },
 
   methods: {

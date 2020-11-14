@@ -5,6 +5,7 @@
 }
 
 .sb-datepicker {
+  position: relative;
   width: 294px;
 }
 
@@ -14,6 +15,7 @@
 
 .sb-datepicker-overlay {
   @include popoverComponent();
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -124,6 +126,7 @@
 }
 
 .sb-datepicker-time {
+  width: 100%;
   box-sizing: border-box;
 
   &__numbers-container {
