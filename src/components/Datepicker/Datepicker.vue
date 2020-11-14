@@ -1,18 +1,19 @@
 <template>
   <div class="sb-datepicker">
-    <div class="sb-datepicker-input"></div>
+    <div class="sb-datepicker-input">
+      <input
+        type="text"
+        :placeholder="placeholder"
+        :value="internalValueFormated"
+        @click="handleInputClick"
+      />
+    </div>
 
-    <div class="sb-datepicker-overlay">
+    <div v-if="isOverlayVisible" class="sb-datepicker-overlay">
       <div class="sb-datepicker-header">
-        <SbDatepickerMonth
-          :current-month="currentMonth"
-          :current-year="currentYear"
-          :disabled="isTimeActive"
-          @previous-month="handlePreviousMonth"
-          @next-month="handleNextMonth"
-        />
+        <SbDatepickerMonth :disabled="!isShowCalendar" :value="internalValue" />
 
-        <SbDatepickerWeek v-if="isDatetimeType" />
+        <SbDatepickerWeek v-if="isShowCalendar" />
 
         <span v-else class="sb-datepicker-time__label">
           Choose exact time
@@ -20,12 +21,16 @@
       </div>
 
       <SbDatepickerDays
-        v-if="isDatetimeType"
+        v-if="isShowCalendar"
         :days="daysToCalendar"
         @choose-day="handleChooseDay"
       />
 
-      <SbDatepickerTime v-else />
+      <SbDatepickerTime
+        v-else
+        :value="internalValue"
+        @input="handleTimeInput"
+      />
 
       <div class="sb-datepicker-actions">
         <button
@@ -83,25 +88,33 @@ export default {
   },
 
   data: () => ({
+    forceVisibleTime: false,
     internalDate: dayjs().format(),
     internalValue: dayjs().format(),
+    isOverlayVisible: false,
   }),
 
   computed: {
-    isDatetimeType() {
+    internalFormat() {
+      const FORMATS = {
+        time: 'HH:mm',
+        date: 'YYYY-MM-DD',
+        datetime: 'YYYY-MM-DD HH:mm',
+      }
+
+      return FORMATS[this.type]
+    },
+
+    internalValueFormated() {
+      return dayjs(this.internalValue).format(this.internalFormat)
+    },
+
+    isShowCalendar() {
+      if (this.forceVisibleTime || this.type === 'time') {
+        return false
+      }
+
       return this.type === 'datetime'
-    },
-
-    isTimeActive() {
-      return !this.isDatetimeType
-    },
-
-    currentMonth() {
-      return dayjs(this.internalDate).format('MMM')
-    },
-
-    currentYear() {
-      return dayjs(this.internalDate).format('YYYY')
     },
 
     daysToCalendar() {
@@ -149,9 +162,17 @@ export default {
   },
 
   methods: {
-    handleCancelAction() {},
+    handleCancelAction() {
+      this.closeOverlay()
+    },
 
-    handleDoneAction() {},
+    handleDoneAction() {
+      this.$emit('input', this.internalValue)
+
+      this.$nextTick(() => {
+        this.closeOverlay()
+      })
+    },
 
     handlePreviousMonth() {
       this.internalDate = dayjs(this.internalDate).subtract(1, 'month')
@@ -164,6 +185,26 @@ export default {
     handleChooseDay(day) {
       this.internalDate = day.date.format()
       this.internalValue = day.date.format()
+
+      if (this.type !== 'date') {
+        this.forceVisibleTime = true
+      }
+    },
+
+    handleTimeInput(value) {
+      const { hour, minutes } = value
+      const currentDate = dayjs(this.internalValue).hour(hour).minute(minutes)
+      this.internalDate = currentDate.format()
+      this.internalValue = currentDate.format()
+    },
+
+    handleInputClick() {
+      this.isOverlayVisible = true
+      this.forceVisibleTime = false
+    },
+
+    closeOverlay() {
+      this.isOverlayVisible = false
     },
 
     /**

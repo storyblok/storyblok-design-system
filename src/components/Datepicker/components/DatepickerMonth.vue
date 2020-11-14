@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
+
 import SbIcon from '../../Icon'
 
 export default {
@@ -29,14 +31,6 @@ export default {
   components: { SbIcon },
 
   props: {
-    currentMonth: {
-      type: String,
-      default: null,
-    },
-    currentYear: {
-      type: String,
-      default: null,
-    },
     disabled: Boolean,
     value: {
       type: String,
@@ -50,11 +44,11 @@ export default {
     },
 
     label() {
-      if (this.value) {
-        return this.value
+      if (this.disabled) {
+        return dayjs(this.internalDate).format('MMM D, YYYY')
       }
 
-      return `${this.currentMonth}, ${this.currentYear}`
+      return dayjs(this.internalDate).format('MMM, YYYY')
     },
   },
 }
