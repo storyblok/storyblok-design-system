@@ -13,6 +13,7 @@ const Template = (args) => ({
 
   template: `
     <SbDatepicker
+      :tz-offset="tzOffset"
       :disabled="disabled"
       :type="type"
       :placeholder="placeholder"
@@ -29,13 +30,22 @@ export default {
     value: null,
     type: 'datetime',
     disabled: false,
+    tzOffset: null,
   },
   argTypes: {
     type: {
       name: 'type',
+      description: 'Change the type of the input.',
       control: {
         type: 'select',
         options: [...datepickerOptions],
+      },
+    },
+    tzOffset: {
+      name: 'tzOffset',
+      description: 'Use this property to bind the user tz offset.',
+      control: {
+        type: 'text',
       },
     },
   },
@@ -82,6 +92,20 @@ Disabled.parameters = {
     description: {
       story:
         'Use `disabled` property to disable the input that opens the Datepicker',
+    },
+  },
+}
+
+export const WithTzOffset = Template.bind({})
+
+WithTzOffset.args = {
+  tzOffset: '-02:00',
+}
+
+WithTzOffset.parameters = {
+  docs: {
+    description: {
+      story: 'Use `tzOffset` property to describe the user timezone',
     },
   },
 }

@@ -9,6 +9,10 @@
         :value="internalValueFormated"
         @click="handleInputClick"
       />
+
+      <span v-if="isShowTzOffset" class="sb-datepicker-input__tz">
+        {{ tzOffset }}
+      </span>
     </div>
 
     <SbPopover
@@ -106,6 +110,11 @@ export default {
       validations: (val) => includes(datepickerOptions, val),
     },
 
+    tzOffset: {
+      type: String,
+      default: null,
+    },
+
     value: {
       type: String,
       default: null,
@@ -134,6 +143,14 @@ export default {
 
     internalValueFormated() {
       return dayjs(this.internalValue).format(this.internalFormat)
+    },
+
+    isDisabledTime() {
+      return this.type === 'date'
+    },
+
+    isShowTzOffset() {
+      return !this.isDisabledTime && this.tzOffset
     },
 
     isShowCalendar() {
