@@ -255,6 +255,10 @@ export default {
       if (this.isMonthView) {
         this.internalVisualization = INTERNAL_VIEWS.CALENDAR
       }
+
+      if (this.isYearView) {
+        this.internalVisualization = INTERNAL_VIEWS.MONTH
+      }
     },
 
     handleInputClick() {
