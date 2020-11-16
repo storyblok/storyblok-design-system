@@ -130,10 +130,7 @@
   }
 }
 
-.sb-datepicker-day:nth-child(even) {
-  border-bottom: $days-borders;
-  border-right: $days-borders;
-}
+.sb-datepicker-day:nth-child(even),
 .sb-datepicker-day:nth-child(odd) {
   border-bottom: $days-borders;
   border-right: $days-borders;
