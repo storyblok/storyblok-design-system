@@ -112,6 +112,8 @@
   color: $color-primary-dark;
   box-sizing: border-box;
   cursor: pointer;
+  border-bottom: $days-borders;
+  border-right: $days-borders;
 
   &:hover {
     background-color: $sb-dark-blue-25;
@@ -128,12 +130,6 @@
       background-color: $sb-green-25;
     }
   }
-}
-
-.sb-datepicker-day:nth-child(even),
-.sb-datepicker-day:nth-child(odd) {
-  border-bottom: $days-borders;
-  border-right: $days-borders;
 }
 
 .sb-datepicker-time {
