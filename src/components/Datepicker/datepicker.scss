@@ -53,11 +53,16 @@
 
   &__label {
     flex: 1;
+    margin: 0;
     padding: 1.5rem 0;
     text-align: center;
     font-weight: $font-weight-medium;
     font-size: $font-size-md;
     color: $color-primary-dark;
+
+    span {
+      cursor: pointer;
+    }
   }
 
   &__button {
@@ -136,6 +141,7 @@
 
   &__label {
     display: block;
+    margin: 0;
     padding-bottom: 1rem;
     text-align: center;
     font-size: $font-size-md;

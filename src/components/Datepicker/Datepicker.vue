@@ -23,29 +23,26 @@
     >
       <div class="sb-datepicker-header">
         <SbDatepickerMonth
-          :disabled="!isShowCalendar"
+          :disabled="!isCalendarView"
           :value="internalDate"
           @previous-month="handlePreviousMonth"
           @next-month="handleNextMonth"
+          @change-month="handleChangeMonth"
+          @change-year="handleChangeYear"
         />
 
-        <SbDatepickerWeek v-if="isShowCalendar" />
+        <SbDatepickerWeek v-if="isCalendarView" />
 
         <span v-else class="sb-datepicker-time__label">
-          Choose exact time
+          {{ label }}
         </span>
       </div>
 
-      <SbDatepickerDays
-        v-if="isShowCalendar"
-        :days="daysToCalendar"
-        @choose-day="handleChooseDay"
-      />
-
-      <SbDatepickerTime
-        v-else
+      <component
+        :is="isComponentView"
         :value="internalValue"
-        @input="handleTimeInput"
+        :internal-date="internalDate"
+        @input="handleComponentsInput"
       />
 
       <div class="sb-datepicker-actions">
@@ -74,12 +71,15 @@ import { ClickOutside } from '../../directives'
 import { includes } from '../../utils'
 
 import { SbPopover } from '../Popover'
+
 import SbDatepickerMonth from './components/DatepickerMonth'
 import SbDatepickerTime from './components/DatepickerTime'
 import SbDatepickerDays from './components/DatepickerDays'
 import SbDatepickerWeek from './components/DatepickerWeek'
+import SbDatepickerMonths from './components/DatepickerMonths'
+import SbDatepickerYears from './components/DatepickerYears'
 
-import { datepickerOptions } from './utils'
+import { datepickerOptions, INTERNAL_VIEWS } from './utils'
 
 export default {
   name: 'SbDatepicker',
@@ -90,6 +90,8 @@ export default {
     SbDatepickerWeek,
     SbDatepickerDays,
     SbDatepickerTime,
+    SbDatepickerMonths,
+    SbDatepickerYears,
   },
 
   directives: {
@@ -128,6 +130,7 @@ export default {
     internalValue: dayjs().format(),
     inputElement: null,
     isOverlayVisible: false,
+    internalVisualization: INTERNAL_VIEWS.CALENDAR,
   }),
 
   computed: {
@@ -161,47 +164,43 @@ export default {
       return this.type === 'datetime' || this.type === 'date'
     },
 
-    daysToCalendar() {
-      const daysInTheMonth = dayjs(this.internalDate).daysInMonth()
-      const firstDate = dayjs(this.internalDate).startOf('month')
-      const lastDate = dayjs(this.internalDate).endOf('month')
-      const days = []
+    isCalendarView() {
+      return this.internalVisualization === INTERNAL_VIEWS.CALENDAR
+    },
 
-      for (let i = this.$_getDayInWeek(firstDate); i > 1; i--) {
-        const dateValue = firstDate.subtract(i, 'day')
+    isTimeView() {
+      return this.internalVisualization === INTERNAL_VIEWS.TIME
+    },
 
-        days.push({
-          label: dateValue.date(),
-          date: dateValue,
-          inMonth: false,
-          checked: false,
-        })
+    isMonthView() {
+      return this.internalVisualization === INTERNAL_VIEWS.MONTH
+    },
+
+    isYearView() {
+      return this.internalVisualization === INTERNAL_VIEWS.YEAR
+    },
+
+    label() {
+      if (this.internalVisualization === INTERNAL_VIEWS.TIME) {
+        return 'Choose exact time'
       }
 
-      for (let i = 1; i <= daysInTheMonth; i++) {
-        const dateValue = dayjs(this.internalDate).date(i)
-
-        days.push({
-          label: i,
-          date: dateValue,
-          inMonth: true,
-          checked: dayjs(this.internalValue).isSame(dateValue),
-        })
+      if (this.internalVisualization === INTERNAL_VIEWS.YEAR) {
+        return 'Choose year'
       }
 
-      const nextDays = 42 - days.length
-      for (let i = 1; i <= nextDays; i++) {
-        const dateValue = lastDate.add(i, 'day')
+      return 'Choose month'
+    },
 
-        days.push({
-          label: dateValue.date(),
-          date: dateValue,
-          inMonth: false,
-          checked: false,
-        })
+    isComponentView() {
+      const COMPONENTS = {
+        CALENDAR: 'SbDatepickerDays',
+        TIME: 'SbDatepickerTime',
+        MONTH: 'SbDatepickerMonths',
+        YEAR: 'SbDatepickerYears',
       }
 
-      return days
+      return COMPONENTS[this.internalVisualization]
     },
   },
 
@@ -232,28 +231,32 @@ export default {
       this.internalDate = dayjs(this.internalDate).add(1, 'month').format()
     },
 
-    handleChooseDay(day) {
-      this.internalDate = day.date.format()
-      this.internalValue = day.date.format()
+    handleChangeMonth() {
+      this.internalVisualization = INTERNAL_VIEWS.MONTH
+    },
+
+    handleChangeYear() {
+      this.internalVisualization = INTERNAL_VIEWS.YEAR
+    },
+
+    handleComponentsInput(value) {
+      this.internalDate = value
+      this.internalValue = value
 
       if (this.type === 'date') {
         this.closeOverlay()
         return
       }
 
-      this.forceVisibleTime = true
-    },
-
-    handleTimeInput(value) {
-      const { hour, minutes } = value
-      const currentDate = dayjs(this.internalValue).hour(hour).minute(minutes)
-      this.internalDate = currentDate.format()
-      this.internalValue = currentDate.format()
+      if (this.isCalendarView) {
+        this.internalVisualization = INTERNAL_VIEWS.TIME
+      }
     },
 
     handleInputClick() {
       this.isOverlayVisible = true
-      this.forceVisibleTime = false
+      this.internalVisualization =
+        this.type === 'time' ? INTERNAL_VIEWS.TIME : INTERNAL_VIEWS.CALENDAR
     },
 
     closeOverlay() {
@@ -264,15 +267,6 @@ export default {
       if (!this.$el.contains(e.target)) {
         this.closeOverlay()
       }
-    },
-
-    /**
-     * get the day of the week
-     * @param {dayjs} dayJsInstance
-     */
-    $_getDayInWeek(dayJsInstance) {
-      const _day = dayJsInstance.day()
-      return _day === 0 ? 7 : _day
     },
   },
 }

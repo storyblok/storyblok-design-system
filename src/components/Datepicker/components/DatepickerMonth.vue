@@ -8,7 +8,17 @@
       <SbIcon name="chevron-left" size="small" :color="iconColor" />
     </button>
 
-    <span class="sb-datepicker-month__label">{{ label }}</span>
+    <p v-if="disabled" class="sb-datepicker-month__label">
+      {{ label }}
+    </p>
+
+    <p v-else class="sb-datepicker-month__label">
+      <span @click="handleCurrentMonthClick"> {{ currentMonth }}, </span>
+
+      <span @click="handleCurrentYearClick">
+        {{ currentYear }}
+      </span>
+    </p>
 
     <button
       class="sb-datepicker-month__button"
@@ -50,6 +60,14 @@ export default {
 
       return dayjs(this.value).format('MMM, YYYY')
     },
+
+    currentMonth() {
+      return dayjs(this.value).format('MMM')
+    },
+
+    currentYear() {
+      return dayjs(this.value).format('YYYY')
+    },
   },
 
   methods: {
@@ -59,6 +77,16 @@ export default {
 
     handleNextClick() {
       this.$emit('next-month')
+    },
+
+    handleCurrentMonthClick($event) {
+      $event.stopPropagation()
+      this.$emit('change-month')
+    },
+
+    handleCurrentYearClick($event) {
+      $event.stopPropagation()
+      this.$emit('change-year')
     },
   },
 }
