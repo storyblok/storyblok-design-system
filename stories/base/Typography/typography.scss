@@ -1,0 +1,24 @@
+.sb-typography {
+  &__label {
+    color: $light-gray;
+    display: inline-block;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    color: $sb-dark-blue;
+    font-size: 5rem;
+    font-weight: $font-weight-medium;
+    margin-bottom: 5rem;
+  }
+
+  &__subtitle {
+    color: $sb-dark-blue;
+    font-size: 3rem;
+    font-weight: $font-weight-medium;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+}

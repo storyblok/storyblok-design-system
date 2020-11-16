@@ -1,0 +1,75 @@
+@mixin setIconSize ($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin setIconColor ($color) {
+  color: $color;
+  fill: $color;
+}
+
+.sb-icon {
+  @include setIconSize($icon-default-size);
+  display: inline-block;
+  vertical-align: middle;
+  stroke-width: 2px;
+  @include setIconColor(currentColor);
+
+  &--x-small {
+    @include setIconSize($icon-extra-small-size);
+  }
+
+  &--small {
+    @include setIconSize($icon-small-size);
+  }
+
+  &--large {
+    @include setIconSize($icon-large-size);
+  }
+
+  &--x-large {
+    @include setIconSize($icon-extra-large-size);
+  }
+
+  &--color {
+    &-primary {
+      @include setIconColor($color-primary);
+    }
+    &-primary-dark {
+      @include setIconColor($color-primary-dark);
+    }
+    &-secondary {
+      @include setIconColor($color-secondary);
+    }
+    &-positive {
+      @include setIconColor($color-positive);
+    }
+    &-negative {
+      @include setIconColor($color-negative);
+    }
+    &-warning {
+      @include setIconColor($color-warning);
+    }
+    &-white {
+      @include setIconColor($color-white);
+    }
+    &-green {
+      @include setIconColor($green);
+    }
+    &-yellow {
+      @include setIconColor($yellow);
+    }
+    &-blue {
+      @include setIconColor($blue);
+    }
+    &-orange {
+      @include setIconColor($orange);
+    }
+    &-light {
+      @include setIconColor($light);
+    }
+    &-light-gray {
+      @include setIconColor($light-gray);
+    }
+  }
+}

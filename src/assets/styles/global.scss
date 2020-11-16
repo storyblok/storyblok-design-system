@@ -1,4 +1,68 @@
-body {
-  padding: 0;
-  margin: 0;
+@import "./resets";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+html {
+  font-size: 62.5%;
 }
+
+body {
+  box-sizing: border-box;
+  font-family: $primary-font-family;
+  line-height: $line-height-default;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+@each $name, $pair in $colors {
+  .bg-#{$name} {
+    background-color: $pair !important;
+  }
+
+  .text-#{$name} {
+    color: $pair !important;
+  }
+}
+
+/*
+  Typography
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $font-weight-bold;
+  letter-spacing: 0;
+  margin: 0;
+  padding: 0;
+}
+
+h1 { font-size: 6rem; }
+h2 { font-size: 3.75rem; }
+h3 { font-size: 3rem; }
+h4 { font-size: 2.125rem; }
+h5 { font-size: 1.5rem; }
+h6 { font-size: 1.25rem; }
+
+@each $name, $pair in $font-weight {
+  .font-weight-#{$name} {
+    font-weight: $pair !important;
+  }
+}
+
+@each $name, $pair in $font-size {
+  .font-size-#{$name} {
+    font-size: $pair !important;
+  }
+}
+
+@import "../../components/_all.scss";

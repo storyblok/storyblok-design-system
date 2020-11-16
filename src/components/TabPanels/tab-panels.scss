@@ -1,0 +1,7 @@
+.sb-tab-panel {
+  display: block;
+
+  &[aria-hidden="true"] {
+    display: none;
+  }
+}

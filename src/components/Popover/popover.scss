@@ -1,0 +1,5 @@
+.menu {
+  @include popoverComponent();
+  width: 100%;
+  max-width: 184px;
+}

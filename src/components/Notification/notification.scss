@@ -1,0 +1,134 @@
+.sb-notification {
+  width: 430px;
+  height: 59px;
+  border-radius: 10px;
+
+  // Notification modifiers
+  &--full-content {
+    width: 100%;
+    height: 90px;
+
+    .sb-notification--link {
+      float: right;
+      margin-right: 2rem;
+      margin-top: 3.7rem;
+      z-index: 1;
+    }
+  }
+
+  &--full {
+    width: 100%;
+  }
+
+  &--expandable {
+    height: 136px;
+  }
+
+  &--expandle-button {
+    margin-top: 2.2rem;
+    margin-right: 2rem;
+    padding: 0;
+    float: right;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  &--btn {
+    margin-top: 2.2rem;
+    margin-right: 2rem;
+    padding: 0;
+    float: right;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    svg {
+      vertical-align: top;
+    }
+  }
+
+  // Status of notication
+  &--icon-container {
+    height: 16px;
+    display: inline-block;
+    background-color:  transparent;
+    margin-left: 1.8rem;
+    margin-right: 1.8rem;
+    margin-top: 2.1rem;
+
+    svg {
+      vertical-align: top;
+    }
+  }
+
+  &--positive {
+    background-color: $green-25;
+  }
+
+  &--warning {
+    background-color: $yellow-25;
+  }
+
+  &--info {
+    background-color: $blue-25;
+  }
+
+  &--negative {
+    background-color: $red-25;
+
+    .sb-notification--title {
+      color: $red;
+    }
+  }
+
+  &--general {
+    background-color: $white;
+    @include generalBoxShadow();
+    border-radius: 10px;
+  }
+
+  // Content style for notification
+  &--content {
+    height: 118px;
+  }
+
+  &--title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+    vertical-align: middle;
+    width: 75%;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &--description {
+    margin-left: 5.2rem;
+    margin-right: 3.4rem;
+    margin-top: 1.3rem;
+    font-size: $font-size-md;
+    font-weight: $font-weight-regular;
+    line-height: 1.5em;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+  }
+
+  &--link {
+    margin-left: 5.2rem;
+    margin-top: 1.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 3.4rem;
+    
+    a {
+      font-size: $font-size-md;
+      font-weight: $font-weight-regular;
+      text-decoration: none;
+      text-decoration-color: $primary-text-color;
+      color: $primary-text-color;
+      text-decoration: underline;
+    }
+  }
+}

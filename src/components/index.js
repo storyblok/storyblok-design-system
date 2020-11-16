@@ -1,5 +1,9 @@
-import SBButton from './Button.vue'
+import SbIcon from './Icon'
+import SbButton from './Button'
+import { SbBreadcrumbs } from './Breadcrumbs'
 
 export default {
-  SBButton
+  SbButton,
+  SbBreadcrumbs,
+  SbIcon,
 }

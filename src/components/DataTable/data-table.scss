@@ -1,0 +1,249 @@
+.sb-data-table {
+  &__loading {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &__container {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+
+  &--loading {
+    position: relative;
+
+    .sb-loading {
+      position: absolute;
+      @include middleXY();
+    }
+
+    .sb-data-table__body-cell {
+      text-indent: -999em;
+      position: relative;
+
+      &:before {
+        content: '';
+        width: 64px;
+        height: 10px;
+        background-color: $light-50;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .sb-data-table__col-selection:before,
+    .sb-input-checkbox {
+      opacity: 0;
+    }
+  }
+
+  &__row {
+    border-bottom: 1px solid $light-50;
+
+    &:first-child {
+      border-top: 1px solid $light-50;
+    }
+
+    &:nth-child(even) {
+      .sb-data-table--striped & {
+        background-color: $light-25;
+      }
+    }
+
+    &:hover {
+      background-color: $light-50 !important;
+      border-bottom: 1px solid $white;
+    }
+
+    &--selected {
+      background-color: $light-50;
+      border-bottom: 1px solid $white;
+
+      &:hover {
+        background-color: $light-75 !important;
+      }
+    }
+  }
+
+  &__head-cell, &__body-cell {
+    color: $light-gray;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: left;
+    padding: 18px 10px;
+
+    &.sb-data-table__col-main {
+      font-weight: 500;
+      color: $sb-dark-blue;
+    }
+  }
+
+  &__head-cell {
+    &:hover {
+      .sb-data-table__sort-icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__sort-icon {
+    margin-left: 10px;
+    opacity: 0;
+
+    .sb-data-table--show-icon & {
+      opacity: 1;
+    }
+  }
+}
+
+$checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
+
+.sb-input-checkbox {
+  vertical-align: middle;
+  outline: 0;
+
+  &__bg {
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    background-color: $color-white;
+    border: 1px solid $light;
+    border-radius: 3px;
+    transition: background, border $checkbox-transition;
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+    &:hover {
+      border-color: $color-primary;
+    }
+  }
+
+  &__native {
+    @include screenReaderOnly();
+
+    &:focus + .sb-input-checkbox__bg {
+      border-color: $color-primary;
+
+      .sb-input-checkbox__inner--truthy & {
+        border-color: darken($color-primary, 7%);
+      }
+    }
+  }
+
+  &__svg {
+    color: $color-white;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  &__truthy {
+    stroke: $color-white;
+    stroke-width: 3.12px;
+    stroke-dashoffset: 29.78334;
+    stroke-dasharray: 29.78334;
+  }
+
+  &__indet {
+    fill: $color-white;
+    transform-origin: 50% 50%;
+    transform: rotate(-280deg) scale(0);
+  }
+
+  &__inner {
+    position: relative;
+    font-size: 28px;
+    width: 1em;
+    min-width: 1em;
+    height: 1em;
+    outline: 0;
+    border-radius: 50%;
+    color: rgba(0,0,0,.5);
+    user-select: none;
+
+    &--truthy, &--indet {
+      color: $color-primary;
+
+      .sb-input-checkbox__bg {
+        background: currentColor;
+        border-color: currentColor;
+      }
+    }
+
+    &--truthy {
+      path {
+        stroke-dashoffset: 0;
+        transition: stroke-dashoffset .2s cubic-bezier(.4,0,.6,1) 0ms;
+      }
+    }
+
+    &--indet {
+      .sb-input-checkbox__indet {
+        transform: rotate(0) scale(1);
+        transition: transform $checkbox-transition;
+      }
+    }
+  }
+
+  &.disabled {
+    opacity: .75 !important;
+  }
+}
+
+.sb-actions-menu {
+  align-items: center;
+  background-color: $sb-dark-blue;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: $white;
+  display: flex;
+  justify-content: flex-end;
+  min-height: 50px;
+  padding: 10px 20px;
+  width: 100%;
+
+  &__rows-selected {
+    margin-right: auto;
+  }
+
+  &__btn {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 8px 20px;
+    margin: 0 5px;
+    line-height: 1;
+    outline: none;
+  }
+
+  &__rows-selected,
+  &__btn {
+    color: $white;
+    font-size: 14px;
+    font-family: $primary-font-family;
+  }
+
+  &__btn-delete {
+    margin-right: 0;
+  }
+  
+  &__btn-cancel {
+    border-left: 1px solid rgba(255, 255, 255, 10%);
+    margin-right: -20px;
+    margin-left: 0;
+  }
+}

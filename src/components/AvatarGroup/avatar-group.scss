@@ -1,0 +1,104 @@
+@mixin avatarGroupItem {
+  border-radius: 50%;
+  border: 3px solid $white;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.sb-avatar-group {
+  display: inline-block;
+  position: relative;
+
+  > .sb-avatar {
+    margin-left: -1.5rem;
+    z-index: 2;
+    cursor: pointer;
+    
+    .sb-avatar__image,
+    .sb-avatar__initials {
+      @include avatarGroupItem;
+      overflow: hidden;
+      transform: translate(0, 0);
+      transition: 0.1s ease-in-out;
+    }
+  }
+
+  &__more {
+    z-index: 1;
+    @include avatarGroupItem;
+    margin-left: -1.5rem;
+    cursor: pointer;
+    @include avatarComponent();
+    @include avatarComponentSize($sb-avatar-normal);
+    background-color: $light-75;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    color: $color-primary-dark;
+  }
+
+  > .sb-avatar:first-child {
+    margin-left: 0;
+  }
+
+  > .sb-avatar:hover {
+    .sb-avatar__image,
+    .sb-avatar__initials {
+      transform: translate(0, -10px);
+      z-index: 99999;
+    }
+  }
+
+  &:hover > .sb-avatar:not(:hover) {
+    opacity: 0.5;
+  }
+
+  // sizes
+  &--large &__more {
+    @include avatarComponentSize($sb-avatar-large); 
+  }
+
+  &--large &__more,
+  &--large > .sb-avatar {
+    margin-left: -2rem;
+  }
+
+  &--small &__more {
+    @include avatarComponentSize($sb-avatar-small); 
+  }
+
+  &--small &__more,
+  &--small > .sb-avatar {
+    margin-left: -1rem;
+  }
+
+  &__avatars {
+    position: absolute;
+    background-color: $white;
+    top: 120%;
+    right: 0;
+    display: inline-block;
+    padding: 1.5rem;
+    display: none;
+    width: 100%;
+    max-width: 184px;
+    max-height: 188px;
+    overflow: scroll;
+    border: 1px solid $light;
+    border-radius: 4px;
+    box-shadow: 0px 2px 17px 3px rgba(34, 42, 69, 0.07);
+    z-index: 99999;
+
+    .sb-avatar {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .sb-avatar:last-child {
+      margin-bottom: 0;
+    }
+
+    &[aria-hidden=false] {
+      display: block;
+    }
+  }
+}

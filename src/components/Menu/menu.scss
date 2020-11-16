@@ -1,0 +1,54 @@
+.sb-menu-list {
+  @include popoverComponent();
+  min-width: 25rem;
+  padding: 1rem 0;
+  background-color: $white;
+  z-index: 2;
+}
+
+.sb-menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  appearance: none;
+  border: 0;
+  background-color: $white;
+  padding: 1rem;
+  margin: 0;
+  text-align: left;
+  cursor: pointer;
+  font-size: $font-size-md;
+
+  &:hover,
+  &:focus {
+    background-color: $light-50;
+  }
+
+  .sb-icon {
+    margin-right: 1rem;
+  }
+
+  &--negative {
+    color: $red;
+  }
+}
+
+.sb-menu-separator {
+  background-color: $light;
+  margin: 1rem 1rem;
+  height: 1px;
+  border: none;
+}
+
+.sb-menu-group {
+  &__title {
+    padding: 1rem;
+    color: $sb-dark-blue-50;
+    font-size: $font-size-sm;
+    margin: 0;
+  }
+}
+
+.sb-menu-button-borderless {
+  border: none;
+}

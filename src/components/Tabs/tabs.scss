@@ -1,0 +1,130 @@
+.sb-tabs {
+  width: 100%;
+  position: relative;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $light-gray;
+  }
+
+  // elements
+  &__add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background-color: transparent;
+    color: $light-gray;
+    border: none;
+    vertical-align: bottom;
+    cursor: pointer;
+  }
+
+  &--container {
+    .sb-tab--is-active {
+      border: 1px solid $light-gray;
+      border-bottom: none;
+      border-radius: 5px 5px 0px 0px;
+
+      &::after {
+        background-color: $white;
+      }
+    }
+  }
+
+  // modifiers
+  &--vertical {
+    flex-direction: column;
+
+    &::after {
+      display: none;
+    }
+
+    .sb-tab--is-active {
+      &::after {
+        width: 3px;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+}
+
+.sb-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1.4rem 2.3rem;
+  text-align: center;
+  color: $sb-dark-blue-50;
+  font-family: $primary-font-family;
+  font-size: $text-medium-small;
+  font-weight: $font-weight-regular;
+  cursor: pointer;
+
+  // modifiers
+  &--is-active {
+    color: $primary-text-color;
+    font-weight: $font-weight-medium;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: $sb-green;
+      z-index: 3;
+    }
+  }
+
+  &--editable {
+    &:hover,
+    &:focus {
+      .sb-tab-edit-button {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.sb-tab-add {
+  position: relative;
+  text-align: center;
+  padding: 1.3rem 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.sb-tab-edit-button {
+  position: absolute;
+  top: auto;
+  right: 5px;
+  transform: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: currentColor;
+  fill: currentColor;
+  opacity: 0;
+
+  svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}

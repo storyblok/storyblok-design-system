@@ -1,0 +1,88 @@
+.sb-breadcrumbs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &__item {
+    // position: relative;
+    display: inline-flex;
+    font-size: $font-size-sm;
+    color: $primary-text-color;
+  
+    &--active {
+      color: $color-primary-dark;
+    }
+
+    a {
+      text-decoration: none;
+      color: $primary-text-color;
+      cursor: pointer;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__separator {
+    display: inline-flex;
+    list-style: none;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+
+    &--active {
+      transform: rotate(90deg);
+      background-color: $light-50;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 1rem);
+    margin: 0;
+    left: 0;
+    display: block;
+    padding: 0.9rem 0;
+    @include generalBoxShadow();
+
+    .sb-breadcrumbs__item {
+      display: block;
+      font-size: $font-size-md;
+      text-decoration: none;
+    }
+
+    .sb-breadcrumbs__item a {
+      display: block;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $light-50;
+      }
+    }
+
+    .sb-breadcrumbs__item:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  & > &__item,
+  & > &__separator {
+    margin-right: 0.5rem;
+  }
+
+  & > &__item:last-child {
+    margin-right: 0;
+  }
+
+  &--large-section {
+    > .sb-breadcrumbs__item:last-child {
+      width: 100%;
+      margin-top: 1.5rem;
+      font-weight: $font-weight-bold;
+      font-size: $text-header;
+      color: $primary-text-color;
+    }
+  }
+}

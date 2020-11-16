@@ -1,1 +1,141 @@
-$sb-green: #00B3B0;
+// Color pallete
+
+// teal
+$sb-green:                                     #00B3B0;
+$sb-green-75:                                  #40C6C4;
+$sb-green-50:                                  #7FD9D7;
+$sb-green-25:                                  #D9F4F3;
+
+// Ink
+$sb-dark-blue:                                 #1B243F;
+$sb-dark-blue-75:                              #545B6F;
+$sb-dark-blue-50:                              #8D919F;
+$sb-dark-blue-25:                              #C6C8CF;
+
+// green
+$green:                                        #2DB47D;
+$green-75:                                     #62C79E;
+$green-50:                                     #96D9BE;
+$green-25:                                     #CAECDE;
+$green-disabled:                               #004e4c;
+// yellow
+$yellow:                                       #FBCE41;
+$yellow-75:                                    #FCDB71;
+$yellow-50:                                    #FDE6A0;
+$yellow-25:                                    #FEF3CF;
+
+// blue
+$blue:                                         #395ECE;
+$blue-75:                                      #6B87DB;
+$blue-50:                                      #9CAEE6;
+$blue-25:                                      #CDD7F3;
+
+// orange
+$orange:                                       #FFAC00;
+$orange-75:                                    #FFC140;
+$orange-50:                                    #FFD57F;
+$orange-25:                                    #FFEABF;
+
+// red
+$red:                                          #FF6159;
+$red-75:                                       #FF8983;
+$red-50:                                       #FFB0AC;
+$red-25:                                       #FFD7D5;
+
+// light
+$light:                                        #DFE3E8;
+$light-75:                                     #E7EAEE;
+$light-50:                                     #EFF1F3;
+$light-25:                                     #F7F8F9;
+$light-gray:                                   #B1B5BE;
+
+$black:                                        #101525;
+$white:                                        #FFF;
+$black-trasparent:                             rgba(0,0,0,.1);
+// ----
+
+// Typography
+$primary-font-family:                            'Roboto';
+$primary-text-color:                             $sb-dark-blue;
+$font-size-default:                              1.6rem;
+$line-height-default:                            1;
+
+$text-header:                                    2.5rem;
+$text-medium-header:                             2.1rem;
+$text-subheader:                                 1.8rem;
+$text-medium:                                    1.6rem;
+$text-medium-small:                              1.4rem;
+$text-small:                                     1.3rem;
+
+$font-size-xs:                                   1.2rem;
+$font-size-sm:                                   1.3rem;
+$font-size-md:                                   1.4rem;
+$font-size-lg:                                   1.6rem;
+
+// Font weight
+$font-weight-thin:                               100;
+$font-weight-light:                              300;
+$font-weight-regular:                            400;
+$font-weight-medium:                             500;
+$font-weight-bold:                               700;
+
+// ----
+
+// Icon Sizes
+$icon-extra-small-size: 1.2rem;
+$icon-small-size: 1.6rem;
+$icon-default-size: 2.4rem;
+$icon-large-size: 3.2rem;
+$icon-extra-large-size: 4.8rem;
+
+// Global Variables
+
+// Colors
+$color-primary:                                  $sb-green;
+$color-primary-dark:                             $sb-dark-blue;
+$color-secondary:                                $green;
+$color-positive:                                 $green;
+$color-negative:                                 $red;
+$color-warning:                                  $orange;
+$color-white:                                    $white;
+
+$colors: (
+  'primary':                                     $color-primary,
+  'primary-dark':                                $color-primary-dark,
+  'secondary':                                   $color-secondary,
+  'positive':                                    $color-positive,
+  'negative':                                    $color-negative,
+  'warning':                                     $color-warning,
+  'white':                                       $color-white,
+  'teal':                                        $sb-green,
+  'ink':                                         $sb-dark-blue,
+  'green':                                       $green,
+  'yellow':                                      $yellow,
+  'blue':                                        $blue,
+  'orange':                                      $orange,
+  'red':                                         $red,
+  'light':                                       $light,
+  'light-gray':                                  $light-gray
+);
+
+// Font size
+$font-size: (
+  'xs':                                          $font-size-xs,
+  'sm':                                          $font-size-sm,
+  'md':                                          $font-size-md,
+  'lg':                                          $font-size-lg,
+);
+
+// Font weight
+$font-weight: (
+  'thin':                                        $font-weight-thin,
+  'light':                                       $font-weight-light,
+  'regular':                                     $font-weight-regular,
+  'medium':                                      $font-weight-medium,
+  'bold':                                        $font-weight-bold,
+);
+
+// Avatar variables
+$sb-avatar-small:                                26px;
+$sb-avatar-normal:                               32px;
+$sb-avatar-large:                                46px;

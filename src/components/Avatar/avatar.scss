@@ -1,0 +1,80 @@
+.sb-avatar {
+  position: relative;
+  display: inline-block;
+
+  // types of avatar
+  &__image,
+  &__initials {
+    @include avatarComponent();
+    
+    width: $sb-avatar-normal;
+    height: $sb-avatar-normal;
+  }
+
+  // image
+  img {
+    width: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+    border-radius: 100%;
+
+    width: $sb-avatar-normal;
+    height: $sb-avatar-normal;
+  }
+
+  // initials
+  &__initials {
+    color: $white;
+    font-size: $font-size-xs;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: $font-weight-medium;
+  }
+
+  // text (on the left)
+  &__text-container {
+    display: inline-block;
+    margin-left: 1rem;
+    vertical-align: middle;
+  }
+
+  &__text {
+    display: block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $primary-text-color;
+  }
+
+  &__description {
+    display: block;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    color: $light-gray;
+  }
+
+  // sizes
+  &--small {
+    .sb-avatar__image,
+    .sb-avatar__initials,
+    img {
+      width: $sb-avatar-small;
+      height: $sb-avatar-small;
+    }
+  }
+
+  &--large {
+    .sb-avatar__image,
+    .sb-avatar__initials,
+    img {
+      width: $sb-avatar-large;
+      height: $sb-avatar-large;
+    }
+  }
+
+  .sb-badge {
+    position: absolute;
+    top: 0;
+    right: -2px;
+    border: 1px solid $white;
+  }
+}

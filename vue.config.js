@@ -1,8 +1,4 @@
-const path = require('path')
-
-const globalStyles = [
-  path.resolve(__dirname, './src/assets/styles/variables.scss')
-]
+const { globalStyles } = require('./config/globals')
 
 function addStyleResource (rule) {
   rule.use('style-resource')

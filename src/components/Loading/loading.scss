@@ -1,0 +1,103 @@
+.sb-loading {
+  
+  &--progress-bar {
+    width: 100%;
+  }
+
+  &--bar {
+    border: 0px;
+    height: 5px;
+    width: 100%;
+  }
+
+  &--bar::-webkit-progress-value {  
+    background: $sb-green;
+  }
+
+  &--bar[value]::-webkit-progress-bar {
+    background: $light;
+  }
+
+  &--bar::-moz-progress-bar {
+    background: $sb-green;
+  }
+
+  &--bar::-ms-fill {
+    background-color: $sb-green;
+  }
+
+  &--bar-label {
+    margin: auto;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: block;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+  }
+
+  &--spinner-label {
+    margin: auto;
+    top: -60%;
+    display: block;
+    text-align: center;
+    position: relative;
+    width: 3rem;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+  }
+
+  &--spinner-small {
+    width: 2.6rem;
+    height: 2.6rem;
+
+    .sb-loading--spinner-label {
+      top: -64%;
+      width: 2.5rem;
+      font-size: 0.7rem;
+    }
+
+    svg {
+      width: 2.6rem;
+      height: 2.6rem;
+    }
+  }
+
+  &--spinner-normal {
+    width: 3.2rem;
+    height: 3.2rem;
+
+    .sb-loading--spinner-label {
+      top: -70%;
+      font-size: 1rem;
+    }
+
+    svg {
+      width: 3.2rem;
+      height: 3.2rem;
+    }
+  }
+
+  &--spinner-large {
+    width: 4.6rem;
+    height: 4.6rem;
+
+    .sb-loading--spinner-label {
+      top:-67%;
+    }
+
+    svg {
+      width: 4.6rem;
+      height: 4.6rem;
+    }
+  }
+
+  &--spinner-x-large {
+    width: 7.6rem;
+    height: 7.6rem;
+
+    svg {
+      width: 7.6rem;
+      height: 7.6rem;
+    }
+  }
+}
