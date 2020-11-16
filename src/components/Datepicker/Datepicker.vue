@@ -4,6 +4,7 @@
       <input
         ref="input"
         type="text"
+        :disabled="disabled"
         :placeholder="placeholder"
         :value="internalValueFormated"
         @click="handleInputClick"
@@ -92,21 +93,23 @@ export default {
   },
 
   props: {
+    disabled: Boolean,
+
     placeholder: {
       type: String,
       default: null,
-    },
-
-    value: {
-      type: String,
-      default: null,
-      required: true,
     },
 
     type: {
       type: String,
       default: 'datetime',
       validations: (val) => includes(datepickerOptions, val),
+    },
+
+    value: {
+      type: String,
+      default: null,
+      required: true,
     },
   },
 
