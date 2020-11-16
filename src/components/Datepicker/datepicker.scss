@@ -112,7 +112,8 @@
   color: $color-primary-dark;
   box-sizing: border-box;
   cursor: pointer;
-  // border: 1px solid $light;
+  border-top: 1px solid $light;
+  border-right: 1px solid $light;
 
   &:hover {
     background-color: $sb-dark-blue-25;
@@ -129,6 +130,10 @@
       background-color: $sb-green-25;
     }
   }
+}
+
+.sb-datepicker-day:nth-child(n+36) {
+  border-bottom: 1px solid $light;
 }
 
 .sb-datepicker-time {
