@@ -21,22 +21,19 @@
       placement="bottom-start"
       class="sb-datepicker-overlay"
     >
-      <div class="sb-datepicker-header">
-        <SbDatepickerMonth
-          :disabled="!isCalendarView"
-          :value="internalDate"
-          @previous-month="handlePreviousMonth"
-          @next-month="handleNextMonth"
-          @change-month="handleChangeMonth"
-          @change-year="handleChangeYear"
-        />
-
-        <SbDatepickerWeek v-if="isCalendarView" />
-
-        <span v-else class="sb-datepicker-time__label">
-          {{ label }}
-        </span>
-      </div>
+      <SbDatepickerHeader
+        v-bind="{
+          isCalendarView,
+          isYearView,
+          isMonthView,
+          isTimeView,
+          value: internalDate,
+        }"
+        @previous-month="handlePreviousMonth"
+        @next-month="handleNextMonth"
+        @change-month="handleChangeMonth"
+        @change-year="handleChangeYear"
+      />
 
       <component
         :is="isComponentView"
@@ -72,10 +69,9 @@ import { includes } from '../../utils'
 
 import { SbPopover } from '../Popover'
 
-import SbDatepickerMonth from './components/DatepickerMonth'
+import SbDatepickerHeader from './components/DatepickerHeader'
 import SbDatepickerTime from './components/DatepickerTime'
 import SbDatepickerDays from './components/DatepickerDays'
-import SbDatepickerWeek from './components/DatepickerWeek'
 import SbDatepickerMonths from './components/DatepickerMonths'
 import SbDatepickerYears from './components/DatepickerYears'
 
@@ -86,8 +82,7 @@ export default {
 
   components: {
     SbPopover,
-    SbDatepickerMonth,
-    SbDatepickerWeek,
+    SbDatepickerHeader,
     SbDatepickerDays,
     SbDatepickerTime,
     SbDatepickerMonths,
@@ -178,18 +173,6 @@ export default {
 
     isYearView() {
       return this.internalVisualization === INTERNAL_VIEWS.YEAR
-    },
-
-    label() {
-      if (this.internalVisualization === INTERNAL_VIEWS.TIME) {
-        return 'Choose exact time'
-      }
-
-      if (this.internalVisualization === INTERNAL_VIEWS.YEAR) {
-        return 'Choose year'
-      }
-
-      return 'Choose month'
     },
 
     isComponentView() {

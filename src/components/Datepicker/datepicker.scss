@@ -44,36 +44,13 @@
 .sb-datepicker-header {
   background-color: $light;
   z-index: 2;
-}
 
-.sb-datepicker-actions {
-  display: flex;
-  justify-content: space-between;
-
-  &__button {
-    appearance: none;
-    border: none;
-    background-color: $white;
-    padding: 1.5rem 2rem;
-    font-size: $font-size-md;
-    font-weight: $font-weight-medium;
-    color: $color-primary-dark;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &--primary {
-      color: $color-primary;
-    }
+  &__top {
+    display: flex;
+    align-items: center;
   }
-}
 
-.sb-datepicker-month {
-  display: flex;
-  align-items: center;
-
-  &__label {
+  &__title {
     flex: 1;
     margin: 0;
     padding: 1.5rem 0;
@@ -95,6 +72,38 @@
 
     &:disabled {
       cursor: not-allowed;
+    }
+  }
+
+  &__subtitle {
+    display: block;
+    margin: 0;
+    padding-bottom: 1rem;
+    text-align: center;
+    font-size: $font-size-md;
+    color: $sb-dark-blue-50;
+  }
+}
+
+.sb-datepicker-actions {
+  display: flex;
+  justify-content: space-between;
+
+  &__button {
+    appearance: none;
+    border: none;
+    background-color: $white;
+    padding: 1.5rem 2rem;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    color: $color-primary-dark;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--primary {
+      color: $color-primary;
     }
   }
 }
@@ -141,15 +150,6 @@
 
   &__numbers-container {
     display: flex;
-  }
-
-  &__label {
-    display: block;
-    margin: 0;
-    padding-bottom: 1rem;
-    text-align: center;
-    font-size: $font-size-md;
-    color: $sb-dark-blue-50;
   }
 
   &__number-column {
