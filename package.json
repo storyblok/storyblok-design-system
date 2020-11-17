@@ -7,7 +7,7 @@
     "build": "vue-cli-service build --target lib ./src/main.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint src/ tests/ .storybook/",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -s ./public",
     "storybook": "start-storybook -p 6006 -s ./public --ci"
   },
   "dependencies": {
