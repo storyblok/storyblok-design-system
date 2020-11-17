@@ -1,0 +1,44 @@
+.sb-form-group {
+  &--inline {
+    display: flex;
+  }
+
+  &:not(&--inline) &__info {
+    border-bottom: 1px solid $light;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  &--inline &__info {
+    padding-right: 2rem;
+  }
+
+  &__slot {
+    flex: 1;
+  }
+
+  &__legend {
+    color: $sb-dark-blue;
+    font-size: $font-size-default;
+    font-weight: $font-weight-medium;
+  }
+  
+  &__description {
+    color: $sb-dark-blue-50;
+    font-size: $font-size-md;
+    margin: .5rem 0 0 0;
+    line-height: 1.3;
+  }
+
+  @media only screen and (max-width: 413px) {
+    &--inline {
+      display: block;
+    }
+
+    &__info {
+      border-bottom: 1px solid $light;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+  }
+}
