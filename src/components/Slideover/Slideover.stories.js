@@ -29,7 +29,7 @@ const SlideoverTemplate = (args) => ({
         
         <SbModalHeader title="Hi man" align="left" />
 
-        <SbModalContent>
+        <SbModalContent style="flex: 1;">
           <p>Storyblok helps your team to tell your story and manage 
           content for every use-case: corporate websites, e-commerce, 
           helpdesks, mobile apps, and screen displays.</p>
@@ -79,7 +79,7 @@ export const SlideoverWithoutFooter = (args) => ({
 
         <SbModalHeader title="Hi man" align="left" />
 
-        <SbModalContent>
+        <SbModalContent style="flex: 1;">
           <p>Storyblok helps your team to tell your story and manage 
           content for every use-case: corporate websites, e-commerce, 
           helpdesks, mobile apps, and screen displays.</p>
