@@ -50,7 +50,8 @@
         }
         &:focus{
           border-radius: 0.5rem;
-          box-shadow: 0rem 0rem 0rem 0.3rem #d9f4f3;
+          border: 0.1rem solid rgb(0, 179, 176);
+          box-shadow: 0rem 0rem 0rem 0.3rem $sb-green-25;
           outline: none;
         }
       }
