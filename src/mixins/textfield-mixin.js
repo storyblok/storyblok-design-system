@@ -4,6 +4,7 @@ export default {
     nativeValue: [String, Number],
 
     type: String,
+
     id: String,
     disabled: Boolean,
     required: Boolean,
@@ -19,8 +20,8 @@ export default {
     error: Boolean,
     clearable: Boolean,
     ghost: Boolean,
-    withIconBefore: Boolean,
-    withIconAfter: Boolean,
+    withIconLeft: Boolean,
+    withIconRight: Boolean,
     withTextLeft: Boolean,
     withTextRight: Boolean,
 
@@ -29,11 +30,16 @@ export default {
       name: String,
       size: String,
     },
+    sideText: {
+      side: String,
+      text: String,
+    },
   },
 
   data() {
     return {
       internalValue: this.value,
+      internalType: this.type,
     }
   },
 
@@ -42,7 +48,6 @@ export default {
       get() {
         return this.internalValue
       },
-
       set(newValue) {
         this.internalValue = newValue
         this.$emit('input', newValue)
