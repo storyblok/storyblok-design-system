@@ -20,7 +20,6 @@
       }
       &--left {
         padding-left: 1.7rem;
-        // left: 0;
       }
       &--right {
         padding-right: 1.7rem;
@@ -31,6 +30,9 @@
       padding: 1.5rem 1.7rem;
       border-radius: 0.5rem;
       width: 100%;
+      &[type=number]{
+        width: 8.6rem;
+      }
       &:disabled{
         background: rgb(247, 248, 249);
         border: 0.1rem solid rgb(223, 227, 232);
@@ -44,39 +46,60 @@
       &--default{
         border: solid 0.1rem #eff1f5;
         &:focus, &:hover{
-          background: rgb(255, 255, 255);
           border-radius: 0.5rem;
           border: 0.1rem solid rgb(0, 179, 176);
+          box-shadow: 0rem 0rem 0rem 0.3rem #d9f4f3;
+          outline: none;
         }
-        &:focus{
-          outline: 0.3rem solid rgb(217, 244, 243);
+      }
+      &--with-icon{
+        &-left{
+          padding-left: 4.3rem;
+        }
+      }
+      &--ghost{
+        border: none;
+        border-bottom: 0.1rem solid rgb(223, 227, 232);
+        border-radius: 0rem;
+        &:focus {
+          outline: none;
+        }
+      }
+      &--with-text{
+        &-left{
+          border-left: none;
+          border-top-left-radius: 0rem!important;
+          border-bottom-left-radius: 0rem!important;
+        }
+        &-right{
+          border-right: none;
+          border-top-right-radius: 0rem!important;
+          border-bottom-right-radius: 0rem!important;
+        }
+        &-model{
+          &-left, &-right {
+            font-size: 1.4rem;
+            color: rgb(27, 36, 63);
+            font-weight: normal;
+            letter-spacing: 0px;
+            padding: 1.5rem 1.7rem;
+            border: 0.1rem solid #eff1f5;
+            border-radius: 0.5rem;
+          }
+          &-left{
+            border-top-right-radius: 0rem;
+            border-bottom-right-radius: 0rem;
+          }
+          &-right{
+            border-top-left-radius: 0rem;
+            border-bottom-left-radius: 0rem;
+          }
         }
       }
       &--error{
         border: 0.1rem solid rgb(255, 97, 89);
-        &:focus{
-          outline: 0.3rem solid rgb(255, 179, 176, 0.3);
-        }
-      }
-      &--with-icon{
-        &-before{
-          padding-left: 4.3rem;
-        }
-        &-after{
-        }
-      }
-      &--clearable{
-        border-radius: 0.5rem;
-        border: solid 0.1rem #eff1f5;
-        background-color: $white;
-        width: fit-content;
-        padding: 1.5rem 2rem;
-      }
-      &--ghost{
-        border-radius: 0rem;
-        border: none;
-        border-bottom: 0.1rem solid rgb(223, 227, 232);
-        &:focus{
+        &:focus, &:hover{
+          box-shadow: 0rem 0rem 0rem 0.3rem rgb(255, 179, 176, 0.3);
           outline: none;
         }
       }

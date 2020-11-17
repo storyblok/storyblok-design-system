@@ -4,38 +4,25 @@ export default {
   title: 'SbTextField',
   component: SbTextField,
   args: {
-    label: 'Text input',
     id: 'example',
     name: 'example',
-    type: 'text',
-    value: 'Bobby Fischer',
-    nativeValue: 'Bobby Fischer',
+    label: 'Text input',
     disabled: false,
     required: false,
+    placeholder: 'Placeholder text',
+    value: 'Boris Spassky',
+    nativeValue: 'Boris Spassky',
+    errorMessage: 'Some error message',
 
     error: false,
     clearable: false,
     ghost: false,
-    withIconBefore: false,
-    withIconAfter: false,
+    withIconLeft: false,
+    withIconRight: false,
 
-    icon: {
+    sideText: {
       side: 'right',
-      name: 'search',
-      size: 'small',
-    },
-
-    errorMessage: null,
-    placeholder: 'Placeholder text',
-  },
-  argTypes: {
-    type: {
-      name: 'type',
-      description: '`SbTextField` type',
-      control: {
-        type: 'select',
-        options: ['number', 'password', 'text'],
-      },
+      text: 'search',
     },
   },
 }
@@ -44,70 +31,173 @@ export const Default = (args) => ({
   components: { SbTextField },
   props: Object.keys(args),
   data: () => ({
-    internalValue: 'Bobby Fischer',
+    internalValue: 'Boris Spassky',
+    internalType: 'password',
   }),
   template: `
-    <SbTextField
-      :id="id"
-      :name="name"
-      :label="label"
-      :disabled="disabled"
-      :required="required"
-      :placeholder="placeholder"
-      :type="type"
-      :error="error"
-      :clearable="clearable"
-      :ghost="ghost"
-      :withIconBefore="withIconBefore"
-      :withIconAfter="withIconAfter"
-      :native-value="nativeValue"
-      v-model="internalValue"
-    />
+    <div>
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        :label="label"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :native-value="nativeValue"
+        v-model="internalValue"
+      />
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="With error"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :icon="{ side: 'right', name: 'input-error', size: 'small' }"
+        native-value="Some text with error"
+        v-model="internalValue"
+        :errorMessage="errorMessage"
+        withIconRight
+        error
+      />
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="Clearable"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        clearable
+        withIconRight
+      />
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="Show / Hide password"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :icon="{ side: 'right', name: 'eye-off', size: 'small' }"
+        type="password"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        withIconRight
+      />
+      <SbTextField
+        :id="id"
+        :name="name"
+        label="Number input"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        type="number"
+        native-value="30011937"
+        v-model="internalValue"
+        withIconRight
+      />
+    </div>
   `,
 })
 
-export const Error = (args) => ({
+export const withIcon = (args) => ({
   components: { SbTextField },
   props: Object.keys(args),
   data: () => ({
-    internalValue: 'Bobby Fischer',
+    internalValue: 'Boris Spassky',
   }),
   template: `
-    <SbTextField
-      :id="id"
-      :name="name"
-      :label="label"
-      :disabled="disabled"
-      :required="required"
-      :placeholder="placeholder"
-      :type="type"
-      native-value="Some text with error"
-      v-model="internalValue"
-      errorMessage="Some error message"
-      error
-    />
-  `,
-})
-
-export const Clearable = (args) => ({
-  components: { SbTextField },
-  props: Object.keys(args),
-  data: () => ({
-    internalValue: 'Bobby Fischer',
-  }),
-  template: `
-    <SbTextField
-      :id="id"
-      :name="name"
-      :label="label"
-      :disabled="disabled"
-      :required="required"
-      :placeholder="placeholder"
-      :type="type"
-      native-value="Some clearable text"
-      v-model="internalValue"
-      clearable
-    />
+    <div>
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="With icon before"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :icon="{side: 'left', name: 'search', size: 'small' }"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        withIconLeft
+      />
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="With icon after"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :icon="{ side: 'right', name: 'search', size: 'small' }"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        withIconRight
+      />
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="Ghost with icon before"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :icon="{ side: 'left', name: 'search', size: 'small' }"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        withIconLeft
+        ghost
+      />
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="Ghost with icon after"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :icon="{ side: 'right', name: 'search', size: 'small' }"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        withIconRight
+        ghost
+      />
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="Default clearable with icon"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :icon="{ side: 'left', name: 'search', size: 'small' }"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        clearable
+        withIconLeft
+        withIconRight
+      />
+      <SbTextField
+        :id="id"
+        :name="name"
+        label="Ghost clearable with icon"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :icon="{ side: 'left', name: 'search', size: 'small' }"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        clearable
+        ghost
+        withIconLeft
+        withIconRight
+      />
+    </div>
   `,
 })
 
@@ -115,111 +205,103 @@ export const Ghost = (args) => ({
   components: { SbTextField },
   props: Object.keys(args),
   data: () => ({
-    internalValue: 'Bobby Fischer',
+    internalValue: 'Boris Spassky',
+    internalType: 'text',
   }),
   template: `
-    <SbTextField
-      :id="id"
-      :name="name"
-      :label="label"
-      :disabled="disabled"
-      :required="required"
-      :placeholder="placeholder"
-      :type="type"
-      :icon="icon"
-      native-value="Bobby Fischer"
-      v-model="internalValue"
-      ghost
-    />
+    <div>
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        :label="label"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        ghost
+      />
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="Clearable"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        clearable
+        ghost
+        withIconRight
+      />
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="Show / Hide password"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :icon="{ side: 'right', name: 'eye-off', size: 'small' }"
+        type="password"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        withIconRight
+        ghost
+      />
+      <SbTextField
+        :id="id"
+        :name="name"
+        label="Number input"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        type="number"
+        native-value="30011937"
+        v-model="internalValue"
+        withIconRight
+        ghost
+      />
+    </div>
   `,
 })
 
-export const withIconBefore = (args) => ({
+export const withText = (args) => ({
   components: { SbTextField },
   props: Object.keys(args),
   data: () => ({
-    internalValue: 'Bobby Fischer',
+    internalValue: 'Boris Spassky',
   }),
   template: `
-    <SbTextField
-      :id="id"
-      :name="name"
-      :label="label"
-      :disabled="disabled"
-      :required="required"
-      :placeholder="placeholder"
-      :type="type"
-      :icon="{ side: 'left', name: 'search', size: 'small' }"
-      native-value="Bobby Fischer"
-      v-model="internalValue"
-      withIconBefore
-    />
-  `,
-})
-
-export const withIconAfter = (args) => ({
-  components: { SbTextField },
-  props: Object.keys(args),
-  data: () => ({
-    internalValue: 'Bobby Fischer',
-  }),
-  template: `
-    <SbTextField
-      :id="id"
-      :name="name"
-      :label="label"
-      :disabled="disabled"
-      :required="required"
-      :placeholder="placeholder"
-      :type="type"
-      :icon="{ side: 'right', name: 'search', size: 'small' }"
-      native-value="Bobby Fischer"
-      v-model="internalValue"
-      withIconAfter
-    />
-  `,
-})
-
-export const withTextLeft = (args) => ({
-  components: { SbTextField },
-  props: Object.keys(args),
-  data: () => ({
-    internalValue: 'Bobby Fischer',
-  }),
-  template: `
-    <SbTextField
-      :id="id"
-      :name="name"
-      :label="label"
-      :disabled="disabled"
-      :required="required"
-      :placeholder="placeholder"
-      :type="type"
-      native-value="Bobby Fischer"
-      v-model="internalValue"
-      clearable
-    />
-  `,
-})
-
-export const withTextRight = (args) => ({
-  components: { SbTextField },
-  props: Object.keys(args),
-  data: () => ({
-    internalValue: 'Bobby Fischer',
-  }),
-  template: `
-    <SbTextField
-      :id="id"
-      :name="name"
-      :label="label"
-      :disabled="disabled"
-      :required="required"
-      :placeholder="placeholder"
-      :type="type"
-      native-value="Bobby Fischer"
-      v-model="internalValue"
-      clearable
-    />
+    <div>
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="With text before"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :side-text="{ side: 'left', text: 'http://' }"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        withTextLeft
+      />
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="With text after"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :side-text="{ side: 'right', text: '.com' }"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        withTextRight
+      />
+    </div>
   `,
 })
