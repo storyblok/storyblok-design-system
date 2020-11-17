@@ -45,9 +45,11 @@
       }
       &--default{
         border: solid 0.1rem #eff1f5;
-        &:focus, &:hover{
-          border-radius: 0.5rem;
+        &:hover{
           border: 0.1rem solid rgb(0, 179, 176);
+        }
+        &:focus{
+          border-radius: 0.5rem;
           box-shadow: 0rem 0rem 0rem 0.3rem #d9f4f3;
           outline: none;
         }
@@ -98,7 +100,7 @@
       }
       &--error{
         border: 0.1rem solid rgb(255, 97, 89);
-        &:focus, &:hover{
+        &:focus{
           box-shadow: 0rem 0rem 0rem 0.3rem rgb(255, 179, 176, 0.3);
           outline: none;
         }
