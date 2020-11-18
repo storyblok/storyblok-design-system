@@ -1,0 +1,27 @@
+# Workflow name
+name: 'Chromatic Deployment - Blok Ink Design System'
+
+# Event for the workflow
+# Only trigger the current job when occurs a pull request or push to any branch
+on: [push, pull_request]
+
+# List of jobs
+jobs:
+  chromatic-deployment:
+    # Operating System
+    runs-on: ubuntu-latest
+    # Job steps
+    steps:
+      - name: Install dependencies
+        run: yarn
+        # Adds Chromatic as a step in the workflow
+      - name: Deploy to Chromatic
+        uses: chromaui/action@v1
+        # Chromatic GitHub Action options
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Chromatic projectToken, refer to the manage page to obtain it.
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          # Option to prevent the workflow from failing
+          # This will be usefull to prevent fail status when test snapshots render without errors
+          exitZeroOnChanges: true
