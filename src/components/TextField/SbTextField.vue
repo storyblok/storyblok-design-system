@@ -61,14 +61,14 @@
 
 <script>
 import SbIcon from '../Icon'
-import TextfieldMixin from '../../mixins/textfield-mixin'
+import TextFieldMixin from '../../mixins/textfield-mixin'
 
 export default {
-  name: 'SbTextfield',
+  name: 'SbTextField',
 
   components: { SbIcon },
 
-  mixins: [TextfieldMixin],
+  mixins: [TextFieldMixin],
 
   computed: {
     hasSpecialClass() {

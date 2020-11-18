@@ -1,8 +1,8 @@
-import SbTextfield from './index'
+import SbTextField from './index'
 
 export default {
-  title: 'SbTextfield',
-  component: SbTextfield,
+  title: 'SbTextField',
+  component: SbTextField,
   args: {
     id: 'example',
     name: 'example',
@@ -24,7 +24,7 @@ export default {
 }
 
 export const Default = (args) => ({
-  components: { SbTextfield },
+  components: { SbTextField },
   props: Object.keys(args),
   data: () => ({
     internalValue: 'Boris Spassky',
@@ -33,7 +33,7 @@ export const Default = (args) => ({
   }),
   template: `
     <div>
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -44,7 +44,7 @@ export const Default = (args) => ({
         :native-value="nativeValue"
         v-model="internalValue"
       />
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -55,7 +55,7 @@ export const Default = (args) => ({
         v-model="internalValue"
         disabled
       />
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -69,7 +69,7 @@ export const Default = (args) => ({
         :errorMessage="errorMessage"
         error
       />
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -81,7 +81,7 @@ export const Default = (args) => ({
         v-model="internalValue"
         clearable
       />
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -94,7 +94,7 @@ export const Default = (args) => ({
         native-value="Boris Spassky"
         v-model="internalValue"
       />
-      <SbTextfield
+      <SbTextField
         :id="id"
         :name="name"
         label="Number input"
@@ -110,14 +110,14 @@ export const Default = (args) => ({
 })
 
 export const withIcon = (args) => ({
-  components: { SbTextfield },
+  components: { SbTextField },
   props: Object.keys(args),
   data: () => ({
     internalValue: 'Boris Spassky',
   }),
   template: `
     <div>
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -129,7 +129,7 @@ export const withIcon = (args) => ({
         native-value="Boris Spassky"
         v-model="internalValue"
       />
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -141,7 +141,7 @@ export const withIcon = (args) => ({
         native-value="Boris Spassky"
         v-model="internalValue"
       />
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -154,7 +154,7 @@ export const withIcon = (args) => ({
         v-model="internalValue"
         ghost
       />
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -167,7 +167,7 @@ export const withIcon = (args) => ({
         v-model="internalValue"
         ghost
       />
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -180,7 +180,7 @@ export const withIcon = (args) => ({
         v-model="internalValue"
         clearable
       />
-      <SbTextfield
+      <SbTextField
         :id="id"
         :name="name"
         label="Ghost clearable with icon"
@@ -198,7 +198,7 @@ export const withIcon = (args) => ({
 })
 
 export const Ghost = (args) => ({
-  components: { SbTextfield },
+  components: { SbTextField },
   props: Object.keys(args),
   data: () => ({
     internalValue: 'Boris Spassky',
@@ -207,7 +207,7 @@ export const Ghost = (args) => ({
   }),
   template: `
     <div>
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -219,7 +219,7 @@ export const Ghost = (args) => ({
         v-model="internalValue"
         ghost
       />
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -232,7 +232,7 @@ export const Ghost = (args) => ({
         clearable
         ghost
       />
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -246,7 +246,7 @@ export const Ghost = (args) => ({
         v-model="internalValue"
         ghost
       />
-      <SbTextfield
+      <SbTextField
         :id="id"
         :name="name"
         label="Number input"
@@ -263,14 +263,14 @@ export const Ghost = (args) => ({
 })
 
 export const withText = (args) => ({
-  components: { SbTextfield },
+  components: { SbTextField },
   props: Object.keys(args),
   data: () => ({
     internalValue: 'Boris Spassky',
   }),
   template: `
     <div>
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
@@ -283,7 +283,7 @@ export const withText = (args) => ({
         v-model="internalValue"
         withTextLeft
       />
-      <SbTextfield
+      <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
         :name="name"

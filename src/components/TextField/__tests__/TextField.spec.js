@@ -1,13 +1,13 @@
-import SbTextfield from '..'
+import SbTextField from '..'
 import { mount } from '@vue/test-utils'
 
 const factory = (propsData) => {
-  return mount(SbTextfield, {
+  return mount(SbTextField, {
     propsData,
   })
 }
 
-describe('SbTextfield component', () => {
+describe('SbTextField component', () => {
   it('should have a disabled attribute', () => {
     const wrapper = factory({
       label: 'Boris Spassky',
