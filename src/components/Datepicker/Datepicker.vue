@@ -119,7 +119,7 @@ export default {
 
     value: {
       type: String,
-      default: null,
+      default: '',
       required: true,
     },
   },

@@ -31,7 +31,6 @@ export default {
       default: null,
     },
   },
-
   computed: {
     days() {
       const daysInTheMonth = dayjs(this.internalDate).daysInMonth()
@@ -76,7 +75,6 @@ export default {
       return days
     },
   },
-
   methods: {
     handleDayClick($event, day) {
       $event.stopPropagation()

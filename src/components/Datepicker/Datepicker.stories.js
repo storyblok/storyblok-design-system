@@ -27,7 +27,7 @@ export default {
   components: { SbDatepicker },
   args: {
     placeholder: 'Select date and time',
-    value: null,
+    value: '',
     type: 'datetime',
     disabled: false,
     tzOffset: null,
