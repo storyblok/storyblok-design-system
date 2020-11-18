@@ -12,17 +12,22 @@ describe('SbDatepicker component', () => {
     })
   }
   const { placeholder } = SbDatepickerData.args
+  const { type } = SbDatepickerData.args
   const { value } = SbDatepickerData.args
   const wrapper = factory({
     placeholder,
+    type,
     value,
   })
 
   describe('Test component props', () => {
-    it('Should match placeholder text', () => {
+    it('Should match PLACEHOLDER text', () => {
       expect(wrapper.props().placeholder).toBe(placeholder)
     })
-    it('Should match value prop default value', () => {
+    it('Should match TYPE prop default value', () => {
+      expect(wrapper.props().type).toBe(type)
+    })
+    it('Should match VALUE prop default value', () => {
       expect(wrapper.props().value).toBe(value)
     })
   })
@@ -32,12 +37,29 @@ describe('SbDatepicker component', () => {
       wrapper.vm.handleInputClick()
       expect(wrapper.vm.isOverlayVisible).toBeTruthy()
     })
+    it('Should change iternal visualization property based on type', () => {
+      wrapper.vm.handleInputClick()
+      expect(
+        wrapper.vm.internalVisualization === INTERNAL_VIEWS.CALENDAR
+      ).toBeTruthy()
+    })
+    it('Should change iternal visualization property based on TIME type', async () => {
+      await wrapper.setProps({ type: 'time' })
+      wrapper.vm.handleInputClick()
+      expect(
+        wrapper.vm.internalVisualization === INTERNAL_VIEWS.TIME
+      ).toBeTruthy()
+    })
     it('Should render overlay property not visible, direct shut', () => {
       wrapper.vm.closeOverlay()
       expect(wrapper.vm.isOverlayVisible).toBeFalsy()
     })
     it('Should render overlay property not visible, indirect shut', () => {
       wrapper.vm.handleCancelAction()
+      expect(wrapper.vm.isOverlayVisible).toBeFalsy()
+    })
+    it('Should render overlay property not visible, async shut', async () => {
+      await wrapper.vm.handleDoneAction()
       expect(wrapper.vm.isOverlayVisible).toBeFalsy()
     })
   })
@@ -67,6 +89,7 @@ describe('SbDatepicker component', () => {
         wrapper.vm.internalVisualization === INTERNAL_VIEWS.YEAR
       ).toBeTruthy()
     })
+
     const date = new Date()
     it('Should match internal visualization with TIME type', () => {
       wrapper.vm.internalVisualization = INTERNAL_VIEWS.CALENDAR
@@ -88,6 +111,11 @@ describe('SbDatepicker component', () => {
       expect(
         wrapper.vm.internalVisualization === INTERNAL_VIEWS.MONTH
       ).toBeTruthy()
+    })
+    it('Should handle method exception', async () => {
+      await wrapper.setProps({ type: 'date' })
+      wrapper.vm.handleComponentsInput(`${date}`)
+      expect(wrapper.vm.isOverlayVisible).toBeFalsy()
     })
   })
 })

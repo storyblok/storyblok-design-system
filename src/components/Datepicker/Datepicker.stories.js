@@ -30,7 +30,7 @@ export default {
     value: '',
     type: 'datetime',
     disabled: false,
-    tzOffset: null,
+    tzOffset: '',
   },
   argTypes: {
     type: {

@@ -109,7 +109,7 @@ export default {
 
     tzOffset: {
       type: String,
-      default: null,
+      default: '',
     },
 
     value: {
