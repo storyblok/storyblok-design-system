@@ -12,8 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     # Job steps
     steps:
+      - uses: actions/checkout@v1
       - name: Install dependencies
         run: yarn
+      - name: Build Storybook
+        run: yarn build-storybook
         # Adds Chromatic as a step in the workflow
       - name: Deploy to Chromatic
         uses: chromaui/action@v1
@@ -25,3 +28,4 @@ jobs:
           # Option to prevent the workflow from failing
           # This will be usefull to prevent fail status when test snapshots render without errors
           exitZeroOnChanges: true
+          storybookBuildDir: storybook-static
