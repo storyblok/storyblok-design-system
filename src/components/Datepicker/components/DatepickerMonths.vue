@@ -66,7 +66,6 @@ export default {
       $event.stopPropagation()
       const monthIndex = this.months.indexOf(month)
       const value = dayjs(this.value).month(monthIndex).format()
-
       this.$emit('input', value)
     },
   },
