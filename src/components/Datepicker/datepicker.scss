@@ -1,7 +1,29 @@
-@mixin activeItem {
-  font-size: $font-size-xg;
-  font-weight: $font-weight-medium;
-  background-color: $sb-green-25;
+@mixin datepickerItem {
+  cursor: pointer;
+  border-bottom: $days-borders;
+  border-right: $days-borders;
+  font-size: $font-size-md;
+  color: $color-primary-dark;
+
+  &:hover {
+    background-color: $sb-dark-blue-25;
+  }
+
+  &--active {
+    font-size: $font-size-xg;
+    font-weight: $font-weight-medium;
+    background-color: $sb-green-25;
+
+    &:hover {
+      background-color: $sb-green-25;
+    }
+  }
+}
+
+@mixin flexCentering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sb-datepicker {
@@ -22,36 +44,13 @@
 .sb-datepicker-header {
   background-color: $light;
   z-index: 2;
-}
 
-.sb-datepicker-actions {
-  display: flex;
-  justify-content: space-between;
-
-  &__button {
-    appearance: none;
-    border: none;
-    background-color: $white;
-    padding: 1.5rem 2rem;
-    font-size: $font-size-md;
-    font-weight: $font-weight-medium;
-    color: $color-primary-dark;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &--primary {
-      color: $color-primary;
-    }
+  &__top {
+    display: flex;
+    align-items: center;
   }
-}
 
-.sb-datepicker-month {
-  display: flex;
-  align-items: center;
-
-  &__label {
+  &__title {
     flex: 1;
     margin: 0;
     padding: 1.5rem 0;
@@ -73,6 +72,38 @@
 
     &:disabled {
       cursor: not-allowed;
+    }
+  }
+
+  &__subtitle {
+    display: block;
+    margin: 0;
+    padding-bottom: 1rem;
+    text-align: center;
+    font-size: $font-size-md;
+    color: $sb-dark-blue-50;
+  }
+}
+
+.sb-datepicker-actions {
+  display: flex;
+  justify-content: space-between;
+
+  &__button {
+    appearance: none;
+    border: none;
+    background-color: $white;
+    padding: 1.5rem 2rem;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    color: $color-primary-dark;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--primary {
+      color: $color-primary;
     }
   }
 }
@@ -99,36 +130,17 @@
   grid-template-rows: repeat(6, 1fr);
 }
 
-// TODO: adjust border
 .sb-datepicker-day {
+  @include flexCentering();
+  @include datepickerItem();
   flex: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   width: 4.2rem;
   height: 4.2rem;
   padding: 13px 17px;
-  font-size: $font-size-md;
-  color: $color-primary-dark;
   box-sizing: border-box;
-  cursor: pointer;
-  border-bottom: $days-borders;
-  border-right: $days-borders;
-
-  &:hover {
-    background-color: $sb-dark-blue-25;
-  }
   
   &--inactive {
     color: $sb-dark-blue-50;
-  }
-
-  &--active {
-    @include activeItem();
-
-    &:hover {
-      background-color: $sb-green-25;
-    }
   }
 }
 
@@ -140,15 +152,6 @@
     display: flex;
   }
 
-  &__label {
-    display: block;
-    margin: 0;
-    padding-bottom: 1rem;
-    text-align: center;
-    font-size: $font-size-md;
-    color: $sb-dark-blue-50;
-  }
-
   &__number-column {
     display: block;
     width: 50%;
@@ -157,26 +160,47 @@
     border-bottom: 1px solid $light;
   }
 
-  // TODO: adjust border
   &__number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCentering();
+    @include datepickerItem();
     text-align: center;
-    font-size: $font-size-md;
     padding: 1rem;
     height: 4.2rem;
     cursor: pointer;
     box-sizing: border-box;
-    border-bottom: $days-borders;
-    border-right: $days-borders;
+  }
+}
 
-    &:hover {
-      background-color: $sb-dark-blue-25;
-    }
+.sb-datepicker-months {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
 
-    &--active {
-      @include activeItem();
-    }
+  &__item {
+    @include flexCentering();
+    @include datepickerItem();
+    width: 25%;
+    padding: 1.3rem 2.5rem;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
+
+.sb-datepicker-years {
+  width: 100%;
+  max-height: 252px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+
+  &__item {
+    @include flexCentering();
+    @include datepickerItem();
+    width: 100%;
+    height: 4.2rem;
+    text-align: center;
+    box-sizing: border-box;
   }
 }
