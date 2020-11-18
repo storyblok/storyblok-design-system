@@ -67,5 +67,27 @@ describe('SbDatepicker component', () => {
         wrapper.vm.internalVisualization === INTERNAL_VIEWS.YEAR
       ).toBeTruthy()
     })
+    const date = new Date()
+    it('Should match internal visualization with TIME type', () => {
+      wrapper.vm.internalVisualization = INTERNAL_VIEWS.CALENDAR
+      wrapper.vm.handleComponentsInput(`${date}`)
+      expect(
+        wrapper.vm.internalVisualization === INTERNAL_VIEWS.TIME
+      ).toBeTruthy()
+    })
+    it('Should match internal visualization with CALENDAR type', () => {
+      wrapper.vm.internalVisualization = INTERNAL_VIEWS.MONTH
+      wrapper.vm.handleComponentsInput(`${date}`)
+      expect(
+        wrapper.vm.internalVisualization === INTERNAL_VIEWS.CALENDAR
+      ).toBeTruthy()
+    })
+    it('Should match internal visualization with MONTH type', () => {
+      wrapper.vm.internalVisualization = INTERNAL_VIEWS.YEAR
+      wrapper.vm.handleComponentsInput(`${date}`)
+      expect(
+        wrapper.vm.internalVisualization === INTERNAL_VIEWS.MONTH
+      ).toBeTruthy()
+    })
   })
 })
