@@ -40,7 +40,7 @@ describe('SbDatepicker component', () => {
     })
   })
 
-  fdescribe('Test component calendar methods', () => {
+  describe('Test component calendar methods', () => {
     it('Should subtract a month', () => {
       const before = new Date(wrapper.vm.internalDate)
       wrapper.vm.handlePreviousMonth()
