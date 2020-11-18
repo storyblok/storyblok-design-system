@@ -1,18 +1,21 @@
 .sb-textfield {
   width: 100%;
   max-width: 29.8rem;
+
   &__label{
     display: block;
-    color: rgb(27, 36, 63);
-    font-size: 1.4rem;
-    font-weight: 500;
+    color: $sb-dark-blue;
+    font-size: $text-medium-small;
+    font-weight: $font-weight-medium;
     letter-spacing: 0rem;
     margin-bottom: 1rem;
   }
+
   &__inner {
     display: inline-flex;
     position: relative;
     width: 100%;
+
     &__sb-icon {
       &--left, &--right {
         position: absolute;
@@ -26,48 +29,59 @@
         right: 0;
       }
     }
+
     &__input{
       padding: 1.5rem 1.7rem;
       border-radius: 0.5rem;
       width: 100%;
+      color: $sb-dark-blue;
+      font-size: $text-medium-small;
+
       &[type=number]{
         width: 8.6rem;
       }
+
       &:disabled{
-        background: rgb(247, 248, 249);
-        border: 0.1rem solid rgb(223, 227, 232);
+        background: $light-25;
+        cursor: not-allowed;
+        border: 0.1rem solid $light!important;
       }
+
       &::placeholder{
-        color: rgb(141, 145, 159);
-        font-size: 1.4rem;
+        color: $sb-dark-blue-50;
+        font-size: $text-medium-small;
         font-weight: normal;
         letter-spacing: 0rem;
       }
+
       &--default{
-        border: solid 0.1rem #eff1f5;
+        border: solid 0.1rem $light-50;
         &:hover{
-          border: 0.1rem solid rgb(0, 179, 176);
+          border: 0.1rem solid $sb-green;
         }
         &:focus{
           border-radius: 0.5rem;
-          border: 0.1rem solid rgb(0, 179, 176);
+          border: 0.1rem solid $sb-green;
           box-shadow: 0rem 0rem 0rem 0.3rem $sb-green-25;
           outline: none;
         }
       }
+
       &--with-icon{
         &-left{
           padding-left: 4.3rem;
         }
       }
+
       &--ghost{
         border: none;
-        border-bottom: 0.1rem solid rgb(223, 227, 232);
+        border-bottom: 0.1rem solid $light;
         border-radius: 0rem;
         &:focus {
           outline: none;
         }
       }
+
       &--with-text{
         &-left{
           border-left: none;
@@ -79,14 +93,15 @@
           border-top-right-radius: 0rem!important;
           border-bottom-right-radius: 0rem!important;
         }
+
         &-model{
           &-left, &-right {
-            font-size: 1.4rem;
-            color: rgb(27, 36, 63);
+            font-size: $text-medium-small;
+            color: $sb-dark-blue;
             font-weight: normal;
             letter-spacing: 0px;
             padding: 1.5rem 1.7rem;
-            border: 0.1rem solid #eff1f5;
+            border: 0.1rem solid $light-50;
             border-radius: 0.5rem;
           }
           &-left{
@@ -98,24 +113,29 @@
             border-bottom-left-radius: 0rem;
           }
         }
+
       }
+
       &--error{
-        border: 0.1rem solid rgb(255, 97, 89);
+        border: 0.1rem solid $red;
         &:focus{
           box-shadow: 0rem 0rem 0rem 0.3rem rgb(255, 179, 176, 0.3);
           outline: none;
         }
       }
+
     }
   }
+
   &__message {
     &--error {
-      color: rgb(141, 145, 159);
-      font-size: 1.4rem;
+      color: $sb-dark-blue-50;
+      font-size: $text-medium-small;
       font-weight: normal;
       letter-spacing: 0rem;
       display: block;
       margin-top: 0.5rem;
     }
   }
+
 }

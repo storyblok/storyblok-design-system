@@ -5,9 +5,9 @@
     }}</label>
     <div class="sb-textfield__inner">
       <span
-        v-if="sideText && sideText.side == 'left'"
+        v-if="prefix"
         class="sb-textfield__inner__input--with-text-model-left"
-        >{{ sideText.text }}</span
+        >{{ prefix }}</span
       >
       <input
         :id="id"
@@ -22,10 +22,23 @@
         :disabled="disabled"
       />
       <SbIcon
-        v-if="icon && (withIconLeft || withIconRight || error)"
-        :size="icon.size"
-        :name="icon.name"
-        :class="'sb-textfield__inner__sb-icon--' + icon.side"
+        v-if="iconLeft && type != 'password'"
+        size="small"
+        :name="iconLeft"
+        class="sb-textfield__inner__sb-icon--left"
+      />
+      <SbIcon
+        v-if="(iconRight || error) && type != 'password'"
+        size="small"
+        :name="iconRight"
+        class="sb-textfield__inner__sb-icon--right"
+      />
+      <SbIcon
+        v-if="type == 'password'"
+        size="small"
+        :name="internalIconRight"
+        class="sb-textfield__inner__sb-icon--right"
+        @click="handleShowHidePassword"
       />
       <SbIcon
         v-if="clearable"
@@ -34,17 +47,10 @@
         class="sb-textfield__inner__sb-icon--right"
         @click="computedValue = null"
       />
-      <SbIcon
-        v-if="icon && type == 'password'"
-        size="small"
-        :name="icon.name"
-        class="sb-textfield__inner__sb-icon--right"
-        @click="handleShowHidePassword"
-      />
       <span
-        v-if="sideText && sideText.side == 'right'"
+        v-if="suffix"
         class="sb-textfield__inner__input--with-text-model-right"
-        >{{ sideText.text }}</span
+        >{{ suffix }}</span
       >
     </div>
     <span v-if="error && errorMessage" class="sb-textfield__message--error">{{
@@ -58,7 +64,7 @@ import SbIcon from '../Icon'
 import TextfieldMixin from '../../mixins/textfield-mixin'
 
 export default {
-  name: 'SbTextField',
+  name: 'SbTextfield',
 
   components: { SbIcon },
 
@@ -66,55 +72,26 @@ export default {
 
   computed: {
     hasSpecialClass() {
-      var specialClasses = []
-      var inputClasses = [
+      return [
         this.error && 'sb-textfield__inner__input--error',
         this.ghost && 'sb-textfield__inner__input--ghost',
+        !this.error && !this.ghost && 'sb-textfield__inner__input--default',
       ]
-      inputClasses.some((elem) => {
-        if (elem !== false) {
-          specialClasses.push(elem)
-        }
-      })
-      if (specialClasses.length === 0) {
-        specialClasses.push('sb-textfield__inner__input--default')
-      }
-      return specialClasses
     },
     hasIcon() {
-      var icons = []
-      var iconsClasses = [
-        this.withIconLeft && 'sb-textfield__inner__input--with-icon-left',
-        this.withIconRight && 'sb-textfield__inner__input--with-icon-right',
+      return [
+        this.iconLeft && 'sb-textfield__inner__input--with-icon-left',
+        this.iconRight && 'sb-textfield__inner__input--with-icon-right',
       ]
-      iconsClasses.some((elem) => {
-        if (elem !== false) {
-          icons.push(elem)
-        }
-      })
-      return icons
     },
     hasTextOnSide() {
-      var textOnSide = []
-      var textOnSideClasses = [
+      return [
         this.withTextLeft && 'sb-textfield__inner__input--with-text-left',
         this.withTextRight && 'sb-textfield__inner__input--with-text-right',
       ]
-      textOnSideClasses.some((elem) => {
-        if (elem !== false) {
-          textOnSide.push(elem)
-        }
-      })
-      return textOnSide
     },
     componentClasses() {
-      return (
-        this.hasSpecialClass +
-        ' ' +
-        this.hasIcon +
-        ' ' +
-        this.hasTextOnSide
-      ).replace(',', ' ')
+      return [...this.hasTextOnSide, ...this.hasIcon, ...this.hasSpecialClass]
     },
   },
   methods: {
@@ -122,9 +99,9 @@ export default {
       this.internalType === 'password'
         ? (this.internalType = 'text')
         : (this.internalType = 'password')
-      this.icon.name === 'eye-off'
-        ? (this.icon.name = 'eye')
-        : (this.icon.name = 'eye-off')
+      this.internalIconRight === 'eye'
+        ? (this.internalIconRight = 'eye-off')
+        : (this.internalIconRight = 'eye')
     },
   },
 }

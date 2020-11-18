@@ -1,6 +1,6 @@
-import SbTextField from './SbTextField.vue'
+import SbTextfield from './SbTextfield.vue'
 
 import './textfield.scss'
 
-export { SbTextField }
-export default SbTextField
+export { SbTextfield }
+export default SbTextfield

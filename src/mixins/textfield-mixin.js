@@ -20,26 +20,21 @@ export default {
     error: Boolean,
     clearable: Boolean,
     ghost: Boolean,
-    withIconLeft: Boolean,
-    withIconRight: Boolean,
     withTextLeft: Boolean,
     withTextRight: Boolean,
 
-    icon: {
-      side: String,
-      name: String,
-      size: String,
-    },
-    sideText: {
-      side: String,
-      text: String,
-    },
+    iconLeft: String,
+    iconRight: String,
+
+    prefix: String,
+    suffix: String,
   },
 
   data() {
     return {
       internalValue: this.value,
       internalType: this.type,
+      internalIconRight: this.iconRight,
     }
   },
 
