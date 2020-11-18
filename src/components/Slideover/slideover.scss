@@ -20,10 +20,6 @@
     cursor: pointer;
     padding: 0;
   }
-  
-  .sb-button:not(:first-child) {
-    margin-left: 2rem;
-  }
 }
 
 @import 'animations.scss';
