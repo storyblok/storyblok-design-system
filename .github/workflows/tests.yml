@@ -1,4 +1,4 @@
-name: 'Tests - Blok Ink Design System'
+name: 'Tests'
 
 # Event for the workflow
 # Only trigger the current job when occurs

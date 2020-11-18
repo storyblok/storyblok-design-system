@@ -1,5 +1,5 @@
 # Workflow name
-name: 'Chromatic Deployment - Blok Ink Design System'
+name: 'Chromatic Deployment'
 
 # Event for the workflow
 # Only trigger the current job when occurs a pull request or push to any branch
