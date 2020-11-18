@@ -3,6 +3,8 @@ import { mount } from '@vue/test-utils'
 import SbDatepicker from '../Datepicker.vue'
 import SbDatepickerData from '../Datepicker.stories'
 
+import { INTERNAL_VIEWS } from '../utils'
+
 describe('SbDatepicker component', () => {
   const factory = (propsData) => {
     return mount(SbDatepicker, {
@@ -52,6 +54,18 @@ describe('SbDatepicker component', () => {
       wrapper.vm.handleNextMonth()
       const after = new Date(wrapper.vm.internalDate)
       expect(after.getMonth() === before.getMonth() + 1).toBeTruthy()
+    })
+    it('Should match view type month', () => {
+      wrapper.vm.handleChangeMonth()
+      expect(
+        wrapper.vm.internalVisualization === INTERNAL_VIEWS.MONTH
+      ).toBeTruthy()
+    })
+    it('Should match view type year', () => {
+      wrapper.vm.handleChangeYear()
+      expect(
+        wrapper.vm.internalVisualization === INTERNAL_VIEWS.YEAR
+      ).toBeTruthy()
     })
   })
 })
