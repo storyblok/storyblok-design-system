@@ -15,12 +15,14 @@
 <script>
 import dayjs from 'dayjs'
 
-const OFFSET = 30
-
 export default {
   name: 'SbDatepickerYears',
 
   props: {
+    offset: {
+      type: Number,
+      default: 30,
+    },
     value: {
       type: String,
       default: null,
@@ -30,8 +32,8 @@ export default {
   computed: {
     yearsList() {
       const years = []
-      const minYear = this.currentYear - OFFSET
-      const maxYear = this.currentYear + OFFSET
+      const minYear = this.currentYear - this.offset
+      const maxYear = this.currentYear + this.offset
 
       for (let x = minYear; x <= maxYear; x++) {
         years.push(x)
