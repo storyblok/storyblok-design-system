@@ -7,8 +7,8 @@
     "build": "vue-cli-service build --target lib ./src/main.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint src/ tests/ .storybook/",
-    "build-storybook": "build-storybook",
-    "storybook": "start-storybook -p 6006 --ci"
+    "build-storybook": "build-storybook -s ./public",
+    "storybook": "start-storybook -p 6006 -s ./public --ci"
   },
   "dependencies": {
     "@popperjs/core": "^2.5.4",
@@ -21,7 +21,9 @@
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addons": "^6.0.28",
     "@storybook/preset-scss": "^1.0.3",
+    "@storybook/theming": "^6.0.28",
     "@storybook/vue": "^6.0.28",
     "@vue/cli-plugin-babel": "~4.5.8",
     "@vue/cli-plugin-eslint": "~4.5.8",
@@ -32,6 +34,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-preset-vue": "^2.0.2",
+    "chromatic": "^5.4.0",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
