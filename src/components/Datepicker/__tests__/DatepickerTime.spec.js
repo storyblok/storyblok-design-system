@@ -10,7 +10,9 @@ describe('SbDatepickerTime component', () => {
         SbDatepickerTime.methods,
         'handleHourClick'
       )
-      await shallowMount(SbDatepickerTime).find('.hours').trigger('click')
+      await shallowMount(SbDatepickerTime)
+        .find('[data-testid="div-hours"]')
+        .trigger('click')
       expect(handleHourClick).toHaveBeenCalled()
     })
     it('Should make a direct call method on click in MINUTES', async () => {
@@ -18,7 +20,9 @@ describe('SbDatepickerTime component', () => {
         SbDatepickerTime.methods,
         'handleMinuteClick'
       )
-      await shallowMount(SbDatepickerTime).find('.minutes').trigger('click')
+      await shallowMount(SbDatepickerTime)
+        .find('[data-testid="div-minutes"]')
+        .trigger('click')
       expect(handleMinuteClick).toHaveBeenCalled()
     })
     it('Should make an indirect call method on click', async () => {

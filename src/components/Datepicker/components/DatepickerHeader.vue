@@ -10,9 +10,11 @@
       </button>
 
       <p v-if="isCalendarView" class="sb-datepicker-header__title">
-        <span @click="handleCurrentMonthClick"> {{ currentMonth }}, </span>
+        <span data-testid="span-current-month" @click="handleCurrentMonthClick">
+          {{ currentMonth }},&nbsp;
+        </span>
 
-        <span @click="handleCurrentYearClick">
+        <span data-testid="span-current-year" @click="handleCurrentYearClick">
           {{ currentYear }}
         </span>
       </p>
