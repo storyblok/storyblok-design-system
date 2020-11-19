@@ -6,7 +6,7 @@
           v-if="openSlideover"
           ref="blok"
           class="sb-slideover"
-          :class="{ 'sb-slideover__left': orientation === 'left' }"
+          :class="{ 'sb-slideover--left': orientation === 'left' }"
           @click.stop
         >
           <button
