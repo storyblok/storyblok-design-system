@@ -45,7 +45,7 @@
         size="small"
         name="x-clear"
         class="sb-textfield__icon sb-textfield__icon--right"
-        @click="computedValue = null"
+        @click="handleClearableClick"
       />
       <span v-if="suffix" class="sb-textfield__prefix">{{ suffix }}</span>
     </div>
@@ -101,6 +101,14 @@ export default {
       this.internalIconRight === 'eye'
         ? (this.internalIconRight = 'eye-off')
         : (this.internalIconRight = 'eye')
+    },
+
+    handleClearableClick(e) {
+      e.stopPropagation()
+
+      const previousValue = this.computedValue
+      this.computedValue = null
+      this.$emit('clear', previousValue)
     },
   },
 }
