@@ -1,8 +1,14 @@
 <template>
   <transition name="fade" @after-enter="openSlideover = true">
     <SbBlokUi v-if="openBlokUI" @click="openSlideover = false">
-      <transition name="slide-fade" @after-leave="handleCloseSlide">
-        <div v-if="openSlideover" ref="blok" class="sb-slideover" @click.stop>
+      <transition :name="returnAnimationName" @after-leave="handleCloseSlide">
+        <div
+          v-if="openSlideover"
+          ref="blok"
+          class="sb-slideover"
+          :class="{ 'sb-slideover__left': orientation === 'left' }"
+          @click.stop
+        >
           <button
             class="sb-slideover__close-button"
             @click="openSlideover = false"
@@ -28,12 +34,23 @@ export default {
   },
   props: {
     isOpen: Boolean,
+    orientation: {
+      type: String,
+      default: 'right',
+    },
   },
   data() {
     return {
       openBlokUI: false || this.isOpen,
       openSlideover: false,
     }
+  },
+  computed: {
+    returnAnimationName() {
+      return this.orientation === 'right'
+        ? 'slide-right-fade'
+        : 'slide-left-fade'
+    },
   },
   watch: {
     isOpen() {

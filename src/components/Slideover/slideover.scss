@@ -1,24 +1,30 @@
 .sb-slideover {
-  width: 100%;
+  min-width: 40rem;
   max-width: 62.4rem;
-  height: 100vh;
-  position: fixed;
+  height: 96vh;
   background-color: $white;
   box-sizing: border-box;
   padding: 2.5rem;
+  margin-left: auto;
   overflow: auto;
   right: 0;
   display: flex;
   flex-direction: column;
+  border-radius: 0.5rem;
+
+  &__left {
+    margin-right: auto;
+    margin-left: initial;
+  }
   
   &__close-button {
-    position: fixed;
-    right: 2.5rem;
-    float: right;
     border: none;
     background-color: #FFF;
     cursor: pointer;
     padding: 0;
+    height: 17px;
+    width: 24px;
+    margin-left: auto;
   }
 }
 
