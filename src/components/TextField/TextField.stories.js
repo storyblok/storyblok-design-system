@@ -10,6 +10,10 @@ export default {
     disabled: false,
     required: false,
     placeholder: 'Placeholder text',
+    min: 0,
+    max: 100,
+    step: 1,
+    readonly: false,
     value: 'Boris Spassky',
     nativeValue: 'Boris Spassky',
     errorMessage: 'Some error message',
@@ -41,6 +45,7 @@ export const Default = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
+        :readonly="readonly"
         :native-value="nativeValue"
         v-model="internalValue"
       />
@@ -54,6 +59,18 @@ export const Default = (args) => ({
         :native-value="nativeValue"
         v-model="internalValue"
         disabled
+      />
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        label="Read only"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :native-value="nativeValue"
+        v-model="internalValue"
+        readonly
       />
       <SbTextField
         style="margin-bottom: 2rem;"
@@ -101,6 +118,10 @@ export const Default = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
+        :min="min"
+        :max="max"
+        :step="step"
+        :readonly="readonly"
         type="number"
         native-value="30011937"
         v-model="internalValue"
@@ -125,6 +146,7 @@ export const withIcon = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
+        :readonly="readonly"
         iconLeft="search"
         native-value="Boris Spassky"
         v-model="internalValue"
@@ -137,6 +159,7 @@ export const withIcon = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
+        :readonly="readonly"
         iconRight="search"
         native-value="Boris Spassky"
         v-model="internalValue"
@@ -149,6 +172,7 @@ export const withIcon = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
+        :readonly="readonly"
         iconLeft="search"
         native-value="Boris Spassky"
         v-model="internalValue"
@@ -162,6 +186,7 @@ export const withIcon = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
+        :readonly="readonly"
         iconRight="search"
         native-value="Boris Spassky"
         v-model="internalValue"
@@ -215,6 +240,7 @@ export const Ghost = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
+        :readonly="readonly"
         native-value="Boris Spassky"
         v-model="internalValue"
         ghost
@@ -253,6 +279,10 @@ export const Ghost = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
+        :min="min"
+        :max="max"
+        :step="step"
+        :readonly="readonly"
         type="number"
         native-value="30011937"
         v-model="internalValue"
@@ -279,9 +309,9 @@ export const withText = (args) => ({
         :required="required"
         :placeholder="placeholder"
         :prefix="prefix"
+        :readonly="readonly"
         native-value="Boris Spassky"
         v-model="internalValue"
-        withTextLeft
       />
       <SbTextField
         style="margin-bottom: 2rem;"
@@ -291,10 +321,10 @@ export const withText = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
+        :readonly="readonly"
         :suffix="suffix"
         native-value="Boris Spassky"
         v-model="internalValue"
-        withTextRight
       />
     </div>
   `,

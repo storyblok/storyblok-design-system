@@ -4,11 +4,9 @@
       label
     }}</label>
     <div class="sb-textfield__inner">
-      <span
-        v-if="prefix"
-        class="sb-textfield__inner__input--with-text-model-left"
-        >{{ prefix }}</span
-      >
+      <span v-if="prefix" class="sb-textfield__inner__input--suffix__span">{{
+        prefix
+      }}</span>
       <input
         :id="id"
         v-model="computedValue"
@@ -17,24 +15,28 @@
         :placeholder="placeholder"
         :name="name"
         :value="nativeValue"
+        :min="min"
+        :max="max"
+        :step="step"
+        :readonly="readonly"
         :class="componentClasses"
         :required="required"
         :disabled="disabled"
       />
       <SbIcon
-        v-if="iconLeft && type != 'password'"
+        v-if="iconLeft && type !== 'password'"
         size="small"
         :name="iconLeft"
         class="sb-textfield__inner__sb-icon--left"
       />
       <SbIcon
-        v-if="(iconRight || error) && type != 'password'"
+        v-if="(iconRight || error) && type !== 'password'"
         size="small"
         :name="iconRight"
         class="sb-textfield__inner__sb-icon--right"
       />
       <SbIcon
-        v-if="type == 'password'"
+        v-if="type === 'password'"
         size="small"
         :name="internalIconRight"
         class="sb-textfield__inner__sb-icon--right"
@@ -47,11 +49,9 @@
         class="sb-textfield__inner__sb-icon--right"
         @click="computedValue = null"
       />
-      <span
-        v-if="suffix"
-        class="sb-textfield__inner__input--with-text-model-right"
-        >{{ suffix }}</span
-      >
+      <span v-if="suffix" class="sb-textfield__inner__input--prefix__span">{{
+        suffix
+      }}</span>
     </div>
     <span v-if="error && errorMessage" class="sb-textfield__message--error">{{
       errorMessage
@@ -86,8 +86,8 @@ export default {
     },
     hasTextOnSide() {
       return [
-        this.withTextLeft && 'sb-textfield__inner__input--with-text-left',
-        this.withTextRight && 'sb-textfield__inner__input--with-text-right',
+        this.prefix && 'sb-textfield__inner__input--prefix',
+        this.suffix && 'sb-textfield__inner__input--suffix',
       ]
     },
     componentClasses() {

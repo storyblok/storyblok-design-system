@@ -9,6 +9,10 @@ export default {
     disabled: Boolean,
     required: Boolean,
     name: String,
+    min: Number,
+    max: Number,
+    step: Number,
+    readonly: Boolean,
     label: {
       type: String,
       default: null,
@@ -20,8 +24,6 @@ export default {
     error: Boolean,
     clearable: Boolean,
     ghost: Boolean,
-    withTextLeft: Boolean,
-    withTextRight: Boolean,
 
     iconLeft: String,
     iconRight: String,
