@@ -20,6 +20,8 @@
         :class="componentClasses"
         :required="required"
         :disabled="disabled"
+        @focus="handleFocusInput"
+        @blur="handleBlurInput"
       />
       <SbIcon
         v-if="iconLeft && type !== 'password'"
@@ -41,11 +43,11 @@
         @click="handleShowHidePassword"
       />
       <SbIcon
-        v-if="clearable"
+        v-if="showClearIcon"
         size="small"
         name="x-clear"
         class="sb-textfield__icon sb-textfield__icon--right"
-        @click="computedValue = null"
+        @click="handleClearableClick"
       />
       <span v-if="suffix" class="sb-textfield__prefix">{{ suffix }}</span>
     </div>
@@ -70,6 +72,9 @@ export default {
   mixins: [TextFieldMixin],
 
   computed: {
+    hasValue() {
+      return this.computedValue !== null && ('' + this.computedValue).length > 0
+    },
     hasSpecialClass() {
       return [
         this.error && 'sb-textfield__input--error',
@@ -92,6 +97,9 @@ export default {
     componentClasses() {
       return [...this.hasTextOnSide, ...this.hasIcon, ...this.hasSpecialClass]
     },
+    showClearIcon() {
+      return this.hasValue && this.clearable
+    },
   },
   methods: {
     handleShowHidePassword() {
@@ -101,6 +109,22 @@ export default {
       this.internalIconRight === 'eye'
         ? (this.internalIconRight = 'eye-off')
         : (this.internalIconRight = 'eye')
+    },
+
+    handleClearableClick(e) {
+      e.stopPropagation()
+
+      const previousValue = this.computedValue
+      this.computedValue = null
+      this.$emit('clear', previousValue)
+    },
+
+    handleFocusInput(e) {
+      this.$emit('focus', e)
+    },
+
+    handleBlurInput(e) {
+      this.$emit('blur', e)
     },
   },
 }
