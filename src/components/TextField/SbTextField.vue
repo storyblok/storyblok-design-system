@@ -20,6 +20,8 @@
         :class="componentClasses"
         :required="required"
         :disabled="disabled"
+        @focus="handleFocusInput"
+        @blur="handleBlurInput"
       />
       <SbIcon
         v-if="iconLeft && type !== 'password'"
@@ -115,6 +117,14 @@ export default {
       const previousValue = this.computedValue
       this.computedValue = null
       this.$emit('clear', previousValue)
+    },
+
+    handleFocusInput(e) {
+      this.$emit('focus', e)
+    },
+
+    handleBlurInput(e) {
+      this.$emit('blur', e)
     },
   },
 }
