@@ -4,13 +4,11 @@
       label
     }}</label>
     <div class="sb-textfield__inner">
-      <span v-if="prefix" class="sb-textfield__inner__input--suffix__span">{{
-        prefix
-      }}</span>
+      <span v-if="prefix" class="sb-textfield__suffix">{{ prefix }}</span>
       <input
         :id="id"
         v-model="computedValue"
-        class="sb-textfield__inner__input"
+        class="sb-textfield__input"
         :type="internalType"
         :placeholder="placeholder"
         :name="name"
@@ -27,35 +25,36 @@
         v-if="iconLeft && type !== 'password'"
         size="small"
         :name="iconLeft"
-        class="sb-textfield__inner__sb-icon--left"
+        class="sb-textfield__icon sb-textfield__icon--left"
       />
       <SbIcon
         v-if="(iconRight || error) && type !== 'password'"
         size="small"
         :name="iconRight"
-        class="sb-textfield__inner__sb-icon--right"
+        class="sb-textfield__icon sb-textfield__icon--right"
       />
       <SbIcon
         v-if="type === 'password'"
         size="small"
         :name="internalIconRight"
-        class="sb-textfield__inner__sb-icon--right"
+        class="sb-textfield__icon sb-textfield__icon--right"
         @click="handleShowHidePassword"
       />
       <SbIcon
         v-if="clearable"
         size="small"
         name="x-clear"
-        class="sb-textfield__inner__sb-icon--right"
+        class="sb-textfield__icon sb-textfield__icon--right"
         @click="computedValue = null"
       />
-      <span v-if="suffix" class="sb-textfield__inner__input--prefix__span">{{
-        suffix
-      }}</span>
+      <span v-if="suffix" class="sb-textfield__prefix">{{ suffix }}</span>
     </div>
-    <span v-if="error && errorMessage" class="sb-textfield__message--error">{{
-      errorMessage
-    }}</span>
+    <span
+      v-if="error && errorMessage"
+      class="sb-textfield__message sb-textfield__message--error"
+    >
+      {{ errorMessage }}
+    </span>
   </div>
 </template>
 
@@ -73,21 +72,21 @@ export default {
   computed: {
     hasSpecialClass() {
       return [
-        this.error && 'sb-textfield__inner__input--error',
-        this.ghost && 'sb-textfield__inner__input--ghost',
-        !this.error && !this.ghost && 'sb-textfield__inner__input--default',
+        this.error && 'sb-textfield__input--error',
+        this.ghost && 'sb-textfield__input--ghost',
+        !this.error && !this.ghost && 'sb-textfield__input--default',
       ]
     },
     hasIcon() {
       return [
-        this.iconLeft && 'sb-textfield__inner__input--with-icon-left',
-        this.iconRight && 'sb-textfield__inner__input--with-icon-right',
+        this.iconLeft && 'sb-textfield__input--with-icon-left',
+        this.iconRight && 'sb-textfield__input--with-icon-right',
       ]
     },
     hasTextOnSide() {
       return [
-        this.prefix && 'sb-textfield__inner__input--prefix',
-        this.suffix && 'sb-textfield__inner__input--suffix',
+        this.prefix && 'sb-textfield__input--with-prefix',
+        this.suffix && 'sb-textfield__input--with-suffix',
       ]
     },
     componentClasses() {
