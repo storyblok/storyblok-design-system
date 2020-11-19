@@ -41,7 +41,7 @@
         @click="handleShowHidePassword"
       />
       <SbIcon
-        v-if="clearable"
+        v-if="showClearIcon"
         size="small"
         name="x-clear"
         class="sb-textfield__icon sb-textfield__icon--right"
@@ -70,6 +70,9 @@ export default {
   mixins: [TextFieldMixin],
 
   computed: {
+    hasValue() {
+      return this.computedValue !== null && ('' + this.computedValue).length > 0
+    },
     hasSpecialClass() {
       return [
         this.error && 'sb-textfield__input--error',
@@ -91,6 +94,9 @@ export default {
     },
     componentClasses() {
       return [...this.hasTextOnSide, ...this.hasIcon, ...this.hasSpecialClass]
+    },
+    showClearIcon() {
+      return this.hasValue && this.clearable
     },
   },
   methods: {
