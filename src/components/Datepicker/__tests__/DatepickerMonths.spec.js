@@ -6,7 +6,7 @@ import SbDatepickerMonths from '../components/DatepickerMonths.vue'
 describe('SbDatepickerMonths component', () => {
   const wrapper = mount(SbDatepickerMonths)
 
-  describe('Test component method to handle the months', () => {
+  describe('Test component method to handle the MONTHS', () => {
     it('Should emit date for input on click', async () => {
       const value = dayjs().format()
       await wrapper.setProps({ value })
