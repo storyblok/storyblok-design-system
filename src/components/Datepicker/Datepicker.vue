@@ -1,6 +1,6 @@
 <template>
   <div v-click-outside="$_wrapClose" class="sb-datepicker">
-    <div class="sb-datepicker-input">
+    <div class="sb-datepicker__input">
       <input
         ref="input"
         type="text"
@@ -19,7 +19,7 @@
       :is-open="isOverlayVisible"
       :reference="inputElement"
       placement="bottom-start"
-      class="sb-datepicker-overlay"
+      class="sb-datepicker__overlay"
     >
       <SbDatepickerHeader
         v-bind="{
@@ -42,16 +42,16 @@
         @input="handleComponentsInput"
       />
 
-      <div class="sb-datepicker-actions">
+      <div class="sb-datepicker__actions">
         <button
-          class="sb-datepicker-actions__button"
+          class="sb-datepicker-actions-button"
           @click="handleCancelAction"
         >
           Cancel
         </button>
 
         <button
-          class="sb-datepicker-actions__button sb-datepicker-actions__button--primary"
+          class="sb-datepicker-actions-button sb-datepicker-actions-button--primary"
           @click="handleDoneAction"
         >
           Done

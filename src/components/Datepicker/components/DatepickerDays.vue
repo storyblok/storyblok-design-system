@@ -3,10 +3,10 @@
     <span
       v-for="(dayItem, key) in days"
       :key="key"
-      class="sb-datepicker-day"
+      class="sb-datepicker-days__item"
       :class="{
-        'sb-datepicker-day--inactive': !dayItem.inMonth,
-        'sb-datepicker-day--active': dayItem.checked,
+        'sb-datepicker-days__item--inactive': !dayItem.inMonth,
+        'sb-datepicker-days__item--active': dayItem.checked,
       }"
       @click="($evt) => handleDayClick($evt, dayItem)"
     >

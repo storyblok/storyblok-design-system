@@ -20,25 +20,42 @@
   }
 }
 
-@mixin flexCentering {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .sb-datepicker {
   position: relative;
   width: 294px;
-}
 
-.sb-datepicker-input {
-  position: relative;
-}
+  &__input {
+    position: relative;
+  }
 
-.sb-datepicker-overlay {
-  @include popoverComponent();
-  width: 100%;
-  box-sizing: border-box;
+  &__overlay {
+    @include popoverComponent();
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__action-button {
+    appearance: none;
+    border: none;
+    background-color: $white;
+    padding: 1.5rem 2rem;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    color: $color-primary-dark;
+  
+    &:hover {
+      cursor: pointer;
+    }
+  
+    &--primary {
+      color: $color-primary;
+    }
+  }
 }
 
 .sb-datepicker-header {
@@ -85,29 +102,6 @@
   }
 }
 
-.sb-datepicker-actions {
-  display: flex;
-  justify-content: space-between;
-
-  &__button {
-    appearance: none;
-    border: none;
-    background-color: $white;
-    padding: 1.5rem 2rem;
-    font-size: $font-size-md;
-    font-weight: $font-weight-medium;
-    color: $color-primary-dark;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &--primary {
-      color: $color-primary;
-    }
-  }
-}
-
 .sb-datepicker-week {
   display: flex;
   background-color: $light;
@@ -128,19 +122,19 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
-}
 
-.sb-datepicker-day {
-  @include flexCentering();
-  @include datepickerItem();
-  flex: 1;
-  width: 4.2rem;
-  height: 4.2rem;
-  padding: 13px 17px;
-  box-sizing: border-box;
-  
-  &--inactive {
-    color: $sb-dark-blue-50;
+  &__item {
+    @include flexCentering();
+    @include datepickerItem();
+    flex: 1;
+    width: 4.2rem;
+    height: 4.2rem;
+    padding: 13px 17px;
+    box-sizing: border-box;
+    
+    &--inactive {
+      color: $sb-dark-blue-50;
+    }
   }
 }
 
