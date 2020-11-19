@@ -1,4 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
+import dayjs from 'dayjs'
 
 import SbDatepickerTime from '../components/DatepickerTime.vue'
 
@@ -29,6 +30,13 @@ describe('SbDatepickerTime component', () => {
         .find('.sb-datepicker-time__number')
         .trigger('click')
       expect(processInput).toHaveBeenCalled()
+    })
+    it('Should emit date for input on click', async () => {
+      const wrapper = mount(SbDatepickerTime)
+      const value = dayjs().format()
+      await wrapper.setProps({ value })
+      wrapper.vm.$_processInput()
+      expect(wrapper.emitted().input[0].length).toBe(1)
     })
   })
 })

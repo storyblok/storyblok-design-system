@@ -117,5 +117,9 @@ describe('SbDatepicker component', () => {
       wrapper.vm.handleComponentsInput(`${date}`)
       expect(wrapper.vm.isOverlayVisible).toBeFalsy()
     })
+    it('Should emit date for input on click', async () => {
+      await wrapper.vm.handleDoneAction()
+      expect(wrapper.emitted().input[0].length).toBe(1)
+    })
   })
 })
