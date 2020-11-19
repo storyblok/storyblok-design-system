@@ -5,7 +5,8 @@
         <div
           v-for="hour in hours"
           :key="hour.value"
-          class="sb-datepicker-time__number hours"
+          class="sb-datepicker-time__number"
+          data-testid="div-hours"
           :class="{ 'sb-datepicker-time__number--active': hour.checked }"
           @click="($evt) => handleHourClick(hour.value)"
         >
@@ -17,7 +18,8 @@
         <div
           v-for="minute in minutes"
           :key="minute.value"
-          class="sb-datepicker-time__number minutes"
+          class="sb-datepicker-time__number"
+          data-testid="div-minutes"
           :class="{ 'sb-datepicker-time__number--active': minute.checked }"
           @click="($evt) => handleMinuteClick(minute.value)"
         >
