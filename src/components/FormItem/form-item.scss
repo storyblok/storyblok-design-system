@@ -1,0 +1,9 @@
+.sb-form-item {
+  &__label {
+    color: $sb-dark-blue;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    margin-bottom: 1rem;
+    display: block;
+  }
+}
