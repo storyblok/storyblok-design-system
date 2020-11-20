@@ -2,8 +2,8 @@
 name: 'Chromatic Deployment'
 
 # Event for the workflow
-# Only trigger the current job when occurs a pull request or push to any branch
-on: [push, pull_request]
+# Only trigger the current job when occurs a push to any branch
+on: push
 
 # List of jobs
 jobs:
