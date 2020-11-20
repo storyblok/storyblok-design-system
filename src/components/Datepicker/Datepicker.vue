@@ -1,20 +1,19 @@
 <template>
   <div v-click-outside="$_wrapClose" class="sb-datepicker">
     <div class="sb-datepicker__input">
-      <input
+      <SbTextField
         ref="input"
+        readonly
+        clearable
         type="text"
+        icon-left="calendar"
         :disabled="disabled"
         :placeholder="placeholder"
         :value="internalValueFormated"
-        @click="handleInputClick"
+        @click.native="handleInputClick"
+        @clear="handleClear"
       />
-
-      <span v-if="isShowTzOffset" class="sb-datepicker-input__tz">
-        {{ tzOffset }}
-      </span>
     </div>
-
     <SbPopover
       :is-open="isOverlayVisible"
       :reference="inputElement"
@@ -44,14 +43,14 @@
 
       <div class="sb-datepicker__actions">
         <button
-          class="sb-datepicker-actions-button"
+          class="sb-datepicker__action-button"
           @click="handleCancelAction"
         >
           Cancel
         </button>
 
         <button
-          class="sb-datepicker-actions-button sb-datepicker-actions-button--primary"
+          class="sb-datepicker__action-button sb-datepicker__action-button--primary"
           @click="handleDoneAction"
         >
           Done
@@ -66,7 +65,7 @@ import dayjs from 'dayjs'
 
 import { ClickOutside } from '../../directives'
 import { includes } from '../../utils'
-
+import { SbTextField } from '../TextField'
 import { SbPopover } from '../Popover'
 
 import SbDatepickerHeader from './components/DatepickerHeader'
@@ -82,6 +81,7 @@ export default {
 
   components: {
     SbPopover,
+    SbTextField,
     SbDatepickerHeader,
     SbDatepickerDays,
     SbDatepickerTime,
@@ -140,7 +140,12 @@ export default {
     },
 
     internalValueFormated() {
-      return dayjs(this.internalValue).format(this.internalFormat)
+      if (!this.internalValue) {
+        return ''
+      }
+
+      const value = dayjs(this.internalValue).format(this.internalFormat)
+      return this.isShowTzOffset ? `${value} (GMT ${this.tzOffset})` : value
     },
 
     isDisabledTime() {
@@ -189,7 +194,7 @@ export default {
 
   mounted() {
     this.$nextTick(() => {
-      this.inputElement = this.$refs.input
+      this.inputElement = this.$refs.input && this.$refs.input.$el
     })
   },
 
@@ -249,7 +254,11 @@ export default {
       this.internalVisualization =
         this.type === 'time' ? INTERNAL_VIEWS.TIME : INTERNAL_VIEWS.CALENDAR
     },
-
+    handleClear(previousValue) {
+      this.internalValue = ''
+      this.$emit('input', '')
+      this.$emit('clear', previousValue)
+    },
     closeOverlay() {
       this.isOverlayVisible = false
     },
