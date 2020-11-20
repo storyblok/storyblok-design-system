@@ -37,13 +37,13 @@ describe('SbDatepicker component', () => {
       wrapper.vm.handleInputClick()
       expect(wrapper.vm.isOverlayVisible).toBeTruthy()
     })
-    it('Should change iternal visualization property based on type', () => {
+    it('Should change internal visualization property based on type', () => {
       wrapper.vm.handleInputClick()
       expect(
         wrapper.vm.internalVisualization === INTERNAL_VIEWS.CALENDAR
       ).toBeTruthy()
     })
-    it('Should change iternal visualization property based on TIME type', async () => {
+    it('Should change internal visualization property based on TIME type', async () => {
       await wrapper.setProps({ type: 'time' })
       wrapper.vm.handleInputClick()
       expect(
