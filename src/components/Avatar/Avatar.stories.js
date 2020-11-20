@@ -16,7 +16,7 @@ export default {
     },
   },
   args: {
-    bgColor: null,
+    bgColor: 'primary',
     description: null,
     descriptionPosition: null,
     name: null,
@@ -125,11 +125,11 @@ Default.args = {
 export const Initials = () => ({
   components: { SbAvatar },
   template: `<div>
-    <SbAvatar name="John Doe" size="large" />
+    <SbAvatar name="John Doe" size="large" bg-color="primary" />
 
-    <SbAvatar name="John Doe" />
+    <SbAvatar name="John Doe" bg-color="primary-dark" />
 
-    <SbAvatar name="John" size="small" />
+    <SbAvatar name="John" size="small" bg-color="secondary" />
   </div>`,
 })
 
@@ -148,15 +148,18 @@ export const Sizes = () => ({
     <SbAvatar
       src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
       size="large"
+      bg-color="primary"
     />
 
     <SbAvatar
       src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
+      bg-color="primary-dark"
     />
 
     <SbAvatar
       src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
       size="small"
+      bg-color="secondary"
     />
   </div>`,
 })
@@ -221,7 +224,8 @@ export const WithDescription = (args) => ({
           descriptionPosition: 'top',
           name,
           size,
-          showName
+          showName,
+          bgColor: 'primary',
         }"
       />
     </div>
@@ -233,7 +237,8 @@ export const WithDescription = (args) => ({
           descriptionPosition: 'bottom',
           name,
           size,
-          showName
+          showName,
+          bgColor: 'primary-dark',
         }"
       />
     </div>
@@ -260,13 +265,15 @@ export const WithFallback = () => ({
     <SbAvatar
       src="https://google.com"
       size="large"
+      bg-color="primary"
     />
 
-    <SbAvatar src="https://google.com" />
+    <SbAvatar src="https://google.com" bg-color="secondary" />
 
     <SbAvatar
       src="https://google.com"
       size="small"
+      bg-color="negative"
     />
   </div>`,
 })
