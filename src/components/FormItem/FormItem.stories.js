@@ -1,5 +1,6 @@
 import SbFormItem from './index'
 import SbRadio from '../Radio'
+import SbTextField from '../TextField'
 
 export default {
   title: 'SbFormItem',
@@ -10,15 +11,18 @@ export default {
 }
 
 export const Default = (args) => ({
-  components: { SbFormItem, SbRadio },
+  components: { SbFormItem, SbRadio, SbTextField },
   props: Object.keys(args),
   data: () => ({
     internalValue: 'Selected',
+    placeholder: 'Placeholder',
   }),
   template: `
     <div>
       <SbFormItem :label="label" style="margin-bottom: 20px">
-        <input type="text" />
+        <SbTextField
+          :placeholder="placeholder"
+        />
       </SbFormItem>
 
       <SbFormItem :label="label">
