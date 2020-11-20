@@ -1,7 +1,7 @@
 @mixin datepickerItem {
   cursor: pointer;
-  border-bottom: $days-borders;
-  border-right: $days-borders;
+  border-bottom: $light-border;
+  border-right: $light-border;
   font-size: $font-size-md;
   color: $color-primary-dark;
 
