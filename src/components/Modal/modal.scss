@@ -1,9 +1,9 @@
 .sb-modal {
   width: 100%;
   max-width: 62rem;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   background-color: $white;
-  box-shadow: 0px 2px 17px 3px $sb-dark-blue-25;
+  box-shadow: 0 0.2rem 1.7rem 0.3rem $sb-dark-blue-25;
   display: block;
   margin: 0 auto;
   position: relative;
@@ -51,10 +51,14 @@
     align-items: center;
     justify-content: flex-end;
     padding: 0 3.5rem 0 3.5rem;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
     margin-bottom: -3.5rem;
     margin-left: -3.5rem;
+
+    .sb-button:not(:first-child) {
+      margin-left: 2rem;
+    }
   }
 
   .sb-button:not(:first-child) {
@@ -94,7 +98,7 @@
   }
 
   &__full-width {
-    max-width: max-content;
+    max-width: 100%;
     min-width: 62rem;
   }
 }

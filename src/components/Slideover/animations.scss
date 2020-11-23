@@ -1,0 +1,28 @@
+//Slide right Fade
+.slide-right-fade-enter-active, .slide-left-fade-enter-active {
+  transition: all .2s ease;
+}
+
+.slide-right-fade-leave-active, .slide-left-fade-leave-active {
+  transition: all .2s cubic-bezier(1.0, 0.5, 0.5, 1.0);
+}
+
+.slide-right-fade-enter, .slide-right-fade-leave-active {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+//Slide left Fade
+.slide-left-fade-enter, .slide-left-fade-leave-active {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+//Fade
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
