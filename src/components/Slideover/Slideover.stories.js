@@ -29,7 +29,7 @@ const SlideoverTemplate = (args) => ({
       <SbSlideover
         :is-open="show"
         @hide="show = false"
-        v-bind="{ orientation }">
+        :orientation="orientation">
         
         <SbModalHeader title="Title" align="left" />
 
@@ -102,7 +102,7 @@ export const SlideoverWithoutFooter = (args) => ({
       <SbSlideover
         :is-open="show"
         @hide="show = false"
-        v-bind="{ orientation }">
+        :orientation="orientation">
 
         <SbModalHeader title="Hi man" align="left" />
 
@@ -135,7 +135,7 @@ export const SlideoverInMaxSize = (args) => ({
       <SbSlideover
         :is-open="show"
         @hide="show = false"
-        v-bind="{ orientation }">
+        :orientation="orientation">
 
         <SbModalHeader title="Hi man" align="left" />
 
