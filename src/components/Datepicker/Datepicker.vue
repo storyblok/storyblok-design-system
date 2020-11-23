@@ -21,7 +21,9 @@
           </span>
         </SbTooltip>
 
-        <span v-else class="sb-datepicker__timezone"></span>
+        <span v-else class="sb-datepicker__timezone">
+          {{ tzOffset }}
+        </span>
       </template>
     </div>
     <SbPopover
