@@ -28,6 +28,15 @@
     position: relative;
   }
 
+  &__timezone {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 4rem;
+    font-size: $font-size-xs;
+    color: $light-gray;
+  }
+
   &__overlay {
     @include popoverComponent();
     width: 100%;

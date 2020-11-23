@@ -13,6 +13,16 @@
         @click.native="handleInputClick"
         @clear="handleClear"
       />
+
+      <template v-if="isShowTzOffset">
+        <SbTooltip v-if="tzTooltip" :label="tzTooltip" position="top">
+          <span class="sb-datepicker__timezone">
+            {{ tzOffset }}
+          </span>
+        </SbTooltip>
+
+        <span v-else class="sb-datepicker__timezone"></span>
+      </template>
     </div>
     <SbPopover
       :is-open="isOverlayVisible"
@@ -67,6 +77,7 @@ import { ClickOutside } from '../../directives'
 import { includes } from '../../utils'
 import { SbTextField } from '../TextField'
 import { SbPopover } from '../Popover'
+import SbTooltip from '../Tooltip'
 
 import SbDatepickerHeader from './components/DatepickerHeader'
 import SbDatepickerTime from './components/DatepickerTime'
@@ -80,6 +91,7 @@ export default {
   name: 'SbDatepicker',
 
   components: {
+    SbTooltip,
     SbPopover,
     SbTextField,
     SbDatepickerHeader,
@@ -110,6 +122,11 @@ export default {
     tzOffset: {
       type: String,
       default: '',
+    },
+
+    tzTooltip: {
+      type: String,
+      default: null,
     },
 
     value: {
@@ -144,8 +161,7 @@ export default {
         return ''
       }
 
-      const value = dayjs(this.internalValue).format(this.internalFormat)
-      return this.isShowTzOffset ? `${value} (GMT ${this.tzOffset})` : value
+      return dayjs(this.internalValue).format(this.internalFormat)
     },
 
     isDisabledTime() {
@@ -153,7 +169,7 @@ export default {
     },
 
     isShowTzOffset() {
-      return !this.isDisabledTime && this.tzOffset
+      return !this.isDisabledTime && this.tzOffset && this.internalValue
     },
 
     isShowCalendar() {
