@@ -1,6 +1,6 @@
 <template>
   <div class="sb-datepicker-week">
-    <span v-for="weekLabel in weekLabels" :key="weekLabel">
+    <span v-for="weekLabel in weekDays" :key="weekLabel">
       {{ weekLabel }}
     </span>
   </div>
@@ -11,7 +11,7 @@ export default {
   name: 'SbDatepickerWeek',
 
   computed: {
-    weekLabels() {
+    weekDays() {
       return ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
     },
   },
