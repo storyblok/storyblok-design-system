@@ -1,7 +1,8 @@
 import { mount } from '@vue/test-utils'
 
+import SbTooltip from '../../Tooltip'
 import SbDatepicker from '../Datepicker.vue'
-import SbDatepickerData from '../Datepicker.stories'
+import SbDatepickerData, { WithTzOffset } from '../Datepicker.stories'
 
 import { INTERNAL_VIEWS } from '../utils'
 
@@ -120,6 +121,27 @@ describe('SbDatepicker component', () => {
     it('Should emit date for input on click', async () => {
       await wrapper.vm.handleDoneAction()
       expect(wrapper.emitted().input[0].length).toBe(1)
+    })
+  })
+
+  describe('Test timezone tooltip', () => {
+    const wrapper = factory({
+      ...SbDatepickerData.args,
+      ...WithTzOffset.args,
+    })
+
+    it('Should exist the SbTooltip component with correct label', () => {
+      const TooltipComponent = wrapper.findComponent(SbTooltip)
+      expect(TooltipComponent.exists()).toBe(true)
+      expect(TooltipComponent.props('label')).toBe(WithTzOffset.args.tzTooltip)
+    })
+
+    it('Should not exist the SbTooltip component when the tzTooltip property is empty', async () => {
+      await wrapper.setProps({
+        tzTooltip: null,
+      })
+
+      expect(wrapper.findComponent(SbTooltip).exists()).toBe(false)
     })
   })
 })
