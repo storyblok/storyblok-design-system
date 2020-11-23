@@ -13,10 +13,11 @@ const Template = (args) => ({
 
   template: `
     <SbDatepicker
-      :tz-offset="tzOffset"
       :disabled="disabled"
-      :type="type"
       :placeholder="placeholder"
+      :tz-offset="tzOffset"
+      :tz-tooltip="tzTooltip"
+      :type="type"
       v-model="internalDatetimeValue"
     />
   `,
@@ -31,21 +32,30 @@ export default {
     type: 'datetime',
     disabled: false,
     tzOffset: '',
+    tzTooltip: null,
   },
   argTypes: {
+    tzOffset: {
+      name: 'tzOffset',
+      description: 'Use this property to bind the user tz offset.',
+      control: {
+        type: 'text',
+      },
+    },
+    tzTooltip: {
+      name: 'tzTooltip',
+      description:
+        'Use this property to display a tooltip message for `tzOffset` information.',
+      control: {
+        type: 'text',
+      },
+    },
     type: {
       name: 'type',
       description: 'Change the type of the input.',
       control: {
         type: 'select',
         options: [...datepickerOptions],
-      },
-    },
-    tzOffset: {
-      name: 'tzOffset',
-      description: 'Use this property to bind the user tz offset.',
-      control: {
-        type: 'text',
       },
     },
   },
@@ -99,13 +109,15 @@ Disabled.parameters = {
 export const WithTzOffset = Template.bind({})
 
 WithTzOffset.args = {
-  tzOffset: '-02:00',
+  tzOffset: 'GMT -02:00',
+  tzTooltip: 'Timezone can be changed in settings',
 }
 
 WithTzOffset.parameters = {
   docs: {
     description: {
-      story: 'Use `tzOffset` property to describe the user timezone',
+      story:
+        'Use `tzOffset` property to describe the user timezone. It is possible to use an optional property called `tzTpoltip` to display a tooltip message for `tzOffset` information.',
     },
   },
 }
