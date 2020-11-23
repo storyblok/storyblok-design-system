@@ -9,7 +9,7 @@
         icon-left="calendar"
         :disabled="disabled"
         :placeholder="placeholder"
-        :value="internalValueFormated"
+        :value="internalValueFormatted"
         @click.native="handleInputClick"
         @clear="handleClear"
       />
@@ -158,7 +158,7 @@ export default {
       return FORMATS[this.type]
     },
 
-    internalValueFormated() {
+    internalValueFormatted() {
       if (!this.internalValue) {
         return ''
       }
@@ -272,11 +272,13 @@ export default {
       this.internalVisualization =
         this.type === 'time' ? INTERNAL_VIEWS.TIME : INTERNAL_VIEWS.CALENDAR
     },
+
     handleClear(previousValue) {
       this.internalValue = ''
       this.$emit('input', '')
       this.$emit('clear', previousValue)
     },
+
     closeOverlay() {
       this.isOverlayVisible = false
     },
