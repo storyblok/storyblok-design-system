@@ -22,7 +22,7 @@
 
 .sb-datepicker {
   position: relative;
-  width: 294px;
+  width: 29.4rem;
 
   &__input {
     position: relative;
@@ -118,7 +118,6 @@
 .sb-datepicker-days {
   width: 100%;
   box-sizing: border-box;
-  // TODO: use polyfill
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
@@ -129,7 +128,7 @@
     flex: 1;
     width: 4.2rem;
     height: 4.2rem;
-    padding: 13px 17px;
+    padding: 1.3rem 1.7rem;
     box-sizing: border-box;
     
     &--inactive {
@@ -149,7 +148,7 @@
   &__number-column {
     display: block;
     width: 50%;
-    max-height: 294px;
+    max-height: 29.4rem;
     overflow-y: scroll;
     border-bottom: 1px solid $light;
   }
@@ -183,7 +182,7 @@
 
 .sb-datepicker-years {
   width: 100%;
-  max-height: 252px;
+  max-height: 25.2rem;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
