@@ -1,5 +1,5 @@
 import { SbMinibrowser } from '../../Minibrowser'
-import { mountAttachingComponent } from '../../../utils'
+import { mountAttachingComponent } from '../../../utils/tests-utils'
 import { browserOptionsData } from '../../Minibrowser/Minibrowser.stories'
 
 import { SbSelect } from '..'
