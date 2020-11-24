@@ -1,5 +1,6 @@
 import SbFormGroup from './index'
 import { SbSelect } from '../Select'
+import SbTextField from '../TextField'
 
 export default {
   title: 'SbFormGroup',
@@ -28,33 +29,58 @@ export const defaultSelectOptionsData = [
 ]
 
 export const Default = (args) => ({
-  components: { SbFormGroup, SbSelect },
+  components: { SbFormGroup, SbSelect, SbTextField },
   props: Object.keys(args),
   data: () => ({
     options: [...defaultSelectOptionsData],
+    label: 'Label',
+    placeholder: 'Placeholder',
   }),
   template: `
     <div>
       <SbFormGroup
-        :legend="legend"
-        style="margin-bottom: 20px; max-width: 400px"
+        v-bind="{
+          legend,
+          inline,
+          description
+        }"
+        style="margin-bottom: 20px; max-width: 300px"
       >
-        <input type="text" style="display: block; margin-bottom: 15px; width: 100%; box-sizing: border-box" />
-        <input type="text" style="display: block; margin-bottom: 15px; width: 100%; box-sizing: border-box" />
+        <SbTextField
+          :placeholder="placeholder"
+          style="margin-bottom: 15px;"
+        />
+        <SbTextField
+          :placeholder="placeholder"
+          style="margin-bottom: 15px;"
+        />
       </SbFormGroup>
       
       <SbFormGroup
-        :legend="legend"
-        style="margin-bottom: 20px; max-width: 400px"
+        v-bind="{
+          legend,
+          inline,
+          description
+        }"
+        style="margin-bottom: 20px; max-width: 300px"
       >
-        <input type="text" style="display: block; margin-bottom: 15px; width: 100%; box-sizing: border-box" />
-        <input type="text" style="display: block; margin-bottom: 15px; width: 100%; box-sizing: border-box" />
+        <SbTextField
+          :label="label"
+          style="margin-bottom: 15px;"
+        />
+        <SbTextField
+          :label="label"
+          style="margin-bottom: 15px;"
+        />
       </SbFormGroup>
       
       <SbFormGroup
-        :legend="legend"
-        :description="description"
-        style="margin-bottom: 20px; max-width: 400px"
+        v-bind="{
+          legend,
+          inline,
+          description
+        }"
+        style="margin-bottom: 20px; max-width: 300px"
       >
         <SbSelect
           label="Choose an option"
@@ -73,31 +99,49 @@ export const Default = (args) => ({
 })
 
 export const Inline = (args) => ({
-  components: { SbFormGroup, SbSelect },
+  components: { SbFormGroup, SbSelect, SbTextField },
   props: Object.keys(args),
   data: () => ({
     options: [...defaultSelectOptionsData],
+    label: 'Label',
+    placeholder: 'Placeholder',
   }),
   template: `
     <div>
       <SbFormGroup
-        :legend="legend"
-        :description="description"
-        inline
-        style="margin-bottom: 20px; width: 100%; max-width: 720px"
+        v-bind="{
+          legend,
+          inline,
+          description
+        }"
+        style="margin-bottom: 20px;"
       >
-        <input type="text" style="display: block; margin-bottom: 15px; width: 100%; max-width: 400px; box-sizing: border-box" />
-        <input type="text" style="display: block; margin-bottom: 15px; width: 100%; max-width: 400px; box-sizing: border-box" />
+        <SbTextField
+          :placeholder="placeholder"
+          style="margin-bottom: 15px; max-width: 300px"
+        />
+        <SbTextField
+          :placeholder="placeholder"
+          style="margin-bottom: 15px; max-width: 300px"
+        />
       </SbFormGroup>
       
       <SbFormGroup
-        :legend="legend"
-        :description="description"
-        inline
-        style="margin-bottom: 20px; width: 100%; max-width: 720px"
+        v-bind="{
+          legend,
+          inline,
+          description
+        }"
+        style="margin-bottom: 20px;"
       >
-        <input type="text" style="display: block; margin-bottom: 15px; width: 100%; max-width: 400px; box-sizing: border-box" />
-        <input type="text" style="display: block; margin-bottom: 15px; width: 100%; max-width: 400px; box-sizing: border-box" />
+        <SbTextField
+          :label="label"
+          style="margin-bottom: 15px; max-width: 300px"
+        />
+        <SbTextField
+          :label="label"
+          style="margin-bottom: 15px; max-width: 300px"
+        />
       </SbFormGroup>
     </div>
   `,
