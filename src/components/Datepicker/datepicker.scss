@@ -1,0 +1,208 @@
+@mixin datepickerItem {
+  cursor: pointer;
+  border-bottom: $light-border;
+  border-right: $light-border;
+  font-size: $font-size-md;
+  color: $color-primary-dark;
+
+  &:hover {
+    background-color: $sb-dark-blue-25;
+  }
+
+  &--active {
+    font-size: $font-size-xg;
+    font-weight: $font-weight-medium;
+    background-color: $sb-green-25;
+
+    &:hover {
+      background-color: $sb-green-25;
+    }
+  }
+}
+
+.sb-datepicker {
+  position: relative;
+  width: 29.4rem;
+
+  &__input {
+    position: relative;
+  }
+
+  &__timezone {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 4rem;
+    font-size: $font-size-xs;
+    color: $light-gray;
+  }
+
+  &__overlay {
+    @include popoverComponent();
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__action-button {
+    appearance: none;
+    border: none;
+    background-color: $white;
+    padding: 1.5rem 2rem;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    color: $color-primary-dark;
+  
+    &:hover {
+      cursor: pointer;
+    }
+  
+    &--primary {
+      color: $color-primary;
+    }
+  }
+}
+
+.sb-datepicker-header {
+  background-color: $light;
+  z-index: 2;
+
+  &__top {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    flex: 1;
+    margin: 0;
+    padding: 1.5rem 0;
+    text-align: center;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-md;
+    color: $color-primary-dark;
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  &__button {
+    border: none;
+    background-color: transparent;
+    padding: 1.4rem 2rem;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__subtitle {
+    display: block;
+    margin: 0;
+    padding-bottom: 1rem;
+    text-align: center;
+    font-size: $font-size-md;
+    color: $sb-dark-blue-50;
+  }
+}
+
+.sb-datepicker-week {
+  display: flex;
+  background-color: $light;
+  padding-bottom: 1rem;
+
+  span {
+    flex: 1;
+    text-align: center;
+    font-size: $font-size-md;
+    color: $sb-dark-blue-50;
+  }
+}
+
+.sb-datepicker-days {
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+
+  &__item {
+    @include flexCentering();
+    @include datepickerItem();
+    flex: 1;
+    width: 4.2rem;
+    height: 4.2rem;
+    padding: 1.3rem 1.7rem;
+    box-sizing: border-box;
+    
+    &--inactive {
+      color: $sb-dark-blue-50;
+    }
+  }
+}
+
+.sb-datepicker-time {
+  width: 100%;
+  box-sizing: border-box;
+
+  &__numbers-container {
+    display: flex;
+  }
+
+  &__number-column {
+    display: block;
+    width: 50%;
+    max-height: 29.4rem;
+    overflow-y: scroll;
+    border-bottom: 1px solid $light;
+  }
+
+  &__number {
+    @include flexCentering();
+    @include datepickerItem();
+    text-align: center;
+    padding: 1rem;
+    height: 4.2rem;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+}
+
+.sb-datepicker-months {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+
+  &__item {
+    @include flexCentering();
+    @include datepickerItem();
+    width: 25%;
+    padding: 1.3rem 2.5rem;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
+
+.sb-datepicker-years {
+  width: 100%;
+  max-height: 25.2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+
+  &__item {
+    @include flexCentering();
+    @include datepickerItem();
+    width: 100%;
+    height: 4.2rem;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}

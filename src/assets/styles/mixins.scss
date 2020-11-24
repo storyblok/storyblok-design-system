@@ -43,3 +43,10 @@
   height: 1px;
   overflow: hidden;
 }
+
+// centers all of the child elements using flex approach
+@mixin flexCentering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
