@@ -1,7 +1,7 @@
 <template>
   <fieldset class="sb-form-group" :class="componentClasses">
     <div class="sb-form-group__info">
-      <legend v-if="legend" class="sb-form-group__legend">{{ legend }}</legend>
+      <legend class="sb-form-group__legend">{{ legend }}</legend>
       <p v-if="description" class="sb-form-group__description">
         {{ description }}
       </p>
@@ -29,6 +29,7 @@ export default {
     legend: {
       type: String,
       default: null,
+      required: true,
     },
   },
 
