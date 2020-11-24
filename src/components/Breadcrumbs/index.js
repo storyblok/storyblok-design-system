@@ -1,3 +1,5 @@
+import './breadcrumbs.scss'
+
 import { SbBreadcrumbItem } from './BreadcrumItem'
 import SbIcon from '../Icon'
 

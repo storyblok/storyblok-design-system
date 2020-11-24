@@ -1,3 +1,5 @@
+import './modal.scss'
+
 import SbModal from './SbModal.vue'
 import SbModalHeader from './components/SbModalHeader.vue'
 import SbModalContent from './components/SbModalContent.vue'
