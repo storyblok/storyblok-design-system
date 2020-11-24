@@ -40,6 +40,7 @@ const SelectTemplate = (args) => ({
       :use-avatars="useAvatars"
       :inline="inline"
       v-model="internalValue"
+      style="max-width: 300px"
     />
   `,
 })
@@ -189,6 +190,7 @@ export const WithMinibrowser = (args) => ({
       :use-avatars="useAvatars"
       :inline="inline"
       v-model="internalValue"
+      style="max-width: 300px"
     >
       <SbMinibrowser
         slot="minibrowser"

@@ -36,7 +36,7 @@ export const Default = (args) => ({
     internalIconRight: 'eye',
   }),
   template: `
-    <div>
+    <div style="max-width: 300px">
       <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
@@ -112,6 +112,7 @@ export const Default = (args) => ({
         v-model="internalValue"
       />
       <SbTextField
+        style="max-width: 100px;"
         :id="id"
         :name="name"
         label="Number input"
@@ -137,7 +138,7 @@ export const withIcon = (args) => ({
     internalValue: 'Boris Spassky',
   }),
   template: `
-    <div>
+    <div style="max-width: 300px">
       <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
@@ -231,7 +232,7 @@ export const Ghost = (args) => ({
     internalIconRight: 'eye',
   }),
   template: `
-    <div>
+    <div style="max-width: 300px">
       <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"
@@ -299,7 +300,7 @@ export const withText = (args) => ({
     internalValue: 'Boris Spassky',
   }),
   template: `
-    <div>
+    <div style="max-width: 300px">
       <SbTextField
         style="margin-bottom: 2rem;"
         :id="id"

@@ -1,6 +1,5 @@
 .sb-textfield {
   width: 100%;
-  max-width: 29.8rem;
 
   &__label {
     display: block;
@@ -37,10 +36,6 @@
     color: $sb-dark-blue;
     font-size: $text-medium-small;
 
-    &[type=number] {
-      width: 8.6rem;
-    }
-
     &:disabled {
       background: $light-25;
       cursor: not-allowed;
@@ -55,7 +50,7 @@
     }
 
     &--default {
-      border: solid 0.1rem $light-50;
+      border: solid 0.1rem $light;
 
       &:hover {
         border: 0.1rem solid $sb-green;
@@ -114,7 +109,7 @@
     font-weight: normal;
     letter-spacing: 0px;
     padding: 1.5rem 1.7rem;
-    border: 0.1rem solid $light-50;
+    border: 0.1rem solid $light;
     border-radius: 0.5rem;
   }
 
