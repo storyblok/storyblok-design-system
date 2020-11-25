@@ -1,16 +1,16 @@
 {
   "name": "storyblok-design-system",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.0.0-development",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib ./src/main.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint src/ tests/ .storybook/",
     "build-storybook": "build-storybook -s ./public",
-    "storybook": "start-storybook -p 6006 -s ./public --ci"
+    "storybook": "start-storybook -p 6006 -s ./public --ci",
+    "prepare": "npm run build"
   },
-  "main": "dist/storyblok-design-system.umd.min.js",
+  "main": "dist/storyblok-design-system.common.js",
   "dependencies": {
     "@popperjs/core": "^2.5.4",
     "core-js": "^3.6.5",
@@ -62,6 +62,19 @@
     "*.{js,jsx,vue}": [
       "vue-cli-service lint",
       "git add"
+    ]
+  },
+  "release": {
+    "branches": [
+      "master",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
     ]
   }
 }
