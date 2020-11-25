@@ -18,7 +18,13 @@ import SbLink from './Link'
 import SbLoading from './Loading'
 import * as MenuComponents from './Menu'
 import * as MinibrowserComponents from './Minibrowser'
-import * as ModalComponents from './Modal'
+import {
+  SbModal,
+  SbModalHeader,
+  SbModalContent,
+  SbModalFooter,
+  SbModalType,
+} from './Modal'
 import SbNotification from './Notification'
 import SbPagination from './Pagination'
 import * as PopoverComponents from './Popover'
@@ -55,7 +61,11 @@ export default {
   SbLoading,
   ...MenuComponents,
   ...MinibrowserComponents,
-  ...ModalComponents,
+  SbModal,
+  SbModalHeader,
+  SbModalContent,
+  SbModalFooter,
+  SbModalType,
   SbNotification,
   SbPagination,
   ...PopoverComponents,
