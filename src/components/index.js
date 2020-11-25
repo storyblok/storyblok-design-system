@@ -10,6 +10,7 @@ import SbDataTable from './DataTable'
 import SbDatepicker from './Datepicker'
 import SbDropArea from './DropArea'
 import * as EditorHeaderComponents from './EditorHeader'
+import SbFormGroup from './FormGroup'
 import SbFormItem from './FormItem'
 import SbFragment from './Fragment'
 import SbGroupButton from './GroupButton'
@@ -53,6 +54,7 @@ export default {
   SbDatepicker,
   SbDropArea,
   ...EditorHeaderComponents,
+  SbFormGroup,
   SbFormItem,
   SbFragment,
   SbGroupButton,
