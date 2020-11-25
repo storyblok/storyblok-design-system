@@ -1,9 +1,15 @@
 import './avatar.scss'
-import avatarFallback from '../../assets/icons/avatar-fallback.svg'
+
 import { canUseDOM, includes } from '../../utils'
-import { isSizeValid, getInitials, generateRandomBgColor } from './utils.js'
+import {
+  isSizeValid,
+  getInitials,
+  generateRandomColor,
+  generateRandomBgColor,
+} from './utils.js'
 
 import SbBadge from '../Badge'
+import SbIcon from '../Icon'
 import SbTooltip from '../Tooltip'
 
 const positionTypes = ['top', 'bottom']
@@ -127,11 +133,11 @@ const SbAvatar = {
         })
       }
 
-      return h('img', {
-        staticClass: this.getBgColor(),
-        attrs: {
-          alt: this.name,
-          src: avatarFallback,
+      return h(SbIcon, {
+        props: {
+          name: 'avatar-fallback',
+          size: 'large',
+          color: this.bgColor || generateRandomColor(),
         },
       })
     }
