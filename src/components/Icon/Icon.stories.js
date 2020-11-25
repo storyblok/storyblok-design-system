@@ -104,7 +104,7 @@ export const AllIcons = (args) => ({
       <SbIcon name="info" v-bind="{ size, color }" />
     </div>
     <div style="margin-bottom: 10px">
-      <SbIcon name="fallback-black" v-bind="{ size, color }" />
+      <SbIcon name="avatar-fallback" v-bind="{ size, color }" />
       <SbIcon name="fallback-blue" v-bind="{ size, color }" />
       <SbIcon name="fallback-green" v-bind="{ size, color }" />
       <SbIcon name="fallback-yellow" v-bind="{ size, color }" />

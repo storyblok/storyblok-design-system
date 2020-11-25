@@ -2,7 +2,7 @@
  * Internal icon paths
  */
 const icons = {
-  'fallback-black': {
+  'avatar-fallback': {
     viewBox: '0 0 46 46',
     path: `
       <g transform="translate(-85.000000, -803.000000)">
