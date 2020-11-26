@@ -11,17 +11,17 @@ import createModalPlugin from './components/Modal/plugin/create-modal-plugin'
 const BlokInkPlugin = {
   installed: false,
 
-  install(Vue) {
+  install(VueInstance) {
     if (this.installed) return
 
     this.installed = true
     for (const key in components) {
-      Vue.component(key, components[key])
+      VueInstance.component(key, components[key])
     }
 
-    Vue.prototype.$sb = {
+    VueInstance.prototype.$sb = {
       // modal will be available in this.$sb.modal(options)
-      modal: createModalPlugin,
+      modal: createModalPlugin(VueInstance),
     }
   },
 }

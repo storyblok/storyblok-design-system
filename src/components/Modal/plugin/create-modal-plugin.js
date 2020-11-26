@@ -1,5 +1,4 @@
 // import SbModal from './index'
-import Vue from 'vue'
 import ModalPlugin from './ModalPlugin'
 import SbModalType from '../SbModalType'
 
@@ -17,7 +16,7 @@ import SbModalType from '../SbModalType'
   * @param   {ModalOptions} options
   * @returns {Function}
   */
-const createModalPlugin = (props, type) => {
+const createModalPlugin = (VueInstance) => (props, type) => {
   const node = document.createElement('div')
   document.body.appendChild(node)
 
@@ -31,7 +30,7 @@ const createModalPlugin = (props, type) => {
     },
   }
 
-  vm = new Vue({
+  vm = new VueInstance({
     el: node,
 
     mounted() {
