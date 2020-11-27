@@ -6,21 +6,21 @@ const SbColors = {
   props: {
     colorName: {
       type: String,
-      default: null
+      default: null,
     },
     name: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
 
-  render (h) {
+  render(h) {
     const renderColor = () => {
       return h('div', {
         staticClass: 'sb-colors',
         style: {
-          background: `${this.colorName}`
-        }
+          background: `${this.colorName}`,
+        },
       })
     }
 
@@ -32,15 +32,14 @@ const SbColors = {
       return h('span', this.colorName)
     }
 
-    return h('div', {
-      staticClass: 'sb-colors--container'
-    },
-    [
-      renderColor(),
-      renderName(),
-      renderHex()
-    ])
-  }
+    return h(
+      'div',
+      {
+        staticClass: 'sb-colors--container',
+      },
+      [renderColor(), renderName(), renderHex()]
+    )
+  },
 }
 
 export default SbColors

@@ -1,3 +1,13 @@
+.sb-color-pallete {
+  margin-bottom: 2rem;
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+}
+
 .sb-colors {
   height: 100px;
   width: 250px;
