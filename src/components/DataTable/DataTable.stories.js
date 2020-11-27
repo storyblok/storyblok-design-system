@@ -34,7 +34,7 @@ const DataTableTemplate = (args) => ({
 })
 
 export default {
-  title: 'SbDataTable',
+  title: 'Design System/Components/SbDataTable',
   components: SbDataTable,
   excludeStories: /.*Data$/,
   parameters: {

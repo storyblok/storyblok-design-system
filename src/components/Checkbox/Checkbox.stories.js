@@ -1,7 +1,7 @@
 import SbCheckbox from './index'
 
 export default {
-  title: 'SbCheckbox',
+  title: 'Design System/Components/Form/SbCheckbox',
   component: SbCheckbox,
   args: {
     id: 'example',

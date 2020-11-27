@@ -61,7 +61,7 @@ export const browserOptionsData = [
 ]
 
 export default {
-  title: 'SbMinibrowser',
+  title: 'Design System/Components/SbMinibrowser',
   component: SbMinibrowser,
   excludeStories: /.*Data$/,
   args: {

@@ -3,7 +3,7 @@ import { SbSelect } from '../Select'
 import SbTextField from '../TextField'
 
 export default {
-  title: 'SbFormGroup',
+  title: 'Design System/Components/Form/SbFormGroup',
   component: SbFormGroup,
   excludeStories: /.*Data$/,
   args: {
@@ -55,7 +55,7 @@ export const Default = (args) => ({
           style="margin-bottom: 15px;"
         />
       </SbFormGroup>
-      
+
       <SbFormGroup
         v-bind="{
           legend,
@@ -73,7 +73,7 @@ export const Default = (args) => ({
           style="margin-bottom: 15px;"
         />
       </SbFormGroup>
-      
+
       <SbFormGroup
         v-bind="{
           legend,
@@ -87,7 +87,7 @@ export const Default = (args) => ({
           :options="options"
           style="display: block; margin-bottom: 15px; width: 100%; box-sizing: border-box"
         />
-        
+
         <SbSelect
           label="Choose an option"
           :options="options"
@@ -125,7 +125,7 @@ export const Inline = (args) => ({
           style="margin-bottom: 15px; max-width: 300px"
         />
       </SbFormGroup>
-      
+
       <SbFormGroup
         v-bind="{
           legend,

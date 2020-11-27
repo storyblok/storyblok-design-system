@@ -24,7 +24,7 @@ const Template = (args) => ({
 })
 
 export default {
-  title: 'SbDatepicker',
+  title: 'Design System/Components/Form/SbDatepicker',
   components: { SbDatepicker },
   args: {
     placeholder: 'Select date and time',

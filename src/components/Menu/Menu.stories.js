@@ -11,7 +11,7 @@ import SbButton from '../Button'
 import SbGroupButton from '../GroupButton'
 
 export default {
-  title: 'SbMenu',
+  title: 'Design System/Components/SbMenu',
   component: SbMenu,
   parameters: {
     docs: {
