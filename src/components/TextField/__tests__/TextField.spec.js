@@ -121,6 +121,25 @@ describe('SbTextField component', () => {
 
     expect(wrapper.emitted('blur')).toBeTruthy()
   })
+
+  it('should perform the remaining characters logic', async () => {
+    const wrapper = factory({
+      label: 'Clearable',
+      value: 'Luke',
+      maxlength: 15,
+    })
+
+    const remaining = wrapper.find('.sb-textfield__counter')
+
+    expect(remaining.text()).toBe('11 characters remaining')
+
+    await wrapper.setProps({
+      value: 'Luke Skywalker',
+    })
+
+    expect(remaining.classes('sb-textfield__counter--warning')).toBe(true)
+    expect(remaining.text()).toBe('1/15 characters remaining')
+  })
 })
 
 describe('SbTextField as textarea', () => {
