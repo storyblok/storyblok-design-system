@@ -82,6 +82,114 @@ describe('SbTextField component', () => {
     await iconElement.trigger('click')
     expect(wrapper.vm.computedValue).toBe(null)
   })
+
+  it('should perform v-model', async () => {
+    const wrapper = factory({
+      label: 'Clearable',
+      value: 'Boris Spassky',
+      clearable: true,
+    })
+
+    const inputElement = wrapper.find('input')
+
+    inputElement.element.value = 'New Value'
+
+    await inputElement.trigger('input')
+
+    expect(wrapper.emitted('input')[0]).toEqual(['New Value'])
+    expect(wrapper.vm.internalValue).toBe('New Value')
+  })
+
+  it('should perform focus/blur events', async () => {
+    const wrapper = factory({
+      label: 'Clearable',
+      value: 'Boris Spassky',
+      clearable: true,
+    })
+
+    const inputElement = wrapper.find('input')
+
+    inputElement.element.focus()
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('focus')).toBeTruthy()
+
+    inputElement.element.blur()
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('blur')).toBeTruthy()
+  })
+})
+
+describe('SbTextField as textarea', () => {
+  const factory = (propsData) => {
+    return mount(SbTextField, {
+      propsData: {
+        ...propsData,
+        type: 'textarea',
+      },
+    })
+  }
+
+  it('should perform v-model', async () => {
+    const wrapper = factory({
+      label: 'Clearable',
+      value: 'Boris Spassky',
+    })
+
+    const textareaElement = wrapper.find('textarea')
+
+    textareaElement.element.value = 'New Value'
+
+    await textareaElement.trigger('input')
+
+    expect(wrapper.emitted('input')[0]).toEqual(['New Value'])
+    expect(wrapper.vm.internalValue).toBe('New Value')
+  })
+
+  it('should have the correct rows, cols and wrap properties', async () => {
+    const wrapper = factory({
+      label: 'Clearable',
+      value: 'Boris Spassky',
+      rows: 4,
+      cols: 30,
+      wrap: 'hard',
+      maxlength: 60,
+      minlength: 10,
+    })
+
+    const textareaElement = wrapper.find('textarea')
+
+    expect(textareaElement.attributes('rows')).toBe('4')
+    expect(textareaElement.attributes('cols')).toBe('30')
+    expect(textareaElement.attributes('wrap')).toBe('hard')
+    expect(textareaElement.attributes('maxlength')).toBe('60')
+    expect(textareaElement.attributes('minlength')).toBe('10')
+  })
+
+  it('should perform focus/blur events', async () => {
+    const wrapper = factory({
+      label: 'Clearable',
+      value: 'Boris Spassky',
+      clearable: true,
+    })
+
+    const textareaElement = wrapper.find('textarea')
+
+    textareaElement.element.focus()
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('focus')).toBeTruthy()
+
+    textareaElement.element.blur()
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('blur')).toBeTruthy()
+  })
 })
 
 describe('handleShowHidePassword()', () => {

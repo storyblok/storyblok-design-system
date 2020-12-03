@@ -20,6 +20,8 @@
         :class="componentClasses"
         :required="required"
         :disabled="disabled"
+        :maxlength="maxlength"
+        :minlength="minlength"
         @focus="handleFocusInput"
         @blur="handleBlurInput"
       />
@@ -40,6 +42,7 @@
         :rows="rows"
         :wrap="wrap"
         :maxlength="maxlength"
+        :minlength="minlength"
         @focus="handleFocusInput"
         @blur="handleBlurInput"
       />
