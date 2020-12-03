@@ -29,12 +29,14 @@
     width: 100%;
   }
 
-  &__input {
+  &__input,
+  &__textarea {
     padding: 1.5rem 1.7rem;
     border-radius: 0.5rem;
     width: 100%;
     color: $sb-dark-blue;
     font-size: $text-medium-small;
+    font-family: inherit;
 
     &:disabled {
       background: $light-25;
@@ -100,6 +102,11 @@
         outline: none;
       }
     }
+  }
+
+  &__textarea {
+    min-height: 19.2rem;
+    box-sizing: border-box;
   }
 
   &__prefix,

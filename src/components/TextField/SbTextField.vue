@@ -32,7 +32,7 @@
         :id="id"
         v-model="computedValue"
         v-bind="$attrs"
-        class="sb-textfield__input"
+        class="sb-textfield__textarea"
         :placeholder="placeholder"
         :name="name"
         :readonly="readonly"

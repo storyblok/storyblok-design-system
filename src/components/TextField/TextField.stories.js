@@ -24,6 +24,8 @@ export default {
 
     prefix: 'http://',
     suffix: '.com',
+
+    maxlength: 60,
   },
 }
 
@@ -125,6 +127,19 @@ export const Default = (args) => ({
         :readonly="readonly"
         type="number"
         native-value="30011937"
+        v-model="internalValue"
+      />
+
+      <SbTextField
+        style="margin-bottom: 2rem;"
+        :id="id"
+        :name="name"
+        :label="label"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :maxlength="maxlength"
         v-model="internalValue"
       />
     </div>
@@ -325,6 +340,31 @@ export const withText = (args) => ({
         :readonly="readonly"
         :suffix="suffix"
         native-value="Boris Spassky"
+        v-model="internalValue"
+      />
+    </div>
+  `,
+})
+
+export const TextArea = (args) => ({
+  components: { SbTextField },
+  props: Object.keys(args),
+  data: () => ({
+    internalValue: 'Boris Spassky',
+  }),
+  template: `
+    <div style="max-width: 300px">
+      <SbTextField
+        type="textarea"
+        :id="id"
+        :name="name"
+        label="Textarea element"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        native-value="Boris Spassky"
+        :maxlength="maxlength"
         v-model="internalValue"
       />
     </div>
