@@ -6,13 +6,13 @@
     <div class="sb-textfield__inner">
       <span v-if="prefix" class="sb-textfield__suffix">{{ prefix }}</span>
       <input
+        v-if="!isTextAreaType"
         :id="id"
         v-model="computedValue"
         class="sb-textfield__input"
         :type="internalType"
         :placeholder="placeholder"
         :name="name"
-        :value="nativeValue"
         :min="min"
         :max="max"
         :step="step"
@@ -23,6 +23,27 @@
         @focus="handleFocusInput"
         @blur="handleBlurInput"
       />
+
+      <textarea
+        v-else
+        :id="id"
+        v-model="computedValue"
+        v-bind="$attrs"
+        class="sb-textfield__input"
+        :placeholder="placeholder"
+        :name="name"
+        :readonly="readonly"
+        :class="componentClasses"
+        :required="required"
+        :disabled="disabled"
+        :cols="cols"
+        :rows="rows"
+        :wrap="wrap"
+        :maxlength="maxlength"
+        @focus="handleFocusInput"
+        @blur="handleBlurInput"
+      />
+
       <SbIcon
         v-if="iconLeft && type !== 'password'"
         size="small"
@@ -75,6 +96,7 @@ export default {
     hasValue() {
       return this.computedValue !== null && ('' + this.computedValue).length > 0
     },
+
     hasSpecialClass() {
       return [
         this.error && 'sb-textfield__input--error',
@@ -82,21 +104,29 @@ export default {
         !this.error && !this.ghost && 'sb-textfield__input--default',
       ]
     },
+
     hasIcon() {
       return [
         this.iconLeft && 'sb-textfield__input--with-icon-left',
         this.iconRight && 'sb-textfield__input--with-icon-right',
       ]
     },
+
     hasTextOnSide() {
       return [
         this.prefix && 'sb-textfield__input--with-prefix',
         this.suffix && 'sb-textfield__input--with-suffix',
       ]
     },
+
     componentClasses() {
       return [...this.hasTextOnSide, ...this.hasIcon, ...this.hasSpecialClass]
     },
+
+    isTextAreaType() {
+      return this.type === 'textarea'
+    },
+
     showClearIcon() {
       return this.hasValue && this.clearable
     },
