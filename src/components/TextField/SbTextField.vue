@@ -9,6 +9,7 @@
         v-if="!isTextAreaType"
         :id="id"
         v-model="computedValue"
+        v-bind="$attrs"
         class="sb-textfield__input"
         :type="internalType"
         :placeholder="placeholder"
