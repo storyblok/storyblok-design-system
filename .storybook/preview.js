@@ -3,6 +3,6 @@ import '../src/assets/styles/global.scss'
 import './preview.css'
 
 import Vue from 'vue'
-import { install } from '../src/main'
+import BlokInkPlugin from '../src/main'
 
-Vue.use({ install })
+Vue.use(BlokInkPlugin)
