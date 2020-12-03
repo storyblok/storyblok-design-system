@@ -77,16 +77,31 @@
       <span v-if="suffix" class="sb-textfield__prefix">{{ suffix }}</span>
     </div>
     <span
-      v-if="error && errorMessage"
+      v-if="showError"
       class="sb-textfield__message sb-textfield__message--error"
     >
       {{ errorMessage }}
+    </span>
+
+    <span
+      v-if="showCounter"
+      class="sb-textfield__counter"
+      :class="{ 'sb-textfield__counter--warning': isAlmostRaiseMaxlength }"
+    >
+      <template v-if="!isAlmostRaiseMaxlength">
+        {{ remainingValue }} characters remaining
+      </template>
+
+      <template v-else>
+        {{ remainingValue }}/{{ maxlengthParsed }} characters remaining
+      </template>
     </span>
   </div>
 </template>
 
 <script>
 import SbIcon from '../Icon'
+
 import TextFieldMixin from '../../mixins/textfield-mixin'
 
 export default {
@@ -133,6 +148,48 @@ export default {
 
     showClearIcon() {
       return this.hasValue && this.clearable
+    },
+
+    showCounter() {
+      return this.maxlength && !this.showError
+    },
+
+    showError() {
+      return this.error && this.errorMessage
+    },
+
+    maxlengthParsed() {
+      return parseInt(this.maxlength || 0)
+    },
+
+    isRaiseMaxlength() {
+      return this.computedValueLength >= this.maxlengthParsed
+    },
+
+    isAlmostRaiseMaxlength() {
+      const limit = Math.floor(this.maxlengthParsed * 0.2)
+
+      return this.computedValueLength >= this.maxlengthParsed - limit
+    },
+
+    computedValueLength() {
+      if (typeof this.computedValue === 'string') {
+        return this.computedValue.length
+      }
+
+      if (typeof this.computedValue === 'number') {
+        return this.computedValue.toString().length
+      }
+
+      return 0
+    },
+
+    remainingValue() {
+      if (!this.showCounter) {
+        return 0
+      }
+
+      return this.maxlengthParsed - this.computedValueLength
     },
   },
   methods: {

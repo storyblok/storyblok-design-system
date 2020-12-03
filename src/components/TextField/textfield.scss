@@ -142,4 +142,16 @@
     }
   }
 
+  &__counter {
+    display: block;
+    margin-top: 0.5rem;
+    letter-spacing: 0rem;
+    color: $sb-dark-blue-50;
+    font-size: $text-medium-small;
+    font-weight: $font-weight-regular;
+
+    &--warning {
+      color: $orange;
+    }
+  }
 }

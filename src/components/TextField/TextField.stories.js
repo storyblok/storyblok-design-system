@@ -114,7 +114,7 @@ export const Default = (args) => ({
         v-model="internalValue"
       />
       <SbTextField
-        style="max-width: 100px;"
+        style="max-width: 100px; margin-bottom: 2rem;"
         :id="id"
         :name="name"
         label="Number input"
@@ -131,7 +131,6 @@ export const Default = (args) => ({
       />
 
       <SbTextField
-        style="margin-bottom: 2rem;"
         :id="id"
         :name="name"
         :label="label"
