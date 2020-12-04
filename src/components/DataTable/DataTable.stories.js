@@ -287,12 +287,6 @@ export const Slots = (args) => ({
   template: `
     <div>
       <SbDataTable>
-        <SbDataTableColumn name="Spaces" :data="spaces">
-          <template v-slot="props">
-            <span>{{ props.title }}</span><br>
-            Edited {{ props.editedOn }}
-          </template>
-        </SbDataTableColumn>
         <SbDataTableColumn name="Authors" :data="spaces">
           <template>
             <SbAvatarGroup>
@@ -302,6 +296,12 @@ export const Slots = (args) => ({
                 bg-color="primary"
               />
             </SbAvatarGroup>
+          </template>
+        </SbDataTableColumn>
+        <SbDataTableColumn name="Spaces" :data="spaces">
+          <template v-slot="props">
+            <span>{{ props.title }}</span><br>
+            Edited {{ props.editedOn }}
           </template>
         </SbDataTableColumn>
         <SbDataTableColumn name="Static" :data="spaces">
