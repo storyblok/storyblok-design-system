@@ -16,7 +16,6 @@ export const SbDataTableColumn = {
   },
 
   render(h) {
-    console.log(this.row)
     // console.log('this.$slots.default: ', this.$slots.default)
     // console.log('this.data: ', this.data);
 

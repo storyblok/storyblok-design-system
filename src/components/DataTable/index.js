@@ -207,8 +207,6 @@ const SbDataTable = {
       if (this.$slots.default) {
         const children = this.$slots.default.filter((e) => e.tag)
 
-        console.log(children)
-
         headerData = children.map((element) => {
           return h(
             'th',
@@ -227,16 +225,26 @@ const SbDataTable = {
         //   ])
         // ]
 
-        // item é row => tr
-        bodyData = this.items.map((item) => {
-          console.log(item)
-          /// element é o tableColumn => td
-          const columns = children.map((element) => {
-            console.log(item)
-            element.componentOptions.propsData.row = { ...item }
-
-            console.log(element)
-            return element
+        bodyData = this.items.map((tableRow) => {
+          const columns = children.map((tableData) => {
+            return h(
+              tableData.componentOptions.Ctor,
+              {
+                ...tableData.data,
+                ...(tableData.componentOptions.listeners || {}),
+                props: {
+                  ...(tableData.data.props || {}),
+                  ...tableData.componentOptions.propsData,
+                  // passing the row property
+                  row: { ...tableRow },
+                },
+                attrs: {
+                  ...tableData.data.attrs,
+                },
+                on: tableData.componentOptions.listeners,
+              },
+              tableData.componentOptions.children
+            )
           })
 
           return h(
