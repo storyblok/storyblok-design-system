@@ -1,4 +1,9 @@
 import SbDataTable from '.'
+import SbAvatar from '../Avatar'
+import SbAvatarGroup from '../AvatarGroup'
+
+import { SbDataTableBody } from './components/SbDataTableBody'
+import { SbDataTableColumn } from './components/SbDataTableColumn'
 
 const description = {
   allowSelection: 'Allow row selection.',
@@ -240,4 +245,126 @@ Striped.parameters = {
       story: description.striped,
     },
   },
+}
+
+// export const Slots = (args) => ({
+//   components: { SbDataTable, SbDataTableBody, SbAvatarGroup, SbAvatar },
+//   props: Object.keys(args),
+//   template: `
+//     <div>
+//       <SbDataTable :headers="heading">
+//         <tr v-for="item in spaces">
+//           <td class="sb-data-table__body-cell">
+//             <span class="sb-data-table__col-main">{{ item.title }}</span><br>
+//             {{ item.editedOn }}
+//           </td>
+//           <td class="sb-data-table__body-cell">
+//             <SbAvatarGroup>
+//               <SbAvatar
+//                 v-for="author in item.authors"
+//                 :src="author.image"
+//                 :name="author.name"
+//                 :key="author.name"
+//                 bg-color="primary"
+//               />
+//             </SbAvatarGroup>
+//           </td>
+//         </tr>
+//       </SbDataTable>
+//     </div>
+//   `,
+// })
+
+export const Slots = (args) => ({
+  components: {
+    SbDataTable,
+    SbDataTableBody,
+    SbAvatarGroup,
+    SbAvatar,
+    SbDataTableColumn,
+  },
+  props: Object.keys(args),
+  template: `
+    <div>
+      <SbDataTable>
+        <SbDataTableColumn name="Spaces" :data="spaces">
+          <template v-slot="props">
+            <span>{{ props.title }}</span><br>
+            Edited {{ props.editedOn }}
+          </template>
+        </SbDataTableColumn>
+        <SbDataTableColumn name="Authors" :data="spaces">
+          <template>
+            <SbAvatarGroup>
+              <SbAvatar
+                src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
+                name="John Doe"
+                bg-color="primary"
+              />
+            </SbAvatarGroup>
+          </template>
+        </SbDataTableColumn>
+        <SbDataTableColumn name="Static" :data="spaces">
+          Teste de conteúdo estático
+        </SbDataTableColumn>
+      </SbDataTable>
+    </div>
+  `,
+})
+
+Slots.args = {
+  heading: [
+    {
+      text: 'Spaces',
+      value: 'name',
+      main: true,
+      sortable: true,
+    },
+    { text: 'Authors' },
+  ],
+  spaces: [
+    {
+      title: 'My first space',
+      editedOn: '3 days ago',
+      authors: [
+        {
+          name: 'John Doe',
+          image:
+            'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+        },
+        {
+          name: 'Kobe Bryant',
+          image:
+            'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+        },
+      ],
+    },
+    {
+      title: 'My second space',
+      editedOn: '3 days ago',
+      authors: [
+        {
+          name: 'John Doe',
+          image:
+            'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+        },
+        {
+          name: 'Kobe Bryant',
+          image:
+            'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+        },
+      ],
+    },
+    {
+      title: 'Storyblok Demo',
+      editedOn: '3 days ago',
+      authors: [
+        {
+          name: 'John Doe',
+          image:
+            'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+        },
+      ],
+    },
+  ],
 }

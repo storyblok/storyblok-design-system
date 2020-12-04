@@ -32,7 +32,6 @@ const SbDataTable = {
       default: false,
     },
     headers: {
-      required: true,
       type: Array,
       default: () => [],
     },
@@ -47,7 +46,6 @@ const SbDataTable = {
       default: false,
     },
     items: {
-      required: true,
       type: Array,
       default: () => [],
     },
@@ -203,31 +201,63 @@ const SbDataTable = {
     }
 
     const renderTable = () => {
+      let headerData = []
+      let bodyData = []
+
+      if (this.$slots.default) {
+        const children = this.$slots.default.filter((e) => e.tag)
+
+        headerData = children.map((element) => {
+          return h(
+            'th',
+            {
+              staticClass: 'sb-data-table__head-cell',
+            },
+            [element.componentOptions.propsData.name]
+          )
+        })
+
+        // bodyData = [
+        //   h('tr', {
+        //     staticClass: 'sb-data-table__row',
+        //   }, [
+        //     children
+        //   ])
+        // ]
+        bodyData = [children]
+      }
+
       return h(
         'table',
         {
           staticClass: 'sb-data-table__container',
         },
         [
-          !this.hideHeader &&
-            h(SbDataTableHeader, {
-              props: {
-                allowSelection: this.allowSelection,
-                allRowsSelected: this.allRowsSelected,
-                headers: this.headers,
-                selectedRowsLength: this.selectedRows.length,
-                selectionMode: this.selectionMode,
-                sortedKey: this.sortKey,
-              },
-            }),
-          h(SbDataTableBody, {
-            props: {
-              allowSelection: this.allowSelection,
-              headers: this.headers,
-              items: this.sortedData,
-              selectedRows: this.selectedRows,
-            },
-          }),
+          !this.hideHeader && this.headers.length
+            ? h(SbDataTableHeader, {
+                props: {
+                  allowSelection: this.allowSelection,
+                  allRowsSelected: this.allRowsSelected,
+                  headers: this.headers,
+                  selectedRowsLength: this.selectedRows.length,
+                  selectionMode: this.selectionMode,
+                  sortedKey: this.sortKey,
+                },
+              })
+            : null,
+          this.sortedData.length
+            ? h(SbDataTableBody, {
+                props: {
+                  allowSelection: this.allowSelection,
+                  headers: this.headers,
+                  items: this.sortedData,
+                  selectedRows: this.selectedRows,
+                },
+              })
+            : null,
+          this.$slots.default
+            ? [h('thead', [h('tr', [headerData])]), h('tbody', [bodyData])]
+            : null,
         ]
       )
     }

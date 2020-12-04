@@ -48,6 +48,10 @@ export const SbDataTableBodyRow = {
   render(h) {
     const mainColumnIndex = this.headers.findIndex((col) => col.main)
 
+    // if (this.$slots.default) {
+    //   return this.$slots.default
+    // }
+
     return h(
       'tr',
       {
@@ -128,6 +132,12 @@ export const SbDataTableBody = {
   },
 
   render(h) {
+    // if (this.$slots.default) {
+    //   return h('tbody', [
+    //     this.$slots.default
+    //   ])
+    // }
+
     return h('tbody', [
       this.items.map((row) => {
         return h(SbDataTableBodyRow, {
