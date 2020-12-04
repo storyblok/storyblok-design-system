@@ -173,15 +173,7 @@ export default {
     },
 
     computedValueLength() {
-      if (typeof this.computedValue === 'string') {
-        return this.computedValue.length
-      }
-
-      if (typeof this.computedValue === 'number') {
-        return this.computedValue.toString().length
-      }
-
-      return 0
+      return `${this.computedValue}`.length
     },
 
     remainingValue() {
