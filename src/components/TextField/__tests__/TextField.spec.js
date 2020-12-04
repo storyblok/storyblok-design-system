@@ -139,6 +139,12 @@ describe('SbTextField component', () => {
 
     expect(remaining.classes('sb-textfield__counter--warning')).toBe(true)
     expect(remaining.text()).toBe('1/15 characters remaining')
+
+    await wrapper.setProps({
+      value: '',
+    })
+
+    expect(wrapper.find('.sb-textfield__counter').exists()).toBe(false)
   })
 })
 

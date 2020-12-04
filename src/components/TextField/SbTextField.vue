@@ -151,7 +151,7 @@ export default {
     },
 
     showCounter() {
-      return this.maxlength && !this.showError
+      return this.maxlength && !this.showError && this.hasValue
     },
 
     showError() {
