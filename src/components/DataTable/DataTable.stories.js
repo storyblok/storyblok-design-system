@@ -286,25 +286,23 @@ export const Slots = (args) => ({
   props: Object.keys(args),
   template: `
     <div>
-      <SbDataTable>
-        <SbDataTableColumn name="Authors" :data="spaces">
-          <template>
-            <SbAvatarGroup>
-              <SbAvatar
-                src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
-                name="John Doe"
-                bg-color="primary"
-              />
+      <SbDataTable :items="spaces">
+        <SbDataTableColumn name="Authors">
+          <template v-slot="props">
+            <SbAvatarGroup v-for="(author, index) in props.row.authors" :key="index">
+              <SbAvatar v-bind="author" />
             </SbAvatarGroup>
           </template>
         </SbDataTableColumn>
-        <SbDataTableColumn name="Spaces" :data="spaces">
+
+        <SbDataTableColumn name="Spaces">
           <template v-slot="props">
-            <span>{{ props.title }}</span><br>
-            Edited {{ props.editedOn }}
+            <span>{{ props.row.title }}</span><br>
+            Edited {{ props.row.editedOn }}
           </template>
         </SbDataTableColumn>
-        <SbDataTableColumn name="Static" :data="spaces">
+
+        <SbDataTableColumn name="Static">
           Teste de conteúdo estático
         </SbDataTableColumn>
       </SbDataTable>
