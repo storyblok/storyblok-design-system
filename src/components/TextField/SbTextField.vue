@@ -127,7 +127,8 @@ export default {
     hasIcon() {
       return [
         this.iconLeft && 'sb-textfield__input--with-icon-left',
-        this.iconRight && 'sb-textfield__input--with-icon-right',
+        (this.iconRight || this.clearable) &&
+          'sb-textfield__input--with-icon-right',
       ]
     },
 

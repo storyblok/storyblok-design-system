@@ -67,8 +67,12 @@
     }
 
     &--with-icon {
-      &-left{
+      &-left {
         padding-left: 4.3rem;
+      }
+
+      &-right {
+        padding-right: 4.3rem;
       }
     }
 
@@ -105,7 +109,7 @@
   }
 
   &__textarea {
-    min-height: 19.2rem;
+    min-height: 13rem;
     box-sizing: border-box;
   }
 
