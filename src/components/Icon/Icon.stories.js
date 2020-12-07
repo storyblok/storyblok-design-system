@@ -2,6 +2,10 @@ import SbIcon from '.'
 import { iconSizes } from './utils'
 import { availableColors } from '../../utils'
 
+import LIB_ICONS from '../../lib/internal-icons'
+
+const availableIcons = Object.keys(LIB_ICONS)
+
 export default {
   title: 'SbIcon',
   component: SbIcon,
@@ -24,7 +28,8 @@ export default {
       name: 'name',
       description: 'Icon name',
       control: {
-        type: 'text',
+        type: 'select',
+        options: availableIcons,
       },
     },
     role: {
@@ -83,37 +88,22 @@ export const IconSizes = () => ({
 export const AllIcons = (args) => ({
   components: { SbIcon },
   props: Object.keys(args),
+  data: () => ({
+    icons: [...availableIcons],
+  }),
   template: `
   <div>
-    <div style="margin-bottom: 10px">
-      <SbIcon name="chevron-down" v-bind="{ size, color }" />
-      <SbIcon name="chevron-left" v-bind="{ size, color }" />
-      <SbIcon name="chevron-right" v-bind="{ size, color }" />
-      <SbIcon name="chevron-up" v-bind="{ size, color }" />
-      <SbIcon name="chevron-sort" v-bind="{ size, color }" />
-      <SbIcon name="search" v-bind="{ size, color }" />
-      <SbIcon name="close" v-bind="{ size, color }" />
-      <SbIcon name="folder" v-bind="{ size, color }" />
-      <SbIcon name="calendar" v-bind="{ size, color }" />
-      <SbIcon name="plus" v-bind="{ size, color }" />
-      <SbIcon name="substract" v-bind="{ size, color }" />
-      <SbIcon name="checkmark" v-bind="{ size, color }" />
-      <SbIcon name="overflow-menu-vertic" v-bind="{ size, color }" />
-      <SbIcon name="status-circle" v-bind="{ size, color }" />
-      <SbIcon name="warning" v-bind="{ size, color }" />
-      <SbIcon name="info" v-bind="{ size, color }" />
-    </div>
-    <div style="margin-bottom: 10px">
-      <SbIcon name="avatar-fallback" v-bind="{ size, color }" />
-      <SbIcon name="fallback-blue" v-bind="{ size, color }" />
-      <SbIcon name="fallback-green" v-bind="{ size, color }" />
-      <SbIcon name="fallback-yellow" v-bind="{ size, color }" />
-      <SbIcon name="fallback-light-green" v-bind="{ size, color }" />
-    </div>
-    <div style="margin-bottom: 10px">
-      <SbIcon name="success-pictogram" v-bind="{ size, color }" />
-      <SbIcon name="upload-pictogram" v-bind="{ size, color }" />
-      <SbIcon name="delete-pictogram" v-bind="{ size, color }" />
+    <p style="font-size: 2rem; padding-left: 2rem; margin: 0;"> All icons </p>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+      <div
+        v-for="(name, index) in icons"
+        :key="index"
+        style="text-align: center; padding: 2rem"
+      >
+        <SbIcon v-bind="{ size, color, name }"/>
+
+        <p class="font-size-md"> {{ name }} </p>
+      </div>
     </div>
   </div>
   `,
