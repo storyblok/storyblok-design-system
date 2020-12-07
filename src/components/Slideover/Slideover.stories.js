@@ -38,8 +38,8 @@ const SlideoverTemplate = (args) => ({
         </SbModalContent>
 
         <SbModalFooter>
-          <SbButton label="Label" type="primary"/>
-          <SbButton label="Label" type="ghost"/>
+          <SbButton label="Label" colorPalette="primary"/>
+          <SbButton label="Label" colorPalette="ghost"/>
         </SbModalFooter>
       </SbSlideover>
     </div>

@@ -35,11 +35,11 @@ describe('Tests for SbModal', () => {
         <SbModalFooter>
             <SbButton
               label="Save"
-              type="primary"
+              colorPalette="primary"
             />
             <SbButton
               label="Cancel"
-              type="primary"
+              colorPalette="primary"
             />
         </SbModalFooter>
       </SbModal>

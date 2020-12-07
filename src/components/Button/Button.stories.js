@@ -8,13 +8,13 @@ const ButtonTemplate = (args) => ({
   template: `
     <div>
       <SbButton
-        :type="type"
+        :color-palette="colorPalette"
         :label="label"
         :size="size"
       />
 
       <SbButton
-        :type="type"
+        :color-palette="colorPalette"
         :is-disabled="isDisabled"
         :icon="icon"
         :label="label"
@@ -22,7 +22,7 @@ const ButtonTemplate = (args) => ({
       />
 
       <SbButton
-        :type="type"
+        :color-palette="colorPalette"
         :is-disabled="isDisabled"
         :icon-right="iconRight"
         :label="label"
@@ -30,7 +30,7 @@ const ButtonTemplate = (args) => ({
       />
 
       <SbButton
-        :type="type"
+        :color-palette="colorPalette"
         :label="label"
         :is-loading="isLoading"
         isDisabled
@@ -38,7 +38,7 @@ const ButtonTemplate = (args) => ({
       />
 
       <SbButton
-        :type="type"
+        :color-palette="colorPalette"
         is-loading
         :is-disabled="isDisabled"
         :size="size"
@@ -69,7 +69,7 @@ export default {
     hasIconOnly: false,
     label: 'Default',
     size: null,
-    type: 'primary',
+    colorPalette: 'primary',
     tooltipPosition: 'bottom',
   },
   argTypes: {
@@ -145,9 +145,9 @@ export default {
         options: ['small', 'normal', 'large'],
       },
     },
-    type: {
-      name: 'type',
-      description: '`SbButton` type',
+    colorPalette: {
+      name: 'colorPalette',
+      description: '`SbButton` colorPalette',
       control: {
         type: 'select',
         options: ['primary', 'secondary', 'ghost', 'danger'],
@@ -178,7 +178,7 @@ export const Default = (args) => ({
       :has-icon-only="hasIconOnly"
       :label="label"
       :size="size"
-      :type="type"
+      :color-palette="colorPalette"
       :tooltip-position="tooltipPosition"
     />
   `,
@@ -204,7 +204,7 @@ Primary.parameters = {
 export const Secondary = ButtonTemplate.bind({})
 
 Secondary.args = {
-  type: 'secondary',
+  colorPalette: 'secondary',
   label: 'Secondary',
   icon: 'checkmark',
   iconRight: 'calendar',
@@ -223,7 +223,7 @@ export const Ghost = ButtonTemplate.bind({})
 
 Ghost.args = {
   label: 'Ghost',
-  type: 'ghost',
+  colorPalette: 'ghost',
   icon: 'checkmark',
   iconRight: 'calendar',
 }
@@ -241,7 +241,7 @@ export const Danger = ButtonTemplate.bind({})
 
 Danger.args = {
   label: 'Danger',
-  type: 'danger',
+  colorPalette: 'danger',
   icon: 'close',
   iconRight: 'close',
 }
@@ -258,9 +258,9 @@ export const Sizes = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `<div>
-    <SbButton label="Small" size="small" :type="type" />
-    <SbButton label="Default" :type="type" />
-    <SbButton label="Large" size="large" :type="type" />
+    <SbButton label="Small" size="small" :color-palette="colorPalette" />
+    <SbButton label="Default" :color-palette="colorPalette" />
+    <SbButton label="Large" size="large" :color-palette="colorPalette" />
   </div>`,
 })
 
@@ -278,7 +278,7 @@ export const FullWidth = (args) => ({
   props: Object.keys(args),
   template: `<div style="max-width: 500px;">
     <SbButton
-      :type="type"
+      :color-palette="colorPalette"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :size="size"
@@ -307,7 +307,7 @@ export const JustIcons = (args) => ({
   props: Object.keys(args),
   template: `<div style="max-width: 500px;">
     <SbButton
-      type="primary"
+      colorPalette="primary"
       :size="size"
       :icon="icon"
       :is-loading="isLoading"
@@ -316,7 +316,7 @@ export const JustIcons = (args) => ({
     />
 
     <SbButton
-      type="secondary"
+      colorPalette="secondary"
       :size="size"
       :icon="icon"
       :is-loading="isLoading"
@@ -325,7 +325,7 @@ export const JustIcons = (args) => ({
     />
 
     <SbButton
-      type="ghost"
+      colorPalette="ghost"
       :size="size"
       :icon="icon"
       :is-loading="isLoading"
@@ -358,7 +358,7 @@ export const InlineLabel = (args) => ({
   props: Object.keys(args),
   template: `<div style="max-width: 500px;">
     <SbButton
-      :type="type"
+      :color-palette="colorPalette"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :size="size"
@@ -391,14 +391,14 @@ export const LoadingButton = (args) => ({
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :size="size"
-      :type="type"
+      :color-palette="colorPalette"
     />`,
 })
 
 LoadingButton.args = ButtonTemplate.bind({})
 
 LoadingButton.args = {
-  type: 'primary',
+  colorPalette: 'primary',
   isLoading: true,
 }
 
