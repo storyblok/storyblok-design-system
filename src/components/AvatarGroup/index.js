@@ -6,7 +6,7 @@ import { truncate, availableColors } from '../../utils'
 
 // @vue/component
 export const MoreAvatars = {
-  name: 'MoreAvatars',
+  name: 'SbMoreAvatars',
 
   functional: true,
 
@@ -53,7 +53,7 @@ export const MoreAvatars = {
 
 // @vue/component
 export const MoreAvatar = {
-  name: 'MoreAvatar',
+  name: 'SbMoreAvatar',
 
   functional: true,
 
@@ -93,7 +93,7 @@ export const MoreAvatar = {
  * SbAvatarGroup is a component to group SbAvatar
  */
 const SbAvatarGroup = {
-  name: 'AvatarGroup',
+  name: 'SbAvatarGroup',
 
   props: {
     maxElements: {
