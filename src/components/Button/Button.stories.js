@@ -1,6 +1,7 @@
 import SbButton from './index'
 
 import { availablePositions as availableTooltipPositions } from '../Tooltip/lib'
+import { availableButtonsTypes } from './lib'
 
 const ButtonTemplate = (args) => ({
   components: { SbButton },
@@ -11,6 +12,7 @@ const ButtonTemplate = (args) => ({
         :color-palette="colorPalette"
         :label="label"
         :size="size"
+        :type="type"
       />
 
       <SbButton
@@ -19,6 +21,7 @@ const ButtonTemplate = (args) => ({
         :icon="icon"
         :label="label"
         :size="size"
+        :type="type"
       />
 
       <SbButton
@@ -27,6 +30,7 @@ const ButtonTemplate = (args) => ({
         :icon-right="iconRight"
         :label="label"
         :size="size"
+        :type="type"
       />
 
       <SbButton
@@ -35,6 +39,7 @@ const ButtonTemplate = (args) => ({
         :is-loading="isLoading"
         isDisabled
         :size="size"
+        :type="type"
       />
 
       <SbButton
@@ -42,6 +47,7 @@ const ButtonTemplate = (args) => ({
         is-loading
         :is-disabled="isDisabled"
         :size="size"
+        :type="type"
       />
     </div>
   `,
@@ -71,6 +77,7 @@ export default {
     size: null,
     colorPalette: 'primary',
     tooltipPosition: 'bottom',
+    type: null,
   },
   argTypes: {
     isDisabled: {
@@ -161,6 +168,15 @@ export default {
         options: [...availableTooltipPositions],
       },
     },
+    type: {
+      name: 'type',
+      description:
+        'The `type` attribute specifies the `type` of button, the available options are **button**, **submit**, **reset**, the default value is null.',
+      control: {
+        type: 'select',
+        options: [...availableButtonsTypes],
+      },
+    },
   },
 }
 
@@ -180,6 +196,7 @@ export const Default = (args) => ({
       :size="size"
       :color-palette="colorPalette"
       :tooltip-position="tooltipPosition"
+      :type="type"
     />
   `,
 })
@@ -284,6 +301,7 @@ export const FullWidth = (args) => ({
       :size="size"
       :is-full-width="isFullWidth"
       :label="label"
+      :type="type"
     />
   </div>`,
 })
@@ -312,6 +330,7 @@ export const JustIcons = (args) => ({
       :icon="icon"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
+      :type="type"
       has-icon-only
     />
 
@@ -321,6 +340,7 @@ export const JustIcons = (args) => ({
       :icon="icon"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
+      :type="type"
       has-icon-only
     />
 
@@ -332,6 +352,7 @@ export const JustIcons = (args) => ({
       :is-disabled="isDisabled"
       :icon-description="iconDescription"
       is-rounded
+      :type="type"
       has-icon-only
       :tooltip-position="tooltipPosition"
     />
@@ -363,6 +384,7 @@ export const InlineLabel = (args) => ({
       :is-disabled="isDisabled"
       :size="size"
       :is-full-width="isFullWidth"
+      :type="type"
     >
       {{ label }}
     </SbButton>
@@ -392,6 +414,7 @@ export const LoadingButton = (args) => ({
       :is-disabled="isDisabled"
       :size="size"
       :color-palette="colorPalette"
+      :type="type"
     />`,
 })
 
