@@ -6,7 +6,7 @@
         {{ message }}
       </SbModalContent>
 
-      <div>
+      <div class="sb-modal__type--buttons">
         <SbButton
           variant="ghost"
           :label="cancelButtonLabel"

@@ -11,6 +11,9 @@ const SlideoverTemplate = (args) => ({
     SbModalFooter,
   },
   props: Object.keys(args),
+  mounted() {
+    this.handleOpenSlide()
+  },
   methods: {
     handleOpenSlide() {
       this.show = true
@@ -84,6 +87,9 @@ SlideoverOnLeft.args = {
 export const SlideoverWithoutFooter = (args) => ({
   components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
   props: Object.keys(args),
+  mounted() {
+    this.handleOpenSlide()
+  },
   methods: {
     handleOpenSlide() {
       this.show = true
@@ -117,6 +123,9 @@ export const SlideoverWithoutFooter = (args) => ({
 export const SlideoverInMaxSize = (args) => ({
   components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
   props: Object.keys(args),
+  mounted() {
+    this.handleOpenSlide()
+  },
   methods: {
     handleOpenSlide() {
       this.show = true

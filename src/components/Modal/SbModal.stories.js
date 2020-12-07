@@ -23,7 +23,7 @@ const ModalTemplate = (args) => ({
     },
   },
   data: () => ({
-    showModal: false,
+    showModal: true,
   }),
   template: `
     <div>
@@ -48,7 +48,7 @@ const ModalTemplate = (args) => ({
         />
 
         <SbModalContent>
-          <p>The body copy that explains empty state</p>
+          <p style="text-align:center">The body copy that explains empty state</p>
         </SbModalContent>
 
         <SbModalFooter>
@@ -134,7 +134,7 @@ export const ModalWithoutFooter = (args) => ({
     },
   },
   data: () => ({
-    showModal: false,
+    showModal: true,
   }),
   template: `
   <div>
@@ -156,7 +156,7 @@ export const ModalWithoutFooter = (args) => ({
         <p style="font-size: 16px; color: rgb(84, 91, 111); text-align: center;">The body copy that explains empty state</p>
       </SbModalContent>
 
-      <SbButton label="Click me!" variant="primary"/>
+      <SbButton label="Click me!" variant="primary" style="margin: 0 auto;display: flex"/>
     </SbModal>
   </div>
   `,
@@ -184,7 +184,7 @@ export const ModalWithoutHeader = (args) => ({
     },
   },
   data: () => ({
-    showModal: false,
+    showModal: true,
   }),
   template: `
   <div>
@@ -231,7 +231,7 @@ export const ModalWithMediumSize = (args) => ({
     },
   },
   data: () => ({
-    showModal: false,
+    showModal: true,
   }),
   template: `
   <div>
@@ -280,6 +280,9 @@ ModalInFullWidth.args = {
 export const ModalTypeComponentConfirm = (args) => ({
   props: Object.keys(args),
   components: { SbModalType },
+  mounted() {
+    this.handleShowModal()
+  },
   methods: {
     handleShowModal() {
       this.$refs.modal.show()
@@ -327,6 +330,9 @@ ModalTypeComponentConfirm.parameters = {
 export const ModalTypeComponentDelete = (args) => ({
   props: Object.keys(args),
   components: { SbModalType },
+  mounted() {
+    this.handleShowModal()
+  },
   methods: {
     handleShowModal() {
       this.$refs.modal.show()
