@@ -88,4 +88,21 @@ describe('Test SbLink component', () => {
       expect(wrapper.text()).toBe(label)
     })
   })
+
+  describe('when the variant property', () => {
+    const label = 'Auth data'
+
+    const wrapper = mount(SbLink, {
+      propsData: {
+        label,
+        title: 'Link with icon',
+        to: '/auth',
+        variant: 'white',
+      },
+    })
+
+    it('should render the correct class name', () => {
+      expect(wrapper.classes('sb-link--white')).toBe(true)
+    })
+  })
 })
