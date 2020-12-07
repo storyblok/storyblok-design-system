@@ -1,14 +1,14 @@
 import SbGroupButton from '.'
 import SbButton from '../Button/index'
 
-import { availableColorsPalette } from '../Button/lib'
+import { availableVariants } from '../Button/lib'
 import { availableSizes } from '../../utils'
 
 export default {
   title: 'SbGroupButton',
   component: SbGroupButton,
   args: {
-    colorPalette: 'ghost',
+    variant: 'ghost',
     size: null,
     hasSpaces: false,
   },
@@ -21,12 +21,12 @@ export default {
         options: [...availableSizes],
       },
     },
-    colorPalette: {
-      name: 'colorPalette',
-      description: '`SbButton` colorPalette',
+    variant: {
+      name: 'variant',
+      description: '`SbButton` variant',
       control: {
         type: 'select',
-        options: [...availableColorsPalette],
+        options: [...availableVariants],
       },
     },
     hasSpaces: {
@@ -43,7 +43,7 @@ export const Default = (args) => ({
   components: { SbGroupButton, SbButton },
   props: Object.keys(args),
   template: `
-    <SbGroupButton v-bind="{ size, colorPalette, hasSpaces }">
+    <SbGroupButton v-bind="{ size, variant, hasSpaces }">
       <SbButton label="First Button" />
       <SbButton label="Secondary Button" />
       <SbButton label="Third Button" />
@@ -55,7 +55,7 @@ export const WithIcons = (args) => ({
   components: { SbGroupButton, SbButton },
   props: Object.keys(args),
   template: `
-    <SbGroupButton v-bind="{ size, colorPalette, hasSpaces }">
+    <SbGroupButton v-bind="{ size, variant, hasSpaces }">
       <SbButton :label="firstLabel" />
       <SbButton :label="secondaryLabel" />
       <SbButton has-icon-only icon="close" />
@@ -85,7 +85,7 @@ export const JustIcons = (args) => ({
   components: { SbGroupButton, SbButton },
   props: Object.keys(args),
   template: `
-    <SbGroupButton v-bind="{ size, colorPalette, hasSpaces }">
+    <SbGroupButton v-bind="{ size, variant, hasSpaces }">
       <SbButton has-icon-only icon="calendar" iconDescription="Calendar Icon" />
       <SbButton has-icon-only icon="plus" iconDescription="Plus Icon" />
       <SbButton has-icon-only icon="overflow-menu-vertic" iconDescription="Overflow Icon" />

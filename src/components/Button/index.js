@@ -100,7 +100,7 @@ const SbButton = {
       return h(
         'button',
         {
-          staticClass: `sb-button sb-button--${this.colorPalette}`,
+          staticClass: `sb-button sb-button--${this.variant}`,
           attrs: {
             ...this.$attrs,
             disabled: this.isDisabled,
@@ -137,9 +137,9 @@ const SbButton = {
             type: 'spinner',
             size: 'small',
             color:
-              this.colorPalette === 'primary' ||
-              this.colorPalette === 'secondary' ||
-              this.colorPalette === 'danger'
+              this.variant === 'primary' ||
+              this.variant === 'secondary' ||
+              this.variant === 'danger'
                 ? 'white'
                 : 'primary-dark',
           },

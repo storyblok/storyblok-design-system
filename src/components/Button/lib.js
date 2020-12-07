@@ -3,12 +3,7 @@ import { includes, availableSizes } from '../../utils'
 /**
  * @type {Array<string>}
  */
-export const availableColorsPalette = [
-  'primary',
-  'secondary',
-  'ghost',
-  'danger',
-]
+export const availableVariants = ['primary', 'secondary', 'ghost', 'danger']
 
 /**
  * @type {Array<string>}
@@ -20,10 +15,10 @@ export const sharedProps = {
     type: String,
     validator: (size) => includes(availableSizes, size),
   },
-  colorPalette: {
+  variant: {
     type: String,
     default: 'primary',
-    validator: (type) => includes(availableColorsPalette, type),
+    validator: (type) => includes(availableVariants, type),
   },
   type: {
     type: String,

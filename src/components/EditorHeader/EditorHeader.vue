@@ -63,7 +63,7 @@
           <SbButton
             size="small"
             label="Publish"
-            color-palette="primary"
+            variant="primary"
             @click="handlePublishSpace"
           />
         </SbHeaderItem>

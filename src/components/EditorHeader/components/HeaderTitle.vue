@@ -1,6 +1,6 @@
 <template>
   <div v-if="format !== 'desktop'" class="sb-editor--title">
-    <SbButton icon="plus" color-palette="secondary" size="small" />
+    <SbButton icon="plus" variant="secondary" size="small" />
     <span>{{ title }}</span>
   </div>
 </template>

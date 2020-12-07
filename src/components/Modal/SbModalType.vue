@@ -8,12 +8,12 @@
 
       <div>
         <SbButton
-          color-palette="ghost"
+          variant="ghost"
           :label="cancelButtonLabel"
           @click="handleCancelAction"
         />
         <SbButton
-          :color-palette="isConfirmationType"
+          :variant="isConfirmationType"
           :label="actionButtonLabel"
           @click="handleDispatchAction"
         />

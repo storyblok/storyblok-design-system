@@ -29,7 +29,7 @@ const ModalTemplate = (args) => ({
     <div>
       <SbButton
         label="Open Modal!"
-        colorPalette="primary"
+        variant="primary"
         @click="handleShowModal"
         v-if="!showModal"
         style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -52,8 +52,8 @@ const ModalTemplate = (args) => ({
         </SbModalContent>
 
         <SbModalFooter>
-          <SbButton label="Label" colorPalette="primary"/>
-          <SbButton label="Label" colorPalette="ghost"/>
+          <SbButton label="Label" variant="primary"/>
+          <SbButton label="Label" variant="ghost"/>
         </SbModalFooter>
 
       </SbModal>
@@ -140,7 +140,7 @@ export const ModalWithoutFooter = (args) => ({
   <div>
     <SbButton
       label="Open Modal!"
-      colorPalette="primary"
+      variant="primary"
       @click="handleShowModal"
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -156,7 +156,7 @@ export const ModalWithoutFooter = (args) => ({
         <p style="font-size: 16px; color: rgb(84, 91, 111); text-align: center;">The body copy that explains empty state</p>
       </SbModalContent>
 
-      <SbButton label="Click me!" colorPalette="primary"/>
+      <SbButton label="Click me!" variant="primary"/>
     </SbModal>
   </div>
   `,
@@ -190,7 +190,7 @@ export const ModalWithoutHeader = (args) => ({
   <div>
     <SbButton
       label="Open Modal!"
-      colorPalette="primary"
+      variant="primary"
       @click="handleShowModal"
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -201,7 +201,7 @@ export const ModalWithoutHeader = (args) => ({
       </SbModalContent>
 
       <SbModalFooter>
-        <SbButton label="Click me!" colorPalette="primary"/>
+        <SbButton label="Click me!" variant="primary"/>
       </SbModalFooter>
     </SbModal>
   </div>`,
@@ -237,7 +237,7 @@ export const ModalWithMediumSize = (args) => ({
   <div>
     <SbButton
       label="Open Modal!"
-      colorPalette="primary"
+      variant="primary"
       @click="handleShowModal"
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -250,8 +250,8 @@ export const ModalWithMediumSize = (args) => ({
       </SbModalContent>
 
       <SbModalFooter>
-        <SbButton label="Label" colorPalette="primary"/>
-        <SbButton label="Label" colorPalette="ghost"/>
+        <SbButton label="Label" variant="primary"/>
+        <SbButton label="Label" variant="ghost"/>
       </SbModalFooter>
     </SbModal>
   </div>`,
@@ -289,7 +289,7 @@ export const ModalTypeComponentConfirm = (args) => ({
     <div>
       <SbButton
         label="Open Modal!"
-        colorPalette="primary"
+        variant="primary"
         @click="handleShowModal"
         style="margin: 0 auto; display: flex; margin-top: 30%;"
       />
@@ -336,7 +336,7 @@ export const ModalTypeComponentDelete = (args) => ({
     <div>
       <SbButton
         label="Open Modal!"
-        colorPalette="primary"
+        variant="primary"
         @click="handleShowModal"
         style="margin: 0 auto; display: flex; margin-top: 30%;"
       />

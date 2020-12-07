@@ -48,7 +48,7 @@ describe('Test SbButton Component', () => {
   it('test SbButton in secondary color', async () => {
     const wrapper = factory({
       label: 'Secondary Button',
-      colorPalette: 'secondary',
+      variant: 'secondary',
     })
 
     expect(wrapper.find('button').attributes('class')).toBe(
@@ -152,7 +152,7 @@ describe('Test SbButton Component', () => {
     const renderButton = (type) => {
       return mount(SbButton, {
         propsData: {
-          colorPalette: 'ghost',
+          variant: 'ghost',
           type: type,
         },
       })
