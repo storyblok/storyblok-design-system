@@ -13,10 +13,18 @@ export default {
     },
   },
   args: {
-    size: 'normal',
+    darkBg: false,
     maxElements: 5,
+    size: 'normal',
   },
   argTypes: {
+    darkBg: {
+      name: 'darkBg',
+      description: 'Adjust borders to dark background',
+      control: {
+        type: 'boolean',
+      },
+    },
     maxElements: {
       name: 'maxElements',
       description: 'Max of `SbAvatar` components to view',
@@ -39,22 +47,47 @@ export const Default = (args) => ({
   components: { SbAvatarGroup, SbAvatar },
   props: Object.keys(args),
   template: `
-  <SbAvatarGroup :size="size">
-    <SbAvatar
-      src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
-      name="John Doe"
-    />
+  <div>
+    <p class="font-size-lg"> With white Background </p>
 
-    <SbAvatar
-      src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
-      name="Kobe Bryant"
-    />
+    <SbAvatarGroup :size="size" :dark-bg="darkBg">
+      <SbAvatar
+        src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
+        name="John Doe"
+      />
 
-    <SbAvatar
-      src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
-      name="Elvis Presley"
-    />
-  </SbAvatarGroup>
+      <SbAvatar
+        src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
+        name="Kobe Bryant"
+      />
+
+      <SbAvatar
+        src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
+        name="Elvis Presley"
+      />
+    </SbAvatarGroup>
+
+    <p class="font-size-lg"> With dark Background </p>
+
+    <div style="padding: 2rem; background-color: #1B243F;">
+      <SbAvatarGroup :size="size" dark-bg>
+        <SbAvatar
+          src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
+          name="John Doe"
+        />
+
+        <SbAvatar
+          src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
+          name="Kobe Bryant"
+        />
+
+        <SbAvatar
+          src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
+          name="Elvis Presley"
+        />
+      </SbAvatarGroup>
+    </div>
+  </div>
   `,
 })
 

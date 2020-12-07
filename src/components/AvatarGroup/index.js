@@ -96,6 +96,7 @@ const SbAvatarGroup = {
   name: 'SbAvatarGroup',
 
   props: {
+    darkBg: Boolean,
     maxElements: {
       type: Number,
       default: 5,
@@ -127,7 +128,6 @@ const SbAvatarGroup = {
 
   render(h) {
     const children = this.$slots.default.filter((e) => e.tag)
-    const sizeClass = this.size ? `sb-avatar-group--${this.size}` : null
 
     const childrenCount = children.length
     const maxElements = this.maxElements || 5
@@ -177,7 +177,10 @@ const SbAvatarGroup = {
       'div',
       {
         staticClass: 'sb-avatar-group',
-        class: [sizeClass],
+        class: [
+          this.size && `sb-avatar-group--${this.size}`,
+          this.darkBg && `sb-avatar-group--dark-bg`,
+        ],
       },
       [data, moreAvatars.length > 0 && renderDropdown()]
     )
