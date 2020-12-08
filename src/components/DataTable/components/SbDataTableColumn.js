@@ -19,6 +19,9 @@ export const SbDataTableColumn = {
     row: {
       type: Object,
     },
+    width: {
+      type: String,
+    },
   },
 
   render(h) {
@@ -26,6 +29,9 @@ export const SbDataTableColumn = {
       'td',
       {
         staticClass: 'sb-data-table__body-cell',
+        attrs: {
+          width: this.width,
+        },
       },
       [
         this.$scopedSlots.default({

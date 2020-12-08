@@ -267,7 +267,7 @@ export const Slots = (args) => ({
           striped
         }"
       >
-        <SbDataTableColumn label="Spaces" :sortable="true" value="title" v-slot="props">
+        <SbDataTableColumn label="Spaces" :sortable="true" value="title" v-slot="props" width="50%">
           {{ props.row.title }}<br>
           Edited {{ props.row.editedOn }}
         </SbDataTableColumn>
