@@ -279,7 +279,7 @@ export const Slots = (args) => ({
         </SbDataTableColumn>
 
         <SbDataTableColumn label="Static">
-          Teste de conteúdo estático
+          Static content testing
         </SbDataTableColumn>
       </SbDataTable>
     </div>

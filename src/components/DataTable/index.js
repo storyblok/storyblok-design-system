@@ -83,6 +83,10 @@ const SbDataTable = {
       }
     },
 
+    showHeader() {
+      return !this.hideHeader && this.headers.length
+    },
+
     sortedData() {
       if (this.sortKey && this.sortOrder !== 0) {
         return this.doSort()
@@ -257,7 +261,7 @@ const SbDataTable = {
           staticClass: 'sb-data-table__container',
         },
         [
-          !this.hideHeader && this.headers.length
+          this.showHeader
             ? h(SbDataTableHeader, {
                 props: {
                   allowSelection: this.allowSelection,

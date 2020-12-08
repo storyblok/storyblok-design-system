@@ -10,14 +10,14 @@ export const SbDataTableColumn = {
     label: {
       type: String,
     },
+    row: {
+      type: Object,
+    },
     sortable: {
       type: Boolean,
     },
     value: {
       type: String,
-    },
-    row: {
-      type: Object,
     },
     width: {
       type: String,

@@ -16,7 +16,7 @@ export const SbDataTableBodyRow = {
       type: Array,
     },
     row: {
-      type: Object | Array,
+      type: [Object, Array],
     },
     selectedRows: {
       type: Array,
@@ -131,7 +131,7 @@ export const SbDataTableBody = {
 
   render(h) {
     return h('tbody', [
-      this.items.map((row, index) => {
+      this.items.map((row) => {
         return h(SbDataTableBodyRow, {
           props: {
             allowSelection: this.allowSelection,
