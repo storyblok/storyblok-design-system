@@ -80,7 +80,7 @@ export const SbDataTableHeaderCell = {
         },
       },
       [
-        this.column.text,
+        this.column.label,
         this.isSortable &&
           h(SbIcon, {
             class: 'sb-data-table__sort-icon',

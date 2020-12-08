@@ -37,6 +37,10 @@
         top: 50%;
         transform: translateY(-50%);
       }
+
+      br {
+        display: none;
+      }
     }
 
     .sb-data-table__col-selection:before,

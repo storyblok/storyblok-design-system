@@ -108,16 +108,16 @@ export default {
 
 export const defaultTableHeadersData = [
   {
-    text: 'Dessert (100g serving)',
+    label: 'Dessert (100g serving)',
     value: 'name',
     main: true,
     sortable: true,
   },
-  { text: 'Calories', value: 'calories', sortable: true },
-  { text: 'Fat (g)', value: 'fat' },
-  { text: 'Carbs (g)', value: 'carbs' },
-  { text: 'Protein (g)', value: 'protein' },
-  { text: 'Iron (%)', value: 'iron' },
+  { label: 'Calories', value: 'calories', sortable: true },
+  { label: 'Fat (g)', value: 'fat' },
+  { label: 'Carbs (g)', value: 'carbs' },
+  { label: 'Protein (g)', value: 'protein' },
+  { label: 'Iron (%)', value: 'iron' },
 ]
 
 export const defaultTableItemsData = [
@@ -247,34 +247,6 @@ Striped.parameters = {
   },
 }
 
-// export const Slots = (args) => ({
-//   components: { SbDataTable, SbDataTableBody, SbAvatarGroup, SbAvatar },
-//   props: Object.keys(args),
-//   template: `
-//     <div>
-//       <SbDataTable :headers="heading">
-//         <tr v-for="item in spaces">
-//           <td class="sb-data-table__body-cell">
-//             <span class="sb-data-table__col-main">{{ item.title }}</span><br>
-//             {{ item.editedOn }}
-//           </td>
-//           <td class="sb-data-table__body-cell">
-//             <SbAvatarGroup>
-//               <SbAvatar
-//                 v-for="author in item.authors"
-//                 :src="author.image"
-//                 :name="author.name"
-//                 :key="author.name"
-//                 bg-color="primary"
-//               />
-//             </SbAvatarGroup>
-//           </td>
-//         </tr>
-//       </SbDataTable>
-//     </div>
-//   `,
-// })
-
 export const Slots = (args) => ({
   components: {
     SbDataTable,
@@ -286,8 +258,25 @@ export const Slots = (args) => ({
   props: Object.keys(args),
   template: `
     <div>
-      <SbDataTable :items="spaces">
-        <SbDataTableColumn name="Authors">
+      <SbDataTable
+        v-bind="{
+          allowSelection,
+          headers,
+          isLoading,
+          items,
+          selectionMode,
+          hideHeader,
+          striped
+        }"
+      >
+        <SbDataTableColumn label="Spaces" :sortable="true" value="spaces">
+          <template v-slot="props">
+            {{ props.row.title }}<br>
+            Edited {{ props.row.editedOn }}
+          </template>
+        </SbDataTableColumn>
+
+        <SbDataTableColumn label="Authors">
           <template v-slot="props">
             <SbAvatarGroup v-for="(author, index) in props.row.authors" :key="index">
               <SbAvatar v-bind="author" />
@@ -295,14 +284,7 @@ export const Slots = (args) => ({
           </template>
         </SbDataTableColumn>
 
-        <SbDataTableColumn name="Spaces">
-          <template v-slot="props">
-            <span>{{ props.row.title }}</span><br>
-            Edited {{ props.row.editedOn }}
-          </template>
-        </SbDataTableColumn>
-
-        <SbDataTableColumn name="Static">
+        <SbDataTableColumn label="Static">
           Teste de conteúdo estático
         </SbDataTableColumn>
       </SbDataTable>
@@ -313,26 +295,26 @@ export const Slots = (args) => ({
 Slots.args = {
   heading: [
     {
-      text: 'Spaces',
-      value: 'name',
+      label: 'Spaces',
+      value: 'spaces',
       main: true,
       sortable: true,
     },
-    { text: 'Authors' },
+    { label: 'Authors' },
   ],
-  spaces: [
+  items: [
     {
       title: 'My first space',
       editedOn: '3 days ago',
       authors: [
         {
           name: 'John Doe',
-          image:
+          src:
             'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
         },
         {
           name: 'Kobe Bryant',
-          image:
+          src:
             'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
         },
       ],
@@ -343,12 +325,12 @@ Slots.args = {
       authors: [
         {
           name: 'John Doe',
-          image:
+          src:
             'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
         },
         {
           name: 'Kobe Bryant',
-          image:
+          src:
             'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
         },
       ],
@@ -359,7 +341,7 @@ Slots.args = {
       authors: [
         {
           name: 'John Doe',
-          image:
+          src:
             'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
         },
       ],

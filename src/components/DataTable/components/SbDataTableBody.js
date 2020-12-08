@@ -16,7 +16,7 @@ export const SbDataTableBodyRow = {
       type: Array,
     },
     row: {
-      type: Object,
+      type: Object | Array,
     },
     selectedRows: {
       type: Array,
@@ -47,10 +47,6 @@ export const SbDataTableBodyRow = {
 
   render(h) {
     const mainColumnIndex = this.headers.findIndex((col) => col.main)
-
-    // if (this.$slots.default) {
-    //   return this.$slots.default
-    // }
 
     return h(
       'tr',
@@ -83,18 +79,20 @@ export const SbDataTableBodyRow = {
               }),
             ]
           ),
-        this.headers.map((elem, index) => {
-          return h(
-            'td',
-            {
-              staticClass: 'sb-data-table__body-cell',
-              class: {
-                'sb-data-table__col-main': mainColumnIndex === index,
-              },
-            },
-            this.row[elem.value]
-          )
-        }),
+        this.$slots.default
+          ? this.$slots.default
+          : this.headers.map((elem, index) => {
+              return h(
+                'td',
+                {
+                  staticClass: 'sb-data-table__body-cell',
+                  class: {
+                    'sb-data-table__col-main': mainColumnIndex === index,
+                  },
+                },
+                this.row[elem.value]
+              )
+            }),
       ]
     )
   },
@@ -132,14 +130,8 @@ export const SbDataTableBody = {
   },
 
   render(h) {
-    // if (this.$slots.default) {
-    //   return h('tbody', [
-    //     this.$slots.default
-    //   ])
-    // }
-
     return h('tbody', [
-      this.items.map((row) => {
+      this.items.map((row, index) => {
         return h(SbDataTableBodyRow, {
           props: {
             allowSelection: this.allowSelection,

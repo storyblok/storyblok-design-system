@@ -4,6 +4,7 @@ import './data-table.scss'
 import {
   SbDataTableActions,
   SbDataTableBody,
+  SbDataTableBodyRow,
   SbDataTableHeader,
 } from './components'
 
@@ -208,22 +209,10 @@ const SbDataTable = {
         const children = this.$slots.default.filter((e) => e.tag)
 
         headerData = children.map((element) => {
-          return h(
-            'th',
-            {
-              staticClass: 'sb-data-table__head-cell',
-            },
-            [element.componentOptions.propsData.name]
-          )
+          return {
+            ...element.componentOptions.propsData,
+          }
         })
-
-        // bodyData = [
-        //   h('tr', {
-        //     staticClass: 'sb-data-table__row',
-        //   }, [
-        //     children
-        //   ])
-        // ]
 
         bodyData = this.items.map((tableRow) => {
           const columns = children.map((tableData) => {
@@ -248,15 +237,18 @@ const SbDataTable = {
           })
 
           return h(
-            'tr',
+            SbDataTableBodyRow,
             {
-              staticClass: 'sb-data-table__row',
+              props: {
+                allowSelection: this.allowSelection,
+                headers: [...headerData],
+                row: { ...tableRow },
+                selectedRows: this.selectedRows,
+              },
             },
             columns
           )
         })
-
-        console.log(bodyData)
       }
 
       return h(
@@ -277,7 +269,7 @@ const SbDataTable = {
                 },
               })
             : null,
-          this.sortedData.length
+          this.sortedData.length && !this.$slots.default
             ? h(SbDataTableBody, {
                 props: {
                   allowSelection: this.allowSelection,
@@ -288,7 +280,21 @@ const SbDataTable = {
               })
             : null,
           this.$slots.default
-            ? [h('thead', [h('tr', [headerData])]), h('tbody', bodyData)]
+            ? [
+                !this.hideHeader
+                  ? h(SbDataTableHeader, {
+                      props: {
+                        allowSelection: this.allowSelection,
+                        allRowsSelected: this.allRowsSelected,
+                        headers: [...headerData],
+                        selectedRowsLength: this.selectedRows.length,
+                        selectionMode: this.selectionMode,
+                        sortedKey: this.sortKey,
+                      },
+                    })
+                  : null,
+                h('tbody', bodyData),
+              ]
             : null,
         ]
       )
