@@ -242,7 +242,7 @@ const SbDataTable = {
               props: {
                 allowSelection: this.allowSelection,
                 headers: [...headerData],
-                row: { ...tableRow },
+                row: tableRow,
                 selectedRows: this.selectedRows,
               },
             },
