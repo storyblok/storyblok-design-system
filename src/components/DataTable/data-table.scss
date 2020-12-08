@@ -80,15 +80,21 @@
   &__head-cell, &__body-cell {
     color: $light-gray;
     font-size: 14px;
+    line-height: 1.3;
     font-weight: normal;
     text-align: left;
     padding: 18px 10px;
     box-sizing: border-box;
 
-    &.sb-data-table__col-main {
-      font-weight: 500;
-      color: $sb-dark-blue;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
+  }
+
+  &__col-main {
+    font-weight: 500;
+    color: $sb-dark-blue;
   }
 
   &__head-cell {

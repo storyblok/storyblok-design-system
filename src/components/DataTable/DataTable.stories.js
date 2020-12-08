@@ -268,7 +268,7 @@ export const Slots = (args) => ({
         }"
       >
         <SbDataTableColumn label="Spaces" :sortable="true" value="title" v-slot="props" width="50%">
-          {{ props.row.title }}<br>
+          <span class="sb-data-table__col-main">{{ props.row.title }}</span><br>
           Edited {{ props.row.editedOn }}
         </SbDataTableColumn>
 
