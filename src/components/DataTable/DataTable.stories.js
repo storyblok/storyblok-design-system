@@ -2,7 +2,6 @@ import SbDataTable from '.'
 import SbAvatar from '../Avatar'
 import SbAvatarGroup from '../AvatarGroup'
 
-import { SbDataTableBody } from './components/SbDataTableBody'
 import { SbDataTableColumn } from './components/SbDataTableColumn'
 
 const description = {
@@ -250,7 +249,6 @@ Striped.parameters = {
 export const Slots = (args) => ({
   components: {
     SbDataTable,
-    SbDataTableBody,
     SbAvatarGroup,
     SbAvatar,
     SbDataTableColumn,
@@ -269,19 +267,15 @@ export const Slots = (args) => ({
           striped
         }"
       >
-        <SbDataTableColumn label="Spaces" :sortable="true" value="spaces">
-          <template v-slot="props">
-            {{ props.row.title }}<br>
-            Edited {{ props.row.editedOn }}
-          </template>
+        <SbDataTableColumn label="Spaces" :sortable="true" value="title" v-slot="props">
+          {{ props.row.title }}<br>
+          Edited {{ props.row.editedOn }}
         </SbDataTableColumn>
 
-        <SbDataTableColumn label="Authors">
-          <template v-slot="props">
-            <SbAvatarGroup v-for="(author, index) in props.row.authors" :key="index">
-              <SbAvatar v-bind="author" />
-            </SbAvatarGroup>
-          </template>
+        <SbDataTableColumn label="Authors" v-slot="props">
+          <SbAvatarGroup v-for="(author, index) in props.row.authors" :key="index">
+            <SbAvatar v-bind="author" />
+          </SbAvatarGroup>
         </SbDataTableColumn>
 
         <SbDataTableColumn label="Static">
@@ -296,7 +290,7 @@ Slots.args = {
   heading: [
     {
       label: 'Spaces',
-      value: 'spaces',
+      value: 'title',
       main: true,
       sortable: true,
     },
@@ -304,7 +298,7 @@ Slots.args = {
   ],
   items: [
     {
-      title: 'My first space',
+      title: 'My second space',
       editedOn: '3 days ago',
       authors: [
         {
@@ -320,7 +314,7 @@ Slots.args = {
       ],
     },
     {
-      title: 'My second space',
+      title: 'My first space',
       editedOn: '3 days ago',
       authors: [
         {

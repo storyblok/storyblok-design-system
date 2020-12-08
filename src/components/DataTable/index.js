@@ -214,7 +214,7 @@ const SbDataTable = {
           }
         })
 
-        bodyData = this.items.map((tableRow) => {
+        bodyData = this.sortedData.map((tableRow) => {
           const columns = children.map((tableData) => {
             return h(
               tableData.componentOptions.Ctor,
