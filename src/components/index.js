@@ -4,7 +4,6 @@ import SbBadge from './Badge'
 import SbBlockUi from './BlockUI'
 import SbButton from './Button'
 import SbCheckbox from './Checkbox'
-import SbDataTable from './DataTable'
 import SbDatepicker from './Datepicker'
 import SbDropArea from './DropArea'
 import SbFormGroup from './FormGroup'
@@ -33,6 +32,7 @@ export * from './Sidebar'
 export * from './Slideover'
 export * from './TabPanels'
 export * from './Tabs'
+export * from './DataTable'
 export {
   SbModal,
   SbModalHeader,
@@ -49,7 +49,6 @@ export {
   SbBlockUi,
   SbButton,
   SbCheckbox,
-  SbDataTable,
   SbDatepicker,
   SbDropArea,
   SbFormGroup,
