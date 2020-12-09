@@ -28,12 +28,12 @@ const SlideoverTemplate = (args) => ({
         label="Open Slideover!"
         @click="handleOpenSlide"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
-      
+
       <SbSlideover
         :is-open="show"
         @hide="show = false"
         :orientation="orientation">
-        
+
         <SbModalHeader title="Title" align="left" />
 
         <SbModalContent style="flex: 1;">
@@ -58,6 +58,9 @@ export default {
         component:
           'Slideover focus the user’s attention exclusively on one task or piece of information via a window that sits on top of the page content.',
       },
+      // Sets a delay for the component's stories
+      // the animation of the Slideover is 0.2s or 200ms
+      chromatic: { delay: 300 },
     },
     args: {
       orientation: 'right',
@@ -149,8 +152,8 @@ export const SlideoverInMaxSize = (args) => ({
         <SbModalHeader title="Hi man" align="left" />
 
         <SbModalContent style="flex: 1;">
-          <p>Storyblok helps your team to tell your story and manage 
-          content for every use-case: corporate websites, e-commerce, 
+          <p>Storyblok helps your team to tell your story and manage
+          content for every use-case: corporate websites, e-commerce,
           helpdesks, mobile apps, and screen displays.</p>
         </SbModalContent>
       </SbSlideover>

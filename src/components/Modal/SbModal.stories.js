@@ -71,6 +71,9 @@ export default {
           'Modals focus the user’s attention exclusively on one task or piece of information via a window that sits on top of the page content.',
       },
     },
+    // Sets a delay for the component's stories
+    // the animation of the Modal is 0.5s or 500ms
+    chromatic: { delay: 600 },
   },
   args: {
     title: 'Main title',
