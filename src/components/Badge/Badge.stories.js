@@ -19,7 +19,7 @@ const BadgeTemplate = (args) => ({
 })
 
 export default {
-  title: 'SbBadge',
+  title: 'Design System/Components/SbBadge',
   component: SbBadge,
   parameters: {
     docs: {

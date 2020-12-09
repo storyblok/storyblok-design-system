@@ -5,7 +5,7 @@ import SbLink from '../Link'
 import { SbMenu, SbMenuButton, SbMenuItem, SbMenuList } from '../Menu'
 
 export default {
-  title: 'SbCard',
+  title: 'Design System/Components/SbCard',
   component: SbCard,
   parameters: {
     docs: {

@@ -41,7 +41,7 @@ const PaginationTemplate = (args) => ({
 })
 
 export default {
-  title: 'SbPagination',
+  title: 'Design System/Components/SbPagination',
   component: SbPagination,
   parameters: {
     docs: {

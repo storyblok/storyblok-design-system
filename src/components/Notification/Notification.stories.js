@@ -17,7 +17,7 @@ const NotificationTemplate = (args) => ({
 })
 
 export default {
-  title: 'SbNotification',
+  title: 'Design System/Components/SbNotification',
   component: SbNotification,
   parameters: {
     docs: {

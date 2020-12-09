@@ -98,7 +98,7 @@ export const defaultAvatarsData = [
 ]
 
 export default {
-  title: 'SbSelect',
+  title: 'Design System/Components/Form/SbSelect',
   component: SbSelect,
   excludeStories: /.*Data$/,
   args: {

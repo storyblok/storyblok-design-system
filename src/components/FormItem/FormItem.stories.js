@@ -3,7 +3,7 @@ import SbRadio from '../Radio'
 import SbTextField from '../TextField'
 
 export default {
-  title: 'SbFormItem',
+  title: 'Design System/Components/Form/SbFormItem',
   component: SbFormItem,
   args: {
     label: 'Label',

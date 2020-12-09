@@ -3,7 +3,7 @@ import { iconSizes } from './utils'
 import { availableColors } from '../../utils'
 
 export default {
-  title: 'SbIcon',
+  title: 'Design System/Components/SbIcon',
   component: SbIcon,
   args: {
     size: 'normal',

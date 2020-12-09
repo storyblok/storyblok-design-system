@@ -25,12 +25,12 @@ const SlideoverTemplate = (args) => ({
         label="Open Slideover!"
         @click="handleOpenSlide"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
-      
+
       <SbSlideover
         :is-open="show"
         @hide="show = false"
         :orientation="orientation">
-        
+
         <SbModalHeader title="Title" align="left" />
 
         <SbModalContent style="flex: 1;">
@@ -47,7 +47,7 @@ const SlideoverTemplate = (args) => ({
 })
 
 export default {
-  title: 'SbSlideover',
+  title: 'Design System/Components/SbSlideover',
   component: SbSlideover,
   parameters: {
     docs: {
@@ -140,8 +140,8 @@ export const SlideoverInMaxSize = (args) => ({
         <SbModalHeader title="Hi man" align="left" />
 
         <SbModalContent style="flex: 1;">
-          <p>Storyblok helps your team to tell your story and manage 
-          content for every use-case: corporate websites, e-commerce, 
+          <p>Storyblok helps your team to tell your story and manage
+          content for every use-case: corporate websites, e-commerce,
           helpdesks, mobile apps, and screen displays.</p>
         </SbModalContent>
       </SbSlideover>

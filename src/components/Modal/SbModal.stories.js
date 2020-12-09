@@ -62,7 +62,7 @@ const ModalTemplate = (args) => ({
 })
 
 export default {
-  title: 'SbModal',
+  title: 'Design System/Components/SbModal',
   component: SbModal,
   parameters: {
     docs: {

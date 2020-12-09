@@ -19,7 +19,7 @@ const LoadingTemplate = (args) => ({
 })
 
 export default {
-  title: 'SbLoading',
+  title: 'Design System/Components/SbLoading',
   component: SbLoading,
   parameters: {
     docs: {

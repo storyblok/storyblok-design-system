@@ -5,7 +5,7 @@ import { badgeTypes } from '../Badge/lib'
 
 // default export defines configurations to all stories
 export default {
-  title: 'SbAvatar',
+  title: 'Design System/Components/SbAvatar',
   component: SbAvatar,
   parameters: {
     docs: {
