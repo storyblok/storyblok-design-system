@@ -14,8 +14,8 @@ export const getSvgIcon = (name) => {
     console.warn(`[SbIcon] - this ${name} icon does not exists`)
 
     return {
-      path: iconPaths['fallback-black'].path,
-      viewBox: iconPaths['fallback-black'].viewBox,
+      path: iconPaths['avatar-fallback'].path,
+      viewBox: iconPaths['avatar-fallback'].viewBox,
     }
   }
 

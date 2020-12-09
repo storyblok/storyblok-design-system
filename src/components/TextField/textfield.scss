@@ -1,0 +1,138 @@
+.sb-textfield {
+  width: 100%;
+
+  &__label {
+    display: block;
+    color: $sb-dark-blue;
+    font-size: $text-medium-small;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0rem;
+    margin-bottom: 1rem;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 1.5rem;
+
+    &--left {
+      left: 1.7rem;
+    }
+
+    &--right {
+      right: 1.7rem;
+    }
+  }
+
+  &__inner {
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+  }
+
+  &__input {
+    padding: 1.5rem 1.7rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    color: $sb-dark-blue;
+    font-size: $text-medium-small;
+
+    &:disabled {
+      background: $light-25;
+      cursor: not-allowed;
+      border: 0.1rem solid $light!important;
+    }
+
+    &::placeholder {
+      color: $sb-dark-blue-50;
+      font-size: $text-medium-small;
+      font-weight: normal;
+      letter-spacing: 0rem;
+    }
+
+    &--default {
+      border: solid 0.1rem $light;
+
+      &:hover {
+        border: 0.1rem solid $sb-green;
+      }
+
+      &:focus {
+        border-radius: 0.5rem;
+        border: 0.1rem solid $sb-green;
+        box-shadow: 0rem 0rem 0rem 0.3rem $sb-green-25;
+        outline: none;
+      }
+    }
+
+    &--with-icon {
+      &-left{
+        padding-left: 4.3rem;
+      }
+    }
+
+    &--with-prefix {
+      border-left: none;
+      border-top-left-radius: 0rem!important;
+      border-bottom-left-radius: 0rem!important;
+    }
+
+    &--with-suffix {
+      border-right: none;
+      border-top-right-radius: 0rem!important;
+      border-bottom-right-radius: 0rem!important;
+    }
+
+    &--ghost {
+      border: none;
+      border-bottom: 0.1rem solid $light;
+      border-radius: 0rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &--error {
+      border: 0.1rem solid $red;
+
+      &:focus{
+        box-shadow: 0rem 0rem 0rem 0.3rem rgb(255, 179, 176, 0.3);
+        outline: none;
+      }
+    }
+  }
+
+  &__prefix,
+  &__suffix {
+    font-size: $text-medium-small;
+    color: $sb-dark-blue;
+    font-weight: normal;
+    letter-spacing: 0px;
+    padding: 1.5rem 1.7rem;
+    border: 0.1rem solid $light;
+    border-radius: 0.5rem;
+  }
+
+  &__prefix {
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius: 0rem;
+  }
+
+  &__suffix {
+    border-top-right-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+  }
+
+  &__message {
+    font-size: $text-medium-small;
+    font-weight: normal;
+    letter-spacing: 0rem;
+    display: block;
+    margin-top: 0.5rem;
+
+    &--error {
+      color: $sb-dark-blue-50;
+    }
+  }
+
+}

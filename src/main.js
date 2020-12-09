@@ -1,33 +1,32 @@
 // Import global assets
 import './assets/styles/global.scss'
 
-// Import vue component
-import components from './components'
+// Import vue components
+import * as components from './components'
 
 // Import SbModal Plugin
 import createModalPlugin from './components/Modal/plugin/create-modal-plugin'
 
-// Declare install function executed by Vue.use()
-export function install(Vue) {
-  if (install.installed) return
-
-  install.installed = true
-  for (const key in components) {
-    Vue.component(key, components[key])
-  }
-
-  Vue.prototype.$sb = {
-    // modal will be available in this.$sb.modal(options)
-    modal: createModalPlugin,
-  }
-}
-
 // Create module definition for Vue.use()
-const plugin = {
-  install,
+const BlokInkPlugin = {
+  installed: false,
+
+  install(VueInstance) {
+    if (this.installed) return
+
+    this.installed = true
+    for (const key in components) {
+      VueInstance.component(key, components[key])
+    }
+
+    VueInstance.prototype.$sb = {
+      // modal will be available in this.$sb.modal(options)
+      modal: createModalPlugin(VueInstance),
+    }
+  },
 }
 
-// Auto-install when vue is found (eg. in browser via <script> tag)
+// Auto-install when vue is found
 let GlobalVue = null
 
 if (typeof window !== 'undefined') {
@@ -37,8 +36,11 @@ if (typeof window !== 'undefined') {
 }
 
 if (GlobalVue) {
-  GlobalVue.use(plugin)
+  GlobalVue.use(BlokInkPlugin)
 }
 
-// To allow use as module (npm/webpack/etc.) export component
-export default components
+// Exporting components
+export * from './components'
+
+// Exporting the plugin definition to Vue.use
+export default BlokInkPlugin

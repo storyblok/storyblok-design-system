@@ -1,0 +1,30 @@
+name: 'Tests'
+
+# Event for the workflow
+# Only trigger the current job when occurs
+# a pull request target from develop and master branchs
+# and a push to develop and master branches
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+      # Using the LTS versions
+        node-version: [10.x, 12.x, 14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn
+    - run: yarn test:unit --verbose

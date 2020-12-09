@@ -2,16 +2,17 @@ import SbColors from '.'
 
 export default {
   title: 'Design System/Base/Colors',
-  component: SbColors
+  component: SbColors,
 }
 
 export const AllColors = () => ({
   components: { SbColors },
   template: `
   <section>
-    <div>
-      <h1 style="font-size: 30px; font-weight: 500;">Primary palette</h1>
-      <h3 style="font-size: 15px; color: rgb(177, 181, 190); font-weight: 500;">Brand Colors</h3>
+    <div class="sb-color-pallete">
+      <h1 class="sb-color-pallete__title">Primary palette</h1>
+
+      <h3 style="font-size: 15px; color: rgb(177, 181, 190); font-weight: 500; margin-bottom: 1.5rem;">Brand Colors</h3>
 
       <SbColors color-name="#00B3B0" name="Teal 100%"/>
       <SbColors color-name="#40C6C4" name="Teal 75%"/>
@@ -27,11 +28,13 @@ export const AllColors = () => ({
 
     </div>
 
-    <div>
-      <h1 style="font-size: 30px; font-weight: 500;">Neutral Colors</h1>
+    <div class="sb-color-pallete">
+      <h1 class="sb-color-pallete__title">Neutral Colors</h1>
 
       <SbColors color-name="#B1B5BE" name="Light Gray 100% (text/icon color)"/>
+
       <br />
+
       <SbColors color-name="#DFE3E8" name="Light 100% (Stroke color)"/>
       <SbColors color-name="#E7EAEE" name="Light 75%"/>
       <SbColors color-name="#EFF1F3" name="Light 50%"/>
@@ -39,8 +42,8 @@ export const AllColors = () => ({
 
     </div>
 
-    <div>
-      <h1 style="font-size: 30px; font-weight: 500;">Alert Colors</h1>
+    <div class="sb-color-pallete">
+      <h1 class="sb-color-pallete__title">Alert Colors</h1>
 
       <SbColors color-name="#2DB47D" name="Green 100%"/>
       <SbColors color-name="#62C79E" name="Green 75%"/>
@@ -76,5 +79,5 @@ export const AllColors = () => ({
       <SbColors color-name="#FFD7D5" name="Red 25%"/>
     </div>
   </section>
-  `
+  `,
 })

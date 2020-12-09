@@ -62,7 +62,7 @@ const ModalTemplate = (args) => ({
 })
 
 export default {
-  title: 'SbModal',
+  title: 'Design System/Components/SbModal',
   component: SbModal,
   parameters: {
     docs: {
@@ -269,6 +269,12 @@ ModalWithMediumSize.parameters = {
 ModalWithMediumSize.args = {
   title: 'Main Title',
   align: 'left',
+}
+
+export const ModalInFullWidth = ModalTemplate.bind({})
+
+ModalInFullWidth.args = {
+  fullWidth: true,
 }
 
 export const ModalTypeComponentConfirm = (args) => ({

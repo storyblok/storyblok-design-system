@@ -71,6 +71,7 @@ $font-size-xs:                                   1.2rem;
 $font-size-sm:                                   1.3rem;
 $font-size-md:                                   1.4rem;
 $font-size-lg:                                   1.6rem;
+$font-size-xg:                                   1.9rem;
 
 // Font weight
 $font-weight-thin:                               100;
@@ -139,3 +140,6 @@ $font-weight: (
 $sb-avatar-small:                                26px;
 $sb-avatar-normal:                               32px;
 $sb-avatar-large:                                46px;
+
+//Datepicker variables
+$light-border: 1px solid $light;

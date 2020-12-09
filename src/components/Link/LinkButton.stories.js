@@ -1,7 +1,7 @@
 import SbLink from './index'
 
 export default {
-  title: 'SbLink',
+  title: 'Design System/Components/SbIcon',
   component: SbLink,
   args: {
     type: 'primary',

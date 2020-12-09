@@ -1,0 +1,31 @@
+.sb-slideover {
+  min-width: 40rem;
+  max-width: 62.4rem;
+  height: 96vh;
+  background-color: $white;
+  box-sizing: border-box;
+  padding: 2.5rem;
+  margin-left: auto;
+  overflow: hidden;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+
+  &--left {
+    margin-right: auto;
+    margin-left: initial;
+  }
+  
+  &__close-button {
+    border: none;
+    background-color: #FFF;
+    cursor: pointer;
+    padding: 0;
+    height: 1.7rem;
+    width: 2.4rem;
+    margin-left: auto;
+  }
+}
+
+@import 'animations.scss';

@@ -1,7 +1,7 @@
 import SbUploadDialog from '.'
 
 export default {
-  title: 'SbUploadDialog',
+  title: 'Design System/Components/SbUploadDialog',
   component: SbUploadDialog,
   args: {
     actualFile: 1,

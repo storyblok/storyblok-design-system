@@ -72,7 +72,7 @@ const EditorTemplate = (args) => ({
 })
 
 export default {
-  title: 'SbEditorHeader',
+  title: 'Design System/Components/SbEditorHeader',
   component: SbEditorHeader,
   parameters: {
     docs: {

@@ -1,26 +1,31 @@
 {
   "name": "storyblok-design-system",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.0.0-development",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib ./src/main.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint src/ tests/ .storybook/",
-    "build-storybook": "build-storybook",
-    "storybook": "start-storybook -p 6006 --ci"
+    "build-storybook": "build-storybook -s ./public",
+    "storybook": "start-storybook -p 6006 -s ./public --ci",
+    "prepare": "npm run build"
   },
+  "main": "dist/storyblok-design-system.common.js",
   "dependencies": {
     "@popperjs/core": "^2.5.4",
-    "core-js": "^3.6.5",
+    "dayjs": "^1.9.6",
     "portal-vue": "^2.1.7",
-    "throttle-debounce": "^2.3.0",
+    "throttle-debounce": "^2.3.0"
+  },
+  "peerDependencies": {
     "vue": "^2.6.12"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addons": "^6.0.28",
     "@storybook/preset-scss": "^1.0.3",
+    "@storybook/theming": "^6.0.28",
     "@storybook/vue": "^6.0.28",
     "@vue/cli-plugin-babel": "~4.5.8",
     "@vue/cli-plugin-eslint": "~4.5.8",
@@ -31,6 +36,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-preset-vue": "^2.0.2",
+    "chromatic": "^5.4.0",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
@@ -45,6 +51,7 @@
     "sass-loader": "^10.0.5",
     "style-loader": "^2.0.0",
     "style-resources-loader": "^1.3.2",
+    "vue": "^2.6.12",
     "vue-template-compiler": "^2.6.12"
   },
   "gitHooks": {
@@ -54,6 +61,19 @@
     "*.{js,jsx,vue}": [
       "vue-cli-service lint",
       "git add"
+    ]
+  },
+  "release": {
+    "branches": [
+      "master",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
     ]
   }
 }

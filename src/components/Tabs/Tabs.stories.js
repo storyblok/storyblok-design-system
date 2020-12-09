@@ -65,7 +65,7 @@ const TabsTemplate = (template) => (args) => ({
 })
 
 export default {
-  title: 'SbTabs',
+  title: 'Design System/Components/SbTabs',
   component: SbTabs,
   args: {
     orientation: 'horizontal',

@@ -16,7 +16,7 @@ module.exports = {
   },
   rules: {
     'no-console': [
-      'error',
+      process.env.NODE_ENV === 'production' ? 'error' : 'off',
       {
         allow: ['warn', 'error'],
       },

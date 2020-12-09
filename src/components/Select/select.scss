@@ -10,7 +10,6 @@
   display: inline-flex;
   flex-direction: column;
   width: 100%;
-  max-width: 300px;
 
   // modifiers
   &--multiple {
@@ -120,6 +119,7 @@
   }
 
   &__item {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     width: 100%;

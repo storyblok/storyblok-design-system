@@ -16,7 +16,7 @@ export const SbDataTableBodyRow = {
       type: Array,
     },
     row: {
-      type: Object,
+      type: [Object, Array],
     },
     selectedRows: {
       type: Array,
@@ -79,18 +79,20 @@ export const SbDataTableBodyRow = {
               }),
             ]
           ),
-        this.headers.map((elem, index) => {
-          return h(
-            'td',
-            {
-              staticClass: 'sb-data-table__body-cell',
-              class: {
-                'sb-data-table__col-main': mainColumnIndex === index,
-              },
-            },
-            this.row[elem.value]
-          )
-        }),
+        this.$slots.default
+          ? this.$slots.default
+          : this.headers.map((elem, index) => {
+              return h(
+                'td',
+                {
+                  staticClass: 'sb-data-table__body-cell',
+                  class: {
+                    'sb-data-table__col-main': mainColumnIndex === index,
+                  },
+                },
+                this.row[elem.value]
+              )
+            }),
       ]
     )
   },

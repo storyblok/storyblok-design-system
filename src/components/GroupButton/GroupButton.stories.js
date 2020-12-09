@@ -5,7 +5,7 @@ import { availableTypes } from '../Button/lib'
 import { availableSizes } from '../../utils'
 
 export default {
-  title: 'SbGroupButton',
+  title: 'Design System/Components/SbGroupButton',
   component: SbGroupButton,
   args: {
     type: 'ghost',

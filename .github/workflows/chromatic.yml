@@ -1,0 +1,31 @@
+# Workflow name
+name: 'Chromatic Deployment'
+
+# Event for the workflow
+# Only trigger the current job when occurs a push to any branch
+on: push
+
+# List of jobs
+jobs:
+  chromatic-deployment:
+    # Operating System
+    runs-on: ubuntu-latest
+    # Job steps
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: yarn
+      - name: Build Storybook
+        run: yarn build-storybook
+        # Adds Chromatic as a step in the workflow
+      - name: Deploy to Chromatic
+        uses: chromaui/action@v1
+        # Chromatic GitHub Action options
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Chromatic projectToken, refer to the manage page to obtain it.
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          # Option to prevent the workflow from failing
+          # This will be usefull to prevent fail status when test snapshots render without errors
+          exitZeroOnChanges: true
+          storybookBuildDir: storybook-static

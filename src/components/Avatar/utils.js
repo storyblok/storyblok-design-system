@@ -1,4 +1,9 @@
-import { getRandomNumber, availableSizes, availableBgColors } from '../../utils'
+import {
+  getRandomNumber,
+  availableSizes,
+  availableColors,
+  availableBgColors,
+} from '../../utils'
 
 /**
  * @description check if a size is valid
@@ -17,6 +22,17 @@ export const generateRandomBgColor = () => {
   const randomNumber = getRandomNumber(0, availableBgColors.length)
 
   return availableBgColors[randomNumber]
+}
+
+/**
+ * @description get randomly a color
+ * @method generateRandomColor
+ * @return {string}
+ */
+export const generateRandomColor = () => {
+  const randomNumber = getRandomNumber(0, availableBgColors.length)
+
+  return availableColors[randomNumber]
 }
 
 /**

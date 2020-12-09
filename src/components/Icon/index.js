@@ -1,3 +1,5 @@
+import './icon.scss'
+
 import { getSvgIcon, iconSizes } from './utils'
 import { availableColors } from '../../utils'
 

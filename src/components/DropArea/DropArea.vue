@@ -169,7 +169,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-@import './drop-area.scss';
-</style>

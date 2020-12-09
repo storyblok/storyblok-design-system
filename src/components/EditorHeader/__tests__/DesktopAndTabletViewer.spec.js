@@ -69,7 +69,7 @@ describe('SbDesktopAndTabletViewer component', () => {
 
     expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
 
-    expect(wrapper.findAllComponents(SbIcon).length).toBe(4)
+    expect(wrapper.findAllComponents(SbIcon).length).toBe(6)
   })
 
   it('should trigger all functions', () => {
