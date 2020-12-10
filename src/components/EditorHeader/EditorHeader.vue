@@ -63,7 +63,7 @@
           <SbButton
             size="small"
             label="Publish"
-            type="primary"
+            variant="primary"
             @click="handlePublishSpace"
           />
         </SbHeaderItem>

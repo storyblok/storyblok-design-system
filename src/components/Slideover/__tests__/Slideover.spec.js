@@ -25,8 +25,8 @@ describe('SbSlideover component', () => {
         </SbModalContent>
 
         <SbModalFooter>
-          <SbButton label="Label" type="primary"/>
-          <SbButton label="Label" type="ghost"/>
+          <SbButton label="Label" variant="primary"/>
+          <SbButton label="Label" variant="ghost"/>
         </SbModalFooter>
       </SbSlideover>
     `,

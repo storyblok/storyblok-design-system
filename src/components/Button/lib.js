@@ -3,16 +3,26 @@ import { includes, availableSizes } from '../../utils'
 /**
  * @type {Array<string>}
  */
-export const availableTypes = ['primary', 'secondary', 'ghost', 'danger']
+export const availableVariants = ['primary', 'secondary', 'ghost', 'danger']
+
+/**
+ * @type {Array<string>}
+ */
+export const availableButtonsTypes = ['button', 'submit', 'reset']
 
 export const sharedProps = {
   size: {
     type: String,
     validator: (size) => includes(availableSizes, size),
   },
-  type: {
+  variant: {
     type: String,
     default: 'primary',
-    validator: (type) => includes(availableTypes, type),
+    validator: (type) => includes(availableVariants, type),
+  },
+  type: {
+    type: String,
+    default: null,
+    validator: (type) => includes(availableButtonsTypes, type),
   },
 }

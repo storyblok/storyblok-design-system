@@ -11,6 +11,9 @@ const SlideoverTemplate = (args) => ({
     SbModalFooter,
   },
   props: Object.keys(args),
+  mounted() {
+    this.handleOpenSlide()
+  },
   methods: {
     handleOpenSlide() {
       this.show = true
@@ -38,8 +41,8 @@ const SlideoverTemplate = (args) => ({
         </SbModalContent>
 
         <SbModalFooter>
-          <SbButton label="Label" type="primary"/>
-          <SbButton label="Label" type="ghost"/>
+          <SbButton label="Label" variant="primary"/>
+          <SbButton label="Label" variant="ghost"/>
         </SbModalFooter>
       </SbSlideover>
     </div>
@@ -55,6 +58,9 @@ export default {
         component:
           'Slideover focus the user’s attention exclusively on one task or piece of information via a window that sits on top of the page content.',
       },
+      // Sets a delay for the component's stories
+      // the animation of the Slideover is 0.2s or 200ms
+      chromatic: { delay: 300 },
     },
     args: {
       orientation: 'right',
@@ -84,6 +90,9 @@ SlideoverOnLeft.args = {
 export const SlideoverWithoutFooter = (args) => ({
   components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
   props: Object.keys(args),
+  mounted() {
+    this.handleOpenSlide()
+  },
   methods: {
     handleOpenSlide() {
       this.show = true
@@ -117,6 +126,9 @@ export const SlideoverWithoutFooter = (args) => ({
 export const SlideoverInMaxSize = (args) => ({
   components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
   props: Object.keys(args),
+  mounted() {
+    this.handleOpenSlide()
+  },
   methods: {
     handleOpenSlide() {
       this.show = true

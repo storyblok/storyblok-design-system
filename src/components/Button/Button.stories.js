@@ -1,6 +1,7 @@
 import SbButton from './index'
 
 import { availablePositions as availableTooltipPositions } from '../Tooltip/lib'
+import { availableButtonsTypes } from './lib'
 
 const ButtonTemplate = (args) => ({
   components: { SbButton },
@@ -8,40 +9,45 @@ const ButtonTemplate = (args) => ({
   template: `
     <div>
       <SbButton
-        :type="type"
+        :variant="variant"
         :label="label"
         :size="size"
+        :type="type"
       />
 
       <SbButton
-        :type="type"
+        :variant="variant"
         :is-disabled="isDisabled"
         :icon="icon"
         :label="label"
         :size="size"
+        :type="type"
       />
 
       <SbButton
-        :type="type"
+        :variant="variant"
         :is-disabled="isDisabled"
         :icon-right="iconRight"
         :label="label"
         :size="size"
+        :type="type"
       />
 
       <SbButton
-        :type="type"
+        :variant="variant"
         :label="label"
         :is-loading="isLoading"
         isDisabled
         :size="size"
+        :type="type"
       />
 
       <SbButton
-        :type="type"
+        :variant="variant"
         is-loading
         :is-disabled="isDisabled"
         :size="size"
+        :type="type"
       />
     </div>
   `,
@@ -69,8 +75,9 @@ export default {
     hasIconOnly: false,
     label: 'Default',
     size: null,
-    type: 'primary',
+    variant: 'primary',
     tooltipPosition: 'bottom',
+    type: null,
   },
   argTypes: {
     isDisabled: {
@@ -145,9 +152,9 @@ export default {
         options: ['small', 'normal', 'large'],
       },
     },
-    type: {
-      name: 'type',
-      description: '`SbButton` type',
+    variant: {
+      name: 'variant',
+      description: '`SbButton` variant',
       control: {
         type: 'select',
         options: ['primary', 'secondary', 'ghost', 'danger'],
@@ -159,6 +166,15 @@ export default {
       control: {
         type: 'select',
         options: [...availableTooltipPositions],
+      },
+    },
+    type: {
+      name: 'type',
+      description:
+        'The `type` attribute specifies the `type` of button, the available options are **button**, **submit**, **reset**, the default value is null.',
+      control: {
+        type: 'select',
+        options: [...availableButtonsTypes],
       },
     },
   },
@@ -178,8 +194,9 @@ export const Default = (args) => ({
       :has-icon-only="hasIconOnly"
       :label="label"
       :size="size"
-      :type="type"
+      :variant="variant"
       :tooltip-position="tooltipPosition"
+      :type="type"
     />
   `,
 })
@@ -204,7 +221,7 @@ Primary.parameters = {
 export const Secondary = ButtonTemplate.bind({})
 
 Secondary.args = {
-  type: 'secondary',
+  variant: 'secondary',
   label: 'Secondary',
   icon: 'checkmark',
   iconRight: 'calendar',
@@ -223,7 +240,7 @@ export const Ghost = ButtonTemplate.bind({})
 
 Ghost.args = {
   label: 'Ghost',
-  type: 'ghost',
+  variant: 'ghost',
   icon: 'checkmark',
   iconRight: 'calendar',
 }
@@ -241,7 +258,7 @@ export const Danger = ButtonTemplate.bind({})
 
 Danger.args = {
   label: 'Danger',
-  type: 'danger',
+  variant: 'danger',
   icon: 'close',
   iconRight: 'close',
 }
@@ -258,9 +275,9 @@ export const Sizes = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `<div>
-    <SbButton label="Small" size="small" :type="type" />
-    <SbButton label="Default" :type="type" />
-    <SbButton label="Large" size="large" :type="type" />
+    <SbButton label="Small" size="small" :variant="variant" />
+    <SbButton label="Default" :variant="variant" />
+    <SbButton label="Large" size="large" :variant="variant" />
   </div>`,
 })
 
@@ -278,12 +295,13 @@ export const FullWidth = (args) => ({
   props: Object.keys(args),
   template: `<div style="max-width: 500px;">
     <SbButton
-      :type="type"
+      :variant="variant"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :size="size"
       :is-full-width="isFullWidth"
       :label="label"
+      :type="type"
     />
   </div>`,
 })
@@ -307,31 +325,34 @@ export const JustIcons = (args) => ({
   props: Object.keys(args),
   template: `<div style="max-width: 500px;">
     <SbButton
-      type="primary"
+      variant="primary"
       :size="size"
       :icon="icon"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
+      :type="type"
       has-icon-only
     />
 
     <SbButton
-      type="secondary"
+      variant="secondary"
       :size="size"
       :icon="icon"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
+      :type="type"
       has-icon-only
     />
 
     <SbButton
-      type="ghost"
+      variant="ghost"
       :size="size"
       :icon="icon"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :icon-description="iconDescription"
       is-rounded
+      :type="type"
       has-icon-only
       :tooltip-position="tooltipPosition"
     />
@@ -358,11 +379,12 @@ export const InlineLabel = (args) => ({
   props: Object.keys(args),
   template: `<div style="max-width: 500px;">
     <SbButton
-      :type="type"
+      :variant="variant"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :size="size"
       :is-full-width="isFullWidth"
+      :type="type"
     >
       {{ label }}
     </SbButton>
@@ -391,6 +413,7 @@ export const LoadingButton = (args) => ({
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :size="size"
+      :variant="variant"
       :type="type"
     />`,
 })
@@ -398,7 +421,7 @@ export const LoadingButton = (args) => ({
 LoadingButton.args = ButtonTemplate.bind({})
 
 LoadingButton.args = {
-  type: 'primary',
+  variant: 'primary',
   isLoading: true,
 }
 

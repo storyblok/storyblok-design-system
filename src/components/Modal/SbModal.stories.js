@@ -23,13 +23,13 @@ const ModalTemplate = (args) => ({
     },
   },
   data: () => ({
-    showModal: false,
+    showModal: true,
   }),
   template: `
     <div>
       <SbButton
         label="Open Modal!"
-        type="primary"
+        variant="primary"
         @click="handleShowModal"
         v-if="!showModal"
         style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -48,12 +48,12 @@ const ModalTemplate = (args) => ({
         />
 
         <SbModalContent>
-          <p>The body copy that explains empty state</p>
+          <p style="text-align:center">The body copy that explains empty state</p>
         </SbModalContent>
 
         <SbModalFooter>
-          <SbButton label="Label" type="primary"/>
-          <SbButton label="Label" type="ghost"/>
+          <SbButton label="Label" variant="primary"/>
+          <SbButton label="Label" variant="ghost"/>
         </SbModalFooter>
 
       </SbModal>
@@ -71,6 +71,9 @@ export default {
           'Modals focus the user’s attention exclusively on one task or piece of information via a window that sits on top of the page content.',
       },
     },
+    // Sets a delay for the component's stories
+    // the animation of the Modal is 0.5s or 500ms
+    chromatic: { delay: 600 },
   },
   args: {
     title: 'Main title',
@@ -134,13 +137,13 @@ export const ModalWithoutFooter = (args) => ({
     },
   },
   data: () => ({
-    showModal: false,
+    showModal: true,
   }),
   template: `
   <div>
     <SbButton
       label="Open Modal!"
-      type="primary"
+      variant="primary"
       @click="handleShowModal"
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -156,7 +159,7 @@ export const ModalWithoutFooter = (args) => ({
         <p style="font-size: 16px; color: rgb(84, 91, 111); text-align: center;">The body copy that explains empty state</p>
       </SbModalContent>
 
-      <SbButton label="Click me!" type="primary"/>
+      <SbButton label="Click me!" variant="primary" style="margin: 0 auto;display: flex"/>
     </SbModal>
   </div>
   `,
@@ -184,13 +187,13 @@ export const ModalWithoutHeader = (args) => ({
     },
   },
   data: () => ({
-    showModal: false,
+    showModal: true,
   }),
   template: `
   <div>
     <SbButton
       label="Open Modal!"
-      type="primary"
+      variant="primary"
       @click="handleShowModal"
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -201,7 +204,7 @@ export const ModalWithoutHeader = (args) => ({
       </SbModalContent>
 
       <SbModalFooter>
-        <SbButton label="Click me!" type="primary"/>
+        <SbButton label="Click me!" variant="primary"/>
       </SbModalFooter>
     </SbModal>
   </div>`,
@@ -231,13 +234,13 @@ export const ModalWithMediumSize = (args) => ({
     },
   },
   data: () => ({
-    showModal: false,
+    showModal: true,
   }),
   template: `
   <div>
     <SbButton
       label="Open Modal!"
-      type="primary"
+      variant="primary"
       @click="handleShowModal"
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -250,8 +253,8 @@ export const ModalWithMediumSize = (args) => ({
       </SbModalContent>
 
       <SbModalFooter>
-        <SbButton label="Label" type="primary"/>
-        <SbButton label="Label" type="ghost"/>
+        <SbButton label="Label" variant="primary"/>
+        <SbButton label="Label" variant="ghost"/>
       </SbModalFooter>
     </SbModal>
   </div>`,
@@ -280,6 +283,9 @@ ModalInFullWidth.args = {
 export const ModalTypeComponentConfirm = (args) => ({
   props: Object.keys(args),
   components: { SbModalType },
+  mounted() {
+    this.handleShowModal()
+  },
   methods: {
     handleShowModal() {
       this.$refs.modal.show()
@@ -289,7 +295,7 @@ export const ModalTypeComponentConfirm = (args) => ({
     <div>
       <SbButton
         label="Open Modal!"
-        type="primary"
+        variant="primary"
         @click="handleShowModal"
         style="margin: 0 auto; display: flex; margin-top: 30%;"
       />
@@ -327,6 +333,9 @@ ModalTypeComponentConfirm.parameters = {
 export const ModalTypeComponentDelete = (args) => ({
   props: Object.keys(args),
   components: { SbModalType },
+  mounted() {
+    this.handleShowModal()
+  },
   methods: {
     handleShowModal() {
       this.$refs.modal.show()
@@ -336,7 +345,7 @@ export const ModalTypeComponentDelete = (args) => ({
     <div>
       <SbButton
         label="Open Modal!"
-        type="primary"
+        variant="primary"
         @click="handleShowModal"
         style="margin: 0 auto; display: flex; margin-top: 30%;"
       />

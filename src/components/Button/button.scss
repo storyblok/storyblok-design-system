@@ -130,6 +130,14 @@
     }
   }
 
+  &--has-icon-only#{&}--small {
+    padding: 0.9rem;
+  }
+
+  &--has-icon-only#{&}--large {
+    padding: 2.1rem;
+  }
+
   &--loading {
     padding-top: 1rem;
     padding-bottom: 1rem;

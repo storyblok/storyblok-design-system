@@ -423,7 +423,7 @@ const SbMenuButton = {
           isRounded: this.isRounded,
           hasIconOnly: true,
           icon: this.iconName || 'overflow-menu-vertic',
-          type: this.type,
+          variant: this.type,
         },
         on: {
           ...this.$listeners,
@@ -448,7 +448,7 @@ const SbMenuButton = {
         props: {
           iconRight: 'chevron-down',
           label: this.label,
-          type: this.type,
+          variant: this.type,
         },
         on: {
           ...this.$listeners,
