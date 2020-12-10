@@ -111,6 +111,8 @@ export default {
 
   mixins: [TextFieldMixin],
 
+  inheritAttrs: false,
+
   computed: {
     hasValue() {
       return this.computedValue !== null && ('' + this.computedValue).length > 0
