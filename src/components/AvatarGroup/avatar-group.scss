@@ -71,6 +71,15 @@
     margin-left: -1rem;
   }
 
+  // color variants
+  &--dark-bg {
+    > .sb-avatar .sb-avatar__image,
+    > .sb-avatar .sb-avatar__initials,
+    > .sb-avatar-group__more {
+      border: 3px solid $color-primary-dark;
+    }
+  }
+
   &__avatars {
     position: absolute;
     background-color: $white;

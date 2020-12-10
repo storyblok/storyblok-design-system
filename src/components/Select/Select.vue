@@ -11,6 +11,7 @@
     <SbSelectInner
       ref="inner"
       :multiple="multiple"
+      :inline="inline"
       :label="label"
       :value="value"
       :left-icon="leftIcon"

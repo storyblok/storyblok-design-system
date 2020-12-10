@@ -29,12 +29,14 @@
     width: 100%;
   }
 
-  &__input {
+  &__input,
+  &__textarea {
     padding: 1.5rem 1.7rem;
     border-radius: 0.5rem;
     width: 100%;
     color: $sb-dark-blue;
     font-size: $text-medium-small;
+    font-family: inherit;
 
     &:disabled {
       background: $light-25;
@@ -53,20 +55,24 @@
       border: 0.1rem solid $light;
 
       &:hover {
-        border: 0.1rem solid $sb-green;
+        border-color: $sb-green;
       }
 
       &:focus {
         border-radius: 0.5rem;
-        border: 0.1rem solid $sb-green;
+        border-color: $sb-green;
         box-shadow: 0rem 0rem 0rem 0.3rem $sb-green-25;
         outline: none;
       }
     }
 
     &--with-icon {
-      &-left{
+      &-left {
         padding-left: 4.3rem;
+      }
+
+      &-right {
+        padding-right: 4.3rem;
       }
     }
 
@@ -98,6 +104,11 @@
         outline: none;
       }
     }
+  }
+
+  &__textarea {
+    min-height: 13rem;
+    box-sizing: border-box;
   }
 
   &__prefix,
@@ -135,4 +146,16 @@
     }
   }
 
+  &__counter {
+    display: block;
+    margin-top: 0.5rem;
+    letter-spacing: 0rem;
+    color: $sb-dark-blue-50;
+    font-size: $text-medium-small;
+    font-weight: $font-weight-regular;
+
+    &--warning {
+      color: $orange;
+    }
+  }
 }

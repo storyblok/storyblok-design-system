@@ -26,14 +26,18 @@
     opacity: 1;
   }
 
-  // &--secondary {
-  //   color: $color-primary-dark;
+  // color variants
+  &--white {
+    color: $white;
 
-  //   &:hover:not(&:disabled)  {
-  //     color: $color-primary;
-  //     border-bottom: 1px solid $color-primary;
-  //   }
-  // }
+    &::after {
+      background-color: $white;
+    }
+
+    &:hover:not([disabled])::after {
+      opacity: 1;
+    }
+  }
 
   &[disabled] {
     cursor: not-allowed;

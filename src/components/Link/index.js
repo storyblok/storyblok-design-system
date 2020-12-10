@@ -43,6 +43,10 @@ const SbLink = {
       type: String,
       default: null,
     },
+    variant: {
+      type: String,
+      default: '',
+    },
   },
 
   render(h) {
@@ -107,10 +111,11 @@ const SbLink = {
       this.as || 'a',
       {
         staticClass: 'sb-link',
-        class: {
-          'sb-button--has-icon': this.icon,
-          'sb-button--has-icon-right': this.iconRight,
-        },
+        class: [
+          this.icon && 'sb-link--has-icon',
+          this.iconRight && 'sb-link--has-icon-right',
+          this.variant && `sb-link--${this.variant}`,
+        ],
         attrs: getAttrs(),
         props: getProps(),
       },
