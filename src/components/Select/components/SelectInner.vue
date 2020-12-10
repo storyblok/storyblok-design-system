@@ -70,6 +70,8 @@ export default {
   inject: ['selectContext'],
 
   props: {
+    inline: Boolean,
+
     label: {
       type: String,
       default: '',
@@ -108,7 +110,21 @@ export default {
         return this.label
       }
 
-      return this.value
+      const optionLabel = this.currentOption.label || this.value
+
+      if (this.inline) {
+        return `${this.label}: ${optionLabel}`
+      }
+
+      return optionLabel
+    },
+
+    currentOption() {
+      if (!this.hasValue) {
+        return {}
+      }
+
+      return this.options.find((opt) => opt.value === this.value)
     },
 
     isTagsVisible() {
