@@ -60,7 +60,7 @@ Default.args = {
   size: 'normal',
 }
 
-export const FallackIcon = () => ({
+export const FallbackIcon = () => ({
   components: { SbIcon },
   template: '<SbIcon name="fallback" size="x-large" />',
 })
