@@ -2,7 +2,7 @@
 import SbIcon from '../Icon'
 
 // styles
-import './link-button.scss'
+import './link.scss'
 
 /**
  * @vue/component
@@ -118,6 +118,7 @@ const SbLink = {
         ],
         attrs: getAttrs(),
         props: getProps(),
+        on: { ...this.$listeners },
       },
       [
         this.icon && renderIcon(this.icon),
