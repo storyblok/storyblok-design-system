@@ -37,9 +37,11 @@ import SbAvatar from '../../Avatar'
 import SbIcon from '../../Icon'
 
 export default {
-  name: 'SbSidebarLink',
+  name: 'SbSidebarListItem',
 
   components: { SbAvatar, SbIcon },
+
+  inheritAttrs: false,
 
   props: {
     active: {
