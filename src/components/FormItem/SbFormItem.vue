@@ -20,8 +20,16 @@
 </template>
 
 <script>
+import SbIcon from '../Icon'
+import SbTooltip from '../Tooltip'
+
 export default {
   name: 'SbFormItem',
+
+  components: {
+    SbIcon,
+    SbTooltip,
+  },
 
   props: {
     label: {
