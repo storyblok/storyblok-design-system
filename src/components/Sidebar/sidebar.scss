@@ -1,6 +1,6 @@
 @mixin activeItemState () {
   background-color: #262e48;
-  color: $color-primary;
+  color: $white;
 
   &::after {
     opacity: 1;
@@ -12,6 +12,8 @@
   background-color: $color-primary-dark;
   min-height: 100vh;
   flex-direction: column;
+  max-width: 28rem;
+  width: 100%;
 
   // sidebar top
   &__top {
@@ -102,14 +104,15 @@
 
   &-item {
     list-style: none;
+    padding: 0 1.5rem;
   }
 
   &-link  {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 1.5rem 3rem;
-    color: $white;
+    padding: 2rem;
+    color: $light-gray;
     font-size: $font-size-md;
     font-weight: $font-weight-medium;
     letter-spacing: 0px;
@@ -117,18 +120,7 @@
     vertical-align: middle;
     cursor: pointer;
     transition: all 0.1s ease-in;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background-color: $color-primary;
-      opacity: 0;
-      transition: all 0.1s ease-in;
-    }
+    border-radius: 1rem;
 
     &:hover,
     &:focus {
@@ -136,11 +128,19 @@
     }
 
     .sb-icon {
-      margin-right: 1.4rem;
+      margin-right: 1.8rem;
+    }
+
+    .sb-avatar {
+      margin-right: 8px;
     }
 
     &--active {
       @include activeItemState();
+    }
+
+    &--use-avatar {
+      padding-left: 1.4rem;
     }
   }
 
@@ -166,8 +166,13 @@
   &--minimize {
     max-width: 90px;
 
-    .sb-icon {
+    .sb-icon,
+    .sb-avatar {
       margin: 0;
+    }
+
+    .sb-sidebar-link--use-avatar {
+      padding: 2rem;
     }
 
     .sb-button {

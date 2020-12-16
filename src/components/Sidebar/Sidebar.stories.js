@@ -1,4 +1,4 @@
-import { SbSidebar, SbSidebarLink } from '.'
+import { SbSidebar, SbSidebarListItem } from '.'
 
 export const listItemsData = [
   {
@@ -63,7 +63,7 @@ export const userData = {
 }
 
 const SidebarTemplate = (args) => ({
-  components: { SbSidebar, SbSidebarLink },
+  components: { SbSidebar, SbSidebarListItem },
   props: Object.keys(args),
   data: () => ({
     internalMinimize: false,
@@ -87,10 +87,18 @@ const SidebarTemplate = (args) => ({
     >
 
       <template slot="bottom">
-        <SbSidebarLink
+        <SbSidebarListItem
           href="#"
           icon="sidebar-report"
           label="Report a problem"
+        />
+
+        <SbSidebarListItem
+          :avatar="{
+            src: 'https://avatars1.githubusercontent.com/u/160495?s=460&u=b88ece40883d2e9716e833f6a3c78c56ca3eb14f&v=4',
+            name: 'Alexander Feiglstorfer'
+          }"
+          label="My account"
         />
       </template>
     </SbSidebar>
