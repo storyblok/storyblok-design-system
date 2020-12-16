@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { SbSidebar, SbSidebarLink } from '..'
+import { SbSidebar, SbSidebarListItem } from '..'
 import SbAvatar from '../../Avatar'
 import SbButton from '../../Button'
 import { listItemsData, userData } from '../Sidebar.stories'
@@ -13,7 +13,7 @@ describe('Test SbSidebar component', () => {
       },
       slots: {
         bottom: `
-          <SbSidebarLink
+          <SbSidebarListItem
             data-testid="bottom-link"
             href="#"
             icon="sidebar-report"
@@ -22,7 +22,8 @@ describe('Test SbSidebar component', () => {
         `,
       },
       stubs: {
-        SbSidebarLink: SbSidebarLink,
+        SbSidebarListItem: SbSidebarListItem,
+        SbButton: true,
       },
     })
 
@@ -43,7 +44,7 @@ describe('Test SbSidebar component', () => {
     })
 
     it('should have the bottom link with correct props', () => {
-      const bottomLink = wrapper.find('[data-testid="bottom-link"')
+      const bottomLink = wrapper.find('[data-testid="bottom-link"]')
 
       expect(bottomLink.exists()).toBe(true)
       expect(bottomLink.text()).toBe('Report a problem')
@@ -74,7 +75,7 @@ describe('Test SbSidebar component', () => {
       },
       slots: {
         bottom: `
-          <SbSidebarLink
+          <SbSidebarListItem
             data-testid="bottom-link"
             href="#"
             icon="sidebar-report"
@@ -83,7 +84,8 @@ describe('Test SbSidebar component', () => {
         `,
       },
       stubs: {
-        SbSidebarLink: SbSidebarLink,
+        SbSidebarListItem: SbSidebarListItem,
+        SbButton: SbButton,
         SbFragment: true,
         MountingPortal: true,
       },
