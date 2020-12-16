@@ -5,7 +5,12 @@ import SbButton from '../Button'
 import SbIcon from '../Icon'
 
 import { sharedProps } from '../Button/lib'
-import { randomString, getFocusableElements, canUseDOM } from '../../utils'
+import {
+  randomString,
+  getFocusableElements,
+  canUseDOM,
+  isVueComponent,
+} from '../../utils'
 
 /**
  * @vue/component
@@ -194,6 +199,9 @@ const SbMenuList = {
       type: String,
       default: 'bottom-end',
     },
+    // eslint-disable-next-line
+    reference: [String, Element, Object],
+    usePortal: Boolean,
   },
 
   computed: {
@@ -202,6 +210,15 @@ const SbMenuList = {
     },
     isOpen() {
       return this.context.isOpen
+    },
+    referenceEl() {
+      if (this.reference) {
+        return isVueComponent(this.reference)
+          ? this.reference.$el
+          : this.reference
+      }
+
+      return `#${this.context.menuButtonId}`
     },
   },
 
@@ -289,10 +306,11 @@ const SbMenuList = {
         staticClass: 'sb-menu-list',
 
         props: {
+          isOpen: this.isOpen,
           offset: [0, 5],
           placement: this.placement,
-          reference: `#${menuButtonId}`,
-          isOpen: this.isOpen,
+          reference: this.referenceEl,
+          usePortal: this.usePortal,
         },
 
         on: {
