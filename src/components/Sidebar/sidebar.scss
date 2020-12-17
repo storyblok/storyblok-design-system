@@ -1,6 +1,6 @@
 @mixin activeItemState () {
   background-color: #262e48;
-  color: $color-primary;
+  color: $white;
 
   &::after {
     opacity: 1;
@@ -8,10 +8,22 @@
 }
 
 .sb-sidebar {
-  display: inline-flex;
-  background-color: $color-primary-dark;
-  min-height: 100vh;
-  flex-direction: column;
+  box-sizing: border-box;
+
+  &__content {
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-flex;
+    background-color: $color-primary-dark;
+    min-height: 100vh;
+    flex-direction: column;
+    max-width: 28rem;
+    transition: all .2s ease;
+
+    &:hover .sb-button {
+      opacity: 1;
+    }
+  }
 
   // sidebar top
   &__top {
@@ -27,68 +39,19 @@
 
   &-logo {
     height: 33px;
+    color: $white;
 
     img {
       width: 100%;
     }
-  }
 
-  &-user-dropdown {
-    width: 222px;
-    position: absolute;
-    top: -16px;
-    left: calc(100% + 16px);
-    background-color: $white;
-    box-shadow: 0px 2px 17px 3px rgba(34, 42, 69, 0.07);
-    border-radius: 4px;
-    border: 1px solid $light;
-    z-index: 3;
-
-    &[aria-hidden="true"] {
-      display: none;
+    &--white {
+      color: $white;
     }
 
-    &__top {
-      padding: 1.4rem 2rem;
-      border-bottom: 1px solid #e0e0e0;
-
-      &-name {
-        margin: 0;
-        margin-bottom: 0.5rem;
-        font-size: $font-size-md;
-        font-weight: $font-weight-medium;
-      }
-
-      &-email {
-        margin: 0;
-        font-size: $font-size-xs;
-        font-weight: $font-weight-regular;
-        color: $light-gray;
-      }
+    &--dark {
+      color: $color-primary-dark;
     }
-
-    &__list {
-      margin: 0;
-      padding: 1.4rem 2rem;
-      list-style: none;
-
-      li:not(:last-child) {
-        margin-bottom: 1.5rem;
-      }
-
-      .sb-link {
-        font-weight: $font-weight-regular;
-        color: $color-primary-dark;
-      }
-
-      .sb-link::after {
-        background-color: $color-primary-dark;
-      }
-    }
-  }
-
-  &-user {
-    position: relative;
   }
 
   // sidebar list
@@ -102,14 +65,15 @@
 
   &-item {
     list-style: none;
+    padding: 0 1.5rem;
   }
 
   &-link  {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 1.5rem 3rem;
-    color: $white;
+    padding: 2rem;
+    color: $light-gray;
     font-size: $font-size-md;
     font-weight: $font-weight-medium;
     letter-spacing: 0px;
@@ -117,18 +81,7 @@
     vertical-align: middle;
     cursor: pointer;
     transition: all 0.1s ease-in;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background-color: $color-primary;
-      opacity: 0;
-      transition: all 0.1s ease-in;
-    }
+    border-radius: 1rem;
 
     &:hover,
     &:focus {
@@ -136,11 +89,19 @@
     }
 
     .sb-icon {
-      margin-right: 1.4rem;
+      margin-right: 1.8rem;
+    }
+
+    .sb-avatar {
+      margin-right: 8px;
     }
 
     &--active {
       @include activeItemState();
+    }
+
+    &--use-avatar {
+      padding-left: 1.4rem;
     }
   }
 
@@ -164,13 +125,20 @@
 
   // modifiers
   &--minimize {
-    max-width: 90px;
+    .sb-sidebar__content {
+      max-width: 9rem;
+    }
 
-    .sb-icon {
+    .sb-icon,
+    .sb-avatar {
       margin: 0;
     }
 
-    .sb-button {
+    .sb-sidebar-link--use-avatar {
+      padding: 2rem;
+    }
+
+    .sb-sidebar-toggle .sb-button {
       opacity: 1;
       color: $color-primary-dark;
       background-color: $light-75;
@@ -201,10 +169,54 @@
     }
   }
 
-  // states
-  &:hover {
-    .sb-button {
-      opacity: 1;
+  // mobile elements
+  &__mobile-header {
+    box-sizing: border-box;
+    width: 100%;
+    display: none;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: $white;
+    border-bottom: 1px solid $light;
+
+    button {
+      appearance: none;
+      border: 0;
+      background-color: transparent;
+      cursor: pointer;
+      padding: 0;
     }
+  }
+
+  &__mobile-header-menu-icon {
+    border-right: 1px solid $light;
+    padding: 1rem 2rem 1rem 0;
+    margin-right: 2rem;
+  }
+
+  &__mobile-logo {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .sb-sidebar__mobile-header {
+    display: flex;
+  }
+
+  .sb-sidebar__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    transform: translateX(-110%);
+  }
+
+  .sb-sidebar--active .sb-sidebar__content {
+    transform: translateX(0);
+  }
+
+  .sb-sidebar-toggle {
+    display: none;
   }
 }

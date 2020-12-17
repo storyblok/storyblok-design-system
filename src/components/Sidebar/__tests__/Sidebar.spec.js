@@ -1,19 +1,17 @@
 import { mount } from '@vue/test-utils'
-import { SbSidebar, SbSidebarLink } from '..'
-import SbAvatar from '../../Avatar'
+import { SbSidebar, SbSidebarListItem } from '..'
 import SbButton from '../../Button'
-import { listItemsData, userData } from '../Sidebar.stories'
+import { listItemsData } from '../Sidebar.stories'
 
 describe('Test SbSidebar component', () => {
   describe('when in default behavior', () => {
     const wrapper = mount(SbSidebar, {
       propsData: {
-        user: { ...userData },
         listItems: [...listItemsData],
       },
       slots: {
         bottom: `
-          <SbSidebarLink
+          <SbSidebarListItem
             data-testid="bottom-link"
             href="#"
             icon="sidebar-report"
@@ -22,11 +20,10 @@ describe('Test SbSidebar component', () => {
         `,
       },
       stubs: {
-        SbSidebarLink: SbSidebarLink,
+        SbSidebarListItem: SbSidebarListItem,
+        SbButton: true,
       },
     })
-
-    const avatarUser = wrapper.findComponent(SbAvatar)
 
     it('should have a navigation with the correct links', () => {
       expect(wrapper.find('[role="navigation"]').exists()).toBe(true)
@@ -36,45 +33,24 @@ describe('Test SbSidebar component', () => {
       ).toBe(listItemsData.length)
     })
 
-    it('should have a SbAvatar component with the correct properties', () => {
-      expect(avatarUser.exists()).toBe(true)
-      expect(avatarUser.props('name')).toBe(userData.name)
-      expect(avatarUser.props('src')).toBe(userData.src)
-    })
-
     it('should have the bottom link with correct props', () => {
-      const bottomLink = wrapper.find('[data-testid="bottom-link"')
+      const bottomLink = wrapper.find('[data-testid="bottom-link"]')
 
       expect(bottomLink.exists()).toBe(true)
       expect(bottomLink.text()).toBe('Report a problem')
       expect(bottomLink.attributes('href')).toBe('#')
-    })
-
-    it('should toggle dropdown when clicks on SbAvatar', async () => {
-      await avatarUser.trigger('click')
-
-      expect(
-        wrapper.find('[data-testid="sidebar-user-dropdown"]').isVisible()
-      ).toBe(true)
-
-      await avatarUser.trigger('click')
-
-      expect(
-        wrapper.find('[data-testid="sidebar-user-dropdown"]').isVisible()
-      ).toBe(true)
     })
   })
 
   describe('when in minimized state', () => {
     const wrapper = mount(SbSidebar, {
       propsData: {
-        user: { ...userData },
         listItems: [...listItemsData],
         minimize: true,
       },
       slots: {
         bottom: `
-          <SbSidebarLink
+          <SbSidebarListItem
             data-testid="bottom-link"
             href="#"
             icon="sidebar-report"
@@ -83,7 +59,8 @@ describe('Test SbSidebar component', () => {
         `,
       },
       stubs: {
-        SbSidebarLink: SbSidebarLink,
+        SbSidebarListItem: SbSidebarListItem,
+        SbButton: SbButton,
         SbFragment: true,
         MountingPortal: true,
       },
