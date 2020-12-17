@@ -1,5 +1,6 @@
 import { SbSidebar, SbSidebarListItem } from '.'
 import { SbMenu, SbMenuList, SbMenuItem } from '../Menu'
+import SbIcon from '../Icon'
 
 export const listItemsData = [
   {
@@ -57,7 +58,14 @@ export const listItemsData = [
 ]
 
 const SidebarTemplate = (args) => ({
-  components: { SbSidebar, SbSidebarListItem, SbMenu, SbMenuList, SbMenuItem },
+  components: {
+    SbIcon,
+    SbSidebar,
+    SbSidebarListItem,
+    SbMenu,
+    SbMenuList,
+    SbMenuItem,
+  },
 
   props: Object.keys(args),
 
@@ -109,9 +117,13 @@ const SidebarTemplate = (args) => ({
               :placement="listPlacement"
               :reference="$refs.userDropdown"
             >
-              <div slot="top">
-                <span> John Doe </span>
-                <span> jondoe@lipsum.com </span>
+              <div slot="top" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #dfe3e8; padding: 1.5rem 2rem; margin-bottom: 1rem;">
+                <div>
+                  <p style="font-size: 14px; font-weight: 500; color: #1b243f; margin: 0; margin-bottom: 5px;"> John Doe </p>
+                  <p style="font-size: 12px; color: #b1b5be; margin: 0;"> jondoe@lipsum.com </p>
+                </div>
+
+                <SbIcon name="logout" color="light-gray" size="small" />
               </div>
 
               <SbMenuItem> Account settings </SbMenuItem>
