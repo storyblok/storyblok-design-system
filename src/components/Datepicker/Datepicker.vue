@@ -134,7 +134,6 @@ export default {
     value: {
       type: String,
       default: '',
-      required: true,
     },
   },
 
@@ -298,7 +297,7 @@ export default {
 
     syncInternalValue(value) {
       this.internalValue = value
-      this.internalDate = value
+      this.internalDate = value || dayjs().format()
     },
 
     $_wrapClose(e) {
