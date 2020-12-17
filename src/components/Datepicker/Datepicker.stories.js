@@ -7,8 +7,7 @@ const Template = (args) => ({
   props: Object.keys(args),
 
   data: () => ({
-    internalDatetimeValue: '',
-    internalTimeValue: '',
+    internalDatetimeValue: '2017-09-09 00:00',
   }),
 
   template: `
