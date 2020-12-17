@@ -56,13 +56,6 @@ export const listItemsData = [
   },
 ]
 
-export const userData = {
-  name: 'Dominik Angerer',
-  src:
-    'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
-  email: 'fake@fake.com',
-}
-
 const SidebarTemplate = (args) => ({
   components: { SbSidebar, SbSidebarListItem, SbMenu, SbMenuList, SbMenuItem },
 
@@ -90,10 +83,7 @@ const SidebarTemplate = (args) => ({
 
   template: `
     <SbSidebar
-      v-bind="{
-        user,
-        listItems
-      }"
+      v-bind="{ listItems }"
 
       :minimize.sync="internalMinimize"
     >
@@ -145,18 +135,10 @@ export default {
     layout: 'fullscreen',
   },
   args: {
-    user: { ...userData },
     listItems: [...listItemsData],
     minimize: false,
   },
   argTypes: {
-    user: {
-      name: 'user',
-      description: 'User information object',
-      control: {
-        type: 'object',
-      },
-    },
     minimize: {
       name: 'minimize',
       description:

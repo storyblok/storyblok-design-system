@@ -1,13 +1,12 @@
 import { mount } from '@vue/test-utils'
 import { SbSidebar, SbSidebarListItem } from '..'
 import SbButton from '../../Button'
-import { listItemsData, userData } from '../Sidebar.stories'
+import { listItemsData } from '../Sidebar.stories'
 
 describe('Test SbSidebar component', () => {
   describe('when in default behavior', () => {
     const wrapper = mount(SbSidebar, {
       propsData: {
-        user: { ...userData },
         listItems: [...listItemsData],
       },
       slots: {
@@ -46,7 +45,6 @@ describe('Test SbSidebar component', () => {
   describe('when in minimized state', () => {
     const wrapper = mount(SbSidebar, {
       propsData: {
-        user: { ...userData },
         listItems: [...listItemsData],
         minimize: true,
       },

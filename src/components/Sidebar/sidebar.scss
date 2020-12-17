@@ -54,64 +54,6 @@
     }
   }
 
-  &-user-dropdown {
-    width: 222px;
-    position: absolute;
-    top: -16px;
-    left: calc(100% + 16px);
-    background-color: $white;
-    box-shadow: 0px 2px 17px 3px rgba(34, 42, 69, 0.07);
-    border-radius: 4px;
-    border: 1px solid $light;
-    z-index: 3;
-
-    &[aria-hidden="true"] {
-      display: none;
-    }
-
-    &__top {
-      padding: 1.4rem 2rem;
-      border-bottom: 1px solid #e0e0e0;
-
-      &-name {
-        margin: 0;
-        margin-bottom: 0.5rem;
-        font-size: $font-size-md;
-        font-weight: $font-weight-medium;
-      }
-
-      &-email {
-        margin: 0;
-        font-size: $font-size-xs;
-        font-weight: $font-weight-regular;
-        color: $light-gray;
-      }
-    }
-
-    &__list {
-      margin: 0;
-      padding: 1.4rem 2rem;
-      list-style: none;
-
-      li:not(:last-child) {
-        margin-bottom: 1.5rem;
-      }
-
-      .sb-link {
-        font-weight: $font-weight-regular;
-        color: $color-primary-dark;
-      }
-
-      .sb-link::after {
-        background-color: $color-primary-dark;
-      }
-    }
-  }
-
-  &-user {
-    position: relative;
-  }
-
   // sidebar list
   &-list {
     margin: 0;
