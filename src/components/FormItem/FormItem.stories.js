@@ -7,6 +7,8 @@ export default {
   component: SbFormItem,
   args: {
     label: 'Label',
+    helperIconText: 'Helper icon text',
+    helperText: 'Helper text',
   },
 }
 
@@ -19,7 +21,12 @@ export const Default = (args) => ({
   }),
   template: `
     <div>
-      <SbFormItem :label="label" style="margin-bottom: 20px">
+      <SbFormItem
+        :label="label"
+        :helper-icon-text="helperIconText"
+        :helper-text="helperText"
+        style="margin-bottom: 20px"
+      >
         <SbTextField
           :placeholder="placeholder"
         />
