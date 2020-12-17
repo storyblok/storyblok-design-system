@@ -134,7 +134,6 @@ export default {
     value: {
       type: String,
       default: '',
-      required: true,
     },
   },
 
@@ -210,6 +209,13 @@ export default {
     },
   },
 
+  watch: {
+    value: {
+      handler: 'syncInternalValue',
+      immediate: true,
+    },
+  },
+
   mounted() {
     this.$nextTick(() => {
       this.inputElement = this.$refs.input && this.$refs.input.$el
@@ -219,6 +225,7 @@ export default {
   methods: {
     handleCancelAction() {
       this.closeOverlay()
+      this.syncInternalValue(this.value)
     },
 
     handleDoneAction() {
@@ -251,6 +258,7 @@ export default {
 
       if (this.type === 'date') {
         this.closeOverlay()
+        this.handleDoneAction()
         return
       }
 
@@ -268,6 +276,10 @@ export default {
     },
 
     handleInputClick() {
+      if (this.disabled) {
+        return
+      }
+
       this.isOverlayVisible = true
       this.internalVisualization =
         this.type === 'time' ? INTERNAL_VIEWS.TIME : INTERNAL_VIEWS.CALENDAR
@@ -281,6 +293,11 @@ export default {
 
     closeOverlay() {
       this.isOverlayVisible = false
+    },
+
+    syncInternalValue(value) {
+      this.internalValue = value
+      this.internalDate = value || dayjs().format()
     },
 
     $_wrapClose(e) {

@@ -128,6 +128,7 @@ describe('SbDatepicker component', () => {
     const wrapper = factory({
       ...SbDatepickerData.args,
       ...WithTzOffset.args,
+      value: '2017-09-09',
     })
 
     it('Should exist the SbTooltip component with correct label', () => {

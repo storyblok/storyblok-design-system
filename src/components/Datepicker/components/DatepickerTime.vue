@@ -36,7 +36,7 @@ export default {
   name: 'SbDatepickerTime',
 
   props: {
-    value: {
+    internalDate: {
       type: String,
       default: null,
     },
@@ -76,7 +76,7 @@ export default {
   },
 
   watch: {
-    value: {
+    internalDate: {
       handler: '$_syncValue',
       immediate: true,
     },
@@ -96,7 +96,10 @@ export default {
     $_processInput() {
       const hours = this.internalHour || 0
       const minutes = this.internalMinutes || 0
-      const value = dayjs(this.value).hour(hours).minute(minutes).format()
+      const value = dayjs(this.internalDate)
+        .hour(hours)
+        .minute(minutes)
+        .format()
 
       this.$emit('input', value)
     },
