@@ -59,8 +59,12 @@ export default {
   },
 
   watch: {
-    isOpen() {
-      this.open = this.isOpen
+    isOpen(value) {
+      if (value) {
+        this.handleOpenModal()
+      } else {
+        this.handleCloseModal()
+      }
     },
   },
 
@@ -72,9 +76,25 @@ export default {
     /**
      * handler for close modal
      */
-    handleCloseModal(event) {
-      this.open = false
-      this.$emit('hide')
+    handleCloseModal() {
+      if (this.open) {
+        this.open = false
+        this.$nextTick(() => {
+          this.$emit('hide')
+        })
+      }
+    },
+
+    /**
+     * handler for open modal
+     */
+    handleOpenModal() {
+      if (!this.open) {
+        this.open = true
+        this.$nextTick(() => {
+          this.$emit('show')
+        })
+      }
     },
 
     wrapClose(event) {

@@ -53,8 +53,12 @@ export default {
     },
   },
   watch: {
-    isOpen() {
-      this.openBlokUI = this.isOpen
+    isOpen(state) {
+      if (state) {
+        this.handleOpenSlide()
+      } else {
+        this.handleCloseSlide()
+      }
     },
   },
   methods: {
@@ -62,8 +66,24 @@ export default {
      * handler for close the component
      */
     handleCloseSlide() {
-      this.openBlokUI = false
-      this.$emit('hide')
+      if (this.openBlokUI) {
+        this.openBlokUI = false
+        this.$nextTick(() => {
+          this.$emit('hide')
+        })
+      }
+    },
+
+    /**
+     * handler for open the component
+     */
+    handleOpenSlide() {
+      if (!this.openBlokUI) {
+        this.openBlokUI = true
+        this.$nextTick(() => {
+          this.$emit('show')
+        })
+      }
     },
   },
 }
