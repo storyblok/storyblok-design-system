@@ -35,6 +35,8 @@
           :key="index"
           v-bind="listItem"
         />
+
+        <slot />
       </SbSidebarList>
 
       <div class="sb-sidebar__bottom">
