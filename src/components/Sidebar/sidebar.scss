@@ -29,9 +29,18 @@
 
   &-logo {
     height: 33px;
+    color: $white;
 
     img {
       width: 100%;
+    }
+
+    &--white {
+      color: $white;
+    }
+
+    &--dark {
+      color: $color-primary-dark;
     }
   }
 
