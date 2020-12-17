@@ -8,12 +8,22 @@
 }
 
 .sb-sidebar {
-  display: inline-flex;
-  background-color: $color-primary-dark;
-  min-height: 100vh;
-  flex-direction: column;
-  max-width: 28rem;
-  width: 100%;
+  box-sizing: border-box;
+
+  &__content {
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-flex;
+    background-color: $color-primary-dark;
+    min-height: 100vh;
+    flex-direction: column;
+    max-width: 28rem;
+    transition: all .2s ease;
+
+    &:hover .sb-button {
+      opacity: 1;
+    }
+  }
 
   // sidebar top
   &__top {
@@ -173,7 +183,9 @@
 
   // modifiers
   &--minimize {
-    max-width: 90px;
+    .sb-sidebar__content {
+      max-width: 90px;
+    }
 
     .sb-icon,
     .sb-avatar {
@@ -184,7 +196,7 @@
       padding: 2rem;
     }
 
-    .sb-button {
+    .sb-sidebar-toggle .sb-button {
       opacity: 1;
       color: $color-primary-dark;
       background-color: $light-75;
@@ -215,10 +227,71 @@
     }
   }
 
-  // states
-  &:hover {
-    .sb-button {
-      opacity: 1;
+  // mobile elements
+  &__mobile-header {
+    box-sizing: border-box;
+    width: 100%;
+    display: none;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: $white;
+    border-bottom: 1px solid $light;
+
+    button {
+      appearance: none;
+      border: 0;
+      background-color: transparent;
+      cursor: pointer;
+      padding: 0;
     }
+  }
+
+  &__mobile-header-menu-icon {
+    border-right: 1px solid $light;
+    padding: 1rem 2rem 1rem 0;
+    margin-right: 2rem;
+  }
+
+  &__mobile-logo {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .sb-sidebar__mobile-header {
+    display: flex;
+  }
+
+  .sb-sidebar__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    transform: translateX(-110%);
+  }
+
+  .sb-sidebar--active .sb-sidebar__content {
+    transform: translateX(0);
+  }
+
+  .sb-sidebar-toggle {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .sb-sidebar__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-110%);
+  }
+
+  .sb-sidebar--active .sb-sidebar__content {
+    transform: translateX(0);
+  }
+
+  .sb-sidebar-toggle {
+    display: none;
   }
 }

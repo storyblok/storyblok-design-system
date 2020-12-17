@@ -2,25 +2,46 @@
   <aside
     class="sb-sidebar"
     :class="{
-      'sb-sidebar--minimize': this.minimize,
+      'sb-sidebar--minimize': minimize,
+      'sb-sidebar--active': isMobileOpen,
     }"
   >
-    <div class="sb-sidebar__top">
-      <SbSidebarLogo :minimize="minimize" />
+    <div class="sb-sidebar__mobile-header">
+      <div class="sb-sidebar__mobile-header-menu-icon">
+        <button @click="openSidebar">
+          <SbIcon name="overflow-menu-horizontal" />
+        </button>
+      </div>
+
+      <div class="sb-sidebar__mobile-logo">
+        <SbSidebarLogo variant="dark" />
+      </div>
+
+      <div v-if="isMobileOpen" class="sb-sidebar__mobile-header-close-icon">
+        <button @click="closeSidebar">
+          <SbIcon name="close" />
+        </button>
+      </div>
     </div>
 
-    <SbSidebarList>
-      <SbSidebarListItem
-        v-for="(listItem, index) in listItems"
-        :key="index"
-        v-bind="listItem"
-      />
-    </SbSidebarList>
+    <div class="sb-sidebar__content">
+      <div class="sb-sidebar__top">
+        <SbSidebarLogo :minimize="minimize" />
+      </div>
 
-    <div class="sb-sidebar__bottom">
-      <slot name="bottom" />
+      <SbSidebarList>
+        <SbSidebarListItem
+          v-for="(listItem, index) in listItems"
+          :key="index"
+          v-bind="listItem"
+        />
+      </SbSidebarList>
 
-      <SbSidebarToggle :minimize="minimize" @click="toggleMinimizedState" />
+      <div class="sb-sidebar__bottom">
+        <slot name="bottom" />
+
+        <SbSidebarToggle :minimize="minimize" @click="toggleMinimizedState" />
+      </div>
     </div>
   </aside>
 </template>
@@ -58,9 +79,31 @@ export default {
     },
   },
 
+  data: () => ({
+    isMobileOpen: false,
+  }),
+
   methods: {
     toggleMinimizedState() {
       this.$emit('update:minimize', !this.minimize)
+    },
+
+    openSidebar() {
+      if (!this.isMobileOpen) {
+        this.isMobileOpen = true
+        this.$nextTick(() => {
+          this.$emit('mobile-open')
+        })
+      }
+    },
+
+    closeSidebar() {
+      if (this.isMobileOpen) {
+        this.isMobileOpen = false
+        this.$nextTick(() => {
+          this.$emit('mobile-close')
+        })
+      }
     },
   },
 }

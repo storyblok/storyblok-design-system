@@ -1,14 +1,16 @@
 <template>
-  <SbButton
-    data-testid="sidebar-button-toggle"
-    size="small"
-    has-icon-only
-    is-rounded
-    tooltip-position="right"
-    :icon="icon"
-    :icon-description="iconDescription"
-    v-on="$listeners"
-  />
+  <div class="sb-sidebar-toggle">
+    <SbButton
+      data-testid="sidebar-button-toggle"
+      size="small"
+      has-icon-only
+      is-rounded
+      tooltip-position="right"
+      :icon="icon"
+      :icon-description="iconDescription"
+      v-on="$listeners"
+    />
+  </div>
 </template>
 
 <script>
