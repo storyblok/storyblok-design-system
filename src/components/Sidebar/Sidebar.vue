@@ -9,7 +9,7 @@
     <div class="sb-sidebar__mobile-header">
       <div class="sb-sidebar__mobile-header-menu-icon">
         <button @click="openSidebar">
-          <SbIcon name="overflow-menu-horizontal" />
+          <SbIcon name="menu" />
         </button>
       </div>
 

@@ -126,7 +126,7 @@
   // modifiers
   &--minimize {
     .sb-sidebar__content {
-      max-width: 90px;
+      max-width: 9rem;
     }
 
     .sb-icon,
@@ -199,7 +199,7 @@
   }
 }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 576px) {
   .sb-sidebar__mobile-header {
     display: flex;
   }
@@ -209,23 +209,6 @@
     top: 0;
     left: 0;
     z-index: 4;
-    transform: translateX(-110%);
-  }
-
-  .sb-sidebar--active .sb-sidebar__content {
-    transform: translateX(0);
-  }
-
-  .sb-sidebar-toggle {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .sb-sidebar__content {
-    position: absolute;
-    top: 0;
-    left: 0;
     transform: translateX(-110%);
   }
 
