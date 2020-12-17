@@ -275,6 +275,10 @@ export default {
     },
 
     handleInputClick() {
+      if (this.disabled) {
+        return
+      }
+
       this.isOverlayVisible = true
       this.internalVisualization =
         this.type === 'time' ? INTERNAL_VIEWS.TIME : INTERNAL_VIEWS.CALENDAR
