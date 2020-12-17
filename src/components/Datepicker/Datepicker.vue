@@ -210,6 +210,13 @@ export default {
     },
   },
 
+  watch: {
+    value: {
+      handler: 'syncInternalValue',
+      immediate: true,
+    },
+  },
+
   mounted() {
     this.$nextTick(() => {
       this.inputElement = this.$refs.input && this.$refs.input.$el
@@ -281,6 +288,11 @@ export default {
 
     closeOverlay() {
       this.isOverlayVisible = false
+    },
+
+    syncInternalValue(value) {
+      this.internalValue = value
+      this.internalDate = value
     },
 
     $_wrapClose(e) {
