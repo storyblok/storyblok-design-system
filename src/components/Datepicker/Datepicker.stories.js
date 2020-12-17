@@ -19,6 +19,7 @@ const Template = (args) => ({
       :tz-tooltip="tzTooltip"
       :type="type"
       v-model="internalDatetimeValue"
+      style="width: 29.4rem"
     />
   `,
 })
