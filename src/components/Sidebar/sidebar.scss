@@ -17,7 +17,7 @@
     background-color: $color-primary-dark;
     min-height: 100vh;
     flex-direction: column;
-    max-width: 28rem;
+    min-width: 28rem;
     transition: all .2s ease;
 
     &:hover .sb-button {
@@ -73,8 +73,8 @@
     display: flex;
     align-items: center;
     padding: 2rem;
-    color: $light-gray;
-    font-size: $font-size-md;
+    color: $light;
+    font-size: $font-size-lg;
     font-weight: $font-weight-medium;
     letter-spacing: 0px;
     text-decoration: none;
@@ -126,7 +126,7 @@
   // modifiers
   &--minimize {
     .sb-sidebar__content {
-      max-width: 9rem;
+      min-width: 9rem;
     }
 
     .sb-icon,
