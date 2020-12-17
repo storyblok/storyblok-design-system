@@ -226,6 +226,7 @@ export default {
   methods: {
     handleCancelAction() {
       this.closeOverlay()
+      this.syncInternalValue(this.value)
     },
 
     handleDoneAction() {
@@ -258,6 +259,7 @@ export default {
 
       if (this.type === 'date') {
         this.closeOverlay()
+        this.handleDoneAction()
         return
       }
 
