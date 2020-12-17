@@ -1,4 +1,5 @@
 import { SbSidebar, SbSidebarListItem } from '.'
+import { SbMenu, SbMenuList, SbMenuItem } from '../Menu'
 
 export const listItemsData = [
   {
@@ -63,11 +64,21 @@ export const userData = {
 }
 
 const SidebarTemplate = (args) => ({
-  components: { SbSidebar, SbSidebarListItem },
+  components: { SbSidebar, SbSidebarListItem, SbMenu, SbMenuList, SbMenuItem },
+
   props: Object.keys(args),
+
   data: () => ({
     internalMinimize: false,
+    openUserDropdown: false,
   }),
+
+  computed: {
+    listPlacement() {
+      return this.internalMinimize ? 'auto' : 'top'
+    },
+  },
+
   watch: {
     minimize: {
       immediate: true,
@@ -76,6 +87,7 @@ const SidebarTemplate = (args) => ({
       },
     },
   },
+
   template: `
     <SbSidebar
       v-bind="{
@@ -99,7 +111,27 @@ const SidebarTemplate = (args) => ({
             name: 'Alexander Feiglstorfer'
           }"
           label="My account"
-        />
+          ref="userDropdown"
+          @click="openUserDropdown = !openUserDropdown"
+        >
+          <SbMenu v-model="openUserDropdown">
+            <SbMenuList
+              :placement="listPlacement"
+              :reference="$refs.userDropdown"
+            >
+              <div slot="top">
+                <span> John Doe </span>
+                <span> jondoe@lipsum.com </span>
+              </div>
+
+              <SbMenuItem> Account settings </SbMenuItem>
+              <SbMenuItem> Security settings </SbMenuItem>
+              <SbMenuItem> Personal access tokens </SbMenuItem>
+              <SbMenuItem> Privacy Settings </SbMenuItem>
+              <SbMenuItem> Change Language </SbMenuItem>
+            </SbMenuList>
+          </SbMenu>
+        </SbSidebarListItem>
       </template>
     </SbSidebar>
   `,
