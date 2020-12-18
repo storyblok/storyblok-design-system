@@ -11,13 +11,12 @@
   box-sizing: border-box;
 
   &__content {
-    width: 100%;
+    width: 28rem;
     box-sizing: border-box;
     display: inline-flex;
     background-color: $color-primary-dark;
     min-height: 100vh;
     flex-direction: column;
-    min-width: 28rem;
     transition: all .2s ease;
 
     &:hover .sb-button {
@@ -61,6 +60,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
   }
 
   &-item {
@@ -126,7 +126,7 @@
   // modifiers
   &--minimize {
     .sb-sidebar__content {
-      min-width: 9rem;
+      width: 9rem;
     }
 
     .sb-icon,
