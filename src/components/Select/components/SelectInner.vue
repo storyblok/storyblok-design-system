@@ -110,7 +110,10 @@ export default {
         return this.label
       }
 
-      const optionLabel = this.currentOption.label || this.value
+      const optionLabel =
+        this.currentOption && this.currentOption.label
+          ? this.currentOption.label
+          : this.value
 
       if (this.inline) {
         return `${this.label}: ${optionLabel}`
