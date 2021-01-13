@@ -67,10 +67,10 @@ describe('SbDatepicker component', () => {
 
   describe('Test component calendar methods', () => {
     it('Should subtract a month', () => {
-      const before = new Date(wrapper.vm.internalDate)
-      wrapper.vm.handlePreviousMonth()
-      const after = new Date(wrapper.vm.internalDate)
-      expect(before.getMonth() - after.getMonth()).toEqual(1)
+      const before = new Date(wrapper.vm.internalDate).getMonth()
+      wrapper.vm.handleNextMonth()
+      const after = new Date(wrapper.vm.internalDate).getMonth()
+      expect(after + 1 - (before + 1)).toEqual(1)
     })
     it('Should add a month', () => {
       const before = new Date(wrapper.vm.internalDate)
