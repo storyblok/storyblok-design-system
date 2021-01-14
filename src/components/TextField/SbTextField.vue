@@ -75,6 +75,8 @@
         @click="handleClearableClick"
       />
       <span v-if="suffix" class="sb-textfield__prefix">{{ suffix }}</span>
+
+      <slot />
     </div>
     <span
       v-if="showError"

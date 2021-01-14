@@ -106,6 +106,7 @@
 .sb-select-list {
   @include popoverComponent();
 
+  background-color: $white;
   display: none;
   flex: 1;
   width: 100%;

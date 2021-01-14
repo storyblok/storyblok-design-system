@@ -14,7 +14,8 @@
       <SbSelectListItem
         v-for="(option, key) in filteredOptions"
         :key="key"
-        v-bind="option"
+        :label="option[itemLabel]"
+        :value="option[itemValue]"
         :input-value="value"
         :multiple="multiple"
         :use-avatars="useAvatars"
@@ -56,6 +57,14 @@ export default {
       default: () => [],
     },
     useAvatars: Boolean,
+    itemLabel: {
+      type: String,
+      default: 'label',
+    },
+    itemValue: {
+      type: String,
+      default: 'value',
+    },
   },
 
   data: () => ({
@@ -69,16 +78,26 @@ export default {
 
     filteredOptions() {
       if (this.filterable && this.hasValueToSearch) {
-        return this.options.filter((opt) => {
-          return includes(toLowerCase(opt.label), toLowerCase(this.searchInput))
+        return this.transformedOptions.filter((opt) => {
+          return includes(
+            toLowerCase(opt[this.itemLabel]),
+            toLowerCase(this.searchInput)
+          )
         })
       }
 
-      return this.options
+      return this.transformedOptions
     },
 
     hasValueToSearch() {
       return this.searchInput && this.searchInput.length > 0
+    },
+
+    transformedOptions() {
+      return this.options.map((opt) => {
+        if (typeof opt === 'object') return opt
+        return { [this.itemLabel]: opt, [this.itemValue]: opt }
+      })
     },
   },
 

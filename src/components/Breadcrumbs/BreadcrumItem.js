@@ -49,7 +49,6 @@ const SbBreadcrumbLink = {
   },
   render(h, { props, listeners }) {
     const { label } = props
-
     // if href exists, we understand that's expected a <a> tag
     if (props.href) {
       return h(
@@ -103,9 +102,8 @@ const SbBreadcrumbItem = {
 
   render(h, { props, listeners }) {
     const { isActive, label, title, href, to, as } = props
-    const isTruncated = (label || '').length > 15
+    const isTruncated = label.length > 15
     const labelFormated = isTruncated ? getLabelTruncated(label) : label
-
     const breadcrumbsItemProps = {
       staticClass: 'sb-breadcrumbs__item',
       class: {

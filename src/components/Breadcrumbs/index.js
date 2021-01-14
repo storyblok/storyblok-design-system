@@ -97,10 +97,6 @@ const SbBreadcrumbs = {
   name: 'SbBreadcrumbs',
 
   props: {
-    items: {
-      type: Array,
-      default: () => [],
-    },
     isLargeSection: Boolean,
   },
 
@@ -125,53 +121,17 @@ const SbBreadcrumbs = {
       },
     }
 
-    // render the dropdown
-    if (this.items.length > 6) {
-      const firstElementProps = this.items[0] || {}
-      const lastElementProps = this.items.slice(-1)[0] || {}
-      const restElements = this.items.slice(1, -1)
-      const children = [
-        h(SbBreadcrumbItem, {
-          props: firstElementProps,
-        }),
-        h(SbBreadcrumbSeparator),
-        h(SbBreadcrumbDropdown, {
-          props: {
-            items: restElements,
-            active: this.showDropdown,
-          },
-        }),
-        h(SbBreadcrumbSeparator, {
-          props: {
-            active: this.showDropdown,
-          },
-          on: {
-            click: this.toggleDropdown,
-          },
-        }),
-        h(SbBreadcrumbItem, {
-          props: lastElementProps,
-        }),
-      ]
-
-      return h('nav', breadcrumbsProps, children)
-    }
-
     const children = []
 
-    for (const itemProps of this.items) {
+    for (const itemProps of this.$slots.default) {
       if (children.length) {
         children.push(h(SbBreadcrumbSeparator))
       }
 
-      children.push(
-        h(SbBreadcrumbItem, {
-          props: itemProps,
-        })
-      )
+      children.push(h(SbBreadcrumbItem, itemProps.children[0].data))
     }
 
-    return h('nav', breadcrumbsProps, [...children, this.$slots.default])
+    return h('nav', breadcrumbsProps, children)
   },
 }
 

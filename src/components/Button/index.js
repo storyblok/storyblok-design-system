@@ -131,17 +131,21 @@ const SbButton = {
     }
 
     if (this.isLoading) {
+      const whiteLoading = [
+        'primary',
+        'secondary',
+        'danger',
+        'inverted-link',
+        'primary-link',
+      ]
+
       return renderButton([
         h(SbLoading, {
           props: {
             type: 'spinner',
             size: 'small',
             color:
-              this.variant === 'primary' ||
-              this.variant === 'secondary' ||
-              this.variant === 'danger'
-                ? 'white'
-                : 'primary-dark',
+              whiteLoading.indexOf(this.variant) > 0 ? 'white' : 'primary-dark',
           },
         }),
       ])

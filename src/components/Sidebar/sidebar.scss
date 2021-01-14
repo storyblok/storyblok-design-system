@@ -10,14 +10,32 @@
 .sb-sidebar {
   box-sizing: border-box;
 
+  // sidebar bottom
+  &__bottom {
+    position: relative;
+
+    .sb-button {
+      opacity: 0;
+      padding: 0.5rem;
+      position: absolute;
+      right: -13px;
+      top: -26px;
+      transition: opacity 0.2s ease-in;
+
+      &:focus {
+        opacity: 1;
+      }
+    }
+  }
+
   &__content {
-    width: 28rem;
+    background-color: $color-primary-dark;
     box-sizing: border-box;
     display: inline-flex;
-    background-color: $color-primary-dark;
-    min-height: 100vh;
     flex-direction: column;
-    transition: all .2s ease;
+    min-height: 100vh;
+    transition: all 0.2s ease;
+    width: 28rem;
 
     &:hover .sb-button {
       opacity: 1;
@@ -30,15 +48,15 @@
     padding: 3rem;
 
     .sb-avatar {
+      cursor: pointer;
       display: block;
       margin-left: 3rem;
-      cursor: pointer;
     }
   }
 
   &-logo {
-    height: 33px;
     color: $white;
+    height: 33px;
 
     img {
       width: 100%;
@@ -55,33 +73,34 @@
 
   // sidebar list
   &-list {
-    margin: 0;
-    padding: 0;
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
+    margin: 0;
     overflow-x: hidden;
+    padding: 0;
   }
 
   &-item {
     list-style: none;
-    padding: 0 1.5rem;
+    margin-bottom: 2px;
+    padding: 0 15px;
   }
 
-  &-link  {
-    position: relative;
-    display: flex;
+  &-link {
     align-items: center;
-    padding: 2rem;
+    border-radius: 1rem;
     color: $light;
+    cursor: pointer;
+    display: flex;
     font-size: $font-size-lg;
     font-weight: $font-weight-medium;
-    letter-spacing: 0px;
+    letter-spacing: 0;
+    padding: 19px;
+    position: relative;
     text-decoration: none;
-    vertical-align: middle;
-    cursor: pointer;
     transition: all 0.1s ease-in;
-    border-radius: 1rem;
+    vertical-align: middle;
 
     &:hover,
     &:focus {
@@ -105,24 +124,6 @@
     }
   }
 
-  // sidebar bottom
-  &__bottom {
-    position: relative;
-
-    .sb-button {
-      position: absolute;
-      top: -26px;
-      right: -13px;
-      padding: 0.5rem 0.5rem;
-      transition: opacity 0.2s ease-in;
-      opacity: 0;
-
-      &:focus {
-        opacity: 1;
-      }
-    }
-  }
-
   // modifiers
   &--minimize {
     .sb-sidebar__content {
@@ -139,9 +140,9 @@
     }
 
     .sb-sidebar-toggle .sb-button {
-      opacity: 1;
-      color: $color-primary-dark;
       background-color: $light-75;
+      color: $color-primary-dark;
+      opacity: 1;
 
       &:hover {
         background-color: $light-75;
@@ -171,18 +172,18 @@
 
   // mobile elements
   &__mobile-header {
-    box-sizing: border-box;
-    width: 100%;
-    display: none;
     align-items: center;
-    padding: 1rem 2rem;
     background-color: $white;
     border-bottom: 1px solid $light;
+    box-sizing: border-box;
+    display: none;
+    padding: 1rem 2rem;
+    width: 100%;
 
     button {
       appearance: none;
-      border: 0;
       background-color: transparent;
+      border: 0;
       cursor: pointer;
       padding: 0;
     }
@@ -190,8 +191,8 @@
 
   &__mobile-header-menu-icon {
     border-right: 1px solid $light;
-    padding: 1rem 2rem 1rem 0;
     margin-right: 2rem;
+    padding: 1rem 2rem 1rem 0;
   }
 
   &__mobile-logo {
@@ -205,11 +206,11 @@
   }
 
   .sb-sidebar__content {
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
-    z-index: 4;
     transform: translateX(-110%);
+    z-index: 4;
   }
 
   .sb-sidebar--active .sb-sidebar__content {

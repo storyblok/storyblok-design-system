@@ -1,4 +1,5 @@
 .sb-button {
+  font-family: $primary-font-family;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -10,10 +11,20 @@
   transition: all .1s ease-in-out;
   vertical-align: middle;
 
+  &--inverted-link {
+    color: #FFF;
+    background: transparent;
+  }
+
+  &--primary-link {
+    color: $sb-green;
+    background: transparent;
+  }
+
   &--primary {
     background-color: $sb-green;
     color: $white;
-    
+
     &:hover:not([disabled]) {
       background-color: $sb-green-75;
     }
@@ -31,7 +42,7 @@
       outline: 3px solid $sb-green-25;
     }
   }
-  
+
   &--secondary {
     background-color: $sb-dark-blue;
     color: $white;
@@ -82,9 +93,20 @@
   }
 
   &--small {
+    font-size: 1.4rem;
     padding: 0.8rem 1.6rem;
+
+    .sb-loading {
+      width: 14px;
+      height: 14px;
+    }
+
+    .sb-loading svg {
+      margin-top: -6px;
+      margin-left: -6px;
+    }
   }
-  
+
   &--large {
     padding: 2rem 4.3rem;
   }
@@ -136,10 +158,5 @@
 
   &--has-icon-only#{&}--large {
     padding: 2.1rem;
-  }
-
-  &--loading {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
   }
 }

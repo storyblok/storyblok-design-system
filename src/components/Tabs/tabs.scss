@@ -64,19 +64,19 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 1.4rem 2.3rem;
+  padding: 14px 18px;
   text-align: center;
   color: $sb-dark-blue-50;
   font-family: $primary-font-family;
   font-size: $text-medium-small;
-  font-weight: $font-weight-regular;
+  font-weight: $font-weight-medium;
   cursor: pointer;
 
   // modifiers
   &--is-active {
     color: $primary-text-color;
     font-weight: $font-weight-medium;
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -102,7 +102,7 @@
 .sb-tab-add {
   position: relative;
   text-align: center;
-  padding: 1.3rem 1rem;
+  padding: 13px 10px;
   display: flex;
   align-items: center;
 }
@@ -124,7 +124,7 @@
   opacity: 0;
 
   svg {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 12px;
+    height: 12px;
   }
 }

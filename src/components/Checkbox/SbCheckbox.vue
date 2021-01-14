@@ -4,6 +4,7 @@
       <input
         :id="id"
         v-model="computedValue"
+        v-bind="$attrs"
         :indeterminate.prop="indeterminate"
         class="sb-checkbox__native"
         type="checkbox"
@@ -36,6 +37,8 @@ export default {
   name: 'SbCheckbox',
 
   mixins: [CheckboxRadioMixin],
+
+  inheritAttrs: false,
 
   props: {
     label: {

@@ -14,6 +14,8 @@
       :inline="inline"
       :label="label"
       :value="value"
+      :item-label="itemLabel"
+      :item-value="itemValue"
       :left-icon="leftIcon"
       :use-avatars="useAvatars"
       :options="options"
@@ -26,6 +28,8 @@
       v-if="!useMinibrowser"
       ref="list"
       :value="value"
+      :item-label="itemLabel"
+      :item-value="itemValue"
       :options="options"
       :multiple="multiple"
       :filterable="filterable"
@@ -93,6 +97,14 @@ export default {
     },
     inline: Boolean,
     useAvatars: Boolean,
+    itemLabel: {
+      type: String,
+      default: 'label',
+    },
+    itemValue: {
+      type: String,
+      default: 'value',
+    },
   },
 
   data: () => ({

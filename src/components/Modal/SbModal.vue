@@ -45,6 +45,10 @@ export default {
 
   props: {
     isOpen: Boolean,
+    escCloses: {
+      type: Boolean,
+      default: true,
+    },
     fullWidth: Boolean,
     modalTarget: {
       type: String,
@@ -70,9 +74,22 @@ export default {
 
   created() {
     this.$_createPortalInstance()
+    this.handleCloseModalByPressingEsc()
   },
 
   methods: {
+    /**
+     * handler for closing the modal by pressing ESC on the keyboard
+     */
+    handleCloseModalByPressingEsc() {
+      if (this.escCloses) {
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.handleCloseModal()
+          }
+        })
+      }
+    },
     /**
      * handler for close modal
      */

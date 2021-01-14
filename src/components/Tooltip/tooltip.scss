@@ -7,9 +7,9 @@
         transform: translateX(-50%);
         
         &::after {
-            top: 100%;
-            left: 50%;
-            margin-left: -0.5rem;
+          top: 100%;
+          left: 50%;
+          margin-left: -5px;
         }
       }
     }
@@ -23,7 +23,7 @@
         &::after {
           bottom: 100%;
           left: 50%;
-          margin-left: -0.5rem;
+          margin-left: -5px;
           transform: rotate(180deg);
         }
       }
@@ -61,18 +61,23 @@
 
 .sb-tooltip {
   display: none;
-  padding: 0.6rem 2rem;
+  padding: 6px 10px;
   color: $white;
   font-size: $font-size-sm;
   background-color: $color-primary-dark;
   border-radius: 2px;
-  white-space: nowrap;
   z-index: 4;
+  max-width: 180px;
+  text-align: center;
 
   [data-show] {
     display: block;
   }
 
+  [data-popper-arrow] {
+    text-align: left;
+  }
+  
   [data-popper-arrow],
   [data-popper-arrow]::before {
     position: absolute;

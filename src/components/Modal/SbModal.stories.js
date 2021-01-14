@@ -378,3 +378,52 @@ ModalTypeComponentDelete.parameters = {
     },
   },
 }
+
+export const ModalClosingWithEsc = (args, storyContext) => ({
+  mixins: [StoriesModalMixin(args, storyContext)],
+
+  components: {
+    SbModal,
+    SbModalHeader,
+    SbModalContent,
+    SbButton,
+    SbModalFooter,
+  },
+
+  template: `
+  <div>
+    <SbButton
+      label="Open Modal!"
+      variant="primary"
+      @click="handleShowModal"
+      v-if="!showModal"
+      style="margin: 0 auto; display: flex; margin-top: 30%;"
+    />
+    <SbModal :is-open="showModal" :esc-closes="true" v-on:hide="showModal = false">
+      <SbModalHeader :align="align" :title="title" />
+
+      <SbModalContent>
+        <div style="width: 100%; height: 300px;"><p style="text-align: left; margin: 0;">The body copy that explains empty state</p></div>
+      </SbModalContent>
+
+      <SbModalFooter>
+        <SbButton label="Label" variant="primary"/>
+        <SbButton label="Label" variant="ghost"/>
+      </SbModalFooter>
+    </SbModal>
+  </div>`,
+})
+
+ModalClosingWithEsc.parameters = {
+  docs: {
+    description: {
+      story:
+        'The `SbModal` component has the optional choice of being closed when the user press `ESC` on the keyboard',
+    },
+  },
+}
+
+ModalClosingWithEsc.args = {
+  title: 'Main Title',
+  align: 'left',
+}

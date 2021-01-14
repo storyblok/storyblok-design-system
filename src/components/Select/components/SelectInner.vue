@@ -92,6 +92,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    itemLabel: {
+      type: String,
+      default: 'label',
+    },
+    itemValue: {
+      type: String,
+      default: 'value',
+    },
 
     useAvatars: Boolean,
   },
@@ -110,7 +118,7 @@ export default {
         return this.label
       }
 
-      const optionLabel = this.currentOption.label || this.value
+      const optionLabel = this.currentOption[this.itemLabel] || this.value
 
       if (this.inline) {
         return `${this.label}: ${optionLabel}`
@@ -124,7 +132,7 @@ export default {
         return {}
       }
 
-      return this.options.find((opt) => opt.value === this.value)
+      return this.options.find((opt) => opt[this.itemValue] === this.value)
     },
 
     isTagsVisible() {
@@ -149,7 +157,7 @@ export default {
 
     avatarData() {
       return this.options.find((option) => {
-        return option.value === this.value
+        return option[this.itemValue] === this.value
       })
     },
 
