@@ -51,7 +51,7 @@
         <SbIcon name="close" size="small" />
       </button>
 
-      <SbIcon name="chevron-down" size="small" color="primary-dark" />
+      <SbIcon name="chevron-down" size="small" color="light-gray" />
     </div>
   </div>
 </template>

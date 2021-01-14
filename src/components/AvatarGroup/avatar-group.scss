@@ -29,7 +29,7 @@
     margin-left: -1.5rem;
     cursor: pointer;
     @include avatarComponent();
-    @include avatarComponentSize($sb-avatar-normal);
+    @include avatarComponentSize(38px);
     background-color: $light-75;
     font-size: $font-size-xs;
     font-weight: $font-weight-regular;

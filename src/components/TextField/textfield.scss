@@ -15,11 +15,11 @@
     top: 1.5rem;
 
     &--left {
-      left: 1.7rem;
+      left: 1rem;
     }
 
     &--right {
-      right: 1.7rem;
+      right: 1rem;
     }
   }
 
@@ -27,6 +27,11 @@
     display: inline-flex;
     position: relative;
     width: 100%;
+  }
+
+  &__textarea {
+    min-height: 13rem;
+    box-sizing: border-box;
   }
 
   &__input,
@@ -68,11 +73,11 @@
 
     &--with-icon {
       &-left {
-        padding-left: 4.3rem;
+        padding-left: 4rem;
       }
 
       &-right {
-        padding-right: 4.3rem;
+        padding-right: 4rem;
       }
     }
 
@@ -87,7 +92,7 @@
     }
 
     &--ghost {
-      border: none;
+      border: 0;
       border-bottom: 0.1rem solid $light;
       border-radius: 0rem;
 
@@ -106,11 +111,6 @@
     }
   }
 
-  &__textarea {
-    min-height: 13rem;
-    box-sizing: border-box;
-  }
-
   &__prefix,
   &__suffix {
     font-size: $text-medium-small;
@@ -123,13 +123,13 @@
   }
 
   &__prefix {
-    border-left: none;
+    border-left: 0;
     border-top-left-radius: 0rem;
     border-bottom-left-radius: 0rem;
   }
 
   &__suffix {
-    border-right: none;
+    border-right: 0;
     border-top-right-radius: 0rem;
     border-bottom-right-radius: 0rem;
   }
