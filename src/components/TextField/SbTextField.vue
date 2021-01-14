@@ -53,21 +53,18 @@
         size="small"
         :name="iconLeft"
         class="sb-textfield__icon sb-textfield__icon--left"
-        :color="iconColor"
       />
       <SbIcon
         v-if="(iconRight || error) && type !== 'password'"
         size="small"
         :name="iconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
-        :color="iconColor"
       />
       <SbIcon
         v-if="type === 'password'"
         size="small"
         :name="internalIconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
-        :color="iconColor"
         @click="handleShowHidePassword"
       />
       <SbIcon
@@ -75,7 +72,6 @@
         size="small"
         name="x-clear"
         class="sb-textfield__icon sb-textfield__icon--right"
-        :color="iconColor"
         @click="handleClearableClick"
       />
       <span v-if="suffix" class="sb-textfield__prefix">{{ suffix }}</span>
@@ -118,13 +114,6 @@ export default {
   mixins: [TextFieldMixin],
 
   inheritAttrs: false,
-
-  props: {
-    iconColor: {
-      type: String,
-      default: null,
-    },
-  },
 
   computed: {
     hasValue() {

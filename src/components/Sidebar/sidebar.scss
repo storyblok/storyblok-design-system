@@ -83,6 +83,7 @@
 
   &-item {
     list-style: none;
+    margin-bottom: 2px;
     padding: 0 15px;
   }
 
@@ -95,7 +96,7 @@
     font-size: $font-size-lg;
     font-weight: $font-weight-medium;
     letter-spacing: 0;
-    padding: 17px;
+    padding: 19px;
     position: relative;
     text-decoration: none;
     transition: all 0.1s ease-in;
