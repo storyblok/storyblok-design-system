@@ -1,60 +1,62 @@
 .sb-modal {
-  width: 100%;
-  max-width: 62rem;
-  border-radius: 0.5rem;
+  animation: fadein 0.5s;
   background-color: $white;
+  border-radius: 0.5rem;
   box-shadow: 0 0.2rem 1.7rem 0.3rem $sb-dark-blue-25;
+  box-sizing: border-box;
   display: block;
   margin: 0 auto;
-  position: relative;
+  max-width: 62rem;
+  overflow: auto;
   padding: 3.5rem;
-  box-sizing: border-box;
-  animation: fadein .5s;
+  position: relative;
+  width: 100%;
 
   &__close-button {
-    float: right;
-    z-index: 1;
-    overflow: hidden;
-    border: none;
     background-color: $white;
+    border: 0;
     cursor: pointer;
-    padding: 0;
-    margin-top: -2rem;
+    float: right;
     margin-right: -2rem;
+    margin-top: -2rem;
+    overflow: hidden;
+    padding: 0;
+    z-index: 1;
   }
 
   @keyframes fadein {
     from {
-      opacity:0;
+      opacity: 0;
     }
+
     to {
-      opacity:1;
+      opacity: 1;
     }
   }
 
   &-content {
-    width: 100%;
-    padding: 0.5rem 0 2rem 0;
     box-sizing: border-box;
-    min-height: 3rem;
-    font-size: $font-size-default;
     color: $sb-dark-blue-75;
+    font-size: $font-size-default;
+    min-height: 3rem;
+    padding: 0.5rem 0 2rem;
+    width: 100%;
   }
 
   &-footer {
-    width: 100%;
-    min-height: 9.1rem;
-    background-color: $light-50;
-    bottom: 0;
-    flex-direction: row;
-    display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding: 0 3.5rem 0 3.5rem;
+    background-color: $light-50;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     margin-bottom: -3.5rem;
     margin-left: -3.5rem;
+    min-height: 9.1rem;
+    padding: 0 3.5rem;
+    width: 100%;
 
     .sb-button:not(:first-child) {
       margin-left: 2rem;
@@ -66,23 +68,23 @@
   }
 
   &-header {
-    width: 100%;
+    box-sizing: border-box;
     margin: 0;
     padding-bottom: 1rem;
-    box-sizing: border-box;
+    width: 100%;
 
     svg {
-      margin: 0 auto;
       display: block;
+      margin: 0 auto;
       margin-bottom: 3rem;
     }
 
     &--left {
       display: inline-flex;
-      text-align: left;
-      vertical-align: middle;
       line-height: 2;
       padding-top: 0;
+      text-align: left;
+      vertical-align: middle;
 
       svg {
         margin: 0;

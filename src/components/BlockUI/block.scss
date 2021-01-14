@@ -1,16 +1,17 @@
 .sb-block-ui {
-  display: flex;
   align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  padding: 2rem;
-  z-index: 9999;
-  width: 100%;
   background-color: $black-trasparent;
-  transition: opacity .3s ease;
+  bottom: 0;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  overflow: auto;
+  padding: 2rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity 0.3s ease;
+  width: 100%;
+  z-index: 9999;
 }

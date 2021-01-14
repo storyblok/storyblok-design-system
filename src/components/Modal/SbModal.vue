@@ -7,7 +7,7 @@
     target-slim
     :target="modalTarget"
   >
-    <SbBlokUi v-if="open" @click="wrapClose">
+    <SbBlokUi v-if="open" @mousedown="wrapClose">
       <div
         ref="modal"
         class="sb-modal"
