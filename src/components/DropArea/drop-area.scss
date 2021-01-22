@@ -15,17 +15,17 @@
       background-color: $sb-green-25;
 
       svg {
-        padding-top: 2.5rem;
-        width: 4.8rem;
-        height: 4.8rem;
+        padding-top: 25px;
+        width: 48px;
+        height: 48px;
       }
     }
 
   }
 
   &__content {
-    height: 50rem;
-    max-width: 50rem;
+    height: 500px;
+    max-width: 500px;
     border: 1px solid transparent;
     background-color: $white;
     transition: all .05s ease;
@@ -56,18 +56,18 @@
 
   &__icon {
     margin: 0 auto;
-    margin-top: 15.9rem;
+    margin-top: 159px;
     background-color: $white;
     border-radius: 50%;
-    height: 10.4rem;
-    width: 10.4rem;
+    height: 104px;
+    width: 104px;
     transition: all .1s ease;
 
     svg {
       margin: 0 auto;
       display: block;
-      width: 8.3rem;
-      height: 10.5rem;
+      width: 83px;
+      height: 105px;
     }
   }
 }

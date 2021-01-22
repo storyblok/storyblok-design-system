@@ -24,7 +24,7 @@
     padding: 0;
     background-color: transparent;
     color: $light-gray;
-    border: none;
+    border: 0;
     vertical-align: bottom;
     cursor: pointer;
   }
@@ -117,7 +117,7 @@
   justify-content: center;
   padding: 0;
   background: transparent;
-  border: none;
+  border: 0;
   cursor: pointer;
   color: currentColor;
   fill: currentColor;

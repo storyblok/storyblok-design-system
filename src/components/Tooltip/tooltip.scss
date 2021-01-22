@@ -5,21 +5,21 @@
         bottom: 125%;
         left: 50%;
         transform: translateX(-50%);
-        
+
         &::after {
-          top: 100%;
           left: 50%;
           margin-left: -5px;
+          top: 100%;
         }
       }
     }
 
     @if ($position == 'bottom') {
       .sb-tooltip__label {
-        top: 125%;
         left: 50%;
+        top: 125%;
         transform: translateX(-50%);
-        
+
         &::after {
           bottom: 100%;
           left: 50%;
@@ -31,28 +31,28 @@
 
     @if ($position == 'left') {
       .sb-tooltip__label {
+        right: 125%;
         top: 50%;
         transform: translateY(-50%);
-        right: 125%;
-        
+
         &::after {
+          left: 100%;
           top: 50%;
           transform: translateY(-50%) rotate(270deg);
-          left: 100%;
         }
       }
     }
 
     @if ($position == 'right') {
       .sb-tooltip__label {
+        left: 125%;
         top: 50%;
         transform: translateY(-50%);
-        left: 125%;
-        
+
         &::after {
+          right: 100%;
           top: 50%;
           transform: translateY(-50%) rotate(90deg);
-          right: 100%;
         }
       }
     }
@@ -60,15 +60,15 @@
 }
 
 .sb-tooltip {
-  display: none;
-  padding: 6px 10px;
-  color: $white;
-  font-size: $font-size-sm;
   background-color: $color-primary-dark;
   border-radius: 2px;
-  z-index: 4;
+  color: $white;
+  display: none;
+  font-size: $font-size-sm;
   max-width: 180px;
+  padding: 6px 10px;
   text-align: center;
+  z-index: 9999;
 
   [data-show] {
     display: block;
@@ -77,33 +77,33 @@
   [data-popper-arrow] {
     text-align: left;
   }
-  
+
   [data-popper-arrow],
   [data-popper-arrow]::before {
+    height: 8px;
     position: absolute;
     width: 8px;
-    height: 8px;
     z-index: -1;
   }
 
   [data-popper-arrow]::before {
+    background: $color-primary-dark;
     content: '';
     transform: rotate(45deg);
-    background: $color-primary-dark;
   }
 
   &[data-popper-placement^='top'] > [data-popper-arrow] {
     bottom: -4px;
   }
-  
+
   &[data-popper-placement^='bottom'] > [data-popper-arrow] {
     top: -4px;
   }
-  
+
   &[data-popper-placement^='left'] > [data-popper-arrow] {
     right: -4px;
   }
-  
+
   &[data-popper-placement^='right'] > [data-popper-arrow] {
     left: -4px;
   }

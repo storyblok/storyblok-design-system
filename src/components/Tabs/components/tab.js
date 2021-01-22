@@ -256,6 +256,7 @@ export const SbTab = {
           'sb-tab--is-active': this.activate,
         },
         on: {
+          ...this.$listeners,
           click: this.handleClick,
           keydown: this.handleKeyDown,
         },

@@ -1,15 +1,15 @@
 .sb-slideover {
   background-color: $white;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   height: 96vh;
   margin-left: auto;
-  max-width: 62.4rem;
-  min-width: 40rem;
+  max-width: 624px;
+  min-width: 400px;
   overflow: hidden;
-  padding: 2.5rem;
+  padding: 25px;
   position: relative;
   right: 0;
 

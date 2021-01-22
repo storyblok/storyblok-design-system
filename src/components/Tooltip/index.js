@@ -29,6 +29,10 @@ export default {
       default: 'top',
       validator: (position) => includes(availablePositions, position),
     },
+    tooltipTarget: {
+      type: String,
+      default: () => `sb-tooltip-target-${randomString(4)}`,
+    },
   },
 
   data: () => ({
@@ -173,6 +177,7 @@ export default {
             reference: this.tooltipAnchor,
             placement: this.position,
             offset: [0, 10],
+            usePortalTarget: this.tooltipTarget,
             isOpen: this.isVisibleTooltip,
           },
           attrs: {

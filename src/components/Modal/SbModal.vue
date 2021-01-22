@@ -20,7 +20,7 @@
           aria-label="Close Modal"
           @click="handleCloseModal"
         >
-          <SbIcon name="close" size="normal" color="primary-dark" />
+          <SbIcon name="close" size="small" color="primary-dark" />
         </button>
         <slot />
       </div>
@@ -52,7 +52,7 @@ export default {
     fullWidth: Boolean,
     modalTarget: {
       type: String,
-      default: () => `#sb-portal-target-${randomString(4)}`,
+      default: () => `#sb-modal-target-${randomString(4)}`,
     },
   },
 

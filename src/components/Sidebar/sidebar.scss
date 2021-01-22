@@ -16,7 +16,7 @@
 
     .sb-button {
       opacity: 0;
-      padding: 0.5rem;
+      padding: 5px;
       position: absolute;
       right: -13px;
       top: -26px;
@@ -35,7 +35,7 @@
     flex-direction: column;
     min-height: 100vh;
     transition: all 0.2s ease;
-    width: 28rem;
+    width: 280px;
 
     &:hover .sb-button {
       opacity: 1;
@@ -45,12 +45,12 @@
   // sidebar top
   &__top {
     display: flex;
-    padding: 3rem;
+    padding: 30px;
 
     .sb-avatar {
       cursor: pointer;
       display: block;
-      margin-left: 3rem;
+      margin-left: 30px;
     }
   }
 
@@ -83,20 +83,20 @@
 
   &-item {
     list-style: none;
-    margin-bottom: 2px;
     padding: 0 15px;
+    margin-bottom: 1px;
   }
 
   &-link {
     align-items: center;
-    border-radius: 1rem;
+    border-radius: 10px;
     color: $light;
     cursor: pointer;
     display: flex;
     font-size: $font-size-lg;
     font-weight: $font-weight-medium;
     letter-spacing: 0;
-    padding: 19px;
+    padding: 17px;
     position: relative;
     text-decoration: none;
     transition: all 0.1s ease-in;
@@ -108,7 +108,7 @@
     }
 
     .sb-icon {
-      margin-right: 1.8rem;
+      margin-right: 18px;
     }
 
     .sb-avatar {
@@ -120,14 +120,14 @@
     }
 
     &--use-avatar {
-      padding-left: 1.4rem;
+      padding-left: 14px;
     }
   }
 
   // modifiers
   &--minimize {
     .sb-sidebar__content {
-      width: 9rem;
+      width: 90px;
     }
 
     .sb-icon,
@@ -136,7 +136,7 @@
     }
 
     .sb-sidebar-link--use-avatar {
-      padding: 2rem;
+      padding: 20px;
     }
 
     .sb-sidebar-toggle .sb-button {
@@ -158,7 +158,7 @@
     flex-direction: column;
 
     .sb-avatar {
-      margin: 3rem 0 0;
+      margin: 30px 0 0;
     }
   }
 
@@ -177,7 +177,7 @@
     border-bottom: 1px solid $light;
     box-sizing: border-box;
     display: none;
-    padding: 1rem 2rem;
+    padding: 10px 20px;
     width: 100%;
 
     button {
@@ -191,8 +191,8 @@
 
   &__mobile-header-menu-icon {
     border-right: 1px solid $light;
-    margin-right: 2rem;
-    padding: 1rem 2rem 1rem 0;
+    margin-right: 20px;
+    padding: 10px 20px 10px 0;
   }
 
   &__mobile-logo {

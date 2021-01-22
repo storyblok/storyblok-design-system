@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils'
+import dayjs from 'dayjs'
 
 import SbTooltip from '../../Tooltip'
 import SbDatepicker from '../Datepicker.vue'
@@ -67,16 +68,20 @@ describe('SbDatepicker component', () => {
 
   describe('Test component calendar methods', () => {
     it('Should subtract a month', () => {
-      const before = new Date(wrapper.vm.internalDate)
+      const currentDate = dayjs(wrapper.vm.internalDate)
       wrapper.vm.handlePreviousMonth()
-      const after = new Date(wrapper.vm.internalDate)
-      expect(before.getMonth() - after.getMonth()).toEqual(1)
+      const after = dayjs(wrapper.vm.internalDate)
+
+      expect(
+        currentDate.subtract(1, 'month').month() === after.month()
+      ).toBeTruthy()
     })
     it('Should add a month', () => {
-      const before = new Date(wrapper.vm.internalDate)
+      const currentDate = dayjs(wrapper.vm.internalDate)
       wrapper.vm.handleNextMonth()
-      const after = new Date(wrapper.vm.internalDate)
-      expect(after.getMonth() === before.getMonth() + 1).toBeTruthy()
+      const after = dayjs(wrapper.vm.internalDate)
+
+      expect(currentDate.add(1, 'month').month() === after.month()).toBeTruthy()
     })
     it('Should match view type month', () => {
       wrapper.vm.handleChangeMonth()

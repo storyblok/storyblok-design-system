@@ -69,7 +69,7 @@ export const Default = (args) => ({
 
     <p class="font-size-lg"> With dark Background </p>
 
-    <div style="padding: 2rem; background-color: #1B243F;">
+    <div style="padding: 20px; background-color: #1B243F;">
       <SbAvatarGroup :size="size" dark-bg>
         <SbAvatar
           src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"

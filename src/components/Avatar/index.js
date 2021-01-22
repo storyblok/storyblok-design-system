@@ -139,7 +139,7 @@ const SbAvatar = {
       if (this.isImageLoaded) {
         return h('img', {
           attrs: {
-            alt: this.name,
+            alt: this.friendlyName ? this.friendlyName : this.name,
             src: this.src,
           },
         })
@@ -160,7 +160,7 @@ const SbAvatar = {
         {
           staticClass: 'sb-avatar__text',
         },
-        this.name
+        this.friendlyName ? this.friendlyName : this.name
       )
     }
 
@@ -205,7 +205,7 @@ const SbAvatar = {
         )
       }
 
-      if (this.name) {
+      if (this.name || this.friendlyName) {
         return h(
           'div',
           {
@@ -216,19 +216,22 @@ const SbAvatar = {
             },
           },
           [
-            h('span', getInitials(this.name)),
+            h(
+              'span',
+              getInitials(this.friendlyName ? this.friendlyName : this.name)
+            ),
             !!this.status && renderBadgeStatus(),
           ]
         )
       }
     }
 
-    if (this.name && this.useTooltip) {
+    if ((this.name || this.friendlyName) && this.useTooltip) {
       return h(
         SbTooltip,
         {
           props: {
-            label: this.name,
+            label: this.friendlyName ? this.friendlyName : this.name,
             position: 'bottom',
           },
         },
@@ -238,7 +241,7 @@ const SbAvatar = {
 
     const children = [renderAvatar()]
 
-    if (this.showName && this.name && !this.useTooltip) {
+    if (this.showName && (this.name || this.friendlyName) && !this.useTooltip) {
       children.push(renderTextContainer())
     }
 

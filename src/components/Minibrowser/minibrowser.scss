@@ -1,36 +1,37 @@
 .sb-minibrowser {
   @include popoverComponent();
-  width: 100%;
+
   max-width: 300px;
+  width: 100%;
 
   // components
   &__input-container {
-    position: relative;
     color: $sb-dark-blue-50;
+    position: relative;
 
     .sb-icon {
       position: absolute;
-      top: 2rem;
-      right: 2rem;
+      right: 20px;
+      top: 20px;
     }
 
     &--loading {
       .sb-icon {
-        width: 2.6rem;
-        height: 2.6rem;
-        top: 1.4rem;
-        right: 1.4rem;
+        height: 26px;
+        right: 14px;
+        top: 14px;
+        width: 26px;
       }
     }
   }
 
   &__input {
-    position: relative;
+    border: 0;
     display: block;
-    width: 100%;
-    padding: 2rem;
-    border: none;
     font-size: $font-size-sm;
+    padding: 20px;
+    position: relative;
+    width: 100%;
   }
 
   &__icon-close {
@@ -38,14 +39,14 @@
   }
 
   &__list-container {
-    max-height: 250px;
-    padding: 1.35rem 0;
     border-top: 1px solid $light;
+    max-height: 250px;
     overflow-y: scroll;
+    padding: 13.5px 0;
   }
 
   &__breadcrumbs {
-    padding: 1rem 2rem 1.35rem 2rem;
+    padding: 10px 20px 13.5px;
 
     .sb-breadcrumbs__item--active {
       color: $sb-dark-blue-50;
@@ -53,48 +54,48 @@
   }
 
   &__list ul {
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
   }
 
   &__list-title {
-    display: flex;
     align-items: center;
     color: $sb-dark-blue-50;
+    display: flex;
     font-size: $font-size-sm;
-    padding: 0.75rem 2rem;
     margin: 0;
+    padding: 7.5px 20px;
     text-transform: uppercase;
 
     .sb-icon {
-      margin-right: 1rem;
+      margin-right: 10px;
     }
   }
 
   &__list-item-name {
-    display: block;
-    padding: 0.75rem 2rem;
-    font-size: $font-size-md;
-    color: $color-primary-dark;
     background-color: $white;
+    color: $color-primary-dark;
+    display: block;
+    font-size: $font-size-md;
+    padding: 7.5px 20px;
 
     &:hover {
-      cursor: pointer;
       background-color: $light-50;
+      cursor: pointer;
     }
 
     .sb-icon {
-      margin-right: 1rem;
+      margin-right: 10px;
     }
   }
 
   &__not-found {
-    margin: 0;
-    padding-bottom: 2.7rem;
-    text-align: center;
-    font-size: $font-size-sm;
     color: $sb-dark-blue-50;
+    font-size: $font-size-sm;
+    margin: 0;
+    padding-bottom: 27px;
+    text-align: center;
   }
 
   // modifiers

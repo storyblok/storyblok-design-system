@@ -51,7 +51,7 @@
         <SbIcon name="close" size="small" />
       </button>
 
-      <SbIcon name="chevron-down" size="small" color="primary-dark" />
+      <SbIcon name="chevron-down" size="small" color="light-gray" />
     </div>
   </div>
 </template>
@@ -118,7 +118,10 @@ export default {
         return this.label
       }
 
-      const optionLabel = this.currentOption[this.itemLabel] || this.value
+      const optionLabel =
+        this.currentOption && this.currentOption[this.itemLabel]
+          ? this.currentOption[this.itemLabel]
+          : this.value
 
       if (this.inline) {
         return `${this.label}: ${optionLabel}`

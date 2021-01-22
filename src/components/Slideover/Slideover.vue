@@ -61,6 +61,7 @@ export default {
       }
     },
   },
+
   methods: {
     /**
      * handler for close the component
@@ -70,6 +71,8 @@ export default {
         this.openBlokUI = false
         this.$nextTick(() => {
           this.$emit('hide')
+
+          this.removeShortCuts()
         })
       }
     },
@@ -82,8 +85,34 @@ export default {
         this.openBlokUI = true
         this.$nextTick(() => {
           this.$emit('show')
+
+          this.registerShortCuts()
         })
       }
+    },
+
+    /**
+     * handle keydown events
+     */
+    handleKeyDown(e) {
+      if (e.which === 27) {
+        e.preventDefault()
+        this.openSlideover = false
+      }
+    },
+
+    /**
+     * register keydown event
+     */
+    registerShortCuts() {
+      window.addEventListener('keydown', this.handleKeyDown)
+    },
+
+    /**
+     * remove keydown event
+     */
+    removeShortCuts() {
+      window.removeEventListener('keydown', this.handleKeyDown)
     },
   },
 }

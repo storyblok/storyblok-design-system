@@ -114,7 +114,7 @@ const SbButton = {
             'sb-button--full': this.isFullWidth,
             'sb-button--rounded': this.isRounded,
             'sb-button--has-icon-only': this.hasIconOnly,
-            'sb-button--has-icon': this.icon,
+            'sb-button--has-icon': this.icon && !this.isLoading,
             'sb-button--has-icon-right': this.iconRight,
             'sb-button--loading': this.isLoading,
           },
@@ -145,7 +145,7 @@ const SbButton = {
             type: 'spinner',
             size: 'small',
             color:
-              whiteLoading.indexOf(this.variant) > 0 ? 'white' : 'primary-dark',
+              whiteLoading.indexOf(this.variant) < 3 ? 'white' : 'primary-dark',
           },
         }),
       ])

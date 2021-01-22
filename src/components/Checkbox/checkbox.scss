@@ -8,11 +8,11 @@ $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
   }
 
   &--outline {
-    border-radius: 0.5rem;
-    border: solid 0.1rem #eff1f5;
+    border-radius: 5px;
+    border: 1px solid #eff1f5;
     background-color: $white;
     width: fit-content;
-    padding: 1.5rem 2rem;
+    padding: 15px 20px;
   }
 
   &__inner {
@@ -25,14 +25,14 @@ $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
     &:focus, &:hover {
       &:not([disabled]) {
         & + .sb-checkbox__input {
-          box-shadow: 0rem 0rem 0rem 0.2rem rgba(217, 244, 243, 1);
+          box-shadow: 0px 0px 0px 2px rgba(217, 244, 243, 1);
         }
       }
     }
     
     &:checked {
       & + .sb-checkbox__input {
-        border: solid 0.1rem $sb-green;
+        border: 1px solid $sb-green;
         background-color: $sb-green;
         
         .sb-checkbox__truthy {
@@ -50,14 +50,14 @@ $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
 
     &:not(:checked) {
       & + .sb-checkbox__input {
-        border: solid 0.1rem $light;
+        border: 1px solid $light;
         background-color: $white;
       }
     }
     
     &:indeterminate {
       & + .sb-checkbox__input {
-        border: solid 0.1rem $sb-green;
+        border: 1px solid $sb-green;
         background-color: $sb-green;
         
         .sb-checkbox__indet {
@@ -75,7 +75,7 @@ $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
 
     &[disabled] {
       & + .sb-checkbox__input {
-        border: solid 0.1rem $light;
+        border: 1px solid $light;
         background-color: #f5f5f5;
       }
 
@@ -92,11 +92,11 @@ $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
     border-radius: 3px;
     transition: background, border $checkbox-transition;
     position: absolute;
-    border-radius: 0.3rem;
+    border-radius: 3px;
     left: 0;
     top: 0;
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 14px;
+    height: 14px;
   }
 
   &__svg {
@@ -125,11 +125,11 @@ $checkbox-transition: .2s cubic-bezier(0,0,.2,1) 0ms;
 
   &__label {
     position: relative;
-    padding-left: 2.8rem;
+    padding-left: 28px;
     display: inline-block;
     font-size: $font-size-md;
     line-height: normal;
     color: $sb-dark-blue;
-    min-height: 1.6rem;
+    min-height: 16px;
   }
 }

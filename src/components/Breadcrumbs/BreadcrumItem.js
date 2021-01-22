@@ -102,6 +102,11 @@ const SbBreadcrumbItem = {
 
   render(h, { props, listeners }) {
     const { isActive, label, title, href, to, as } = props
+
+    if (!label) {
+      return
+    }
+
     const isTruncated = label.length > 15
     const labelFormated = isTruncated ? getLabelTruncated(label) : label
     const breadcrumbsItemProps = {

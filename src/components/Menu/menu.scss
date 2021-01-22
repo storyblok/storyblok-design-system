@@ -1,7 +1,7 @@
 .sb-menu-list {
   @include popoverComponent();
-  min-width: 25rem;
-  padding: 1rem 0;
+  min-width: 250px;
+  padding: 10px 0;
   background-color: $white;
   z-index: 2;
 }
@@ -13,7 +13,7 @@
   appearance: none;
   border: 0;
   background-color: $white;
-  padding: 1rem;
+  padding: 10px;
   margin: 0;
   text-align: left;
   cursor: pointer;
@@ -25,7 +25,7 @@
   }
 
   .sb-icon {
-    margin-right: 1rem;
+    margin-right: 10px;
   }
 
   &--negative {
@@ -35,14 +35,14 @@
 
 .sb-menu-separator {
   background-color: $light;
-  margin: 1rem 1rem;
+  margin: 10px;
   height: 1px;
-  border: none;
+  border: 0;
 }
 
 .sb-menu-group {
   &__title {
-    padding: 1rem;
+    padding: 10px;
     color: $sb-dark-blue-50;
     font-size: $font-size-sm;
     margin: 0;
@@ -50,5 +50,5 @@
 }
 
 .sb-menu-button-borderless {
-  border: none;
+  border: 0;
 }

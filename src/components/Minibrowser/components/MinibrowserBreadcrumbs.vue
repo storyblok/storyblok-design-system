@@ -9,7 +9,7 @@
         <SbBreadcrumbItem
           :key="index"
           :is-active="index === lastIndex"
-          v-bind="item"
+          :label="item.label"
           @click="navigateTo($event, index)"
         />
 

@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import SbIcon from '../Icon'
 import {
   SbSidebarList,
   SbSidebarLogo,
@@ -60,6 +61,7 @@ export default {
   name: 'SbSidebar',
 
   components: {
+    SbIcon,
     SbSidebarList,
     SbSidebarLogo,
     SbSidebarListItem,

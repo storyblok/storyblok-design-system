@@ -17,12 +17,12 @@
   }
 
   &__helper-icon-text {
-    font-size: 1.3rem;
+    font-size: $font-size-sm;
   }
 
   &__helper-text {
     color: $sb-dark-blue-50;
-    font-size: 1.3rem;
+    font-size: $font-size-sm;
     margin-left: auto;
     padding-left: 10px;
   }

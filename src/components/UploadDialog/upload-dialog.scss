@@ -2,8 +2,8 @@
   border-radius: 5px;
   background-color: $white;
   width: 100%;
-  max-width: 60.2rem;
-  height: 4.8rem;
+  max-width: 602px;
+  height: 48px;
   margin: 0 auto;
   position: relative;
   box-shadow: 0px 3px 44px 13px rgba(0, 0, 0, 0.08);
@@ -11,16 +11,16 @@
 
   svg {
     float: left;
-    padding-top: 1.4rem;
-    padding-left: 2rem;
-    padding-right: 1.4rem;
+    padding-top: 14px;
+    padding-left: 20px;
+    padding-right: 14px;
   }
 
   &__label {
     text-align: left;
     display: block;
     font-size: $font-size-md;
-    padding-top: 1.4rem;
+    padding-top: 14px;
   }
 
   .sb-loading--bar {
@@ -47,7 +47,7 @@
     font-size: $font-size-md;
     font-weight: $font-weight-regular;
     float: right;
-    padding-right: 1.9rem;
+    padding-right: 19px;
     margin-top: -14px;
   }
 }

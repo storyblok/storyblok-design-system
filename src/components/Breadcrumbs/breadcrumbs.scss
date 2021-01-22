@@ -39,11 +39,11 @@
 
   &__dropdown {
     position: absolute;
-    top: calc(100% + 1rem);
+    top: calc(100% + 10px);
     margin: 0;
     left: 0;
     display: block;
-    padding: 0.9rem 0;
+    padding: 9px 0;
     @include generalBoxShadow();
 
     .sb-breadcrumbs__item {
@@ -54,7 +54,7 @@
 
     .sb-breadcrumbs__item a {
       display: block;
-      padding: 0.6rem 1.5rem;
+      padding: 6px 15px;
       text-decoration: none;
 
       &:hover {
@@ -69,7 +69,7 @@
 
   & > &__item,
   & > &__separator {
-    margin-right: 0.5rem;
+    margin-right: 5px;
   }
 
   & > &__item:last-child {
@@ -79,7 +79,7 @@
   &--large-section {
     > .sb-breadcrumbs__item:last-child {
       width: 100%;
-      margin-top: 1.5rem;
+      margin-top: 15px;
       font-weight: $font-weight-bold;
       font-size: $text-header;
       color: $primary-text-color;

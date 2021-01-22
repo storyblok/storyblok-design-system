@@ -451,6 +451,57 @@ describe('SbSelect component', () => {
       expect(wrapper.vm.isOpen).toBe(false)
     })
 
+    it(`should return value when the options don't have 'label'`, async () => {
+      const options = [
+        {
+          itemLabel: 'Item Label 1',
+          itemValue: 'Option 1',
+        },
+        {
+          itemLabel: 'Item Label 2',
+          itemValue: 'Option 2',
+        },
+      ]
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: options,
+          itemLabel: 'itemLabel',
+          itemValue: 'itemValue',
+        },
+      })
+
+      const innerElement = wrapper.find(innerClass)
+
+      await innerElement.trigger('keydown', {
+        key: 'Enter',
+      })
+
+      // when press the Escape key
+      await wrapper.find(listClass).trigger('keydown', {
+        key: 'ArrowDown',
+      })
+
+      const secondElement = wrapper.findAll('li').at(1)
+
+      // should change the focus to second element
+      expect(secondElement.element).toEqual(document.activeElement)
+
+      await secondElement.trigger('keydown', {
+        key: 'Enter',
+      })
+
+      expect(innerElement.vm.isInnerLabelVisible).toBe(true)
+
+      expect(wrapper.emitted('input')).toEqual([['Option 2']])
+
+      await wrapper.setProps({
+        value: 'Option 2',
+      })
+
+      expect(innerElement.vm.innerLabel).toBe(options[1].itemLabel)
+    })
+
     it('should move focus to first element when press ArrowDown', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
@@ -519,4 +570,10 @@ describe('SbSelect component', () => {
       expect(wrapper.find(innerClass).element).toEqual(document.activeElement)
     })
   })
+
+  // describe('using minibrowser', () => {
+  //   it('', () => {
+
+  //   })
+  // })
 })

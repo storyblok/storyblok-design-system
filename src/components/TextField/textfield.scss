@@ -6,20 +6,20 @@
     color: $sb-dark-blue;
     font-size: $text-medium-small;
     font-weight: $font-weight-medium;
-    letter-spacing: 0rem;
-    margin-bottom: 1rem;
+    letter-spacing: 0px;
+    margin-bottom: 10px;
   }
 
   &__icon {
     position: absolute;
-    top: 1.5rem;
+    top: 15px;
 
     &--left {
-      left: 1.7rem;
+      left: 10px;
     }
 
     &--right {
-      right: 1.7rem;
+      right: 10px;
     }
   }
 
@@ -29,10 +29,15 @@
     width: 100%;
   }
 
+  &__textarea {
+    min-height: 130px;
+    box-sizing: border-box;
+  }
+
   &__input,
   &__textarea {
-    padding: 1.5rem 1.7rem;
-    border-radius: 0.5rem;
+    padding: 15px 17px;
+    border-radius: 5px;
     width: 100%;
     color: $sb-dark-blue;
     font-size: $text-medium-small;
@@ -41,55 +46,55 @@
     &:disabled {
       background: $light-25;
       cursor: not-allowed;
-      border: 0.1rem solid $light!important;
+      border: 1px solid $light!important;
     }
 
     &::placeholder {
       color: $sb-dark-blue-50;
       font-size: $text-medium-small;
       font-weight: normal;
-      letter-spacing: 0rem;
+      letter-spacing: 0px;
     }
 
     &--default {
-      border: 0.1rem solid $light;
+      border: 1px solid $light;
 
       &:hover {
         border-color: $sb-green;
       }
 
       &:focus {
-        border-radius: 0.5rem;
+        border-radius: 5px;
         border-color: $sb-green;
-        box-shadow: 0rem 0rem 0rem 0.3rem $sb-green-25;
+        box-shadow: 0px 0px 0px 3px $sb-green-25;
         outline: none;
       }
     }
 
     &--with-icon {
       &-left {
-        padding-left: 4.3rem;
+        padding-left: 40px;
       }
 
       &-right {
-        padding-right: 4.3rem;
+        padding-right: 40px;
       }
     }
 
     &--with-prefix {
-      border-top-left-radius: 0rem!important;
-      border-bottom-left-radius: 0rem!important;
+      border-top-left-radius: 0px!important;
+      border-bottom-left-radius: 0px!important;
     }
 
     &--with-suffix {
-      border-top-right-radius: 0rem!important;
-      border-bottom-right-radius: 0rem!important;
+      border-top-right-radius: 0px!important;
+      border-bottom-right-radius: 0px!important;
     }
 
     &--ghost {
-      border: none;
-      border-bottom: 0.1rem solid $light;
-      border-radius: 0rem;
+      border: 0;
+      border-bottom: 1px solid $light;
+      border-radius: 0px;
 
       &:focus {
         outline: none;
@@ -97,18 +102,13 @@
     }
 
     &--error {
-      border: 0.1rem solid $red;
+      border: 1px solid $red;
 
       &:focus{
-        box-shadow: 0rem 0rem 0rem 0.3rem rgb(255, 179, 176, 0.3);
+        box-shadow: 0px 0px 0px 3px rgb(255, 179, 176, 0.3);
         outline: none;
       }
     }
-  }
-
-  &__textarea {
-    min-height: 13rem;
-    box-sizing: border-box;
   }
 
   &__prefix,
@@ -117,29 +117,29 @@
     color: $sb-dark-blue;
     font-weight: normal;
     letter-spacing: 0px;
-    padding: 1.5rem 1.7rem;
-    border: 0.1rem solid $light;
-    border-radius: 0.5rem;
+    padding: 15px 17px;
+    border: 1px solid $light;
+    border-radius: 5px;
   }
 
   &__prefix {
-    border-left: none;
-    border-top-left-radius: 0rem;
-    border-bottom-left-radius: 0rem;
+    border-left: 0;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
   }
 
   &__suffix {
-    border-right: none;
-    border-top-right-radius: 0rem;
-    border-bottom-right-radius: 0rem;
+    border-right: 0;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
   }
 
   &__message {
     font-size: $text-medium-small;
     font-weight: normal;
-    letter-spacing: 0rem;
+    letter-spacing: 0px;
     display: block;
-    margin-top: 0.5rem;
+    margin-top: 5px;
 
     &--error {
       color: $sb-dark-blue-50;
@@ -148,8 +148,8 @@
 
   &__counter {
     display: block;
-    margin-top: 0.5rem;
-    letter-spacing: 0rem;
+    margin-top: 5px;
+    letter-spacing: 0px;
     color: $sb-dark-blue-50;
     font-size: $text-medium-small;
     font-weight: $font-weight-regular;

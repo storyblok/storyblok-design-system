@@ -93,7 +93,7 @@ export const AllIcons = (args) => ({
   }),
   template: `
   <div>
-    <p style="font-size: 2rem; padding-left: 2rem; margin: 0;"> All icons </p>
+    <p style="font-size: 20px; padding-left: 20px; margin: 0;"> All icons </p>
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
       <div
         v-for="(name, index) in icons"
