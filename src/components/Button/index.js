@@ -27,6 +27,10 @@ const SbButton = {
       type: String,
       default: null,
     },
+    iconSize: {
+      type: String,
+      default: 'small',
+    },
     iconRight: {
       type: String,
       default: null,
@@ -66,7 +70,7 @@ const SbButton = {
     const renderIcon = (icon) => {
       return h(SbIcon, {
         props: {
-          size: 'small',
+          size: this.iconSize,
           name: icon,
         },
       })

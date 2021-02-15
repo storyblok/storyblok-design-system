@@ -357,10 +357,6 @@ const SbMenuButton = {
   props: {
     // button shared props
     ...sharedProps,
-    type: {
-      type: String,
-      default: 'ghost',
-    },
 
     // only apply when uses the hasIconOnly property
     hasIconOnly: Boolean,
@@ -368,6 +364,11 @@ const SbMenuButton = {
     iconName: {
       type: String,
       default: null,
+    },
+
+    iconSize: {
+      type: String,
+      default: 'small',
     },
 
     // only apply when does not use the hasIconOnly property
@@ -434,6 +435,7 @@ const SbMenuButton = {
 
     if (this.hasIconOnly) {
       return h(SbButton, {
+        staticClass: 'sb-menu-button',
         attrs: {
           ...this.$attrs,
           id: menuButtonId,
@@ -445,7 +447,9 @@ const SbMenuButton = {
           isRounded: this.isRounded,
           hasIconOnly: true,
           icon: this.iconName || 'overflow-menu-vertic',
-          variant: this.type,
+          variant: this.variant,
+          size: this.size,
+          iconSize: this.iconSize,
         },
         on: {
           ...this.$listeners,

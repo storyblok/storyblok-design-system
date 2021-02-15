@@ -71,6 +71,7 @@
   font-size: $text-medium-small;
   font-weight: $font-weight-medium;
   cursor: pointer;
+  z-index: 0;
 
   // modifiers
   &--is-active {

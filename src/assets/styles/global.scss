@@ -4,11 +4,11 @@
 
 html {
   font-size: 62.5%;
+  font-family: $primary-font-family;
 }
 
 body {
   box-sizing: border-box;
-  font-family: $primary-font-family;
   line-height: $line-height-default;
   margin: 0;
   padding: 0;
@@ -52,6 +52,10 @@ h3 { font-size: 3rem; }
 h4 { font-size: 2.125rem; }
 h5 { font-size: 1.5rem; }
 h6 { font-size: 1.25rem; }
+
+input, textarea, select, button {
+  font-family: $primary-font-family;
+}
 
 @each $name, $pair in $font-weight {
   .font-weight-#{$name} {

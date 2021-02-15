@@ -11,6 +11,7 @@
         v-model="computedValue"
         v-bind="$attrs"
         class="sb-textfield__input"
+        data-testid="sb-textfield__input"
         :type="internalType"
         :placeholder="placeholder"
         :name="name"

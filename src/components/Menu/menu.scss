@@ -1,23 +1,25 @@
 .sb-menu-list {
   @include popoverComponent();
-  min-width: 250px;
-  padding: 10px 0;
+
   background-color: $white;
+  min-width: 176px;
+  padding: 11px 0;
   z-index: 2;
 }
 
 .sb-menu-item {
-  display: flex;
   align-items: center;
-  width: 100%;
   appearance: none;
-  border: 0;
   background-color: $white;
-  padding: 10px;
-  margin: 0;
-  text-align: left;
+  border: 0;
   cursor: pointer;
+  display: flex;
   font-size: $font-size-md;
+  margin: 0;
+  padding: 9px 20px;
+  text-align: left;
+  width: 100%;
+  color: $sb-dark-blue;
 
   &:hover,
   &:focus {
@@ -35,17 +37,17 @@
 
 .sb-menu-separator {
   background-color: $light;
-  margin: 10px;
-  height: 1px;
   border: 0;
+  height: 1px;
+  margin: 11px 0 11px 20px;
 }
 
 .sb-menu-group {
   &__title {
-    padding: 10px;
     color: $sb-dark-blue-50;
     font-size: $font-size-sm;
     margin: 0;
+    padding: 10px;
   }
 }
 

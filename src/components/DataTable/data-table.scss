@@ -169,15 +169,14 @@ $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
   }
 
   &__row {
-    border-bottom: 1px solid $light-50;
+    border-bottom: 1px solid $light;
 
     &:hover {
-      background-color: $light-50 !important;
-      border-bottom: 1px solid $white;
+      background-color: #f9f9f9 !important;
     }
 
-    &:first-child {
-      border-top: 1px solid $light-50;
+    &:last-child {
+      border-bottom: 1px solid $white;
     }
 
     &:nth-child(even) {
@@ -187,8 +186,8 @@ $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
     }
 
     &--selected {
-      background-color: $light-50;
-      border-bottom: 1px solid $white;
+      background-color: #f9f9f9;
+      border-bottom: 1px solid $light;
 
       &:hover {
         background-color: $light-75 !important;
