@@ -319,6 +319,14 @@ const icons = {
         </g>
       </g>`,
   },
+  'conflict-pictogram': {
+    viewBox: '0 0 48 48',
+    path: `
+      <g fill="none" fill-rule="evenodd">
+        <circle cx="24" cy="24" r="24" fill="#FFEABF"/>
+        <path d="M24.953 12.44a2 2 0 01.806.807l9.642 17.8A2 2 0 0133.642 34H14.358a2 2 0 01-1.759-2.953l9.642-17.8a2 2 0 012.712-.806zM24 27a1 1 0 100 2 1 1 0 000-2zm0-6a1 1 0 00-1 1v3a1 1 0 002 0v-3a1 1 0 00-1-1z" fill="#FFC140"/>
+      </g>`,
+  },
   warning: {
     viewBox: '0 0 16 16',
     path: `
