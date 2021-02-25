@@ -24,6 +24,10 @@ export default {
       type: String,
       required: true,
     },
+    show: {
+      type: Boolean,
+      default: true,
+    },
     position: {
       type: String,
       default: 'top',
@@ -84,11 +88,14 @@ export default {
 
   render(h) {
     const children = this.$slots.default || []
+
     if (children.length !== 1) {
       return console.warn(
         '[SbTooltip]: The SbTooltip component only expects one child.'
       )
     }
+
+    if (!this.show) return children[0]
 
     const { id, label } = this
     const childrenElement = children[0]
