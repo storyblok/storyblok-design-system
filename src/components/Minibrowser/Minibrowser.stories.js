@@ -1,4 +1,4 @@
-import { SbMinibrowser } from '.'
+import { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader } from '.'
 
 export const browserOptionsData = [
   {
@@ -67,6 +67,8 @@ export default {
   args: {
     filterDebounce: 300,
     isExpanded: false,
+    isFullHeight: false,
+    isBorderless: false,
     isList: false,
     options: [...browserOptionsData],
     placeholder: 'Search content items',
@@ -204,4 +206,110 @@ Lazy.args = {
       ])
     }, 1000)
   },
+}
+
+export const WithGroupsSlot = (args) => ({
+  components: { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader },
+
+  props: Object.keys(args),
+
+  template: `
+    <SbMinibrowser
+      :options="options"
+      :is-list="isList"
+      :is-expanded="isExpanded"
+      :is-full-height="isFullHeight"
+      :is-borderless="isBorderless"
+      :filter-debounce="filterDebounce"
+      :not-found-prefix="notFoundPrefix"
+      :placeholder="placeholder"
+      @clear-navigation="onClearNavigation"
+      @navigate="onNavigate"
+      @select-item="onSelectItem"
+    >
+      <template v-slot:list="slotProps">
+        <SbMinibrowserList v-bind="slotProps">
+          <template v-if="slotProps.title" v-slot:header="{ title }">
+            <SbMinibrowserListHeader :title="title">
+              <template v-slot:right>
+                <button> Slot button </button>
+              </template>
+            </SbMinibrowserListHeader>
+          </template>
+        </SbMinibrowserList>
+      </template>
+    </SbMinibrowser>
+  `,
+})
+
+WithGroupsSlot.args = {
+  options: [
+    {
+      group: true,
+      title: 'Recent Content',
+      items: [
+        {
+          label: 'Case Studies',
+        },
+        {
+          label: 'Jobs',
+        },
+      ],
+    },
+    {
+      group: true,
+      title: 'All Content',
+      items: [...browserOptionsData],
+    },
+  ],
+}
+
+export const Inline = (args) => ({
+  components: { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader },
+
+  props: Object.keys(args),
+
+  template: `
+    <div style="padding: 10px; border: 1px solid #B1B5BE; border-radius: 5px; max-width: 367px;">
+      <p style="font-size: 16px"> Inline Minibrowser </p>
+      <SbMinibrowser
+        :options="options"
+        :is-list="isList"
+        :is-expanded="isExpanded"
+        :is-full-height="isFullHeight"
+        :is-borderless="isBorderless"
+        :filter-debounce="filterDebounce"
+        :not-found-prefix="notFoundPrefix"
+        :placeholder="placeholder"
+        @clear-navigation="onClearNavigation"
+        @navigate="onNavigate"
+        @select-item="onSelectItem"
+      />
+    </div>
+  `,
+})
+
+Inline.args = {
+  isFullHeight: true,
+  isBorderless: true,
+  isExpanded: true,
+  options: [
+    {
+      group: true,
+      title: 'Recent Content',
+      items: [
+        {
+          label: 'Case Studies',
+        },
+        {
+          label: 'Jobs',
+        },
+      ],
+    },
+    {
+      group: true,
+      title: 'All Content',
+      items: [...browserOptionsData],
+    },
+  ],
 }

@@ -64,7 +64,11 @@ export default {
     },
 
     isLoading() {
-      return this.context.isOnLoadingFilter || this.context.isOnLazyLoad
+      return (
+        this.context.isOnLoadingFilter ||
+        this.context.isOnLazyLoad ||
+        this.context.isLoading
+      )
     },
 
     isOnFilter() {

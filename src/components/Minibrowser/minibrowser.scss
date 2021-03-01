@@ -1,3 +1,7 @@
+$padding-full-height-difference: 8px;
+$general-padding: 20px;
+$full-height-padding: $general-padding - $padding-full-height-difference;
+
 .sb-minibrowser {
   @include popoverComponent();
 
@@ -11,7 +15,7 @@
 
     .sb-icon {
       position: absolute;
-      right: 20px;
+      right: $general-padding;
       top: 20px;
     }
 
@@ -29,7 +33,7 @@
     border: 0;
     display: block;
     font-size: $font-size-sm;
-    padding: 20px;
+    padding: $general-padding;
     position: relative;
     width: 100%;
   }
@@ -46,7 +50,7 @@
   }
 
   &__breadcrumbs {
-    padding: 10px 20px 13.5px;
+    padding: 10px $general-padding 13.5px;
 
     .sb-breadcrumbs__item--active {
       color: $sb-dark-blue-50;
@@ -59,34 +63,45 @@
     padding: 0;
   }
 
-  &__list-title {
+  &__list-header {
     align-items: center;
-    color: $sb-dark-blue-50;
     display: flex;
     font-size: $font-size-sm;
     margin: 0;
-    padding: 9px 20px;
+    padding: 9px $general-padding;
     text-transform: uppercase;
 
-    .sb-icon {
-      margin-right: 10px;
+    &-title {
+      color: $sb-dark-blue-50;
+      flex: 1;
+      margin: 0;
+      padding: 0;
+    }
+
+    &-icon {
+      transform: translateX(-5px);
     }
   }
 
-  &__list-item-name {
+  &__list-item {
+    align-items: center;
     background-color: $white;
-    color: $color-primary-dark;
-    display: block;
-    font-size: $font-size-md;
-    padding: 9px 20px;
+    display: flex;
+    padding: 9px $general-padding;
+
+    &-name {
+      color: $color-primary-dark;
+      flex: 1;
+      font-size: $font-size-md;
+    }
+
+    &-icon {
+      margin-right: 10px;
+    }
 
     &:hover {
       background-color: $light-50;
       cursor: pointer;
-    }
-
-    .sb-icon {
-      margin-right: 10px;
     }
   }
 
@@ -101,5 +116,53 @@
   // modifiers
   &--expanded {
     max-width: none;
+  }
+
+  &--full-height &__list-header {
+    padding: 6px $full-height-padding;
+  }
+
+  &--full-height &__list-container {
+    border-top: 0;
+    max-height: none;
+  }
+
+  &--full-height &__list-item {
+    border-radius: 5px;
+    padding: 6px $full-height-padding;
+    position: relative;
+  }
+
+  &--full-height &__input {
+    padding: 20px $full-height-padding;
+  }
+
+  &--full-height &__input-container .sb-icon {
+    right: $full-height-padding;
+  }
+
+  &--full-height &__input-container {
+    &::before {
+      background-color: $light;
+      bottom: 0;
+      content: '';
+      display: block;
+      height: 1px;
+      left: 0;
+      position: absolute;
+      transform: translateX($full-height-padding);
+      width: calc(100% - #{$full-height-padding * 2});
+      z-index: 2;
+    }
+  }
+
+  &--full-height &__breadcrumbs {
+    padding: 10px $full-height-padding 13.5px;
+  }
+
+  &--borderless {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
 }

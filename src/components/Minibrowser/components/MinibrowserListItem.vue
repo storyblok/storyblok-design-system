@@ -1,13 +1,14 @@
 <template>
-  <li class="sb-minibrowser__list-item">
-    <component
-      :is="as"
-      class="sb-minibrowser__list-item-name"
-      @click="handleClick"
-    >
-      <SbIcon v-if="!isList" v-bind="iconProps" />
+  <li>
+    <component :is="as" class="sb-minibrowser__list-item" @click="handleClick">
+      <span class="sb-minibrowser__list-item-icon">
+        <SbIcon v-if="isIconVisible" v-bind="iconProps" />
+        <slot name="icon" />
+      </span>
 
-      <span> {{ label }} </span>
+      <span class="sb-minibrowser__list-item-name"> {{ label }} </span>
+
+      <slot />
     </component>
   </li>
 </template>
@@ -39,6 +40,10 @@ export default {
       type: String,
       required: true,
     },
+    value: {
+      type: [String, Number],
+      default: null,
+    },
   },
 
   computed: {
@@ -52,18 +57,25 @@ export default {
 
     iconProps() {
       return {
-        name: this.isParent ? 'folder' : 'status-circle',
+        name: this.isParent ? 'filled-folder' : 'status-circle',
         size: 'small',
         color: this.isParent ? 'primary-dark' : 'primary',
       }
+    },
+
+    isIconVisible() {
+      return !this.isList && !this.$slots.icon
     },
   },
 
   methods: {
     handleClick() {
-      this.context.selectItem({
+      const payload = {
         ...this.$props,
-      })
+      }
+
+      this.$emit('select', payload)
+      this.context.selectItem(payload)
     },
   },
 }

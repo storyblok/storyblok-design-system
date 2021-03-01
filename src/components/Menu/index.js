@@ -195,6 +195,10 @@ const SbMenuList = {
       type: Array,
       default: () => [],
     },
+    offset: {
+      type: Array,
+      default: () => [0, 5],
+    },
     placement: {
       type: String,
       default: 'bottom-end',
@@ -303,11 +307,9 @@ const SbMenuList = {
     return h(
       SbPopover,
       {
-        staticClass: 'sb-menu-list',
-
         props: {
           isOpen: this.isOpen,
-          offset: [0, 5],
+          offset: this.offset,
           placement: this.placement,
           reference: this.referenceEl,
           usePortal: this.usePortal,
@@ -323,6 +325,7 @@ const SbMenuList = {
         h(
           'div',
           {
+            staticClass: 'sb-menu-list',
             attrs: {
               ...this.$attrs,
               id: menuListId,
@@ -588,6 +591,8 @@ const SbMenu = {
      * toggle menu state
      */
     closeMenu() {
+      if (!this.isOpen) return
+
       this.isOpen = false
       this.activeIndex = -1
 
@@ -598,6 +603,8 @@ const SbMenu = {
      * opens menu
      */
     openMenu() {
+      if (this.isOpen) return
+
       this.isOpen = true
 
       this.$emit('open')

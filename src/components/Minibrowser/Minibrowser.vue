@@ -3,6 +3,8 @@
     class="sb-minibrowser"
     :class="{
       'sb-minibrowser--expanded': this.isExpanded,
+      'sb-minibrowser--full-height': this.isFullHeight,
+      'sb-minibrowser--borderless': this.isBorderless,
     }"
   >
     <SbMinibrowserSearch
@@ -11,10 +13,30 @@
       @input="handleSearchInput"
     />
 
-    <SbMinibrowserListContainer
-      :items="internalItems"
-      :navigation-items="navigationItems"
-    />
+    <div class="sb-minibrowser__list-container">
+      <SbMinibrowserBreadcrumbs
+        v-if="hasBreadcrumbs"
+        :items="navigationItems"
+      />
+
+      <template v-if="hasGroupedItems">
+        <template v-for="(groupItem, index) in groupedItems">
+          <SbMinibrowserList
+            v-if="!$scopedSlots.list"
+            :key="index"
+            v-bind="groupItem"
+          />
+
+          <slot name="list" v-bind="groupItem" />
+        </template>
+      </template>
+
+      <template v-if="hasOtherItems">
+        <SbMinibrowserList v-if="!$scopedSlots.list" :items="otherItems" />
+
+        <slot name="list" :items="otherItems" />
+      </template>
+    </div>
 
     <p v-if="hasNotFilteredElements" class="sb-minibrowser__not-found">
       {{ notFoundText }}
@@ -27,7 +49,8 @@ import { debounce } from 'throttle-debounce'
 import { toLowerCase } from '../../utils'
 
 import SbMinibrowserSearch from './components/MinibrowserSearch'
-import SbMinibrowserListContainer from './components/MinibrowserListContainer'
+import SbMinibrowserList from './components/MinibrowserList'
+import SbMinibrowserBreadcrumbs from './components/MinibrowserBreadcrumbs'
 
 /**
  * @description return all items in the options array recursively
@@ -55,7 +78,8 @@ export default {
 
   components: {
     SbMinibrowserSearch,
-    SbMinibrowserListContainer,
+    SbMinibrowserList,
+    SbMinibrowserBreadcrumbs,
   },
 
   provide() {
@@ -68,6 +92,9 @@ export default {
     // states
     isExpanded: Boolean,
     isList: Boolean,
+    isFullHeight: Boolean,
+    isBorderless: Boolean,
+    isLoading: Boolean,
 
     // options
     filterDebounce: {
@@ -117,6 +144,7 @@ export default {
         isOnFilter: this.isOnFilter || false,
         isOnLazyLoad: this.isOnLazyLoad || false,
         isOnLoadingFilter: this.isOnLoadingFilter || false,
+        isLoading: this.isLoading || false,
 
         // browser methods
         clearNavigation: this.clearNavigation,
@@ -148,6 +176,26 @@ export default {
     notFoundText() {
       return `${this.notFoundPrefix} "${this.searchInput}"`
     },
+
+    groupedItems() {
+      return this.internalItems.filter((item) => item.group)
+    },
+
+    hasGroupedItems() {
+      return this.groupedItems.length > 0
+    },
+
+    otherItems() {
+      return this.internalItems.filter((item) => !item.group)
+    },
+
+    hasOtherItems() {
+      return this.otherItems.length > 0
+    },
+
+    hasBreadcrumbs() {
+      return this.navigationItems.length > 0
+    },
   },
 
   watch: {
@@ -177,7 +225,7 @@ export default {
       this.searchInput = value
       this.isOnLoadingFilter = true
 
-      if (value && this.filterHandler) {
+      if (this.filterHandler) {
         this.filterHandler()
         return
       }

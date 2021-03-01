@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
 
 import { waitMs } from '../../../utils/tests-utils'
-import { SbMinibrowser } from '..'
-import { browserOptionsData } from '../Minibrowser.stories.js'
+import { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader } from '..'
+import { browserOptionsData, WithGroupsSlot } from '../Minibrowser.stories.js'
 
 describe('SbMinibrowser component', () => {
   const itemClass = '.sb-minibrowser__list-item-name'
@@ -153,5 +153,75 @@ describe('SbMinibrowser component', () => {
     expect(execution[0]).toBe('Test')
 
     expect(wrapper.findAll(itemClass).at(0).text()).toBe('Test Filter 1')
+  })
+
+  describe('using slots', () => {
+    let wrapper = null
+    const onSelectItem = jest.fn()
+    const onClick = jest.fn()
+
+    beforeAll(() => {
+      wrapper = mount({
+        components: {
+          SbMinibrowser,
+          SbMinibrowserList,
+          SbMinibrowserListHeader,
+        },
+
+        data: () => ({
+          options: [...WithGroupsSlot.args.options],
+        }),
+
+        methods: {
+          onSelectItem,
+          onClick,
+        },
+
+        template: `
+          <SbMinibrowser
+            :options="options"
+            @select-item="onSelectItem"
+          >
+            <template v-slot:list="slotProps">
+              <SbMinibrowserList v-bind="slotProps">
+                <template v-if="slotProps.title" v-slot:header="{ title }">
+                  <SbMinibrowserListHeader :title="title">
+                    <template v-slot:right>
+                      <button data-testid="test-button" @click="onClick"> Test button </button>
+                    </template>
+                  </SbMinibrowserListHeader>
+                </template>
+              </SbMinibrowserList>
+            </template>
+          </SbMinibrowser>
+        `,
+      })
+    })
+
+    it('should render a content inside the slots', () => {
+      expect(wrapper.findAll('[data-testid="test-button"]').length).toBe(2)
+    })
+
+    it('should execute the onClick from the button inside the slot', async () => {
+      await wrapper
+        .findAll('[data-testid="test-button"]')
+        .at(0)
+        .trigger('click')
+
+      expect(onClick).toHaveBeenCalled()
+    })
+
+    it('should execute the onSelectItem from a list item', async () => {
+      // get the item with name "Case Studies" (the first os the second group)
+      const firstElement = wrapper.findAll(itemClass).at(3)
+
+      await firstElement.trigger('click')
+
+      // get the first argument from the first call
+      const item = onSelectItem.mock.calls[0][0]
+
+      expect(onSelectItem).toHaveBeenCalled()
+      expect(item.label).toBe('Case Studies')
+    })
   })
 })
