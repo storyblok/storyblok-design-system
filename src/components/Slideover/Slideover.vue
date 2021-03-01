@@ -13,7 +13,7 @@
             class="sb-slideover__close-button"
             @click="openSlideover = false"
           >
-            <SbIcon name="close" size="normal" color="primary-dark" />
+            <SbIcon name="close" size="small" color="primary-dark" />
           </button>
 
           <slot />
