@@ -213,6 +213,7 @@ export default {
     clearNavigation() {
       this.currentParentItem = null
       this.navigationItems = []
+      this.clearSearch()
 
       this.$emit('clear-navigation')
     },
@@ -254,6 +255,8 @@ export default {
      * emits the selected item and handle with item when it's a parent
      */
     selectItem(item) {
+      this.clearSearch()
+
       if (item.isParent) {
         this.currentParentItem = item
         this.navigationItems.push(item)
@@ -264,6 +267,15 @@ export default {
       }
 
       this.$emit('select-item', item)
+    },
+
+    /**
+     * clear searchInput variable and emit clear-search event
+     */
+    clearSearch() {
+      this.searchInput = ''
+
+      this.$emit('clear-search')
     },
 
     /**
