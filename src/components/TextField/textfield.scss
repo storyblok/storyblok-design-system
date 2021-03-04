@@ -2,11 +2,11 @@
   width: 100%;
 
   &__label {
-    display: block;
     color: $sb-dark-blue;
+    display: block;
     font-size: $text-medium-small;
     font-weight: $font-weight-medium;
-    letter-spacing: 0px;
+    letter-spacing: 0;
     margin-bottom: 10px;
   }
 
@@ -30,29 +30,29 @@
   }
 
   &__textarea {
-    min-height: 130px;
     box-sizing: border-box;
+    min-height: 130px;
   }
 
   &__input,
   &__textarea {
-    padding: 15px 17px;
     border-radius: 5px;
-    width: 100%;
     color: $sb-dark-blue;
     font-size: $text-medium-small;
+    padding: 15px 17px;
+    width: 100%;
 
     &:disabled {
       background: $light-25;
+      border: 1px solid $light !important;
       cursor: not-allowed;
-      border: 1px solid $light!important;
     }
 
     &::placeholder {
       color: $sb-dark-blue-50;
       font-size: $text-medium-small;
       font-weight: normal;
-      letter-spacing: 0px;
+      letter-spacing: 0;
     }
 
     &--default {
@@ -63,9 +63,9 @@
       }
 
       &:focus {
-        border-radius: 5px;
         border-color: $sb-green;
-        box-shadow: 0px 0px 0px 3px $sb-green-25;
+        border-radius: 5px;
+        box-shadow: 0 0 0 3px $sb-green-25;
         outline: none;
       }
     }
@@ -81,19 +81,19 @@
     }
 
     &--with-prefix {
-      border-top-left-radius: 0px!important;
-      border-bottom-left-radius: 0px!important;
+      border-bottom-left-radius: 0 !important;
+      border-top-left-radius: 0 !important;
     }
 
     &--with-suffix {
-      border-top-right-radius: 0px!important;
-      border-bottom-right-radius: 0px!important;
+      border-bottom-right-radius: 0 !important;
+      border-top-right-radius: 0 !important;
     }
 
     &--ghost {
       border: 0;
       border-bottom: 1px solid $light;
-      border-radius: 0px;
+      border-radius: 0;
 
       &:focus {
         outline: none;
@@ -103,8 +103,8 @@
     &--error {
       border: 1px solid $red;
 
-      &:focus{
-        box-shadow: 0px 0px 0px 3px rgb(255, 179, 176, 0.3);
+      &:focus {
+        box-shadow: 0 0 0 3px rgb(255, 179, 176, 0.3);
         outline: none;
       }
     }
@@ -112,46 +112,46 @@
 
   &__prefix,
   &__suffix {
-    font-size: $text-medium-small;
-    color: $sb-dark-blue;
-    font-weight: normal;
-    letter-spacing: 0px;
-    padding: 15px 17px;
     border: 1px solid $light;
     border-radius: 5px;
+    color: $sb-dark-blue;
+    font-size: $text-medium-small;
+    font-weight: normal;
+    letter-spacing: 0;
+    padding: 15px 17px;
   }
 
   &__prefix {
+    border-bottom-left-radius: 0;
     border-left: 0;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0;
   }
 
   &__suffix {
+    border-bottom-right-radius: 0;
     border-right: 0;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0;
   }
 
   &__message {
+    display: block;
     font-size: $text-medium-small;
     font-weight: normal;
-    letter-spacing: 0px;
-    display: block;
+    letter-spacing: 0;
     margin-top: 5px;
 
     &--error {
-      color: $sb-dark-blue-50;
+      color: $red;
     }
   }
 
   &__counter {
-    display: block;
-    margin-top: 5px;
-    letter-spacing: 0px;
     color: $sb-dark-blue-50;
+    display: block;
     font-size: $text-medium-small;
     font-weight: $font-weight-regular;
+    letter-spacing: 0;
+    margin-top: 5px;
 
     &--warning {
       color: $orange;
