@@ -1,4 +1,6 @@
 .sb-form-group {
+  margin-top: 16px;
+
   &--inline {
     display: flex;
   }
@@ -22,12 +24,12 @@
     font-size: $font-size-default;
     font-weight: $font-weight-medium;
   }
-  
+
   &__description {
     color: $sb-dark-blue-50;
     font-size: $font-size-md;
-    margin: 5px 0 0 0;
     line-height: 1.3;
+    margin: 5px 0 0;
   }
 
   @media only screen and (max-width: 413px) {

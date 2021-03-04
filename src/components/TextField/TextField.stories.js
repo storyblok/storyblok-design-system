@@ -10,9 +10,6 @@ export default {
     disabled: false,
     required: false,
     placeholder: 'Placeholder text',
-    min: 0,
-    max: 100,
-    step: 1,
     readonly: false,
     value: 'Boris Spassky',
     nativeValue: 'Boris Spassky',
@@ -113,23 +110,6 @@ export const Default = (args) => ({
         native-value="Boris Spassky"
         v-model="internalValue"
       />
-      <SbTextField
-        style="max-width: 100px; margin-bottom: 20px;"
-        :id="id"
-        :name="name"
-        label="Number input"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :min="min"
-        :max="max"
-        :step="step"
-        :readonly="readonly"
-        type="number"
-        native-value="30011937"
-        v-model="internalValue"
-      />
-
       <SbTextField
         :id="id"
         :name="name"
@@ -284,22 +264,6 @@ export const Ghost = (args) => ({
         iconRight="eye"
         type="password"
         native-value="Boris Spassky"
-        v-model="internalValue"
-        ghost
-      />
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Number input"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :min="min"
-        :max="max"
-        :step="step"
-        :readonly="readonly"
-        type="number"
-        native-value="30011937"
         v-model="internalValue"
         ghost
       />

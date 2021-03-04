@@ -30,16 +30,6 @@ describe('SbTextField component', () => {
     expect(inputElement.attributes('type')).toBe('password')
   })
 
-  it('should have an input with type number', () => {
-    const wrapper = factory({
-      label: 'Number input',
-      type: 'number',
-    })
-    const inputElement = wrapper.find('input')
-
-    expect(inputElement.attributes('type')).toBe('number')
-  })
-
   it('should have an error input with error message', () => {
     const wrapper = factory({
       label: 'With error',

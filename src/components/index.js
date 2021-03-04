@@ -22,6 +22,7 @@ import SbTag from './Tag'
 import SbTextField from './TextField'
 import SbTooltip from './Tooltip'
 import SbUploadDialog from './UploadDialog'
+import SbNumberField from './NumberField'
 
 export * from './Breadcrumbs'
 export * from './Card'
@@ -67,4 +68,5 @@ export {
   SbTextField,
   SbTooltip,
   SbUploadDialog,
+  SbNumberField,
 }
