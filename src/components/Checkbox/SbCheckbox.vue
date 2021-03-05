@@ -15,13 +15,19 @@
       />
 
       <div class="sb-checkbox__input">
-        <svg class="sb-checkbox__svg" focusable="false" viewBox="0 0 24 24">
+        <svg class="sb-checkbox__svg" focusable="false" viewBox="0 0 16 16">
           <path
             class="sb-checkbox__truthy"
             fill="none"
-            d="M1.73,12.91 8.1,19.28 22.79,4.59"
+            d="M11.611 5.27l.008.009c.37.374.37.977 0 1.352l-4.004 4.054a.934.934 0 01-.496.264l-.11.013-.111.001a.935.935 0 01-.618-.278L4.277 8.658a.962.962 0 010-1.352.938.938 0 011.327-.008l.008.008 1.335 1.351 3.337-3.378a.938.938 0 011.327-.008z"
           />
-          <path class="sb-checkbox__indet" d="M5,14H18V10H5" />
+          <rect
+            class="sb-checkbox__indeterminate"
+            x="4"
+            y="7"
+            width="8"
+            height="2"
+          />
         </svg>
       </div>
 
