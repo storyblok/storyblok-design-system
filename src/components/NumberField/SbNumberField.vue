@@ -20,6 +20,7 @@
       </button>
       <input
         :id="id"
+        :key="componentKey"
         :value="computedValue"
         v-bind="$attrs"
         class="sb-numberfield__input"
@@ -27,7 +28,7 @@
         :autocomplete="autocomplete"
         :placeholder="placeholder"
         :name="name"
-        type="text"
+        type="number"
         :min="min"
         :max="max"
         :step="step"
@@ -254,6 +255,9 @@ export default {
     },
 
     handleBlurEvent(e) {
+      if (e.target.value === '') {
+        this.componentKey++
+      }
       this.$emit('blur', e)
     },
 
@@ -268,7 +272,6 @@ export default {
     handleChangeEvent(e) {
       const value = e.target.value
       const newValue = value === '' ? undefined : Number(value)
-
       if (!isNaN(newValue) || value === '') {
         this.setInternalValue(newValue)
       }

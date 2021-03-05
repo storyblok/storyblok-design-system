@@ -37,6 +37,7 @@ export default {
     return {
       internalValue: 0,
       userInput: null,
+      componentKey: 0,
     }
   },
 }
