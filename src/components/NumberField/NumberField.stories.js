@@ -11,6 +11,7 @@ export default {
     required: false,
     placeholder: 'Placeholder text',
     min: 0,
+    type: 'number',
     max: 100,
     step: 1,
     precision: 0,
@@ -39,6 +40,7 @@ export const Default = (args) => ({
         :required="required"
         :placeholder="placeholder"
         :min="min"
+        :type="type"
         :max="max"
         :step="step"
         :precision="precision"
@@ -55,6 +57,7 @@ export const Default = (args) => ({
         :required="required"
         :placeholder="placeholder"
         :min="-10"
+        :type="type"
         :max="10"
         :step="step"
         :precision="precision"
@@ -71,6 +74,7 @@ export const Default = (args) => ({
         :required="required"
         :placeholder="placeholder"
         :min="min"
+        :type="type"
         :max="max"
         :step="0.5"
         :precision="precision"
@@ -86,6 +90,7 @@ export const Default = (args) => ({
         :required="required"
         :placeholder="placeholder"
         :min="min"
+        :type="type"
         :max="max"
         :step="step"
         :precision="3"
@@ -100,6 +105,7 @@ export const Default = (args) => ({
         :required="required"
         :placeholder="placeholder"
         :min="min"
+        :type="type"
         :max="max"
         :step="step"
         :precision="3"
@@ -116,6 +122,7 @@ export const Default = (args) => ({
         :required="required"
         :placeholder="placeholder"
         :min="min"
+        :type="type"
         :max="max"
         :step="step"
         :precision="3"

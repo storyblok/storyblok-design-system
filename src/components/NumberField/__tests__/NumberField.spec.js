@@ -8,6 +8,15 @@ const factory = (propsData) => {
 }
 
 describe('SbNumberField component', () => {
+  it('should be an input with type number', () => {
+    const wrapper = factory({
+      label: 'Number input',
+    })
+    const inputElement = wrapper.find('input')
+
+    expect(inputElement.attributes('type')).toBe('number')
+  })
+
   describe('Events tests', () => {
     it('should perform focus/blur event', async () => {
       const wrapper = factory({
