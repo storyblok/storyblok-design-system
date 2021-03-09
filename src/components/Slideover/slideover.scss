@@ -4,8 +4,9 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 96vh;
+  height: 100%;
   margin-left: auto;
+  max-height: 96vh;
   max-width: 624px;
   min-width: 400px;
   overflow: hidden;
