@@ -2,6 +2,7 @@ import { isSizeValid } from '../Avatar/utils'
 
 import './avatar-group.scss'
 
+import { ClickOutside } from '../../directives'
 import { truncate, availableColors } from '../../utils'
 
 // @vue/component
@@ -21,8 +22,8 @@ export const MoreAvatars = {
     },
   },
 
-  render(h, { props, children }) {
-    const data = children.map((element) => {
+  render(h, { data, children, props }) {
+    const childrenElements = children.map((element) => {
       const elementProps = element.componentOptions.propsData
 
       if (elementProps.name) {
@@ -41,12 +42,13 @@ export const MoreAvatars = {
     return h(
       'div',
       {
+        ...data,
         staticClass: 'sb-avatar-group__avatars',
         attrs: {
-          'aria-hidden': !props.visible + '',
+          'aria-hidden': `${!props.visible}`,
         },
       },
-      data
+      childrenElements
     )
   },
 }
@@ -68,17 +70,18 @@ export const MoreAvatar = {
     },
   },
 
-  render(h, { props, listeners }) {
+  render(h, { data, props, listeners }) {
     return h(
       'button',
       {
         staticClass: 'sb-avatar-group__more',
         attrs: {
-          'aria-expanded': props.expanded + '',
+          'aria-expanded': `${props.expanded}`,
         },
         on: {
           ...listeners,
         },
+        ref: data.ref,
       },
       props.label
     )
@@ -94,6 +97,10 @@ export const MoreAvatar = {
  */
 const SbAvatarGroup = {
   name: 'SbAvatarGroup',
+
+  directives: {
+    ClickOutside,
+  },
 
   props: {
     darkBg: Boolean,
@@ -113,6 +120,21 @@ const SbAvatarGroup = {
   }),
 
   methods: {
+    /**
+     * @method $_wrapClose
+     * @param  {MouseEvent} event
+     */
+    $_wrapClose(event) {
+      if (
+        this.$refs.moreAvatarsRef &&
+        !this.$refs.moreAvatarsRef.contains(event.target) &&
+        this.$refs.moreAvatarButton &&
+        !this.$refs.moreAvatarButton.contains(event.target)
+      ) {
+        this.isVisibleDropdown = false
+      }
+    },
+
     toggleDropdown() {
       this.isVisibleDropdown = !this.isVisibleDropdown
     },
@@ -150,6 +172,7 @@ const SbAvatarGroup = {
             label: `+${childrenCount - maxElements}`,
             expanded: this.isVisibleDropdown,
           },
+          ref: 'moreAvatarButton',
           on: {
             click: this.toggleDropdown,
             keydown: this.onMoreAvatarKeyDown,
@@ -168,6 +191,13 @@ const SbAvatarGroup = {
             ...this.$props,
             visible: this.isVisibleDropdown,
           },
+          ref: 'moreAvatarsRef',
+          directives: [
+            {
+              name: 'click-outside',
+              value: this.$_wrapClose,
+            },
+          ],
         },
         [...moreAvatars]
       )
@@ -182,7 +212,10 @@ const SbAvatarGroup = {
           this.darkBg && `sb-avatar-group--dark-bg`,
         ],
       },
-      [data, moreAvatars.length > 0 && renderDropdown()]
+      [
+        data,
+        this.isVisibleDropdown && moreAvatars.length > 0 && renderDropdown(),
+      ]
     )
   },
 }
