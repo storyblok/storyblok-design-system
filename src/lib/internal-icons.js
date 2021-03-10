@@ -641,7 +641,7 @@ const icons = {
   'fieldtype-asset': {
     viewBox: '0 0 24 24',
     path: `
-      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g border-color="#82C19140" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g transform="translate(-1220.000000, -499.000000)">
             <g transform="translate(1220.000000, 499.000000)">
                 <rect id="Rectangle" fill="#82C191" x="0" y="0" width="24" height="24" rx="5"></rect>
@@ -655,7 +655,7 @@ const icons = {
   'fieldtype-bloks': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#545B6F40" fill="none" fill-rule="evenodd">
         <rect fill="#545B6F" width="24" height="24" rx="5"/>
         <rect fill="#FFF" x="5" y="4" width="14" height="7" rx="2"/>
         <rect fill="#FFF" x="5" y="13" width="10" height="7" rx="2"/>
@@ -665,7 +665,7 @@ const icons = {
   'fieldtype-boolean': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#FFAC0040" fill="none" fill-rule="evenodd">
         <rect fill="#FFAC00" width="24" height="24" rx="5"/>
         <rect fill="#FFF" x="5" y="8" width="13.2" height="8" rx="4"/>
         <ellipse fill="#FFAC00" cx="14.24" cy="12" rx="3.08" ry="3"/>
@@ -675,7 +675,7 @@ const icons = {
   'fieldtype-datetime': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#DC9F8440" fill="none" fill-rule="evenodd">
         <rect fill="#DC9F84" width="24" height="24" rx="5"/>
         <path d="M4 4h16v16H4z"/>
         <path d="M14 5c.5522847 0 1 .44771525 1 1h2c1.1045695 0 2 .8954305 2 2v9c0 1.1045695-.8954305 2-2 2H7c-1.1045695 0-2-.8954305-2-2V8c0-1.1045695.8954305-2 2-2h2c0-.55228475.44771525-1 1-1s1 .44771525 1 1h2c0-.55228475.44771525-1 1-1zm-7 7v5h10v-5H7zm0-2h10V8h-2c0 .55228475-.4477153 1-1 1-.55228475 0-1-.44771525-1-1h-2c0 .55228475-.44771525 1-1 1s-1-.44771525-1-1H7v2z" fill="#FFF"/>
@@ -685,7 +685,7 @@ const icons = {
   'fieldtype-file': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#1B243F40" fill="none" fill-rule="evenodd">
         <rect fill="#1B243F" width="24" height="24" rx="5"/>
         <path d="M14.1397696 5c.5236009 0 1.0263214.20533503 1.4001967.5719071l1.8602304 1.82389278C17.7838337 7.77194298 18 8.28662096 18 8.82389278V17c0 1.1045695-.8954305 2-2 2H9c-1.1045695 0-2-.8954305-2-2V7c0-1.1045695.8954305-2 2-2h5.1397696zM15 15h-5c-.55228475 0-1 .4477153-1 1s.44771525 1 1 1h5c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1zm0-3h-5c-.55228475 0-1 .4477153-1 1s.44771525 1 1 1h5c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1z" fill="#FFF"/>
       </g>
@@ -694,7 +694,7 @@ const icons = {
   'fieldtype-image': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#1B243F40" fill="none" fill-rule="evenodd">
         <rect fill="#1B243F" width="24" height="24" rx="5"/>
         <path d="M18 5c1.1045695 0 2 .8954305 2 2v10c0 1.1045695-.8954305 2-2 2H6c-1.1045695 0-2-.8954305-2-2V7c0-1.1045695.8954305-2 2-2h12zm-1.618034 12c.1552451 0 .3083582-.0361451.4472136-.1055728.4939785-.2469893.6942029-.8476623.4472136-1.3416408l-2.881966-5.76393202c-.0967637-.1935274-.2536862-.35044989-.4472136-.44721359-.4939785-.24698925-1.0946515-.04676491-1.3416408.44721359L10.538 13.922l-.3736362-.3314544c-.34731215-.3087219-.85601616-.3344487-1.23022699-.0771805l-.09850065.0771805-1.86980068 1.6620451c-.21348836.1897674-.33563616.4617715-.33563616.7474093 0 .5522847.44771525 1 1 1zM8.5 8C7.67157288 8 7 8.67157288 7 9.5c0 .8284271.67157288 1.5 1.5 1.5s1.5-.6715729 1.5-1.5C10 8.67157288 9.32842712 8 8.5 8z" fill="#FFF"/>
       </g>
@@ -703,7 +703,7 @@ const icons = {
   'fieldtype-multilink': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#BE6AC640" fill="none" fill-rule="evenodd">
         <rect fill="#BE6AC6" width="24" height="24" rx="5"/>
         <rect fill="#FFF" x="8" y="11" width="8" height="2" rx="1"/>
         <path d="M14.0091553 8H16c2.209139 0 4 1.790861 4 4s-1.790861 4-4 4h-2.0011597 0m-4.01458737 0H8c-2.209139 0-4-1.790861-4-4s1.790861-4 4-4h1.99212646" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -713,7 +713,7 @@ const icons = {
   'fieldtype-markdown': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#A9903F40" fill="none" fill-rule="evenodd">
         <rect fill="#A9903F" width="24" height="24" rx="5"/>
         <path d="M5.72949219 17v-2.5263672l-.19042969-4.3544922L8.02734375 17h1.30761719l2.49462886-6.887207-.1904296 4.3608398V17h1.9106445V7.7578125h-2.5009766L8.6875 14.4609375l-2.37402344-6.703125H3.82519531V17h1.90429688zm11.75585941.1269531c.719401 0 1.3076172-.2856445 1.7646484-.8569336L19.3388672 17h1.6567383V7.25h-1.8408203v3.5039062c-.4358724-.4993489-.9881185-.7490234-1.6567383-.7490234-.8336589 0-1.4906413.3173828-1.9709473.9521484-.480306.6347657-.720459 1.4874675-.720459 2.5581055 0 1.1341146.2443848 2.0196126.7331543 2.6564942.4887696.6368815 1.1372884.9553222 1.9455567.9553222zm.4697265-1.4853515c-.4274088 0-.7532552-.1713868-.977539-.5141602-.2242839-.3427734-.3364258-.8357747-.3364258-1.4790039 0-1.4345703.44222-2.1518555 1.3266601-2.1518555.5628256 0 .9584961.2390951 1.1870118.7172852v2.7104492c-.2327474.4781901-.6326498.7172852-1.1997071.7172852z" fill="#FFF" fill-rule="nonzero"/>
       </g>
@@ -722,7 +722,7 @@ const icons = {
   'fieldtype-media': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#82C19140" fill="none" fill-rule="evenodd">
         <rect fill="#82C191" width="24" height="24" rx="5"/>
         <path d="M8 11.0272217V14.5c0 2.4852814 2.0147186 4.5 4.5 4.5s4.5-2.0147186 4.5-4.5V8c0-1.65685425-1.3431458-3-3-3s-3 1.34314575-3 3v5.8177083c0 .8284272.6715729 1.5 1.5 1.5s1.5-.6715728 1.5-1.5V9.01647949h0" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </g>
@@ -731,7 +731,7 @@ const icons = {
   'fieldtype-multiasset': {
     viewBox: '0 0 24 24',
     path: `
-      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g border-color="#79A4D440" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g transform="translate(-1316.000000, -499.000000)">
             <g transform="translate(1316.000000, 499.000000)">
                 <rect fill="#79A4D4" x="0" y="0" width="24" height="24" rx="5"></rect>
@@ -746,7 +746,7 @@ const icons = {
   'fieldtype-number': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#FF615940" fill="none" fill-rule="evenodd">
         <rect fill="#FF6159" width="24" height="24" rx="5"/>
         <path fill="#FFF" fill-rule="nonzero" d="M13.4755859 17V7.03320312h-.211914l-4.12207034 1.4765625v1.60644528L11.5 9.38476562V17z"/>
       </g>
@@ -755,7 +755,7 @@ const icons = {
   'fieldtype-option': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#78BBFF40" fill="none" fill-rule="evenodd">
         <rect fill="#78BBFF" width="24" height="24" rx="5"/>
         <rect fill="#FFF" x="5" y="11" width="3" height="3" rx="1.5"/>
         <rect fill="#FFF" x="10" y="11" width="9" height="3" rx="1.5"/>
@@ -765,7 +765,7 @@ const icons = {
   'fieldtype-options': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#BD6FE740" fill="none" fill-rule="evenodd">
         <rect fill="#BD6FE7" width="24" height="24" rx="5"/>
         <rect fill="#FFF" x="5" y="8" width="3" height="3" rx="1.5"/>
         <rect fill="#FFF" x="10" y="8" width="9" height="3" rx="1.5"/>
@@ -777,7 +777,7 @@ const icons = {
   'fieldtype-custom': {
     viewBox: '0 0 24 24',
     path: `
-      <defs>
+      <defs border-color="#00B3B040">
         <filter id="a">
           <feColorMatrix in="SourceGraphic" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"/>
         </filter>
@@ -793,7 +793,7 @@ const icons = {
   'fieldtype-richtext': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#A6998040" fill="none" fill-rule="evenodd">
         <rect fill="#A69980" width="24" height="24" rx="5"/>
         <path d="M8.10693359 17v-3.6435547h1.63378907L11.6069336 17h2.2011719v-.0957031l-2.1533203-4.0673828c.5970052-.2688802 1.0424804-.6300456 1.3364257-1.0834961.2939453-.4534506.440918-1.019694.440918-1.6987305 0-.95703125-.3190104-1.69759115-.9570312-2.22167969-.6380209-.52408854-1.5449219-.78613281-2.72070317-.78613281H6.05615234V17h2.05078125zm1.65429688-5.3046875H8.10693359V8.70800781h1.64746094c.55143227 0 .96044927.13444011 1.22705077.40332031.2666016.26888021.3999024.63802084.3999024 1.10742188 0 .4602865-.1412761.8214518-.4238282 1.0834961-.2825521.2620443-.6813151.3930664-1.19628903.3930664zm7.60839843 5.4414063c.4101563 0 .8089193-.0592448 1.1962891-.1777344v-1.4970703c-.1686198.031901-.3623047.0478515-.5810547.0478515-.296224 0-.4967448-.0592448-.6015625-.1777344-.1048177-.1184895-.1572266-.3144531-.1572266-.5878906v-3.6914062h1.2646485V9.60351562h-1.2646485V7.78515625h-1.9755859v1.81835937h-1.0800781v1.44921878h1.0800781v3.9853515c.0273437 1.3990886.7337239 2.0986329 2.1191406 2.0986329z" fill="#FFF" fill-rule="nonzero"/>
       </g>
@@ -802,7 +802,7 @@ const icons = {
   'fieldtype-section': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#FFB2D340" fill="none" fill-rule="evenodd">
         <rect fill="#FFB2D3" width="24" height="24" rx="5"/>
         <path d="M10.5959844 4H7C5.34314575 4 4 5.34314575 4 7v10c0 1.6568542 1.34314575 3 3 3h11c1.6568542 0 3-1.3431458 3-3v-7l-.0050927-.17627279C20.9036609 8.24891996 19.5976809 7 18 7h-4.13l-.5254035-1.20213617C12.8667231 4.70558152 11.7878779 4 10.5959844 4zm0 2c.3972979 0 .7569129.23519384.9161574.59918117L12.562 9H18c.5522847 0 1 .44771525 1 1v7c0 .5522847-.4477153 1-1 1H7c-.55228475 0-1-.4477153-1-1V7c0-.55228475.44771525-1 1-1h3.5959844z" fill="#FFF"/>
       </g>
@@ -811,7 +811,7 @@ const icons = {
   'fieldtype-table': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#6E737C40" fill="none" fill-rule="evenodd">
         <rect fill="#6E737C" width="24" height="24" rx="5"/>
         <path stroke="#FFF" stroke-width="2" d="M5 5h14v14H5z"/>
         <path fill="#FFF" d="M6 9h14v2H6z"/>
@@ -822,7 +822,7 @@ const icons = {
   'fieldtype-text': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#2DB47D40" fill="none" fill-rule="evenodd">
         <rect fill="#2DB47D" width="24" height="24" rx="5"/>
         <path d="M6.07763672 17l.68359375-2.0507812h3.59570313L11.0473633 17h2.180664L9.50244141 7.046875H7.60205078L3.89697266 17h2.18066406zm3.72558594-3.7119141H7.31494141L8.55224609 9.5625l1.25097657 3.7255859zm8.01171874 3.8486329c.906901 0 1.6132813-.331543 2.1191406-.994629.5058594-.6630859.7587891-1.5870768.7587891-2.7719726v-.109375c0-1.203125-.2563477-2.1362305-.769043-2.7993164-.5126953-.66308596-1.2202148-.99462892-2.1225586-.99462892-.7428385 0-1.3421224.26660156-1.7978515.79980472V6.5h-1.975586V17h1.7773438l.0888672-.7861328c.4785156.6152344 1.1188151.9228516 1.9208984.9228516zm-.4990234-1.5927735c-.6334636 0-1.0709636-.2597656-1.3125-.7792969v-2.9189453c.2369791-.5149739.6699218-.7724609 1.2988281-.7724609.469401 0 .8225911.1720377 1.0595703.5161133.2369792.3440755.3554688.8898112.3554688 1.637207 0 .6152344-.0478516 1.0732422-.1435547 1.3740234-.2005209.6289063-.6197917.9433594-1.2578125.9433594z" fill="#FFF" fill-rule="nonzero"/>
       </g>
@@ -831,7 +831,7 @@ const icons = {
   'fieldtype-textarea': {
     viewBox: '0 0 24 24',
     path: `
-      <g fill="none" fill-rule="evenodd">
+      <g border-color="#93CEDD40" fill="none" fill-rule="evenodd">
         <rect fill="#93CEDD" width="24" height="24" rx="5"/>
         <path d="M10.6362305 17V8.70800781h3.0488281V7.046875H5.57763672v1.66113281h3.0078125V17h2.05078128zm6.5966797.1367188c.4101562 0 .8089192-.0592448 1.196289-.1777344v-1.4970703c-.1686198.031901-.3623047.0478515-.5810547.0478515-.2962239 0-.4967448-.0592448-.6015625-.1777344-.1048177-.1184895-.1572265-.3144531-.1572265-.5878906v-3.6914062h1.2646484V9.60351562h-1.2646484V7.78515625h-1.975586v1.81835937h-1.0800781v1.44921878h1.0800781v3.9853515c.0273438 1.3990886.733724 2.0986329 2.1191407 2.0986329z" fill="#FFF" fill-rule="nonzero"/>`,
   },
