@@ -97,9 +97,17 @@
     }
   }
 
+  &--loading {
+    height: 49px;
+  }
+
   &--small {
     font-size: $font-size-md;
     padding: 8px 16px;
+
+    &.sb-button--loading {
+      height: 34px;
+    }
 
     .sb-loading {
       height: 14px;
@@ -114,6 +122,10 @@
 
   &--large {
     padding: 20px 43px;
+
+    &.sb-button--loading {
+      height: 61px;
+    }
   }
 
   &[disabled] {
