@@ -1,7 +1,9 @@
 <template>
   <div class="sb-form-item" :class="{ 'sb-form-item--grouped': grouped }">
     <div v-if="label" class="sb-form-item__top-container">
-      <label v-if="label" class="sb-form-item__label">{{ label }}</label>
+      <label v-if="label" class="sb-form-item__label" :for="labelFor">
+        {{ label }}
+      </label>
       <SbTooltip v-if="helperIconText" :label="helperIconText">
         <SbIcon
           v-if="helperIconText"
@@ -11,9 +13,9 @@
           class="sb-form-item__helper-icon-text"
         />
       </SbTooltip>
-      <span v-if="helperText" class="sb-form-item__helper-text">{{
-        helperText
-      }}</span>
+      <span v-if="helperText" class="sb-form-item__helper-text">
+        {{ helperText }}
+      </span>
     </div>
     <div class="sb-form-item__body">
       <slot />
@@ -47,6 +49,10 @@ export default {
       default: null,
     },
     grouped: Boolean,
+    labelFor: {
+      type: String,
+      default: null,
+    },
   },
 }
 </script>
