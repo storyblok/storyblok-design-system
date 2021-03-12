@@ -1,84 +1,84 @@
 // Color pallete
 
 // teal
-$sb-green:                                     #00B3B0;
-$sb-green-75:                                  #40C6C4;
-$sb-green-50:                                  #7FD9D7;
-$sb-green-25:                                  #D9F4F3;
+$sb-green: #00b3b0;
+$sb-green-75: #40c6c4;
+$sb-green-50: #7fd9d7;
+$sb-green-25: #d9f4f3;
 
 // Ink
-$sb-dark-blue:                                 #1B243F;
-$sb-dark-blue-75:                              #545B6F;
-$sb-dark-blue-50:                              #8D919F;
-$sb-dark-blue-25:                              #C6C8CF;
+$sb-dark-blue: #1b243f;
+$sb-dark-blue-75: #545b6f;
+$sb-dark-blue-50: #8d919f;
+$sb-dark-blue-25: #c6c8cf;
 
 // green
-$green:                                        #2DB47D;
-$green-75:                                     #62C79E;
-$green-50:                                     #96D9BE;
-$green-25:                                     #CAECDE;
-$green-disabled:                               #004e4c;
+$green: #2db47d;
+$green-75: #62c79e;
+$green-50: #96d9be;
+$green-25: #caecde;
+$green-disabled: #004e4c;
 // yellow
-$yellow:                                       #FBCE41;
-$yellow-75:                                    #FCDB71;
-$yellow-50:                                    #FDE6A0;
-$yellow-25:                                    #FEF3CF;
+$yellow: #fbce41;
+$yellow-75: #fcdb71;
+$yellow-50: #fde6a0;
+$yellow-25: #fef3cf;
 
 // blue
-$blue:                                         #395ECE;
-$blue-75:                                      #6B87DB;
-$blue-50:                                      #9CAEE6;
-$blue-25:                                      #CDD7F3;
+$blue: #395ece;
+$blue-75: #6b87db;
+$blue-50: #9caee6;
+$blue-25: #cdd7f3;
 
 // orange
-$orange:                                       #FFAC00;
-$orange-75:                                    #FFC140;
-$orange-50:                                    #FFD57F;
-$orange-25:                                    #FFEABF;
+$orange: #ffac00;
+$orange-75: #ffc140;
+$orange-50: #ffd57f;
+$orange-25: #ffeabf;
 
 // red
-$red:                                          #FF6159;
-$red-75:                                       #FF8983;
-$red-50:                                       #FFB0AC;
-$red-25:                                       #FFD7D5;
+$red: #ff6159;
+$red-75: #ff8983;
+$red-50: #ffb0ac;
+$red-25: #ffd7d5;
 
 // light
-$light:                                        #DFE3E8;
-$light-75:                                     #E7EAEE;
-$light-50:                                     #EFF1F3;
-$light-25:                                     #F7F8F9;
-$light-gray:                                   #B1B5BE;
+$light: #dfe3e8;
+$light-75: #e7eaee;
+$light-50: #eff1f3;
+$light-25: #f7f8f9;
+$light-gray: #b1b5be;
 
-$black:                                        #101525;
-$white:                                        #FFF;
-$black-trasparent:                             rgba(0,0,0,.1);
+$black: #101525;
+$white: #fff;
+$black-trasparent: rgba(0, 0, 0, 0.1);
 // ----
 
 // Typography
-$primary-font-family:                            'Roboto', sans-serif;
-$primary-text-color:                             $sb-dark-blue;
-$font-size-default:                              1.6rem;
-$line-height-default:                            1;
+$primary-font-family: 'Roboto', sans-serif;
+$primary-text-color: $sb-dark-blue;
+$font-size-default: 1.6rem;
+$line-height-default: 1;
 
-$text-header:                                    2.5rem;
-$text-medium-header:                             2.1rem;
-$text-subheader:                                 1.8rem;
-$text-medium:                                    1.6rem;
-$text-medium-small:                              1.4rem;
-$text-small:                                     1.3rem;
+$text-header: 2.5rem;
+$text-medium-header: 2.1rem;
+$text-subheader: 1.8rem;
+$text-medium: 1.6rem;
+$text-medium-small: 1.4rem;
+$text-small: 1.3rem;
 
-$font-size-xs:                                   1.2rem;
-$font-size-sm:                                   1.3rem;
-$font-size-md:                                   1.4rem;
-$font-size-lg:                                   1.6rem;
-$font-size-xg:                                   1.9rem;
+$font-size-xs: 1.2rem;
+$font-size-sm: 1.3rem;
+$font-size-md: 1.4rem;
+$font-size-lg: 1.6rem;
+$font-size-xg: 1.9rem;
 
 // Font weight
-$font-weight-thin:                               100;
-$font-weight-light:                              300;
-$font-weight-regular:                            400;
-$font-weight-medium:                             500;
-$font-weight-bold:                               700;
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
 
 // ----
 
@@ -92,13 +92,13 @@ $icon-extra-large-size: 4.8rem;
 // Global Variables
 
 // Colors
-$color-primary:                                  $sb-green;
-$color-primary-dark:                             $sb-dark-blue;
-$color-secondary:                                $green;
-$color-positive:                                 $green;
-$color-negative:                                 $red;
-$color-warning:                                  $orange;
-$color-white:                                    $white;
+$color-primary: $sb-green;
+$color-primary-dark: $sb-dark-blue;
+$color-secondary: $green;
+$color-positive: $green;
+$color-negative: $red;
+$color-warning: $orange;
+$color-white: $white;
 
 $colors: (
   'primary':                                     $color-primary,
@@ -137,12 +137,12 @@ $font-weight: (
 );
 
 // Avatar variables
-$sb-avatar-small:                                26px;
-$sb-avatar-normal:                               32px;
-$sb-avatar-large:                                46px;
+$sb-avatar-small: 26px;
+$sb-avatar-normal: 32px;
+$sb-avatar-large: 46px;
 
 //Datepicker variables
 $light-border: 1px solid $light;
 
 //Box-shadow
-$box-shadow-default: 0px 2px 17px 3px rgba(34, 42, 69, 0.07);
+$box-shadow-default: 0 2px 17px 3px rgba(34, 42, 69, 0.07);

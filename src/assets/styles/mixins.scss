@@ -1,14 +1,14 @@
 @mixin avatarComponent {
-  display: inline-flex;
   align-items: center;
+  border-radius: 100%;
+  display: inline-flex;
   justify-content: center;
   vertical-align: middle;
-  border-radius: 100%;
 }
 
 @mixin avatarComponentSize ($size) {
-  width: $size;
   height: $size;
+  width: $size;
 }
 
 @mixin generalBoxShadow () {
@@ -27,25 +27,25 @@
 
 // creates a box-shadow and a border for general suspense menu components
 @mixin popoverComponent {
-  box-shadow: $box-shadow-default;
   border: 1px solid $light;
   border-radius: 4px;
+  box-shadow: $box-shadow-default;
   overflow: hidden;
 }
 
 // the following are the recommended styles for visually hiding content that will be read by a screen reader
 @mixin screenReaderOnly {
-  position: absolute;
+  height: 1px;
   left: -10000px;
+  overflow: hidden;
+  position: absolute;
   top: auto;
   width: 1px;
-  height: 1px;
-  overflow: hidden;
 }
 
 // centers all of the child elements using flex approach
 @mixin flexCentering {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }

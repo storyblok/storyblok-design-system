@@ -8,6 +8,7 @@
       <input
         v-if="!isTextAreaType"
         :id="id"
+        ref="textfield"
         v-model="computedValue"
         v-bind="$attrs"
         class="sb-textfield__input"
@@ -31,6 +32,7 @@
       <textarea
         v-else
         :id="id"
+        ref="textfield"
         v-model="computedValue"
         v-bind="$attrs"
         class="sb-textfield__textarea"
@@ -204,7 +206,16 @@ export default {
       return this.maxlengthParsed - this.computedValueLength
     },
   },
+
+  mounted() {
+    if (this.autofocus) this.handleAutoFocus()
+  },
+
   methods: {
+    handleAutoFocus() {
+      this.$refs.textfield.focus()
+    },
+
     handleShowHidePassword() {
       this.internalType === 'password'
         ? (this.internalType = 'text')

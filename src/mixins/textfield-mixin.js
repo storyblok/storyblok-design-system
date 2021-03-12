@@ -28,6 +28,10 @@ export default {
     maxlength: [String, Number],
     minlength: [String, Number],
     autocomplete: String,
+    autofocus: {
+      type: Boolean,
+      default: false,
+    },
 
     // HTML input properties
     type: {
