@@ -11,6 +11,10 @@
   transition: all 0.1s ease-in-out;
   vertical-align: middle;
 
+  .sb-loading {
+    position: absolute;
+  }
+
   &__label {
     font-weight: $font-weight-medium;
     vertical-align: middle;
@@ -98,16 +102,14 @@
   }
 
   &--loading {
-    height: 49px;
+    .sb-button__label {
+      opacity: 0;
+    }
   }
 
   &--small {
     font-size: $font-size-md;
     padding: 8px 16px;
-
-    &.sb-button--loading {
-      height: 34px;
-    }
 
     .sb-loading {
       height: 14px;
@@ -122,10 +124,6 @@
 
   &--large {
     padding: 20px 43px;
-
-    &.sb-button--loading {
-      height: 61px;
-    }
   }
 
   &[disabled] {

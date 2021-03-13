@@ -144,6 +144,7 @@ const SbButton = {
       ]
 
       return renderButton([
+        renderLabel(),
         h(SbLoading, {
           props: {
             type: 'spinner',
