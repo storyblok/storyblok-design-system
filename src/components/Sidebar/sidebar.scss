@@ -12,6 +12,7 @@
 
   // sidebar bottom
   &__bottom {
+    margin-bottom: 15px;
     position: relative;
 
     .sb-button {
@@ -83,8 +84,8 @@
 
   &-item {
     list-style: none;
-    padding: 0 15px;
     margin-bottom: 1px;
+    padding: 0 15px;
   }
 
   &-link {
@@ -112,7 +113,7 @@
     }
 
     .sb-avatar {
-      margin-right: 8px;
+      margin-right: 10px;
     }
 
     &--active {
@@ -120,7 +121,7 @@
     }
 
     &--use-avatar {
-      padding-left: 14px;
+      padding: 9px 17px 9px 9px;
     }
   }
 
@@ -136,7 +137,7 @@
     }
 
     .sb-sidebar-link--use-avatar {
-      padding: 20px;
+      padding: 9px 17px;
     }
 
     .sb-sidebar-toggle .sb-button {
