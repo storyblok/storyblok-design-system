@@ -1,13 +1,13 @@
 <template>
   <transition name="fade" @after-enter="openSlideover = true">
-    <SbBlokUi v-if="openBlokUI" @click="openSlideover = false">
+    <SbBlokUi v-if="openBlokUI" @mousedown="openSlideover = false">
       <transition :name="returnAnimationName" @after-leave="handleCloseSlide">
         <div
           v-if="openSlideover"
           ref="blok"
           class="sb-slideover"
           :class="{ 'sb-slideover--left': orientation === 'left' }"
-          @click.stop
+          @mousedown.stop
         >
           <button
             class="sb-slideover__close-button"
