@@ -110,9 +110,8 @@ export default {
      * handle keydown events
      */
     handleKeyDown(e) {
-      if (e.which === 27) {
-        e.preventDefault()
-        this.openSlideover = false
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        this.handlePreventClose()
       }
     },
 
