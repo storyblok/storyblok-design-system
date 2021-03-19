@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" @after-enter="openSlideover = true">
-    <SbBlokUi v-if="openBlokUI" @mousedown="openSlideover = false">
+    <SbBlokUi v-if="openBlokUI" @mousedown="handlePreventClose">
       <transition :name="returnAnimationName" @after-leave="handleCloseSlide">
         <div
           v-if="openSlideover"
@@ -11,7 +11,7 @@
         >
           <button
             class="sb-slideover__close-button"
-            @click="openSlideover = false"
+            @click="handlePreventClose"
           >
             <SbIcon name="close" size="small" color="primary-dark" />
           </button>
@@ -38,6 +38,10 @@ export default {
       type: String,
       default: 'right',
     },
+    preventClose: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -63,6 +67,17 @@ export default {
   },
 
   methods: {
+    /**
+     * handler for prevent the slideover from closing
+     */
+    handlePreventClose() {
+      if (this.preventClose) {
+        this.$emit('prevent-closing')
+      } else {
+        this.openSlideover = false
+      }
+    },
+
     /**
      * handler for close the component
      */
