@@ -60,15 +60,49 @@
 }
 
 .sb-tooltip {
-  background-color: $color-primary-dark;
   border-radius: 2px;
-  color: $white;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.08);
   display: none;
-  font-size: $font-size-sm;
+  font-size: $font-size-xs;
+  line-height: 15px;
   max-width: 180px;
   padding: 6px 10px;
-  text-align: center;
-  z-index: 5;
+
+  &--dark {
+    background-color: $color-primary-dark;
+    border: 1px solid $color-primary-dark;
+    color: $white;
+
+    [data-popper-arrow]::before {
+      background: $color-primary-dark;
+      border: 1px solid $color-primary-dark;
+    }
+  }
+
+  &--light {
+    background-color: $white;
+    border: 1px solid $light;
+    color: $sb-dark-blue;
+
+    [data-popper-arrow]::before {
+      background: $white;
+      border: 1px solid $light;
+    }
+  }
+
+  &--text {
+    &--initial {
+      text-align: initial;
+    }
+
+    &--center {
+      text-align: center;
+    }
+
+    &--end {
+      text-align: end;
+    }
+  }
 
   [data-show] {
     display: block;
@@ -80,31 +114,56 @@
 
   [data-popper-arrow],
   [data-popper-arrow]::before {
-    height: 8px;
+    height: 6px;
     position: absolute;
-    width: 8px;
+    width: 6px;
     z-index: -1;
   }
 
   [data-popper-arrow]::before {
-    background: $color-primary-dark;
     content: '';
     transform: rotate(45deg);
   }
 
   &[data-popper-placement^='top'] > [data-popper-arrow] {
-    bottom: -4px;
+    bottom: -3px;
+
+    &::before {
+      border-left: 0;
+      border-top: 0;
+      box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.08);
+    }
   }
 
   &[data-popper-placement^='bottom'] > [data-popper-arrow] {
-    top: -4px;
+    top: -4.5px;
+
+    &::before {
+      border-bottom: 0;
+      border-right: 0;
+      box-shadow: -1px -1px 2px 0 rgba(0, 0, 0, 0.08);
+    }
   }
 
   &[data-popper-placement^='left'] > [data-popper-arrow] {
-    right: -4px;
+    right: -3px;
+    top: -1px !important;
+
+    &::before {
+      border-bottom: 0;
+      border-left: 0;
+      box-shadow: 1px -1px 2px 0 rgba(0, 0, 0, 0.08);
+    }
   }
 
   &[data-popper-placement^='right'] > [data-popper-arrow] {
-    left: -4px;
+    left: -4.5px;
+    top: -1px !important;
+
+    &::before {
+      border-right: 0;
+      border-top: 0;
+      box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, 0.08);
+    }
   }
 }

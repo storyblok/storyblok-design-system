@@ -4,7 +4,11 @@
       <label v-if="label" class="sb-form-item__label" :for="labelFor">
         {{ label }}
       </label>
-      <SbTooltip v-if="helperIconText" :label="helperIconText">
+      <SbTooltip
+        v-if="helperIconText"
+        :label="helperIconText"
+        :text-align="helperTextAlign"
+      >
         <SbIcon
           v-if="helperIconText"
           color="primary-dark"
@@ -43,6 +47,10 @@ export default {
     helperIconText: {
       type: String,
       default: null,
+    },
+    helperTextAlign: {
+      type: String,
+      default: 'center',
     },
     helperText: {
       type: String,

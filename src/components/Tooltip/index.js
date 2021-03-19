@@ -37,6 +37,14 @@ export default {
       type: String,
       default: () => `sb-tooltip-target-${randomString(4)}`,
     },
+    variant: {
+      type: String,
+      default: 'dark',
+    },
+    textAlign: {
+      type: String,
+      default: 'center',
+    },
   },
 
   data: () => ({
@@ -189,7 +197,7 @@ export default {
           },
           attrs: {
             useAnchorId: id,
-            class: 'sb-tooltip',
+            class: `sb-tooltip sb-tooltip--${this.variant} sb-tooltip--text--${this.textAlign}`,
             role: 'tooltip',
             'aria-hidden': !this.isVisibleTooltip + '',
           },
