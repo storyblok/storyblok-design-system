@@ -11,11 +11,14 @@
     color: $sb-dark-blue;
     font-size: $font-size-md;
     font-weight: $font-weight-medium;
-    margin-right: 10px;
+    position: relative;
   }
 
-  &__helper-icon-text {
-    font-size: $font-size-sm;
+  &__label &__helper-icon-text {
+    left: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   &__helper-text {

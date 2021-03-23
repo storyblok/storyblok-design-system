@@ -154,7 +154,7 @@ export const WithIcon = (args) => ({
 })
 
 WithIcon.args = {
-  icon: 'checkmark',
+  icon: 'check-mark',
   iconRight: 'calendar',
   primaryLabel: 'Icon before',
   secondaryLabel: 'Icon after',

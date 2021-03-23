@@ -3,20 +3,19 @@
     <div v-if="label" class="sb-form-item__top-container">
       <label v-if="label" class="sb-form-item__label" :for="labelFor">
         {{ label }}
-      </label>
-      <SbTooltip
-        v-if="helperIconText"
-        :label="helperIconText"
-        :text-align="helperTextAlign"
-      >
-        <SbIcon
+        <SbTooltip
           v-if="helperIconText"
-          color="primary-dark"
-          name="help"
-          size="small"
-          class="sb-form-item__helper-icon-text"
-        />
-      </SbTooltip>
+          :label="helperIconText"
+          :text-align="helperTextAlign"
+        >
+          <SbIcon
+            v-if="helperIconText"
+            color="primary-dark"
+            name="help"
+            class="sb-form-item__helper-icon-text"
+          />
+        </SbTooltip>
+      </label>
       <span v-if="helperText" class="sb-form-item__helper-text">
         {{ helperText }}
       </span>

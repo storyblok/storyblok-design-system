@@ -8,7 +8,14 @@
   >
     <div class="sb-drop-area__content">
       <div class="sb-drop-area__icon">
-        <SbIcon size="x-large" color="primary-dark" :name="iconName" />
+        <SbIcon v-if="isOver" size="x-large" name="upload-pictogram" />
+
+        <img
+          v-else
+          draggable="false"
+          src="../../assets/icons/empty-state-illustration.svg"
+          alt=""
+        />
       </div>
       <p class="sb-drop-area__title">
         {{ title }}
@@ -58,12 +65,6 @@ export default {
     return {
       isOver: false,
     }
-  },
-
-  computed: {
-    iconName() {
-      return this.isOver ? 'chevron-down' : 'img-icon'
-    },
   },
 
   methods: {

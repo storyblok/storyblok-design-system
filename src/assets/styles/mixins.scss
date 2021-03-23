@@ -49,3 +49,12 @@
   display: flex;
   justify-content: center;
 }
+
+// reset all styles to a button to use it with icons, for example
+@mixin resetButtonStyle {
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}

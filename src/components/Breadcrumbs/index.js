@@ -77,7 +77,7 @@ const SbBreadcrumbSeparator = {
       [
         h(SbIcon, {
           props: {
-            size: 'small',
+            size: 'normal',
             name: 'chevron-right',
           },
         }),

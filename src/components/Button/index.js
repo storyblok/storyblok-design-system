@@ -29,7 +29,7 @@ const SbButton = {
     },
     iconSize: {
       type: String,
-      default: 'small',
+      default: 'normal',
     },
     iconRight: {
       type: String,

@@ -57,8 +57,7 @@ export default {
 
     iconProps() {
       return {
-        name: this.isParent ? 'filled-folder' : 'status-circle',
-        size: 'small',
+        name: this.isParent ? 'folder-fill' : 'status',
         color: this.isParent ? 'primary-dark' : 'primary',
       }
     },

@@ -41,7 +41,8 @@ export const SbTabAdd = {
                 h(SbIcon, {
                   props: {
                     name: 'plus',
-                    size: 'small',
+                    size: 'normal',
+                    color: 'light-gray',
                   },
                 }),
               ]
@@ -109,8 +110,8 @@ const SbEditButton = {
             h(SbIcon, {
               props: {
                 name: 'edit',
-                size: 'small',
-                color: 'primary-dark',
+                size: 'normal',
+                color: 'light-gray',
               },
             }),
           ]

@@ -67,7 +67,7 @@ const SbLink = {
     const renderIcon = (icon) => {
       return h(SbIcon, {
         props: {
-          size: 'small',
+          size: 'normal',
           name: icon,
         },
       })

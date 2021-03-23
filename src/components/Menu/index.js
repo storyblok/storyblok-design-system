@@ -91,7 +91,7 @@ const SbMenuItem = {
       return h(SbIcon, {
         props: {
           name: this.icon,
-          size: 'small',
+          size: 'normal',
         },
       })
     }
@@ -105,12 +105,13 @@ const SbMenuItem = {
     }
 
     const typeClass = this.type ? `sb-menu-item--${this.type}` : null
+    const iconClass = this.icon ? `sb-menu-item--has-icon` : null
 
     return h(
       'button',
       {
         staticClass: 'sb-menu-item',
-        class: [typeClass],
+        class: [typeClass, iconClass],
         attrs: {
           ...this.$attrs,
           role: 'menuitemradio',
@@ -371,7 +372,7 @@ const SbMenuButton = {
 
     iconSize: {
       type: String,
-      default: 'small',
+      default: 'normal',
     },
 
     // only apply when does not use the hasIconOnly property
@@ -449,7 +450,7 @@ const SbMenuButton = {
         props: {
           isRounded: this.isRounded,
           hasIconOnly: true,
-          icon: this.iconName || 'overflow-menu-vertic',
+          icon: this.iconName || 'menu-vertical',
           variant: this.variant,
           size: this.size,
           iconSize: this.iconSize,

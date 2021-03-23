@@ -23,7 +23,7 @@ describe('SbBadge component', () => {
     it('should have a properly icon name', () => {
       const IconComponent = wrapper.findComponent(SbIcon)
 
-      expect(IconComponent.props('name')).toBe('close')
+      expect(IconComponent.props('name')).toBe('square-error')
     })
 
     it('should have the correct label', () => {

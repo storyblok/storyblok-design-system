@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 108 94">
+  <defs>
+    <linearGradient id="image-empty-state-c" x1="50%" x2="50%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#F3F4F5"/>
+      <stop offset="100%" stop-color="#D7D9DD"/>
+    </linearGradient>
+    <path id="image-empty-state-b" d="M5 7h81v57H5z"/>
+    <filter id="image-empty-state-a" width="116%" height="122.8%" x="-8%" y="-9.6%" filterUnits="objectBoundingBox">
+      <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0856643357 0"/>
+    </filter>
+    <linearGradient id="image-empty-state-f" x1="50%" x2="50%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#F3F4F5"/>
+      <stop offset="100%" stop-color="#D7D9DD"/>
+    </linearGradient>
+    <path id="image-empty-state-e" d="M0 0h70v49H0z"/>
+    <filter id="image-empty-state-d" width="132.9%" height="146.9%" x="-16.4%" y="-21.4%" filterUnits="objectBoundingBox">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="5" result="shadowSpreadOuter1"/>
+      <feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0856643357 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(4 .5)">
+    <g transform="translate(0 16.5)">
+      <g transform="rotate(-10 45.5 35.5)">
+        <use fill="#000" filter="url(#image-empty-state-a)" xlink:href="#image-empty-state-b"/>
+        <use fill="url(#image-empty-state-c)" xlink:href="#image-empty-state-b"/>
+      </g>
+      <g transform="translate(12 11)">
+        <use fill="#000" filter="url(#image-empty-state-d)" xlink:href="#image-empty-state-e"/>
+        <path fill="url(#image-empty-state-f)" stroke="#FFF" stroke-width="5" d="M-2.5-2.5h75v54h-75z"/>
+        <circle cx="43.5" cy="14.5" r="7.5" fill="#B1B5BE"/>
+        <path fill="#CDCFD4" d="M33.677 40.768L51.66 26 70 40.768V49H29z"/>
+        <path fill="#B1B5BE" d="M0 34l19.337-11.5L44 49H0z"/>
+      </g>
+    </g>
+    <g transform="translate(66 .5)">
+      <circle cx="19" cy="19" r="19" fill="#D9F4F3"/>
+      <path fill="#00B3B0" d="M16 20.277l.065.074 2.375 2.375a.796.796 0 0 0 .086.075l-.086-.075a.796.796 0 0 0 .56.232h.037a.796.796 0 0 0 .052-.005l-.089.005a.796.796 0 0 0 .484-.165l-.01.008a.796.796 0 0 0 .048-.039l.038-.036 2.375-2.375a.792.792 0 0 0-1.045-1.185l-.075.066-1.024 1.022v-5.212a.792.792 0 0 0-1.577-.093l-.006.093v5.213l-1.023-1.023a.792.792 0 0 0-1.045-.066l-.075.066A.792.792 0 0 0 16 20.277z"/>
+    </g>
+  </g>
+</svg>

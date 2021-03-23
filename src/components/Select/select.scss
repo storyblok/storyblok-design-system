@@ -1,14 +1,14 @@
 @mixin listPosition {
+  left: 0;
   position: absolute;
   top: calc(100% + 10px);
-  left: 0;
   z-index: 4;
 }
 
 .sb-select {
-  position: relative;
   display: inline-flex;
   flex-direction: column;
+  position: relative;
   width: 100%;
 
   // modifiers
@@ -23,10 +23,14 @@
 
     .sb-select-inner {
       border: 0;
-      
+
       &__label {
         color: $sb-dark-blue-50;
         margin-right: 5px;
+      }
+
+      &__chevron {
+        color: $light-gray;
       }
     }
 
@@ -36,7 +40,7 @@
     }
   }
 
-  &[aria-expanded="true"] {
+  &[aria-expanded='true'] {
     .sb-select-list {
       display: block;
     }
@@ -47,21 +51,22 @@
   }
 
   .sb-minibrowser {
-    display: none;
     @include listPosition();
+
+    display: none;
   }
 }
 
 .sb-select-inner {
-  flex: 1;
-  display: flex;
   align-items: center;
-  padding: 15px 20px;
-  color: $sb-dark-blue-50;
-  font-size: $font-size-md;
   border: 1px solid $light;
   border-radius: 5px;
+  color: $sb-dark-blue-50;
   cursor: pointer;
+  display: flex;
+  flex: 1;
+  font-size: $font-size-md;
+  padding: 11px 9px 11px 11px;
 
   .sb-tag {
     margin: 4px;
@@ -73,20 +78,21 @@
   }
 
   &__tags {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-wrap: wrap;
+    margin: -4px;
   }
 
   &__clear {
     appearance: none;
+    background-color: transparent;
     border: 0;
-    cursor: pointer;
-    padding: 0;
-    margin-right: 5px;
     border-radius: 50%;
-    color: $white;
-    background-color: $light-gray;
+    color: $light-gray;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 0;
   }
 
   &__label {
@@ -97,6 +103,11 @@
     flex: 1;
   }
 
+  &__chevron,
+  &:hover &__chevron {
+    color: $color-primary-dark;
+  }
+
   // modifiers
   &--with-value {
     color: $color-primary-dark;
@@ -105,34 +116,34 @@
 
 .sb-select-list {
   @include popoverComponent();
+  @include listPosition();
 
   background-color: $white;
   display: none;
   flex: 1;
-  width: 100%;
-  padding: 10px 0;
   min-width: 176px;
-  @include listPosition();
+  padding: 10px 0;
+  width: 100%;
 
   ul {
-    padding: 0;
-    margin: 0;
     list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   &__item {
-    box-sizing: border-box;
-    display: flex;
     align-items: center;
-    width: 100%;
     appearance: none;
-    border: 0;
     background-color: $white;
-    padding: 10px 20px;
-    margin: 0;
-    text-align: left;
+    border: 0;
+    box-sizing: border-box;
     cursor: pointer;
+    display: flex;
     font-size: $font-size-md;
+    margin: 0;
+    padding: 10px 20px;
+    text-align: left;
+    width: 100%;
 
     &:hover,
     &:focus {
@@ -150,20 +161,25 @@
 }
 
 .sb-select-list-search {
-  position: relative;
-  display: block;
   border-bottom: 1px solid $light;
-  
+  display: block;
+  position: relative;
+
   input {
-    padding: 20px;
     border: 0;
     font-size: $font-size-sm;
+    padding: 20px;
     width: 100%;
   }
 
-  .sb-icon {
+  &__icon,
+  &__clear {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    right: 14px;
+    top: 15px;
+  }
+
+  &__clear {
+    @include resetButtonStyle();
   }
 }

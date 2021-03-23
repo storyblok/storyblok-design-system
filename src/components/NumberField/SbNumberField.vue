@@ -6,14 +6,14 @@
     <div class="sb-numberfield__inner">
       <button :class="arrowIncreaseClasses" @click="increaseValue">
         <SbIcon
-          size="small"
+          color="primary-dark"
           name="chevron-up"
           class="sb-numberfield__icon sb-textfield__icon--up"
         />
       </button>
       <button :class="arrowDecreaseClasses" @click="decreaseValue">
         <SbIcon
-          size="small"
+          color="primary-dark"
           name="chevron-down"
           class="sb-numberfield__icon sb-textfield__icon--down"
         />

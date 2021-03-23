@@ -16,11 +16,10 @@
     background-color: $white;
     border: 0;
     cursor: pointer;
-    float: right;
-    margin-right: -20px;
-    margin-top: -20px;
-    overflow: hidden;
     padding: 0;
+    position: absolute;
+    right: 14px;
+    top: 14px;
     z-index: 1;
   }
 

@@ -26,7 +26,8 @@ $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
     height: 14px;
     left: 0;
     position: absolute;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     transition: background, border $checkbox-transition;
     width: 14px;
   }

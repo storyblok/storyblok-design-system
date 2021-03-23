@@ -56,21 +56,18 @@
 
       <SbIcon
         v-if="iconLeft && type !== 'password'"
-        size="small"
         :name="iconLeft"
         class="sb-textfield__icon sb-textfield__icon--left"
         :color="iconColor"
       />
       <SbIcon
         v-if="(iconRight || error) && type !== 'password'"
-        size="small"
         :name="iconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
       />
       <SbIcon
         v-if="type === 'password'"
-        size="small"
         :name="internalIconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
@@ -78,7 +75,6 @@
       />
       <SbIcon
         v-if="showClearIcon"
-        size="small"
         name="x-clear"
         class="sb-textfield__icon sb-textfield__icon--right sb-textfield__icon--pointer"
         :color="iconColor"
@@ -128,7 +124,7 @@ export default {
   props: {
     iconColor: {
       type: String,
-      default: null,
+      default: 'light-gray',
     },
   },
 
@@ -220,9 +216,9 @@ export default {
       this.internalType === 'password'
         ? (this.internalType = 'text')
         : (this.internalType = 'password')
-      this.internalIconRight === 'eye'
-        ? (this.internalIconRight = 'eye-off')
-        : (this.internalIconRight = 'eye')
+      this.internalIconRight === 'view'
+        ? (this.internalIconRight = 'view-off')
+        : (this.internalIconRight = 'view')
     },
 
     handleClearableClick(e) {

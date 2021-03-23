@@ -32,7 +32,7 @@ export const Default = (args) => ({
   data: () => ({
     internalValue: 'Boris Spassky',
     internalType: 'password',
-    internalIconRight: 'eye',
+    internalIconRight: 'view',
   }),
   template: `
     <div style="max-width: 300px">
@@ -79,7 +79,7 @@ export const Default = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
-        iconRight="input-error"
+        iconRight="square-error"
         native-value="Some text with error"
         v-model="internalValue"
         :errorMessage="errorMessage"
@@ -105,7 +105,7 @@ export const Default = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
-        iconRight="eye"
+        iconRight="view"
         type="password"
         native-value="Boris Spassky"
         v-model="internalValue"
@@ -223,7 +223,7 @@ export const Ghost = (args) => ({
   data: () => ({
     internalValue: 'Boris Spassky',
     internalType: 'text',
-    internalIconRight: 'eye',
+    internalIconRight: 'view',
   }),
   template: `
     <div style="max-width: 300px">
@@ -261,7 +261,7 @@ export const Ghost = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
-        iconRight="eye"
+        iconRight="view"
         type="password"
         native-value="Boris Spassky"
         v-model="internalValue"

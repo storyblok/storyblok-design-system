@@ -12,6 +12,7 @@
   appearance: none;
   background-color: $white;
   border: 0;
+  color: $sb-dark-blue;
   cursor: pointer;
   display: flex;
   font-size: $font-size-md;
@@ -19,7 +20,6 @@
   padding: 9px 20px;
   text-align: left;
   width: 100%;
-  color: $sb-dark-blue;
 
   &:hover,
   &:focus {
@@ -32,6 +32,10 @@
 
   &--negative {
     color: $red;
+  }
+
+  &--has-icon {
+    padding: 5px 20px;
   }
 }
 

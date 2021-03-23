@@ -1,10 +1,6 @@
 <template>
   <div class="sb-minibrowser__list-header">
-    <SbIcon
-      name="chevron-down"
-      size="normal"
-      class="sb-minibrowser__list-header-icon"
-    />
+    <SbIcon name="chevron-down" class="sb-minibrowser__list-header-icon" />
 
     <p class="sb-minibrowser__list-header-title">{{ title }}</p>
 

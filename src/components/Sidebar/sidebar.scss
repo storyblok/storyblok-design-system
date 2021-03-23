@@ -16,8 +16,9 @@
     position: relative;
 
     .sb-button {
+      min-height: auto;
       opacity: 0;
-      padding: 5px;
+      padding: 0;
       position: absolute;
       right: -13px;
       top: -26px;
@@ -46,7 +47,7 @@
   // sidebar top
   &__top {
     display: flex;
-    padding: 30px;
+    padding: 30px 27px;
 
     .sb-avatar {
       cursor: pointer;
@@ -97,7 +98,8 @@
     font-size: $font-size-lg;
     font-weight: $font-weight-medium;
     letter-spacing: 0;
-    padding: 17px;
+    line-height: inherit;
+    padding: 13px;
     position: relative;
     text-decoration: none;
     transition: all 0.1s ease-in;
@@ -109,7 +111,7 @@
     }
 
     .sb-icon {
-      margin-right: 18px;
+      margin-right: 14px;
     }
 
     .sb-avatar {
@@ -220,5 +222,9 @@
 
   .sb-sidebar-toggle {
     display: none;
+
+    .sb-button {
+      margin: -1px 0 0 -1px;
+    }
   }
 }

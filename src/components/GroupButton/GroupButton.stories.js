@@ -88,7 +88,7 @@ export const JustIcons = (args) => ({
     <SbGroupButton v-bind="{ size, variant, hasSpaces }">
       <SbButton has-icon-only icon="calendar" iconDescription="Calendar Icon" />
       <SbButton has-icon-only icon="plus" iconDescription="Plus Icon" />
-      <SbButton has-icon-only icon="overflow-menu-vertic" iconDescription="Overflow Icon" />
+      <SbButton has-icon-only icon="menu-vertical" iconDescription="Overflow Icon" />
     </SbGroupButton>
   `,
 })

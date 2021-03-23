@@ -74,7 +74,7 @@ export default {
     },
     iconSize: {
       type: String,
-      default: 'small',
+      default: 'normal',
     },
     to: {
       type: [String, Object],

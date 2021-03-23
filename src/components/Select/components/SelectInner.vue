@@ -12,7 +12,7 @@
       v-if="leftIcon"
       class="sb-select-inner__icon-left"
       :name="leftIcon"
-      size="small"
+      color="primary-dark"
     />
 
     <div v-if="isTagsVisible" class="sb-select-inner__tags">
@@ -48,10 +48,10 @@
         @keydown="clearAllValues"
         @click="clearAllValues"
       >
-        <SbIcon name="close" size="small" />
+        <SbIcon name="x-clear" />
       </button>
 
-      <SbIcon name="chevron-down" size="small" color="light-gray" />
+      <SbIcon class="sb-select-inner__chevron" name="chevron-down" />
     </div>
   </div>
 </template>

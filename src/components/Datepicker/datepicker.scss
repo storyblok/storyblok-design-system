@@ -1,18 +1,18 @@
 @mixin datepickerItem {
-  cursor: pointer;
   border-bottom: $light-border;
   border-right: $light-border;
-  font-size: $font-size-md;
   color: $color-primary-dark;
+  cursor: pointer;
+  font-size: $font-size-md;
 
   &:hover {
     background-color: $sb-dark-blue-25;
   }
 
   &--active {
+    background-color: $sb-green-25;
     font-size: $font-size-xg;
     font-weight: $font-weight-medium;
-    background-color: $sb-green-25;
 
     &:hover {
       background-color: $sb-green-25;
@@ -28,41 +28,42 @@
   }
 
   &__timezone {
+    color: $light-gray;
+    font-size: $font-size-xs;
     position: absolute;
+    right: 40px;
     top: 50%;
     transform: translateY(-50%);
-    right: 40px;
-    font-size: $font-size-xs;
-    color: $light-gray;
   }
 
   &__overlay {
     @include popoverComponent();
+
+    box-sizing: border-box;
     max-width: 294px;
     width: 100%;
-    box-sizing: border-box;
     z-index: 1;
   }
 
   &__actions {
+    background-color: $white;
     display: flex;
     justify-content: space-between;
-    background-color: $white;
   }
 
   &__action-button {
     appearance: none;
-    border: 0;
     background-color: $white;
-    padding: 15px 20px;
+    border: 0;
+    color: $color-primary-dark;
     font-size: $font-size-md;
     font-weight: $font-weight-medium;
-    color: $color-primary-dark;
-  
+    padding: 15px 20px;
+
     &:hover {
       cursor: pointer;
     }
-  
+
     &--primary {
       color: $color-primary;
     }
@@ -74,18 +75,18 @@
   z-index: 2;
 
   &__top {
-    display: flex;
     align-items: center;
+    display: flex;
   }
 
   &__title {
+    color: $color-primary-dark;
     flex: 1;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
     margin: 0;
     padding: 15px 0;
     text-align: center;
-    font-weight: $font-weight-medium;
-    font-size: $font-size-md;
-    color: $color-primary-dark;
 
     span {
       cursor: pointer;
@@ -93,10 +94,10 @@
   }
 
   &__button {
-    border: 0;
     background-color: transparent;
-    padding: 14px 20px;
+    border: 0;
     cursor: pointer;
+    padding: 8px 14px;
 
     &:disabled {
       cursor: not-allowed;
@@ -104,45 +105,46 @@
   }
 
   &__subtitle {
+    color: $sb-dark-blue-50;
     display: block;
+    font-size: $font-size-md;
     margin: 0;
     padding-bottom: 10px;
     text-align: center;
-    font-size: $font-size-md;
-    color: $sb-dark-blue-50;
   }
 }
 
 .sb-datepicker-week {
-  display: flex;
   background-color: $light;
+  display: flex;
   padding-bottom: 10px;
 
   span {
-    flex: 1;
-    text-align: center;
-    font-size: $font-size-md;
     color: $sb-dark-blue-50;
+    flex: 1;
+    font-size: $font-size-md;
+    text-align: center;
   }
 }
 
 .sb-datepicker-days {
-  width: 100%;
+  background-color: $white;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  background-color: $white;
+  width: 100%;
 
   &__item {
     @include flexCentering();
     @include datepickerItem();
+
+    box-sizing: border-box;
     flex: 1;
-    width: 42px;
     height: 42px;
     padding: 13px 17px;
-    box-sizing: border-box;
-    
+    width: 42px;
+
     &--inactive {
       color: $sb-dark-blue-50;
     }
@@ -150,63 +152,66 @@
 }
 
 .sb-datepicker-time {
-  width: 100%;
   box-sizing: border-box;
+  width: 100%;
 
   &__numbers-container {
-    display: flex;
     background-color: $white;
+    display: flex;
   }
 
   &__number-column {
+    border-bottom: 1px solid $light;
     display: block;
-    width: 50%;
     max-height: 294px;
     overflow-y: scroll;
-    border-bottom: 1px solid $light;
+    width: 50%;
   }
 
   &__number {
     @include flexCentering();
     @include datepickerItem();
-    text-align: center;
-    padding: 10px;
-    height: 42px;
-    cursor: pointer;
+
     box-sizing: border-box;
+    cursor: pointer;
+    height: 42px;
+    padding: 10px;
+    text-align: center;
   }
 }
 
 .sb-datepicker-months {
-  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 
   &__item {
     @include flexCentering();
     @include datepickerItem();
-    width: 25%;
+
+    box-sizing: border-box;
     padding: 13px 25px;
     text-align: center;
-    box-sizing: border-box;
+    width: 25%;
   }
 }
 
 .sb-datepicker-years {
-  width: 100%;
-  max-height: 252px;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
+  max-height: 252px;
   overflow-y: scroll;
+  width: 100%;
 
   &__item {
     @include flexCentering();
     @include datepickerItem();
-    width: 100%;
+
+    box-sizing: border-box;
     height: 42px;
     text-align: center;
-    box-sizing: border-box;
+    width: 100%;
   }
 }

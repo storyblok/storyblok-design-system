@@ -5,55 +5,20 @@ import SbIcon from '../Icon'
 export const listItemsData = [
   {
     href: '#',
-    icon: 'sidebar-arrow',
+    icon: 'chevron-left',
     label: 'Back to Spaces',
   },
   {
     href: '#',
-    icon: 'sidebar-dashboard',
-    label: 'Dashboard',
-    ariaLabel: 'Goto dashboard',
+    icon: 'content',
+    label: 'Content',
+    ariaLabel: 'Go to content',
     active: true,
   },
   {
     href: '#',
-    icon: 'sidebar-content',
-    label: 'Content',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-tags',
-    label: 'Tags',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-assets',
-    label: 'Assets',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-components',
-    label: 'Components',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-datasources',
-    label: 'Datasources',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-activity',
-    label: 'Activities',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-addons',
+    icon: 'apps',
     label: 'Apps',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-settings',
-    label: 'Settings',
   },
 ]
 
@@ -99,7 +64,7 @@ const SidebarTemplate = (args) => ({
       <template slot="bottom">
         <SbSidebarListItem
           href="#"
-          icon="sidebar-report"
+          icon="settings"
           label="Report a problem"
         />
 
@@ -123,7 +88,7 @@ const SidebarTemplate = (args) => ({
                   <p style="font-size: 12px; color: #b1b5be; margin: 0;"> jondoe@lipsum.com </p>
                 </div>
 
-                <SbIcon name="logout" color="light-gray" size="small" />
+                <SbIcon name="log-out" color="light-gray" size="small" />
               </div>
 
               <SbMenuItem> Account settings </SbMenuItem>

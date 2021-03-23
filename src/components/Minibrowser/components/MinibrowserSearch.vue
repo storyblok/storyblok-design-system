@@ -15,16 +15,15 @@
       @keydown="handleSearchKeydown"
     />
 
-    <SbIcon
+    <button
       v-if="showCloseIcon"
-      class="sb-minibrowser__icon-close"
-      size="small"
-      name="close"
-      color="primary-dark"
+      class="sb-minibrowser__input-container-clear"
       @click="clearSearchInputValue"
-    />
+    >
+      <SbIcon name="x-clear" color="light-gray" />
+    </button>
 
-    <SbIcon v-else size="small" v-bind="icon" />
+    <SbIcon v-else class="sb-minibrowser__input-container-icon" v-bind="icon" />
   </div>
 </template>
 
@@ -87,8 +86,10 @@ export default {
   methods: {
     /**
      * emits an input event with the empty state
+     * @param {Event} event
      */
-    clearSearchInputValue() {
+    clearSearchInputValue(event) {
+      event.stopPropagation()
       this.$emit('input', '')
     },
 
@@ -106,7 +107,7 @@ export default {
      */
     handleSearchKeydown(event) {
       if (event.key === 'Escape') {
-        this.clearSearchInputValue()
+        this.clearSearchInputValue(event)
       }
     },
   },

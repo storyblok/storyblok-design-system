@@ -1,7 +1,7 @@
 .sb-tab-add {
   align-items: center;
   display: flex;
-  padding: 13px 10px;
+  padding: 9px 10px;
   position: relative;
   text-align: center;
 }
@@ -18,14 +18,9 @@
   opacity: 0;
   padding: 0;
   position: absolute;
-  right: 5px;
+  right: 0;
   top: auto;
   transform: none;
-
-  svg {
-    height: 12px;
-    width: 12px;
-  }
 }
 
 .sb-tab {
@@ -36,7 +31,7 @@
   font-family: $primary-font-family;
   font-size: $text-medium-small;
   font-weight: $font-weight-medium;
-  padding: 14px 18px;
+  padding: 14px 24px;
   position: relative;
   text-align: center;
   z-index: 0;
@@ -91,7 +86,6 @@
     align-items: center;
     background-color: transparent;
     border: 0;
-    color: $light-gray;
     cursor: pointer;
     display: flex;
     justify-content: center;
