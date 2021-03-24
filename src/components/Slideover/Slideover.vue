@@ -1,7 +1,7 @@
 <template>
-  <transition name="fade" @after-enter="openSlideover = true">
+  <transition name="fade" @enter="openSlideover = true">
     <SbBlokUi v-if="openBlokUI" @mousedown="handlePreventClose">
-      <transition :name="returnAnimationName" @after-leave="handleCloseSlide">
+      <transition :name="returnAnimationName" @leave="handleCloseSlide">
         <div
           v-if="openSlideover"
           ref="blok"
@@ -62,6 +62,11 @@ export default {
         this.handleOpenSlide()
       } else {
         this.handleCloseSlide()
+      }
+    },
+    preventClose(state) {
+      if (!state) {
+        this.openSlideover = state
       }
     },
   },

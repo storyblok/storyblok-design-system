@@ -1,6 +1,7 @@
 .sb-slideover {
   background-color: $white;
   border-radius: 5px;
+  bottom: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -10,13 +11,16 @@
   max-width: 624px;
   min-width: 400px;
   overflow: hidden;
-  padding: 25px;
-  position: relative;
-  right: 0;
+  padding: 20px;
+  position: fixed;
+  right: 20px;
+  top: 20px;
 
   &--left {
+    left: 20px;
     margin-left: initial;
     margin-right: auto;
+    right: auto;
   }
 
   &__close-button {
