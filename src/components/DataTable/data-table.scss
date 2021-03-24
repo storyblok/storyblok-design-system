@@ -49,6 +49,7 @@
         content: '';
         height: 10px;
         left: 10px;
+        max-width: calc(100% - 20px);
         position: absolute;
         top: 50%;
         transform: translateY(-50%);

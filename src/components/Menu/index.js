@@ -399,7 +399,7 @@ const SbMenuButton = {
      * @param {Event} event
      */
     handleClick(event) {
-      const { closeMenu, focusOnFirstItem } = this.context
+      const { closeMenu, openMenu } = this.context
 
       this.$emit('click', event)
 
@@ -409,7 +409,7 @@ const SbMenuButton = {
       if (this.isOpen) {
         closeMenu()
       } else {
-        focusOnFirstItem()
+        openMenu()
       }
     },
 

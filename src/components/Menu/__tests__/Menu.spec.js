@@ -58,19 +58,11 @@ describe('SbMenu component', () => {
     // should menu is visible
     expect(menuListComponent.isVisible()).toBeTruthy()
 
-    // should move the focus to the first item
-    expect(wrapper.findAll('[role="menuitemradio"]').at(0).element).toEqual(
-      document.activeElement
-    )
-
     // when clicks the button again
     await buttonComponent.trigger('click')
 
     // should menu is not visible anymore
     expect(menuListComponent.isVisible()).toBeFalsy()
-
-    // and the focus should be move to the button
-    expect(buttonComponent.element).toEqual(document.activeElement)
   })
 
   it('should perform the navigation using the arrow keys', async () => {
