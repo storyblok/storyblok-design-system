@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade" @enter="openSlideover = true">
+  <transition name="bg-fade" @enter="openSlideover = true">
     <SbBlokUi v-if="openBlokUI" @mousedown="handlePreventClose">
       <transition :name="returnAnimationName" @leave="handleCloseSlide">
         <div

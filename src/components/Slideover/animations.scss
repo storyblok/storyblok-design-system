@@ -21,12 +21,12 @@
 }
 
 //Fade
-.fade-enter-active,
-.fade-leave-active {
-  transition: background-color;
+.bg-fade-enter-active,
+.bg-fade-leave-active {
+  transition: background-color 0.2s;
 }
 
-.fade-enter,
-.fade-leave-to {
+.bg-fade-enter,
+.bg-fade-leave-to {
   background-color: rgba(#1b243f, 0);
 }
