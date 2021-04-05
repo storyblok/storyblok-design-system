@@ -29,6 +29,7 @@ export default {
     label: 'Default tooltip label',
     position: 'top',
     variant: 'dark',
+    textAlign: 'center',
   },
   argTypes: {
     id: {
