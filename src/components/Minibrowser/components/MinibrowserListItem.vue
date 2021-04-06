@@ -1,6 +1,11 @@
 <template>
   <li>
-    <component :is="as" class="sb-minibrowser__list-item" @click="handleClick">
+    <component
+      :is="as"
+      class="sb-minibrowser__list-item"
+      :class="{ 'sb-minibrowser__list-item--active': isActive }"
+      @click="handleClick"
+    >
       <span class="sb-minibrowser__list-item-icon">
         <SbIcon v-if="isIconVisible" v-bind="iconProps" />
         <slot name="icon" />
@@ -30,6 +35,7 @@ export default {
       type: String,
       default: 'a',
     },
+    isActive: Boolean,
     isParent: Boolean,
     isEntry: Boolean,
     items: {
