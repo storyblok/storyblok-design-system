@@ -5,11 +5,11 @@
 
       <SbBreadcrumbSeparator />
 
-      <template v-for="(item, index) in breadcrumbItems">
+      <template v-for="(item, index) in items">
         <SbBreadcrumbItem
           :key="index"
           :is-active="index === lastIndex"
-          :label="item.label"
+          v-bind="item"
           @click="navigateTo($event, index)"
         />
 
@@ -51,18 +51,8 @@ export default {
       return this.browserContext()
     },
 
-    breadcrumbItems() {
-      return this.items.map((navItem) => {
-        return {
-          label: navItem.label,
-          href: navItem.label,
-          title: navItem.label,
-        }
-      })
-    },
-
     lastIndex() {
-      return this.breadcrumbItems.length - 1
+      return this.items.length - 1
     },
   },
 
@@ -70,7 +60,7 @@ export default {
     /**
      * fires the clearNavigation method in the SbMinibrowser component
      */
-    clearNavigation() {
+    clearNavigation(event) {
       event.preventDefault()
       event.stopPropagation()
       this.context.clearNavigation()
