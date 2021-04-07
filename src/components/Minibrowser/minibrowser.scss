@@ -100,10 +100,6 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
       margin-right: 10px;
     }
 
-    &--active {
-      background-color: $light-50;
-    }
-
     &:hover {
       background-color: $light-50;
       cursor: pointer;
