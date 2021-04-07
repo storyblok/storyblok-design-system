@@ -52,6 +52,13 @@
     font-size: $font-size-sm;
     margin: 0;
     padding: 10px;
+
+    &--bold {
+      color: $sb-dark-blue;
+      font-size: $font-size-md;
+      font-weight: $font-weight-medium;
+      padding-left: 20px;
+    }
   }
 }
 

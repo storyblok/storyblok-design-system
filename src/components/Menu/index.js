@@ -157,6 +157,9 @@ const SbMenuGroup = {
       type: String,
       required: true,
     },
+    isTitleBold: {
+      type: Boolean,
+    },
   },
 
   render(h) {
@@ -172,6 +175,7 @@ const SbMenuGroup = {
           'p',
           {
             staticClass: 'sb-menu-group__title',
+            class: { 'sb-menu-group__title--bold': this.isTitleBold },
           },
           this.title
         ),
