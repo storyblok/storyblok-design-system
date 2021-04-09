@@ -365,6 +365,7 @@ describe('SbSelect component', () => {
       },
       stubs: {
         SbMinibrowser: SbMinibrowser,
+        SbIcon: SbIcon,
       },
       mocks: {
         browserOptionsData: [...MOCK_DATA.FIRST_LEVEL],
