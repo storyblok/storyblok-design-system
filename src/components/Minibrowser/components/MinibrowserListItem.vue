@@ -11,7 +11,13 @@
         <slot name="icon" />
       </span>
 
-      <span class="sb-minibrowser__list-item-name"> {{ label }} </span>
+      <div class="sb-minibrowser__list-item-container">
+        <span class="sb-minibrowser__list-item-name"> {{ label }} </span>
+
+        <span v-if="subtitle" class="sb-minibrowser__list-item-subtitle">
+          {{ subtitle }}
+        </span>
+      </div>
 
       <slot />
     </component>
@@ -45,6 +51,10 @@ export default {
     label: {
       type: String,
       required: true,
+    },
+    subtitle: {
+      type: String,
+      default: null,
     },
     value: {
       type: [String, Number],

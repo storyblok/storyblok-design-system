@@ -90,10 +90,21 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     display: flex;
     padding: 9px $general-padding;
 
+    &-container {
+      flex: 1;
+    }
+
     &-name {
       color: $color-primary-dark;
-      flex: 1;
+      display: block;
       font-size: $font-size-md;
+    }
+
+    &-subtitle {
+      color: $light-gray;
+      display: block;
+      font-size: $font-size-xs;
+      margin-top: 2px;
     }
 
     &-icon {
