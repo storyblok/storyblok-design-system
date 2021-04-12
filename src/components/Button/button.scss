@@ -104,8 +104,12 @@
   &--loading {
     min-height: 49px;
 
-    .sb-button__label {
+    > .sb-icon {
       opacity: 0;
+    }
+
+    .sb-button__label {
+      opacity: 0 !important;
     }
   }
 
