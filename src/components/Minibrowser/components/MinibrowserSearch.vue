@@ -17,6 +17,7 @@
 
     <button
       v-if="showCloseIcon"
+      :aria-label="clearSearchLabel"
       class="sb-minibrowser__input-container-clear"
       @click="clearSearchInputValue"
     >
@@ -40,6 +41,10 @@ export default {
   inject: ['browserContext'],
 
   props: {
+    clearSearchLabel: {
+      type: String,
+      default: null,
+    },
     placeholder: {
       type: String,
       default: null,
