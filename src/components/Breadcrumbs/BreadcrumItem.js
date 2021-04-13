@@ -15,6 +15,7 @@ const sharedLinkProps = {
   },
   label: {
     type: String,
+    required: true,
     default: null,
   },
 
@@ -46,7 +47,7 @@ const SbBreadcrumbLink = {
   props: {
     ...sharedLinkProps,
   },
-  render(h, { props, listeners, slots }) {
+  render(h, { props, listeners }) {
     const { label } = props
     // if href exists, we understand that's expected a <a> tag
     if (props.href) {
@@ -62,7 +63,7 @@ const SbBreadcrumbLink = {
             ...listeners,
           },
         },
-        [label, slots().default]
+        label
       )
     }
 
@@ -77,7 +78,7 @@ const SbBreadcrumbLink = {
           ...listeners,
         },
       },
-      [label, slots().default]
+      label
     )
   },
 }
@@ -99,9 +100,12 @@ const SbBreadcrumbItem = {
     ...sharedLinkProps,
   },
 
-  render(h, { props, listeners, slots }) {
-    const { isActive, title, href, to, as } = props
-    const label = props.label || ''
+  render(h, { props, listeners }) {
+    const { isActive, label, title, href, to, as } = props
+
+    if (!label) {
+      return
+    }
 
     const isTruncated = label.length > 15
     const labelFormated = isTruncated ? getLabelTruncated(label) : label
@@ -118,25 +122,21 @@ const SbBreadcrumbItem = {
 
     const renderLabel = () => {
       if (!isActive) {
-        return h(
-          SbBreadcrumbLink,
-          {
-            props: {
-              title,
-              href,
-              to,
-              as,
-              label: labelFormated,
-            },
-            on: {
-              ...listeners,
-            },
+        return h(SbBreadcrumbLink, {
+          props: {
+            title,
+            href,
+            to,
+            as,
+            label: labelFormated,
           },
-          [slots().default]
-        )
+          on: {
+            ...listeners,
+          },
+        })
       }
 
-      return [labelFormated, slots().default]
+      return labelFormated
     }
 
     const renderChildren = () => {

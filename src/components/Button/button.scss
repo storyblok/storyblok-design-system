@@ -104,12 +104,8 @@
   &--loading {
     min-height: 49px;
 
-    > .sb-icon {
-      opacity: 0;
-    }
-
     .sb-button__label {
-      opacity: 0 !important;
+      opacity: 0;
     }
   }
 

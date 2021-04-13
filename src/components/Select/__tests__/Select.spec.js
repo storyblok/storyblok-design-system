@@ -1,6 +1,6 @@
 import { SbMinibrowser } from '../../Minibrowser'
 import { mountAttachingComponent } from '../../../utils/tests-utils'
-import { MOCK_DATA } from '../../Minibrowser/Minibrowser.stories'
+import { browserOptionsData } from '../../Minibrowser/Minibrowser.stories'
 
 import { SbSelect } from '..'
 import SbIcon from '../../Icon'
@@ -365,10 +365,9 @@ describe('SbSelect component', () => {
       },
       stubs: {
         SbMinibrowser: SbMinibrowser,
-        SbIcon: SbIcon,
       },
       mocks: {
-        browserOptionsData: [...MOCK_DATA.FIRST_LEVEL],
+        browserOptionsData: [...browserOptionsData],
       },
     })
 
