@@ -37,6 +37,25 @@
   &--has-icon {
     padding: 5px 20px;
   }
+
+  &--aux-text {
+    min-width: 235px;
+
+    span {
+      margin-right: 100px;
+    }
+
+    small {
+      $font-size-sm: 1.3rem;
+
+      color: $sb-dark-blue-50;
+    }
+  }
+
+  &--is-disabled {
+    color: $sb-dark-blue-50;
+    cursor: auto;
+  }
 }
 
 .sb-menu-separator {
@@ -52,13 +71,6 @@
     font-size: $font-size-sm;
     margin: 0;
     padding: 10px;
-
-    &--bold {
-      color: $sb-dark-blue;
-      font-size: $font-size-md;
-      font-weight: $font-weight-medium;
-      padding-left: 20px;
-    }
   }
 }
 

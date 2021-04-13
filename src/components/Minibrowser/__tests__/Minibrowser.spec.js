@@ -2,17 +2,15 @@ import { mount } from '@vue/test-utils'
 
 import { waitMs } from '../../../utils/tests-utils'
 import { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader } from '..'
-import { WithGroupsSlot, MOCK_DATA } from '../Minibrowser.stories.js'
+import { browserOptionsData, WithGroupsSlot } from '../Minibrowser.stories.js'
 
 describe('SbMinibrowser component', () => {
   const itemClass = '.sb-minibrowser__list-item-name'
-  const breadcrumbClass = '.sb-breadcrumbs__item'
 
   it('should perform the correct navigation', async () => {
     const wrapper = mount(SbMinibrowser, {
       propsData: {
-        breadcrumbs: [],
-        options: [...MOCK_DATA.FIRST_LEVEL],
+        options: [...browserOptionsData],
       },
     })
 
@@ -24,14 +22,8 @@ describe('SbMinibrowser component', () => {
     await firstElement.trigger('click')
 
     // getting the first parameter from first execution
-    const result = wrapper.emitted('select-item')[0][0]
+    const result = wrapper.emitted('navigate')[0][0]
     expect(result.label).toEqual('Landing Page')
-    expect(result.value).toEqual('1.0')
-
-    await wrapper.setProps({
-      breadcrumbs: [{ label: 'Landing Page' }],
-      options: [...MOCK_DATA.SECOND_LEVEL],
-    })
 
     // PROCESS FOR SECOND LEVEL
     const newFirstElement = wrapper.findAll(itemClass).at(0)
@@ -40,46 +32,19 @@ describe('SbMinibrowser component', () => {
     await newFirstElement.trigger('click')
 
     // getting the first parameter from second execution
-    const newResult = wrapper.emitted('select-item')[1][0]
+    const newResult = wrapper.emitted('navigate')[1][0]
     expect(newResult.label).toBe('PPC')
-    expect(newResult.value).toEqual('2.0')
-
-    await wrapper.setProps({
-      breadcrumbs: [{ label: 'Landing Page' }, { label: 'PPC' }],
-      options: [...MOCK_DATA.THIRD_LEVEL],
-    })
 
     // PROCESS FOR THIRD LEVEL
     // checking if, in the third level, we have the correct item in the first position
     const thirdElement = wrapper.findAll(itemClass).at(0)
     expect(thirdElement.text()).toBe('e-commerce')
-
-    // checking the breadcrumbs
-    const breadcrumbsWrapper = wrapper.findAll(breadcrumbClass)
-    const globalBreadcrumb = breadcrumbsWrapper.at(0)
-    expect(globalBreadcrumb.text()).toBe('Global')
-
-    await globalBreadcrumb.find('a').trigger('click')
-    expect(wrapper.emitted('clear-navigation')).toBeTruthy()
-
-    const landingPageBreadcrumb = breadcrumbsWrapper.at(1)
-    expect(landingPageBreadcrumb.text()).toBe('Landing Page')
-
-    // when clicking in the Landing Page breadcrumbs,
-    // it should emit the 0 index
-    await landingPageBreadcrumb.find('a').trigger('click')
-    expect(wrapper.emitted('navigate')[0]).toEqual([0])
-
-    const ppcBreadcrumb = breadcrumbsWrapper.at(2)
-    expect(ppcBreadcrumb.text()).toBe('PPC')
-
-    expect(breadcrumbsWrapper.length).toBe(3)
   })
 
   it('should filter the items by using the search input', async () => {
     const wrapper = mount(SbMinibrowser, {
       propsData: {
-        options: [...MOCK_DATA.FIRST_LEVEL],
+        options: [...browserOptionsData],
       },
     })
 
@@ -89,17 +54,15 @@ describe('SbMinibrowser component', () => {
 
     await waitMs(300)
 
-    expect(wrapper.emitted('filter')[0]).toEqual([
-      {
-        value: 'Jobs',
-      },
-    ])
+    expect(wrapper.vm.searchInput).toBe('Jobs')
+
+    expect(wrapper.find(itemClass).text()).toBe('Jobs')
   })
 
   it('should show a not found message', async () => {
     const wrapper = mount(SbMinibrowser, {
       propsData: {
-        options: [],
+        options: [...browserOptionsData],
       },
     })
 
@@ -115,13 +78,15 @@ describe('SbMinibrowser component', () => {
   it('should clear the input element when clicks on Escape key', async () => {
     const wrapper = mount(SbMinibrowser, {
       propsData: {
-        options: [...MOCK_DATA.FIRST_LEVEL],
+        options: [...browserOptionsData],
       },
     })
 
     const searchInput = wrapper.find('input[type="search"]')
 
     searchInput.setValue('foobar')
+
+    expect(wrapper.vm.searchInput).toBe('foobar')
 
     searchInput.element.focus()
 
@@ -132,6 +97,62 @@ describe('SbMinibrowser component', () => {
     expect(wrapper.find(itemClass).text()).toBe('Landing Page')
 
     expect(wrapper.vm.searchInput).toBe('')
+  })
+
+  it('should execute the lazyLoadMethod function properly', async () => {
+    const lazyLoadMethod = jest.fn((_, resolve) => {
+      resolve([
+        {
+          label: 'Test Lazy 1',
+        },
+      ])
+    })
+
+    const wrapper = mount(SbMinibrowser, {
+      propsData: {
+        options: [...browserOptionsData],
+        lazyLoadMethod,
+      },
+    })
+
+    await wrapper.findAll(itemClass).at(0).trigger('click')
+
+    expect(lazyLoadMethod).toHaveBeenCalled()
+
+    const execution = lazyLoadMethod.mock.calls[0]
+
+    expect(execution[0].label).toBe('Landing Page')
+
+    expect(wrapper.findAll(itemClass).at(0).text()).toBe('Test Lazy 1')
+  })
+
+  it('should execute the filterMethod function properly', async () => {
+    const filterMethod = jest.fn((_, resolve) => {
+      resolve([
+        {
+          label: 'Test Filter 1',
+        },
+      ])
+    })
+
+    const wrapper = mount(SbMinibrowser, {
+      propsData: {
+        options: [...browserOptionsData],
+        filterMethod,
+      },
+    })
+
+    await wrapper.find('input[type="search"]').setValue('Test')
+
+    await waitMs(300)
+
+    expect(filterMethod).toHaveBeenCalled()
+
+    const execution = filterMethod.mock.calls[0]
+
+    expect(execution[0]).toBe('Test')
+
+    expect(wrapper.findAll(itemClass).at(0).text()).toBe('Test Filter 1')
   })
 
   describe('using slots', () => {

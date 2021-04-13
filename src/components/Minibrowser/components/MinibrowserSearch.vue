@@ -63,15 +63,19 @@ export default {
     },
 
     isLoading() {
-      return this.context.isLoading
+      return (
+        this.context.isOnLoadingFilter ||
+        this.context.isOnLazyLoad ||
+        this.context.isLoading
+      )
     },
 
-    hasValue() {
-      return typeof this.value === 'string' && this.value.length > 0
+    isOnFilter() {
+      return this.context.isOnFilter
     },
 
     showCloseIcon() {
-      return this.hasValue && !this.isLoading
+      return this.isOnFilter && !this.isLoading
     },
   },
 
