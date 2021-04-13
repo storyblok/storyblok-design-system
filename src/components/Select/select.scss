@@ -66,7 +66,7 @@
   display: flex;
   flex: 1;
   font-size: $font-size-md;
-  padding: 11px 9px 11px 11px;
+  padding: 11px 10px 11px 17px;
 
   .sb-tag {
     margin: 4px;
@@ -81,7 +81,11 @@
     display: flex;
     flex: 1;
     flex-wrap: wrap;
-    margin: -4px;
+    margin: -4px 0 -4px -4px;
+  }
+
+  &__tags &__input {
+    margin-left: 4px;
   }
 
   &__clear {
@@ -91,25 +95,33 @@
     border-radius: 50%;
     color: $light-gray;
     cursor: pointer;
-    margin-right: 5px;
     padding: 0;
   }
 
-  &__label {
+  &__input {
+    border: 0;
+    color: $color-primary-dark;
     flex: 1;
+    font-size: inherit;
+    outline: none;
+    padding: 0;
+    width: 100%;
+
+    &:read-only {
+      cursor: pointer;
+    }
+
+    &::placeholder {
+      color: $sb-dark-blue-50;
+    }
   }
 
   &__avatar {
-    flex: 1;
+    margin: -1px 10px -1px 0;
   }
 
   &__chevron,
   &:hover &__chevron {
-    color: $color-primary-dark;
-  }
-
-  // modifiers
-  &--with-value {
     color: $color-primary-dark;
   }
 }
@@ -119,10 +131,11 @@
   @include listPosition();
 
   background-color: $white;
+  box-sizing: border-box;
   display: none;
   flex: 1;
   min-width: 176px;
-  padding: 10px 0;
+  padding: 13px 0;
   width: 100%;
 
   ul {
@@ -131,7 +144,8 @@
     padding: 0;
   }
 
-  &__item {
+  &__item,
+  &__create {
     align-items: center;
     appearance: none;
     background-color: $white;
@@ -141,7 +155,7 @@
     display: flex;
     font-size: $font-size-md;
     margin: 0;
-    padding: 10px 20px;
+    padding: 10px 17px;
     text-align: left;
     width: 100%;
 
@@ -155,31 +169,20 @@
     }
   }
 
-  &--filterable {
-    padding-top: 0;
-  }
-}
-
-.sb-select-list-search {
-  border-bottom: 1px solid $light;
-  display: block;
-  position: relative;
-
-  input {
-    border: 0;
-    font-size: $font-size-sm;
-    padding: 20px;
-    width: 100%;
+  &__item-name,
+  &__create {
+    color: $color-primary-dark;
   }
 
-  &__icon,
-  &__clear {
-    position: absolute;
-    right: 14px;
-    top: 15px;
+  &__create-label {
+    color: $sb-green;
+    margin-right: 5px;
   }
 
-  &__clear {
-    @include resetButtonStyle();
+  &__empty {
+    color: $sb-dark-blue-50;
+    display: block;
+    font-size: 1.3rem;
+    text-align: center;
   }
 }

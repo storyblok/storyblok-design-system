@@ -1,39 +1,44 @@
 <template>
-  <div
-    class="sb-select-list"
-    :class="{ 'sb-select-list--filterable': filterable }"
-    @keydown="handleKeyDown"
-  >
-    <SbSelectListSearch
-      v-if="filterable"
-      v-model="searchInput"
-      :placeholder="filterPlaceholder"
-    />
-
+  <div class="sb-select-list" @keydown="handleKeyDown">
     <ul>
-      <SbSelectListItem
-        v-for="(option, key) in filteredOptions"
-        :key="key"
-        :label="option[itemLabel]"
-        :value="option[itemValue]"
-        :input-value="value"
-        :multiple="multiple"
-        :use-avatars="useAvatars"
-        @emit-value="handleEmitValue"
-      />
+      <template v-if="hasOptions">
+        <SbSelectListItem
+          v-for="(option, key) in options"
+          :key="key"
+          :label="option[itemLabel]"
+          :value="option[itemValue]"
+          :input-value="value"
+          :multiple="multiple"
+          :use-avatars="useAvatars"
+          @emit-value="handleEmitValue"
+        />
+      </template>
+      <li
+        v-else-if="!hasOptions && allowCreate && multiple"
+        class="sb-select-list__create"
+        @keydown.enter="handleEmitValue(searchInput)"
+        @click="handleEmitValue(searchInput)"
+      >
+        <span class="sb-select-list__create-label">Create tag</span> "{{
+          searchInput
+        }}"
+      </li>
+      <li v-else-if="!hasOptions">
+        <span class="sb-select-list__empty">{{ noDataText }}</span>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { includes, toLowerCase } from '../../../utils'
 import SbSelectListItem from './SelectListItem'
-import SbSelectListSearch from './SelectListSearch'
 
 export default {
   name: 'SbSelectInner',
 
-  components: { SbSelectListItem, SbSelectListSearch },
+  components: {
+    SbSelectListItem,
+  },
 
   inject: ['selectContext'],
 
@@ -45,12 +50,8 @@ export default {
     },
 
     // options
+    allowCreate: Boolean,
     multiple: Boolean,
-    filterable: Boolean,
-    filterPlaceholder: {
-      type: String,
-      default: 'Filter options',
-    },
     options: {
       type: Array,
       required: true,
@@ -65,39 +66,23 @@ export default {
       type: String,
       default: 'value',
     },
+    noDataText: {
+      type: String,
+      required: true,
+    },
+    searchInput: {
+      type: String,
+      required: true,
+    },
   },
-
-  data: () => ({
-    searchInput: '',
-  }),
 
   computed: {
     context() {
       return this.selectContext()
     },
 
-    filteredOptions() {
-      if (this.filterable && this.hasValueToSearch) {
-        return this.transformedOptions.filter((opt) => {
-          return includes(
-            toLowerCase(opt[this.itemLabel]),
-            toLowerCase(this.searchInput)
-          )
-        })
-      }
-
-      return this.transformedOptions
-    },
-
-    hasValueToSearch() {
-      return this.searchInput && this.searchInput.length > 0
-    },
-
-    transformedOptions() {
-      return this.options.map((opt) => {
-        if (typeof opt === 'object') return opt
-        return { [this.itemLabel]: opt, [this.itemValue]: opt }
-      })
+    hasOptions() {
+      return this.options.length
     },
   },
 
