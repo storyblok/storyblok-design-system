@@ -118,7 +118,7 @@ const SbButton = {
             'sb-button--full': this.isFullWidth,
             'sb-button--rounded': this.isRounded,
             'sb-button--has-icon-only': this.hasIconOnly,
-            'sb-button--has-icon': this.icon,
+            'sb-button--has-icon': this.icon && !this.isLoading,
             'sb-button--has-icon-right': this.iconRight,
             'sb-button--loading': this.isLoading,
           },
@@ -134,12 +134,6 @@ const SbButton = {
       )
     }
 
-    const content = [
-      this.icon && renderIcon(this.icon),
-      !this.hasIconOnly && renderLabel(),
-      this.iconRight && renderIcon(this.iconRight),
-    ]
-
     if (this.isLoading) {
       const whiteLoading = [
         'primary',
@@ -150,7 +144,7 @@ const SbButton = {
       ]
 
       return renderButton([
-        content,
+        renderLabel(),
         h(SbLoading, {
           props: {
             type: 'spinner',
@@ -161,6 +155,12 @@ const SbButton = {
         }),
       ])
     }
+
+    const content = [
+      this.icon && renderIcon(this.icon),
+      !this.hasIconOnly && renderLabel(),
+      this.iconRight && renderIcon(this.iconRight),
+    ]
 
     if (this.hasIconOnly && this.iconDescription) {
       return h(

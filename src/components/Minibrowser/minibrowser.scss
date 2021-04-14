@@ -6,7 +6,6 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   @include popoverComponent();
 
   max-width: 300px;
-  padding: 10px;
   width: 100%;
 
   // components
@@ -14,31 +13,38 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     color: $sb-dark-blue-50;
     position: relative;
 
-    &-icon {
-      left: 5px;
+    &-icon,
+    &-clear {
       position: absolute;
-      top: 10px;
+      right: $general-padding;
+      top: 15px;
     }
 
     &-clear {
       @include resetButtonStyle();
-
-      position: absolute;
-      right: $general-padding;
-      top: 10px;
     }
 
     &--loading {
       .sb-icon {
         height: 26px;
         right: 14px;
-        top: 10px;
+        top: 14px;
         width: 26px;
       }
     }
   }
 
+  &__input {
+    border: 0;
+    display: block;
+    font-size: $font-size-sm;
+    padding: $general-padding;
+    position: relative;
+    width: 100%;
+  }
+
   &__list-container {
+    border-top: 1px solid $light;
     max-height: 250px;
     overflow-y: scroll;
     padding: 13.5px 0;
@@ -76,12 +82,6 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     &-icon {
       margin-right: 10px;
     }
-
-    .base-icon-button {
-      @include base--icon-hover;
-
-      margin-right: -6px;
-    }
   }
 
   &__list-item {
@@ -90,29 +90,14 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     display: flex;
     padding: 9px $general-padding;
 
-    &-container {
-      flex: 1;
-    }
-
     &-name {
       color: $color-primary-dark;
-      display: block;
+      flex: 1;
       font-size: $font-size-md;
-    }
-
-    &-subtitle {
-      color: $light-gray;
-      display: block;
-      font-size: $font-size-xs;
-      margin-top: 2px;
     }
 
     &-icon {
       margin-right: 10px;
-    }
-
-    &--active {
-      background-color: $light-50;
     }
 
     &:hover {
@@ -135,28 +120,42 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   }
 
   &--full-height &__list-header {
-    padding: 6px;
+    padding: 6px $full-height-padding;
   }
 
   &--full-height &__list-container {
     border-top: 0;
     max-height: none;
-    padding-top: 5px;
   }
 
   &--full-height &__list-item {
     border-radius: 5px;
-    padding: 6px;
+    padding: 6px $full-height-padding;
     position: relative;
   }
 
   &--full-height &__input {
-    padding: 13px 13px 13px 32px;
+    padding: 20px $full-height-padding;
   }
 
   &--full-height &__input-container &__input-container-icon,
   &--full-height &__input-container &__input-container-clear {
     right: $full-height-padding;
+  }
+
+  &--full-height &__input-container {
+    &::before {
+      background-color: $light;
+      bottom: 0;
+      content: '';
+      display: block;
+      height: 1px;
+      left: 0;
+      position: absolute;
+      transform: translateX($full-height-padding);
+      width: calc(100% - #{$full-height-padding * 2});
+      z-index: 2;
+    }
   }
 
   &--full-height &__breadcrumbs {

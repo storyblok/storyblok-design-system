@@ -1,6 +1,4 @@
 import SbLoading from '../index'
-import SbBlockUI from '../../BlockUI'
-import Loading from '../components/Loading'
 import { mount } from '@vue/test-utils'
 import { loadingSizes } from '../utils'
 
@@ -28,7 +26,7 @@ describe('Testing loading component', () => {
       showPercentage: true,
     })
 
-    expect(wrapper.find('progress').attributes('class')).toBe('sb-loading__bar')
+    expect(wrapper.find('progress').attributes('class')).toBe('sb-loading--bar')
     expect(wrapper.find('label').text()).toBe('50%')
   })
 
@@ -40,8 +38,8 @@ describe('Testing loading component', () => {
       showPercentage: true,
     })
 
-    expect(wrapper.findComponent(Loading).attributes('class')).toBe(
-      'sb-loading sb-loading__spinner sb-loading__spinner--normal'
+    expect(wrapper.find('div').attributes('class')).toBe(
+      'sb-loading sb-loading--spinner-normal sb-loading--spinner'
     )
     expect(wrapper.find('svg').attributes('class')).toBe(
       'sb-icon sb-icon--normal'
@@ -57,8 +55,6 @@ describe('Testing loading component', () => {
       uiBlock: true,
     })
 
-    expect(wrapper.findComponent(SbBlockUI).attributes('class')).toBe(
-      'sb-block-ui'
-    )
+    expect(wrapper.find('div').attributes('class')).toBe('sb-block-ui')
   })
 })
