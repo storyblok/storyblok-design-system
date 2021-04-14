@@ -102,7 +102,7 @@
   }
 
   &--loading {
-    min-height: 49px;
+    max-height: 49px;
 
     > .sb-icon {
       opacity: 0;
