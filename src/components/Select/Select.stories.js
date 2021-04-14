@@ -1,6 +1,6 @@
 import { SbSelect } from '.'
 import { SbMinibrowser } from '../Minibrowser'
-import { browserOptionsData } from '../Minibrowser/Minibrowser.stories'
+import { MOCK_DATA } from '../Minibrowser/Minibrowser.stories'
 
 // @vue/component
 const SelectTemplate = (args) => ({
@@ -158,7 +158,7 @@ export const WithMinibrowser = (args) => ({
 
   data: () => ({
     internalValue: null,
-    minibrowserOptions: [...browserOptionsData],
+    minibrowserOptions: [...MOCK_DATA.FIRST_LEVEL],
   }),
 
   watch: {

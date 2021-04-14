@@ -1,12 +1,23 @@
 <template>
   <li>
-    <component :is="as" class="sb-minibrowser__list-item" @click="handleClick">
+    <component
+      :is="as"
+      class="sb-minibrowser__list-item"
+      :class="{ 'sb-minibrowser__list-item--active': isActive }"
+      @click="handleClick"
+    >
       <span class="sb-minibrowser__list-item-icon">
         <SbIcon v-if="isIconVisible" v-bind="iconProps" />
         <slot name="icon" />
       </span>
 
-      <span class="sb-minibrowser__list-item-name"> {{ label }} </span>
+      <div class="sb-minibrowser__list-item-container">
+        <span class="sb-minibrowser__list-item-name"> {{ label }} </span>
+
+        <span v-if="subtitle" class="sb-minibrowser__list-item-subtitle">
+          {{ subtitle }}
+        </span>
+      </div>
 
       <slot />
     </component>
@@ -30,6 +41,7 @@ export default {
       type: String,
       default: 'a',
     },
+    isActive: Boolean,
     isParent: Boolean,
     isEntry: Boolean,
     items: {
@@ -39,6 +51,10 @@ export default {
     label: {
       type: String,
       required: true,
+    },
+    subtitle: {
+      type: String,
+      default: null,
     },
     value: {
       type: [String, Number],

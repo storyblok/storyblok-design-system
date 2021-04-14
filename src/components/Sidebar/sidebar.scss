@@ -58,7 +58,7 @@
 
   &-logo {
     color: $white;
-    height: 33px;
+    height: 26px;
 
     img {
       width: 100%;
@@ -102,7 +102,7 @@
     padding: 13px;
     position: relative;
     text-decoration: none;
-    transition: all 0.1s ease-in;
+    transition: $base-transition;
     vertical-align: middle;
 
     &:hover,
