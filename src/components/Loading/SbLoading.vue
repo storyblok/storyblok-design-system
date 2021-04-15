@@ -9,7 +9,9 @@
       color,
       uiBlock,
     }"
-  />
+  >
+    <slot />
+  </Loading>
   <SbBlockUI v-else>
     <Loading
       v-bind="{
@@ -20,7 +22,9 @@
         color,
         uiBlock,
       }"
-    />
+    >
+      <slot />
+    </Loading>
   </SbBlockUI>
 </template>
 <script>

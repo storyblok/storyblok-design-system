@@ -1,5 +1,6 @@
 import SbLoading from './SbLoading.vue'
+import SbLoadingPlaceholder from './components/Placeholder.vue'
 
-export { SbLoading }
+export { SbLoading, SbLoadingPlaceholder }
 
 export default SbLoading

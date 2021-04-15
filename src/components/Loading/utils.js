@@ -3,9 +3,15 @@
  */
 export const loadingSizes = ['small', 'normal', 'large', 'x-large']
 
+/**
+ * @type {Array<String>}
+ */
+export const loadingTypes = ['spinner', 'bar', 'placeholder']
+
 export const sharedProps = {
   type: {
     type: String,
+    validator: (type) => loadingTypes.indexOf(type) !== -1,
     default: 'spinner',
   },
   size: {

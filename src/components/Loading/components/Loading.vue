@@ -1,22 +1,29 @@
 <template>
   <div :class="returnLoadingClasses">
-    <progress
-      v-if="type === 'bar'"
-      id="progress-bar-loading"
-      class="sb-loading__bar"
-      :value="value"
-      min="0"
-      max="100"
-    />
-    <SbIcon
-      v-if="type === 'spinner'"
-      :size="size"
-      name="loading"
-      :color="color"
-    />
-    <label v-if="showPercentage" :class="returnLabelFor" :for="returnLabelFor">
-      {{ valueLabel }}
-    </label>
+    <div v-if="type !== 'placeholder'">
+      <progress
+        v-if="type === 'bar'"
+        id="progress-bar-loading"
+        class="sb-loading__bar"
+        :value="value"
+        min="0"
+        max="100"
+      />
+      <SbIcon
+        v-if="type === 'spinner'"
+        :size="size"
+        name="loading"
+        :color="color"
+      />
+      <label
+        v-if="showPercentage"
+        :class="returnLabelFor"
+        :for="returnLabelFor"
+      >
+        {{ valueLabel }}
+      </label>
+    </div>
+    <slot v-else />
   </div>
 </template>
 <script>

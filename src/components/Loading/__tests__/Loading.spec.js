@@ -1,12 +1,17 @@
-import SbLoading from '../index'
+import { SbLoading, SbLoadingPlaceholder } from '../index'
 import SbBlockUI from '../../BlockUI'
-import Loading from '../components/Loading'
 import { mount } from '@vue/test-utils'
 import { loadingSizes } from '../utils'
 
 const factory = (propsData) => {
   return mount(SbLoading, {
     propsData,
+    slots: {
+      default: '<SbLoadingPlaceholder width="20px" height="10px" />',
+    },
+    stubs: {
+      SbLoadingPlaceholder,
+    },
   })
 }
 
@@ -40,7 +45,7 @@ describe('Testing loading component', () => {
       showPercentage: true,
     })
 
-    expect(wrapper.findComponent(Loading).attributes('class')).toBe(
+    expect(wrapper.findComponent(SbLoading).attributes('class')).toBe(
       'sb-loading sb-loading__spinner sb-loading__spinner--normal'
     )
     expect(wrapper.find('svg').attributes('class')).toBe(
@@ -60,5 +65,21 @@ describe('Testing loading component', () => {
     expect(wrapper.findComponent(SbBlockUI).attributes('class')).toBe(
       'sb-block-ui'
     )
+  })
+
+  it('should render loaading placeholder', () => {
+    const wrapper = factory({
+      type: 'placeholder',
+    })
+
+    const placeholder = wrapper.findComponent(SbLoadingPlaceholder)
+
+    expect(placeholder.exists()).toBe(true)
+
+    expect(placeholder.attributes('class')).toBe('sb-loading__placeholder')
+
+    expect(placeholder.props('width')).toBe('20px')
+
+    expect(placeholder.props('height')).toBe('10px')
   })
 })
