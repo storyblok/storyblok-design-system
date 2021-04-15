@@ -58,3 +58,17 @@
   cursor: pointer;
   padding: 0;
 }
+
+@mixin base--icon-hover {
+  border-radius: $base-border-radius;
+  padding: 6px;
+  transition: $base-transition;
+
+  &:hover {
+    background-color: $light-50;
+
+    .sb-icon {
+      color: $sb-dark-blue;
+    }
+  }
+}

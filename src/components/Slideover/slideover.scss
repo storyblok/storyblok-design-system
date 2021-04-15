@@ -24,13 +24,15 @@
   }
 
   &__close-button {
+    @include base--icon-hover;
+
     appearance: none;
     background-color: transparent;
     border: 0;
     cursor: pointer;
     position: absolute;
     right: 20px;
-    top: 20px;
+    top: 23px;
     z-index: 2;
   }
 }
