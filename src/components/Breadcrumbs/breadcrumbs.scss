@@ -1,23 +1,23 @@
 .sb-breadcrumbs {
-  align-items: center;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  position: relative;
+  align-items: center;
 
   &__item {
-    color: $primary-text-color;
     // position: relative;
     display: inline-flex;
     font-size: $font-size-sm;
-
+    color: $primary-text-color;
+  
     &--active {
       color: $color-primary-dark;
     }
 
     a {
+      text-decoration: none;
       color: $primary-text-color;
       cursor: pointer;
-      text-decoration: none;
     }
 
     a:hover {
@@ -26,26 +26,25 @@
   }
 
   &__separator {
-    cursor: pointer;
     display: inline-flex;
     list-style: none;
+    cursor: pointer;
     transition: 0.1s ease-in-out;
 
     &--active {
-      background-color: $light-50;
       transform: rotate(90deg);
+      background-color: $light-50;
     }
   }
 
   &__dropdown {
-    @include generalBoxShadow();
-
-    display: block;
-    left: 0;
-    margin: 0;
-    padding: 9px 0;
     position: absolute;
     top: calc(100% + 10px);
+    margin: 0;
+    left: 0;
+    display: block;
+    padding: 9px 0;
+    @include generalBoxShadow();
 
     .sb-breadcrumbs__item {
       display: block;
@@ -78,18 +77,12 @@
   }
 
   &--large-section {
-    top: -6px;
-
     > .sb-breadcrumbs__item:last-child {
-      color: $primary-text-color;
-      font-size: $text-header;
-      font-weight: $font-weight-bold;
       width: 100%;
-
-      a {
-        cursor: text;
-        text-decoration: none;
-      }
+      margin-top: 15px;
+      font-weight: $font-weight-bold;
+      font-size: $text-header;
+      color: $primary-text-color;
     }
   }
 }

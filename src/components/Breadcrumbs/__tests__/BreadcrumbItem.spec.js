@@ -1,7 +1,6 @@
 import { mount, RouterLinkStub, shallowMount } from '@vue/test-utils'
 import { SbBreadcrumbItem, SbBreadcrumbLink } from '../BreadcrumItem'
 import SbTooltip from '../../Tooltip'
-import SbIcon from '../../Icon'
 
 const factory = (propsData = {}) => {
   return mount(SbBreadcrumbItem, {
@@ -9,15 +8,13 @@ const factory = (propsData = {}) => {
   })
 }
 
-const factoryShallowMount = (propsData = {}, mountOptions = {}) => {
+const factoryShallowMount = (propsData = {}) => {
   return shallowMount(SbBreadcrumbLink, {
     stubs: {
       RouterLink: RouterLinkStub,
       NuxtLink: RouterLinkStub,
-      SbIcon,
     },
     propsData,
-    ...mountOptions,
   })
 }
 
@@ -108,92 +105,6 @@ describe('SbBreadcrumbItem component', () => {
         name: 'TestNuxtView',
       })
       expect(wrapper.text()).toBe('Just nuxt-link link')
-    })
-  })
-
-  describe('when use the default slot', () => {
-    it('should render the text in the default slot', () => {
-      const wrapper = factoryShallowMount(
-        {},
-        {
-          slots: {
-            default: ['In default slot'],
-          },
-        }
-      )
-
-      const linkTag = wrapper.find('a')
-      expect(linkTag.text()).toBe('In default slot')
-    })
-
-    it('should render a component inside default slot', () => {
-      const wrapper = factoryShallowMount(
-        {},
-        {
-          slots: {
-            default: ['<SbIcon name="home" />'],
-          },
-        }
-      )
-
-      const iconComponent = wrapper.findComponent(SbIcon)
-      expect(iconComponent.exists()).toBe(true)
-      expect(iconComponent.props('name')).toBe('home')
-    })
-
-    it('should allow to render a component and a text inside default slot', () => {
-      const wrapper = factoryShallowMount(
-        {
-          href: '/testing',
-        },
-        {
-          slots: {
-            default: [
-              '<SbIcon name="calendar" />',
-              '<span>Link using default slot</span>',
-            ],
-          },
-        }
-      )
-
-      const iconComponent = wrapper.findComponent(SbIcon)
-      expect(iconComponent.exists()).toBe(true)
-      expect(iconComponent.props('name')).toBe('calendar')
-
-      const spanTag = wrapper.find('span')
-      expect(spanTag.text()).toBe('Link using default slot')
-
-      const linkTag = wrapper.find('a')
-      expect(linkTag.attributes('href')).toBe('/testing')
-    })
-
-    it('should allow to render a component and a text inside default slot using a router tag', () => {
-      const mountOptions = {
-        propsData: {
-          to: {
-            name: 'TestNuxtView',
-          },
-          as: 'nuxt-link',
-        },
-        slots: {
-          default: [
-            '<SbIcon name="calendar" />',
-            '<span>Link using default slot</span>',
-          ],
-        },
-      }
-      const wrapper = factoryShallowMount({}, mountOptions)
-
-      expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
-        name: 'TestNuxtView',
-      })
-
-      const iconComponent = wrapper.findComponent(SbIcon)
-      expect(iconComponent.exists()).toBe(true)
-      expect(iconComponent.props('name')).toBe('calendar')
-
-      const spanTag = wrapper.find('span')
-      expect(spanTag.text()).toBe('Link using default slot')
     })
   })
 })

@@ -36,9 +36,10 @@ const SelectTemplate = (args) => ({
       :multiple="multiple"
       :left-icon="leftIcon"
       :filterable="filterable"
-      :filter-placeholder="filterPlaceholder"
       :use-avatars="useAvatars"
       :inline="inline"
+      :no-data-text="noDataText"
+      :allow-create="allowCreate"
       v-model="internalValue"
       style="max-width: 300px"
     />
@@ -108,9 +109,10 @@ export default {
     multiple: false,
     filterable: false,
     leftIcon: null,
-    filterPlaceholder: 'Filter Options',
     useAvatars: false,
     inline: false,
+    noDataText: 'Sorry, no result found.',
+    allowCreate: false,
   },
 }
 
@@ -122,17 +124,31 @@ Multiple.args = {
   multiple: true,
 }
 
-export const WithIcon = SelectTemplate.bind({})
-
-WithIcon.args = {
-  leftIcon: 'calendar',
-}
-
 export const Filterable = SelectTemplate.bind({})
 
 Filterable.args = {
   filterable: true,
-  filterPlaceholder: 'Filter Options',
+}
+
+export const MultipleAndFilterable = SelectTemplate.bind({})
+
+MultipleAndFilterable.args = {
+  multiple: true,
+  filterable: true,
+}
+
+export const AllowCreate = SelectTemplate.bind({})
+
+AllowCreate.args = {
+  allowCreate: true,
+  filterable: true,
+  multiple: true,
+}
+
+export const WithIcon = SelectTemplate.bind({})
+
+WithIcon.args = {
+  leftIcon: 'calendar',
 }
 
 export const WithAvatars = SelectTemplate.bind({})
@@ -186,7 +202,6 @@ export const WithMinibrowser = (args) => ({
       :label="label"
       :left-icon="leftIcon"
       :filterable="filterable"
-      :filter-placeholder="filterPlaceholder"
       :use-avatars="useAvatars"
       :inline="inline"
       v-model="internalValue"

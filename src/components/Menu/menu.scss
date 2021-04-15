@@ -2,7 +2,7 @@
   @include popoverComponent();
 
   background-color: $white;
-  min-width: 180px;
+  min-width: 176px;
   padding: 11px 0;
   z-index: 2;
 }
@@ -50,7 +50,7 @@
   &__title {
     color: $sb-dark-blue-50;
     font-size: $font-size-sm;
-    margin: 0 0 5px;
+    margin: 0;
     padding: 10px;
 
     &--bold {

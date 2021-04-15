@@ -1,13 +1,7 @@
 <template>
   <div class="sb-minibrowser__breadcrumbs">
     <SbBreadcrumbs>
-      <SbBreadcrumbItem
-        title="Back to root content directory"
-        href="#"
-        @click="clearNavigation"
-      >
-        <SbIcon name="home" />
-      </SbBreadcrumbItem>
+      <SbBreadcrumbItem label="Global" @click="clearNavigation" />
 
       <SbBreadcrumbSeparator />
 

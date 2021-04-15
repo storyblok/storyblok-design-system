@@ -4,8 +4,6 @@ import { waitMs } from '../../../utils/tests-utils'
 import { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader } from '..'
 import { WithGroupsSlot, MOCK_DATA } from '../Minibrowser.stories.js'
 
-import SbIcon from '../../Icon'
-
 describe('SbMinibrowser component', () => {
   const itemClass = '.sb-minibrowser__list-item-name'
   const breadcrumbClass = '.sb-breadcrumbs__item'
@@ -15,9 +13,6 @@ describe('SbMinibrowser component', () => {
       propsData: {
         breadcrumbs: [],
         options: [...MOCK_DATA.FIRST_LEVEL],
-      },
-      stubs: {
-        SbIcon,
       },
     })
 
@@ -62,10 +57,7 @@ describe('SbMinibrowser component', () => {
     // checking the breadcrumbs
     const breadcrumbsWrapper = wrapper.findAll(breadcrumbClass)
     const globalBreadcrumb = breadcrumbsWrapper.at(0)
-    const globalBreadcrumbIcon = globalBreadcrumb.findComponent(SbIcon)
-
-    expect(globalBreadcrumbIcon.exists()).toBe(true)
-    expect(globalBreadcrumbIcon.props('name')).toBe('home')
+    expect(globalBreadcrumb.text()).toBe('Global')
 
     await globalBreadcrumb.find('a').trigger('click')
     expect(wrapper.emitted('clear-navigation')).toBeTruthy()
