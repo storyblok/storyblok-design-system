@@ -242,8 +242,8 @@ export default {
       this.activeIndex = -1
 
       this.$nextTick(() => {
-        if (this.filterable && !this.value) {
-          this.populateSearchInput()
+        if (this.filterable && isString(this.value)) {
+          this.populateSearchInput(this.value)
         }
       })
     },
@@ -281,16 +281,14 @@ export default {
      * @param {Array<String>|String} value
      */
     populateSearchInput(value) {
-      const val = value || this.value
-
       if (this.inline || this.multiple) {
         this.searchInput = ''
-      } else if (this.useAvatars && val) {
+      } else if (this.useAvatars && value) {
         this.$nextTick(() => {
           this.$nextTick(() => (this.searchInput = this.selectedItem.label))
         })
       } else {
-        this.searchInput = val
+        this.searchInput = value
       }
     },
 
