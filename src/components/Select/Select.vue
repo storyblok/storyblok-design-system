@@ -14,18 +14,12 @@
       :inline="inline"
       :label="label"
       :value="value"
-      :search-input="searchInput"
-      :filterable="filterable"
       :item-label="itemLabel"
       :item-value="itemValue"
       :left-icon="leftIcon"
       :use-avatars="useAvatars"
       :options="options"
-      :allow-create="allowCreate"
       @click="handleSelectInnerClick"
-      @input="handleSearchInput"
-      @emit-value="handleEmitValue"
-      @close-list="hideList"
       @clear-all-values="handleClearAllValues"
       @remove-item-value="handleRemoveItemValue"
     />
@@ -34,14 +28,13 @@
       v-if="!useMinibrowser"
       ref="list"
       :value="value"
-      :search-input="searchInput"
       :item-label="itemLabel"
       :item-value="itemValue"
-      :options="filteredOptions"
+      :options="options"
       :multiple="multiple"
+      :filterable="filterable"
+      :filter-placeholder="filterPlaceholder"
       :use-avatars="useAvatars"
-      :no-data-text="noDataText"
-      :allow-create="allowCreate"
       @emit-value="handleEmitValue"
     />
 
@@ -51,7 +44,7 @@
 
 <script>
 import { ClickOutside } from '../../directives'
-import { canUseDOM, includes, toLowerCase, isString } from '../../utils'
+import { canUseDOM, includes } from '../../utils'
 import SbSelectInner from './components/SelectInner'
 import SbSelectList from './components/SelectList'
 
@@ -97,8 +90,11 @@ export default {
       type: Array,
       default: () => [],
     },
-    allowCreate: Boolean,
     filterable: Boolean,
+    filterPlaceholder: {
+      type: String,
+      default: 'Filter options',
+    },
     inline: Boolean,
     useAvatars: Boolean,
     itemLabel: {
@@ -109,10 +105,6 @@ export default {
       type: String,
       default: 'value',
     },
-    noDataText: {
-      type: String,
-      default: 'Sorry, no result found.',
-    },
   },
 
   data: () => ({
@@ -120,7 +112,6 @@ export default {
     activeIndex: -1,
     listItems: [],
     innerElement: null,
-    searchInput: '',
   }),
 
   computed: {
@@ -140,64 +131,33 @@ export default {
       }
     },
 
-    selectedItem() {
-      return this.options.find((option) => {
-        return option[this.itemValue] === this.value
-      })
-    },
-
     useMinibrowser() {
       return this.$slots.minibrowser && this.innerElement
-    },
-
-    filteredOptions() {
-      if (this.filterable && this.hasValueToSearch) {
-        return this.transformedOptions.filter((opt) => {
-          return includes(
-            toLowerCase(opt[this.itemLabel]),
-            toLowerCase(this.searchInput)
-          )
-        })
-      }
-
-      return this.transformedOptions
-    },
-
-    hasValueToSearch() {
-      return this.searchInput && this.searchInput.length > 0
-    },
-
-    transformedOptions() {
-      return this.options.map((opt) => {
-        if (typeof opt === 'object') return opt
-        return { [this.itemLabel]: opt, [this.itemValue]: opt }
-      })
     },
   },
 
   watch: {
-    activeIndex() {
-      this.$_updateNavigation()
-    },
+    activeIndex(index) {
+      if (index !== -1) {
+        this.$nextTick(() => {
+          this.listItems[this.activeIndex] &&
+            this.listItems[this.activeIndex].focus()
 
-    filteredOptions() {
+          this.$_updateTabIndex(this.activeIndex)
+        })
+
+        return
+      }
+
       this.$nextTick(() => {
-        this.$_loadListItems()
+        this.$_focusInner()
+
+        this.$_resetTabIndex()
       })
     },
   },
 
   mounted() {
-    if (this.allowCreate && (!this.filterable || !this.multiple)) {
-      console.warn(
-        `[SbSelect]: Note that for 'allow-create' to work, 'filterable' and 'multiple' must be true.`
-      )
-    } else if (this.filterable && this.inline) {
-      console.warn(
-        `[SbSelect]: Note that 'filterable' does not work when 'inline' is true.`
-      )
-    }
-
     this.$_loadListItems()
 
     this.$nextTick(() => {
@@ -215,10 +175,7 @@ export default {
 
       if (this.filterable) {
         this.$nextTick(() => {
-          canUseDOM &&
-            this.$refs.inner.$el
-              .querySelector('.sb-select-inner__input')
-              .focus()
+          canUseDOM && document.querySelector('input[type="search"]').focus()
         })
         return
       }
@@ -240,12 +197,6 @@ export default {
       this.isOpen = false
       this.$emit('hide')
       this.activeIndex = -1
-
-      this.$nextTick(() => {
-        if (this.filterable && isString(this.value)) {
-          this.populateSearchInput(this.value)
-        }
-      })
     },
 
     /**
@@ -270,26 +221,9 @@ export default {
         return
       }
 
-      this.populateSearchInput(value)
       this.$emit('input', value)
       this.$_focusInner()
-      this.hideList()
-    },
-
-    /**
-     * populates 'search input' variable depending on the type
-     * @param {Array<String>|String} value
-     */
-    populateSearchInput(value) {
-      if (this.inline || this.multiple) {
-        this.searchInput = ''
-      } else if (this.useAvatars && value) {
-        this.$nextTick(() => {
-          this.$nextTick(() => (this.searchInput = this.selectedItem.label))
-        })
-      } else {
-        this.searchInput = value
-      }
+      this.isOpen = false
     },
 
     /**
@@ -327,21 +261,12 @@ export default {
     },
 
     /**
-     * set value emmited in search field
-     */
-    handleSearchInput(event) {
-      this.searchInput = !isString(event) ? event.target.value : event
-      if (this.searchInput && this.filterable) this.showList()
-    },
-
-    /**
      * set focus to first list item
      */
     focusOnFirstItem() {
       this.showList()
 
       this.activeIndex = 0
-      this.$_updateNavigation()
     },
 
     /**
@@ -409,28 +334,6 @@ export default {
           this.listItems = menuNode.querySelectorAll('li')
         }
       }
-    },
-
-    /**
-     * force update navigation index
-     */
-    $_updateNavigation() {
-      if (this.activeIndex !== -1) {
-        this.$nextTick(() => {
-          this.listItems[this.activeIndex] &&
-            this.listItems[this.activeIndex].focus()
-
-          this.$_updateTabIndex(this.activeIndex)
-        })
-
-        return
-      }
-
-      this.$nextTick(() => {
-        this.$_focusInner()
-
-        this.$_resetTabIndex()
-      })
     },
   },
 }

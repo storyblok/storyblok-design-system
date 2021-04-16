@@ -31,14 +31,10 @@
   font-family: $primary-font-family;
   font-size: $text-medium-small;
   font-weight: $font-weight-medium;
-  padding: 14px 20px;
+  padding: 14px 24px;
   position: relative;
   text-align: center;
   z-index: 0;
-
-  &:hover {
-    color: $primary-text-color;
-  }
 
   // modifiers
   &--is-active {
@@ -87,15 +83,13 @@
 
   // elements
   &__add-button {
-    @include base--icon-hover;
-
     align-items: center;
     background-color: transparent;
     border: 0;
     cursor: pointer;
     display: flex;
     justify-content: center;
-    margin-left: -12px;
+    padding: 0;
     vertical-align: bottom;
   }
 

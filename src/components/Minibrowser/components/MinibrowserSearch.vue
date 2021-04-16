@@ -7,7 +7,7 @@
   >
     <input
       ref="input"
-      class="sb-textfield__input sb-textfield__input--default sb-textfield__input--ghost-light"
+      class="sb-minibrowser__input"
       type="search"
       :value="value"
       :placeholder="placeholder"
@@ -17,14 +17,13 @@
 
     <button
       v-if="showCloseIcon"
-      :aria-label="clearSearchLabel"
       class="sb-minibrowser__input-container-clear"
       @click="clearSearchInputValue"
     >
       <SbIcon name="x-clear" color="light-gray" />
     </button>
 
-    <SbIcon class="sb-minibrowser__input-container-icon" v-bind="icon" />
+    <SbIcon v-else class="sb-minibrowser__input-container-icon" v-bind="icon" />
   </div>
 </template>
 
@@ -41,10 +40,6 @@ export default {
   inject: ['browserContext'],
 
   props: {
-    clearSearchLabel: {
-      type: String,
-      default: null,
-    },
     placeholder: {
       type: String,
       default: null,
@@ -68,15 +63,19 @@ export default {
     },
 
     isLoading() {
-      return this.context.isLoading
+      return (
+        this.context.isOnLoadingFilter ||
+        this.context.isOnLazyLoad ||
+        this.context.isLoading
+      )
     },
 
-    hasValue() {
-      return typeof this.value === 'string' && this.value.length > 0
+    isOnFilter() {
+      return this.context.isOnFilter
     },
 
     showCloseIcon() {
-      return this.hasValue && !this.isLoading
+      return this.isOnFilter && !this.isLoading
     },
   },
 

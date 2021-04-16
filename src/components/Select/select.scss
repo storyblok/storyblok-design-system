@@ -66,18 +66,7 @@
   display: flex;
   flex: 1;
   font-size: $font-size-md;
-  padding: 11px 10px 11px 17px;
-
-  &:hover {
-    border-color: $sb-green;
-  }
-
-  &:focus {
-    border-color: $sb-green;
-    border-radius: 5px;
-    box-shadow: 0 0 0 3px $sb-green-25;
-    outline: none;
-  }
+  padding: 11px 9px 11px 11px;
 
   .sb-tag {
     margin: 4px;
@@ -92,11 +81,7 @@
     display: flex;
     flex: 1;
     flex-wrap: wrap;
-    margin: -4px 0 -4px -4px;
-  }
-
-  &__tags &__input {
-    margin-left: 4px;
+    margin: -4px;
   }
 
   &__clear {
@@ -106,33 +91,25 @@
     border-radius: 50%;
     color: $light-gray;
     cursor: pointer;
+    margin-right: 5px;
     padding: 0;
   }
 
-  &__input {
-    border: 0;
-    color: $color-primary-dark;
+  &__label {
     flex: 1;
-    font-size: inherit;
-    outline: none;
-    padding: 0;
-    width: 100%;
-
-    &:read-only {
-      cursor: pointer;
-    }
-
-    &::placeholder {
-      color: $sb-dark-blue-50;
-    }
   }
 
   &__avatar {
-    margin: -1px 10px -1px 0;
+    flex: 1;
   }
 
   &__chevron,
   &:hover &__chevron {
+    color: $color-primary-dark;
+  }
+
+  // modifiers
+  &--with-value {
     color: $color-primary-dark;
   }
 }
@@ -142,11 +119,10 @@
   @include listPosition();
 
   background-color: $white;
-  box-sizing: border-box;
   display: none;
   flex: 1;
   min-width: 176px;
-  padding: 13px 0;
+  padding: 10px 0;
   width: 100%;
 
   ul {
@@ -155,8 +131,7 @@
     padding: 0;
   }
 
-  &__item,
-  &__create {
+  &__item {
     align-items: center;
     appearance: none;
     background-color: $white;
@@ -166,35 +141,45 @@
     display: flex;
     font-size: $font-size-md;
     margin: 0;
-    padding: 10px 17px;
+    padding: 10px 20px;
     text-align: left;
     width: 100%;
 
     &:hover,
     &:focus {
       background-color: $light-50;
-      outline: none;
     }
 
     &--selected {
-      background-color: darken($light-50, 1%);
+      background-color: $light-50;
     }
   }
 
-  &__item-name,
-  &__create {
-    color: $color-primary-dark;
+  &--filterable {
+    padding-top: 0;
+  }
+}
+
+.sb-select-list-search {
+  border-bottom: 1px solid $light;
+  display: block;
+  position: relative;
+
+  input {
+    border: 0;
+    font-size: $font-size-sm;
+    padding: 20px;
+    width: 100%;
   }
 
-  &__create-label {
-    color: $sb-green;
-    margin-right: 5px;
+  &__icon,
+  &__clear {
+    position: absolute;
+    right: 14px;
+    top: 15px;
   }
 
-  &__empty {
-    color: $sb-dark-blue-50;
-    display: block;
-    font-size: 1.3rem;
-    text-align: center;
+  &__clear {
+    @include resetButtonStyle();
   }
 }
