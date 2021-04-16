@@ -44,6 +44,7 @@
     color: $sb-dark-blue;
     font-size: $text-medium-small;
     padding: 15px 17px;
+    transition: $base-transition;
     width: 100%;
 
     &:disabled {
@@ -100,6 +101,27 @@
       border-radius: 0;
 
       &:focus {
+        outline: none;
+      }
+    }
+
+    &--ghost-light {
+      background-color: $light-25;
+      border: 1px solid transparent;
+      border-radius: $base-border-radius;
+      display: block;
+      font-size: $font-size-sm;
+      padding: 13px 0 13px 32px;
+      position: relative;
+
+      &:hover {
+        border-color: $sb-green;
+      }
+
+      &:focus {
+        border-color: $sb-green;
+        border-radius: 5px;
+        box-shadow: 0 0 0 3px $sb-green-25;
         outline: none;
       }
     }

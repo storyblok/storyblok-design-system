@@ -8,6 +8,7 @@
     }"
   >
     <SbMinibrowserSearch
+      :clear-search-label="clearSearchLabel"
       :value="searchInput"
       :placeholder="placeholder"
       @input="handleSearchInput"
@@ -97,6 +98,10 @@ export default {
     },
 
     // input properties
+    clearSearchLabel: {
+      type: String,
+      default: 'Clear minibrowser search',
+    },
     placeholder: {
       type: String,
       default: 'Search content items',

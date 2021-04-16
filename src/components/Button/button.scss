@@ -8,7 +8,7 @@
   font-size: $font-size-lg;
   justify-content: center;
   padding: 14px 28px;
-  transition: all 0.1s ease-in-out;
+  transition: $base-transition;
   vertical-align: middle;
 
   .sb-loading {
@@ -102,10 +102,14 @@
   }
 
   &--loading {
-    min-height: 49px;
+    max-height: 49px;
+
+    > .sb-icon {
+      opacity: 0;
+    }
 
     .sb-button__label {
-      opacity: 0;
+      opacity: 0 !important;
     }
   }
 
@@ -125,7 +129,7 @@
   }
 
   &--small#{&}--loading {
-    min-height: 37px;
+    min-height: 34px;
   }
 
   &--small#{&}--has-icon,
@@ -188,7 +192,7 @@
   }
 
   &--has-icon-only#{&}--small {
-    min-height: 37px;
+    min-height: 34px;
     padding: 0 7px;
   }
 

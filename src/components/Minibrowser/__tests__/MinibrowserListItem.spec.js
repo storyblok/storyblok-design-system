@@ -76,4 +76,20 @@ describe('SbMinibrowserListItem component', () => {
         .classes('sb-minibrowser__list-item--active')
     ).toBe(true)
   })
+
+  it('should render the subtitle text', () => {
+    const wrapper = factory({
+      propsData: {
+        label: 'An awesome label',
+        subtitle: 'An awesome subtitle',
+      },
+    })
+
+    expect(wrapper.find('.sb-minibrowser__list-item-name').text()).toBe(
+      'An awesome label'
+    )
+    expect(wrapper.find('.sb-minibrowser__list-item-subtitle').text()).toBe(
+      'An awesome subtitle'
+    )
+  })
 })

@@ -1,53 +1,53 @@
 .sb-upload-dialog {
-  border-radius: 5px;
   background-color: $white;
-  width: 100%;
-  max-width: 602px;
+  border-radius: 5px;
+  box-shadow: 0 3px 44px 13px rgba(0, 0, 0, 0.08);
+  display: inline-block;
   height: 48px;
   margin: 0 auto;
+  max-width: 602px;
   position: relative;
-  box-shadow: 0px 3px 44px 13px rgba(0, 0, 0, 0.08);
-  display: inline-block;;
+  width: 100%;
 
   svg {
     float: left;
-    padding-top: 14px;
     padding-left: 20px;
     padding-right: 14px;
+    padding-top: 14px;
   }
 
   &__label {
-    text-align: left;
     display: block;
     font-size: $font-size-md;
     padding-top: 14px;
+    text-align: left;
   }
 
-  .sb-loading--bar {
-    overflow: auto;
+  .sb-loading__bar {
+    border-radius: 0 0 5px 5px;
     bottom: -8px;
+    overflow: auto;
     position: relative;
-    border-radius: 0px 0px 5px 5px;
   }
 
-  .sb-loading--bar::-webkit-progress-bar {
-    border-radius: 0px 0px 5px 5px;
+  .sb-loading__bar::-webkit-progress-bar {
+    border-radius: 0 0 5px 5px;
   }
 
-  .sb-loading--bar::-webkit-progress-value {
-    border-radius: 0px 0px 5px 5px;
+  .sb-loading__bar::-webkit-progress-value {
+    border-radius: 0 0 5px 5px;
   }
 
-  .sb-loading--bar::-moz-progress-bar {
-    border-radius: 0px 0px 5px 5px;
+  .sb-loading__bar::-moz-progress-bar {
+    border-radius: 0 0 5px 5px;
   }
 
   &__time-left {
     color: $sb-dark-blue-50;
+    float: right;
     font-size: $font-size-md;
     font-weight: $font-weight-regular;
-    float: right;
-    padding-right: 19px;
     margin-top: -14px;
+    padding-right: 19px;
   }
 }
