@@ -215,7 +215,10 @@ export default {
 
       if (this.filterable) {
         this.$nextTick(() => {
-          canUseDOM && document.querySelector('.sb-select-inner__input').focus()
+          canUseDOM &&
+            this.$refs.inner.$el
+              .querySelector('.sb-select-inner__input')
+              .focus()
         })
         return
       }
@@ -239,7 +242,7 @@ export default {
       this.activeIndex = -1
 
       this.$nextTick(() => {
-        if (this.filterable) {
+        if (this.filterable && !this.value) {
           this.populateSearchInput()
         }
       })

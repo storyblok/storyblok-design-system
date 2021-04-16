@@ -117,7 +117,7 @@ export default {
     },
     searchInput: {
       type: String,
-      required: true,
+      default: null,
     },
 
     useAvatars: Boolean,
