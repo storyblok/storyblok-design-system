@@ -13,10 +13,11 @@
   width: 100%;
 
   &__close-button {
+    @include base--icon-hover;
+
     background-color: $white;
     border: 0;
     cursor: pointer;
-    padding: 0;
     position: absolute;
     right: 14px;
     top: 14px;

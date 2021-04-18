@@ -24,10 +24,6 @@ const SbMenuItem = {
   inject: ['menuContext'],
 
   props: {
-    auxText: {
-      type: String,
-      default: null,
-    },
     icon: {
       type: String,
       default: null,
@@ -62,6 +58,7 @@ const SbMenuItem = {
       if (this.isDisabled) {
         event.preventDefault()
         event.stopPropagation()
+        return
       }
 
       closeMenu()
@@ -107,22 +104,14 @@ const SbMenuItem = {
       return h('span', this.$slots.default)
     }
 
-    const renderAuxText = () => {
-      if (this.auxText) {
-        return h('small', this.auxText)
-      }
-    }
-
     const typeClass = this.type ? `sb-menu-item--${this.type}` : null
     const iconClass = this.icon ? `sb-menu-item--has-icon` : null
-    const isDisabled = this.isDisabled ? `sb-menu-item--is-disabled` : null
-    const auxText = this.auxText ? `sb-menu-item--aux-text` : null
 
     return h(
       'button',
       {
         staticClass: 'sb-menu-item',
-        class: [typeClass, iconClass, isDisabled, auxText],
+        class: [typeClass, iconClass],
         attrs: {
           ...this.$attrs,
           role: 'menuitemradio',
@@ -133,7 +122,7 @@ const SbMenuItem = {
           keydown: this.handleKeyDown,
         },
       },
-      [this.icon && renderIcon(), renderLabel(), renderAuxText()]
+      [this.icon && renderIcon(), renderLabel()]
     )
   },
 }
@@ -168,6 +157,9 @@ const SbMenuGroup = {
       type: String,
       required: true,
     },
+    isTitleBold: {
+      type: Boolean,
+    },
   },
 
   render(h) {
@@ -183,6 +175,7 @@ const SbMenuGroup = {
           'p',
           {
             staticClass: 'sb-menu-group__title',
+            class: { 'sb-menu-group__title--bold': this.isTitleBold },
           },
           this.title
         ),

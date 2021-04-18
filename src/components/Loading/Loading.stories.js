@@ -1,5 +1,6 @@
-import SbLoading from './index'
+import { SbLoading, SbLoadingPlaceholder } from './index'
 import { availableColors } from '../../utils'
+import { loadingTypes, loadingSizes } from './utils'
 
 const LoadingTemplate = (args) => ({
   components: { SbLoading },
@@ -44,7 +45,7 @@ export default {
         'With the prop `type` you can choose which type of loading will be rendered.',
       control: {
         type: 'select',
-        options: ['spinner', 'bar'],
+        options: [...loadingTypes],
       },
     },
     size: {
@@ -53,7 +54,7 @@ export default {
         'With the prop `size` you can define the sizes of the component loading.',
       control: {
         type: 'select',
-        options: ['small', 'normal', 'large', 'x-large'],
+        options: [...loadingSizes],
       },
     },
     value: {
@@ -256,4 +257,30 @@ export const BlockingUiLoadingProgressBar = LoadingTemplate.bind({})
 BlockingUiLoadingProgressBar.args = {
   uiBlock: true,
   type: 'bar',
+}
+
+export const LoadingWithPlaceholder = (args) => ({
+  components: { SbLoading, SbLoadingPlaceholder },
+  props: Object.keys(args),
+  template: `
+    <SbLoading :type="type">
+      <SbLoadingPlaceholder :width="width" :height="height" style="margin-bottom: 10px"/>
+      <SbLoadingPlaceholder :width="width" :height="height" style="margin-bottom: 10px"/>
+    </SbLoading>
+  `,
+})
+
+LoadingWithPlaceholder.args = {
+  type: 'placeholder',
+  width: '50%',
+  height: '25px',
+}
+
+LoadingWithPlaceholder.parameters = {
+  docs: {
+    description: {
+      story:
+        'When passing `placeholder` as prop to SbLoading it enables the rendering of the SbLoadingPlaceholder component, this component can receive width and height as props',
+    },
+  },
 }
