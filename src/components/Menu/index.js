@@ -101,7 +101,7 @@ const SbMenuItem = {
         return h('span', this.label)
       }
 
-      return h('span', this.$slots.default)
+      return this.$slots.default
     }
 
     const typeClass = this.type ? `sb-menu-item--${this.type}` : null
