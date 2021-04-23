@@ -37,6 +37,30 @@
   &--has-icon {
     padding: 5px 20px;
   }
+
+  &--aux-text {
+    min-width: 235px;
+
+    span {
+      margin-right: 100px;
+    }
+
+    small {
+      $font-size-sm: 1.3rem;
+
+      color: $sb-dark-blue-50;
+    }
+  }
+
+  &--disabled {
+    color: rgba($sb-dark-blue, 0.5);
+
+    &:hover,
+    &:focus {
+      background-color: $light-25;
+      cursor: not-allowed;
+    }
+  }
 }
 
 .sb-menu-separator {

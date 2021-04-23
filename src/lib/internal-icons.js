@@ -365,6 +365,17 @@ const icons = {
 }
 
 const pictogramIcons = {
+  'delete-pictogram-2': {
+    viewBox: '0 0 24 24',
+    path: `
+      <g fill="none" fill-rule="evenodd">
+        <circle cx="12" cy="12" r="12" fill="#ff6159"/>
+        <g transform="scale(0.8 0.8) translate(3 1.8)">
+          <path fill="#fff" fill-rule="evenodd" d="M12 4a3 3 0 0 1 2.954 2.474l.026.179.01.115.012.232H19a1 1 0 0 1 0 2h-1v9c0 1.657-1.24 3-2.77 3H8.77C7.24 21 6 19.657 6 18V9H5a1 1 0 1 1 0-2h4a3 3 0 0 1 3-3zm4 5H8v9c0 .513.343.936.785.993L8.89 19h6.222c.456 0 .832-.386.883-.883L16 18V9zm-5.25 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 1 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75zm2.5 0a.75.75 0 0 1 .75.75v3.5a.75.75 0 1 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75zM12 6a1 1 0 0 0-.993.883L11 7h2l-.007-.117A1 1 0 0 0 12 6z"/>
+        </g>
+      </g>
+    `,
+  },
   'delete-pictogram': {
     viewBox: '0 0 24 24',
     path: `

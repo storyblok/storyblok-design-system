@@ -75,7 +75,9 @@ describe('SbMenuItem component', () => {
     expect(onSelectOptionFirst).not.toHaveBeenCalled()
 
     // and should not close the menu
-    expect(wrapper.vm.isOpen).toBe(true)
+    setTimeout(() => {
+      expect(wrapper.vm.isOpen).toBe(true)
+    }, 0)
 
     // when try to press the Enter key in a disabled button
     await itemComponent.trigger('keydown', {
@@ -94,7 +96,9 @@ describe('SbMenuItem component', () => {
     expect(onSelectOptionFirst).not.toHaveBeenCalled()
 
     // and should not close the menu
-    expect(wrapper.vm.isOpen).toBe(true)
+    setTimeout(() => {
+      expect(wrapper.vm.isOpen).toBe(true)
+    }, 0)
   })
 
   it('should emit the click event when press Enter and Space keys', async () => {
