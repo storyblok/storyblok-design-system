@@ -52,7 +52,7 @@
 
     <div class="sb-select-inner__icons">
       <button
-        v-if="isTagsVisible"
+        v-if="showClearButton"
         aria-label="Clear all values"
         class="sb-select-inner__clear"
         @keydown="clearAllValues"
@@ -83,6 +83,7 @@ export default {
   inject: ['selectContext'],
 
   props: {
+    clearable: Boolean,
     inline: Boolean,
 
     label: {
@@ -116,7 +117,7 @@ export default {
       default: 'value',
     },
     searchInput: {
-      type: String,
+      type: [String, Number],
       default: null,
     },
 
@@ -177,6 +178,10 @@ export default {
 
     isTagsVisible() {
       return this.hasValue && this.multiple
+    },
+
+    showClearButton() {
+      return (this.hasValue && this.clearable) || this.isTagsVisible
     },
 
     tagLabels() {

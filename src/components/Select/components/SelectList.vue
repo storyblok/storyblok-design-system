@@ -71,7 +71,7 @@ export default {
       required: true,
     },
     searchInput: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
   },

@@ -725,7 +725,15 @@ const SbMenu = {
           ...this.$attrs,
         },
       },
-      this.$slots.default
+      [
+        this.$scopedSlots.button &&
+          this.$scopedSlots.button({
+            isOpen: this.isOpen,
+            menuListId: this.menuListId,
+            menuButtonId: this.menuButtonId,
+          }),
+        ...this.$slots.default,
+      ]
     )
   },
 }

@@ -10,6 +10,7 @@
   >
     <SbSelectInner
       ref="inner"
+      :clearable="clearable"
       :multiple="multiple"
       :inline="inline"
       :label="label"
@@ -82,6 +83,7 @@ export default {
     multiple: Boolean,
 
     // inner props
+    clearable: Boolean,
     label: {
       type: String,
       default: '',
@@ -316,14 +318,21 @@ export default {
     },
 
     /**
-     * emit an input event to clear all selected values
+     * emit an input event to clear all selected values when multiple selection
+     * or an empty string when single selection
      */
     handleClearAllValues() {
       if (this.multiple) {
         this.$emit('input', [])
         this.hideList()
         this.$_focusInner()
+        return
       }
+
+      this.searchInput = ''
+      this.$emit('input', null)
+      this.hideList()
+      this.$_focusInner()
     },
 
     /**

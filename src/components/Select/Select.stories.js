@@ -40,6 +40,7 @@ const SelectTemplate = (args) => ({
       :inline="inline"
       :no-data-text="noDataText"
       :allow-create="allowCreate"
+      :clearable="clearable"
       v-model="internalValue"
       style="max-width: 300px"
     />
@@ -113,6 +114,7 @@ export default {
     inline: false,
     noDataText: 'Sorry, no result found.',
     allowCreate: false,
+    clearable: false,
   },
 }
 
