@@ -55,7 +55,7 @@
         v-if="showClearButton"
         aria-label="Clear all values"
         class="sb-select-inner__clear"
-        @keydown="clearAllValues"
+        @keydown="clearAllValuesKeydown"
         @click="clearAllValues"
       >
         <SbIcon name="x-clear" />
@@ -272,6 +272,15 @@ export default {
       event.stopPropagation()
       event.preventDefault()
       this.$emit('clear-all-values')
+    },
+
+    /**
+     * handle with keydown event in the clear all button
+     */
+    clearAllValuesKeydown(event) {
+      if (event.key === 'Enter') {
+        this.clearAllValues(event)
+      }
     },
 
     /**
