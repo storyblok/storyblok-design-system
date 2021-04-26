@@ -296,9 +296,11 @@ export default {
      * handles inner keydown element
      */
     handleKeyDown(event) {
+      event.stopPropagation()
       const { focusOnFirstItem, focusOnLastItem } = this.context
 
       if (event.key === 'Enter') {
+        event.preventDefault()
         if (this.allowCreate && this.searchInputText.length) {
           this.handleEmitValue(this.searchInputText)
           this.$emit('input', '')
