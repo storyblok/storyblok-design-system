@@ -39,16 +39,15 @@
   }
 
   &--aux-text {
+    justify-content: space-between;
     min-width: 235px;
-
-    span {
-      margin-right: 100px;
-    }
 
     small {
       $font-size-sm: 1.3rem;
 
       color: $sb-dark-blue-50;
+      flex-grow: 1;
+      text-align: end;
     }
   }
 
