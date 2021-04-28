@@ -57,6 +57,23 @@ describe('SbSelect component', () => {
       // check if the value of the element was emitted
       expect(wrapper.emitted('input')[0]).toEqual(['Option 2'])
     })
+
+    it('should emit null when click on Clear all values button using clearable property', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: 'Option 6',
+          clearable: true,
+        },
+      })
+
+      const buttonComponent = wrapper.find('[aria-label="Clear all values"]')
+
+      await buttonComponent.trigger('click')
+
+      expect(wrapper.emitted('input')[0][0]).toEqual(null)
+    })
   })
 
   describe('multiple option logic', () => {
@@ -177,7 +194,7 @@ describe('SbSelect component', () => {
         },
       })
 
-      const buttonComponent = wrapper.find('button')
+      const buttonComponent = wrapper.find('[aria-label="Clear all values"]')
 
       await buttonComponent.trigger('click')
 
