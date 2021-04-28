@@ -55,6 +55,7 @@
         v-if="showClearButton"
         aria-label="Clear all values"
         class="sb-select-inner__clear"
+        type="button"
         @keydown="clearAllValuesKeydown"
         @click="clearAllValues"
       >
