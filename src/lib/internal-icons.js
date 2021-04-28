@@ -205,6 +205,12 @@ const icons = {
       <path fill="currentColor" fill-rule="evenodd" d="M8 20a3 3 0 0 1-3-3v-5.899a3 3 0 0 1 .953-2.193l4-3.733a3 3 0 0 1 4.094 0l4 3.733A3 3 0 0 1 19 11.101V17a3 3 0 0 1-3 3zm4.682-13.363a1 1 0 0 0-1.364 0l-4 3.733a1 1 0 0 0-.318.731V17a1 1 0 0 0 1 1h1v-3a3 3 0 0 1 2.824-2.995L12 12a3 3 0 0 1 3 3v3h1a1 1 0 0 0 .993-.883L17 17v-5.899a1 1 0 0 0-.318-.73zM12 14a1 1 0 0 0-1 1v3h2v-3a1 1 0 0 0-1-1z"/>
     `,
   },
+  list: {
+    viewBox: '0 0 24 24',
+    path: `
+      <path d="M8 13v4H4v-4h4zm12 0v4H10v-4h10zM8 7v4H4V7h4zm12 0v4H10V7h10z" fill="currentColor" stroke="none" stroke-width="1" fill-rule="evenodd"/>
+    `,
+  },
   loading: {
     viewBox: '0 0 24 24',
     path: `
