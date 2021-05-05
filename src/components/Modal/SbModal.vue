@@ -15,13 +15,7 @@
         role="dialog"
         v-bind="{ ...$attrs }"
       >
-        <button
-          class="sb-modal__close-button"
-          aria-label="Close Modal"
-          @click="handleCloseModal"
-        >
-          <SbIcon name="close" color="primary-dark" />
-        </button>
+        <SbModalCloseButton v-if="!closeOnHeader" absolute />
         <slot />
       </div>
     </SbBlokUi>
@@ -29,21 +23,29 @@
 </template>
 
 <script>
-import SbIcon from '../Icon'
 import SbBlokUi from '../BlockUI'
 import SbPortal from '../Portal'
 import { randomString } from '../../utils'
+
+import SbModalCloseButton from './components/SbModalCloseButton'
 
 export default {
   name: 'SbModal',
 
   components: {
-    SbIcon,
     SbPortal,
     SbBlokUi,
+    SbModalCloseButton,
+  },
+
+  provide() {
+    return {
+      modalContext: () => this.modalContext,
+    }
   },
 
   props: {
+    closeOnHeader: Boolean,
     isOpen: Boolean,
     escCloses: {
       type: Boolean,
@@ -60,6 +62,14 @@ export default {
     return {
       open: false || this.isOpen,
     }
+  },
+
+  computed: {
+    modalContext() {
+      return {
+        closeModal: this.handleCloseModal,
+      }
+    },
   },
 
   watch: {
