@@ -22,6 +22,9 @@
       </p>
       <p class="sb-drop-area__subtitle">
         {{ subtitle }}
+        <span v-if="dropAreaButton" @click="$emit('pick-files')">{{
+          dropAreaButton
+        }}</span>
       </p>
     </div>
   </div>
@@ -53,11 +56,15 @@ export default {
     subtitle: {
       type: String,
       default:
-        'You can drop in miltiple JPEGs, PNGs, SVGs, PDFs and all other files.',
+        'You can drop in multiple JPEGs, PNGs, SVGs, PDFs and all other files.',
     },
     title: {
       type: String,
       default: 'Drop your asset in',
+    },
+    dropAreaButton: {
+      type: String,
+      default: null,
     },
   },
 
@@ -84,6 +91,7 @@ export default {
     handleDragLeave(e) {
       if (!this.$el.contains(e.target) || e.target === this.$el) {
         this.isOver = false
+        this.$emit('close-drop-area')
       }
     },
 
@@ -165,7 +173,8 @@ export default {
         ? this.$_fileFilter(data.items, 'items')
         : this.$_fileFilter(data.files)
 
-      this.$emit('upload-file', files)
+      this.$emit('upload-files', files)
+      this.$emit('close-drop-area')
     },
   },
 }

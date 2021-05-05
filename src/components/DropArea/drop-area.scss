@@ -1,13 +1,15 @@
 .sb-drop-area {
-  background-color: $white;
   height: 100vh;
   width: 100%;
 
   &__over {
-    background-color: $light-gray;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
     cursor: copy;
+    position: fixed;
 
     .sb-drop-area__content {
+      background-color: $white;
       border-radius: 50%;
     }
 
@@ -22,24 +24,23 @@
   }
 
   &__content {
-    background-color: $white;
     border: 1px solid transparent;
     height: 500px;
     left: 50%;
-    margin-right: -50%;
     max-width: 500px;
-    position: absolute;
+    position: fixed;
     top: 50%;
     transform: translate(-50%, -50%);
     transition: all 0.05s ease;
+    width: 100%;
   }
 
   &__title {
     color: $primary-text-color;
     font-size: $text-medium-header;
     font-weight: $font-weight-medium;
+    margin: 20px 0 10px;
     text-align: center;
-    vertical-align: middle;
   }
 
   &__subtitle {
@@ -48,8 +49,12 @@
     font-weight: $font-weight-regular;
     margin: 0 auto;
     text-align: center;
-    vertical-align: middle;
-    width: 70%;
+    width: 80%;
+
+    span {
+      color: $sb-green;
+      cursor: pointer;
+    }
   }
 
   &__icon {

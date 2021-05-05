@@ -17,7 +17,8 @@ export default {
     maxFile: 0,
     title: 'Drop your asset in',
     subtitle:
-      'You can drop in miltiple JPEGs, PNGs, SVGs, PDFs and all other files.',
+      'You can drop in multiple JPEGs, PNGs, SVGs, PDFs and all other files.',
+    dropAreaButton: null,
   },
   argTypes: {
     accept: {
@@ -55,6 +56,14 @@ export default {
     title: {
       name: 'title',
       description: 'The `title` property defines the title of component',
+      control: {
+        type: 'text',
+      },
+    },
+    dropAreaButton: {
+      name: 'dropAreaButton',
+      description:
+        'The `dropAreaButton` property defines the text for the button that enables the user choosing to upload files from the computer',
       control: {
         type: 'text',
       },
@@ -103,6 +112,21 @@ export const DropAreaWithUploadModal = (args) => ({
         v-if="hasFiles"
       />
     </div>`,
+})
+
+export const DefaultWithUploadButton = (args) => ({
+  components: { SbDropArea },
+  props: Object.keys(args),
+  template: `
+    <SbDropArea
+      :accept="accept"
+      subtitle="You can drop in multiple JPEGs, PNGs, SVGs, PDFs and all other files or choose"
+      dropAreaButton="from your computer"
+      :title="title"
+      :max-file="maxFile"
+      :max-file-size="maxFileSize"
+    />
+  `,
 })
 
 DropAreaWithUploadModal.parameters = {

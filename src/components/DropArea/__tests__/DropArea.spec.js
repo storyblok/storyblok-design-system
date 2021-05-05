@@ -64,7 +64,7 @@ describe('Test if SbDropArea renderer correctly', () => {
 
     expect(wrapper.emitted('upload-file')).toBeTruthy()
 
-    expect(wrapper.emitted('upload-file')[1]).toEqual([
+    expect(wrapper.emitted('upload-file')[0]).toEqual([
       fakeEvent.dataTransfer.files[0],
     ])
   })

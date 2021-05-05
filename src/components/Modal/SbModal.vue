@@ -11,7 +11,7 @@
       <div
         ref="modal"
         class="sb-modal"
-        :class="{ 'sb-modal__full-width': fullWidth }"
+        :class="{ 'sb-modal__full-width': fullWidth, 'sb-modal__large': large }"
         role="dialog"
         v-bind="{ ...$attrs }"
       >
@@ -52,6 +52,7 @@ export default {
       default: true,
     },
     fullWidth: Boolean,
+    large: Boolean,
     modalTarget: {
       type: String,
       default: () => `#sb-modal-target-${randomString(4)}`,

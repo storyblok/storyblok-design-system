@@ -135,6 +135,10 @@
     min-width: 620px;
   }
 
+  &__large {
+    max-width: 720px;
+  }
+
   &__type--buttons {
     display: flex;
     justify-content: center;
