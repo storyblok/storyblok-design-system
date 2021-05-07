@@ -1,12 +1,14 @@
 .sb-drop-area {
-  height: 100vh;
   width: 100%;
 
   &__over {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(19, 25, 45, 0.47);
     box-sizing: border-box;
     cursor: copy;
+    left: 0;
+    min-height: 100vh;
     position: fixed;
+    top: 0;
 
     .sb-drop-area__content {
       background-color: $white;
@@ -28,7 +30,7 @@
     height: 500px;
     left: 50%;
     max-width: 500px;
-    position: fixed;
+    position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
     transition: all 0.05s ease;
