@@ -1,6 +1,5 @@
 @mixin avatarGroupItem {
   background-clip: padding-box;
-  background-clip: padding-box;
   border: 2.5px solid $white;
   border-radius: 100%;
 }
@@ -45,18 +44,17 @@
     z-index: 1;
   }
 
-  > .sb-avatar:first-child {
+  >.sb-avatar:first-child {
     margin-left: 0;
   }
 
-  > .sb-avatar:hover {
+  >.sb-avatar:hover {
     .sb-avatar__image,
     .sb-avatar__initials {
       transform: translate(0, -10px);
       z-index: 99999;
     }
   }
-
   // sizes
   &--large &__more {
     @include avatarComponentSize($sb-avatar-large);
@@ -75,12 +73,11 @@
   &--small > .sb-avatar {
     margin-left: -10px;
   }
-
   // color variants
   &--dark-bg {
-    > .sb-avatar .sb-avatar__image,
-    > .sb-avatar .sb-avatar__initials,
-    > .sb-avatar-group__more {
+    >.sb-avatar .sb-avatar__image,
+    >.sb-avatar .sb-avatar__initials,
+    >.sb-avatar-group__more {
       border: 3px solid $color-primary-dark;
     }
   }

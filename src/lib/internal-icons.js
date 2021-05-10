@@ -374,6 +374,107 @@ const icons = {
       <path fill="currentColor" fill-rule="evenodd" d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18zm0 2a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm0 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
     `,
   },
+  download: {
+    viewBox: '0 0 24 24',
+    path: `
+    <path d="M11.93 21h-.01l-.07-.01a1.08 1.08 0 01-.12-.03l-.04-.01a.95.95 0 01-.32-.17l-.08-.07-3-3a1 1 0 011.32-1.5l.1.08L11 17.6V11a1 1 0 012-.12v6.7l1.3-1.29a1 1 0 011.31-.08l.1.08a1 1 0 01.08 1.32l-.08.1-3 3-.07.06-.05.03a1.03 1.03 0 01-.17.1l-.05.03a.99.99 0 01-.06.02l-.04.01a.94.94 0 01-.24.04h-.11.01zM10.45 3.04a7.36 7.36 0 015.93 4.44l.12.28h.27a4.97 4.97 0 014.67 3.26l.07.22a4.97 4.97 0 01-1.88 5.57 1 1 0 01-1.15-1.64 2.97 2.97 0 00-1.53-5.4h-1.18A1 1 0 0114.8 9a5.36 5.36 0 10-9.2 4.88 1 1 0 01-1.5 1.33 7.36 7.36 0 016.35-12.18z"/>
+    `,
+  },
+  book: {
+    viewBox: '0 0 24 25',
+    path: `
+    <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <path d="M4 19.5C4 18.1 5.1 17 6.5 17H20"/>
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15C4 3.1 5.1 2 6.5 2z"/>
+    </g>
+    `,
+  },
+  rescue: {
+    viewBox: '0 0 24 25',
+    path: `
+    <g fill="currentColor" fill-rule="evenodd">
+      <path d="M12 1a11 11 0 110 22 11 11 0 010-22zM9.2 16.2L6.4 19a9 9 0 005.6 2 9 9 0 005.6-2l-2.8-2.8a5 5 0 01-2.8.8 5 5 0 01-2.8-.8zM19 6.4l-2.8 2.8a5 5 0 010 5.6l2.8 2.8a9 9 0 002-5.6 9 9 0 00-2-5.6zm-14 0A9 9 0 003 12c0 2.1.7 4 2 5.6l2.8-2.8A5 5 0 017 12c0-1 .3-2 .8-2.8zM12 9a3 3 0 100 6 3 3 0 000-6zm0-6a9 9 0 00-5.6 2l2.8 2.8A5 5 0 0112 7c1 0 2 .3 2.8.8L17.6 5A9 9 0 0012 3z"/>
+      <path fill-rule="nonzero" d="M18.4 4.2a1 1 0 011.5 1.3l-.1.1-4.3 4.3A1 1 0 0114 8.6l.1-.1 4.3-4.3z"/>
+    </g>
+    `,
+  },
+}
+
+const partnerIcons = {
+  'partner-spaces': {
+    viewBox: '0 0 24 24',
+    path: `
+    <g fill="currentColor" fill-rule="evenodd">
+    <path fill-opacity=".6" d="M17 17v1a2 2 0 01-2 2H9a2 2 0 01-2-2v-1h10z"/>
+    <path d="M18 4H6a2 2 0 00-2 2v7c0 1.1.9 2 2 2h12a2 2 0 002-2V6a2 2 0 00-2-2z"/>
+  </g>
+    `,
+  },
+  'partner-app': {
+    viewBox: '0 0 24 24',
+    path: `
+    <g fill="currentColor" fill-rule="evenodd">
+    <path d="M15 4.7c-.5.5-.7 1-.8 1.7 0 .3-.3.5-.6.2l-1.9-1.9a1 1 0 00-1.4 0l-2 2c-.2.2 0 .5.3.5.6 0 1.2.3 1.6.7l.1.1A2.3 2.3 0 117 11.3c-.5-.5-.7-1-.8-1.7 0-.3-.3-.5-.6-.2l-1.9 1.9a1 1 0 000 1.4l6.6 6.6c.4.4 1 .4 1.4 0l2-2c.2-.2 0-.5-.3-.5-.6 0-1.2-.3-1.6-.7l-.1-.1a2.3 2.3 0 113.3-3.3c.5.5.7 1 .8 1.7 0 .3.3.5.6.2l1.9-1.9c.4-.4.4-1 0-1.4l-2-2c-.2-.2 0-.5.3-.5.6 0 1.2-.3 1.6-.7l.1-.1A2.3 2.3 0 0015 4.7z"/>
+    <circle cx="17.5" cy="18.5" r="2.5" fill-opacity=".6"/>
+  </g>
+    `,
+  },
+  'partner-fieldtype': {
+    viewBox: '0 0 24 24',
+    path: `
+    <g fill="currentColor" fill-rule="evenodd">
+    <rect width="2" height="16" x="11" y="4" fill-opacity=".6" rx="1" transform="rotate(10 12 12)"/>
+    <path d="M6.3 7a1 1 0 011.4 1.5L4.2 12l3.5 3.5A1 1 0 016.3 17L2 12.8a1 1 0 010-1.4L6.3 7zm11.4 0a1 1 0 00-1.4 1.5l3.5 3.5-3.5 3.5a1 1 0 001.4 1.4l4.3-4.2a1 1 0 000-1.4L17.7 7z"/>
+  </g>
+`,
+  },
+  'partner-finances': {
+    viewBox: '0 0 24 24',
+    path: `<g fill="currentColor" fill-rule="evenodd">
+    <path fill-rule="nonzero" d="M8.8 19.4v-1c1-.2 1.8-.5 2.3-1.1.6-.6.9-1.4.9-2.3 0-.6 0-1-.2-1.4a3.1 3.1 0 00-.7-1l-1-.8a14.5 14.5 0 00-1.6-.8c-.7-.3-1.1-.5-1.4-.8s-.3-.6-.3-1c0-.5.1-.8.4-1s.5-.5 1-.5c.4 0 .8.2 1 .5.3.4.5.9.5 1.5H12c0-1-.3-2-.8-2.6a3.4 3.4 0 00-2.3-1.3V4.6a.6.6 0 10-1.3 0v1.2c-1 .1-1.7.5-2.3 1-.6.7-.9 1.4-.9 2.4 0 .5.1 1 .3 1.4.2.4.4.8.7 1a4.9 4.9 0 001.1.8c.4.3 1 .5 1.5.7.6.2 1 .5 1.3.8.2.2.4.6.4 1 0 .5-.2.9-.5 1.1-.2.3-.6.4-1 .4-.7 0-1-.2-1.4-.5-.3-.4-.5-.9-.5-1.6H4c0 1.2.3 2.1 1 2.8.5.7 1.4 1.1 2.5 1.2v1a.6.6 0 001.3 0z"/>
+    <rect width="6" height="2" x="14" y="9" fill-opacity=".6" rx="1"/>
+    <rect width="6" height="2" x="14" y="13" fill-opacity=".6" rx="1"/>
+  </g>`,
+  },
+  'partner-learning': {
+    viewBox: '0 0 24 24',
+    path: `<g fill="currentColor" fill-rule="evenodd">
+    <rect width="6" height="17" x="13" y="3" rx=".5" transform="rotate(-15 16 11.5)"/>
+    <rect width="6" height="17" x="4" y="3" fill-opacity=".6" rx=".5"/>
+    <path d="M5 3h4v9l-2-1.7L5 12z"/>
+  </g>`,
+  },
+  'partner-perks': {
+    viewBox: '0 0 24 24',
+    path: `<g fill="currentColor" fill-rule="evenodd">
+    <path d="M12 15.5l-3.5 1.8a1 1 0 01-1.4-1l.6-4L5 9.7A1 1 0 015.4 8l4-.5L11 3.8a1 1 0 011.8 0l1.7 3.6 4 .5a1 1 0 01.5 1.7l-2.8 2.8.6 3.9a1 1 0 01-1.4 1L12 15.5z"/>
+    <rect width="10" height="2" x="7" y="19" fill-opacity=".6" rx="1"/>
+  </g>`,
+  },
+  'partner-leads': {
+    viewBox: '0 0 24 24',
+    path: `<g fill="currentColor" fill-rule="evenodd">
+    <circle cx="8" cy="7" r="3"/>
+    <circle cx="8" cy="17" r="3" opacity=".6"/>
+    <path d="M15 6v12a2 2 0 104 0V6a2 2 0 10-4 0z" opacity=".6"/>
+  </g>`,
+  },
+  'partner-settings': {
+    viewBox: '0 0 24 24',
+    path: `<g fill="currentColor" fill-rule="evenodd">
+    <path d="M12 4c.8 0 1.5.7 1.5 1.5 0 .5.2 1 .7 1.1.4.2 1 .1 1.3-.2a1.5 1.5 0 112.1 2c-.4.4-.5 1-.3 1.4.2.5.6.7 1.1.7h.1a1.5 1.5 0 110 3c-.5 0-1 .2-1.1.7-.2.4-.1 1 .2 1.3a1.5 1.5 0 11-2 2.1c-.4-.4-1-.5-1.4-.3-.4.2-.7.6-.7 1.1v.1a1.5 1.5 0 11-2.9 0c0-.5-.3-1-.8-1.1-.4-.2-1-.1-1.3.2a1.5 1.5 0 11-2.1-2c.4-.4.5-1 .3-1.4-.2-.4-.6-.7-1.1-.7h-.1a1.5 1.5 0 010-2.9c.5 0 1-.3 1.1-.8.2-.4.1-1-.2-1.3a1.5 1.5 0 112-2.1c.4.4 1 .5 1.4.3.5-.2.7-.6.7-1.1v-.1c0-.8.7-1.5 1.5-1.5zm0 4a4 4 0 100 8 4 4 0 000-8z"/>
+    <circle cx="12" cy="12" r="2" fill-opacity=".6"/>
+  </g>`,
+  },
+  'partner-team': {
+    viewBox: '0 0 24 24',
+    path: `<g fill="currentColor" fill-rule="evenodd">
+    <circle cx="6" cy="8" r="3"/>
+    <circle cx="6" cy="16" r="3" opacity=".6"/>
+    <rect width="8" height="2" x="11" y="7" rx="1"/>
+    <rect width="8" height="2" x="11" y="15" opacity=".6" rx="1"/>
+  </g>`,
+  },
 }
 
 const pictogramIcons = {
@@ -432,4 +533,5 @@ const pictogramIcons = {
 export default {
   ...icons,
   ...pictogramIcons,
+  ...partnerIcons,
 }
