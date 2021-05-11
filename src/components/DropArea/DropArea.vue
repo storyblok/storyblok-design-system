@@ -1,14 +1,18 @@
 <template>
   <div
     class="sb-drop-area"
-    :class="{ 'sb-drop-area__over': isOver }"
+    :class="{ 'sb-drop-area__over': isOver || forceOver }"
     @dragover="handleDragOver"
     @dragleave="handleDragLeave"
     @drop="handleDropFile"
   >
     <div class="sb-drop-area__content">
       <div class="sb-drop-area__icon">
-        <SbIcon v-if="isOver" size="x-large" name="upload-pictogram" />
+        <SbIcon
+          v-if="isOver || forceOver"
+          size="x-large"
+          name="upload-pictogram"
+        />
 
         <img
           v-else
@@ -65,6 +69,10 @@ export default {
     dropAreaButton: {
       type: String,
       default: null,
+    },
+    forceOver: {
+      type: Boolean,
+      default: false,
     },
   },
 
