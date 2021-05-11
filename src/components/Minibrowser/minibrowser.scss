@@ -17,7 +17,8 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     &-icon {
       left: 5px;
       position: absolute;
-      top: 10px;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     &-clear {
@@ -26,15 +27,6 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
       position: absolute;
       right: $general-padding;
       top: 10px;
-    }
-
-    &--loading {
-      .sb-icon {
-        height: 26px;
-        right: 14px;
-        top: 10px;
-        width: 26px;
-      }
     }
   }
 
