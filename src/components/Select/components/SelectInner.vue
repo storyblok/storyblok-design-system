@@ -51,16 +51,17 @@
     />
 
     <div class="sb-select-inner__icons">
-      <button
-        v-if="showClearButton"
-        aria-label="Clear all values"
-        class="sb-select-inner__clear"
-        type="button"
-        @keydown="clearAllValuesKeydown"
-        @click="clearAllValues"
-      >
-        <SbIcon name="x-clear" />
-      </button>
+      <SbTooltip v-if="showClearButton" label="Remove all">
+        <button
+          aria-label="Clear all values"
+          class="sb-select-inner__clear"
+          type="button"
+          @keydown="clearAllValuesKeydown"
+          @click="clearAllValues"
+        >
+          <SbIcon name="x-clear" />
+        </button>
+      </SbTooltip>
       <SbIcon class="sb-select-inner__chevron" name="chevron-down" />
     </div>
   </div>

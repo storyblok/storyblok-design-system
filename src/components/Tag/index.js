@@ -3,6 +3,7 @@ import './tag.scss'
 import { includes } from '../../utils'
 
 import SbIcon from '../Icon'
+import SbTooltip from '../Tooltip'
 import { tagTypes } from './lib'
 
 // @vue/component
@@ -53,9 +54,21 @@ const SbTag = {
       })
     }
 
+    const renderClosableTooltip = () => {
+      return h(
+        SbTooltip,
+        {
+          props: {
+            label: 'Remove',
+          },
+        },
+        [renderClosableIcon()]
+      )
+    }
+
     const children = [
       this.label || this.$slots.default,
-      this.closable && renderClosableIcon(),
+      this.closable && renderClosableTooltip(),
     ]
 
     return h('div', tagProps, children)
