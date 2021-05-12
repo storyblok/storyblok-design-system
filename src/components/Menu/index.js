@@ -55,7 +55,7 @@ const SbMenuItem = {
      * @param {Event} event
      */
     handleClick(event) {
-      const { closeMenu } = this.context
+      const { closeMenu, preventClose } = this.context
 
       this.$emit('click', event)
 
@@ -64,7 +64,9 @@ const SbMenuItem = {
         event.stopPropagation()
       }
 
-      closeMenu()
+      if (!preventClose) {
+        closeMenu()
+      }
     },
 
     /**
@@ -524,6 +526,11 @@ const SbMenu = {
   },
 
   props: {
+    preventClose: {
+      type: Boolean,
+      default: false,
+    },
+
     value: {
       type: Boolean,
       default: false,
@@ -543,6 +550,7 @@ const SbMenu = {
       return {
         // controls the state of menu
         isOpen: this.isOpen,
+        preventClose: this.preventClose,
 
         // references identifiers
         menuListId: this.menuListId,

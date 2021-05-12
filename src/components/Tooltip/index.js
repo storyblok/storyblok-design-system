@@ -73,7 +73,9 @@ export default {
      * shows the tooltip
      */
     showTooltip() {
-      this.isVisibleTooltip = true
+      if (this.label.length) {
+        this.isVisibleTooltip = true
+      }
     },
 
     /**
