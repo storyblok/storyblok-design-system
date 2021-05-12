@@ -60,14 +60,27 @@ const SbTabs = {
     },
   },
 
+  updated() {
+    this.$nextTick(() => {
+      this.$_loadChildren()
+    })
+  },
+
   mounted() {
     this.$nextTick(() => {
-      this.childVNodes = Object.assign({}, this.$el.children)
-      this.children = cleanChildren(this.$slots.default)
+      this.$_loadChildren()
     })
   },
 
   methods: {
+    /**
+     * load children to data from this.$el and this.$slots.default
+     */
+    $_loadChildren() {
+      this.childVNodes = Object.assign({}, this.$el.children)
+      this.children = cleanChildren(this.$slots.default)
+    },
+
     /**
      * gets a node from children using the index and triggers the input with its name
      * @param {Number} index
