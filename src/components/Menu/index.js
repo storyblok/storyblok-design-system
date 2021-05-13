@@ -421,7 +421,6 @@ const SbMenuButton = {
       this.$emit('click', event)
 
       event.preventDefault()
-      event.stopPropagation()
 
       if (this.isOpen) {
         closeMenu()
