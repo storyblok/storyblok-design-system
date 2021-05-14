@@ -22,7 +22,6 @@
       position: absolute;
       right: -13px;
       top: -26px;
-      transition: opacity 0.2s ease-in;
 
       &:focus {
         opacity: 1;
@@ -36,7 +35,6 @@
     display: inline-flex;
     flex-direction: column;
     min-height: 100vh;
-    transition: all 0.2s ease;
     width: 280px;
 
     &:hover .sb-button {
@@ -47,7 +45,7 @@
   // sidebar top
   &__top {
     display: flex;
-    padding: 30px 27px;
+    padding: 30px 28px;
 
     .sb-avatar {
       cursor: pointer;
@@ -86,23 +84,22 @@
   &-item {
     list-style: none;
     margin-bottom: 1px;
-    padding: 0 15px;
+    padding: 0 16px;
   }
 
   &-link {
     align-items: center;
-    border-radius: 10px;
-    color: $light;
+    border-radius: 8px;
+    color: $light-gray;
     cursor: pointer;
     display: flex;
     font-size: $font-size-lg;
     font-weight: $font-weight-medium;
     letter-spacing: 0;
     line-height: inherit;
-    padding: 13px;
+    padding: 12px;
     position: relative;
     text-decoration: none;
-    transition: $base-transition;
     vertical-align: middle;
 
     &:hover,
@@ -111,7 +108,7 @@
     }
 
     .sb-icon {
-      margin-right: 14px;
+      margin-right: 12px;
     }
 
     .sb-avatar {
@@ -130,7 +127,7 @@
   // modifiers
   &--minimize {
     .sb-sidebar__content {
-      width: 90px;
+      width: 80px;
     }
 
     .sb-icon,
@@ -139,7 +136,7 @@
     }
 
     .sb-sidebar-link--use-avatar {
-      padding: 9px 17px;
+      padding: 9px 15px 9px 17px;
     }
 
     .sb-sidebar-toggle .sb-button {
