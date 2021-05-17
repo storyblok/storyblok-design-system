@@ -106,6 +106,10 @@ export default {
       type: String,
       default: 'Search content items',
     },
+    clearOnSelect: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({
@@ -199,7 +203,9 @@ export default {
      * emits the selected item and handle with item when it's a parent
      */
     selectItem(item) {
-      this.searchInput = ''
+      if (this.clearOnSelect) {
+        this.searchInput = ''
+      }
 
       this.$emit('select-item', item)
     },

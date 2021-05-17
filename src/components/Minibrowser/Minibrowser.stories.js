@@ -97,6 +97,7 @@ export default {
     options: [...MOCK_DATA.FIRST_LEVEL],
     placeholder: 'Search content items',
     notFoundPrefix: 'No matches for',
+    clearOnSelect: true,
   },
 }
 
@@ -242,6 +243,7 @@ const MinibrowserTemplate = (args) => ({
       :filter-debounce="filterDebounce"
       :not-found-prefix="notFoundPrefix"
       :placeholder="placeholder"
+      :clear-on-select="clearOnSelect"
       @filter="handleFilter"
       @clear-navigation="handleClearNavigation"
       @navigate="handleNavigate"
@@ -293,6 +295,7 @@ export const WithGroupsSlot = (args) => ({
       :filter-debounce="filterDebounce"
       :not-found-prefix="notFoundPrefix"
       :placeholder="placeholder"
+      :clear-on-select="clearOnSelect"
       @filter="handleFilter"
       @clear-navigation="handleClearNavigation"
       @navigate="handleNavigate"
@@ -352,6 +355,7 @@ export const Inline = (args) => ({
         :filter-debounce="filterDebounce"
         :not-found-prefix="notFoundPrefix"
         :placeholder="placeholder"
+        :clear-on-select="clearOnSelect"
         @filter="handleFilter"
         @clear-navigation="handleClearNavigation"
         @navigate="handleNavigate"
