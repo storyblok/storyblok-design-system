@@ -12,6 +12,7 @@
       :value="searchInput"
       :placeholder="placeholder"
       @input="handleSearchInput"
+      @keydown="handleSearchKeydown"
     />
 
     <div class="sb-minibrowser__list-container">
@@ -47,6 +48,8 @@
 
 <script>
 import { debounce } from 'throttle-debounce'
+
+import { flatten } from '../../utils'
 
 import SbMinibrowserSearch from './components/MinibrowserSearch'
 import SbMinibrowserList from './components/MinibrowserList'
@@ -188,6 +191,61 @@ export default {
       this.searchInput = value
 
       this.filterHandler()
+    },
+
+    /**
+     * handles keydown event in search input
+     * @param {Event} event
+     */
+    handleSearchKeydown(event) {
+      if (event.key === 'Escape') {
+        this.$emit('close')
+      } else if (event.key === 'Enter') {
+        this.selectFilteredItem()
+      }
+    },
+
+    /**
+     * gets items, flatten and selects if only one is listed
+     */
+    selectFilteredItem() {
+      let items = []
+
+      // check if the groupedItems has only one element, and this element
+      // has only one item in items array
+      if (
+        this.hasGroupedItems &&
+        this.groupedItems.length === 1 &&
+        this.groupedItems[0].items.length === 1
+      ) {
+        items = [...items, this.getDeepLeaf(this.groupedItems[0].items[0])]
+      } else if (this.hasOtherItems && this.otherItems.length === 1) {
+        items = [...items, ...this.otherItems]
+      }
+
+      const itemsFlatted = flatten(items, 'items')
+
+      if (itemsFlatted.length === 1) {
+        this.selectItem(itemsFlatted[0])
+      }
+    },
+
+    /**
+     * @method getDeepLeaf
+     * @param {{items: array}} branchItem
+     *
+     * This method will only return the deep leaf with exactly one element
+     */
+    getDeepLeaf(branchItem) {
+      if (branchItem.items.length === 0) {
+        return branchItem
+      }
+
+      if (branchItem.items.length > 1) {
+        return {}
+      }
+
+      return this.getDeepLeaf(branchItem.items[0])
     },
 
     /**

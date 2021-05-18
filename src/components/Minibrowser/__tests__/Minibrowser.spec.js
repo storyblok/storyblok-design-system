@@ -169,6 +169,8 @@ describe('SbMinibrowser component', () => {
 
     searchInput.element.focus()
 
+    await wrapper.vm.$nextTick()
+
     await searchInput.trigger('keydown', {
       key: 'Escape',
     })

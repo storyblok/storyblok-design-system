@@ -108,8 +108,12 @@ export default {
      */
     handleSearchKeydown(event) {
       if (event.key === 'Escape') {
-        this.clearSearchInputValue(event)
+        if (this.value.length) {
+          this.clearSearchInputValue(event)
+          return
+        }
       }
+      this.$emit('keydown', event)
     },
   },
 }

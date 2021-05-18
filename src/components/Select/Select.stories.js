@@ -196,6 +196,10 @@ export const WithMinibrowser = (args) => ({
         this.$refs.select.hideList()
       }
     },
+
+    handleCloseBrowser() {
+      this.$refs.select.wrapClose()
+    },
   },
 
   template: `
@@ -213,6 +217,7 @@ export const WithMinibrowser = (args) => ({
         slot="minibrowser"
         :options="minibrowserOptions"
         @select-item="onSelectItem"
+        @close="handleCloseBrowser"
       />
     </SbSelect>
   `,

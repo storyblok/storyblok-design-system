@@ -1,3 +1,4 @@
+export * from './arrays'
 export * from './capitalize'
 export * from './collection'
 export * from './constants'
