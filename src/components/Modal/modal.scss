@@ -7,10 +7,14 @@
   display: block;
   margin: auto;
   max-width: 620px;
-  overflow: auto;
   padding: 35px;
   position: relative;
   width: 100%;
+
+  &--scrollbar {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 
   &__close-button {
     @include base--icon-hover;

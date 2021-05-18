@@ -11,7 +11,7 @@
       <div
         ref="modal"
         class="sb-modal"
-        :class="{ 'sb-modal__full-width': fullWidth, 'sb-modal__large': large }"
+        :class="computedClasses"
         role="dialog"
         v-bind="{ ...$attrs }"
       >
@@ -52,6 +52,7 @@ export default {
       default: true,
     },
     fullWidth: Boolean,
+    scrollbar: Boolean,
     large: Boolean,
     modalTarget: {
       type: String,
@@ -66,6 +67,14 @@ export default {
   },
 
   computed: {
+    computedClasses() {
+      return [
+        this.fullWidth && 'sb-modal__full-width',
+        this.large && 'sb-modal__large',
+        this.scrollbar && 'sb-modal--scrollbar',
+      ]
+    },
+
     modalContext() {
       return {
         closeModal: this.handleCloseModal,
