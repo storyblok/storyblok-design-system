@@ -261,7 +261,7 @@ export default {
      * emits the selected item and handle with item when it's a parent
      */
     selectItem(item) {
-      if (this.clearOnSelect) {
+      if (this.clearOnSelect || item.isParent) {
         this.searchInput = ''
       }
 

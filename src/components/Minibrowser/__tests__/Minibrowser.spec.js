@@ -118,14 +118,14 @@ describe('SbMinibrowser component', () => {
     const firstElement = wrapper.findAll(itemClass).at(3)
     await firstElement.trigger('click')
 
-    wrapper.vm.selectItem()
+    wrapper.vm.selectItem(MOCK_DATA.FIRST_LEVEL[0])
     expect(wrapper.vm.searchInput).toBe('')
   })
 
   it('should keep the value of the search input when an item is clicked', async () => {
     const wrapper = mount(SbMinibrowser, {
       propsData: {
-        options: [...MOCK_DATA.FIRST_LEVEL],
+        options: [...MOCK_DATA.SECOND_LEVEL],
         clearOnSelect: false,
       },
     })
@@ -136,8 +136,26 @@ describe('SbMinibrowser component', () => {
     const firstElement = wrapper.findAll(itemClass).at(3)
     await firstElement.trigger('click')
 
-    wrapper.vm.selectItem()
+    wrapper.vm.selectItem(MOCK_DATA.SECOND_LEVEL[1])
     expect(wrapper.vm.searchInput).toBe('case')
+  })
+
+  it('should clear the search input when the item clicked is a folder', async () => {
+    const wrapper = mount(SbMinibrowser, {
+      propsData: {
+        options: [...MOCK_DATA.SECOND_LEVEL],
+        clearOnSelect: false,
+      },
+    })
+
+    const searchInput = await wrapper.find('input[type="search"]')
+    searchInput.setValue('case')
+
+    const firstElement = wrapper.findAll(itemClass).at(1)
+    await firstElement.trigger('click')
+
+    wrapper.vm.selectItem(MOCK_DATA.SECOND_LEVEL[0])
+    expect(wrapper.vm.searchInput).toBe('')
   })
 
   it('should show a not found message', async () => {
