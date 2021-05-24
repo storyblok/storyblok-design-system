@@ -8,7 +8,52 @@ import {
 
 import SbButton from '../Button'
 
-const ModalTemplate = (args) => ({
+/**
+ * this code is always inject the story viewMode in the v6.0.0 of Storyblok
+ * when it tries to update the v6.1.11 (the current version) it finds some
+ * bugs to code execution, like the stories components execute twice
+ *
+ * So, we implement this mixin to inject the story viewMode context to
+ * know which context the story is executed to prevent the overflow of modals
+ * in docs
+ */
+const StorybookInjectionsMixin = (storyContext) => {
+  const viewMode = storyContext.viewMode || 'story'
+
+  // @vue/component
+  return {
+    __STORYBOOK_VIEW_MODE: viewMode,
+
+    computed: {
+      isInDocs() {
+        return this.$options.__STORYBOOK_VIEW_MODE === 'docs'
+      },
+    },
+  }
+}
+
+const StoriesModalMixin = (args, storyContext) => {
+  // @vue/component
+  return {
+    mixins: [StorybookInjectionsMixin(storyContext)],
+
+    props: Object.keys(args),
+
+    data: () => ({
+      showModal: false,
+    }),
+
+    methods: {
+      handleShowModal() {
+        this.showModal = true
+      },
+    },
+  }
+}
+
+const ModalTemplate = (args, storyContext) => ({
+  mixins: [StoriesModalMixin(args, storyContext)],
+
   components: {
     SbModal,
     SbModalContent,
@@ -16,20 +61,12 @@ const ModalTemplate = (args) => ({
     SbModalHeader,
     SbButton,
   },
-  props: Object.keys(args),
-  methods: {
-    handleShowModal() {
-      this.showModal = true
-    },
-  },
-  data: () => ({
-    showModal: false,
-  }),
+
   template: `
     <div>
       <SbButton
         label="Open Modal!"
-        type="primary"
+        variant="primary"
         @click="handleShowModal"
         v-if="!showModal"
         style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -48,15 +85,55 @@ const ModalTemplate = (args) => ({
         />
 
         <SbModalContent>
-          <p>The body copy that explains empty state</p>
+          <p style="text-align:center">The body copy that explains empty state</p>
         </SbModalContent>
 
         <SbModalFooter>
-          <SbButton label="Label" type="primary"/>
-          <SbButton label="Label" type="ghost"/>
+          <SbButton label="Label" variant="primary"/>
+          <SbButton label="Label" variant="ghost"/>
         </SbModalFooter>
 
       </SbModal>
+    </div>
+  `,
+})
+
+const ModalTypeTemplate = (args, storyContext) => ({
+  mixins: [StorybookInjectionsMixin(storyContext)],
+
+  props: Object.keys(args),
+
+  components: { SbModalType },
+
+  computed: {
+    buttonVariant() {
+      return this.type === 'confirmation' ? 'primary' : 'danger'
+    },
+  },
+
+  methods: {
+    handleShowModal() {
+      this.$refs.modal.show()
+    },
+  },
+
+  template: `
+    <div>
+      <SbButton
+        label="Open Modal!"
+        :variant="buttonVariant"
+        @click="handleShowModal"
+        style="margin: 0 auto; display: flex; margin-top: 30%;"
+      />
+      <SbModalType
+        ref="modal"
+        :title="title"
+        :align="align"
+        :message="message"
+        :type="type"
+        :cancelButtonLabel="cancelButtonLabel"
+        :actionButtonLabel="actionButtonLabel"
+      />
     </div>
   `,
 })
@@ -71,6 +148,9 @@ export default {
           'Modals focus the user’s attention exclusively on one task or piece of information via a window that sits on top of the page content.',
       },
     },
+    // Sets a delay for the component's stories
+    // the animation of the Modal is 0.5s or 500ms
+    chromatic: { delay: 600 },
   },
   args: {
     title: 'Main title',
@@ -125,22 +205,16 @@ export default {
 
 export const Default = ModalTemplate.bind({})
 
-export const ModalWithoutFooter = (args) => ({
+export const ModalWithoutFooter = (args, storyContext) => ({
   components: { SbModal, SbModalHeader, SbModalContent, SbButton },
-  props: Object.keys(args),
-  methods: {
-    handleShowModal() {
-      this.showModal = true
-    },
-  },
-  data: () => ({
-    showModal: false,
-  }),
+
+  mixins: [StoriesModalMixin(args, storyContext)],
+
   template: `
   <div>
     <SbButton
       label="Open Modal!"
-      type="primary"
+      variant="primary"
       @click="handleShowModal"
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -156,7 +230,7 @@ export const ModalWithoutFooter = (args) => ({
         <p style="font-size: 16px; color: rgb(84, 91, 111); text-align: center;">The body copy that explains empty state</p>
       </SbModalContent>
 
-      <SbButton label="Click me!" type="primary"/>
+      <SbButton label="Click me!" variant="primary" style="margin: 0 auto;display: flex"/>
     </SbModal>
   </div>
   `,
@@ -175,22 +249,16 @@ ModalWithoutFooter.parameters = {
   },
 }
 
-export const ModalWithoutHeader = (args) => ({
+export const ModalWithoutHeader = (args, storyContext) => ({
   components: { SbModal, SbModalContent, SbButton, SbModalFooter },
-  props: Object.keys(args),
-  methods: {
-    handleShowModal() {
-      this.showModal = true
-    },
-  },
-  data: () => ({
-    showModal: false,
-  }),
+
+  mixins: [StoriesModalMixin(args, storyContext)],
+
   template: `
   <div>
     <SbButton
       label="Open Modal!"
-      type="primary"
+      variant="primary"
       @click="handleShowModal"
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -201,7 +269,7 @@ export const ModalWithoutHeader = (args) => ({
       </SbModalContent>
 
       <SbModalFooter>
-        <SbButton label="Click me!" type="primary"/>
+        <SbButton label="Click me!" variant="primary"/>
       </SbModalFooter>
     </SbModal>
   </div>`,
@@ -216,7 +284,9 @@ ModalWithoutHeader.parameters = {
   },
 }
 
-export const ModalWithMediumSize = (args) => ({
+export const ModalWithMediumSize = (args, storyContext) => ({
+  mixins: [StoriesModalMixin(args, storyContext)],
+
   components: {
     SbModal,
     SbModalHeader,
@@ -224,20 +294,12 @@ export const ModalWithMediumSize = (args) => ({
     SbButton,
     SbModalFooter,
   },
-  props: Object.keys(args),
-  methods: {
-    handleShowModal() {
-      this.showModal = true
-    },
-  },
-  data: () => ({
-    showModal: false,
-  }),
+
   template: `
   <div>
     <SbButton
       label="Open Modal!"
-      type="primary"
+      variant="primary"
       @click="handleShowModal"
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
@@ -250,8 +312,8 @@ export const ModalWithMediumSize = (args) => ({
       </SbModalContent>
 
       <SbModalFooter>
-        <SbButton label="Label" type="primary"/>
-        <SbButton label="Label" type="ghost"/>
+        <SbButton label="Label" variant="primary"/>
+        <SbButton label="Label" variant="ghost"/>
       </SbModalFooter>
     </SbModal>
   </div>`,
@@ -277,34 +339,7 @@ ModalInFullWidth.args = {
   fullWidth: true,
 }
 
-export const ModalTypeComponentConfirm = (args) => ({
-  props: Object.keys(args),
-  components: { SbModalType },
-  methods: {
-    handleShowModal() {
-      this.$refs.modal.show()
-    },
-  },
-  template: `
-    <div>
-      <SbButton
-        label="Open Modal!"
-        type="primary"
-        @click="handleShowModal"
-        style="margin: 0 auto; display: flex; margin-top: 30%;"
-      />
-      <SbModalType
-        ref="modal"
-        :title="title"
-        :align="align"
-        :message="message"
-        :type="type"
-        :cancelButtonLabel="cancelButtonLabel"
-        :actionButtonLabel="actionButtonLabel"
-      />
-    </div>
-  `,
-})
+export const ModalTypeComponentConfirm = ModalTypeTemplate.bind({})
 
 ModalTypeComponentConfirm.args = {
   title: 'Confirm',
@@ -324,34 +359,7 @@ ModalTypeComponentConfirm.parameters = {
   },
 }
 
-export const ModalTypeComponentDelete = (args) => ({
-  props: Object.keys(args),
-  components: { SbModalType },
-  methods: {
-    handleShowModal() {
-      this.$refs.modal.show()
-    },
-  },
-  template: `
-    <div>
-      <SbButton
-        label="Open Modal!"
-        type="primary"
-        @click="handleShowModal"
-        style="margin: 0 auto; display: flex; margin-top: 30%;"
-      />
-      <SbModalType
-        ref="modal"
-        :title="title"
-        :align="align"
-        :message="message"
-        :type="type"
-        :cancelButtonLabel="cancelButtonLabel"
-        :actionButtonLabel="actionButtonLabel"
-      />
-    </div>
-  `,
-})
+export const ModalTypeComponentDelete = ModalTypeTemplate.bind({})
 
 ModalTypeComponentDelete.args = {
   title: 'Delete This Project',
@@ -369,4 +377,53 @@ ModalTypeComponentDelete.parameters = {
         'The component `SbModaType` is a type of modal with a predefined style, the idea is to standardize the type of modal to `delete` an action, so we can maintain the consistency of the DS.',
     },
   },
+}
+
+export const ModalClosingWithEsc = (args, storyContext) => ({
+  mixins: [StoriesModalMixin(args, storyContext)],
+
+  components: {
+    SbModal,
+    SbModalHeader,
+    SbModalContent,
+    SbButton,
+    SbModalFooter,
+  },
+
+  template: `
+  <div>
+    <SbButton
+      label="Open Modal!"
+      variant="primary"
+      @click="handleShowModal"
+      v-if="!showModal"
+      style="margin: 0 auto; display: flex; margin-top: 30%;"
+    />
+    <SbModal :is-open="showModal" :esc-closes="true" v-on:hide="showModal = false">
+      <SbModalHeader :align="align" :title="title" />
+
+      <SbModalContent>
+        <div style="width: 100%; height: 300px;"><p style="text-align: left; margin: 0;">The body copy that explains empty state</p></div>
+      </SbModalContent>
+
+      <SbModalFooter>
+        <SbButton label="Label" variant="primary"/>
+        <SbButton label="Label" variant="ghost"/>
+      </SbModalFooter>
+    </SbModal>
+  </div>`,
+})
+
+ModalClosingWithEsc.parameters = {
+  docs: {
+    description: {
+      story:
+        'The `SbModal` component has the optional choice of being closed when the user press `ESC` on the keyboard',
+    },
+  },
+}
+
+ModalClosingWithEsc.args = {
+  title: 'Main Title',
+  align: 'left',
 }

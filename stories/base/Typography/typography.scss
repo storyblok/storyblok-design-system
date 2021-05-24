@@ -4,21 +4,21 @@
     display: inline-block;
     font-size: $font-size-md;
     font-weight: $font-weight-medium;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
   }
 
   &__title {
     color: $sb-dark-blue;
     font-size: 5rem;
     font-weight: $font-weight-medium;
-    margin-bottom: 5rem;
+    margin-bottom: 50px;
   }
 
   &__subtitle {
     color: $sb-dark-blue;
     font-size: 3rem;
     font-weight: $font-weight-medium;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
+    margin-top: 30px;
+    margin-bottom: 20px;
   }
 }

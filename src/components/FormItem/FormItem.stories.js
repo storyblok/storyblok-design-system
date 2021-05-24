@@ -1,17 +1,20 @@
 import SbFormItem from './index'
 import SbRadio from '../Radio'
 import SbTextField from '../TextField'
+import SbButton from '../Button'
 
 export default {
   title: 'Design System/Components/Form/SbFormItem',
   component: SbFormItem,
   args: {
     label: 'Label',
+    helperIconText: 'Helper icon text',
+    helperText: 'Helper text',
   },
 }
 
 export const Default = (args) => ({
-  components: { SbFormItem, SbRadio, SbTextField },
+  components: { SbButton, SbFormItem, SbRadio, SbTextField },
   props: Object.keys(args),
   data: () => ({
     internalValue: 'Selected',
@@ -19,7 +22,12 @@ export const Default = (args) => ({
   }),
   template: `
     <div>
-      <SbFormItem :label="label" style="margin-bottom: 20px">
+      <SbFormItem
+        :label="label"
+        :helper-icon-text="helperIconText"
+        :helper-text="helperText"
+        style="margin-bottom: 20px"
+      >
         <SbTextField
           :placeholder="placeholder"
         />
@@ -44,6 +52,16 @@ export const Default = (args) => ({
           native-value="Selected"
           inline
         />
+      </SbFormItem>
+
+      <SbFormItem :label="label" grouped>
+        <SbTextField
+          name="example"
+          id="textfield"
+          style="flex: 1"
+        />
+
+        <SbButton label="Just a button" />
       </SbFormItem>
     </div>
   `,

@@ -5,7 +5,12 @@ import SbButton from '../Button'
 import SbIcon from '../Icon'
 
 import { sharedProps } from '../Button/lib'
-import { randomString, getFocusableElements, canUseDOM } from '../../utils'
+import {
+  randomString,
+  getFocusableElements,
+  canUseDOM,
+  isVueComponent,
+} from '../../utils'
 
 /**
  * @vue/component
@@ -19,6 +24,10 @@ const SbMenuItem = {
   inject: ['menuContext'],
 
   props: {
+    auxText: {
+      type: String,
+      default: null,
+    },
     icon: {
       type: String,
       default: null,
@@ -46,17 +55,18 @@ const SbMenuItem = {
      * @param {Event} event
      */
     handleClick(event) {
-      const { closeMenu } = this.context
+      const { closeMenu, preventClose } = this.context
 
       this.$emit('click', event)
 
       if (this.isDisabled) {
         event.preventDefault()
         event.stopPropagation()
-        return
       }
 
-      closeMenu()
+      if (!preventClose) {
+        closeMenu()
+      }
     },
 
     /**
@@ -86,7 +96,7 @@ const SbMenuItem = {
       return h(SbIcon, {
         props: {
           name: this.icon,
-          size: 'small',
+          size: 'normal',
         },
       })
     }
@@ -96,16 +106,25 @@ const SbMenuItem = {
         return h('span', this.label)
       }
 
-      return h('span', this.$slots.default)
+      return this.$slots.default
+    }
+
+    const renderAuxText = () => {
+      if (this.auxText) {
+        return h('small', this.auxText)
+      }
     }
 
     const typeClass = this.type ? `sb-menu-item--${this.type}` : null
+    const iconClass = this.icon ? `sb-menu-item--has-icon` : null
+    const isDisabled = this.isDisabled ? `sb-menu-item--disabled` : null
+    const auxText = this.auxText ? `sb-menu-item--aux-text` : null
 
     return h(
       'button',
       {
         staticClass: 'sb-menu-item',
-        class: [typeClass],
+        class: [typeClass, iconClass, isDisabled, auxText],
         attrs: {
           ...this.$attrs,
           role: 'menuitemradio',
@@ -116,7 +135,7 @@ const SbMenuItem = {
           keydown: this.handleKeyDown,
         },
       },
-      [this.icon && renderIcon(), renderLabel()]
+      [this.icon && renderIcon(), renderLabel(), renderAuxText()]
     )
   },
 }
@@ -151,6 +170,9 @@ const SbMenuGroup = {
       type: String,
       required: true,
     },
+    isTitleBold: {
+      type: Boolean,
+    },
   },
 
   render(h) {
@@ -166,6 +188,7 @@ const SbMenuGroup = {
           'p',
           {
             staticClass: 'sb-menu-group__title',
+            class: { 'sb-menu-group__title--bold': this.isTitleBold },
           },
           this.title
         ),
@@ -190,10 +213,17 @@ const SbMenuList = {
       type: Array,
       default: () => [],
     },
+    offset: {
+      type: Array,
+      default: () => [0, 5],
+    },
     placement: {
       type: String,
       default: 'bottom-end',
     },
+    // eslint-disable-next-line
+    reference: [String, Element, Object],
+    usePortal: Boolean,
   },
 
   computed: {
@@ -202,6 +232,15 @@ const SbMenuList = {
     },
     isOpen() {
       return this.context.isOpen
+    },
+    referenceEl() {
+      if (this.reference) {
+        return isVueComponent(this.reference)
+          ? this.reference.$el
+          : this.reference
+      }
+
+      return `#${this.context.menuButtonId}`
     },
   },
 
@@ -286,13 +325,12 @@ const SbMenuList = {
     return h(
       SbPopover,
       {
-        staticClass: 'sb-menu-list',
-
         props: {
-          offset: [0, 5],
-          placement: this.placement,
-          reference: `#${menuButtonId}`,
           isOpen: this.isOpen,
+          offset: this.offset,
+          placement: this.placement,
+          reference: this.referenceEl,
+          usePortal: this.usePortal,
         },
 
         on: {
@@ -305,6 +343,7 @@ const SbMenuList = {
         h(
           'div',
           {
+            staticClass: 'sb-menu-list',
             attrs: {
               ...this.$attrs,
               id: menuListId,
@@ -315,7 +354,11 @@ const SbMenuList = {
               keydown: this.handleKeyDown,
             },
           },
-          [!!items.length && renderMenuItems(items), this.$slots.default]
+          [
+            this.$slots.top,
+            !!items.length && renderMenuItems(items),
+            this.$slots.default,
+          ]
         ),
       ]
     )
@@ -335,10 +378,6 @@ const SbMenuButton = {
   props: {
     // button shared props
     ...sharedProps,
-    type: {
-      type: String,
-      default: 'ghost',
-    },
 
     // only apply when uses the hasIconOnly property
     hasIconOnly: Boolean,
@@ -346,6 +385,11 @@ const SbMenuButton = {
     iconName: {
       type: String,
       default: null,
+    },
+
+    iconSize: {
+      type: String,
+      default: 'normal',
     },
 
     // only apply when does not use the hasIconOnly property
@@ -372,17 +416,16 @@ const SbMenuButton = {
      * @param {Event} event
      */
     handleClick(event) {
-      const { closeMenu, focusOnFirstItem } = this.context
+      const { closeMenu, openMenu } = this.context
 
       this.$emit('click', event)
 
       event.preventDefault()
-      event.stopPropagation()
 
       if (this.isOpen) {
         closeMenu()
       } else {
-        focusOnFirstItem()
+        openMenu()
       }
     },
 
@@ -412,6 +455,7 @@ const SbMenuButton = {
 
     if (this.hasIconOnly) {
       return h(SbButton, {
+        staticClass: 'sb-menu-button',
         attrs: {
           ...this.$attrs,
           id: menuButtonId,
@@ -422,8 +466,10 @@ const SbMenuButton = {
         props: {
           isRounded: this.isRounded,
           hasIconOnly: true,
-          icon: this.iconName || 'overflow-menu-vertic',
-          type: this.type,
+          icon: this.iconName || 'menu-vertical',
+          variant: this.variant,
+          size: this.size,
+          iconSize: this.iconSize,
         },
         on: {
           ...this.$listeners,
@@ -448,7 +494,7 @@ const SbMenuButton = {
         props: {
           iconRight: 'chevron-down',
           label: this.label,
-          type: this.type,
+          variant: this.type,
         },
         on: {
           ...this.$listeners,
@@ -479,6 +525,11 @@ const SbMenu = {
   },
 
   props: {
+    preventClose: {
+      type: Boolean,
+      default: false,
+    },
+
     value: {
       type: Boolean,
       default: false,
@@ -498,6 +549,7 @@ const SbMenu = {
       return {
         // controls the state of menu
         isOpen: this.isOpen,
+        preventClose: this.preventClose,
 
         // references identifiers
         menuListId: this.menuListId,
@@ -562,6 +614,8 @@ const SbMenu = {
      * toggle menu state
      */
     closeMenu() {
+      if (!this.isOpen) return
+
       this.isOpen = false
       this.activeIndex = -1
 
@@ -572,6 +626,8 @@ const SbMenu = {
      * opens menu
      */
     openMenu() {
+      if (this.isOpen) return
+
       this.isOpen = true
 
       this.$emit('open')
@@ -647,7 +703,9 @@ const SbMenu = {
      * set focus to trigger button element
      */
     $_focusButton() {
-      canUseDOM && document.querySelector(`#${this.menuButtonId}`).focus()
+      if (canUseDOM && document.querySelector(`#${this.menuButtonId}`)) {
+        document.querySelector(`#${this.menuButtonId}`).focus()
+      }
     },
 
     /**
@@ -674,7 +732,15 @@ const SbMenu = {
           ...this.$attrs,
         },
       },
-      this.$slots.default
+      [
+        this.$scopedSlots.button &&
+          this.$scopedSlots.button({
+            isOpen: this.isOpen,
+            menuListId: this.menuListId,
+            menuButtonId: this.menuButtonId,
+          }),
+        ...this.$slots.default,
+      ]
     )
   },
 }

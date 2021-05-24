@@ -1,73 +1,50 @@
-import { SbSidebar, SbSidebarLink } from '.'
+import { SbSidebar, SbSidebarListItem } from '.'
+import { SbMenu, SbMenuList, SbMenuItem } from '../Menu'
+import SbIcon from '../Icon'
 
 export const listItemsData = [
   {
     href: '#',
-    icon: 'sidebar-arrow',
+    icon: 'chevron-left',
     label: 'Back to Spaces',
   },
   {
     href: '#',
-    icon: 'sidebar-dashboard',
-    label: 'Dashboard',
-    ariaLabel: 'Goto dashboard',
+    icon: 'content',
+    label: 'Content',
+    ariaLabel: 'Go to content',
     active: true,
   },
   {
     href: '#',
-    icon: 'sidebar-content',
-    label: 'Content',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-tags',
-    label: 'Tags',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-assets',
-    label: 'Assets',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-components',
-    label: 'Components',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-datasources',
-    label: 'Datasources',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-activity',
-    label: 'Activities',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-addons',
+    icon: 'apps',
     label: 'Apps',
-  },
-  {
-    href: '#',
-    icon: 'sidebar-settings',
-    label: 'Settings',
   },
 ]
 
-export const userData = {
-  name: 'Dominik Angerer',
-  src:
-    'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
-  email: 'fake@fake.com',
-}
-
 const SidebarTemplate = (args) => ({
-  components: { SbSidebar, SbSidebarLink },
+  components: {
+    SbIcon,
+    SbSidebar,
+    SbSidebarListItem,
+    SbMenu,
+    SbMenuList,
+    SbMenuItem,
+  },
+
   props: Object.keys(args),
+
   data: () => ({
     internalMinimize: false,
+    openUserDropdown: false,
   }),
+
+  computed: {
+    listPlacement() {
+      return this.internalMinimize ? 'auto' : 'top'
+    },
+  },
+
   watch: {
     minimize: {
       immediate: true,
@@ -76,22 +53,52 @@ const SidebarTemplate = (args) => ({
       },
     },
   },
+
   template: `
     <SbSidebar
-      v-bind="{
-        user,
-        listItems
-      }"
+      v-bind="{ listItems }"
 
       :minimize.sync="internalMinimize"
     >
 
       <template slot="bottom">
-        <SbSidebarLink
+        <SbSidebarListItem
           href="#"
-          icon="sidebar-report"
+          icon="settings"
           label="Report a problem"
         />
+
+        <SbSidebarListItem
+          :avatar="{
+            src: 'https://avatars1.githubusercontent.com/u/160495?s=460&u=b88ece40883d2e9716e833f6a3c78c56ca3eb14f&v=4',
+            name: 'Alexander Feiglstorfer'
+          }"
+          label="My account"
+          ref="userDropdown"
+          @click="openUserDropdown = !openUserDropdown"
+        >
+          <SbMenu v-model="openUserDropdown">
+            <SbMenuList
+              :placement="listPlacement"
+              :reference="$refs.userDropdown"
+            >
+              <div slot="top" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #dfe3e8; padding: 15px 20px; margin-bottom: 10px;">
+                <div>
+                  <p style="font-size: 14px; font-weight: 500; color: #1b243f; margin: 0; margin-bottom: 5px;"> John Doe </p>
+                  <p style="font-size: 12px; color: #b1b5be; margin: 0;"> jondoe@lipsum.com </p>
+                </div>
+
+                <SbIcon name="log-out" color="light-gray" size="small" />
+              </div>
+
+              <SbMenuItem> Account settings </SbMenuItem>
+              <SbMenuItem> Security settings </SbMenuItem>
+              <SbMenuItem> Personal access tokens </SbMenuItem>
+              <SbMenuItem> Privacy settings </SbMenuItem>
+              <SbMenuItem> Change language </SbMenuItem>
+            </SbMenuList>
+          </SbMenu>
+        </SbSidebarListItem>
       </template>
     </SbSidebar>
   `,
@@ -105,18 +112,10 @@ export default {
     layout: 'fullscreen',
   },
   args: {
-    user: { ...userData },
     listItems: [...listItemsData],
     minimize: false,
   },
   argTypes: {
-    user: {
-      name: 'user',
-      description: 'User information object',
-      control: {
-        type: 'object',
-      },
-    },
     minimize: {
       name: 'minimize',
       description:

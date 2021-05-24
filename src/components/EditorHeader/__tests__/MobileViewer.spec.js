@@ -45,7 +45,7 @@ const factory = (propsData) => {
   })
 }
 
-describe('MobileViewer component test', () => {
+describe.skip('MobileViewer component test', () => {
   const wrapper = factory(fakeProps)
 
   it('should render with all components', () => {

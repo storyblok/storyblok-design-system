@@ -9,7 +9,7 @@ const factory = (propsData) => {
   })
 }
 
-describe('Test if Header title renderer correctly', () => {
+describe.skip('Test if Header title renderer correctly', () => {
   it('Test to check if the component renders the text', () => {
     const wrapper = factory({
       title: 'Awesome cms',

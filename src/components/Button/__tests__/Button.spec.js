@@ -48,7 +48,7 @@ describe('Test SbButton Component', () => {
   it('test SbButton in secondary color', async () => {
     const wrapper = factory({
       label: 'Secondary Button',
-      type: 'secondary',
+      variant: 'secondary',
     })
 
     expect(wrapper.find('button').attributes('class')).toBe(
@@ -145,6 +145,39 @@ describe('Test SbButton Component', () => {
 
     it('should have an Tooltip component with correct text', () => {
       expect(wrapper.find('.sb-tooltip').text()).toBe(iconDescription)
+    })
+  })
+
+  describe('when the user add a type for the button', () => {
+    const renderButton = (type) => {
+      return mount(SbButton, {
+        propsData: {
+          variant: 'ghost',
+          type: type,
+        },
+      })
+    }
+
+    it('should be a button with a type `button`', () => {
+      const wrapper = renderButton('button')
+      expect(wrapper.attributes('type')).toBe('button')
+    })
+
+    it('should be a button with a type `submit`', () => {
+      const wrapper = renderButton('submit')
+      expect(wrapper.attributes('type')).toBe('submit')
+    })
+
+    it('should be a button with a type `reset`', () => {
+      const wrapper = renderButton('reset')
+      expect(wrapper.attributes('type')).toBe('reset')
+    })
+
+    it('should not render the prop `type` when sending an invalid value', () => {
+      const validator = SbButton.props.type.validator
+      expect(validator('info')).toBe(false)
+      expect(validator('warning')).toBe(false)
+      expect(validator('test')).toBe(false)
     })
   })
 })

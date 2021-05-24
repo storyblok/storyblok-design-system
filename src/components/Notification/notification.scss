@@ -10,8 +10,8 @@
 
     .sb-notification--link {
       float: right;
-      margin-right: 2rem;
-      margin-top: 3.7rem;
+      margin-right: 20px;
+      margin-top: 37px;
       z-index: 1;
     }
   }
@@ -25,21 +25,21 @@
   }
 
   &--expandle-button {
-    margin-top: 2.2rem;
-    margin-right: 2rem;
+    margin-top: 22px;
+    margin-right: 20px;
     padding: 0;
     float: right;
-    border: none;
+    border: 0;
     background: transparent;
     cursor: pointer;
   }
 
   &--btn {
-    margin-top: 2.2rem;
-    margin-right: 2rem;
+    margin-top: 22px;
+    margin-right: 20px;
     padding: 0;
     float: right;
-    border: none;
+    border: 0;
     background: transparent;
     cursor: pointer;
 
@@ -53,9 +53,9 @@
     height: 16px;
     display: inline-block;
     background-color:  transparent;
-    margin-left: 1.8rem;
-    margin-right: 1.8rem;
-    margin-top: 2.1rem;
+    margin-left: 18px;
+    margin-right: 18px;
+    margin-top: 21px;
 
     svg {
       vertical-align: top;
@@ -105,22 +105,22 @@
   }
 
   &--description {
-    margin-left: 5.2rem;
-    margin-right: 3.4rem;
-    margin-top: 1.3rem;
+    margin-left: 52px;
+    margin-right: 34px;
+    margin-top: 13px;
     font-size: $font-size-md;
     font-weight: $font-weight-regular;
-    line-height: 1.5em;
+    line-height: 15px;
     overflow: hidden; 
     text-overflow: ellipsis;
   }
 
   &--link {
-    margin-left: 5.2rem;
-    margin-top: 1.2rem;
+    margin-left: 52px;
+    margin-top: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-right: 3.4rem;
+    margin-right: 34px;
     
     a {
       font-size: $font-size-md;

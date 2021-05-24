@@ -83,7 +83,9 @@ describe('SbAvatarGroup component', () => {
       expect(wrappers.findComponent(MoreAvatar).text()).toBe('+4')
     })
 
-    it('should render the MoreAvatars component with the children', () => {
+    it('should render the MoreAvatars component with the children', async () => {
+      const moreAvatar = wrappers.findComponent(MoreAvatar)
+      await moreAvatar.trigger('click')
       const moreAvatars = wrappers.findComponent(MoreAvatars)
       expect(moreAvatars.findAll('.sb-avatar').length).toBe(4)
     })

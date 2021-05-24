@@ -1,13 +1,20 @@
 .sb-drop-area {
   width: 100%;
-  height: 100vh;
-  background-color: $white;
 
   &__over {
+    background-color: rgba(19, 25, 45, 0.47);
+    bottom: 0;
+    box-sizing: border-box;
     cursor: copy;
-    background-color: $light-gray;
+    left: 0;
+    min-height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 5;
 
     .sb-drop-area__content {
+      background-color: $white;
       border-radius: 50%;
     }
 
@@ -15,59 +22,61 @@
       background-color: $sb-green-25;
 
       svg {
-        padding-top: 2.5rem;
-        width: 4.8rem;
-        height: 4.8rem;
+        height: 48px;
+        width: 48px;
       }
     }
-
   }
 
   &__content {
-    height: 50rem;
-    max-width: 50rem;
     border: 1px solid transparent;
-    background-color: $white;
-    transition: all .05s ease;
+    height: 500px;
+    left: 50%;
+    max-width: 500px;
     position: absolute;
     top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    transition: all 0.05s ease;
+    width: 100%;
   }
 
   &__title {
-    text-align: center;
-    vertical-align: middle;
     color: $primary-text-color;
     font-size: $text-medium-header;
     font-weight: $font-weight-medium;
+    margin: 20px 0 10px;
+    text-align: center;
   }
 
   &__subtitle {
-    text-align: center;
-    vertical-align: middle;
     color: $light-gray;
     font-size: $font-size-default;
     font-weight: $font-weight-regular;
-    width: 70%;
     margin: 0 auto;
+    text-align: center;
+    width: 80%;
+
+    span {
+      color: $sb-green;
+      cursor: pointer;
+    }
   }
 
   &__icon {
-    margin: 0 auto;
-    margin-top: 15.9rem;
+    align-items: center;
     background-color: $white;
     border-radius: 50%;
-    height: 10.4rem;
-    width: 10.4rem;
-    transition: all .1s ease;
+    display: flex;
+    height: 104px;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 159px;
+    transition: $base-transition;
+    width: 104px;
 
     svg {
-      margin: 0 auto;
-      display: block;
-      width: 8.3rem;
-      height: 10.5rem;
+      height: 105px;
+      width: 83px;
     }
   }
 }

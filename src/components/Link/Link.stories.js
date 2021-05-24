@@ -1,7 +1,7 @@
 import SbLink from './index'
 
 export default {
-  title: 'Design System/Components/SbIcon',
+  title: 'Design System/Components/SbLink',
   component: SbLink,
   args: {
     type: 'primary',
@@ -154,7 +154,7 @@ export const WithIcon = (args) => ({
 })
 
 WithIcon.args = {
-  icon: 'checkmark',
+  icon: 'check-mark',
   iconRight: 'calendar',
   primaryLabel: 'Icon before',
   secondaryLabel: 'Icon after',

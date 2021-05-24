@@ -34,7 +34,7 @@ describe('Test SbLink component', () => {
       label,
       href: 'http://storyblok.com/',
       title: 'Link with icon',
-      icon: 'checkmark',
+      icon: 'check-mark',
     })
 
     const Icon = wrapper.findComponent(SbIcon)
@@ -44,7 +44,7 @@ describe('Test SbLink component', () => {
     })
 
     it('should the SbIcon with name that it was passed', () => {
-      expect(Icon.props('name')).toBe('checkmark')
+      expect(Icon.props('name')).toBe('check-mark')
     })
   })
 
@@ -86,6 +86,23 @@ describe('Test SbLink component', () => {
 
     it('should render the correct label', () => {
       expect(wrapper.text()).toBe(label)
+    })
+  })
+
+  describe('when the variant property', () => {
+    const label = 'Auth data'
+
+    const wrapper = mount(SbLink, {
+      propsData: {
+        label,
+        title: 'Link with icon',
+        to: '/auth',
+        variant: 'white',
+      },
+    })
+
+    it('should render the correct class name', () => {
+      expect(wrapper.classes('sb-link--white')).toBe(true)
     })
   })
 })

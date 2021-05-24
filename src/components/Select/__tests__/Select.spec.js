@@ -1,6 +1,6 @@
 import { SbMinibrowser } from '../../Minibrowser'
 import { mountAttachingComponent } from '../../../utils/tests-utils'
-import { browserOptionsData } from '../../Minibrowser/Minibrowser.stories'
+import { MOCK_DATA } from '../../Minibrowser/Minibrowser.stories'
 
 import { SbSelect } from '..'
 import SbIcon from '../../Icon'
@@ -20,9 +20,10 @@ describe('SbSelect component', () => {
     })
 
     const innerElement = wrapper.find('.sb-select-inner')
+    const innerInput = wrapper.find('.sb-select-inner__input')
 
     it('should have the inner select with correct text', () => {
-      expect(innerElement.text()).toBe('Choose an option')
+      expect(innerInput.element.placeholder).toBe('Choose an option')
     })
 
     it('should be toggle the list by clicking on the inner element', async () => {
@@ -51,18 +52,27 @@ describe('SbSelect component', () => {
       await innerElement.trigger('click')
 
       // find the first element and click on it
-      wrapper.findAll('li').at(0).trigger('click')
+      wrapper.findAll('li').at(1).trigger('click')
 
       // check if the value of the element was emitted
-      expect(wrapper.emitted('input')[0]).toEqual(['Option 1'])
+      expect(wrapper.emitted('input')[0]).toEqual(['Option 2'])
     })
 
-    it('should make visible the value in the inner element', async () => {
-      await wrapper.setProps({
-        value: 'Option 3',
+    it('should emit null when click on Clear all values button using clearable property', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: 'Option 6',
+          clearable: true,
+        },
       })
 
-      expect(innerElement.text()).toBe('Option 3')
+      const buttonComponent = wrapper.find('[aria-label="Clear all values"]')
+
+      await buttonComponent.trigger('click')
+
+      expect(wrapper.emitted('input')[0][0]).toEqual(null)
     })
   })
 
@@ -184,7 +194,7 @@ describe('SbSelect component', () => {
         },
       })
 
-      const buttonComponent = wrapper.find('button')
+      const buttonComponent = wrapper.find('[aria-label="Clear all values"]')
 
       await buttonComponent.trigger('click')
 
@@ -225,10 +235,10 @@ describe('SbSelect component', () => {
       await wrapper.vm.$nextTick()
 
       // get the input component
-      const inputComponent = wrapper.find('input[type="search"]')
+      const inputComponent = wrapper.find('.sb-select-inner__input')
 
       // type a value on it
-      await inputComponent.setValue('option 1')
+      await inputComponent.setValue('option 2')
 
       const listItems = wrapper.findAll('li')
 
@@ -236,30 +246,7 @@ describe('SbSelect component', () => {
       expect(listItems.length).toBe(1)
 
       // with the expected text
-      expect(listItems.at(0).text()).toBe('Option 1')
-    })
-
-    it('should change the placeholder using filterPlaceholder property', async () => {
-      const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
-          label: 'Choose an option',
-          options: [...defaultSelectOptionsData],
-          value: null,
-          leftIcon: 'calendar',
-          filterable: true,
-          filterPlaceholder: 'Filter Tags',
-        },
-      })
-
-      // making the options list visible
-      wrapper.vm.showList()
-
-      await wrapper.vm.$nextTick()
-
-      // make the assert on placeholder attribute
-      expect(
-        wrapper.find('input[type="search"]').attributes('placeholder')
-      ).toBe('Filter Tags')
+      expect(listItems.at(0).text()).toBe('Option 2')
     })
   })
 
@@ -290,7 +277,6 @@ describe('SbSelect component', () => {
           options: [...defaultAvatarsData],
           value: '001',
           leftIcon: 'calendar',
-          filterable: true,
           useAvatars: true,
         },
       })
@@ -299,9 +285,7 @@ describe('SbSelect component', () => {
 
       await wrapper.vm.$nextTick()
 
-      const avatarComponent = wrapper
-        .find('.sb-select-inner')
-        .findComponent(SbAvatar)
+      const avatarComponent = wrapper.findComponent(SbAvatar)
 
       expect(avatarComponent.props('name')).toBe('Dominik Angerer')
     })
@@ -311,7 +295,7 @@ describe('SbSelect component', () => {
         propsData: {
           label: 'Choose an option',
           options: [...defaultAvatarsData],
-          value: '001',
+          value: null,
           leftIcon: 'calendar',
           filterable: true,
           useAvatars: true,
@@ -322,11 +306,13 @@ describe('SbSelect component', () => {
 
       await wrapper.vm.$nextTick()
 
-      const listComponent = wrapper.find('.sb-select-list')
+      const inputComponent = wrapper.find('.sb-select-inner__input')
 
-      wrapper.find('input[type="search"]').setValue('Alex')
+      await inputComponent.setValue('Alex')
 
       await wrapper.vm.$nextTick()
+
+      const listComponent = wrapper.find('.sb-select-list')
 
       expect(listComponent.findAllComponents(SbAvatar).length).toBe(1)
 
@@ -344,7 +330,6 @@ describe('SbSelect component', () => {
           options: [...defaultAvatarsData],
           value: null,
           leftIcon: 'calendar',
-          filterable: true,
           inline: true,
         },
       })
@@ -365,9 +350,10 @@ describe('SbSelect component', () => {
       },
       stubs: {
         SbMinibrowser: SbMinibrowser,
+        SbIcon: SbIcon,
       },
       mocks: {
-        browserOptionsData: [...browserOptionsData],
+        browserOptionsData: [...MOCK_DATA.FIRST_LEVEL],
       },
     })
 
@@ -451,6 +437,57 @@ describe('SbSelect component', () => {
       expect(wrapper.vm.isOpen).toBe(false)
     })
 
+    it(`should return value when the options don't have 'label'`, async () => {
+      const options = [
+        {
+          itemLabel: 'Item Label 1',
+          itemValue: 'Option 1',
+        },
+        {
+          itemLabel: 'Item Label 2',
+          itemValue: 'Option 2',
+        },
+      ]
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: options,
+          itemLabel: 'itemLabel',
+          itemValue: 'itemValue',
+        },
+      })
+
+      const innerElement = wrapper.find(innerClass)
+
+      await innerElement.trigger('keydown', {
+        key: 'Enter',
+      })
+
+      // when press the Escape key
+      await wrapper.find(listClass).trigger('keydown', {
+        key: 'ArrowDown',
+      })
+
+      const secondElement = wrapper.findAll('li').at(1)
+
+      // should change the focus to second element
+      expect(secondElement.element).toEqual(document.activeElement)
+
+      await secondElement.trigger('keydown', {
+        key: 'Enter',
+      })
+
+      expect(innerElement.vm.isInnerSearchVisible).toBe(true)
+
+      expect(wrapper.emitted('input')).toEqual([['Option 2']])
+
+      await wrapper.setProps({
+        value: 'Option 2',
+      })
+
+      expect(innerElement.vm.innerLabel).toBe(options[1].itemLabel)
+    })
+
     it('should move focus to first element when press ArrowDown', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
@@ -519,4 +556,10 @@ describe('SbSelect component', () => {
       expect(wrapper.find(innerClass).element).toEqual(document.activeElement)
     })
   })
+
+  // describe('using minibrowser', () => {
+  //   it('', () => {
+
+  //   })
+  // })
 })

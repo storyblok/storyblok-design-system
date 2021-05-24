@@ -14,18 +14,18 @@ export const getSvgIcon = (name) => {
     console.warn(`[SbIcon] - this ${name} icon does not exists`)
 
     return {
-      path: iconPaths['avatar-fallback'].path,
-      viewBox: iconPaths['avatar-fallback'].viewBox,
+      path: '',
+      viewBox: '',
     }
   }
 
   return {
     path: iconDeff.path,
-    viewBox: iconDeff.viewBox || '0 0 20 20',
+    viewBox: iconDeff.viewBox || '0 0 24 24',
   }
 }
 
 /**
  * @type {Array<String>}
  */
-export const iconSizes = ['x-small', 'small', 'normal', 'large', 'x-large']
+export const iconSizes = ['small', 'normal', 'large', 'x-large']

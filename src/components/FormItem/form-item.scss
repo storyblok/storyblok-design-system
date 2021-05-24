@@ -1,9 +1,46 @@
 .sb-form-item {
+  margin-bottom: 16px;
+
+  &__top-container {
+    align-items: center;
+    display: flex;
+    margin-bottom: 10px;
+  }
+
   &__label {
     color: $sb-dark-blue;
     font-size: $font-size-md;
     font-weight: $font-weight-medium;
-    margin-bottom: 1rem;
-    display: block;
+    position: relative;
+  }
+
+  &__label &__helper-icon-text {
+    left: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__helper-text {
+    color: $sb-dark-blue-50;
+    font-size: $font-size-sm;
+    margin-left: auto;
+    padding-left: 10px;
+  }
+
+  &--grouped &__body {
+    display: flex;
+  }
+
+  &--grouped {
+    .sb-textfield__input {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .sb-button {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
   }
 }

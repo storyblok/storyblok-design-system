@@ -257,6 +257,7 @@ const SbPopover = {
             },
             style: {
               display: this.isOpen ? 'unset' : 'none',
+              zIndex: 5,
             },
             directives: [
               {

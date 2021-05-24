@@ -1,6 +1,6 @@
 @mixin activeItemState () {
   background-color: #262e48;
-  color: $color-primary;
+  color: $white;
 
   &::after {
     opacity: 1;
@@ -8,153 +8,20 @@
 }
 
 .sb-sidebar {
-  display: inline-flex;
-  background-color: $color-primary-dark;
-  min-height: 100vh;
-  flex-direction: column;
-
-  // sidebar top
-  &__top {
-    display: flex;
-    padding: 3rem;
-
-    .sb-avatar {
-      display: block;
-      margin-left: 3rem;
-      cursor: pointer;
-    }
-  }
-
-  &-logo {
-    height: 33px;
-
-    img {
-      width: 100%;
-    }
-  }
-
-  &-user-dropdown {
-    width: 222px;
-    position: absolute;
-    top: -16px;
-    left: calc(100% + 16px);
-    background-color: $white;
-    box-shadow: 0px 2px 17px 3px rgba(34, 42, 69, 0.07);
-    border-radius: 4px;
-    border: 1px solid $light;
-    z-index: 3;
-
-    &[aria-hidden="true"] {
-      display: none;
-    }
-
-    &__top {
-      padding: 1.4rem 2rem;
-      border-bottom: 1px solid #e0e0e0;
-
-      &-name {
-        margin: 0;
-        margin-bottom: 0.5rem;
-        font-size: $font-size-md;
-        font-weight: $font-weight-medium;
-      }
-
-      &-email {
-        margin: 0;
-        font-size: $font-size-xs;
-        font-weight: $font-weight-regular;
-        color: $light-gray;
-      }
-    }
-
-    &__list {
-      margin: 0;
-      padding: 1.4rem 2rem;
-      list-style: none;
-
-      li:not(:last-child) {
-        margin-bottom: 1.5rem;
-      }
-
-      .sb-link {
-        font-weight: $font-weight-regular;
-        color: $color-primary-dark;
-      }
-
-      .sb-link::after {
-        background-color: $color-primary-dark;
-      }
-    }
-  }
-
-  &-user {
-    position: relative;
-  }
-
-  // sidebar list
-  &-list {
-    margin: 0;
-    padding: 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  &-item {
-    list-style: none;
-  }
-
-  &-link  {
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 1.5rem 3rem;
-    color: $white;
-    font-size: $font-size-md;
-    font-weight: $font-weight-medium;
-    letter-spacing: 0px;
-    text-decoration: none;
-    vertical-align: middle;
-    cursor: pointer;
-    transition: all 0.1s ease-in;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background-color: $color-primary;
-      opacity: 0;
-      transition: all 0.1s ease-in;
-    }
-
-    &:hover,
-    &:focus {
-      @include activeItemState();
-    }
-
-    .sb-icon {
-      margin-right: 1.4rem;
-    }
-
-    &--active {
-      @include activeItemState();
-    }
-  }
+  box-sizing: border-box;
 
   // sidebar bottom
   &__bottom {
+    margin-bottom: 15px;
     position: relative;
 
     .sb-button {
-      position: absolute;
-      top: -26px;
-      right: -13px;
-      padding: 0.5rem 0.5rem;
-      transition: opacity 0.2s ease-in;
+      min-height: auto;
       opacity: 0;
+      padding: 0;
+      position: absolute;
+      right: -13px;
+      top: -26px;
 
       &:focus {
         opacity: 1;
@@ -162,18 +29,120 @@
     }
   }
 
-  // modifiers
-  &--minimize {
-    max-width: 90px;
+  &__content {
+    background-color: $color-primary-dark;
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 280px;
+
+    &:hover .sb-button {
+      opacity: 1;
+    }
+  }
+
+  // sidebar top
+  &__top {
+    display: flex;
+    padding: 30px 28px;
+
+    .sb-avatar {
+      cursor: pointer;
+      display: block;
+      margin-left: 30px;
+    }
+  }
+
+  &-logo {
+    color: $white;
+    height: 26px;
+
+    img {
+      width: 100%;
+    }
+
+    &--white {
+      color: $white;
+    }
+
+    &--dark {
+      color: $color-primary-dark;
+    }
+  }
+
+  // sidebar list
+  &-list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 0;
+    overflow-x: hidden;
+    padding: 0;
+  }
+
+  &-item {
+    list-style: none;
+    margin-bottom: 1px;
+    padding: 0 16px;
+  }
+
+  &-link {
+    align-items: center;
+    border-radius: 8px;
+    color: $light-gray;
+    cursor: pointer;
+    display: flex;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0;
+    line-height: inherit;
+    padding: 12px;
+    position: relative;
+    text-decoration: none;
+    vertical-align: middle;
+
+    &:hover,
+    &:focus {
+      @include activeItemState();
+    }
 
     .sb-icon {
+      margin-right: 12px;
+    }
+
+    .sb-avatar {
+      margin-right: 10px;
+    }
+
+    &--active {
+      @include activeItemState();
+    }
+
+    &--use-avatar {
+      padding: 9px 17px 9px 9px;
+    }
+  }
+
+  // modifiers
+  &--minimize {
+    .sb-sidebar__content {
+      width: 80px;
+    }
+
+    .sb-icon,
+    .sb-avatar {
       margin: 0;
     }
 
-    .sb-button {
-      opacity: 1;
-      color: $color-primary-dark;
+    .sb-sidebar-link--use-avatar {
+      padding: 9px 15px 9px 17px;
+    }
+
+    .sb-sidebar-toggle .sb-button {
       background-color: $light-75;
+      color: $color-primary-dark;
+      opacity: 1;
 
       &:hover {
         background-color: $light-75;
@@ -189,7 +158,7 @@
     flex-direction: column;
 
     .sb-avatar {
-      margin: 3rem 0 0;
+      margin: 30px 0 0;
     }
   }
 
@@ -201,10 +170,58 @@
     }
   }
 
-  // states
-  &:hover {
+  // mobile elements
+  &__mobile-header {
+    align-items: center;
+    background-color: $white;
+    border-bottom: 1px solid $light;
+    box-sizing: border-box;
+    display: none;
+    padding: 10px 20px;
+    width: 100%;
+
+    button {
+      appearance: none;
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+      padding: 0;
+    }
+  }
+
+  &__mobile-header-menu-icon {
+    border-right: 1px solid $light;
+    margin-right: 20px;
+    padding: 10px 20px 10px 0;
+  }
+
+  &__mobile-logo {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .sb-sidebar__mobile-header {
+    display: flex;
+  }
+
+  .sb-sidebar__content {
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translateX(-110%);
+    z-index: 4;
+  }
+
+  .sb-sidebar--active .sb-sidebar__content {
+    transform: translateX(0);
+  }
+
+  .sb-sidebar-toggle {
+    display: none;
+
     .sb-button {
-      opacity: 1;
+      margin: -1px 0 0 -1px;
     }
   }
 }

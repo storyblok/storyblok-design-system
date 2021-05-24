@@ -1,5 +1,4 @@
 .sb-avatar {
-  position: relative;
   display: inline-block;
 
   // types of avatar
@@ -37,7 +36,7 @@
   // text (on the left)
   &__text-container {
     display: inline-block;
-    margin-left: 1rem;
+    margin-left: 10px;
     vertical-align: middle;
   }
 

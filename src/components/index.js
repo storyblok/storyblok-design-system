@@ -4,7 +4,6 @@ import SbBadge from './Badge'
 import SbBlockUi from './BlockUI'
 import SbButton from './Button'
 import SbCheckbox from './Checkbox'
-import SbDataTable from './DataTable'
 import SbDatepicker from './Datepicker'
 import SbDropArea from './DropArea'
 import SbFormGroup from './FormGroup'
@@ -13,7 +12,6 @@ import SbFragment from './Fragment'
 import SbGroupButton from './GroupButton'
 import SbIcon from './Icon'
 import SbLink from './Link'
-import SbLoading from './Loading'
 import SbNotification from './Notification'
 import SbPagination from './Pagination'
 import SbPortal from './Portal'
@@ -23,7 +21,9 @@ import SbTag from './Tag'
 import SbTextField from './TextField'
 import SbTooltip from './Tooltip'
 import SbUploadDialog from './UploadDialog'
+import SbNumberField from './NumberField'
 
+export * from './Loading'
 export * from './Breadcrumbs'
 export * from './Card'
 export * from './EditorHeader'
@@ -33,6 +33,7 @@ export * from './Sidebar'
 export * from './Slideover'
 export * from './TabPanels'
 export * from './Tabs'
+export * from './DataTable'
 export {
   SbModal,
   SbModalHeader,
@@ -49,7 +50,6 @@ export {
   SbBlockUi,
   SbButton,
   SbCheckbox,
-  SbDataTable,
   SbDatepicker,
   SbDropArea,
   SbFormGroup,
@@ -58,7 +58,6 @@ export {
   SbGroupButton,
   SbIcon,
   SbLink,
-  SbLoading,
   SbNotification,
   SbPagination,
   SbPortal,
@@ -68,4 +67,5 @@ export {
   SbTextField,
   SbTooltip,
   SbUploadDialog,
+  SbNumberField,
 }

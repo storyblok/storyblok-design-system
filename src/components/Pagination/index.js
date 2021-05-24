@@ -8,7 +8,7 @@ import {
   SbPerPageContainer,
 } from './components'
 
-const DEFAULT_ROWS_PER_PAGE_DROPDOWN = [10, 20, 30, 40, 50]
+const DEFAULT_ROWS_PER_PAGE_DROPDOWN = [25, 50, 75, 100]
 
 /**
  * @vue/component

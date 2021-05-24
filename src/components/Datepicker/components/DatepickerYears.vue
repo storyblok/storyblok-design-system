@@ -23,7 +23,7 @@ export default {
       type: Number,
       default: 30,
     },
-    value: {
+    internalDate: {
       type: String,
       default: null,
     },
@@ -48,7 +48,7 @@ export default {
     },
 
     currentYear() {
-      return dayjs(this.value).year()
+      return dayjs(this.internalDate).year()
     },
   },
 
@@ -60,7 +60,7 @@ export default {
      */
     handleYearClick($event, year) {
       $event.stopPropagation()
-      const value = dayjs(this.value).year(year).format()
+      const value = dayjs(this.internalDate).year(year).format()
 
       this.$emit('input', value)
     },

@@ -6,14 +6,16 @@
         {{ message }}
       </SbModalContent>
 
-      <div>
+      <div class="sb-modal__type--buttons">
         <SbButton
-          type="ghost"
+          data-testid="modal-type-cancel"
+          variant="ghost"
           :label="cancelButtonLabel"
           @click="handleCancelAction"
         />
         <SbButton
-          :type="isConfirmationType"
+          data-testid="modal-type-confirm"
+          :variant="isConfirmationType"
           :label="actionButtonLabel"
           @click="handleDispatchAction"
         />

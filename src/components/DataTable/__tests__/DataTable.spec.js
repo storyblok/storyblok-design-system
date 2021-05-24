@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 
-import SbDataTable from '..'
+import { SbDataTable } from '..'
 
 import {
   SbDataTableActions,

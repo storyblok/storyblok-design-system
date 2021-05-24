@@ -13,13 +13,13 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 10,
+      perPage: 25,
     })
 
     it('should have a per page select information with correct state', () => {
       expect(
         wrapper.find('[data-testid="per-page-select"]').element.value
-      ).toBe('10')
+      ).toBe('25')
     })
 
     it('should have a page select information with correct state', () => {
@@ -38,13 +38,13 @@ describe('SbPagination component', () => {
     it('should have a text showing how many pages are', () => {
       expect(
         wrapper.find('[data-testid="pagination-pages-information"]').text()
-      ).toBe('of 10 pages')
+      ).toBe('of 4 pages')
     })
 
     it('should have a text showing the current pagination items', () => {
       expect(
         wrapper.find('[data-testid="pagination-items-information"]').text()
-      ).toBe('1-10 of 100 items')
+      ).toBe('1-25 of 100 items')
     })
   })
 
@@ -52,7 +52,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 3,
       total: 100,
-      perPage: 10,
+      perPage: 25,
     })
 
     it('should have the page select with this specific page', () => {
@@ -75,7 +75,7 @@ describe('SbPagination component', () => {
     it('should have the correct text showing the current page items', () => {
       expect(
         wrapper.find('[data-testid="pagination-items-information"]').text()
-      ).toBe('21-30 of 100 items')
+      ).toBe('51-75 of 100 items')
     })
   })
 
@@ -109,19 +109,19 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 20,
+      perPage: 50,
     })
 
     it('should have the per page select with this specific value', () => {
       expect(
         wrapper.find('[data-testid="per-page-select"]').element.value
-      ).toBe('20')
+      ).toBe('50')
     })
 
     it('should have the correct text with how many pages information', () => {
       expect(
         wrapper.find('[data-testid="pagination-pages-information"]').text()
-      ).toBe('of 5 pages')
+      ).toBe('of 2 pages')
     })
   })
 
@@ -129,27 +129,27 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 10,
+      perPage: 25,
     })
 
     beforeEach(async () => {
-      await wrapper.find('[data-testid="per-page-select"]').setValue(20)
+      await wrapper.find('[data-testid="per-page-select"]').setValue(50)
 
       await wrapper.vm.$nextTick()
     })
 
     it('should emit the per-page-change event with the value select', () => {
       // getting the first result from first emit
-      expect(wrapper.emitted('per-page-change')[0][0]).toBe(20)
+      expect(wrapper.emitted('per-page-change')[0][0]).toBe(50)
     })
 
     it('should update the text with how many pages information', async () => {
       await wrapper.setProps({
-        perPage: 20,
+        perPage: 50,
       })
       expect(
         wrapper.find('[data-testid="pagination-pages-information"]').text()
-      ).toBe('of 5 pages')
+      ).toBe('of 2 pages')
     })
   })
 
@@ -157,7 +157,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 10,
+      perPage: 25,
     })
 
     beforeEach(async () => {
@@ -175,7 +175,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 10,
+      perPage: 25,
     })
 
     it('should emit the input event when next button is clicked', async () => {
@@ -233,7 +233,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 10,
+      perPage: 25,
       isFullWidth: true,
     })
 
@@ -246,7 +246,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 10,
+      perPage: 25,
       compact: true,
     })
 
@@ -257,7 +257,7 @@ describe('SbPagination component', () => {
     it('should have a text with pages information', () => {
       expect(
         wrapper.find('[data-testid="pagination-pages-information"]').text()
-      ).toBe('1 of 10 pages')
+      ).toBe('1 of 4 pages')
     })
   })
 
@@ -265,7 +265,7 @@ describe('SbPagination component', () => {
     const wrapper = factory({
       value: 1,
       total: 100,
-      perPage: 10,
+      perPage: 25,
       carousel: true,
     })
 

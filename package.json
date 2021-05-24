@@ -15,7 +15,8 @@
     "@popperjs/core": "^2.5.4",
     "dayjs": "^1.9.6",
     "portal-vue": "^2.1.7",
-    "throttle-debounce": "^2.3.0"
+    "throttle-debounce": "^2.3.0",
+    "vue-fragment": "^1.5.1"
   },
   "peerDependencies": {
     "vue": "^2.6.12"

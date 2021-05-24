@@ -6,6 +6,7 @@ import {
   SbDataTableBody,
   SbDataTableBodyRow,
   SbDataTableHeader,
+  SbDataTableColumn,
 } from './components'
 
 import SbLoading from '../Loading'
@@ -322,4 +323,4 @@ const SbDataTable = {
   },
 }
 
-export default SbDataTable
+export { SbDataTable, SbDataTableColumn }

@@ -75,7 +75,7 @@ const fakeProps = {
   headerSubTitle: 'Its true',
 }
 
-describe('SbEditorHeader component', () => {
+describe.skip('SbEditorHeader component', () => {
   it('should render all internal components', () => {
     const wrapper = factory(fakeProps)
 

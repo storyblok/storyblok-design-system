@@ -49,7 +49,7 @@ export default {
     monthsList() {
       return this.months.map((month) => {
         return {
-          checked: dayjs(this.value).format('MMM') === month,
+          checked: dayjs(this.internalDate).format('MMM') === month,
           label: month,
         }
       })
@@ -65,7 +65,7 @@ export default {
     handleMonthClick($event, month) {
       $event.stopPropagation()
       const monthIndex = this.months.indexOf(month)
-      const value = dayjs(this.value).month(monthIndex).format()
+      const value = dayjs(this.internalDate).month(monthIndex).format()
       this.$emit('input', value)
     },
   },

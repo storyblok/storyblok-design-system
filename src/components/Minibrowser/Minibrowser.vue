@@ -3,18 +3,42 @@
     class="sb-minibrowser"
     :class="{
       'sb-minibrowser--expanded': this.isExpanded,
+      'sb-minibrowser--full-height': this.isFullHeight,
+      'sb-minibrowser--borderless': this.isBorderless,
     }"
   >
     <SbMinibrowserSearch
+      :clear-search-label="clearSearchLabel"
       :value="searchInput"
       :placeholder="placeholder"
       @input="handleSearchInput"
+      @keydown="handleSearchKeydown"
     />
 
-    <SbMinibrowserListContainer
-      :items="internalItems"
-      :navigation-items="navigationItems"
-    />
+    <div class="sb-minibrowser__list-container">
+      <SbMinibrowserBreadcrumbs
+        v-if="hasBreadcrumbs"
+        :items="internalBreadcrumbs"
+      />
+
+      <template v-if="hasGroupedItems">
+        <template v-for="(groupItem, index) in groupedItems">
+          <SbMinibrowserList
+            v-if="!$scopedSlots.list"
+            :key="index"
+            v-bind="groupItem"
+          />
+
+          <slot name="list" v-bind="groupItem" />
+        </template>
+      </template>
+
+      <template v-if="hasOtherItems">
+        <SbMinibrowserList v-if="!$scopedSlots.list" :items="otherItems" />
+
+        <slot name="list" :items="otherItems" />
+      </template>
+    </div>
 
     <p v-if="hasNotFilteredElements" class="sb-minibrowser__not-found">
       {{ notFoundText }}
@@ -24,28 +48,12 @@
 
 <script>
 import { debounce } from 'throttle-debounce'
-import { toLowerCase } from '../../utils'
+
+import { flatten } from '../../utils'
 
 import SbMinibrowserSearch from './components/MinibrowserSearch'
-import SbMinibrowserListContainer from './components/MinibrowserListContainer'
-
-/**
- * @description return all items in the options array recursively
- * @method flatOptions
- * @param  {Array<Object>} items
- * @return {Array<Object>}
- */
-const flatOptions = (items = []) => {
-  return items.reduce((acc, item) => {
-    if (item.items) {
-      acc = acc.concat(flatOptions(item.items))
-    } else {
-      acc.push(item)
-    }
-
-    return acc
-  }, [])
-}
+import SbMinibrowserList from './components/MinibrowserList'
+import SbMinibrowserBreadcrumbs from './components/MinibrowserBreadcrumbs'
 
 /**
  * SbMinibrowser is a visualization of a structure ‘hierarchy’. User can view and search content pages, folders etc.
@@ -55,7 +63,8 @@ export default {
 
   components: {
     SbMinibrowserSearch,
-    SbMinibrowserListContainer,
+    SbMinibrowserList,
+    SbMinibrowserBreadcrumbs,
   },
 
   provide() {
@@ -68,19 +77,18 @@ export default {
     // states
     isExpanded: Boolean,
     isList: Boolean,
+    isFullHeight: Boolean,
+    isBorderless: Boolean,
+    isLoading: Boolean,
 
     // options
+    breadcrumbs: {
+      type: Array,
+      default: () => [],
+    },
     filterDebounce: {
       type: Number,
       default: 300,
-    },
-    filterMethod: {
-      type: Function,
-      default: null,
-    },
-    lazyLoadMethod: {
-      type: Function,
-      default: null,
     },
     notFoundPrefix: {
       type: String,
@@ -93,18 +101,21 @@ export default {
     },
 
     // input properties
+    clearSearchLabel: {
+      type: String,
+      default: 'Clear minibrowser search',
+    },
     placeholder: {
       type: String,
       default: 'Search content items',
     },
+    clearOnSelect: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({
-    currentParentItem: null,
-    filteredItems: [],
-    isOnLoadingFilter: false,
-    isOnLazyLoad: false,
-    navigationItems: [],
     filterHandler: null,
     searchInput: '',
   }),
@@ -114,9 +125,7 @@ export default {
       return {
         // browser states
         isList: this.isList || false,
-        isOnFilter: this.isOnFilter || false,
-        isOnLazyLoad: this.isOnLazyLoad || false,
-        isOnLoadingFilter: this.isOnLoadingFilter || false,
+        isLoading: this.isLoading || false,
 
         // browser methods
         clearNavigation: this.clearNavigation,
@@ -126,35 +135,43 @@ export default {
     },
 
     internalItems() {
-      if (this.isOnFilter) {
-        return [...this.filteredItems]
-      }
-
-      if (this.currentParentItem) {
-        return [...this.currentParentItem.items]
-      }
-
-      return [...this.options]
-    },
-
-    isOnFilter() {
-      return this.searchInput && this.searchInput.length > 0
+      return [...(this.options || [])]
     },
 
     hasNotFilteredElements() {
-      return this.isOnFilter && this.filteredItems.length === 0
+      return !this.isLoading && this.internalItems.length === 0
     },
 
     notFoundText() {
       return `${this.notFoundPrefix} "${this.searchInput}"`
     },
+
+    groupedItems() {
+      return this.internalItems.filter((item) => item.group)
+    },
+
+    hasGroupedItems() {
+      return this.groupedItems.length > 0
+    },
+
+    otherItems() {
+      return this.internalItems.filter((item) => !item.group)
+    },
+
+    hasOtherItems() {
+      return this.otherItems.length > 0
+    },
+
+    hasBreadcrumbs() {
+      return this.internalBreadcrumbs.length > 0
+    },
+
+    internalBreadcrumbs() {
+      return [...(this.breadcrumbs || [])]
+    },
   },
 
-  watch: {
-    currentParentItem: '$_watchCurrentParent',
-  },
-
-  mounted() {
+  created() {
     this.$_registerFilter()
   },
 
@@ -163,9 +180,6 @@ export default {
      * clears navigationItems property to hide the breadcrumbs
      */
     clearNavigation() {
-      this.currentParentItem = null
-      this.navigationItems = []
-
       this.$emit('clear-navigation')
     },
 
@@ -175,15 +189,63 @@ export default {
      */
     handleSearchInput(value) {
       this.searchInput = value
-      this.isOnLoadingFilter = true
 
-      if (value && this.filterHandler) {
-        this.filterHandler()
-        return
+      this.filterHandler()
+    },
+
+    /**
+     * handles keydown event in search input
+     * @param {Event} event
+     */
+    handleSearchKeydown(event) {
+      if (event.key === 'Escape') {
+        this.$emit('close')
+      } else if (event.key === 'Enter') {
+        this.selectFilteredItem()
+      }
+    },
+
+    /**
+     * gets items, flatten and selects if only one is listed
+     */
+    selectFilteredItem() {
+      let items = []
+
+      // check if the groupedItems has only one element, and this element
+      // has only one item in items array
+      if (
+        this.hasGroupedItems &&
+        this.groupedItems.length === 1 &&
+        this.groupedItems[0].items.length === 1
+      ) {
+        items = [...items, this.getDeepLeaf(this.groupedItems[0].items[0])]
+      } else if (this.hasOtherItems && this.otherItems.length === 1) {
+        items = [...items, ...this.otherItems]
       }
 
-      this.filteredItems = []
-      this.isOnLoadingFilter = false
+      const itemsFlatted = flatten(items, 'items')
+
+      if (itemsFlatted.length === 1) {
+        this.selectItem(itemsFlatted[0])
+      }
+    },
+
+    /**
+     * @method getDeepLeaf
+     * @param {{items: array}} branchItem
+     *
+     * This method will only return the deep leaf with exactly one element
+     */
+    getDeepLeaf(branchItem) {
+      if (branchItem.items.length === 0) {
+        return branchItem
+      }
+
+      if (branchItem.items.length > 1) {
+        return {}
+      }
+
+      return this.getDeepLeaf(branchItem.items[0])
     },
 
     /**
@@ -192,27 +254,15 @@ export default {
      * @param {Number} index
      */
     navigateTo(index = 0) {
-      this.navigationItems = this.navigationItems.filter((_, itemIndex) => {
-        return itemIndex <= index
-      })
-
-      const item = this.navigationItems[index]
-      this.currentParentItem = item
-
-      this.$emit('navigate', item)
+      this.$emit('navigate', index)
     },
 
     /**
      * emits the selected item and handle with item when it's a parent
      */
     selectItem(item) {
-      if (item.isParent) {
-        this.currentParentItem = item
-        this.navigationItems.push(item)
-
-        this.$emit('select-item', item)
-        this.$emit('navigate', item)
-        return
+      if (this.clearOnSelect || item.isParent) {
+        this.searchInput = ''
       }
 
       this.$emit('select-item', item)
@@ -231,43 +281,7 @@ export default {
      * implement the filter logic
      */
     $_triggerFilter() {
-      if (this.filterMethod) {
-        this.filterMethod(this.searchInput, (items) => {
-          this.filteredItems = [...items]
-          this.isOnLoadingFilter = false
-        })
-        return
-      }
-
-      const options = flatOptions(this.options)
-      const searchText = toLowerCase(this.searchInput)
-
-      this.filteredItems = options.filter((item) => {
-        const label = toLowerCase(item.label || '')
-
-        return label.indexOf(searchText) !== -1
-      })
-      this.isOnLoadingFilter = false
-    },
-
-    /**
-     * watcher method to currentParentItem
-     */
-    $_watchCurrentParent(parentItem) {
-      if (parentItem && typeof this.lazyLoadMethod === 'function') {
-        this.$_triggerLazyLoad(parentItem)
-      }
-    },
-    /**
-     * trigger the lazy load logic
-     */
-    $_triggerLazyLoad(parentItem) {
-      this.isOnLazyLoad = true
-
-      this.lazyLoadMethod(parentItem, (items) => {
-        this.currentParentItem.items = items
-        this.isOnLazyLoad = false
-      })
+      this.$emit('filter', { value: this.searchInput })
     },
   },
 }

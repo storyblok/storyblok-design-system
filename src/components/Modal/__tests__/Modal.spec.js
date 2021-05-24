@@ -24,22 +24,22 @@ describe('Tests for SbModal', () => {
     }),
     template: `
       <SbModal is-open-modal v-on:hide="showModal = false">
-        <SbModalHeader 
+        <SbModalHeader
           title="Awesome Title"
         />
 
         <SbModalContent>
           <p>The body copy that explains empty state</p>
         </SbModalContent>
-        
+
         <SbModalFooter>
             <SbButton
               label="Save"
-              type="primary"
+              variant="primary"
             />
             <SbButton
               label="Cancel"
-              type="primary"
+              variant="primary"
             />
         </SbModalFooter>
       </SbModal>
@@ -49,8 +49,6 @@ describe('Tests for SbModal', () => {
   const wrapper = shallowMount(WrapperComponent)
 
   it('Test if SBModal component renderer correctly', () => {
-    expect(wrapper.findComponent(SbModal).name()).toBe('SbModal')
-
     expect(wrapper.findComponent(SbModalHeader).props().title).toBe(
       'Awesome Title'
     )

@@ -51,7 +51,6 @@ const SbBadge = {
       return h(SbIcon, {
         props: {
           name: mapIconByTypes[this.type],
-          size: 'small',
         },
       })
     }

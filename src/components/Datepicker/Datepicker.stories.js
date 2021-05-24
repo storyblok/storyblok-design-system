@@ -7,8 +7,7 @@ const Template = (args) => ({
   props: Object.keys(args),
 
   data: () => ({
-    internalDatetimeValue: '',
-    internalTimeValue: '',
+    internalDatetimeValue: '2017-09-09 00:00',
   }),
 
   template: `
@@ -19,6 +18,7 @@ const Template = (args) => ({
       :tz-tooltip="tzTooltip"
       :type="type"
       v-model="internalDatetimeValue"
+      style="width: 29.4rem"
     />
   `,
 })

@@ -1,23 +1,23 @@
 .sb-breadcrumbs {
-  position: relative;
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  position: relative;
 
   &__item {
+    color: $primary-text-color;
     // position: relative;
     display: inline-flex;
     font-size: $font-size-sm;
-    color: $primary-text-color;
-  
+
     &--active {
       color: $color-primary-dark;
     }
 
     a {
-      text-decoration: none;
       color: $primary-text-color;
       cursor: pointer;
+      text-decoration: none;
     }
 
     a:hover {
@@ -26,25 +26,26 @@
   }
 
   &__separator {
+    cursor: pointer;
     display: inline-flex;
     list-style: none;
-    cursor: pointer;
     transition: 0.1s ease-in-out;
 
     &--active {
-      transform: rotate(90deg);
       background-color: $light-50;
+      transform: rotate(90deg);
     }
   }
 
   &__dropdown {
-    position: absolute;
-    top: calc(100% + 1rem);
-    margin: 0;
-    left: 0;
-    display: block;
-    padding: 0.9rem 0;
     @include generalBoxShadow();
+
+    display: block;
+    left: 0;
+    margin: 0;
+    padding: 9px 0;
+    position: absolute;
+    top: calc(100% + 10px);
 
     .sb-breadcrumbs__item {
       display: block;
@@ -54,7 +55,7 @@
 
     .sb-breadcrumbs__item a {
       display: block;
-      padding: 0.6rem 1.5rem;
+      padding: 6px 15px;
       text-decoration: none;
 
       &:hover {
@@ -69,7 +70,7 @@
 
   & > &__item,
   & > &__separator {
-    margin-right: 0.5rem;
+    margin-right: 5px;
   }
 
   & > &__item:last-child {
@@ -77,12 +78,18 @@
   }
 
   &--large-section {
+    top: -6px;
+
     > .sb-breadcrumbs__item:last-child {
-      width: 100%;
-      margin-top: 1.5rem;
-      font-weight: $font-weight-bold;
-      font-size: $text-header;
       color: $primary-text-color;
+      font-size: $text-header;
+      font-weight: $font-weight-bold;
+      width: 100%;
+
+      a {
+        cursor: text;
+        text-decoration: none;
+      }
     }
   }
 }

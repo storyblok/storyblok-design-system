@@ -8,7 +8,19 @@
       @input="handleInput"
     />
 
-    <SbIcon size="small" name="search" />
+    <button
+      v-if="hasValue"
+      class="sb-select-list-search__clear"
+      @click="handleClear"
+    >
+      <SbIcon name="x-clear" color="light-gray" />
+    </button>
+    <SbIcon
+      v-else
+      class="sb-select-list-search__icon"
+      name="search"
+      color="light-gray"
+    />
   </div>
 </template>
 
@@ -31,6 +43,12 @@ export default {
     },
   },
 
+  computed: {
+    hasValue() {
+      return this.value && this.value.length > 0
+    },
+  },
+
   methods: {
     /**
      * handle with input event forward this event with correct value from input
@@ -38,6 +56,15 @@ export default {
      */
     handleInput(event) {
       this.$emit('input', event.target.value)
+    },
+
+    /**
+     * handle with clear icon that clears the search input
+     * @param {Event} event
+     */
+    handleClear(event) {
+      event.stopPropagation()
+      this.$emit('input', '')
     },
   },
 }

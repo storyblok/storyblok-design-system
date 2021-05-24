@@ -1,8 +1,6 @@
-import SbDataTable from '.'
+import { SbDataTable, SbDataTableColumn } from '.'
 import SbAvatar from '../Avatar'
 import SbAvatarGroup from '../AvatarGroup'
-
-import { SbDataTableColumn } from './components/SbDataTableColumn'
 
 const description = {
   allowSelection: 'Allow row selection.',
