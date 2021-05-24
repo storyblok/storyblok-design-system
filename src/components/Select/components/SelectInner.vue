@@ -1,9 +1,6 @@
 <template>
   <div
     class="sb-select-inner"
-    :class="{
-      'sb-select-inner--with-value': hasValue,
-    }"
     tabindex="0"
     v-on="$listeners"
     @keydown="handleKeyDown"
@@ -12,7 +9,7 @@
       v-if="leftIcon"
       class="sb-select-inner__icon-left"
       :name="leftIcon"
-      size="small"
+      color="primary-dark"
     />
 
     <div v-if="isTagsVisible" class="sb-select-inner__tags">
@@ -25,33 +22,47 @@
         @keydown="handleTagKeydown($event, tagLabel)"
         @close="removeItem($event, tagLabel)"
       />
-    </div>
-
-    <span v-if="isInnerLabelVisible" class="sb-select-inner__label">
-      {{ innerLabel }}
-    </span>
-
-    <div v-if="isAvatarVisible" class="sb-select-inner__avatar">
-      <SbAvatar
-        :src="avatarData.src"
-        :name="avatarData.label"
-        show-name
-        size="small"
+      <input
+        v-if="filterable"
+        ref="search"
+        v-model="searchInputText"
+        type="search"
+        class="sb-select-inner__input"
+        :style="inlineWidth"
+        :placeholder="innerLabel"
+        :readonly="!filterable"
+        @focus="handleEmitSearchInput"
       />
     </div>
 
-    <div class="sb-select-inner__icons">
-      <button
-        v-if="isTagsVisible"
-        aria-label="Clear all values"
-        class="sb-select-inner__clear"
-        @keydown="clearAllValues"
-        @click="clearAllValues"
-      >
-        <SbIcon name="close" size="small" />
-      </button>
+    <div v-if="isAvatarVisible && showAvatar" class="sb-select-inner__avatar">
+      <SbAvatar :src="avatarData.src" size="small" />
+    </div>
 
-      <SbIcon name="chevron-down" size="small" color="primary-dark" />
+    <input
+      v-if="isInnerSearchVisible"
+      v-model="searchInputText"
+      type="search"
+      class="sb-select-inner__input"
+      :style="inlineWidth"
+      :placeholder="innerLabel"
+      :readonly="!filterable || inline"
+      @focus="handleEmitSearchInput"
+    />
+
+    <div class="sb-select-inner__icons">
+      <SbTooltip v-if="showClearButton" label="Remove all">
+        <button
+          aria-label="Clear all values"
+          class="sb-select-inner__clear"
+          type="button"
+          @keydown="clearAllValuesKeydown"
+          @click="clearAllValues"
+        >
+          <SbIcon name="x-clear" />
+        </button>
+      </SbTooltip>
+      <SbIcon class="sb-select-inner__chevron" name="chevron-down" />
     </div>
   </div>
 </template>
@@ -65,11 +76,16 @@ import SbAvatar from '../../Avatar'
 export default {
   name: 'SbSelectInner',
 
-  components: { SbIcon, SbTag, SbAvatar },
+  components: {
+    SbIcon,
+    SbTag,
+    SbAvatar,
+  },
 
   inject: ['selectContext'],
 
   props: {
+    clearable: Boolean,
     inline: Boolean,
 
     label: {
@@ -82,6 +98,8 @@ export default {
       default: null,
     },
 
+    allowCreate: Boolean,
+    filterable: Boolean,
     multiple: Boolean,
 
     value: {
@@ -92,11 +110,36 @@ export default {
       type: Array,
       default: () => [],
     },
+    itemLabel: {
+      type: String,
+      default: 'label',
+    },
+    itemValue: {
+      type: String,
+      default: 'value',
+    },
+    searchInput: {
+      type: [String, Number],
+      default: null,
+    },
 
     useAvatars: Boolean,
   },
 
+  data: () => ({
+    showAvatar: false,
+  }),
+
   computed: {
+    searchInputText: {
+      get() {
+        return this.searchInput
+      },
+      set(value) {
+        return value
+      },
+    },
+
     hasValue() {
       if (this.multiple || isArray(this.value)) {
         return this.value.length > 0
@@ -110,25 +153,37 @@ export default {
         return this.label
       }
 
-      const optionLabel = this.currentOption.label || this.value
-
-      if (this.inline) {
-        return `${this.label}: ${optionLabel}`
+      if (this.filterable && this.multiple) {
+        return ''
       }
 
-      return optionLabel
+      if (this.inline) {
+        return `${this.label}: ${this.currentOptionLabel}`
+      }
+
+      return this.currentOptionLabel
     },
 
-    currentOption() {
+    currentOptionLabel() {
+      return this.currentOptionValue && this.currentOptionValue[this.itemLabel]
+        ? this.currentOptionValue[this.itemLabel]
+        : this.value
+    },
+
+    currentOptionValue() {
       if (!this.hasValue) {
         return {}
       }
 
-      return this.options.find((opt) => opt.value === this.value)
+      return this.options.find((opt) => opt[this.itemValue] === this.value)
     },
 
     isTagsVisible() {
       return this.hasValue && this.multiple
+    },
+
+    showClearButton() {
+      return (this.hasValue && this.clearable) || this.isTagsVisible
     },
 
     tagLabels() {
@@ -140,25 +195,79 @@ export default {
     },
 
     isAvatarVisible() {
-      return this.hasValue && this.useAvatars
+      return this.hasValue && this.useAvatars && this.avatarData
     },
 
-    isInnerLabelVisible() {
-      return !this.isTagsVisible && !this.isAvatarVisible
+    isInnerSearchVisible() {
+      return !this.isTagsVisible
+    },
+
+    isSearchTextVisible() {
+      return this.filterable && this.multiple && this.isTagsVisible
     },
 
     avatarData() {
       return this.options.find((option) => {
-        return option.value === this.value
+        return option[this.itemValue] === this.value
       })
     },
 
     context() {
       return this.selectContext()
     },
+
+    inlineWidth() {
+      const width = this.inline ? `${this.innerLabel.length}ch` : '100%'
+      return { width }
+    },
+  },
+
+  watch: {
+    searchInputText(val) {
+      if (
+        this.avatarData &&
+        val === this.avatarData.label &&
+        this.isAvatarVisible
+      ) {
+        this.showAvatar = true
+      }
+    },
+
+    value(val, oldVal) {
+      const isSameValue = JSON.stringify(val) === JSON.stringify(oldVal)
+      if (this.isSearchTextVisible && !isSameValue) {
+        this.$nextTick(() => this.$refs.search.focus())
+        return
+      }
+
+      if (this.isAvatarVisible) {
+        this.showAvatar = true
+      }
+    },
   },
 
   methods: {
+    /**
+     * forward the 'emit-value' event
+     * @param {String} value
+     */
+    handleEmitValue(value) {
+      this.$emit('emit-value', value)
+    },
+
+    /**
+     * forward the 'input' event
+     */
+    handleEmitSearchInput() {
+      if (this.filterable) {
+        this.$emit('input', '')
+
+        if (this.isAvatarVisible) {
+          this.showAvatar = false
+        }
+      }
+    },
+
     /**
      * clear all items from value
      */
@@ -166,6 +275,15 @@ export default {
       event.stopPropagation()
       event.preventDefault()
       this.$emit('clear-all-values')
+    },
+
+    /**
+     * handle with keydown event in the clear all button
+     */
+    clearAllValuesKeydown(event) {
+      if (event.key === 'Enter') {
+        this.clearAllValues(event)
+      }
     },
 
     /**
@@ -181,10 +299,28 @@ export default {
      * handles inner keydown element
      */
     handleKeyDown(event) {
+      event.stopPropagation()
       const { focusOnFirstItem, focusOnLastItem } = this.context
 
-      if (event.key === 'Enter' || event.key === ' ') {
-        this.$emit('click')
+      if (event.key === 'Enter') {
+        event.preventDefault()
+        if (this.allowCreate && this.searchInputText.length) {
+          this.handleEmitValue(this.searchInputText)
+          this.$emit('input', '')
+        } else {
+          this.$emit('click')
+        }
+      }
+
+      if (event.key === 'Backspace') {
+        const tagsLength = this.tagLabels.length
+        if (tagsLength && !this.searchInputText.length) {
+          document.querySelectorAll('.sb-tag')[tagsLength - 1].focus()
+        }
+      }
+
+      if (event.key === 'Escape') {
+        this.$emit('close-list')
       }
 
       if (event.key === 'ArrowDown') {
@@ -200,7 +336,12 @@ export default {
      * handles with keydown and emits the remove-item-value event
      */
     handleTagKeydown(event, tagValue) {
-      if (event.key === 'Enter' || event.key === ' ') {
+      if (
+        event.key === 'Enter' ||
+        event.key === ' ' ||
+        event.key === 'Backspace' ||
+        event.key === 'Delete'
+      ) {
         this.$emit('remove-item-value', tagValue)
       }
 

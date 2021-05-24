@@ -24,7 +24,7 @@ export const randomString = (length) => {
 
   let result = ''
   for (let i = 0; i < length; i++) {
-    result += chars.charAt(getRandomNumber(0, length))
+    result += chars.charAt(getRandomNumber(0, chars.length))
   }
 
   return result

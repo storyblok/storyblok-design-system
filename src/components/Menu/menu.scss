@@ -1,23 +1,25 @@
 .sb-menu-list {
   @include popoverComponent();
-  min-width: 25rem;
-  padding: 1rem 0;
+
   background-color: $white;
+  min-width: 180px;
+  padding: 11px 0;
   z-index: 2;
 }
 
 .sb-menu-item {
-  display: flex;
   align-items: center;
-  width: 100%;
   appearance: none;
-  border: 0;
   background-color: $white;
-  padding: 1rem;
-  margin: 0;
-  text-align: left;
+  border: 0;
+  color: $sb-dark-blue;
   cursor: pointer;
+  display: flex;
   font-size: $font-size-md;
+  margin: 0;
+  padding: 8px 20px;
+  text-align: left;
+  width: 100%;
 
   &:hover,
   &:focus {
@@ -25,30 +27,64 @@
   }
 
   .sb-icon {
-    margin-right: 1rem;
+    margin-right: 10px;
   }
 
   &--negative {
     color: $red;
   }
+
+  &--has-icon {
+    padding: 5px 20px;
+  }
+
+  &--aux-text {
+    justify-content: space-between;
+    min-width: 235px;
+
+    small {
+      $font-size-sm: 1.3rem;
+
+      color: $sb-dark-blue-50;
+      flex-grow: 1;
+      text-align: end;
+    }
+  }
+
+  &--disabled {
+    color: rgba($sb-dark-blue, 0.5);
+
+    &:hover,
+    &:focus {
+      background-color: $light-25;
+      cursor: not-allowed;
+    }
+  }
 }
 
 .sb-menu-separator {
   background-color: $light;
-  margin: 1rem 1rem;
+  border: 0;
   height: 1px;
-  border: none;
+  margin: 6px 0 6px 20px;
 }
 
 .sb-menu-group {
   &__title {
-    padding: 1rem;
     color: $sb-dark-blue-50;
     font-size: $font-size-sm;
-    margin: 0;
+    margin: 0 0 5px;
+    padding: 10px;
+
+    &--bold {
+      color: $sb-dark-blue;
+      font-size: $font-size-md;
+      font-weight: $font-weight-medium;
+      padding-left: 20px;
+    }
   }
 }
 
 .sb-menu-button-borderless {
-  border: none;
+  border: 0;
 }

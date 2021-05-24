@@ -1,11 +1,29 @@
-import { SbBreadcrumbs } from '.'
+import { SbBreadcrumbs, SbBreadcrumbItem } from '.'
 
 const Template = (args) => ({
-  components: { SbBreadcrumbs },
+  components: { SbBreadcrumbs, SbBreadcrumbItem },
   props: Object.keys(args),
+  computed: {
+    lastIndex() {
+      return this.items.length - 1
+    },
+  },
   template: `
     <div style="max-width: 400px">
-      <SbBreadcrumbs v-bind="{ items, isLargeSection }" />
+      <SbBreadcrumbs v-bind="{ isLargeSection }">
+        <template v-for="(item, index) in items">
+          <SbBreadcrumbItem
+            :key="index"
+            :is-active="index === lastIndex"
+            :label="item.label"
+          />
+
+          <SbBreadcrumbSeparator
+            v-if="index < lastIndex"
+            :key="index"
+          />
+        </template>
+      </SbBreadcrumbs>
     </div>
   `,
 })
@@ -108,7 +126,20 @@ WithLargeSection.parameters = {
   },
 }
 
-export const LongBreadcrums = Template.bind({})
+export const LongBreadcrums = (args) => ({
+  components: { SbBreadcrumbs, SbBreadcrumbItem },
+  props: Object.keys(args),
+  computed: {
+    lastIndex() {
+      return this.items.length - 1
+    },
+  },
+  template: `
+    <div style="max-width: 400px">
+      <SbBreadcrumbs v-bind="{ isLargeSection, items }" />
+    </div>
+  `,
+})
 
 LongBreadcrums.args = {
   items: [

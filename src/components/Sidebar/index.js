@@ -1,5 +1,5 @@
 // assets
 import './sidebar.scss'
 
-export { SbSidebarListItem } from './components'
+export { SbSidebarListItem, SbSidebarLogo } from './components'
 export { default as SbSidebar } from './Sidebar.vue'

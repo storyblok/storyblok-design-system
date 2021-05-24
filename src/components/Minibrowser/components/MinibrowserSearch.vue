@@ -7,7 +7,7 @@
   >
     <input
       ref="input"
-      class="sb-minibrowser__input"
+      class="sb-textfield__input sb-textfield__input--default sb-textfield__input--ghost-light"
       type="search"
       :value="value"
       :placeholder="placeholder"
@@ -15,16 +15,16 @@
       @keydown="handleSearchKeydown"
     />
 
-    <SbIcon
+    <button
       v-if="showCloseIcon"
-      class="sb-minibrowser__icon-close"
-      size="small"
-      name="close"
-      color="primary-dark"
+      :aria-label="clearSearchLabel"
+      class="sb-minibrowser__input-container-clear"
       @click="clearSearchInputValue"
-    />
+    >
+      <SbIcon name="x-clear" color="light-gray" />
+    </button>
 
-    <SbIcon v-else size="small" v-bind="icon" />
+    <SbIcon class="sb-minibrowser__input-container-icon" v-bind="icon" />
   </div>
 </template>
 
@@ -41,6 +41,10 @@ export default {
   inject: ['browserContext'],
 
   props: {
+    clearSearchLabel: {
+      type: String,
+      default: null,
+    },
     placeholder: {
       type: String,
       default: null,
@@ -64,15 +68,15 @@ export default {
     },
 
     isLoading() {
-      return this.context.isOnLoadingFilter || this.context.isOnLazyLoad
+      return this.context.isLoading
     },
 
-    isOnFilter() {
-      return this.context.isOnFilter
+    hasValue() {
+      return typeof this.value === 'string' && this.value.length > 0
     },
 
     showCloseIcon() {
-      return this.isOnFilter && !this.isLoading
+      return this.hasValue && !this.isLoading
     },
   },
 
@@ -83,8 +87,10 @@ export default {
   methods: {
     /**
      * emits an input event with the empty state
+     * @param {Event} event
      */
-    clearSearchInputValue() {
+    clearSearchInputValue(event) {
+      event.stopPropagation()
       this.$emit('input', '')
     },
 
@@ -102,8 +108,12 @@ export default {
      */
     handleSearchKeydown(event) {
       if (event.key === 'Escape') {
-        this.clearSearchInputValue()
+        if (this.value.length) {
+          this.clearSearchInputValue(event)
+          return
+        }
       }
+      this.$emit('keydown', event)
     },
   },
 }

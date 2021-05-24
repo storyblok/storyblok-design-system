@@ -8,17 +8,17 @@
 
   // elements
   &__per-page-container {
-    margin-right: 12rem;
-    padding-left: 1rem;
+    margin-right: 120px;
+    padding-left: 10px;
   }
 
   &__pages-container {
-    margin-right: 3rem;
+    margin-right: 30px;
   }
 
   &__select {
-    margin: 0 1rem;
-    border: none;
+    margin: 0 10px;
+    border: 0;
   }
 
   &__placeholder {
@@ -28,10 +28,10 @@
   }
 
   &__button {
-    width: 5.5rem;
-    height: 5.5rem;
+    width: 55px;
+    height: 55px;
     background-color: transparent;
-    border: none;
+    border: 0;
     border-left: 1px solid $light;
     color: $color-primary-dark;
     cursor: pointer;
@@ -48,20 +48,20 @@
 
   &-carousel-container {
     display: flex;
-    margin: 0 2rem;
+    margin: 0 20px;
   }
 
   &-dot {
-    width: 1rem;
-    height: 1rem;
+    width: 10px;
+    height: 10px;
     padding: 0;
     background-color: $light;
     border-radius: 100%;
-    border: none;
+    border: 0;
     cursor: pointer;
 
     &:not(:first-child) {
-      margin-left: 1.5rem;
+      margin-left: 15px;
     }
 
     &--active {
@@ -84,11 +84,11 @@
   }
 
   &--compact > span {
-    margin: 0 2rem;
+    margin: 0 20px;
   }
 
   &--compact &__button {
-    border: none;
+    border: 0;
     border-left: 1px solid $light;
     border-right: 1px solid $light;
   }
@@ -98,6 +98,6 @@
   }
 
   &--carousel &__button {
-    border: none;
+    border: 0;
   }
 }

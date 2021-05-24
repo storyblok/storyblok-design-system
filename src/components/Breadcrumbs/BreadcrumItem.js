@@ -15,7 +15,6 @@ const sharedLinkProps = {
   },
   label: {
     type: String,
-    required: true,
     default: null,
   },
 
@@ -47,9 +46,8 @@ const SbBreadcrumbLink = {
   props: {
     ...sharedLinkProps,
   },
-  render(h, { props, listeners }) {
+  render(h, { props, listeners, slots }) {
     const { label } = props
-
     // if href exists, we understand that's expected a <a> tag
     if (props.href) {
       return h(
@@ -64,7 +62,7 @@ const SbBreadcrumbLink = {
             ...listeners,
           },
         },
-        label
+        [label, slots().default]
       )
     }
 
@@ -79,7 +77,7 @@ const SbBreadcrumbLink = {
           ...listeners,
         },
       },
-      label
+      [label, slots().default]
     )
   },
 }
@@ -101,11 +99,12 @@ const SbBreadcrumbItem = {
     ...sharedLinkProps,
   },
 
-  render(h, { props, listeners }) {
-    const { isActive, label, title, href, to, as } = props
-    const isTruncated = (label || '').length > 15
-    const labelFormated = isTruncated ? getLabelTruncated(label) : label
+  render(h, { props, listeners, slots }) {
+    const { isActive, title, href, to, as } = props
+    const label = props.label || ''
 
+    const isTruncated = label.length > 15
+    const labelFormated = isTruncated ? getLabelTruncated(label) : label
     const breadcrumbsItemProps = {
       staticClass: 'sb-breadcrumbs__item',
       class: {
@@ -119,21 +118,25 @@ const SbBreadcrumbItem = {
 
     const renderLabel = () => {
       if (!isActive) {
-        return h(SbBreadcrumbLink, {
-          props: {
-            title,
-            href,
-            to,
-            as,
-            label: labelFormated,
+        return h(
+          SbBreadcrumbLink,
+          {
+            props: {
+              title,
+              href,
+              to,
+              as,
+              label: labelFormated,
+            },
+            on: {
+              ...listeners,
+            },
           },
-          on: {
-            ...listeners,
-          },
-        })
+          [slots().default]
+        )
       }
 
-      return labelFormated
+      return [labelFormated, slots().default]
     }
 
     const renderChildren = () => {

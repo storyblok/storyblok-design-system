@@ -24,10 +24,26 @@ export default {
       type: String,
       required: true,
     },
+    show: {
+      type: Boolean,
+      default: true,
+    },
     position: {
       type: String,
       default: 'top',
       validator: (position) => includes(availablePositions, position),
+    },
+    tooltipTarget: {
+      type: String,
+      default: () => `sb-tooltip-target-${randomString(4)}`,
+    },
+    variant: {
+      type: String,
+      default: 'dark',
+    },
+    textAlign: {
+      type: String,
+      default: 'center',
     },
   },
 
@@ -57,7 +73,9 @@ export default {
      * shows the tooltip
      */
     showTooltip() {
-      this.isVisibleTooltip = true
+      if (this.label.length) {
+        this.isVisibleTooltip = true
+      }
     },
 
     /**
@@ -80,11 +98,14 @@ export default {
 
   render(h) {
     const children = this.$slots.default || []
+
     if (children.length !== 1) {
       return console.warn(
         '[SbTooltip]: The SbTooltip component only expects one child.'
       )
     }
+
+    if (!this.show) return children[0]
 
     const { id, label } = this
     const childrenElement = children[0]
@@ -173,11 +194,12 @@ export default {
             reference: this.tooltipAnchor,
             placement: this.position,
             offset: [0, 10],
+            usePortalTarget: this.tooltipTarget,
             isOpen: this.isVisibleTooltip,
           },
           attrs: {
             useAnchorId: id,
-            class: 'sb-tooltip',
+            class: `sb-tooltip sb-tooltip--${this.variant} sb-tooltip--text--${this.textAlign}`,
             role: 'tooltip',
             'aria-hidden': !this.isVisibleTooltip + '',
           },

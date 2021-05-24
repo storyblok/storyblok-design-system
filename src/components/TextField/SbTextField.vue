@@ -8,15 +8,13 @@
       <input
         v-if="!isTextAreaType"
         :id="id"
+        ref="textfield"
         v-model="computedValue"
         v-bind="$attrs"
         class="sb-textfield__input"
         :type="internalType"
         :placeholder="placeholder"
         :name="name"
-        :min="min"
-        :max="max"
-        :step="step"
         :readonly="readonly"
         :class="componentClasses"
         :required="required"
@@ -25,11 +23,15 @@
         :minlength="minlength"
         @focus="handleFocusInput"
         @blur="handleBlurInput"
+        @keydown="handleKeyDownInput"
+        @keypress="handleKeyPressInput"
+        @keyup="handleKeyUpInput"
       />
 
       <textarea
         v-else
         :id="id"
+        ref="textfield"
         v-model="computedValue"
         v-bind="$attrs"
         class="sb-textfield__textarea"
@@ -46,35 +48,41 @@
         :minlength="minlength"
         @focus="handleFocusInput"
         @blur="handleBlurInput"
+        @keydown="handleKeyDownInput"
+        @keypress="handleKeyPressInput"
+        @keyup="handleKeyUpInput"
       />
 
       <SbIcon
         v-if="iconLeft && type !== 'password'"
-        size="small"
         :name="iconLeft"
         class="sb-textfield__icon sb-textfield__icon--left"
+        :color="iconColor"
       />
       <SbIcon
         v-if="(iconRight || error) && type !== 'password'"
-        size="small"
         :name="iconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
+        :color="iconColor"
       />
       <SbIcon
         v-if="type === 'password'"
-        size="small"
         :name="internalIconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
+        :color="iconColor"
         @click="handleShowHidePassword"
       />
-      <SbIcon
-        v-if="showClearIcon"
-        size="small"
-        name="x-clear"
-        class="sb-textfield__icon sb-textfield__icon--right"
-        @click="handleClearableClick"
-      />
+      <SbTooltip v-if="showClearIcon" label="Clear">
+        <SbIcon
+          name="x-clear"
+          class="sb-textfield__icon sb-textfield__icon--right sb-textfield__icon--pointer"
+          :color="iconColor"
+          @click="handleClearableClick"
+        />
+      </SbTooltip>
       <span v-if="suffix" class="sb-textfield__prefix">{{ suffix }}</span>
+
+      <slot />
     </div>
     <span
       v-if="showError"
@@ -112,6 +120,13 @@ export default {
   mixins: [TextFieldMixin],
 
   inheritAttrs: false,
+
+  props: {
+    iconColor: {
+      type: String,
+      default: 'light-gray',
+    },
+  },
 
   computed: {
     hasValue() {
@@ -187,14 +202,23 @@ export default {
       return this.maxlengthParsed - this.computedValueLength
     },
   },
+
+  mounted() {
+    if (this.autofocus) this.handleAutoFocus()
+  },
+
   methods: {
+    handleAutoFocus() {
+      this.$refs.textfield.focus()
+    },
+
     handleShowHidePassword() {
       this.internalType === 'password'
         ? (this.internalType = 'text')
         : (this.internalType = 'password')
-      this.internalIconRight === 'eye'
-        ? (this.internalIconRight = 'eye-off')
-        : (this.internalIconRight = 'eye')
+      this.internalIconRight === 'view'
+        ? (this.internalIconRight = 'view-off')
+        : (this.internalIconRight = 'view')
     },
 
     handleClearableClick(e) {
@@ -203,6 +227,7 @@ export default {
       const previousValue = this.computedValue
       this.computedValue = null
       this.$emit('clear', previousValue)
+      this.handleAutoFocus()
     },
 
     handleFocusInput(e) {
@@ -211,6 +236,18 @@ export default {
 
     handleBlurInput(e) {
       this.$emit('blur', e)
+    },
+
+    handleKeyDownInput(e) {
+      this.$emit('keydown', e)
+    },
+
+    handleKeyPressInput(e) {
+      this.$emit('keypress', e)
+    },
+
+    handleKeyUpInput(e) {
+      this.$emit('keyup', e)
     },
   },
 }

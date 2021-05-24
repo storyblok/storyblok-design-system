@@ -3,7 +3,14 @@ import { includes, availableSizes } from '../../utils'
 /**
  * @type {Array<string>}
  */
-export const availableVariants = ['primary', 'secondary', 'ghost', 'danger']
+export const availableVariants = [
+  'primary',
+  'secondary',
+  'ghost',
+  'danger',
+  'inverted-link',
+  'primary-link',
+]
 
 /**
  * @type {Array<string>}

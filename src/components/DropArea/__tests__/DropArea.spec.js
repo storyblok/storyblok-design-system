@@ -1,5 +1,4 @@
 import SbDropArea from '..'
-import SbIcon from '../../Icon'
 import { mount } from '@vue/test-utils'
 
 const factory = (propsData) => {
@@ -37,7 +36,7 @@ describe('Test if SbDropArea renderer correctly', () => {
 
     expect(wrapper.find('div').classes('sb-drop-area')).toBe(true)
 
-    expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
+    expect(wrapper.find('img').exists()).toBe(true)
 
     expect(wrapper.vm.$props.title).toBe(fakeProps.title)
 
@@ -65,7 +64,7 @@ describe('Test if SbDropArea renderer correctly', () => {
 
     expect(wrapper.emitted('upload-file')).toBeTruthy()
 
-    expect(wrapper.emitted('upload-file')[1]).toEqual([
+    expect(wrapper.emitted('upload-file')[0]).toEqual([
       fakeEvent.dataTransfer.files[0],
     ])
   })

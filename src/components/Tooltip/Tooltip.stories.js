@@ -6,7 +6,7 @@ const TooltipTemplate = (args) => ({
   props: Object.keys(args),
   template: `
     <div style="padding: 100px; text-align: center;">
-      <SbTooltip v-bind="{ label, position, id }">
+      <SbTooltip v-bind="{ label, position, id, variant, textAlign }">
         <span style="font-size: 1.8rem;">Hover me!</span>
       </SbTooltip>
     </div>
@@ -20,7 +20,7 @@ export default {
     docs: {
       description: {
         component:
-          '`SbTooltip` is a small piece of contextual information about an element on the screen, which is displayed when a user hovers or focuses on the element it is describing.',
+          '`SbTooltip` is a small piece of contextual information about an element on the screen, which is displayed when an user hovers or focuses on the element which is being described.',
       },
     },
   },
@@ -28,6 +28,8 @@ export default {
     id: null,
     label: 'Default tooltip label',
     position: 'top',
+    variant: 'dark',
+    textAlign: 'center',
   },
   argTypes: {
     id: {
@@ -52,6 +54,22 @@ export default {
         options: availablePositions,
       },
     },
+    variant: {
+      name: 'variant',
+      description: '`SbTooltip` variant color',
+      control: {
+        type: 'select',
+        options: ['dark', 'light'],
+      },
+    },
+    textAlign: {
+      name: 'textAlign',
+      description: '`SbTooltip` text alignment',
+      control: {
+        type: 'select',
+        options: ['initial', 'center', 'end'],
+      },
+    },
   },
 }
 
@@ -60,4 +78,5 @@ export const Default = TooltipTemplate.bind({})
 Default.args = {
   label: 'Default tooltip label',
   position: 'top',
+  variant: 'dark',
 }

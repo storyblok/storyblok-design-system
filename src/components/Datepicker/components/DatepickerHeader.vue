@@ -6,7 +6,7 @@
         :disabled="isDisabled"
         @click="handlePreviousClick"
       >
-        <SbIcon name="chevron-left" size="small" :color="iconColor" />
+        <SbIcon name="chevron-left" :color="iconColor" />
       </button>
 
       <p v-if="isCalendarView" class="sb-datepicker-header__title">
@@ -32,7 +32,7 @@
         :disabled="isDisabled"
         @click="handleNextClick"
       >
-        <SbIcon name="chevron-right" size="small" :color="iconColor" />
+        <SbIcon name="chevron-right" :color="iconColor" />
       </button>
     </div>
 

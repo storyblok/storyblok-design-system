@@ -59,7 +59,7 @@ export const SbPaginationButton = {
             h(SbIcon, {
               props: {
                 name: icon,
-                size: 'small',
+                size: 'normal',
               },
             }),
           ]

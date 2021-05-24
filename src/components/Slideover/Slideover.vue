@@ -1,19 +1,19 @@
 <template>
-  <transition name="fade" @after-enter="openSlideover = true">
-    <SbBlokUi v-if="openBlokUI" @click="openSlideover = false">
-      <transition :name="returnAnimationName" @after-leave="handleCloseSlide">
+  <transition name="bg-fade" @enter="openSlideover = true">
+    <SbBlokUi v-if="openBlokUI" @mousedown="handlePreventClose">
+      <transition :name="returnAnimationName" @leave="handleCloseSlide">
         <div
           v-if="openSlideover"
           ref="blok"
           class="sb-slideover"
           :class="{ 'sb-slideover--left': orientation === 'left' }"
-          @click.stop
+          @mousedown.stop
         >
           <button
             class="sb-slideover__close-button"
-            @click="openSlideover = false"
+            @click="handlePreventClose"
           >
-            <SbIcon name="close" size="normal" color="primary-dark" />
+            <SbIcon name="close" color="primary-dark" />
           </button>
 
           <slot />
@@ -38,6 +38,10 @@ export default {
       type: String,
       default: 'right',
     },
+    preventClose: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -60,8 +64,25 @@ export default {
         this.handleCloseSlide()
       }
     },
+    preventClose(state) {
+      if (!state) {
+        this.openSlideover = state
+      }
+    },
   },
+
   methods: {
+    /**
+     * handler for prevent the slideover from closing
+     */
+    handlePreventClose() {
+      if (this.preventClose) {
+        this.$emit('prevent-closing')
+      } else {
+        this.openSlideover = false
+      }
+    },
+
     /**
      * handler for close the component
      */
@@ -70,6 +91,8 @@ export default {
         this.openBlokUI = false
         this.$nextTick(() => {
           this.$emit('hide')
+
+          this.removeShortCuts()
         })
       }
     },
@@ -82,8 +105,33 @@ export default {
         this.openBlokUI = true
         this.$nextTick(() => {
           this.$emit('show')
+
+          this.registerShortCuts()
         })
       }
+    },
+
+    /**
+     * handle keydown events
+     */
+    handleKeyDown(e) {
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        this.handlePreventClose()
+      }
+    },
+
+    /**
+     * register keydown event
+     */
+    registerShortCuts() {
+      window.addEventListener('keydown', this.handleKeyDown)
+    },
+
+    /**
+     * remove keydown event
+     */
+    removeShortCuts() {
+      window.removeEventListener('keydown', this.handleKeyDown)
     },
   },
 }

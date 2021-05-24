@@ -1,20 +1,34 @@
 <template>
   <div
     class="sb-drop-area"
-    :class="{ 'sb-drop-area__over': isOver }"
+    :class="{ 'sb-drop-area__over': isOver || forceOver }"
     @dragover="handleDragOver"
     @dragleave="handleDragLeave"
     @drop="handleDropFile"
   >
     <div class="sb-drop-area__content">
       <div class="sb-drop-area__icon">
-        <SbIcon size="x-large" color="primary-dark" :name="iconName" />
+        <SbIcon
+          v-if="isOver || forceOver"
+          size="x-large"
+          name="upload-pictogram"
+        />
+
+        <img
+          v-else
+          draggable="false"
+          src="../../assets/icons/empty-state-illustration.svg"
+          alt=""
+        />
       </div>
       <p class="sb-drop-area__title">
         {{ title }}
       </p>
       <p class="sb-drop-area__subtitle">
         {{ subtitle }}
+        <span v-if="dropAreaButton" @click="$emit('pick-files')">{{
+          dropAreaButton
+        }}</span>
       </p>
     </div>
   </div>
@@ -46,11 +60,19 @@ export default {
     subtitle: {
       type: String,
       default:
-        'You can drop in miltiple JPEGs, PNGs, SVGs, PDFs and all other files.',
+        'You can drop in multiple JPEGs, PNGs, SVGs, PDFs and all other files.',
     },
     title: {
       type: String,
       default: 'Drop your asset in',
+    },
+    dropAreaButton: {
+      type: String,
+      default: null,
+    },
+    forceOver: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -58,12 +80,6 @@ export default {
     return {
       isOver: false,
     }
-  },
-
-  computed: {
-    iconName() {
-      return this.isOver ? 'chevron-down' : 'img-icon'
-    },
   },
 
   methods: {
@@ -83,6 +99,7 @@ export default {
     handleDragLeave(e) {
       if (!this.$el.contains(e.target) || e.target === this.$el) {
         this.isOver = false
+        this.$emit('close-drop-area')
       }
     },
 
@@ -164,7 +181,8 @@ export default {
         ? this.$_fileFilter(data.items, 'items')
         : this.$_fileFilter(data.files)
 
-      this.$emit('upload-file', files)
+      this.$emit('upload-files', files)
+      this.$emit('close-drop-area')
     },
   },
 }

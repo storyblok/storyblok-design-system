@@ -21,7 +21,7 @@
     >
       <SbAvatar v-if="hasAvatar" v-bind="avatar" />
 
-      <SbIcon v-else size="small" :name="icon" />
+      <SbIcon v-else :size="iconSize" :name="icon" />
 
       <span class="sb-sidebar-link__label">
         {{ label }}
@@ -71,6 +71,10 @@ export default {
     icon: {
       type: String,
       default: null,
+    },
+    iconSize: {
+      type: String,
+      default: 'normal',
     },
     to: {
       type: [String, Object],

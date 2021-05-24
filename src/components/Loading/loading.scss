@@ -1,103 +1,122 @@
 .sb-loading {
-  
-  &--progress-bar {
+  &__progress-bar {
     width: 100%;
   }
 
-  &--bar {
-    border: 0px;
+  &__bar {
+    border: 0;
     height: 5px;
     width: 100%;
   }
 
-  &--bar::-webkit-progress-value {  
+  &__bar::-webkit-progress-value {
     background: $sb-green;
   }
 
-  &--bar[value]::-webkit-progress-bar {
+  &__bar[value]::-webkit-progress-bar {
     background: $light;
   }
 
-  &--bar::-moz-progress-bar {
+  &__bar::-moz-progress-bar {
     background: $sb-green;
   }
 
-  &--bar::-ms-fill {
+  &__bar::-ms-fill {
     background-color: $sb-green;
   }
 
-  &--bar-label {
-    margin: auto;
-    margin-top: 1.5rem;
-    text-align: center;
+  &__bar-label {
     display: block;
     font-size: $font-size-xs;
     font-weight: $font-weight-regular;
+    margin: auto;
+    margin-top: 15px;
+    text-align: center;
   }
 
-  &--spinner-label {
-    margin: auto;
-    top: -60%;
+  &__spinner-label {
     display: block;
-    text-align: center;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    margin: auto;
     position: relative;
-    width: 3rem;
-    font-size: $font-size-xs;
-    font-weight: $font-weight-regular;
+    text-align: center;
+    top: -60%;
+    width: 30px;
   }
 
-  &--spinner-small {
-    width: 2.6rem;
-    height: 2.6rem;
+  &__spinner--small {
+    height: 26px;
+    width: 26px;
 
-    .sb-loading--spinner-label {
-      top: -64%;
-      width: 2.5rem;
+    .sb-loading__spinner-label {
       font-size: 0.7rem;
+      top: -64%;
+      width: 25px;
     }
 
     svg {
-      width: 2.6rem;
-      height: 2.6rem;
+      height: 26px;
+      width: 26px;
     }
   }
 
-  &--spinner-normal {
-    width: 3.2rem;
-    height: 3.2rem;
+  &__spinner--normal {
+    height: 32px;
+    width: 32px;
 
-    .sb-loading--spinner-label {
-      top: -70%;
+    .sb-loading__spinner-label {
       font-size: 1rem;
+      top: -70%;
     }
 
     svg {
-      width: 3.2rem;
-      height: 3.2rem;
+      height: 32px;
+      width: 32px;
     }
   }
 
-  &--spinner-large {
-    width: 4.6rem;
-    height: 4.6rem;
+  &__spinner--large {
+    height: 46px;
+    width: 46px;
 
-    .sb-loading--spinner-label {
-      top:-67%;
+    .sb-loading__spinner-label {
+      top: -67%;
     }
 
     svg {
-      width: 4.6rem;
-      height: 4.6rem;
+      height: 46px;
+      width: 46px;
     }
   }
 
-  &--spinner-x-large {
-    width: 7.6rem;
-    height: 7.6rem;
+  &__spinner--x-large {
+    height: 76px;
+    width: 76px;
 
     svg {
-      width: 7.6rem;
-      height: 7.6rem;
+      height: 76px;
+      width: 76px;
+    }
+  }
+
+  &__placeholder {
+    animation: shimmer 2s infinite linear;
+    background: $light-50;
+    background: linear-gradient(to right, $light-50 4%, $light 25%, $light-50 36%);
+    background-size: 1000px 100%;
+    border-radius: 2px;
+    margin: 0;
+    padding: 0;
+
+    @keyframes shimmer {
+      from {
+        background-position: -1000px 0;
+      }
+
+      to {
+        background-position: 1000px 0;
+      }
     }
   }
 }

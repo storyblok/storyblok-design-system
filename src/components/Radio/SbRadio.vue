@@ -3,6 +3,7 @@
     <input
       :id="id"
       v-model="computedValue"
+      v-bind="$attrs"
       class="sb-radio__input"
       type="radio"
       :name="name"
@@ -22,6 +23,8 @@ export default {
   name: 'SbRadio',
 
   mixins: [CheckboxRadioMixin],
+
+  inheritAttrs: false,
 
   props: {
     inline: Boolean,

@@ -2,32 +2,36 @@
   display: inline-flex;
 
   .sb-link {
-    margin: 0 1.5rem;
+    margin: 0 15px;
+  }
+
+  &--has-spaces {
+    .sb-button:not(:last-child) {
+      margin-right: 10px;
+    }
   }
 
   &:not(&--has-spaces) {
     .sb-button {
       border-radius: 0;
     }
-  
+
     .sb-button:first-child {
-      border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
     }
-    
+
     .sb-button:last-child {
-      border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
     }
 
     .sb-button:not(:first-child) {
-      border-left: none;
+      border-left: 0;
     }
   }
 
-  &--has-spaces {
-    .sb-button:not(:last-child) {
-      margin-right: 1rem;
-    }
+  .sb-button {
+    outline: none;
   }
 }

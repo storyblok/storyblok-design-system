@@ -1,22 +1,28 @@
 @mixin avatarGroupItem {
-  border-radius: 50%;
-  border: 3px solid $white;
-  -webkit-background-clip: padding-box;
   background-clip: padding-box;
+  border: 2.5px solid $white;
+  border-radius: 100%;
 }
 
 .sb-avatar-group {
   display: inline-block;
   position: relative;
+  width: 100%;
 
-  > .sb-avatar {
-    margin-left: -1.5rem;
-    z-index: 2;
+  .sb-avatar {
     cursor: pointer;
-    
+    margin-left: -10px;
+    z-index: 2;
+
+    &:hover {
+      position: relative;
+      z-index: 3;
+    }
+
     .sb-avatar__image,
     .sb-avatar__initials {
       @include avatarGroupItem;
+
       overflow: hidden;
       transform: translate(0, 0);
       transition: 0.1s ease-in-out;
@@ -24,86 +30,106 @@
   }
 
   &__more {
-    z-index: 1;
     @include avatarGroupItem;
-    margin-left: -1.5rem;
-    cursor: pointer;
     @include avatarComponent();
-    @include avatarComponentSize($sb-avatar-normal);
+    @include avatarComponentSize(36px);
+
     background-color: $light-75;
+    color: $color-primary-dark;
+    cursor: pointer;
     font-size: $font-size-xs;
     font-weight: $font-weight-regular;
-    color: $color-primary-dark;
+    margin-left: -10px;
+    position: relative;
+    z-index: 1;
   }
 
-  > .sb-avatar:first-child {
+  >.sb-avatar:first-child {
     margin-left: 0;
   }
 
-  > .sb-avatar:hover {
+  >.sb-avatar:hover {
     .sb-avatar__image,
     .sb-avatar__initials {
       transform: translate(0, -10px);
       z-index: 99999;
     }
   }
-
-  &:hover > .sb-avatar:not(:hover) {
-    opacity: 0.5;
-  }
-
   // sizes
   &--large &__more {
-    @include avatarComponentSize($sb-avatar-large); 
+    @include avatarComponentSize($sb-avatar-large);
   }
 
   &--large &__more,
   &--large > .sb-avatar {
-    margin-left: -2rem;
+    margin-left: -20px;
   }
 
   &--small &__more {
-    @include avatarComponentSize($sb-avatar-small); 
+    @include avatarComponentSize($sb-avatar-small);
   }
 
   &--small &__more,
   &--small > .sb-avatar {
-    margin-left: -1rem;
+    margin-left: -10px;
   }
-
   // color variants
   &--dark-bg {
-    > .sb-avatar .sb-avatar__image,
-    > .sb-avatar .sb-avatar__initials,
-    > .sb-avatar-group__more {
+    >.sb-avatar .sb-avatar__image,
+    >.sb-avatar .sb-avatar__initials,
+    >.sb-avatar-group__more {
       border: 3px solid $color-primary-dark;
     }
   }
 
   &__avatars {
-    position: absolute;
     background-color: $white;
-    top: 120%;
-    right: 0;
-    display: inline-block;
-    padding: 1.5rem;
-    display: none;
-    width: 100%;
-    max-width: 184px;
-    max-height: 188px;
-    overflow: scroll;
     border: 1px solid $light;
     border-radius: 4px;
-    box-shadow: 0px 2px 17px 3px rgba(34, 42, 69, 0.07);
+    box-shadow: $box-shadow-default;
+    display: none;
+    max-height: 170px;
+    max-width: 100%;
+    min-width: 210px;
+    overflow: auto;
+    padding: 15px;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    top: 120%;
     z-index: 99999;
 
     .sb-avatar {
-      display: block;
-      margin-bottom: 1rem;
-    }
+      display: inline-flex;
+      margin-bottom: 10px;
+      margin-left: 0;
+      width: 100%;
 
-    .sb-avatar:last-child {
-      margin-bottom: 0;
+      &__image,
+      &__initials {
+        height: auto;
+        min-height: 32px;
+        min-width: 32px;
+        width: auto;
+      }
+
+      &__initials {
+        align-self: center;
+        min-height: 32px;
+        min-width: 32px;
+      }
+
+      &__text {
+        word-break: break-all;
+      }
+
+      &__text-container {
+        align-self: center;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
     &[aria-hidden=false] {

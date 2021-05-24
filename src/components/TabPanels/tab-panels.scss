@@ -1,6 +1,10 @@
 .sb-tab-panel {
   display: block;
 
+  &:focus {
+    box-shadow: none;
+  }
+
   &[aria-hidden="true"] {
     display: none;
   }

@@ -205,7 +205,7 @@ export const Primary = ButtonTemplate.bind({})
 
 Primary.args = {
   label: 'Primary',
-  icon: 'checkmark',
+  icon: 'check-mark',
   iconRight: 'calendar',
 }
 
@@ -223,7 +223,7 @@ export const Secondary = ButtonTemplate.bind({})
 Secondary.args = {
   variant: 'secondary',
   label: 'Secondary',
-  icon: 'checkmark',
+  icon: 'check-mark',
   iconRight: 'calendar',
 }
 
@@ -241,7 +241,7 @@ export const Ghost = ButtonTemplate.bind({})
 Ghost.args = {
   label: 'Ghost',
   variant: 'ghost',
-  icon: 'checkmark',
+  icon: 'check-mark',
   iconRight: 'calendar',
 }
 
@@ -275,9 +275,9 @@ export const Sizes = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `<div>
-    <SbButton label="Small" size="small" :variant="variant" />
-    <SbButton label="Default" :variant="variant" />
-    <SbButton label="Large" size="large" :variant="variant" />
+    <SbButton label="Small" size="small" :variant="variant" :icon="icon" />
+    <SbButton label="Default" :variant="variant" :icon="icon" />
+    <SbButton label="Large" size="large" :variant="variant" :icon="icon" />
   </div>`,
 })
 

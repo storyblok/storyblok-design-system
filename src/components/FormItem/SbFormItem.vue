@@ -1,21 +1,28 @@
 <template>
-  <div class="sb-form-item">
-    <div class="sb-form-item__top-container">
-      <label v-if="label" class="sb-form-item__label">{{ label }}</label>
-      <SbTooltip v-if="helperIconText" :label="helperIconText">
-        <SbIcon
+  <div class="sb-form-item" :class="{ 'sb-form-item--grouped': grouped }">
+    <div v-if="label" class="sb-form-item__top-container">
+      <label v-if="label" class="sb-form-item__label" :for="labelFor">
+        {{ label }}
+        <SbTooltip
           v-if="helperIconText"
-          color="primary-dark"
-          name="help"
-          size="small"
-          class="sb-form-item__helper-icon-text"
-        />
-      </SbTooltip>
-      <span v-if="helperText" class="sb-form-item__helper-text">{{
-        helperText
-      }}</span>
+          :label="helperIconText"
+          :text-align="helperTextAlign"
+        >
+          <SbIcon
+            v-if="helperIconText"
+            color="primary-dark"
+            name="help"
+            class="sb-form-item__helper-icon-text"
+          />
+        </SbTooltip>
+      </label>
+      <span v-if="helperText" class="sb-form-item__helper-text">
+        {{ helperText }}
+      </span>
     </div>
-    <slot />
+    <div class="sb-form-item__body">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -40,7 +47,16 @@ export default {
       type: String,
       default: null,
     },
+    helperTextAlign: {
+      type: String,
+      default: 'center',
+    },
     helperText: {
+      type: String,
+      default: null,
+    },
+    grouped: Boolean,
+    labelFor: {
       type: String,
       default: null,
     },

@@ -10,9 +10,6 @@ export default {
     disabled: false,
     required: false,
     placeholder: 'Placeholder text',
-    min: 0,
-    max: 100,
-    step: 1,
     readonly: false,
     value: 'Boris Spassky',
     nativeValue: 'Boris Spassky',
@@ -35,12 +32,12 @@ export const Default = (args) => ({
   data: () => ({
     internalValue: 'Boris Spassky',
     internalType: 'password',
-    internalIconRight: 'eye',
+    internalIconRight: 'view',
   }),
   template: `
     <div style="max-width: 300px">
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         :label="label"
@@ -52,7 +49,7 @@ export const Default = (args) => ({
         v-model="internalValue"
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="Disabled text input"
@@ -63,7 +60,7 @@ export const Default = (args) => ({
         disabled
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="Read only"
@@ -75,21 +72,21 @@ export const Default = (args) => ({
         readonly
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="With error"
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
-        iconRight="input-error"
+        iconRight="square-error"
         native-value="Some text with error"
         v-model="internalValue"
         :errorMessage="errorMessage"
         error
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="Clearable"
@@ -101,35 +98,18 @@ export const Default = (args) => ({
         clearable
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="Show / Hide password"
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
-        iconRight="eye"
+        iconRight="view"
         type="password"
         native-value="Boris Spassky"
         v-model="internalValue"
       />
-      <SbTextField
-        style="max-width: 100px; margin-bottom: 2rem;"
-        :id="id"
-        :name="name"
-        label="Number input"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :min="min"
-        :max="max"
-        :step="step"
-        :readonly="readonly"
-        type="number"
-        native-value="30011937"
-        v-model="internalValue"
-      />
-
       <SbTextField
         :id="id"
         :name="name"
@@ -154,7 +134,7 @@ export const withIcon = (args) => ({
   template: `
     <div style="max-width: 300px">
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="With icon before"
@@ -167,7 +147,7 @@ export const withIcon = (args) => ({
         v-model="internalValue"
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="With icon after"
@@ -180,7 +160,7 @@ export const withIcon = (args) => ({
         v-model="internalValue"
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="Ghost with icon before"
@@ -194,7 +174,7 @@ export const withIcon = (args) => ({
         ghost
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="Ghost with icon after"
@@ -208,7 +188,7 @@ export const withIcon = (args) => ({
         ghost
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="Default clearable with icon"
@@ -243,12 +223,12 @@ export const Ghost = (args) => ({
   data: () => ({
     internalValue: 'Boris Spassky',
     internalType: 'text',
-    internalIconRight: 'eye',
+    internalIconRight: 'view',
   }),
   template: `
     <div style="max-width: 300px">
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         :label="label"
@@ -261,7 +241,7 @@ export const Ghost = (args) => ({
         ghost
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="Clearable"
@@ -274,32 +254,16 @@ export const Ghost = (args) => ({
         ghost
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="Show / Hide password"
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
-        iconRight="eye"
+        iconRight="view"
         type="password"
         native-value="Boris Spassky"
-        v-model="internalValue"
-        ghost
-      />
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Number input"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :min="min"
-        :max="max"
-        :step="step"
-        :readonly="readonly"
-        type="number"
-        native-value="30011937"
         v-model="internalValue"
         ghost
       />
@@ -316,7 +280,7 @@ export const withText = (args) => ({
   template: `
     <div style="max-width: 300px">
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="With text before"
@@ -329,7 +293,7 @@ export const withText = (args) => ({
         v-model="internalValue"
       />
       <SbTextField
-        style="margin-bottom: 2rem;"
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         label="With text after"

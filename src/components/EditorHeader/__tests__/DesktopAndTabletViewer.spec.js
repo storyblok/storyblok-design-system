@@ -47,7 +47,7 @@ const fakeProps = {
   headerSubTitle: 'Its true',
 }
 
-describe('SbDesktopAndTabletViewer component', () => {
+describe.skip('SbDesktopAndTabletViewer component', () => {
   it('should render all internal components', () => {
     const wrapper = factory(fakeProps)
 

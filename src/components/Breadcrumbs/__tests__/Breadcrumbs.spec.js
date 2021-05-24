@@ -1,6 +1,11 @@
 import { mount } from '@vue/test-utils'
 
-import { SbBreadcrumbs, SbBreadcrumbItem, SbBreadcrumbDropdown } from '..'
+import {
+  SbBreadcrumbs,
+  SbBreadcrumbItem,
+  SbBreadcrumbDropdown,
+  SbBreadcrumbSeparator,
+} from '..'
 import { defaultBreadcrumbItemsData } from '../Breadcrumbs.stories'
 
 const factory = (propsData = {}) => {
@@ -81,6 +86,48 @@ describe('SbBreadrumbs component', () => {
       expect(wrapper.attributes('class')).toBe(
         'sb-breadcrumbs sb-breadcrumbs--large-section'
       )
+    })
+  })
+
+  describe('when render the SbBreadcrumbItem in slots', () => {
+    const children = []
+    const lastIndex = defaultBreadcrumbItemsData.length - 1
+
+    defaultBreadcrumbItemsData.forEach((breadcrumbItem, index) => {
+      const ItemComponent = {
+        name: 'BreadcrumbItem',
+        components: { SbBreadcrumbItem },
+        data: () => ({
+          props: breadcrumbItem,
+        }),
+        template: `<SbBreadcrumbItem v-bind="props" />`,
+      }
+
+      const SeparatorComponent = {
+        name: 'SeparatorItem',
+        components: { SbBreadcrumbSeparator },
+        template: `<SbBreadcrumbSeparator />`,
+      }
+
+      children.push(ItemComponent)
+
+      if (index !== lastIndex) {
+        children.push(SeparatorComponent)
+      }
+    })
+
+    const wrapper = mount(SbBreadcrumbs, {
+      slots: {
+        default: children,
+      },
+    })
+
+    it('should render a list with breadcrumbs', () => {
+      expect(wrapper.findAllComponents(SbBreadcrumbItem).length).toBe(6)
+    })
+
+    it('should render a list with breadcrumb separator', () => {
+      expect(wrapper.findAllComponents(SbBreadcrumbSeparator).length).toBe(5)
     })
   })
 })

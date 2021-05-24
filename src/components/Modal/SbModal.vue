@@ -7,21 +7,15 @@
     target-slim
     :target="modalTarget"
   >
-    <SbBlokUi v-if="open" @click="wrapClose">
+    <SbBlokUi v-if="open" @mousedown="wrapClose">
       <div
         ref="modal"
         class="sb-modal"
-        :class="{ 'sb-modal__full-width': fullWidth }"
+        :class="computedClasses"
         role="dialog"
         v-bind="{ ...$attrs }"
       >
-        <button
-          class="sb-modal__close-button"
-          aria-label="Close Modal"
-          @click="handleCloseModal"
-        >
-          <SbIcon name="close" size="normal" color="primary-dark" />
-        </button>
+        <SbModalCloseButton v-if="!closeOnHeader" absolute />
         <slot />
       </div>
     </SbBlokUi>
@@ -29,26 +23,40 @@
 </template>
 
 <script>
-import SbIcon from '../Icon'
 import SbBlokUi from '../BlockUI'
 import SbPortal from '../Portal'
 import { randomString } from '../../utils'
+
+import SbModalCloseButton from './components/SbModalCloseButton'
 
 export default {
   name: 'SbModal',
 
   components: {
-    SbIcon,
     SbPortal,
     SbBlokUi,
+    SbModalCloseButton,
+  },
+
+  provide() {
+    return {
+      modalContext: () => this.modalContext,
+    }
   },
 
   props: {
+    closeOnHeader: Boolean,
     isOpen: Boolean,
+    escCloses: {
+      type: Boolean,
+      default: true,
+    },
     fullWidth: Boolean,
+    scrollbar: Boolean,
+    large: Boolean,
     modalTarget: {
       type: String,
-      default: () => `#sb-portal-target-${randomString(4)}`,
+      default: () => `#sb-modal-target-${randomString(4)}`,
     },
   },
 
@@ -56,6 +64,22 @@ export default {
     return {
       open: false || this.isOpen,
     }
+  },
+
+  computed: {
+    computedClasses() {
+      return [
+        this.fullWidth && 'sb-modal__full-width',
+        this.large && 'sb-modal__large',
+        this.scrollbar && 'sb-modal--scrollbar',
+      ]
+    },
+
+    modalContext() {
+      return {
+        closeModal: this.handleCloseModal,
+      }
+    },
   },
 
   watch: {
@@ -70,9 +94,22 @@ export default {
 
   created() {
     this.$_createPortalInstance()
+    this.handleCloseModalByPressingEsc()
   },
 
   methods: {
+    /**
+     * handler for closing the modal by pressing ESC on the keyboard
+     */
+    handleCloseModalByPressingEsc() {
+      if (this.escCloses) {
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.handleCloseModal()
+          }
+        })
+      }
+    },
     /**
      * handler for close modal
      */

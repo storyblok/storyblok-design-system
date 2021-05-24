@@ -12,7 +12,7 @@ export const AllColors = () => ({
     <div class="sb-color-pallete">
       <h1 class="sb-color-pallete__title">Primary palette</h1>
 
-      <h3 style="font-size: 15px; color: rgb(177, 181, 190); font-weight: 500; margin-bottom: 1.5rem;">Brand Colors</h3>
+      <h3 style="font-size: 15px; color: rgb(177, 181, 190); font-weight: 500; margin-bottom: 15px;">Brand Colors</h3>
 
       <SbColors color-name="#00B3B0" name="Teal 100%"/>
       <SbColors color-name="#40C6C4" name="Teal 75%"/>

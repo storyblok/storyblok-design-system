@@ -12,7 +12,6 @@ import SbFragment from './Fragment'
 import SbGroupButton from './GroupButton'
 import SbIcon from './Icon'
 import SbLink from './Link'
-import SbLoading from './Loading'
 import SbNotification from './Notification'
 import SbPagination from './Pagination'
 import SbPortal from './Portal'
@@ -22,7 +21,9 @@ import SbTag from './Tag'
 import SbTextField from './TextField'
 import SbTooltip from './Tooltip'
 import SbUploadDialog from './UploadDialog'
+import SbNumberField from './NumberField'
 
+export * from './Loading'
 export * from './Breadcrumbs'
 export * from './Card'
 export * from './EditorHeader'
@@ -57,7 +58,6 @@ export {
   SbGroupButton,
   SbIcon,
   SbLink,
-  SbLoading,
   SbNotification,
   SbPagination,
   SbPortal,
@@ -67,4 +67,5 @@ export {
   SbTextField,
   SbTooltip,
   SbUploadDialog,
+  SbNumberField,
 }

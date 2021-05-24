@@ -8,11 +8,13 @@
 
       <div class="sb-modal__type--buttons">
         <SbButton
+          data-testid="modal-type-cancel"
           variant="ghost"
           :label="cancelButtonLabel"
           @click="handleCancelAction"
         />
         <SbButton
+          data-testid="modal-type-confirm"
           :variant="isConfirmationType"
           :label="actionButtonLabel"
           @click="handleDispatchAction"

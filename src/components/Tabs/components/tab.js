@@ -32,6 +32,7 @@ export const SbTabAdd = {
               {
                 attrs: {
                   class: 'sb-tabs__add-button',
+                  'aria-label': 'New tab',
                 },
                 on: {
                   ...listeners,
@@ -41,7 +42,8 @@ export const SbTabAdd = {
                 h(SbIcon, {
                   props: {
                     name: 'plus',
-                    size: 'small',
+                    size: 'normal',
+                    color: 'light-gray',
                   },
                 }),
               ]
@@ -72,6 +74,7 @@ const SbEditableInput = {
     return h('input', {
       attrs: {
         value: this.value,
+        placeholder: 'Type a label to new tab',
       },
       ref: 'editInput',
       on: {
@@ -109,8 +112,8 @@ const SbEditButton = {
             h(SbIcon, {
               props: {
                 name: 'edit',
-                size: 'small',
-                color: 'primary-dark',
+                size: 'normal',
+                color: 'light-gray',
               },
             }),
           ]
@@ -203,8 +206,10 @@ export const SbTab = {
      */
     handleKeyDownEditInput(event) {
       if (event.key === 'Enter') {
+        event.stopPropagation()
+        event.preventDefault()
         this.internalEditable = false
-        this.$_triggerActivateTab(event.target.value.toLowerCase())
+        this.$_triggerActivateTab(this.name)
         this.$emit('edit-tab', {
           label: capitalize(event.target.value) || this.label,
           name: this.name,
@@ -212,6 +217,8 @@ export const SbTab = {
       }
 
       if (event.key === 'Escape') {
+        event.stopPropagation()
+        event.preventDefault()
         this.internalEditable = false
 
         this.$emit('cancel-edit-tab')
@@ -256,6 +263,7 @@ export const SbTab = {
           'sb-tab--is-active': this.activate,
         },
         on: {
+          ...this.$listeners,
           click: this.handleClick,
           keydown: this.handleKeyDown,
         },

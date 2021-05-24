@@ -27,6 +27,10 @@ const SbButton = {
       type: String,
       default: null,
     },
+    iconSize: {
+      type: String,
+      default: 'normal',
+    },
     iconRight: {
       type: String,
       default: null,
@@ -66,7 +70,7 @@ const SbButton = {
     const renderIcon = (icon) => {
       return h(SbIcon, {
         props: {
-          size: 'small',
+          size: this.iconSize,
           name: icon,
         },
       })
@@ -130,28 +134,33 @@ const SbButton = {
       )
     }
 
-    if (this.isLoading) {
-      return renderButton([
-        h(SbLoading, {
-          props: {
-            type: 'spinner',
-            size: 'small',
-            color:
-              this.variant === 'primary' ||
-              this.variant === 'secondary' ||
-              this.variant === 'danger'
-                ? 'white'
-                : 'primary-dark',
-          },
-        }),
-      ])
-    }
-
     const content = [
       this.icon && renderIcon(this.icon),
       !this.hasIconOnly && renderLabel(),
       this.iconRight && renderIcon(this.iconRight),
     ]
+
+    if (this.isLoading) {
+      const whiteLoading = [
+        'primary',
+        'secondary',
+        'danger',
+        'inverted-link',
+        'primary-link',
+      ]
+
+      return renderButton([
+        content,
+        h(SbLoading, {
+          props: {
+            type: 'spinner',
+            size: 'small',
+            color:
+              whiteLoading.indexOf(this.variant) < 3 ? 'white' : 'primary-dark',
+          },
+        }),
+      ])
+    }
 
     if (this.hasIconOnly && this.iconDescription) {
       return h(

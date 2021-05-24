@@ -1,12 +1,7 @@
 import './avatar.scss'
 
 import { canUseDOM, includes } from '../../utils'
-import {
-  isSizeValid,
-  getInitials,
-  generateRandomColor,
-  generateRandomBgColor,
-} from './utils.js'
+import { isSizeValid, getInitials, generateRandomColor } from './utils.js'
 
 import SbBadge from '../Badge'
 import SbIcon from '../Icon'
@@ -42,6 +37,10 @@ const SbAvatar = {
       type: String,
       default: null,
     },
+    friendlyName: {
+      type: String,
+      default: null,
+    },
     size: {
       type: String,
       default: null,
@@ -69,8 +68,25 @@ const SbAvatar = {
     isImageLoaded: false,
   }),
 
+  computed: {
+    backgroundColor() {
+      const str = this.friendlyName ? this.friendlyName : this.name
+      const saturation = 90
+      const lightness = 30
+      let hash = 0
+
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash)
+      }
+
+      const h = hash % 360
+
+      return 'hsl(' + h + ', ' + saturation + '%, ' + lightness + '%)'
+    },
+  },
+
   created() {
-    if (process.browser) {
+    if (process.browser && this.src) {
       this.loadImage(this.src)
     }
   },
@@ -91,10 +107,6 @@ const SbAvatar = {
       image.onerror = () => {
         this.isImageLoaded = false
       }
-    },
-
-    getBgColor() {
-      return this.bgColor ? `bg-${this.bgColor}` : generateRandomBgColor()
     },
   },
 
@@ -127,7 +139,7 @@ const SbAvatar = {
       if (this.isImageLoaded) {
         return h('img', {
           attrs: {
-            alt: this.name,
+            alt: this.friendlyName ? this.friendlyName : this.name,
             src: this.src,
           },
         })
@@ -148,7 +160,7 @@ const SbAvatar = {
         {
           staticClass: 'sb-avatar__text',
         },
-        this.name
+        this.friendlyName ? this.friendlyName : this.name
       )
     }
 
@@ -180,7 +192,7 @@ const SbAvatar = {
     }
 
     const renderAvatar = () => {
-      if (this.src || this.$slots.default) {
+      if (this.$slots.default || this.isImageLoaded) {
         return h(
           'div',
           {
@@ -193,29 +205,33 @@ const SbAvatar = {
         )
       }
 
-      if (this.name) {
+      if (this.name || this.friendlyName) {
         return h(
           'div',
           {
-            staticClass: 'sb-avatar__initials ' + this.getBgColor(),
+            staticClass: 'sb-avatar__initials',
             attrs: {
               ...(this.useTooltip && { tabindex: 0 }),
+              style: 'background-color: ' + this.backgroundColor,
             },
           },
           [
-            h('span', getInitials(this.name)),
+            h(
+              'span',
+              getInitials(this.friendlyName ? this.friendlyName : this.name)
+            ),
             !!this.status && renderBadgeStatus(),
           ]
         )
       }
     }
 
-    if (this.name && this.useTooltip) {
+    if ((this.name || this.friendlyName) && this.useTooltip) {
       return h(
         SbTooltip,
         {
           props: {
-            label: this.name,
+            label: this.friendlyName ? this.friendlyName : this.name,
             position: 'bottom',
           },
         },
@@ -225,7 +241,7 @@ const SbAvatar = {
 
     const children = [renderAvatar()]
 
-    if (this.showName && this.name && !this.useTooltip) {
+    if (this.showName && (this.name || this.friendlyName) && !this.useTooltip) {
       children.push(renderTextContainer())
     }
 

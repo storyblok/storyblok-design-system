@@ -8,18 +8,26 @@
     <h1 class="sb-modal-header__title">
       {{ title }}
     </h1>
+
+    <div v-if="$slots.actions" class="sb-modal-header__actions">
+      <slot name="actions" />
+
+      <SbModalCloseButton />
+    </div>
     <slot />
   </div>
 </template>
 
 <script>
 import SbIcon from '../../Icon'
+import SbModalCloseButton from './SbModalCloseButton'
 
 export default {
   name: 'SbModalHeader',
 
   components: {
     SbIcon,
+    SbModalCloseButton,
   },
 
   props: {

@@ -13,7 +13,7 @@ export const SbDataTableHeaderCell = {
     order: 0,
   }),
 
-  iconsSort: ['chevron-down', 'chevron-sort', 'chevron-up'],
+  iconsSort: ['chevron-down', 'chevron-double', 'chevron-up'],
 
   props: {
     column: {
@@ -85,7 +85,7 @@ export const SbDataTableHeaderCell = {
           h(SbIcon, {
             class: 'sb-data-table__sort-icon',
             props: {
-              size: 'small',
+              size: 'normal',
               name: this.$options.iconsSort[this.order + 1],
             },
           }),
