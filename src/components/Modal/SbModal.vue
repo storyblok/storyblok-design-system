@@ -117,6 +117,7 @@ export default {
       if (this.open) {
         this.open = false
         this.$nextTick(() => {
+          document.querySelector('body').style.overflow = 'auto'
           this.$emit('hide')
         })
       }
@@ -129,6 +130,7 @@ export default {
       if (!this.open) {
         this.open = true
         this.$nextTick(() => {
+          document.querySelector('body').style.overflow = 'hidden'
           this.$emit('show')
         })
       }
