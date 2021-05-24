@@ -23,7 +23,7 @@
           searchInput
         }}"
       </li>
-      <li v-else-if="!hasOptions">
+      <li v-else-if="!hasOptions && !isLoading">
         <span class="sb-select-list__empty">{{ noDataText }}</span>
       </li>
     </ul>
@@ -34,7 +34,7 @@
 import SbSelectListItem from './SelectListItem'
 
 export default {
-  name: 'SbSelectInner',
+  name: 'SbSelectList',
 
   components: {
     SbSelectListItem,
@@ -51,6 +51,7 @@ export default {
 
     // options
     allowCreate: Boolean,
+    isLoading: Boolean,
     multiple: Boolean,
     options: {
       type: Array,

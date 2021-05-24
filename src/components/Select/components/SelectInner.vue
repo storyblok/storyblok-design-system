@@ -62,7 +62,8 @@
           <SbIcon name="x-clear" />
         </button>
       </SbTooltip>
-      <SbIcon class="sb-select-inner__chevron" name="chevron-down" />
+
+      <SbIcon class="sb-select-inner__chevron" :name="rightIconName" />
     </div>
   </div>
 </template>
@@ -101,6 +102,13 @@ export default {
     allowCreate: Boolean,
     filterable: Boolean,
     multiple: Boolean,
+
+    // loading props
+    isLoading: Boolean,
+    loadingLabel: {
+      type: String,
+      default: 'Loading...',
+    },
 
     value: {
       type: [String, Number, Array],
@@ -150,6 +158,10 @@ export default {
 
     innerLabel() {
       if (!this.hasValue) {
+        if (this.isLoading && this.loadingLabel) {
+          return this.loadingLabel
+        }
+
         return this.label
       }
 
@@ -219,6 +231,10 @@ export default {
     inlineWidth() {
       const width = this.inline ? `${this.innerLabel.length}ch` : '100%'
       return { width }
+    },
+
+    rightIconName() {
+      return this.isLoading ? 'loading' : 'chevron-down'
     },
   },
 
@@ -308,7 +324,7 @@ export default {
           this.handleEmitValue(this.searchInputText)
           this.$emit('input', '')
         } else {
-          this.$emit('click')
+          this.$emit('keydown-enter')
         }
       }
 

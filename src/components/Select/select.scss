@@ -55,6 +55,10 @@
 
     display: none;
   }
+
+  &--loading .sb-select-inner__chevron {
+    color: $sb-green;
+  }
 }
 
 .sb-select-inner {

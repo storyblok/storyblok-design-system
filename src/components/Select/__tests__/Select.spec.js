@@ -1,5 +1,5 @@
 import { SbMinibrowser } from '../../Minibrowser'
-import { mountAttachingComponent } from '../../../utils/tests-utils'
+import { mountAttachingComponent, waitMs } from '../../../utils/tests-utils'
 import { MOCK_DATA } from '../../Minibrowser/Minibrowser.stories'
 
 import { SbSelect } from '..'
@@ -247,6 +247,68 @@ describe('SbSelect component', () => {
 
       // with the expected text
       expect(listItems.at(0).text()).toBe('Option 2')
+    })
+
+    it('should select the first item when pressing the enter key and there is not other element in list when filtering', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: null,
+          leftIcon: 'calendar',
+          filterable: true,
+        },
+      })
+
+      // making the options list visible
+      wrapper.vm.showList()
+
+      await wrapper.vm.$nextTick()
+
+      // get the input component
+      const inputComponent = wrapper.find('.sb-select-inner__input')
+
+      // type a value on it
+      await inputComponent.setValue('option 2')
+
+      await inputComponent.trigger('keydown', {
+        key: 'Enter',
+      })
+
+      expect(wrapper.vm.isOpen).toBe(false)
+
+      expect(wrapper.emitted('input')[0][0]).toBe('Option 2')
+    })
+
+    it('should just close the list when pressing the enter key and there are more than one element in list when filtering', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: null,
+          leftIcon: 'calendar',
+          filterable: true,
+        },
+      })
+
+      // making the options list visible
+      wrapper.vm.showList()
+
+      await wrapper.vm.$nextTick()
+
+      // get the input component
+      const inputComponent = wrapper.find('.sb-select-inner__input')
+
+      // type a value on it
+      await inputComponent.setValue('opt')
+
+      await inputComponent.trigger('keydown', {
+        key: 'Enter',
+      })
+
+      expect(wrapper.vm.isOpen).toBe(false)
+
+      expect(wrapper.emitted('input')).toBeUndefined()
     })
   })
 
@@ -557,9 +619,82 @@ describe('SbSelect component', () => {
     })
   })
 
-  // describe('using minibrowser', () => {
-  //   it('', () => {
+  describe('isLoading option', () => {
+    const factory = () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          value: null,
+          isLoading: true,
+        },
+      })
 
-  //   })
-  // })
+      return wrapper
+    }
+
+    it('should have an icon with loading name', async () => {
+      const wrapper = factory()
+
+      const LoadingComponent = wrapper.findComponent(SbIcon)
+
+      expect(LoadingComponent.props('name')).toBe('loading')
+    })
+
+    it('should change the placeholder of input to loading text', async () => {
+      const wrapper = factory()
+      const innerInput = wrapper.find('.sb-select-inner__input')
+
+      expect(innerInput.element.placeholder).toBe('Loading...')
+
+      await wrapper.setProps({
+        loadingLabel: 'Loading label from test...',
+      })
+
+      expect(innerInput.element.placeholder).toBe('Loading label from test...')
+    })
+
+    it('should show the label element  when it has value', async () => {
+      const wrapper = factory()
+      const innerInput = wrapper.find('.sb-select-inner__input')
+
+      expect(innerInput.element.placeholder).toBe('Loading...')
+
+      await wrapper.setProps({
+        value: 'Option 1',
+      })
+
+      expect(innerInput.element.placeholder).toBe('Option 1')
+    })
+  })
+
+  describe('disable internal search and implement a one itself', () => {
+    const wrapper = mountAttachingComponent(SbSelect, {
+      propsData: {
+        label: 'Choose an option',
+        options: [...defaultSelectOptionsData],
+        value: null,
+        disableInternalFilter: true,
+        filterable: true,
+      },
+    })
+
+    const innerInput = wrapper.find('.sb-select-inner__input')
+
+    it('should emit the filter event', async () => {
+      await innerInput.setValue('option 2')
+
+      await waitMs(500)
+
+      expect(wrapper.emitted('filter')[0][0]).toBe('option 2')
+    })
+
+    it('should not filter the list', async () => {
+      await innerInput.setValue('option 2')
+
+      await waitMs(500)
+
+      expect(wrapper.findAll('.sb-select-list__item')).toHaveLength(7)
+    })
+  })
 })

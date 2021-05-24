@@ -1,6 +1,7 @@
 import { SbSelect } from '.'
 import { SbMinibrowser } from '../Minibrowser'
 import { MOCK_DATA } from '../Minibrowser/Minibrowser.stories'
+import { toLowerCase } from '../../utils'
 
 // @vue/component
 const SelectTemplate = (args) => ({
@@ -40,6 +41,8 @@ const SelectTemplate = (args) => ({
       :inline="inline"
       :no-data-text="noDataText"
       :allow-create="allowCreate"
+      :is-loading="isLoading"
+      :loading-label="loadingLabel"
       :clearable="clearable"
       v-model="internalValue"
       style="max-width: 300px"
@@ -115,6 +118,9 @@ export default {
     noDataText: 'Sorry, no result found.',
     allowCreate: false,
     clearable: false,
+    isLoading: false,
+    loadingLabel: 'Loading...',
+    disableInternalSearch: false,
   },
 }
 
@@ -132,11 +138,78 @@ Filterable.args = {
   filterable: true,
 }
 
+export const LazySearch = (args) => ({
+  components: {
+    SbSelect,
+  },
+
+  props: Object.keys(args),
+
+  data: () => ({
+    internalSearch: true,
+    internalValue: null,
+    internalOptions: args.options,
+    internalLoading: args.isLoading,
+  }),
+
+  methods: {
+    handleFilter(search) {
+      this.internalLoading = true
+
+      setTimeout(() => {
+        if (!search) {
+          this.internalOptions = this.options
+          this.internalLoading = false
+          return
+        }
+
+        this.internalOptions = this.options.filter((option) => {
+          return toLowerCase(option.label).includes(search)
+        })
+
+        this.internalLoading = false
+      }, 300)
+    },
+  },
+
+  template: `
+    <SbSelect
+      :label="label"
+      :options="internalOptions"
+      :multiple="multiple"
+      :left-icon="leftIcon"
+      :filterable="filterable"
+      :use-avatars="useAvatars"
+      :inline="inline"
+      :no-data-text="noDataText"
+      :allow-create="allowCreate"
+      :is-loading="internalLoading"
+      :loading-label="loadingLabel"
+      :clearable="clearable"
+      :disable-internal-filter="internalSearch"
+      v-model="internalValue"
+      style="max-width: 300px"
+      @filter="handleFilter"
+    />
+  `,
+})
+
+LazySearch.args = {
+  filterable: true,
+  disableInternalSearch: true,
+}
+
 export const MultipleAndFilterable = SelectTemplate.bind({})
 
 MultipleAndFilterable.args = {
   multiple: true,
   filterable: true,
+}
+
+export const Loading = SelectTemplate.bind({})
+
+Loading.args = {
+  isLoading: true,
 }
 
 export const AllowCreate = SelectTemplate.bind({})
