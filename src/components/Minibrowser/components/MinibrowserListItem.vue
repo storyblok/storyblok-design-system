@@ -37,6 +37,9 @@ export default {
   inject: ['browserContext'],
 
   props: {
+    value: {
+      required: false,
+    },
     as: {
       type: String,
       default: 'a',
