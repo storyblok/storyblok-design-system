@@ -1,7 +1,7 @@
 <template>
   <SbBlockUi>
     <div class="sb-upload-dialog">
-      <SbIcon name="refresh" size="small" color="primary" />
+      <SbIcon name="refreshing" size="small" color="primary" />
       <span class="sb-upload-dialog__label"> {{ labelToUpload }} </span>
       <span v-if="timeLeft" class="sb-upload-dialog__time-left">
         {{ timeLeftLabel }}

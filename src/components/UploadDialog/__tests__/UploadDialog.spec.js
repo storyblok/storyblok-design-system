@@ -34,7 +34,7 @@ describe('Tests for UploadDialog', () => {
 
     expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
 
-    expect(wrapper.findComponent(SbIcon).props('name')).toBe('refresh')
+    expect(wrapper.findComponent(SbIcon).props('name')).toBe('refreshing')
 
     const spanLabelHelper = [
       `Uploading ${fakeProps.currentFile} of ${fakeProps.totalFiles} files - ${fakeProps.currentFileName}`,
