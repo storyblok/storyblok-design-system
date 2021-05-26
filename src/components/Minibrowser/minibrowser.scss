@@ -152,6 +152,10 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     right: $full-height-padding;
   }
 
+  &__input-container-clear .sb-icon:hover {
+    color: $sb-dark-blue-50;
+  }
+
   &--full-height &__breadcrumbs {
     padding: 10px $full-height-padding 13.5px;
   }
