@@ -13,6 +13,7 @@
         class="sb-modal"
         :class="computedClasses"
         role="dialog"
+        :style="computedStyle"
         v-bind="{ ...$attrs }"
       >
         <SbModalCloseButton />
@@ -54,6 +55,10 @@ export default {
     fullWidth: Boolean,
     scrollbar: Boolean,
     large: Boolean,
+    maxWidth: {
+      type: [String, Number],
+      default: null,
+    },
     modalTarget: {
       type: String,
       default: () => `#sb-modal-target-${randomString(4)}`,
@@ -74,6 +79,12 @@ export default {
         this.scrollbar && 'sb-modal--scrollbar',
         this.closeOnHeader && 'sb-modal--close-on-header',
       ]
+    },
+
+    computedStyle() {
+      if (!this.maxWidth) return null
+
+      return { maxWidth: `${this.maxWidth}px` }
     },
 
     modalContext() {
