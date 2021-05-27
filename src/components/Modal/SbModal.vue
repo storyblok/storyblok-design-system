@@ -15,7 +15,7 @@
         role="dialog"
         v-bind="{ ...$attrs }"
       >
-        <SbModalCloseButton v-if="!closeOnHeader" absolute />
+        <SbModalCloseButton />
         <slot />
       </div>
     </SbBlokUi>
@@ -72,6 +72,7 @@ export default {
         this.fullWidth && 'sb-modal__full-width',
         this.large && 'sb-modal__large',
         this.scrollbar && 'sb-modal--scrollbar',
+        this.closeOnHeader && 'sb-modal--close-on-header',
       ]
     },
 
