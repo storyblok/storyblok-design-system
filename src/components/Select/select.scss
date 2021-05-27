@@ -32,11 +32,22 @@
       &__chevron {
         color: $light-gray;
       }
+
+      &__input {
+        width: auto;
+      }
     }
 
     .sb-select-list {
       position: absolute;
       top: 0;
+    }
+
+    &:hover {
+      ::placeholder {
+        color: $sb-dark-blue;
+        opacity: 1;
+      }
     }
   }
 
@@ -127,7 +138,7 @@
     }
 
     &::placeholder {
-      color: $sb-dark-blue-50;
+      color: $sb-dark-blue;
     }
   }
 

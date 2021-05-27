@@ -45,7 +45,7 @@
   // sidebar top
   &__top {
     display: flex;
-    padding: 30px 28px;
+    padding: 28px;
 
     .sb-avatar {
       cursor: pointer;
@@ -93,7 +93,7 @@
     color: $light-gray;
     cursor: pointer;
     display: flex;
-    font-size: $font-size-lg;
+    font-size: $font-size-md;
     font-weight: $font-weight-medium;
     letter-spacing: 0;
     line-height: inherit;

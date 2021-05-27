@@ -11,8 +11,13 @@
   }
 
   &__icon {
+    cursor: pointer;
     position: absolute;
     top: 12px;
+
+    &:hover {
+      color: $sb-dark-blue-50;
+    }
 
     &--left {
       left: 14px;
@@ -36,6 +41,7 @@
   &__textarea {
     box-sizing: border-box;
     min-height: 130px;
+    resize: vertical;
   }
 
   &__input,

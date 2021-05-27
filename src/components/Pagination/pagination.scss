@@ -1,10 +1,9 @@
 .sb-pagination {
-  display: inline-flex;
   align-items: center;
-  height: 53px;
-  font-size: $font-size-md;
   color: $color-primary-dark;
-  box-shadow: 0px -1px 0px 0px $light, 0px 1px 0px 0px $light;
+  display: inline-flex;
+  font-size: $font-size-md;
+  height: 53px;
 
   // elements
   &__per-page-container {
@@ -17,32 +16,41 @@
   }
 
   &__select {
-    margin: 0 10px;
     border: 0;
+    margin: 0 10px;
   }
 
   &__placeholder {
-    font-size: $font-size-sm;
     color: $sb-dark-blue-50;
+    font-size: $font-size-sm;
     font-weight: $font-weight-regular;
   }
 
   &__button {
-    width: 55px;
-    height: 55px;
     background-color: transparent;
     border: 0;
-    border-left: 1px solid $light;
+    border-radius: $base-border-radius;
     color: $color-primary-dark;
     cursor: pointer;
+    display: block;
+    height: 32px;
+    width: 32px;
 
     &:not(:disabled):hover {
       color: $color-primary;
     }
 
     &--disabled {
-      cursor: not-allowed;
       color: $sb-dark-blue-25;
+      cursor: not-allowed;
+    }
+
+    &:hover {
+      background-color: $light-50;
+    }
+
+    .sb-icon {
+      margin-left: -4px;
     }
   }
 
@@ -52,20 +60,32 @@
   }
 
   &-dot {
-    width: 10px;
+    background-color: $light;
+    border: 0;
+    border-radius: 100%;
+    cursor: pointer;
     height: 10px;
     padding: 0;
-    background-color: $light;
-    border-radius: 100%;
-    border: 0;
-    cursor: pointer;
+    position: relative;
+    width: 10px;
 
     &:not(:first-child) {
       margin-left: 15px;
     }
 
     &--active {
-      background-color: $color-primary;
+      background-color: $sb-dark-blue;
+
+      &::after {
+        border: solid 2px $sb-dark-blue-25;
+        border-radius: 100%;
+        content: '';
+        height: 14px;
+        left: -4px;
+        position: absolute;
+        top: -4px;
+        width: 14px;
+      }
     }
   }
 
@@ -79,8 +99,8 @@
   }
 
   &--compact {
-    width: 100%;
     box-shadow: none;
+    width: 100%;
   }
 
   &--compact > span {

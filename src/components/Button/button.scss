@@ -39,14 +39,18 @@
     }
 
     &:hover:not([disabled]) {
-      background-color: $sb-green-75;
+      background-color: darken($sb-green, 4%);
     }
 
     &[disabled] {
-      background-color: rgba($sb-green, 0.5);
+      background-color: rgba($sb-green, 0.6);
       color: $green-disabled;
 
       .sb-button__label {
+        opacity: 0.5;
+      }
+
+      .sb-icon {
         opacity: 0.5;
       }
     }

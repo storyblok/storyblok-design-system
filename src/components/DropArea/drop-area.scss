@@ -59,6 +59,10 @@
     span {
       color: $sb-green;
       cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 
