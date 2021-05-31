@@ -2,7 +2,7 @@ import SbTypography from '.'
 
 export default {
   title: 'Design System/Base/Typography',
-  component: SbTypography
+  component: SbTypography,
 }
 
 export const AllTexts = () => ({
@@ -11,7 +11,7 @@ export const AllTexts = () => ({
   <section>
     <div>
       <span class="sb-typography__label">Font family</span>
-      <h1 class="sb-typography__title">Roboto</h1>
+      <h1 class="sb-typography__title">-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"</h1>
 
       <h2 class="sb-typography__subtitle">12px</h2>
       <p class="text-ink font-size-xs">12 px ink regular</p>
@@ -43,5 +43,5 @@ export const AllTexts = () => ({
       <h6>Heading 6</h6>
     </div>
   </section>
-  `
+  `,
 })
