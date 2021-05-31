@@ -32,6 +32,10 @@ const SbTabs = {
       type: [String, Number],
       default: '',
     },
+    newTabLabel: {
+      type: String,
+      default: 'New tab',
+    },
   },
 
   data() {
@@ -101,6 +105,9 @@ const SbTabs = {
 
       this.additionalTabs.push(
         h(SbTab, {
+          attrs: {
+            class: 'sb-tab sb-tab__new-tab',
+          },
           props: {
             label: 'New tab',
             name: 'new-tab',
@@ -208,6 +215,9 @@ const SbTabs = {
 
     const renderAddButton = () => {
       return h(SbTabAdd, {
+        props: {
+          newTabLabel: this.newTabLabel,
+        },
         on: {
           click: () => this.$_createNewTab(h),
         },

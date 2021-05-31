@@ -8,7 +8,7 @@ export const SbTabAdd = {
 
   functional: true,
 
-  render(h, { listeners }) {
+  render(h, { listeners, props }) {
     return h(
       'li',
       {
@@ -22,7 +22,7 @@ export const SbTabAdd = {
           SbTooltip,
           {
             props: {
-              label: 'New Tab',
+              label: props.newTabLabel,
               position: 'bottom',
             },
           },
