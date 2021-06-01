@@ -4,7 +4,7 @@
       label
     }}</label>
     <div class="sb-textfield__inner">
-      <span v-if="prefix" class="sb-textfield__suffix">{{ prefix }}</span>
+      <span v-if="prefix" class="sb-textfield__prefix">{{ prefix }}</span>
       <input
         v-if="!isTextAreaType"
         :id="id"
@@ -80,7 +80,7 @@
           @click="handleClearableClick"
         />
       </SbTooltip>
-      <span v-if="suffix" class="sb-textfield__prefix">{{ suffix }}</span>
+      <span v-if="suffix" class="sb-textfield__suffix">{{ suffix }}</span>
 
       <slot />
     </div>

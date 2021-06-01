@@ -151,16 +151,17 @@
     font-size: $text-medium-small;
     font-weight: normal;
     letter-spacing: 0;
+    min-width: fit-content;
     padding: 15px 17px;
   }
 
-  &__prefix {
+  &__suffix {
     border-bottom-left-radius: 0;
     border-left: 0;
     border-top-left-radius: 0;
   }
 
-  &__suffix {
+  &__prefix {
     border-bottom-right-radius: 0;
     border-right: 0;
     border-top-right-radius: 0;
