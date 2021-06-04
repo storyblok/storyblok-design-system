@@ -1,5 +1,6 @@
 import SbIcon from '../../Icon'
-import SbTooltip from '../../Tooltip'
+
+import { Tooltip } from '../../../directives'
 import { capitalize } from '../../../utils'
 
 // @vue/component
@@ -7,6 +8,10 @@ export const SbTabAdd = {
   name: 'SbTabAdd',
 
   functional: true,
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   render(h, { listeners, props }) {
     return h(
@@ -19,35 +24,33 @@ export const SbTabAdd = {
       },
       [
         h(
-          SbTooltip,
+          'button',
           {
-            props: {
-              label: props.newTabLabel,
-              position: 'bottom',
+            attrs: {
+              class: 'sb-tabs__add-button',
+              'aria-label': 'New tab',
             },
-          },
-          [
-            h(
-              'button',
+            on: {
+              ...listeners,
+            },
+            directives: [
               {
-                attrs: {
-                  class: 'sb-tabs__add-button',
-                  'aria-label': 'New tab',
-                },
-                on: {
-                  ...listeners,
+                name: 'tooltip',
+                value: {
+                  label: props.newTabLabel,
+                  position: 'bottom',
                 },
               },
-              [
-                h(SbIcon, {
-                  props: {
-                    name: 'plus',
-                    size: 'normal',
-                    color: 'light-gray',
-                  },
-                }),
-              ]
-            ),
+            ],
+          },
+          [
+            h(SbIcon, {
+              props: {
+                name: 'plus',
+                size: 'normal',
+                color: 'light-gray',
+              },
+            }),
           ]
         ),
       ]
@@ -90,34 +93,36 @@ const SbEditButton = {
 
   functional: true,
 
+  directives: {
+    tooltip: Tooltip,
+  },
+
   render(h, { listeners }) {
     return h(
-      SbTooltip,
+      'button',
       {
-        props: {
-          label: 'Edit',
-          position: 'bottom',
+        staticClass: 'sb-tab-edit-button',
+        on: {
+          ...listeners,
         },
-      },
-      [
-        h(
-          'button',
+        directives: [
           {
-            staticClass: 'sb-tab-edit-button',
-            on: {
-              ...listeners,
+            name: 'tooltip',
+            value: {
+              label: 'New Tab',
+              position: 'bottom',
             },
           },
-          [
-            h(SbIcon, {
-              props: {
-                name: 'edit',
-                size: 'normal',
-                color: 'light-gray',
-              },
-            }),
-          ]
-        ),
+        ],
+      },
+      [
+        h(SbIcon, {
+          props: {
+            name: 'edit',
+            size: 'normal',
+            color: 'light-gray',
+          },
+        }),
       ]
     )
   },
@@ -132,6 +137,10 @@ const SbEditButton = {
  */
 export const SbTab = {
   name: 'SbTab',
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   props: {
     activate: {

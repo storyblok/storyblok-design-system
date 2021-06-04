@@ -3,18 +3,14 @@
     <div v-if="label" class="sb-form-item__top-container">
       <label v-if="label" class="sb-form-item__label" :for="labelFor">
         {{ label }}
-        <SbTooltip
+
+        <SbIcon
           v-if="helperIconText"
-          :label="helperIconText"
-          :text-align="helperTextAlign"
-        >
-          <SbIcon
-            v-if="helperIconText"
-            color="primary-dark"
-            name="help"
-            class="sb-form-item__helper-icon-text"
-          />
-        </SbTooltip>
+          v-tooltip="{ label: helperIconText, textAlign: helperTextAlign }"
+          color="primary-dark"
+          name="help"
+          class="sb-form-item__helper-icon-text"
+        />
       </label>
       <span v-if="helperText" class="sb-form-item__helper-text">
         {{ helperText }}
@@ -28,14 +24,17 @@
 
 <script>
 import SbIcon from '../Icon'
-import SbTooltip from '../Tooltip'
+import { Tooltip } from '../../directives'
 
 export default {
   name: 'SbFormItem',
 
+  directives: {
+    tooltip: Tooltip,
+  },
+
   components: {
     SbIcon,
-    SbTooltip,
   },
 
   props: {

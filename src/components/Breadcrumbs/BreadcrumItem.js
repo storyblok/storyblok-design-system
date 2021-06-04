@@ -1,4 +1,4 @@
-import SbTooltip from '../Tooltip'
+import { Tooltip } from '../../directives'
 
 /**
  * @method getLabelTruncated
@@ -92,16 +92,18 @@ const SbBreadcrumbLink = {
 const SbBreadcrumbItem = {
   name: 'SbBreadcrumbItem',
 
-  functional: true,
+  directives: {
+    tooltip: Tooltip,
+  },
 
   props: {
     isActive: Boolean,
     ...sharedLinkProps,
   },
 
-  render(h, { props, listeners, slots }) {
-    const { isActive, title, href, to, as } = props
-    const label = props.label || ''
+  render(h) {
+    const { isActive, title, href, to, as } = this
+    const label = this.label || ''
 
     const isTruncated = label.length > 15
     const labelFormated = isTruncated ? getLabelTruncated(label) : label
@@ -114,6 +116,17 @@ const SbBreadcrumbItem = {
         // to identify that the last link is the current page
         'aria-current': isActive ? 'page' : null,
       },
+      directives: isTruncated
+        ? [
+            {
+              name: 'tooltip',
+              value: {
+                label,
+                position: 'bottom',
+              },
+            },
+          ]
+        : null,
     }
 
     const renderLabel = () => {
@@ -129,36 +142,17 @@ const SbBreadcrumbItem = {
               label: labelFormated,
             },
             on: {
-              ...listeners,
+              ...this.$listeners,
             },
           },
-          [slots().default]
+          [this.$slots.default]
         )
       }
 
-      return [labelFormated, slots().default]
+      return [labelFormated, this.$slots.default]
     }
 
-    const renderChildren = () => {
-      if (isTruncated) {
-        return [
-          h(
-            SbTooltip,
-            {
-              props: {
-                position: 'bottom',
-                label,
-              },
-            },
-            [renderLabel()]
-          ),
-        ]
-      }
-
-      return [renderLabel()]
-    }
-
-    return h('li', breadcrumbsItemProps, renderChildren())
+    return h('li', breadcrumbsItemProps, [renderLabel()])
   },
 }
 

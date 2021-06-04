@@ -72,14 +72,14 @@
         :color="iconColor"
         @click="handleShowHidePassword"
       />
-      <SbTooltip v-if="showClearIcon" label="Clear">
-        <SbIcon
-          name="x-clear"
-          class="sb-textfield__icon sb-textfield__icon--right sb-textfield__icon--pointer"
-          :color="iconColor"
-          @click="handleClearableClick"
-        />
-      </SbTooltip>
+      <SbIcon
+        v-if="showClearIcon"
+        v-tooltip="{ label: 'Clear' }"
+        name="x-clear"
+        class="sb-textfield__icon sb-textfield__icon--right sb-textfield__icon--pointer"
+        :color="iconColor"
+        @click="handleClearableClick"
+      />
       <span v-if="suffix" class="sb-textfield__suffix">{{ suffix }}</span>
 
       <slot />
@@ -111,9 +111,14 @@
 import SbIcon from '../Icon'
 
 import TextFieldMixin from '../../mixins/textfield-mixin'
+import { Tooltip } from '../../directives'
 
 export default {
   name: 'SbTextField',
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   components: { SbIcon },
 

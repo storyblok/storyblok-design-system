@@ -1,16 +1,9 @@
-import { mount, RouterLinkStub, shallowMount } from '@vue/test-utils'
-import { SbBreadcrumbItem, SbBreadcrumbLink } from '../BreadcrumItem'
-import SbTooltip from '../../Tooltip'
+import { mount, RouterLinkStub } from '@vue/test-utils'
+import { SbBreadcrumbItem } from '../BreadcrumItem'
 import SbIcon from '../../Icon'
 
-const factory = (propsData = {}) => {
+const factory = (propsData = {}, mountOptions = {}) => {
   return mount(SbBreadcrumbItem, {
-    propsData,
-  })
-}
-
-const factoryShallowMount = (propsData = {}, mountOptions = {}) => {
-  return shallowMount(SbBreadcrumbLink, {
     stubs: {
       RouterLink: RouterLinkStub,
       NuxtLink: RouterLinkStub,
@@ -53,12 +46,13 @@ describe('SbBreadcrumbItem component', () => {
       expect(linkTag.text()).toBe('A long label ...')
     })
 
-    it('should render a tooltip with the long label at the bottom position', () => {
-      const SbTooltipComponent = wrapper.findComponent(SbTooltip)
+    it('should render a tooltip with the long label at the bottom position', async () => {
+      await wrapper.trigger('mouseover')
 
-      expect(SbTooltipComponent.exists()).toBe(true)
-      expect(SbTooltipComponent.props('label')).toBe(label)
-      expect(SbTooltipComponent.props('position')).toBe('bottom')
+      const tooltip = document.querySelector('[role="tooltip"]')
+
+      expect(tooltip.innerText).toBe(label)
+      expect(tooltip.getAttribute('data-popper-placement')).toBe('bottom')
     })
   })
 
@@ -81,7 +75,7 @@ describe('SbBreadcrumbItem component', () => {
 
   describe('when customize the tag', () => {
     it('should render a <router-link> tag with the correct attributes', () => {
-      const wrapper = factoryShallowMount({
+      const wrapper = factory({
         to: {
           name: 'TestView',
         },
@@ -92,11 +86,11 @@ describe('SbBreadcrumbItem component', () => {
       expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
         name: 'TestView',
       })
-      expect(wrapper.text()).toBe('Just router-link link')
+      expect(wrapper.text()).toBe('Just router-l...')
     })
 
     it('should render a <nuxt-link> tag with the correct attributes', () => {
-      const wrapper = factoryShallowMount({
+      const wrapper = factory({
         to: {
           name: 'TestNuxtView',
         },
@@ -107,13 +101,13 @@ describe('SbBreadcrumbItem component', () => {
       expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
         name: 'TestNuxtView',
       })
-      expect(wrapper.text()).toBe('Just nuxt-link link')
+      expect(wrapper.text()).toBe('Just nuxt-lin...')
     })
   })
 
   describe('when use the default slot', () => {
     it('should render the text in the default slot', () => {
-      const wrapper = factoryShallowMount(
+      const wrapper = factory(
         {},
         {
           slots: {
@@ -127,7 +121,7 @@ describe('SbBreadcrumbItem component', () => {
     })
 
     it('should render a component inside default slot', () => {
-      const wrapper = factoryShallowMount(
+      const wrapper = factory(
         {},
         {
           slots: {
@@ -142,7 +136,7 @@ describe('SbBreadcrumbItem component', () => {
     })
 
     it('should allow to render a component and a text inside default slot', () => {
-      const wrapper = factoryShallowMount(
+      const wrapper = factory(
         {
           href: '/testing',
         },
@@ -182,7 +176,7 @@ describe('SbBreadcrumbItem component', () => {
           ],
         },
       }
-      const wrapper = factoryShallowMount({}, mountOptions)
+      const wrapper = factory({}, mountOptions)
 
       expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
         name: 'TestNuxtView',

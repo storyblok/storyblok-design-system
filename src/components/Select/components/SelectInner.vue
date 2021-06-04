@@ -51,17 +51,17 @@
     />
 
     <div class="sb-select-inner__icons">
-      <SbTooltip v-if="showClearButton" label="Remove all">
-        <button
-          aria-label="Clear all values"
-          class="sb-select-inner__clear"
-          type="button"
-          @keydown="clearAllValuesKeydown"
-          @click="clearAllValues"
-        >
-          <SbIcon name="x-clear" />
-        </button>
-      </SbTooltip>
+      <button
+        v-if="showClearButton"
+        v-tooltip="{ label: 'Remove all' }"
+        aria-label="Clear all values"
+        class="sb-select-inner__clear"
+        type="button"
+        @keydown="clearAllValuesKeydown"
+        @click="clearAllValues"
+      >
+        <SbIcon name="x-clear" />
+      </button>
 
       <SbIcon class="sb-select-inner__chevron" :name="rightIconName" />
     </div>
@@ -74,8 +74,14 @@ import SbIcon from '../../Icon'
 import SbTag from '../../Tag'
 import SbAvatar from '../../Avatar'
 
+import { Tooltip } from '../../../directives'
+
 export default {
   name: 'SbSelectInner',
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   components: {
     SbIcon,

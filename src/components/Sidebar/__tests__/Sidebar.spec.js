@@ -70,19 +70,22 @@ describe('Test SbSidebar component', () => {
       expect(wrapper.classes('sb-sidebar--minimize')).toBe(true)
     })
 
-    it('should have a SbButton to collapse the Sidebar and a SbTooltip with Collapse and Expand Sidebar messages', async () => {
+    it('should have a SbButton to collapse the Sidebar and a tooltip with Collapse and Expand Sidebar messages', async () => {
       const button = wrapper.findComponent(SbButton)
 
-      const tooltip = wrapper.find('.sb-tooltip')
-
       expect(button.exists()).toBe(true)
-      expect(tooltip.exists()).toBe(true)
+
+      await button.trigger('focus')
 
       button.vm.$emit('click')
 
+      let tooltip = document.querySelector('[role="tooltip"]')
+
       expect(wrapper.emitted('update:minimize')).toBeTruthy()
       expect(wrapper.emitted('update:minimize')).toEqual([[false]])
-      expect(tooltip.text()).toBe('Expand Sidebar')
+      expect(tooltip.innerText).toBe('Expand Sidebar')
+
+      await button.trigger('blur')
 
       await wrapper.setProps({
         minimize: false,
@@ -90,8 +93,14 @@ describe('Test SbSidebar component', () => {
 
       button.vm.$emit('click')
 
+      await button.trigger('focus')
+
+      tooltip = document.querySelector('[role="tooltip"]')
+
       expect(wrapper.emitted('update:minimize')).toEqual([[false], [true]])
-      expect(tooltip.text()).toBe('Collapse Sidebar')
+      expect(tooltip.innerText).toBe('Collapse Sidebar')
+
+      await button.trigger('blur')
     })
   })
 })

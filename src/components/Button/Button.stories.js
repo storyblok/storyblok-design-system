@@ -162,7 +162,7 @@ export default {
     },
     tooltipPosition: {
       name: 'tooltipPosition',
-      description: 'Position for `SbTooltip` component',
+      description: 'Position for `v-tooltip` directive',
       control: {
         type: 'select',
         options: [...availableTooltipPositions],

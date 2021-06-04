@@ -1,5 +1,5 @@
 import SbIcon from '../../Icon'
-import SbTooltip from '../../Tooltip'
+import { Tooltip } from '../../../directives'
 
 /**
  * @vue/component
@@ -12,6 +12,10 @@ export const SbPaginationButton = {
   name: 'SbPaginationButton',
 
   functional: true,
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   props: {
     disabled: {
@@ -32,38 +36,36 @@ export const SbPaginationButton = {
     const { icon, tooltipLabel, disabled } = props
 
     return h(
-      SbTooltip,
+      'button',
       {
-        props: {
-          label: tooltipLabel,
-          position: 'bottom',
+        staticClass: 'sb-pagination__button',
+        attrs: {
+          disabled,
+          ...(data.attrs || {}),
         },
-      },
-      [
-        h(
-          'button',
+        class: {
+          'sb-pagination__button--disabled': disabled,
+        },
+        on: {
+          ...listeners,
+        },
+        directives: [
           {
-            staticClass: 'sb-pagination__button',
-            attrs: {
-              disabled,
-              ...(data.attrs || {}),
-            },
-            class: {
-              'sb-pagination__button--disabled': disabled,
-            },
-            on: {
-              ...listeners,
+            name: 'tooltip',
+            value: {
+              label: tooltipLabel,
+              position: 'bottom',
             },
           },
-          [
-            h(SbIcon, {
-              props: {
-                name: icon,
-                size: 'normal',
-              },
-            }),
-          ]
-        ),
+        ],
+      },
+      [
+        h(SbIcon, {
+          props: {
+            name: icon,
+            size: 'normal',
+          },
+        }),
       ]
     )
   },

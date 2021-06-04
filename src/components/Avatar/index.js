@@ -5,7 +5,7 @@ import { isSizeValid, getInitials, generateRandomColor } from './utils.js'
 
 import SbBadge from '../Badge'
 import SbIcon from '../Icon'
-import SbTooltip from '../Tooltip'
+import { Tooltip } from '../../directives'
 
 const positionTypes = ['top', 'bottom']
 
@@ -18,6 +18,10 @@ const positionTypes = ['top', 'bottom']
  */
 const SbAvatar = {
   name: 'SbAvatar',
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   props: {
     bgColor: {
@@ -227,16 +231,24 @@ const SbAvatar = {
     }
 
     if ((this.name || this.friendlyName) && this.useTooltip) {
-      return h(
-        SbTooltip,
-        {
-          props: {
-            label: this.friendlyName ? this.friendlyName : this.name,
-            position: 'bottom',
+      return [
+        h(
+          'div',
+          {
+            ...avatarProps,
+            directives: [
+              {
+                name: 'tooltip',
+                value: {
+                  label: this.friendlyName ? this.friendlyName : this.name,
+                  position: 'bottom',
+                },
+              },
+            ],
           },
-        },
-        [h('div', avatarProps, [renderAvatar()])]
-      )
+          [renderAvatar()]
+        ),
+      ]
     }
 
     const children = [renderAvatar()]

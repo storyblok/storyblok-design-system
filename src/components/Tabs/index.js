@@ -2,6 +2,8 @@ import { cleanChildren } from '../../utils'
 
 import { SbTab, SbTabAdd } from './components'
 
+import { Tooltip } from '../../directives'
+
 import './tabs.scss'
 
 /**
@@ -13,6 +15,10 @@ import './tabs.scss'
  */
 const SbTabs = {
   name: 'SbTabs',
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   props: {
     orientation: {

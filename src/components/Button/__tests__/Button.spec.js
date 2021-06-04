@@ -143,8 +143,12 @@ describe('Test SbButton Component', () => {
       },
     })
 
-    it('should have an Tooltip component with correct text', () => {
-      expect(wrapper.find('.sb-tooltip').text()).toBe(iconDescription)
+    it('should have a tooltip with correct text', async () => {
+      await wrapper.find('button').trigger('focus')
+      // expect(wrapper.find('.sb-tooltip').text()).toBe(iconDescription)
+      expect(document.querySelector('[role="tooltip"]').innerText).toBe(
+        iconDescription
+      )
     })
   })
 
