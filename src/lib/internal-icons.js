@@ -420,6 +420,11 @@ const icons = {
     </g>
     `,
   },
+  table: {
+    viewBox: '0 0 24 24',
+    path: `
+      <path fill="currentColor" fill-rule="evenodd" d="M18 4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12zm-9 7H6v7h3v-7zm9 0h-7v7h7v-7zM6 6v3h3V6H6zm5 3h7V6h-7v3z"/>`,
+  },
 }
 
 const partnerIcons = {
