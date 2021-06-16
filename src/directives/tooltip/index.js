@@ -14,6 +14,7 @@ const DEFAULTS = {
   VARIANT: 'dark',
   POSITION: 'top',
   OFFSET: [0, 10],
+  SHOW: true,
   TEXT_ALIGN: 'center',
 }
 
@@ -48,6 +49,7 @@ function getOptions(binding) {
     return {
       offset: DEFAULTS.OFFSET,
       placement: DEFAULTS.POSITION,
+      show: DEFAULTS.SHOW,
       textAlign: DEFAULTS.TEXT_ALIGN,
       variant: DEFAULTS.VARIANT,
     }
@@ -56,6 +58,7 @@ function getOptions(binding) {
   return {
     offset: value.offset || DEFAULTS.OFFSET,
     placement: value.position || DEFAULTS.POSITION,
+    show: typeof value.show === 'undefined' ? DEFAULTS.SHOW : value.show,
     textAlign: value.textAlign || DEFAULTS.TEXT_ALIGN,
     variant: value.variant || DEFAULTS.VARIANT,
   }
@@ -174,7 +177,11 @@ export default {
     const label = getLabel(binding)
 
     function showHandler(e) {
-      if (el.__tooltip.popperInstance === null && el.__tooltip.label.length) {
+      if (
+        el.__tooltip.popperInstance === null &&
+        el.__tooltip.label.length &&
+        el.__tooltip.options.show
+      ) {
         const tooltip = createTooltip(el.__tooltip.label, el.__tooltip.options)
         const tooltipId =
           el.__tooltip.tooltipId || `sb-tooltip-${randomString(5)}`
