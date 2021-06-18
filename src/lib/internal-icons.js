@@ -509,6 +509,12 @@ const partnerIcons = {
     <rect width="8" height="2" x="11" y="15" opacity=".6" rx="1"/>
   </g>`,
   },
+  world: {
+    viewBox: '0 0 24 24',
+    path: `
+    <path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 110 16 8 8 0 010-16zm-3 9H6a6 6 0 004.2 4.7c-.6-1.4-1-3-1.2-4.7zm9 0h-3c-.2 1.7-.6 3.3-1.2 4.7A6 6 0 0018 13zm-5 0h-2a12.8 12.8 0 001 3.8c.5-1.2.8-2.5 1-3.8zm-2.8-6.7H10A6 6 0 006 11h3c0-1.7.5-3.3 1-4.7zM12 7v.1a12.8 12.8 0 00-1 3.8h2a12.8 12.8 0 00-1-3.8zm1.8-.8l.1.3a15 15 0 011 4.4h3a6 6 0 00-4-4.7z"/>
+    `,
+  },
 }
 
 const pictogramIcons = {

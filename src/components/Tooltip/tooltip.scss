@@ -1,6 +1,6 @@
 @mixin tooltip($position) {
   &--#{$position} {
-    @if ($position == 'top') {
+    @if ($position=='top') {
       .sb-tooltip__label {
         bottom: 125%;
         left: 50%;
@@ -14,7 +14,7 @@
       }
     }
 
-    @if ($position == 'bottom') {
+    @if ($position=='bottom') {
       .sb-tooltip__label {
         left: 50%;
         top: 125%;
@@ -29,7 +29,7 @@
       }
     }
 
-    @if ($position == 'left') {
+    @if ($position=='left') {
       .sb-tooltip__label {
         right: 125%;
         top: 50%;
@@ -43,7 +43,7 @@
       }
     }
 
-    @if ($position == 'right') {
+    @if ($position=='right') {
       .sb-tooltip__label {
         left: 125%;
         top: 50%;
@@ -62,6 +62,7 @@
 .sb-tooltip {
   border-radius: 2px;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
   display: none;
   font-size: $font-size-xs;
   line-height: 15px;
