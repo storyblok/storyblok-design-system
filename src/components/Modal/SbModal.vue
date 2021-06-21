@@ -126,7 +126,7 @@ export default {
      * handler for close modal
      */
     handleCloseModal() {
-      if (this.open) {
+      if (this.open && this.escCloses) {
         this.open = false
         this.$nextTick(() => {
           document.querySelector('body').style.overflow = 'auto'
