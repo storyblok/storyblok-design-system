@@ -1,0 +1,121 @@
+$toggle-easing: cubic-bezier(0.33, 1, 0.68, 1);
+$toggle-width: 40px;
+$toggle-height: $toggle-width * 0.6;
+$toggle-circle: $toggle-width * 0.4;
+$toggle-padding: 4px;
+
+.sb-toggle {
+  height: $toggle-height;
+  position: relative;
+  width: $toggle-width;
+}
+
+.sb-toggle--primary .sb-toggle__label {
+  background-color: $sb-green;
+}
+
+.sb-toggle--secondary .sb-toggle__label {
+  background-color: $sb-dark-blue;
+}
+
+.sb-toggle--ghost {
+  .sb-toggle__label {
+    background-color: transparent;
+    border: 1px solid $light;
+  }
+
+  .sb-toggle__label::after {
+    background-color: $sb-dark-blue;
+  }
+
+  .sb-toggle__icon--active {
+    color: $sb-dark-blue;
+  }
+}
+
+.sb-toggle--danger .sb-toggle__label {
+  background-color: $red;
+}
+
+.sb-toggle__native {
+  @include screenReaderOnly();
+
+  height: 0;
+  visibility: hidden;
+  width: 0;
+
+  &:checked {
+    + .sb-toggle__label {
+      &::after {
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  &:focus,
+  &:hover {
+    &:not([disabled]) + .sb-toggle__label {
+      box-shadow: 0 0 0 2px rgba(217, 244, 243, 1);
+    }
+  }
+
+  &[disabled] + .sb-toggle__label {
+    background: $light;
+    cursor: not-allowed;
+  }
+
+  &:not(:checked) {
+    + .sb-toggle__label {
+      background: $light;
+    }
+  }
+}
+
+.sb-toggle__label {
+  background: $light;
+  border-radius: $toggle-height;
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  position: relative;
+  text-indent: -9999px;
+  transition: background-color 0.2s $toggle-easing 0.1s;
+  width: 100%;
+
+  &::after {
+    background: $white;
+    border-radius: 100%;
+    content: '';
+    height: $toggle-circle;
+    left: $toggle-padding;
+    position: absolute;
+    top: $toggle-padding;
+    transition: transform 0.3s $toggle-easing;
+    width: $toggle-circle;
+    z-index: 2;
+  }
+
+  &:active::after {
+    width: $toggle-circle;
+  }
+}
+
+.sb-toggle__icon {
+  height: $toggle-circle * 1.2;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: $toggle-circle * 1.2;
+  z-index: 0;
+
+  &--active {
+    color: $white;
+    left: 2px;
+  }
+
+  &--inactive {
+    color: $light-gray;
+    right: 2px;
+  }
+}
