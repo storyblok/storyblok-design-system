@@ -40,10 +40,6 @@ $toggle-padding: 4px;
 .sb-toggle__native {
   @include screenReaderOnly();
 
-  height: 0;
-  visibility: hidden;
-  width: 0;
-
   &:checked {
     + .sb-toggle__label {
       &::after {
