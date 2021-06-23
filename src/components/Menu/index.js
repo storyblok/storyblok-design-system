@@ -128,6 +128,7 @@ const SbMenuItem = {
         attrs: {
           ...this.$attrs,
           role: 'menuitemradio',
+          disabled: this.isDisabled,
         },
         on: {
           ...this.$listeners,
