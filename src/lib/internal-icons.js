@@ -378,6 +378,12 @@ const icons = {
       <path fill="currentColor" fill-rule="evenodd" d="M17 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h10zm0 2H7v14h10V5z"/>
     `,
   },
+  'tree-view': {
+    viewBox: '0 0 24 24',
+    path: `
+      <path fill="currentColor" fill-rule="evenodd" d="M11 16a1 1 0 011 1v2a1 1 0 01-1 1H9a1 1 0 01-1-1v-2a1 1 0 011-1h2zm7 1a1 1 0 010 2h-4a1 1 0 010-2h4zm-7-7a1 1 0 011 1v2a1 1 0 01-1 1H9a1 1 0 01-1-1v-2a1 1 0 011-1h2zm7 1a1 1 0 010 2h-4a1 1 0 010-2h4zM8 4a1 1 0 011 1v2a1 1 0 01-1 1H6a1 1 0 01-1-1V5a1 1 0 011-1h2zm10 1a1 1 0 010 2h-7a1 1 0 010-2h7z"/>
+   `,
+  },
   'view-off': {
     viewBox: '0 0 24 24',
     path: `
