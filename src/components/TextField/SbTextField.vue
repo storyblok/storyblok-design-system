@@ -58,12 +58,14 @@
         :name="iconLeft"
         class="sb-textfield__icon sb-textfield__icon--left"
         :color="iconColor"
+        @click="handleIconClick"
       />
       <SbIcon
         v-if="(iconRight || error) && type !== 'password'"
         :name="iconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
+        @click="handleIconClick"
       />
       <SbIcon
         v-if="type === 'password'"
@@ -253,6 +255,10 @@ export default {
 
     handleKeyUpInput(e) {
       this.$emit('keyup', e)
+    },
+
+    handleIconClick() {
+      this.$emit('icon-click')
     },
   },
 }
