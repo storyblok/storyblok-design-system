@@ -151,6 +151,23 @@
   &:hover &__chevron {
     color: $color-primary-dark;
   }
+
+  &__disabled {
+    background: $light-25;
+    cursor: not-allowed !important;
+
+    .sb-select-inner__input {
+      background: $light-25;
+      pointer-events: none;
+    }
+
+    &:focus,
+    &:hover {
+      border-color: $light;
+      box-shadow: none;
+      outline: none;
+    }
+  }
 }
 
 .sb-select-list {

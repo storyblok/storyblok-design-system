@@ -3,7 +3,10 @@
     <component
       :is="as"
       class="sb-minibrowser__list-item"
-      :class="{ 'sb-minibrowser__list-item--active': isActive }"
+      :class="{
+        'sb-minibrowser__list-item--active': isActive,
+        'sb-minibrowser__list-item--disabled': isDisabled,
+      }"
       @click="handleClick"
     >
       <span class="sb-minibrowser__list-item-icon">
@@ -44,6 +47,7 @@ export default {
     isActive: Boolean,
     isParent: Boolean,
     isEntry: Boolean,
+    isDisabled: Boolean,
     items: {
       type: Array,
       default: () => [],

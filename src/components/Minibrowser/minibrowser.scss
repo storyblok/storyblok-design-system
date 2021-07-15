@@ -108,6 +108,11 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
       background-color: $light-50;
     }
 
+    &--disabled {
+      cursor: not-allowed !important;
+      opacity: 0.5;
+    }
+
     &:hover {
       background-color: $light-50;
       cursor: pointer;

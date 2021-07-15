@@ -26,6 +26,7 @@
       :use-avatars="useAvatars"
       :options="options"
       :allow-create="allowCreate"
+      :is-disabled="isDisabled"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
       @input="handleSearchInput"
@@ -92,6 +93,7 @@ export default {
       type: Number,
       default: 300,
     },
+    isDisabled: Boolean,
 
     // loading properties
     isLoading: Boolean,
@@ -281,6 +283,7 @@ export default {
      * shows or hides the items list according to internal state
      */
     handleSelectInnerClick() {
+      if (this.isDisabled) return
       if (this.isOpen) {
         this.hideList()
       } else {

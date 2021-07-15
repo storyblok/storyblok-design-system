@@ -1,6 +1,7 @@
 <template>
   <div
     class="sb-select-inner"
+    :class="{ 'sb-select-inner__disabled': isDisabled }"
     tabindex="0"
     v-on="$listeners"
     @keydown="handleKeyDown"
@@ -18,7 +19,7 @@
         :key="key"
         :label="tagLabel"
         tabindex="0"
-        closable
+        :closable="!isDisabled"
         @keydown="handleTagKeydown($event, tagLabel)"
         @close="removeItem($event, tagLabel)"
       />
@@ -52,7 +53,7 @@
 
     <div class="sb-select-inner__icons">
       <button
-        v-if="showClearButton"
+        v-if="showClearButton && !isDisabled"
         v-tooltip="{ label: 'Remove all' }"
         aria-label="Clear all values"
         class="sb-select-inner__clear"
@@ -138,6 +139,7 @@ export default {
     },
 
     useAvatars: Boolean,
+    isDisabled: Boolean,
   },
 
   data: () => ({
@@ -281,7 +283,7 @@ export default {
      * forward the 'input' event
      */
     handleEmitSearchInput() {
-      if (this.filterable) {
+      if (this.filterable && !this.isDisabled) {
         this.$emit('input', '')
 
         if (this.isAvatarVisible) {
