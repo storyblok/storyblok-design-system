@@ -200,7 +200,7 @@
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: $tablets-landscape - 1) {
   .sb-sidebar__mobile-header {
     display: flex;
   }
