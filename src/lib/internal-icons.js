@@ -676,6 +676,15 @@ const pictogramIcons = {
       </g>
     `,
   },
+  'empty-search-pictogram': {
+    viewBox: '0 0 116 110',
+    path: `
+    <defs>
+      <linearGradient id="search-empty-state-a" x1="50%" x2="50%" y1="0%" y2="100%"><stop offset="0%" stop-color="#F3F4F5"/><stop offset="100%" stop-color="#D7D9DD"/></linearGradient><rect id="search-empty-state-b" width="74" height="52" x="0" y="0" rx="3"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd"><circle cx="58" cy="55" r="55" fill="url(#search-empty-state-a)"/><g transform="translate(0 22)"><path fill="#CDCFD4" d="M20 0h76a5 5 0 0 1 5 5v59H15V5a5 5 0 0 1 5-5z"/><rect width="116" height="6" y="64" fill="#C3C5CA" rx="3"/><g transform="translate(21 6)">    <mask id="search-empty-state-c" fill="#fff"><use xlink:href="#search-empty-state-b"/></mask><use fill="#F8F9FA" xlink:href="#search-empty-state-b"/><path fill="#1B243F" d="M0 0h13v52H0z" mask="url(#search-empty-state-c)"/></g>  <rect width="9" height="3" x="40" y="19" fill="#E0E1E5" rx="1.5"/><rect width="9" height="3" x="40" y="12" fill="#E0E1E5" rx="1.5"/><rect width="9" height="3" x="52" y="19" fill="#E0E1E5" rx="1.5"/><circle cx="87.5" cy="20.5" r="1.5" fill="#E0E1E5"/><rect width="9" height="3" x="40" y="31" fill="#E0E1E5" rx="1.5"/><rect width="9" height="3" x="52" y="31" fill="#E0E1E5" rx="1.5"/><circle cx="87.5" cy="32.5" r="1.5" fill="#E0E1E5"/><rect width="29" height="3" x="40" y="25" fill="#E0E1E5" rx="1.5"/><circle cx="87.5" cy="26.5" r="1.5" fill="#E0E1E5"/></g><circle cx="96" cy="28" r="16" fill="#000" fill-opacity=".153"/><circle cx="97" cy="26" r="16" fill="#00B3B0"/><path fill="#FFF" d="M91.697 21.197a5 5 0 0 1 7.708 6.292l2.898 2.9a1 1 0 0 1-1.414 1.414l-2.9-2.899a5.002 5.002 0 0 1-6.292-7.707zm1.413 1.413a3 3 0 1 0 4.243 4.243 3 3 0 0 0-4.243-4.243z"/></g>
+    `,
+  },
 }
 
 export default {
