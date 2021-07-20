@@ -77,7 +77,7 @@
   background-color: $white;
   border: 1px solid $light;
   border-radius: 5px;
-  color: $sb-dark-blue-50;
+  color: $sb-dark-blue;
   cursor: pointer;
   display: flex;
   flex: 1;
@@ -127,7 +127,7 @@
 
   &__input {
     border: 0;
-    color: $color-primary-dark;
+    color: $sb-dark-blue;
     flex: 1;
     font-size: inherit;
     outline: none;
@@ -139,7 +139,7 @@
     }
 
     &::placeholder {
-      color: $sb-dark-blue;
+      color: $sb-dark-blue-50;
     }
   }
 
@@ -149,7 +149,7 @@
 
   &__chevron,
   &:hover &__chevron {
-    color: $color-primary-dark;
+    color: $sb-dark-blue;
   }
 
   &__disabled {
@@ -218,7 +218,7 @@
 
   &__item-name,
   &__create {
-    color: $color-primary-dark;
+    color: $sb-dark-blue;
     min-height: 17px;
   }
 
