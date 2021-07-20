@@ -191,6 +191,7 @@ describe('SbSelect component', () => {
           options: [...defaultSelectOptionsData],
           value: ['Option 1', 'Option 4', 'Option 6'],
           multiple: true,
+          clearable: true,
         },
       })
 

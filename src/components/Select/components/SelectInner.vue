@@ -203,7 +203,7 @@ export default {
     },
 
     showClearButton() {
-      return (this.hasValue && this.clearable) || this.isTagsVisible
+      return this.hasValue && this.clearable
     },
 
     tagLabels() {
