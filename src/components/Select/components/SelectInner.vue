@@ -211,7 +211,12 @@ export default {
         return []
       }
 
-      return this.multiple ? this.value : []
+      const labels = this.options
+        .filter(($o) => this.value.includes($o.value))
+        .map(($o) => $o.label)
+        .filter(($o) => $o)
+
+      return this.multiple ? labels : []
     },
 
     isAvatarVisible() {
@@ -314,9 +319,11 @@ export default {
      * remove an item from value
      */
     removeItem(event, tagValue) {
+      const { value } = this.options.filter(($o) => $o.label === tagValue)[0]
+
       event.stopPropagation()
       event.preventDefault()
-      this.$emit('remove-item-value', tagValue)
+      this.$emit('remove-item-value', value)
     },
 
     /**

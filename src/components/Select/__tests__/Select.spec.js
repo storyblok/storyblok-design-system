@@ -158,13 +158,13 @@ describe('SbSelect component', () => {
       const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           ...defaultsPropsData,
-          value: ['Option 1', 'Option 4'],
+          value: ['Option 1', 'Option 2'],
         },
       })
 
       expect(wrapper.findAllComponents(SbTag).at(0).text()).toBe('Option 1')
 
-      expect(wrapper.findAllComponents(SbTag).at(1).text()).toBe('Option 4')
+      expect(wrapper.findAllComponents(SbTag).at(1).text()).toBe('Option 2')
     })
 
     it('should remove the tag from value when click on it', async () => {
