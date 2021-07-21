@@ -655,7 +655,7 @@ describe('SbSelect component', () => {
       expect(innerInput.element.placeholder).toBe('Loading label from test...')
     })
 
-    it('should show the label element  when it has value', async () => {
+    it('should show the label element when it has value', async () => {
       const wrapper = factory()
       const innerInput = wrapper.find('.sb-select-inner__input')
 
@@ -665,7 +665,23 @@ describe('SbSelect component', () => {
         value: 'Option 1',
       })
 
-      expect(innerInput.element.placeholder).toBe('Option 1')
+      const valueElement = wrapper.find('.sb-select-inner__value')
+
+      expect(innerInput.element.placeholder).toBe('')
+      expect(valueElement.text()).toBe('Option 1')
+    })
+
+    it('should clear the placeholder if an item is selected', async () => {
+      const wrapper = factory()
+      const innerInput = wrapper.find('.sb-select-inner__input')
+
+      expect(innerInput.element.placeholder).toBe('Loading...')
+
+      await wrapper.setProps({
+        value: 'Option 1',
+      })
+
+      expect(innerInput.element.placeholder).toBe('')
     })
   })
 

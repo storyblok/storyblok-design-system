@@ -143,6 +143,10 @@
     }
   }
 
+  &__value {
+    position: absolute;
+  }
+
   &__avatar {
     margin: -1px 10px -1px 0;
   }

@@ -30,7 +30,7 @@
         type="search"
         class="sb-select-inner__input"
         :style="inlineWidth"
-        :placeholder="innerLabel"
+        :placeholder="placeholderLabel"
         :readonly="!filterable"
         @focus="handleEmitSearchInput"
       />
@@ -46,10 +46,14 @@
       type="search"
       class="sb-select-inner__input"
       :style="inlineWidth"
-      :placeholder="innerLabel"
+      :placeholder="placeholderLabel"
       :readonly="!filterable || inline"
       @focus="handleEmitSearchInput"
     />
+
+    <span v-if="hidePlaceholder" class="sb-select-inner__value">
+      {{ innerLabel }}
+    </span>
 
     <div class="sb-select-inner__icons">
       <button
@@ -165,14 +169,6 @@ export default {
     },
 
     innerLabel() {
-      if (!this.hasValue) {
-        if (this.isLoading && this.loadingLabel) {
-          return this.loadingLabel
-        }
-
-        return this.label
-      }
-
       if (this.filterable && this.multiple) {
         return ''
       }
@@ -182,6 +178,22 @@ export default {
       }
 
       return this.currentOptionLabel
+    },
+
+    placeholderLabel() {
+      if (!this.hasValue) {
+        if (this.isLoading && this.loadingLabel) {
+          return this.loadingLabel
+        }
+
+        return this.label
+      }
+
+      return ''
+    },
+
+    hidePlaceholder() {
+      return this.innerLabel !== this.label && !this.multiple
     },
 
     currentOptionLabel() {
