@@ -104,9 +104,16 @@ export const SbPaginationPagesText = {
 
   render(h, { props }) {
     const { currentPage, showCurrentPage, isPlaceholder, pages } = props
-    const text = showCurrentPage
-      ? `${currentPage} of ${pages} pages` // to compact container
-      : `of ${pages} pages` // to other container types
+    let text = ''
+    if (pages === 1) {
+      text = showCurrentPage
+        ? `${currentPage} of ${pages} page` // to compact container
+        : `of ${pages} page` // to other container types
+    } else {
+      text = showCurrentPage
+        ? `${currentPage} of ${pages} pages` // to compact container
+        : `of ${pages} pages` // to other container types
+    }
 
     return h(
       'span',
@@ -169,7 +176,13 @@ export const SbPaginationItemsText = {
     const lastCurrentPageItem =
       currentPage === 1 ? perPage : isTheLastPage ? total : currentPageItems
 
-    const text = `${firstCurrentPageItem}-${lastCurrentPageItem} of ${total} items`
+    let text = ''
+
+    if (firstCurrentPageItem === 1 && lastCurrentPageItem >= total) {
+      text = `${firstCurrentPageItem}-${total} of ${total} items`
+    } else {
+      text = `${firstCurrentPageItem}-${lastCurrentPageItem} of ${total} items`
+    }
 
     return h(
       'span',
