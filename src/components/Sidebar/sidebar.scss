@@ -1,4 +1,4 @@
-@mixin activeItemState () {
+@mixin activeItemState() {
   background-color: #262e48;
   color: $white;
 
@@ -200,7 +200,7 @@
   }
 }
 
-@media screen and (max-width: $tablets-landscape - 1) {
+@media screen and (max-width: 500px) {
   .sb-sidebar__mobile-header {
     display: flex;
   }
