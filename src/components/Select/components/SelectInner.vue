@@ -224,8 +224,8 @@ export default {
       }
 
       const labels = this.options
-        .filter(($o) => this.value.includes($o.value))
-        .map(($o) => $o.label)
+        .filter(($o) => this.value.includes($o[this.itemValue]))
+        .map(($o) => $o[this.itemLabel])
         .filter(($o) => $o)
 
       return this.multiple ? labels : []
@@ -328,14 +328,21 @@ export default {
     },
 
     /**
-     * remove an item from value
+     * remove an item from value or name
      */
     removeItem(event, tagValue) {
-      const { value } = this.options.filter(($o) => $o.label === tagValue)[0]
+      const $v = this.options.find(($o) => $o.label === tagValue)
+      const $n = this.options.find(($o) => $o.name === tagValue)
 
       event.stopPropagation()
       event.preventDefault()
-      this.$emit('remove-item-value', value)
+
+      if ($v && $v.value) {
+        this.$emit('remove-item-value', $v.value)
+      }
+      if ($n && $n.name) {
+        this.$emit('remove-item-value', $n.name)
+      }
     },
 
     /**
