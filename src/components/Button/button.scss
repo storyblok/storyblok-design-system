@@ -90,6 +90,11 @@
     &[disabled] {
       opacity: 0.5;
     }
+
+    .sb-loading svg {
+      color: $sb-dark-blue;
+      fill: $sb-dark-blue;
+    }
   }
 
   &--danger {
