@@ -50,6 +50,7 @@
       :no-data-text="noDataText"
       :allow-create="allowCreate"
       @emit-value="handleEmitValue"
+      @focus-item="focusAtIndex($event)"
     />
 
     <slot name="minibrowser" />
@@ -255,10 +256,7 @@ export default {
               .querySelector('.sb-select-inner__input')
               .focus()
         })
-        return
       }
-
-      this.activeIndex = 0
     },
 
     /**
@@ -364,6 +362,7 @@ export default {
       this.showList()
 
       this.activeIndex = 0
+
       this.$_updateNavigation()
     },
 
@@ -464,6 +463,8 @@ export default {
     handleKeyDownEnter() {
       if (!this.isOpen) {
         this.showList()
+
+        this.activeIndex = 0
         return
       }
 

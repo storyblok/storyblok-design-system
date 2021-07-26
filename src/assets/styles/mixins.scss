@@ -86,3 +86,8 @@
     margin-right: 0;
   }
 }
+
+@mixin selectedItem {
+  color: $sb-green;
+  font-weight: $font-weight-medium;
+}

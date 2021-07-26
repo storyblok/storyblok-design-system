@@ -105,7 +105,9 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     }
 
     &--active {
-      background-color: $light-50;
+      .sb-minibrowser__list-item-name {
+        @include selectedItem;
+      }
     }
 
     &--disabled {

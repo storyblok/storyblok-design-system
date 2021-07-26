@@ -26,7 +26,7 @@ describe('SbSelect component', () => {
       expect(innerInput.element.placeholder).toBe('Choose an option')
     })
 
-    it('should be toggle the list by clicking on the inner element', async () => {
+    it('should toggle the list by clicking on the inner element', async () => {
       // turn the list visible
       await innerElement.trigger('click')
 
@@ -36,9 +36,6 @@ describe('SbSelect component', () => {
       // check if the first element on the list exists
       const firstElement = wrapper.findAll('li').at(0)
       expect(firstElement.text()).toBe('Option 1')
-
-      // check if the first element is focused
-      expect(firstElement.element).toEqual(document.activeElement)
 
       // turn the list not visible
       await innerElement.trigger('click')

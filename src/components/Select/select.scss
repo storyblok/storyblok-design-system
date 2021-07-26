@@ -209,14 +209,15 @@
     text-align: left;
     width: 100%;
 
-    &:hover,
-    &:focus {
+    &--focused {
       background-color: $light-50;
       outline: none;
     }
 
     &--selected {
-      background-color: darken($light-50, 1%);
+      .sb-select-list__item-name {
+        @include selectedItem;
+      }
     }
   }
 

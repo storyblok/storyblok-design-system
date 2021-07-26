@@ -1,9 +1,7 @@
 <template>
   <li
     class="sb-select-list__item"
-    :class="{
-      'sb-select-list__item--selected': isSelected,
-    }"
+    :class="computedClasses"
     tabindex="0"
     @click="handleClick"
     @keydown="handleKeyDown"
@@ -58,6 +56,8 @@ export default {
       type: String,
       default: null,
     },
+
+    isFocused: Boolean,
   },
 
   computed: {
@@ -65,6 +65,13 @@ export default {
       return isArray(this.inputValue)
         ? includes(this.inputValue, this.value)
         : this.value === this.inputValue
+    },
+
+    computedClasses() {
+      return [
+        this.isSelected && 'sb-select-list__item--selected',
+        this.isFocused && 'sb-select-list__item--focused',
+      ]
     },
   },
 
