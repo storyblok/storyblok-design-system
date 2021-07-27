@@ -193,7 +193,7 @@ export default {
     },
 
     hidePlaceholder() {
-      return this.innerLabel !== this.label && !this.multiple
+      return this.hasValue && !this.multiple
     },
 
     currentOptionLabel() {
