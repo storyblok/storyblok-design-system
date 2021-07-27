@@ -12,12 +12,6 @@
   width: 100%;
 
   // modifiers
-  &--multiple {
-    .sb-select-list__item--selected {
-      background-color: $white;
-    }
-  }
-
   &--inline {
     width: auto;
 
