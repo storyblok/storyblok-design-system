@@ -47,7 +47,10 @@ export default {
 
   props: {
     closeOnHeader: Boolean,
-    isOpen: Boolean,
+    isOpen: {
+      type: Boolean,
+      default: false,
+    },
     escCloses: {
       type: Boolean,
       default: true,
@@ -146,6 +149,13 @@ export default {
           this.$emit('show')
         })
       }
+    },
+
+    /**
+     * this function allows to hide the overflow
+     */
+    hideOverflow() {
+      document.querySelector('body').style.overflow = 'hidden'
     },
 
     wrapClose(event) {
