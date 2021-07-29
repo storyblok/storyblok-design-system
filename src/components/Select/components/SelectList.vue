@@ -18,8 +18,8 @@
       <li
         v-else-if="!hasOptions && allowCreate && multiple"
         class="sb-select-list__create"
-        @keydown.enter="handleEmitValue(searchInput)"
-        @click="handleEmitValue(searchInput)"
+        @keydown.enter="handleOptionCreated(searchInput)"
+        @click="handleOptionCreated(searchInput)"
       >
         <span class="sb-select-list__create-label">Create tag</span> "{{
           searchInput
@@ -112,6 +112,14 @@ export default {
      */
     handleEmitValue(value) {
       this.$emit('emit-value', value)
+    },
+
+    /**
+     * forward the 'optione-created' event
+     * @param {String} value
+     */
+    handleOptionCreated(value) {
+      this.$emit('option-created', value)
     },
 
     /**

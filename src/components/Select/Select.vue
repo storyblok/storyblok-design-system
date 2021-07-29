@@ -50,6 +50,7 @@
       :no-data-text="noDataText"
       :allow-create="allowCreate"
       @emit-value="handleEmitValue"
+      @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
     />
 
@@ -303,6 +304,17 @@ export default {
 
       this.searchInput = ''
       this.$emit('input', value)
+      this.$_focusInner()
+      this.hideList()
+    },
+
+    /**
+     * emits the input event to make this component compatible with v-model directive
+     * @param {Array<String>|String} value
+     */
+    handleOptionCreated(value) {
+      this.searchInput = ''
+      this.$emit('option-created', value)
       this.$_focusInner()
       this.hideList()
     },
