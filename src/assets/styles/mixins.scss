@@ -87,6 +87,29 @@
   }
 }
 
+@mixin calcCentered($index: 1, $count: 4) {
+  $button-width: 36px;
+  $spacer-width: 20px;
+  $full-width: $button-width + $spacer-width;
+
+  transform: translateX(calc(-50% - (#{$count} * #{$full-width} - #{$spacer-width}) / 2 + (#{$index} * #{$full-width} + #{$button-width} / 2)));
+}
+
+@mixin arrow {
+  &::after {
+    background-color: $white;
+    border: 1px solid rgb(223, 227, 232);
+    clip-path: polygon(0 60%, 0 0, 60% 0);
+    content: '';
+    height: 13px;
+    left: 50%;
+    position: absolute;
+    top: -3px;
+    transform: translateX(-50%) rotate(45deg);
+    width: 13px;
+  }
+}
+
 @mixin selectedItem {
   color: $sb-green;
   font-weight: $font-weight-medium;
