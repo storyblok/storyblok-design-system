@@ -96,6 +96,7 @@ export default {
       default: 300,
     },
     isDisabled: Boolean,
+    emitOption: Boolean,
 
     // loading properties
     isLoading: Boolean,
@@ -298,12 +299,13 @@ export default {
       // doesn't close the list
       if (this.multiple) {
         this.searchInput = ''
-        this.$emit('input', this.processMultipleValue(value))
+        const $value = this.processMultipleValue(value)
+        this.$emit('input', this.processValueBeforeEmit($value))
         return
       }
 
       this.searchInput = ''
-      this.$emit('input', value)
+      this.$emit('input', this.processValueBeforeEmit(value))
       this.$_focusInner()
       this.hideList()
     },
@@ -331,13 +333,34 @@ export default {
       return [...(this.value || []), value]
     },
 
+    processValueBeforeEmit(value) {
+      if (!this.emitOption) {
+        return value
+      }
+
+      if (this.multiple) {
+        return value.map((item) => {
+          return this.options.find((option) => {
+            return option[this.itemValue] === item
+          })
+        })
+      }
+
+      const $value = this.options.find((option) => {
+        return option[this.itemValue] === value
+      })
+
+      return $value
+    },
+
     /**
      * emit an input event with the item from tag that was removed
      * @param {String} itemValue
      */
     handleRemoveItemValue(itemValue) {
       if (this.multiple) {
-        this.$emit('input', this.processMultipleValue(itemValue))
+        const $value = this.processMultipleValue(itemValue)
+        this.$emit('input', this.processValueBeforeEmit($value))
         this.$_focusInner()
       }
     },

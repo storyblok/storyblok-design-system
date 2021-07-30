@@ -711,4 +711,83 @@ describe('SbSelect component', () => {
       expect(wrapper.findAll('.sb-select-list__item')).toHaveLength(7)
     })
   })
+
+  describe('emitOption option', () => {
+    it('should emit the whole object by default', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [
+            {
+              label: 'Option 1',
+              value: 1,
+            },
+            {
+              label: 'Option 2',
+              value: 2,
+            },
+            {
+              label: 'Option 3',
+              value: 3,
+            },
+          ],
+          value: null,
+          emitOption: true,
+        },
+      })
+
+      const innerElement = wrapper.find('.sb-select-inner')
+
+      await innerElement.trigger('click')
+
+      wrapper.findAll('li').at(1).trigger('click')
+
+      expect(wrapper.emitted('input')[0]).toEqual([
+        {
+          label: 'Option 2',
+          value: 2,
+        },
+      ])
+    })
+
+    it('should emit a list of objects in multiple', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [
+            {
+              label: 'Option 1',
+              value: 1,
+            },
+            {
+              label: 'Option 2',
+              value: 2,
+            },
+            {
+              label: 'Option 3',
+              value: 3,
+            },
+          ],
+          value: [],
+          emitOption: true,
+          multiple: true,
+        },
+      })
+
+      const innerElement = wrapper.find('.sb-select-inner')
+
+      await innerElement.trigger('click')
+
+      wrapper.findAll('li').at(1).trigger('click')
+
+      expect(wrapper.emitted('input')[0]).toEqual([
+        [
+          {
+            label: 'Option 2',
+            value: 2,
+          },
+        ],
+      ])
+    })
+  })
 })
