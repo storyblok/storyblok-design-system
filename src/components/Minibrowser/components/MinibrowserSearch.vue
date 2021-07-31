@@ -80,8 +80,10 @@ export default {
     },
   },
 
-  mounted() {
-    this.$refs.input.focus()
+  watch: {
+    isLoading() {
+      this.$refs.input.focus()
+    },
   },
 
   methods: {
