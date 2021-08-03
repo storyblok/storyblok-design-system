@@ -124,6 +124,7 @@
 
   &--small {
     font-size: $font-size-md;
+    min-height: 36px;
     padding: 8px 16px;
 
     .sb-loading {
@@ -138,12 +139,12 @@
   }
 
   &--small#{&}--loading {
-    min-height: 34px;
+    min-height: 36px;
   }
 
   &--small#{&}--has-icon,
   &--small#{&}--has-icon-right {
-    padding: 6px 16px 5px 9px;
+    padding: 5px 16px 5px 9px;
   }
 
   &--large {
@@ -201,7 +202,7 @@
   }
 
   &--has-icon-only#{&}--small {
-    min-height: 34px;
+    min-height: 36px;
     padding: 0 5px;
   }
 
