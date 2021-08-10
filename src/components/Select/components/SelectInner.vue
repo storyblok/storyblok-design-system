@@ -279,7 +279,9 @@ export default {
     value(val, oldVal) {
       const isSameValue = JSON.stringify(val) === JSON.stringify(oldVal)
       if (this.isSearchTextVisible && !isSameValue) {
-        this.$nextTick(() => this.$refs.search.focus())
+        if (oldVal.length && val.length) {
+          this.$nextTick(() => this.$refs.search.focus())
+        }
         return
       }
 
