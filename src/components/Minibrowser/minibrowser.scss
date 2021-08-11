@@ -30,12 +30,6 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     }
   }
 
-  &__list-container {
-    max-height: 250px;
-    overflow-y: scroll;
-    padding: 13.5px 0;
-  }
-
   &__breadcrumbs {
     padding: 10px $general-padding 13px;
 
@@ -50,11 +44,18 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     padding: 0;
   }
 
+  &__list > ul {
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 13.5px 0;
+  }
+
   &__list-header {
     align-items: center;
+    box-shadow: 0 1px 0 0 rgb(0 0 0 / 8%);
     display: flex;
     font-size: $font-size-sm;
-    margin: 0;
+    margin: 0 0 1px;
     padding: 9px $general-padding;
     text-transform: uppercase;
 
@@ -164,7 +165,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   }
 
   &--full-height &__breadcrumbs {
-    padding: 10px 30px 13px;
+    padding: 10px 30px;
   }
 
   &--borderless {
