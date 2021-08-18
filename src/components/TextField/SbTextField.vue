@@ -222,7 +222,7 @@ export default {
 
   methods: {
     handleAutoFocus() {
-      this.$nextTick(() => this.$refs.textfield.focus())
+      this.$nextTick(() => this.$refs.textfield?.focus())
     },
 
     handleShowHidePassword() {
