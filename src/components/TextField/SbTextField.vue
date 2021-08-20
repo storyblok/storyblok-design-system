@@ -54,12 +54,25 @@
       />
 
       <SbIcon
-        v-if="iconLeft && type !== 'password'"
+        v-if="iconLeft && type !== 'password' && !iconDescription"
         :name="iconLeft"
         class="sb-textfield__icon sb-textfield__icon--left"
         :color="iconColor"
         @click="handleIconClick"
       />
+      <SbTooltip
+        v-if="iconLeft && type !== 'password' && iconDescription"
+        :label="iconDescription"
+        position="bottom"
+      >
+        <SbIcon
+          v-if="iconLeft && type !== 'password'"
+          :name="iconLeft"
+          class="sb-textfield__icon sb-textfield__icon--left"
+          :color="iconColor"
+          @click="handleIconClick"
+        />
+      </SbTooltip>
       <SbIcon
         v-if="(iconRight || error) && type !== 'password'"
         :name="iconRight"
@@ -132,6 +145,10 @@ export default {
     iconColor: {
       type: String,
       default: 'light-gray',
+    },
+    iconDescription: {
+      type: String,
+      default: null,
     },
   },
 
