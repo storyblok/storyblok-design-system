@@ -6,12 +6,12 @@
   vertical-align: middle;
 }
 
-@mixin avatarComponentSize ($size) {
+@mixin avatarComponentSize($size) {
   height: $size;
   width: $size;
 }
 
-@mixin generalBoxShadow () {
+@mixin generalBoxShadow() {
   background-color: $white;
   border: 1px solid $light;
   border-radius: 4px;
@@ -92,7 +92,9 @@
   $spacer-width: 20px;
   $full-width: $button-width + $spacer-width;
 
-  transform: translateX(calc(-50% - (#{$count} * #{$full-width} - #{$spacer-width}) / 2 + (#{$index} * #{$full-width} + #{$button-width} / 2)));
+  transform:
+    translateX(calc(-50% - (#{$count} * #{$full-width} - #{$spacer-width}) / 2 + (#{$index} * #{$full-width} +
+    #{$button-width} / 2)));
 }
 
 @mixin arrow {
@@ -113,4 +115,11 @@
 @mixin selectedItem {
   color: $sb-green;
   font-weight: $font-weight-medium;
+}
+
+@mixin focusedTextField {
+  border-color: $sb-green;
+  border-radius: 5px;
+  box-shadow: 0 0 0 3px $sb-green-25;
+  outline: none;
 }

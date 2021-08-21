@@ -11,6 +11,10 @@
   position: relative;
   width: 100%;
 
+  &:focus-within .sb-select-inner {
+    @include focusedTextField;
+  }
+
   // modifiers
   &--inline {
     width: auto;
@@ -53,6 +57,10 @@
     .sb-minibrowser {
       display: block;
     }
+
+    .sb-select-inner {
+      @include focusedTextField;
+    }
   }
 
   .sb-minibrowser {
@@ -83,10 +91,7 @@
   }
 
   &:focus {
-    border-color: $sb-green;
-    border-radius: 5px;
-    box-shadow: 0 0 0 3px $sb-green-25;
-    outline: none;
+    @include focusedTextField;
   }
 
   .sb-tag {

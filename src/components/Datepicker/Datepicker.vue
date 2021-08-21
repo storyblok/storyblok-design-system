@@ -1,5 +1,9 @@
 <template>
-  <div v-click-outside="$_wrapClose" class="sb-datepicker">
+  <div
+    v-click-outside="$_wrapClose"
+    class="sb-datepicker"
+    :class="{ 'sb-datepicker--active': isOverlayVisible }"
+  >
     <div class="sb-datepicker__input">
       <SbTextField
         ref="input"
