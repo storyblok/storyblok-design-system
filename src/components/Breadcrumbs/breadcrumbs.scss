@@ -84,11 +84,23 @@
       color: $primary-text-color;
       font-size: $text-header;
       font-weight: $font-weight-bold;
+      margin-top: 12px;
       width: 100%;
 
       a {
         cursor: text;
         text-decoration: none;
+      }
+    }
+
+    > .sb-breadcrumbs__item:not(:last-child),
+    .sb-breadcrumbs__separator {
+      height: 19px;
+      line-height: 19px;
+
+      svg {
+        height: 100%;
+        transform: scale(125%);
       }
     }
   }
