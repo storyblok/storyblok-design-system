@@ -249,6 +249,12 @@ const icons = {
       </g>
     `,
   },
+  lock: {
+    viewBox: '0 0 24 24',
+    path: `
+      <path fill="currentColor" fill-rule="evenodd" d="M12 5a4 4 0 0 1 4 4v2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2V9a4 4 0 0 1 4-4zm0 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm0-7a2 2 0 0 0-1.995 1.85L10 9v2h4V9a2 2 0 0 0-1.85-1.995L12 7z"/>
+    `,
+  },
   'log-out': {
     viewBox: '0 0 24 24',
     path: `
