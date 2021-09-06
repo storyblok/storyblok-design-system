@@ -164,7 +164,7 @@ export default {
 
     hasValue() {
       if (this.multiple || isArray(this.value)) {
-        return this.value.length > 0
+        return this.value?.length > 0
       }
 
       return this.value !== null
