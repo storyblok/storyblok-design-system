@@ -195,7 +195,7 @@ export default {
     },
 
     hidePlaceholder() {
-      return this.hasValue && !this.multiple
+      return this.hasValue && !this.multiple && !this.searchInputText.length
     },
 
     currentOptionLabel() {

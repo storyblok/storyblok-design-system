@@ -66,6 +66,10 @@ export default {
       type: String,
       default: () => `#sb-modal-target-${randomString(4)}`,
     },
+    customClass: {
+      type: String,
+      default: '',
+    },
   },
 
   data() {
@@ -77,6 +81,7 @@ export default {
   computed: {
     computedClasses() {
       return [
+        this.customClass?.length && this.customClass,
         this.fullWidth && 'sb-modal__full-width',
         this.large && 'sb-modal__large',
         this.scrollbar && 'sb-modal--scrollbar',

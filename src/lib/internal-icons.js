@@ -721,8 +721,164 @@ const pictogramIcons = {
   },
 }
 
+const blockIcons = {
+  'block-@': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M12 2c5.43 0 9.848 4.327 9.996 9.72L22 12v1c0 2.173-1.523 4-3.5 4-1.173 0-2.186-.643-2.816-1.62a5 5 0 1 1 1.311-3.597L17 12v1c0 1.14.716 2 1.5 2 .745 0 1.428-.775 1.495-1.831L20 13v-1a8 8 0 1 0-4.677 7.28 1 1 0 1 1 .831 1.819A9.966 9.966 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2Zm0 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-1-2block': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M19 13a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-3a3 3 0 0 1 3-3h3ZM8 13a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-3a3 3 0 0 1 3-3h3Zm11 2h-3a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1ZM8 15H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1ZM19 2a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h14Zm0 2H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-arrow-pointer': {
+    viewBox: '0 0 24 24',
+    path: `<g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="m4 4 6.3 15 2.4-6.3 6.3-2.4zM13 13l6 6"/></g>`,
+  },
+  'block-block': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M19 13a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-3a3 3 0 0 1 3-3h14Zm0 2H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm0-13a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h14Zm0 2H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-buildin': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M11 2a3 3 0 0 1 3 3v1.17c.313-.11.65-.17 1-.17h4a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h6Zm0 2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h7V5a1 1 0 0 0-1-1Zm8 4h-4a1 1 0 0 0-1 1v11h5a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1ZM9 14a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2h2Zm9 0a1 1 0 0 1 0 2h-2a1 1 0 0 1 0-2h2Zm-9-4a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2h2Zm9 0a1 1 0 0 1 0 2h-2a1 1 0 0 1 0-2h2ZM9 6a1 1 0 1 1 0 2H7a1 1 0 1 1 0-2h2Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-center-m': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M15 2a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h6Zm0 2H9a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1ZM3 6a1 1 0 0 1 1 1v10a1 1 0 0 1-2 0V7a1 1 0 0 1 1-1Zm18 0a1 1 0 0 1 1 1v10a1 1 0 0 1-2 0V7a1 1 0 0 1 1-1Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-comment': {
+    viewBox: '0 0 24 24',
+    path: `<g fill="none" fill-rule="evenodd"><path d="M17.5 4a2.99 2.99 0 0 1 2.121.879A2.99 2.99 0 0 1 20.5 7h0v7.5a2.99 2.99 0 0 1-.879 2.121 2.99 2.99 0 0 1-2.121.879h0-2.171l-3.079 3.519L9.171 17.5H7a2.99 2.99 0 0 1-2.121-.879A2.99 2.99 0 0 1 4 14.5h0V7c0-.828.336-1.578.879-2.121A2.99 2.99 0 0 1 7 4h0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.75 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM13.75 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM16.75 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" fill="currentColor"/></g>`,
+  },
+  'block-doc': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M14 2a1 1 0 0 1 .707.293l5 5A1 1 0 0 1 20 8v11a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h7Zm-2.001 2H7a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-9h-5a1 1 0 0 1-.993-.883L12 9l-.001-5Zm5.587 4-3.587-3.586L14 8h3.586Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-dollar-sign': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M7 8.5c0-2.204 1.738-3.999 4.005-4.41l-.004-.045L11 3a1 1 0 0 1 2 0v1l-.004.09C15.263 4.501 17 6.295 17 8.5a1 1 0 0 1-1.993.117L15 8.5C15 7.151 13.684 6 12 6S9 7.151 9 8.5c0 1.299 1.22 2.414 2.814 2.495L12 11c2.734 0 5 1.983 5 4.5 0 2.202-1.734 3.995-4 4.41V21a1 1 0 0 1-2 0v-1.09c-2.265-.414-4-2.207-4-4.41a1 1 0 0 1 2 0c0 1.349 1.316 2.5 3 2.5s3-1.151 3-2.5c0-1.299-1.22-2.414-2.814-2.495L12 13c-2.734 0-5-1.983-5-4.5Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-email': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M19 4a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h14Zm1 3.328-7.341 6.425a1 1 0 0 1-1.22.075l-.098-.075L4 7.329V17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7.328ZM18.48 6H5.518L12 11.671 18.48 6Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-image': {
+    viewBox: '0 0 24 24',
+    path: `<g transform="translate(4 4)" fill="none" fill-rule="evenodd"><rect stroke="currentColor" stroke-width="2" x="-1" y="-1" width="18" height="18" rx="1"/><circle fill="currentColor" cx="10.5" cy="5.5" r="1.5"/><path fill="currentColor" d="M5.5 5 9 13H2z"/><path fill="currentColor" d="m10.5 10 2.5 3H8z"/></g>`,
+  },
+  'block-keyboard': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M19 5a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h14Zm0 2H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1ZM8 13v2H6v-2h2Zm10 0v2h-2v-2h2Zm-3 0v2H9v-2h6ZM8 9v2H6V9h2Zm3 0v2H9V9h2Zm3 0v2h-2V9h2Zm4 0v2h-3V9h3Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-locked': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M12 2a5 5 0 0 1 4.995 4.783L17 7v3a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3V7a5 5 0 0 1 5-5Zm5 10H7a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1Zm-4.824-7.995L12 4a3 3 0 0 0-2.995 2.824L9 7v3h6V7a3 3 0 0 0-2.824-2.995L12 4l.176.005Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-map-pin': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M12 2c4.97 0 9 3.986 9 8.902 0 3.254-2.722 6.694-8.052 10.441L12 22l-.572-.395C5.85 17.755 3 14.232 3 10.902 3 5.986 7.03 2 12 2Zm0 1.978c-3.866 0-7 3.1-7 6.924 0 2.403 2.297 5.334 7 8.68 4.703-3.346 7-6.277 7-8.68 0-3.824-3.134-6.924-7-6.924ZM12 6a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-mobile': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M16 2a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h8Zm0 2H8a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Zm-4 12a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-monitor': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M16 19a1 1 0 0 1 0 2H8a1 1 0 0 1 0-2h8Zm3-16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14Zm0 2H5v10h14V5Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-paycard': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M19 4a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h14ZM4 12v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5H4Zm0-4h16V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v1Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-resize-fc': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M19 3a3 3 0 0 1 2.995 2.824L22 6v12a3 3 0 0 1-2.824 2.995L19 21H5a3 3 0 0 1-2.995-2.824L2 18V6a3 3 0 0 1 2.824-2.995L5 3h14Zm0 2H5a1 1 0 0 0-.993.883L4 6v12a1 1 0 0 0 .883.993L5 19h14a1 1 0 0 0 .993-.883L20 18V6a1 1 0 0 0-.883-.993L19 5Zm-2 7a1 1 0 0 1 .993.883L18 13v3a1 1 0 0 1-.883.993L17 17h-3a1 1 0 0 1-.117-1.993L14 15h2v-2a1 1 0 0 1 .883-.993L17 12Zm-7-5a1 1 0 0 1 .117 1.993L10 9H8v2a1 1 0 0 1-.883.993L7 12a1 1 0 0 1-.993-.883L6 11V8a1 1 0 0 1 .883-.993L7 7h3Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-cart': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M8.5 19a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm9 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM3 2h2a1 1 0 0 1 .965.738l.023.11L6.473 6H21a1 1 0 0 1 .995 1.1l-.019.117-1.652 7.434a3 3 0 0 1-2.746 2.344l-.182.005h-8.68a3 3 0 0 1-2.933-2.37l-.032-.174L4.142 4H3a1 1 0 0 1-.117-1.993L3 2h2-2Zm16.753 6H6.781l.946 6.152a1 1 0 0 0 .876.842l.113.006h8.68a1 1 0 0 0 .944-.672l.032-.111L19.753 8Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-share': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M18 2a4 4 0 1 1-2.954 6.697L10 11.58v.84l5.046 2.883a4 4 0 1 1-.938 1.768L9.27 14.306a4 4 0 1 1 0-4.611l4.84-2.766A4 4 0 0 1 18 2Zm0 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM6 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12-6a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-shield-2': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M11.594 2.087a1 1 0 0 1 .7-.042l.112.042 9 4a1 1 0 0 1 .594.906l-.006.117-.573 5.152a9 9 0 0 1-3.919 6.472l-.255.166-4.717 2.948a1 1 0 0 1-.949.06l-.111-.06L6.753 18.9a9 9 0 0 1-4.136-6.335l-.038-.303-.573-5.152a1 1 0 0 1 .483-.97l.105-.054 9-3.999ZM12 4.095 4.075 7.617l.491 4.424a7 7 0 0 0 3.014 5.01l.233.153L12 19.821l4.187-2.617a7 7 0 0 0 3.21-4.887l.037-.276.491-4.424L12 4.095Zm2.214 4.287a1 1 0 0 1 1.644 1.132l-.072.104-4 5a1 1 0 0 1-1.398.173l-.095-.084-2-2a1 1 0 0 1 1.32-1.497l.094.083 1.203 1.203 3.304-4.114Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-shield': {
+    viewBox: '0 0 24 24',
+    path: `<path d="m2.006 7.11.573 5.15A9 9 0 0 0 6.754 18.9l4.716 2.948a1 1 0 0 0 1.06 0l4.717-2.948a9 9 0 0 0 4.175-6.638l.572-5.152a1 1 0 0 0-.588-1.024l-9-3.999a1 1 0 0 0-.812 0l-9 3.999a1 1 0 0 0-.588 1.024Zm2.069.506L12 4.094l7.925 3.522-.491 4.424a7 7 0 0 1-3.247 5.163L12 19.82l-4.186-2.617a7 7 0 0 1-3.248-5.163l-.491-4.424Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-sticker': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M11.61 2.005a.978.978 0 0 1 .83.297l8.261 8.485a1.006 1.006 0 0 1 .3.671L21 11.5a9.5 9.5 0 0 1-9.5 9.5 9.5 9.5 0 1 1 0-19Zm-.87 2.034-.199.022A7.501 7.501 0 0 0 11.5 19c3.81 0 6.956-2.84 7.437-6.52-5.851-.229-7.987-2.465-8.197-8.441Zm2.105 1.546.037.294c.4 2.919 1.637 4.124 4.572 4.49l.055.006-4.664-4.79Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-suitcase': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M11 2h2a3 3 0 0 1 2.995 2.824L16 5v1h3a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h3V5a3 3 0 0 1 2.824-2.995L11 2h2-2Zm9 14H4v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3Zm-1-8H5a1 1 0 0 0-1 1v5h16V9a1 1 0 0 0-1-1Zm-6-4h-2a1 1 0 0 0-.993.883L10 5v1h4V5a1 1 0 0 0-.883-.993L13 4Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-table-2': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M5 22a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H5ZM8 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h3V4Zm6 0h-4v16h4V4Zm5 0h-3v16h3a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-table': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M19 3a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3ZM5 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h6V5Zm8 14h6a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-6v14Z" fill="currentColor" fill-rule="nonzero"/>`,
+  },
+  'block-tag': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M5 4h9.08a3 3 0 0 1 2.278 1.048l5.401 6.301a1 1 0 0 1 0 1.302l-5.401 6.301A3 3 0 0 1 14.08 20H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Zm14.683 8-4.844-5.65A1 1 0 0 0 14.08 6H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h9.08a1 1 0 0 0 .76-.35L19.682 12Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-text-c': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M21 19a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18Zm-3-4a1 1 0 0 1 0 2H6a1 1 0 0 1 0-2h12Zm3-4a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18Zm-3-4a1 1 0 0 1 0 2H6a1 1 0 1 1 0-2h12Zm3-4a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2h18Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-text-img-c': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M21 19a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18ZM19 6a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3Zm0 2H5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1Zm2-6a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2h18Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-text-img-l': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M21 19a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18ZM9 7a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3Zm9.6 8a1 1 0 0 1 0 2H15a1 1 0 0 1 0-2h3.6ZM9 9H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm12 2a1 1 0 0 1 0 2h-6a1 1 0 0 1 0-2h6Zm-2.4-4a1 1 0 0 1 0 2H15a1 1 0 0 1 0-2h3.6ZM21 3a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2h18Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-text-img-r-l': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M21 19a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18ZM8 6a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3Zm11 0a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3ZM8 8H5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1Zm11 0h-3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1Zm2-6a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2h18Z" fill="currentColor" fill-rule="nonzero"/>`,
+  },
+  'block-text-img-r': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M21 19a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18ZM19 7a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3ZM6.6 15a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h3.6ZM19 9h-4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1ZM9 11a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h6ZM6.6 7a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2h3.6ZM21 3a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2h18Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-text-img-t-l': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M21 19a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18ZM6.6 15a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h3.6ZM19 3a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Zm0 2H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1Z" fill="currentColor" fill-rule="nonzero"/>`,
+  },
+  'block-text-img-t-r': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M21 19a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18Zm-.4-4a1 1 0 0 1 0 2H17a1 1 0 0 1 0-2h3.6ZM19 3a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Zm0 2H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1Z" fill="currentColor" fill-rule="nonzero"/>`,
+  },
+  'block-text-l': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M21 19a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18Zm-6-4a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h12Zm6-4a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18Zm-6-4a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2h12Zm6-4a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2h18Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-text-r': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M21 19a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18Zm0-4a1 1 0 0 1 0 2H9a1 1 0 0 1 0-2h12Zm0-4a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18Zm0-4a1 1 0 0 1 0 2H9a1 1 0 1 1 0-2h12Zm0-4a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2h18Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-unlocked': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M12 2a5 5 0 0 1 4.995 4.783L17 7v3a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3h8V7a3 3 0 0 0-2.824-2.995L12 4a3 3 0 0 0-3 3 1 1 0 1 1-2 0 5 5 0 0 1 5-5Zm5 10H7a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'block-wallet': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M5 2h12a3 3 0 0 1 2.995 2.824L20 5v3.171c1.166.412 2 1.523 2 2.829v2a3.001 3.001 0 0 1-2 2.829V19a3 3 0 0 1-2.824 2.995L17 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2h12H5Zm12 2H5a1 1 0 0 0-.993.883L4 5v14a1 1 0 0 0 .883.993L5 20h12a1 1 0 0 0 .993-.883L18 19v-3h-1a3 3 0 0 1-3-3v-2a3 3 0 0 1 3-3h1V5a1 1 0 0 0-.883-.993L17 4Zm2 6h-2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+}
+
 export default {
   ...icons,
   ...pictogramIcons,
   ...partnerIcons,
+  ...blockIcons,
 }
