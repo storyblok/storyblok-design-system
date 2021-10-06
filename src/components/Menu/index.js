@@ -227,6 +227,10 @@ const SbMenuList = {
     // eslint-disable-next-line
     reference: [String, Element, Object],
     usePortal: Boolean,
+    zIndex: {
+      type: Number,
+      default: null,
+    },
   },
 
   computed: {
@@ -334,6 +338,7 @@ const SbMenuList = {
           placement: this.placement,
           reference: this.referenceEl,
           usePortal: this.usePortal,
+          zIndex: this.zIndex,
         },
 
         on: {
