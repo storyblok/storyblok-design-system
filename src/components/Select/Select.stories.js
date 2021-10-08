@@ -53,31 +53,31 @@ const SelectTemplate = (args) => ({
 export const defaultSelectOptionsData = [
   {
     label: 'Option 1',
-    value: 'Option 1',
+    value: 1,
   },
   {
     label: 'Option 2',
-    value: 'Option 2',
+    value: 2,
   },
   {
     label: 'Option 3',
-    value: 'Option 3',
+    value: 3,
   },
   {
     label: 'Option 4',
-    value: 'Option 4',
+    value: 4,
   },
   {
     label: 'Option 5',
-    value: 'Option 5',
+    value: 5,
   },
   {
     label: 'Option 6',
-    value: 'Option 6',
+    value: 6,
   },
   {
     label: 'Option 7',
-    value: 'Option 7',
+    value: 7,
   },
 ]
 
@@ -233,6 +233,14 @@ WithAvatars.args = {
   options: [...defaultAvatarsData],
 }
 
+export const MutipleAndAvatars = SelectTemplate.bind({})
+
+MutipleAndAvatars.args = {
+  multiple: true,
+  useAvatars: true,
+  options: [...defaultAvatarsData],
+}
+
 export const Inline = SelectTemplate.bind({})
 
 Inline.args = {
@@ -295,3 +303,103 @@ export const WithMinibrowser = (args) => ({
     </SbSelect>
   `,
 })
+
+export const EmitOption = (args) => ({
+  components: {
+    SbSelect,
+    SbMinibrowser,
+  },
+
+  props: Object.keys(args),
+
+  data: () => ({
+    singleSelectValue: null,
+    singleSelectOption: {},
+
+    multipleSelectValue: [],
+  }),
+
+  watch: {
+    value: {
+      handler(newValue) {
+        this.internalValue = newValue
+      },
+      immediate: true,
+    },
+  },
+
+  methods: {
+    handleSingleSelect(selectedValue) {
+      this.singleSelectValue = selectedValue.value
+      this.singleSelectOption = selectedValue
+    },
+  },
+
+  template: `
+    <div>
+      <div style="margin-bottom: 30px">
+        <h2 style="margin-bottom: 10px"> Single Select </h2>
+
+        <SbSelect
+          :label="label"
+          :options="options"
+          :multiple="multiple"
+          :left-icon="leftIcon"
+          :filterable="filterable"
+          :use-avatars="useAvatars"
+          :inline="inline"
+          :no-data-text="noDataText"
+          :allow-create="allowCreate"
+          :is-loading="isLoading"
+          :loading-label="loadingLabel"
+          :clearable="clearable"
+          emit-option
+          :value="singleSelectValue"
+          @input="handleSingleSelect"
+          style="max-width: 300px"
+        />
+
+        <p class="font-weight-medium text-ink font-size-lg">
+          Selected value {{ singleSelectValue }}
+        </p>
+        <p class="font-weight-medium text-ink font-size-lg">
+          Selected option {{ singleSelectOption }}
+        </p>
+      </div>
+
+      <h2 style="margin-bottom: 10px"> Multiple Select </h2>
+
+      <SbSelect
+        :label="label"
+        :options="options"
+        :multiple="multiple"
+        :left-icon="leftIcon"
+        :filterable="filterable"
+        :use-avatars="useAvatars"
+        :inline="inline"
+        :no-data-text="noDataText"
+        :allow-create="allowCreate"
+        :is-loading="isLoading"
+        :loading-label="loadingLabel"
+        :clearable="clearable"
+        multiple
+        emit-option
+        v-model="multipleSelectValue"
+        style="max-width: 300px"
+      />
+
+      <p class="font-weight-medium text-ink font-size-lg">
+        Selected value {{ multipleSelectValue }}
+      </p>
+    </div>
+  `,
+})
+
+EmitOption.parameters = {
+  docs: {
+    description: {
+      story:
+        'When we set the `emitOption` property, the `input` event will send the whole option object, instead of the `value` property in options objects. It is expected different value types in **single** and **multiple** value property. In **single** selection, the `value` property can be a `Number` or a `String`. In multiple selection, the `value` **must** be an array of objects defined in options. This could be useful if you want to use the `<SbSelect>` with `v-model`',
+    },
+  },
+}

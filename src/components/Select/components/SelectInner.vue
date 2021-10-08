@@ -17,14 +17,24 @@
       <SbTag
         v-for="(tagLabel, key) in tagLabels"
         :key="key"
-        :label="tagLabel"
         tabindex="0"
         :closable="!isDisabled"
         @keydown="handleTagKeydown($event, tagLabel)"
         @close="removeItem($event, tagLabel)"
-      />
+      >
+        <template v-if="tagLabel">
+          <SbAvatar
+            v-if="isTagAvatarVisible"
+            :src="getSource(tagLabel)"
+            size="small"
+            :name="tagLabel[itemLabel]"
+          />
+          <span>{{ tagLabel[itemLabel] }}</span>
+        </template>
+      </SbTag>
       <input
         v-if="filterable"
+        :id="inputId"
         ref="search"
         v-model="searchInputText"
         type="search"
@@ -38,11 +48,17 @@
     </div>
 
     <div v-if="isAvatarVisible && showAvatar" class="sb-select-inner__avatar">
-      <SbAvatar :src="avatarData.src" size="small" />
+      <SbAvatar
+        :src="avatarData.src"
+        size="small"
+        show-name
+        :name="innerLabel"
+      />
     </div>
 
     <input
       v-if="isInnerSearchVisible"
+      :id="inputId"
       v-model="searchInputText"
       type="search"
       class="sb-select-inner__input"
@@ -53,7 +69,8 @@
       @focus="handleEmitSearchInput"
     />
 
-    <span v-if="hidePlaceholder" class="sb-select-inner__value">
+    <slot v-if="hasDefaultSlot" />
+    <span v-else-if="hidePlaceholder" class="sb-select-inner__value">
       {{ innerLabel }}
     </span>
 
@@ -107,6 +124,11 @@ export default {
       default: '',
     },
 
+    inputId: {
+      type: String,
+      default: '',
+    },
+
     leftIcon: {
       type: String,
       default: null,
@@ -144,6 +166,7 @@ export default {
       default: null,
     },
 
+    emitOption: Boolean,
     useAvatars: Boolean,
     isDisabled: Boolean,
   },
@@ -168,6 +191,10 @@ export default {
       }
 
       return this.value !== null
+    },
+
+    hasDefaultSlot() {
+      return !!this.$slots.default
     },
 
     innerLabel() {
@@ -195,7 +222,13 @@ export default {
     },
 
     hidePlaceholder() {
-      return this.hasValue && !this.multiple && !this.searchInputText.length
+      return (
+        this.hasValue &&
+        !this.multiple &&
+        !this.searchInputText.length &&
+        !this.sAvatarVisible &&
+        !this.showAvatar
+      )
     },
 
     currentOptionLabel() {
@@ -213,7 +246,7 @@ export default {
     },
 
     isTagsVisible() {
-      return this.hasValue && this.multiple
+      return this.hasValue && this.multiple && !this.hasDefaultSlot
     },
 
     showClearButton() {
@@ -221,20 +254,25 @@ export default {
     },
 
     tagLabels() {
-      if (!this.hasValue) {
+      if (!this.hasValue || !this.multiple) {
         return []
       }
 
-      const labels = this.options
-        .filter(($o) => this.value.includes($o[this.itemValue]))
-        .map(($o) => $o[this.itemLabel])
-        .filter(($o) => $o)
+      return this.value.map(($v) => {
+        if (typeof $v === 'object') {
+          return $v
+        }
 
-      return this.multiple ? labels : []
+        return this.options.find(($opt) => $opt[this.itemValue] === $v)
+      })
     },
 
     isAvatarVisible() {
-      return this.hasValue && this.useAvatars && this.avatarData
+      return this.hasValue && this.useAvatars && Boolean(this.avatarData)
+    },
+
+    isTagAvatarVisible() {
+      return this.hasValue && this.useAvatars && this.multiple
     },
 
     isInnerSearchVisible() {
@@ -269,7 +307,7 @@ export default {
     searchInputText(val) {
       if (
         this.avatarData &&
-        val === this.avatarData.label &&
+        val === this.avatarData?.label &&
         this.isAvatarVisible
       ) {
         this.showAvatar = true
@@ -334,19 +372,10 @@ export default {
     /**
      * remove an item from value or name
      */
-    removeItem(event, tagValue) {
-      const $v = this.options.find(($o) => $o.label === tagValue)
-      const $n = this.options.find(($o) => $o.name === tagValue)
-
+    removeItem(event, selectedTag) {
       event.stopPropagation()
       event.preventDefault()
-
-      if ($v && $v.value) {
-        this.$emit('remove-item-value', $v.value)
-      }
-      if ($n && $n.name) {
-        this.$emit('remove-item-value', $n.name)
-      }
+      this.$emit('remove-item-value', this.getComputedTagValue(selectedTag))
     },
 
     /**
@@ -396,10 +425,24 @@ export default {
         event.key === 'Backspace' ||
         event.key === 'Delete'
       ) {
-        this.$emit('remove-item-value', tagValue)
+        this.$emit('remove-item-value', this.getComputedTagValue(tagValue))
       }
 
       event.stopPropagation()
+    },
+
+    /**
+     * get the tag value based on emitOption property
+     */
+    getComputedTagValue(tag) {
+      return this.emitOption ? tag : tag[this.itemValue]
+    },
+
+    getSource(label) {
+      if (label?.src) {
+        return label.src
+      }
+      return ''
     },
   },
 }

@@ -33,13 +33,17 @@ describe('SbBreadcrumbItem component', () => {
   describe('when render a long label', () => {
     const title = 'A long title that should be render correctly'
     const label = 'A long label to test'
-    const wrapper = factory({
-      href: '/test-link',
-      label,
-      title,
-    })
+    const getWrapper = (propsData = {}) => {
+      return factory({
+        href: '/test-link',
+        label,
+        title,
+        ...propsData,
+      })
+    }
 
     it('should render the first 13 letters', () => {
+      const wrapper = getWrapper()
       const linkTag = wrapper.find('a')
       expect(linkTag.attributes('href')).toBe('/test-link')
       expect(linkTag.attributes('title')).toBe(title)
@@ -47,12 +51,25 @@ describe('SbBreadcrumbItem component', () => {
     })
 
     it('should render a tooltip with the long label at the bottom position', async () => {
+      const wrapper = getWrapper()
       await wrapper.trigger('mouseover')
 
       const tooltip = document.querySelector('[role="tooltip"]')
 
       expect(tooltip.innerText).toBe(label)
       expect(tooltip.getAttribute('data-popper-placement')).toBe('bottom')
+      await wrapper.trigger('mouseleave')
+    })
+
+    it('should render the full label when show-full-label is true', async () => {
+      const wrapper = getWrapper({ showFullLabel: true })
+      const linkTag = wrapper.find('a')
+      await wrapper.trigger('mouseover')
+
+      const tooltip = document.querySelector('[role="tooltip"]')
+
+      expect(tooltip).toBeNull()
+      expect(linkTag.text()).toBe(label)
     })
   })
 

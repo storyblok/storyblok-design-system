@@ -96,6 +96,22 @@
 
   .sb-tag {
     margin: 4px;
+
+    .sb-avatar,
+    .sb-avatar__image,
+    .sb-avatar img,
+    .sb-avatar__initials {
+      height: 20px;
+      width: 20px;
+    }
+
+    .sb-avatar {
+      margin-right: 8px;
+    }
+
+    .sb-avatar__initials {
+      font-size: 0.7em;
+    }
   }
 
   // elements

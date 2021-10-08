@@ -163,6 +163,7 @@ const SbButton = {
         'primary',
         'secondary',
         'danger',
+        'caution',
         'inverted-link',
         'primary-link',
       ]
@@ -174,7 +175,7 @@ const SbButton = {
             type: 'spinner',
             size: 'small',
             color:
-              whiteLoading.indexOf(this.variant) < 3 ? 'white' : 'primary-dark',
+              whiteLoading.indexOf(this.variant) < 4 ? 'white' : 'primary-dark',
           },
         }),
       ])

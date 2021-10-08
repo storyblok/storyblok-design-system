@@ -15,7 +15,16 @@
       </span>
 
       <div class="sb-minibrowser__list-item-container">
-        <span class="sb-minibrowser__list-item-name"> {{ label }} </span>
+        <div class="sb-minibrowser__list-item-name">
+          {{ label }}
+          <SbIcon
+            v-if="isStartpage"
+            v-tooltip="{ label: 'Homepage' }"
+            name="home"
+            size="small"
+            class="sb-minibrowser__list-item-icon-home"
+          />
+        </div>
 
         <span v-if="subtitle" class="sb-minibrowser__list-item-subtitle">
           {{ subtitle }}
@@ -28,14 +37,8 @@
 </template>
 
 <script>
-import SbIcon from '../../Icon'
-
 export default {
   name: 'SbMinibrowserListItem',
-
-  components: {
-    SbIcon,
-  },
 
   inject: ['browserContext'],
 
@@ -48,6 +51,7 @@ export default {
     isParent: Boolean,
     isEntry: Boolean,
     isDisabled: Boolean,
+    isStartpage: Boolean,
     items: {
       type: Array,
       default: () => [],

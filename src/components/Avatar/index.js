@@ -66,6 +66,10 @@ const SbAvatar = {
       type: Boolean,
       default: false,
     },
+    tooltipVariant: {
+      type: String,
+      default: 'dark',
+    },
   },
 
   data: () => ({
@@ -242,6 +246,7 @@ const SbAvatar = {
                 value: {
                   label: this.friendlyName ? this.friendlyName : this.name,
                   position: 'bottom',
+                  variant: this.tooltipVariant,
                 },
               },
             ],

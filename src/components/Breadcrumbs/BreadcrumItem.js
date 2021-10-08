@@ -98,14 +98,15 @@ const SbBreadcrumbItem = {
 
   props: {
     isActive: Boolean,
+    showFullLabel: Boolean,
     ...sharedLinkProps,
   },
 
   render(h) {
-    const { isActive, title, href, to, as } = this
+    const { isActive, showFullLabel, title, href, to, as } = this
     const label = this.label || ''
 
-    const isTruncated = label.length > 15
+    const isTruncated = !showFullLabel && label.length > 15
     const labelFormated = isTruncated ? getLabelTruncated(label) : label
     const breadcrumbsItemProps = {
       staticClass: 'sb-breadcrumbs__item',

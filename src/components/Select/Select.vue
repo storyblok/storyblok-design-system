@@ -11,6 +11,7 @@
   >
     <SbSelectInner
       ref="inner"
+      :input-id="inputId"
       :is-loading="isLoading"
       :loading-label="loadingLabel"
       :clearable="clearable"
@@ -27,6 +28,7 @@
       :options="options"
       :allow-create="allowCreate"
       :is-disabled="isDisabled"
+      :emit-option="emitOption"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
       @input="handleSearchInput"
@@ -34,7 +36,9 @@
       @close-list="hideList"
       @clear-all-values="handleClearAllValues"
       @remove-item-value="handleRemoveItemValue"
-    />
+    >
+      <slot name="innerSelect" />
+    </SbSelectInner>
 
     <SbSelectList
       v-if="!useMinibrowser"
@@ -49,6 +53,7 @@
       :use-avatars="useAvatars"
       :no-data-text="noDataText"
       :allow-create="allowCreate"
+      :emit-option="emitOption"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -111,6 +116,10 @@ export default {
       type: String,
       default: '',
       required: true,
+    },
+    inputId: {
+      type: String,
+      default: '',
     },
     leftIcon: {
       type: String,
@@ -196,7 +205,15 @@ export default {
       return this.searchInput && this.searchInput.length > 0
     },
 
+    hasInnerSlot() {
+      return !!this.$slots.innerSelect
+    },
+
     transformedOptions() {
+      if (this.emitOption) {
+        return this.options
+      }
+
       return this.options.map((opt) => {
         if (typeof opt === 'object') return opt
         return { [this.itemLabel]: opt, [this.itemValue]: opt }
@@ -300,12 +317,12 @@ export default {
       if (this.multiple) {
         this.searchInput = ''
         const $value = this.processMultipleValue(value)
-        this.$emit('input', this.processValueBeforeEmit($value))
+        this.$emit('input', $value)
         return
       }
 
       this.searchInput = ''
-      this.$emit('input', this.processValueBeforeEmit(value))
+      this.$emit('input', value)
       this.$_focusInner()
       this.hideList()
     },
@@ -322,35 +339,50 @@ export default {
     },
 
     /**
+     * check if the value exists on this.value
+     * but, based on this.emitOption, to check more
+     * properly the case when this.value is an array
+     * of objects
+     * @param  {String|Number|Object} value
+     * @return {Boolean}
+     */
+    isValueAlreadyExists(value) {
+      if (this.emitOption) {
+        const itemValue = value[this.itemValue]
+
+        return this.value.some(($v) => $v[this.itemValue] === itemValue)
+      }
+
+      return includes(this.value, value)
+    },
+
+    /**
+     * remove a specific value from this.value, based on this.emitOption,
+     * to check more properly the case when this.value is an array
+     * of objects
+     * @param  {String|Number|Object} value
+     * @return {Array}
+     */
+    removeValueFromArray(value) {
+      if (this.emitOption) {
+        return this.value.filter(
+          (val) => val[this.itemValue] !== value[this.itemValue]
+        )
+      }
+
+      return this.value.filter((val) => val !== value)
+    },
+
+    /**
      * returns the processed value to input event
      * @param {String} value
      */
     processMultipleValue(value) {
-      if (includes(this.value, value)) {
-        return this.value.filter((val) => val !== value)
+      if (this.isValueAlreadyExists(value)) {
+        return this.removeValueFromArray(value)
       }
 
       return [...(this.value || []), value]
-    },
-
-    processValueBeforeEmit(value) {
-      if (!this.emitOption) {
-        return value
-      }
-
-      if (this.multiple) {
-        return value.map((item) => {
-          return this.options.find((option) => {
-            return option[this.itemValue] === item
-          })
-        })
-      }
-
-      const $value = this.options.find((option) => {
-        return option[this.itemValue] === value
-      })
-
-      return $value
     },
 
     /**
@@ -360,7 +392,7 @@ export default {
     handleRemoveItemValue(itemValue) {
       if (this.multiple) {
         const $value = this.processMultipleValue(itemValue)
-        this.$emit('input', this.processValueBeforeEmit($value))
+        this.$emit('input', $value)
         this.$_focusInner()
       }
     },

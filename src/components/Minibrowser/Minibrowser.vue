@@ -8,6 +8,7 @@
     }"
   >
     <SbMinibrowserSearch
+      v-if="!hideSearch"
       :clear-search-label="clearSearchLabel"
       :value="searchInput"
       :placeholder="placeholder"
@@ -110,6 +111,10 @@ export default {
       default: 'Search content items',
     },
     clearOnSelect: {
+      type: Boolean,
+      default: false,
+    },
+    hideSearch: {
       type: Boolean,
       default: false,
     },

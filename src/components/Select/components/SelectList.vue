@@ -5,10 +5,13 @@
         <SbSelectListItem
           v-for="(option, index) in options"
           :key="index"
+          :option="option"
           :label="option[itemLabel]"
           :value="option[itemValue]"
+          :item-value="itemValue"
           :input-value="value"
           :multiple="multiple"
+          :emit-option="emitOption"
           :use-avatars="useAvatars"
           :is-focused="index === focusedItem ? true : false"
           @emit-value="handleEmitValue"
@@ -53,6 +56,7 @@ export default {
 
     // options
     allowCreate: Boolean,
+    emitOption: Boolean,
     isLoading: Boolean,
     multiple: Boolean,
     options: {

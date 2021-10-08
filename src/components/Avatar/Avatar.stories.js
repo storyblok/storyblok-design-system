@@ -25,6 +25,7 @@ export default {
     src: null,
     status: null,
     useTooltip: false,
+    tooltipVariant: 'dark',
   },
   argTypes: {
     bgColor: {
@@ -93,6 +94,14 @@ export default {
       description: 'Enable show a tooltip with the username on the bottom',
       control: {
         type: 'boolean',
+      },
+    },
+    tooltipVariant: {
+      name: 'tooltipVariant',
+      description: 'it changes the default color for the Avatars tooltip',
+      control: {
+        type: 'select',
+        options: ['dark', 'light'],
       },
     },
   },

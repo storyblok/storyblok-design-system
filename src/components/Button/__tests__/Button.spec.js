@@ -57,6 +57,18 @@ describe('Test SbButton Component', () => {
     expect(wrapper.find('button').text()).toBe('Secondary Button')
   })
 
+  it('test SbButton in caution color', async () => {
+    const wrapper = factory({
+      label: 'Caution Button',
+      variant: 'caution',
+    })
+
+    expect(wrapper.find('button').attributes('class')).toBe(
+      'sb-button sb-button--caution'
+    )
+    expect(wrapper.find('button').text()).toBe('Caution Button')
+  })
+
   it('test SbButton disabled', async () => {
     const wrapper = factory({
       label: 'Disabled Button',

@@ -8,7 +8,8 @@
   >
     <SbAvatar
       v-if="useAvatars"
-      :src="src"
+      :key="label"
+      :src="option.src"
       :name="label"
       show-name
       size="small"
@@ -49,6 +50,15 @@ export default {
       type: [String, Number],
       default: '',
     },
+    option: {
+      type: Object,
+      default: () => ({}),
+    },
+    itemValue: {
+      type: String,
+      default: 'value',
+    },
+    emitOption: Boolean,
 
     // Avatar properties
     useAvatars: Boolean,
@@ -63,7 +73,7 @@ export default {
   computed: {
     isSelected() {
       return isArray(this.inputValue)
-        ? includes(this.inputValue, this.value)
+        ? this.isValueAlreadyExists()
         : this.value === this.inputValue
     },
 
@@ -76,11 +86,19 @@ export default {
   },
 
   methods: {
+    handleEmitValue() {
+      if (this.emitOption) {
+        return this.$emit('emit-value', this.option)
+      }
+
+      this.$emit('emit-value', this.value)
+    },
+
     /**
      * emits the 'emit-value' event
      */
     handleClick() {
-      this.$emit('emit-value', this.value)
+      this.handleEmitValue()
     },
 
     /**
@@ -89,8 +107,18 @@ export default {
      */
     handleKeyDown(event) {
       if (event.key === 'Enter' || event.key === ' ') {
-        this.$emit('emit-value', this.value)
+        this.handleEmitValue()
       }
+    },
+
+    isValueAlreadyExists() {
+      if (this.emitOption) {
+        const itemValue = this.value
+
+        return this.inputValue.some(($v) => $v[this.itemValue] === itemValue)
+      }
+
+      return includes(this.inputValue, this.value)
     },
   },
 }

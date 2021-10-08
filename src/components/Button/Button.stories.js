@@ -157,7 +157,7 @@ export default {
       description: '`SbButton` variant',
       control: {
         type: 'select',
-        options: ['primary', 'secondary', 'ghost', 'danger'],
+        options: ['primary', 'secondary', 'ghost', 'danger', 'caution'],
       },
     },
     tooltipPosition: {
@@ -267,6 +267,23 @@ Danger.parameters = {
   docs: {
     description: {
       story: 'Destructive actions',
+    },
+  },
+}
+
+export const Caution = ButtonTemplate.bind({})
+
+Caution.args = {
+  label: 'Caution',
+  variant: 'caution',
+  icon: 'close',
+  iconRight: 'close',
+}
+
+Caution.parameters = {
+  docs: {
+    description: {
+      story: 'Caution actions',
     },
   },
 }

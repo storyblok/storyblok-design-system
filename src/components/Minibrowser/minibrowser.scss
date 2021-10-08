@@ -57,7 +57,6 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     font-size: $font-size-sm;
     margin: 0 0 1px;
     padding: 9px $general-padding;
-    text-transform: uppercase;
 
     &-title {
       color: $sb-dark-blue-50;
@@ -103,6 +102,19 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
 
     &-icon {
       margin-right: 10px;
+    }
+
+    &-icon-home {
+      background-color: $light-50;
+      border: transparent;
+      border-radius: $base-border-radius;
+      cursor: pointer;
+      margin-left: 2px;
+      padding: 3px;
+
+      .sb-icon {
+        margin: 0;
+      }
     }
 
     &--active {
