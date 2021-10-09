@@ -229,7 +229,7 @@ const SbMenuList = {
     usePortal: Boolean,
     zIndex: {
       type: Number,
-      default: null,
+      default: 5,
     },
   },
 
