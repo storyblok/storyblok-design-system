@@ -161,7 +161,7 @@ describe('SbBreadcrumbItem component', () => {
           slots: {
             default: [
               '<SbIcon name="calendar" />',
-              '<span>Link using default slot</span>',
+              '<p>Link using default slot</p>',
             ],
           },
         }
@@ -171,7 +171,7 @@ describe('SbBreadcrumbItem component', () => {
       expect(iconComponent.exists()).toBe(true)
       expect(iconComponent.props('name')).toBe('calendar')
 
-      const spanTag = wrapper.find('span')
+      const spanTag = wrapper.find('p')
       expect(spanTag.text()).toBe('Link using default slot')
 
       const linkTag = wrapper.find('a')
@@ -189,7 +189,7 @@ describe('SbBreadcrumbItem component', () => {
         slots: {
           default: [
             '<SbIcon name="calendar" />',
-            '<span>Link using default slot</span>',
+            '<p>Link using default slot</p>',
           ],
         },
       }
@@ -203,7 +203,7 @@ describe('SbBreadcrumbItem component', () => {
       expect(iconComponent.exists()).toBe(true)
       expect(iconComponent.props('name')).toBe('calendar')
 
-      const spanTag = wrapper.find('span')
+      const spanTag = wrapper.find('p')
       expect(spanTag.text()).toBe('Link using default slot')
     })
   })

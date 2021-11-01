@@ -39,7 +39,7 @@ describe('Tests for ModalPlugin', () => {
 
     wrapper.vm.open = true
 
-    wrapper.setProps({
+    await wrapper.setProps({
       title: 'Delete This Project',
       content: '<p>A content</p>',
       footerContent: '<SbButton label="Click" />',

@@ -75,7 +75,7 @@ describe('Test SbSidebar component', () => {
 
       expect(button.exists()).toBe(true)
 
-      await button.trigger('focus')
+      await button.trigger('mouseover')
 
       button.vm.$emit('click')
 

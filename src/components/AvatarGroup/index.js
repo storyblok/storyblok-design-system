@@ -135,7 +135,32 @@ const SbAvatarGroup = {
       }
     },
 
+    /**
+     * @method toggleDropdown
+     * @constant parentRef this constant search upwards for a vue component ref, if the parent element is inside a list.
+     * The click outside directive does not work here, because it is inside the same component, but not in the same instance.
+     * The code checks the existence of the key constant, so other it will not collide with other SbAvatarGroup's implementations.
+     * The code also checks if it is an array of siblings so other references could be added to the parent list with no conflicts.
+     * Finally, the code checks if the avatarGroup reference exists on parent, so if other lists exists, this code will not interfere.
+     */
     toggleDropdown() {
+      const parentRef = Object.keys(this.$parent.$parent.$refs)
+
+      if (parentRef) {
+        parentRef.forEach(($ref) => {
+          if (Array.isArray(this.$parent.$parent.$refs[$ref])) {
+            this.$parent.$parent.$refs[$ref].forEach(($el) => {
+              if (
+                $el.$refs.avatarGroup &&
+                $el.$refs.avatarGroup._uid !== this._uid
+              ) {
+                $el.$refs.avatarGroup.isVisibleDropdown = false
+              }
+            })
+          }
+        })
+      }
+
       this.isVisibleDropdown = !this.isVisibleDropdown
     },
     onMoreAvatarKeyDown(event) {
@@ -174,7 +199,10 @@ const SbAvatarGroup = {
           },
           ref: 'moreAvatarButton',
           on: {
-            click: this.toggleDropdown,
+            click: (e) => {
+              this.toggleDropdown(e)
+              this.$emit('click')
+            },
             keydown: this.onMoreAvatarKeyDown,
           },
         })

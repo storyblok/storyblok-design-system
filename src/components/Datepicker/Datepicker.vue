@@ -68,7 +68,9 @@
         </button>
 
         <button
-          class="sb-datepicker__action-button sb-datepicker__action-button--primary"
+          class="
+            sb-datepicker__action-button sb-datepicker__action-button--primary
+          "
           @click="handleDoneAction"
         >
           Done

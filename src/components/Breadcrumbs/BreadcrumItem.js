@@ -48,6 +48,17 @@ const SbBreadcrumbLink = {
   },
   render(h, { props, listeners, slots }) {
     const { label } = props
+
+    const renderLabel = () => {
+      return h(
+        'span',
+        {
+          staticClass: 'sb-breadcrumbs__item-label',
+        },
+        label
+      )
+    }
+
     // if href exists, we understand that's expected a <a> tag
     if (props.href) {
       return h(
@@ -62,7 +73,7 @@ const SbBreadcrumbLink = {
             ...listeners,
           },
         },
-        [label, slots().default]
+        [renderLabel(), slots().default]
       )
     }
 
@@ -77,7 +88,7 @@ const SbBreadcrumbLink = {
           ...listeners,
         },
       },
-      [label, slots().default]
+      [renderLabel(), slots().default]
     )
   },
 }
@@ -131,6 +142,16 @@ const SbBreadcrumbItem = {
     }
 
     const renderLabel = () => {
+      return h(
+        'span',
+        {
+          staticClass: 'sb-breadcrumbs__item-label',
+        },
+        labelFormated
+      )
+    }
+
+    const renderBreadcrumb = () => {
       if (!isActive) {
         return h(
           SbBreadcrumbLink,
@@ -150,10 +171,10 @@ const SbBreadcrumbItem = {
         )
       }
 
-      return [labelFormated, this.$slots.default]
+      return [renderLabel(), this.$slots.default]
     }
 
-    return h('li', breadcrumbsItemProps, [renderLabel()])
+    return h('li', breadcrumbsItemProps, [renderBreadcrumb()])
   },
 }
 

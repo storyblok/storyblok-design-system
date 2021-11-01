@@ -70,6 +70,10 @@ const SbAvatar = {
       type: String,
       default: 'dark',
     },
+    tooltipFullLength: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   data: () => ({
@@ -247,6 +251,7 @@ const SbAvatar = {
                   label: this.friendlyName ? this.friendlyName : this.name,
                   position: 'bottom',
                   variant: this.tooltipVariant,
+                  isFullLength: this.tooltipFullLength,
                 },
               },
             ],

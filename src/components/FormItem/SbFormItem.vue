@@ -12,9 +12,13 @@
           class="sb-form-item__helper-icon-text"
         />
       </label>
-      <span v-if="helperText" class="sb-form-item__helper-text">
+      <span
+        v-if="helperText && !$slots.helper"
+        class="sb-form-item__helper-text"
+      >
         {{ helperText }}
       </span>
+      <slot name="helper" />
     </div>
     <div class="sb-form-item__body">
       <slot />
@@ -59,6 +63,14 @@ export default {
       type: String,
       default: null,
     },
+  },
+
+  mounted() {
+    if (this.helperText && this.$slots.helper) {
+      console.warn(
+        `[SbFormItem]: If the 'helper slot' and the helper-text property are set, only the contents of the slot will be shown`
+      )
+    }
   },
 }
 </script>

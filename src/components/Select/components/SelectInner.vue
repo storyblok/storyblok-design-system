@@ -25,6 +25,7 @@
         <template v-if="tagLabel">
           <SbAvatar
             v-if="isTagAvatarVisible"
+            :key="tagLabel[itemLabel]"
             :src="getSource(tagLabel)"
             size="small"
             :name="tagLabel[itemLabel]"
@@ -343,7 +344,7 @@ export default {
      */
     handleEmitSearchInput() {
       if (this.filterable && !this.isDisabled) {
-        this.$emit('input', '')
+        this.$emit('input', this.searchInputText)
 
         if (this.isAvatarVisible) {
           this.showAvatar = false

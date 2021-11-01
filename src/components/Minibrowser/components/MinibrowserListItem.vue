@@ -37,8 +37,12 @@
 </template>
 
 <script>
+import SbIcon from '../../Icon'
+
 export default {
   name: 'SbMinibrowserListItem',
+
+  components: { SbIcon },
 
   inject: ['browserContext'],
 

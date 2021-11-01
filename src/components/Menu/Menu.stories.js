@@ -33,6 +33,14 @@ export default {
         type: 'boolean',
       },
     },
+    focusWhenClose: {
+      name: 'focusWhenClose',
+      description: `When SbMenuList has more items than the screen's height, it could lead to an undesired scroll behavior. Set this property to false to prevent this.`,
+      control: {
+        type: 'boolean',
+      },
+      default: true,
+    },
   },
 }
 

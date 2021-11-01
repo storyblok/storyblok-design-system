@@ -16,6 +16,7 @@ const DEFAULTS = {
   OFFSET: [0, 10],
   SHOW: true,
   TEXT_ALIGN: 'center',
+  IS_FULL_LENGTH: false,
 }
 
 /**
@@ -40,7 +41,7 @@ function getLabel(binding) {
 /**
  * @function getOptions
  * @param    {Object} binding
- * @return   {TooltipOtions}
+ * @return   {TooltipOptions}
  */
 function getOptions(binding) {
   const { value } = binding
@@ -52,6 +53,7 @@ function getOptions(binding) {
       show: DEFAULTS.SHOW,
       textAlign: DEFAULTS.TEXT_ALIGN,
       variant: DEFAULTS.VARIANT,
+      isFullLength: DEFAULTS.IS_FULL_LENGTH,
     }
   }
 
@@ -61,6 +63,7 @@ function getOptions(binding) {
     show: typeof value.show === 'undefined' ? DEFAULTS.SHOW : value.show,
     textAlign: value.textAlign || DEFAULTS.TEXT_ALIGN,
     variant: value.variant || DEFAULTS.VARIANT,
+    isFullLength: value.isFullLength || DEFAULTS.IS_FULL_LENGTH,
   }
 }
 
@@ -68,7 +71,7 @@ function getOptions(binding) {
  * @function createPopperInstance
  * @param {HTMLElement} el tooltip target element
  * @param {HTMLElement} popover tooltip element
- * @param {TooltipOtions} options tooltip options
+ * @param {TooltipOptions} options tooltip options
  * @returns {HTMLElement}
  */
 function createPopperInstance(el, popover, options = {}) {
@@ -92,7 +95,7 @@ function createPopperInstance(el, popover, options = {}) {
 /**
  * @function createTooltip
  * @param {String} label
- * @param {TooltipOtions} options
+ * @param {TooltipOptions} options
  * @returns {HTMLElement}
  */
 function createTooltip(label, options) {
@@ -100,6 +103,7 @@ function createTooltip(label, options) {
   tooltipEl.innerText = label
   tooltipEl.style.display = 'unset'
   tooltipEl.style.zIndex = 5
+  tooltipEl.style.maxWidth = options.isFullLength ? '100%' : '180px'
   tooltipEl.className = `sb-tooltip sb-tooltip--${options.variant} sb-tooltip--text--${options.textAlign}`
   tooltipEl.setAttribute('role', 'tooltip')
 
@@ -280,7 +284,7 @@ export default {
 
 /**
  * Tooltip options to use when creating the Popper instance
- * @typedef {Object} TooltipOtions
+ * @typedef {Object} TooltipOptions
  * @property {[number, number]} offset
  * @property {String} placement
  * @property {String} position

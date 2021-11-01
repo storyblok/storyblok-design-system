@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-select-list" @keydown="handleKeyDown">
+  <div v-show="!isLoading" class="sb-select-list" @keydown="handleKeyDown">
     <ul>
       <template v-if="hasOptions">
         <SbSelectListItem
@@ -19,7 +19,7 @@
         />
       </template>
       <li
-        v-else-if="!hasOptions && allowCreate && multiple"
+        v-if="showTagCreation"
         class="sb-select-list__create"
         @keydown.enter="handleOptionCreated(searchInput)"
         @click="handleOptionCreated(searchInput)"
@@ -37,6 +37,7 @@
 
 <script>
 import SbSelectListItem from './SelectListItem'
+import { toLowerCase } from '../../../utils'
 
 export default {
   name: 'SbSelectList',
@@ -96,6 +97,40 @@ export default {
 
     hasOptions() {
       return this.options.length
+    },
+
+    hasPartialMatch() {
+      let partialMatches = 0
+      this.options.forEach((option) => {
+        if (
+          toLowerCase(option.name).indexOf(toLowerCase(this.searchInput)) !== -1
+        ) {
+          partialMatches++
+        }
+      })
+
+      return partialMatches
+    },
+
+    hasExactMatch() {
+      let exactMatch = 0
+      this.options.forEach((option) => {
+        if (toLowerCase(option.name) === toLowerCase(this.searchInput)) {
+          exactMatch++
+        }
+      })
+
+      return exactMatch
+    },
+
+    showTagCreation() {
+      return (
+        (this.hasPartialMatch || !this.hasOptions) &&
+        !this.hasExactMatch &&
+        this.allowCreate &&
+        this.multiple &&
+        this.searchInput
+      )
     },
   },
 

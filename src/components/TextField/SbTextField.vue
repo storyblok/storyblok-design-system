@@ -81,7 +81,7 @@
         @click="handleIconClick"
       />
       <SbIcon
-        v-if="type === 'password'"
+        v-if="internalIconRight && type === 'password'"
         :name="internalIconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
@@ -91,7 +91,11 @@
         v-if="showClearIcon"
         v-tooltip="{ label: 'Clear' }"
         name="x-clear"
-        class="sb-textfield__icon sb-textfield__icon--right sb-textfield__icon--pointer"
+        class="
+          sb-textfield__icon
+          sb-textfield__icon--right
+          sb-textfield__icon--pointer
+        "
         :color="iconColor"
         @click="handleClearableClick"
       />

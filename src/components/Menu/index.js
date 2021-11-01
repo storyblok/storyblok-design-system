@@ -545,6 +545,11 @@ const SbMenu = {
       type: Boolean,
       default: false,
     },
+
+    focusWhenClose: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   data: () => ({
@@ -628,7 +633,7 @@ const SbMenu = {
       if (!this.isOpen) return
 
       this.isOpen = false
-      this.activeIndex = -1
+      if (this.focusWhenClose) this.activeIndex = -1
 
       this.$emit('close')
     },

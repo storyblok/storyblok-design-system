@@ -174,7 +174,7 @@ describe('Vtooltip directive', () => {
       textAlign: 'left',
     })
 
-    await targetEl.trigger('focus')
+    await targetEl.trigger('mouseover')
 
     tooltipEl = findTooltip()
 
