@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
       # Using the LTS versions
-        node-version: "lts/*"
+        node-version: [10.x, 12.x, 14.x]
 
     steps:
     - uses: actions/checkout@v2
