@@ -11,8 +11,13 @@
   }
 
   &__icon {
+    cursor: pointer;
     position: absolute;
     top: 12px;
+
+    &:hover {
+      color: $sb-dark-blue-50;
+    }
 
     &--left {
       left: 14px;
@@ -35,17 +40,25 @@
 
   &__textarea {
     box-sizing: border-box;
+    line-height: 25px;
     min-height: 130px;
+    resize: vertical;
   }
 
   &__input,
   &__textarea {
     border-radius: 5px;
     color: $sb-dark-blue;
-    font-size: $text-medium-small;
+    font-size: $text-medium;
     padding: 15px 17px;
     transition: $base-transition;
     width: 100%;
+
+    /* stylelint-disable */
+    @media screen and (min-device-pixel-ratio: 0) {
+      font-size: 1.6rem;
+    }
+    /* stylelint-enable */
 
     &:disabled {
       background: $light-25;
@@ -68,10 +81,7 @@
       }
 
       &:focus {
-        border-color: $sb-green;
-        border-radius: 5px;
-        box-shadow: 0 0 0 3px $sb-green-25;
-        outline: none;
+        @include focusedTextField;
       }
     }
 
@@ -145,16 +155,17 @@
     font-size: $text-medium-small;
     font-weight: normal;
     letter-spacing: 0;
+    min-width: fit-content;
     padding: 15px 17px;
   }
 
-  &__prefix {
+  &__suffix {
     border-bottom-left-radius: 0;
     border-left: 0;
     border-top-left-radius: 0;
   }
 
-  &__suffix {
+  &__prefix {
     border-bottom-right-radius: 0;
     border-right: 0;
     border-top-right-radius: 0;

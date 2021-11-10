@@ -2,8 +2,8 @@ import { mount } from '@vue/test-utils'
 
 import SbFormItem from '..'
 
+import SbIcon from '../../Icon'
 import SbTextField from '../../TextField'
-import SbTooltip from '../../Tooltip'
 
 const factory = (propsData) => {
   return mount(SbFormItem, {
@@ -45,10 +45,14 @@ describe('SbFormItem component', () => {
       expect(label.text()).toBe('Helper text')
     })
 
-    it('should render a helper with "Helper icon text"', () => {
-      const label = wrapper.findComponent(SbTooltip)
-      expect(label.exists()).toBe(true)
-      expect(label.props('label')).toBe('Helper icon text')
+    it('should render a helper with "Helper icon text"', async () => {
+      const icon = wrapper.findComponent(SbIcon)
+
+      await icon.trigger('mouseover')
+
+      const tooltip = document.querySelector('[role="tooltip"]')
+
+      expect(tooltip.innerText).toBe('Helper icon text')
     })
 
     it('should render the SbTextField component in default slot', () => {

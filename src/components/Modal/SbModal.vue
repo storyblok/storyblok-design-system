@@ -13,9 +13,10 @@
         class="sb-modal"
         :class="computedClasses"
         role="dialog"
+        :style="computedStyle"
         v-bind="{ ...$attrs }"
       >
-        <SbModalCloseButton v-if="!closeOnHeader" absolute />
+        <SbModalCloseButton />
         <slot />
       </div>
     </SbBlokUi>
@@ -46,7 +47,10 @@ export default {
 
   props: {
     closeOnHeader: Boolean,
-    isOpen: Boolean,
+    isOpen: {
+      type: Boolean,
+      default: false,
+    },
     escCloses: {
       type: Boolean,
       default: true,
@@ -54,9 +58,17 @@ export default {
     fullWidth: Boolean,
     scrollbar: Boolean,
     large: Boolean,
+    maxWidth: {
+      type: [String, Number],
+      default: null,
+    },
     modalTarget: {
       type: String,
       default: () => `#sb-modal-target-${randomString(4)}`,
+    },
+    customClass: {
+      type: String,
+      default: '',
     },
   },
 
@@ -69,10 +81,18 @@ export default {
   computed: {
     computedClasses() {
       return [
+        this.customClass?.length && this.customClass,
         this.fullWidth && 'sb-modal__full-width',
         this.large && 'sb-modal__large',
         this.scrollbar && 'sb-modal--scrollbar',
+        this.closeOnHeader && 'sb-modal--close-on-header',
       ]
+    },
+
+    computedStyle() {
+      if (!this.maxWidth) return null
+
+      return { maxWidth: `${this.maxWidth}px` }
     },
 
     modalContext() {
@@ -114,9 +134,10 @@ export default {
      * handler for close modal
      */
     handleCloseModal() {
-      if (this.open) {
+      if (this.open && this.escCloses) {
         this.open = false
         this.$nextTick(() => {
+          document.querySelector('body').style.overflow = 'auto'
           this.$emit('hide')
         })
       }
@@ -129,9 +150,17 @@ export default {
       if (!this.open) {
         this.open = true
         this.$nextTick(() => {
+          document.querySelector('body').style.overflow = 'hidden'
           this.$emit('show')
         })
       }
+    },
+
+    /**
+     * this function allows to hide the overflow
+     */
+    hideOverflow() {
+      document.querySelector('body').style.overflow = 'hidden'
     },
 
     wrapClose(event) {

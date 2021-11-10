@@ -11,8 +11,6 @@
 
     <div v-if="$slots.actions" class="sb-modal-header__actions">
       <slot name="actions" />
-
-      <SbModalCloseButton />
     </div>
     <slot />
   </div>
@@ -20,14 +18,12 @@
 
 <script>
 import SbIcon from '../../Icon'
-import SbModalCloseButton from './SbModalCloseButton'
 
 export default {
   name: 'SbModalHeader',
 
   components: {
     SbIcon,
-    SbModalCloseButton,
   },
 
   props: {
@@ -44,6 +40,7 @@ export default {
       default: 'center',
     },
   },
+
   computed: {
     isLeftAlignment() {
       return this.align === 'left'

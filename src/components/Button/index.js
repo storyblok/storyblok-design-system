@@ -1,7 +1,8 @@
 // other components
 import SbIcon from '../Icon'
 import SbLoading from '../Loading'
-import SbTooltip from '../Tooltip'
+
+import { Tooltip } from '../../directives'
 
 // styles
 import './button.scss'
@@ -17,6 +18,10 @@ import { sharedProps } from './lib'
  */
 const SbButton = {
   name: 'SbButton',
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   props: {
     hasIconOnly: {
@@ -67,6 +72,8 @@ const SbButton = {
   },
 
   render(h) {
+    const useTooltip = this.hasIconOnly && this.iconDescription
+
     const renderIcon = (icon) => {
       return h(SbIcon, {
         props: {
@@ -129,6 +136,17 @@ const SbButton = {
                 ? ($event) => this.$emit('click', $event)
                 : '',
           },
+          directives: useTooltip
+            ? [
+                {
+                  name: 'tooltip',
+                  value: {
+                    label: this.iconDescription,
+                    position: this.tooltipPosition,
+                  },
+                },
+              ]
+            : null,
         },
         content
       )
@@ -145,6 +163,7 @@ const SbButton = {
         'primary',
         'secondary',
         'danger',
+        'caution',
         'inverted-link',
         'primary-link',
       ]
@@ -156,23 +175,10 @@ const SbButton = {
             type: 'spinner',
             size: 'small',
             color:
-              whiteLoading.indexOf(this.variant) < 3 ? 'white' : 'primary-dark',
+              whiteLoading.indexOf(this.variant) < 4 ? 'white' : 'primary-dark',
           },
         }),
       ])
-    }
-
-    if (this.hasIconOnly && this.iconDescription) {
-      return h(
-        SbTooltip,
-        {
-          props: {
-            label: this.iconDescription,
-            position: this.tooltipPosition,
-          },
-        },
-        [renderButton(content)]
-      )
     }
 
     return renderButton(content)

@@ -1,5 +1,7 @@
 import './pagination.scss'
 
+import { Tooltip } from '../../directives'
+
 import {
   SbPaginationButton,
   SbPaginationCarousel,
@@ -19,6 +21,10 @@ const DEFAULT_ROWS_PER_PAGE_DROPDOWN = [25, 50, 75, 100]
  */
 const SbPagination = {
   name: 'SbPagination',
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   props: {
     carousel: {

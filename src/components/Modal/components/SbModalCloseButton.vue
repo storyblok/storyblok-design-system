@@ -1,7 +1,6 @@
 <template>
   <button
     class="sb-modal__close-button"
-    :class="{ 'sb-modal__close-button--absolute': absolute }"
     aria-label="Close Modal"
     @click="handleCloseModal"
   >
@@ -19,10 +18,6 @@ export default {
   },
 
   inject: ['modalContext'],
-
-  props: {
-    absolute: Boolean,
-  },
 
   computed: {
     context() {

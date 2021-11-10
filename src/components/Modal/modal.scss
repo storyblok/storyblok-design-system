@@ -16,20 +16,21 @@
     overflow-y: auto;
   }
 
+  &--close-on-header &__close-button {
+    right: 35px;
+    top: 35px;
+  }
+
   &__close-button {
     @include base--icon-hover;
 
     background-color: $white;
     border: 0;
     cursor: pointer;
-    position: relative;
-
-    &--absolute {
-      position: absolute;
-      right: 14px;
-      top: 14px;
-      z-index: 1;
-    }
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    z-index: 1;
   }
 
   @keyframes fadein {
@@ -62,7 +63,7 @@
     justify-content: flex-end;
     margin-bottom: -35px;
     margin-left: -35px;
-    min-height: 91px;
+    min-height: 80px;
     padding: 0 35px;
     width: 100%;
 
@@ -110,6 +111,7 @@
     &__actions {
       align-items: center;
       display: flex;
+      padding-right: 40px;
 
       > * {
         margin-left: 10px;
@@ -120,16 +122,11 @@
       }
 
       .sb-modal__close-button {
-        margin-left: 16px;
-      }
+        width: 36px;
 
-      .sb-modal__close-button::before {
-        background-color: $light;
-        content: '';
-        height: 24px;
-        left: -8px;
-        position: absolute;
-        width: 1px;
+        svg {
+          margin: 0;
+        }
       }
     }
   }

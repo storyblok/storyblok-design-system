@@ -1,5 +1,5 @@
 import SbIcon from '../../Icon'
-import SbTooltip from '../../Tooltip'
+import { Tooltip } from '../../../directives'
 
 /**
  * @vue/component
@@ -12,6 +12,10 @@ export const SbPaginationButton = {
   name: 'SbPaginationButton',
 
   functional: true,
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   props: {
     disabled: {
@@ -32,38 +36,36 @@ export const SbPaginationButton = {
     const { icon, tooltipLabel, disabled } = props
 
     return h(
-      SbTooltip,
+      'button',
       {
-        props: {
-          label: tooltipLabel,
-          position: 'bottom',
+        staticClass: 'sb-pagination__button',
+        attrs: {
+          disabled,
+          ...(data.attrs || {}),
         },
-      },
-      [
-        h(
-          'button',
+        class: {
+          'sb-pagination__button--disabled': disabled,
+        },
+        on: {
+          ...listeners,
+        },
+        directives: [
           {
-            staticClass: 'sb-pagination__button',
-            attrs: {
-              disabled,
-              ...(data.attrs || {}),
-            },
-            class: {
-              'sb-pagination__button--disabled': disabled,
-            },
-            on: {
-              ...listeners,
+            name: 'tooltip',
+            value: {
+              label: tooltipLabel,
+              position: 'bottom',
             },
           },
-          [
-            h(SbIcon, {
-              props: {
-                name: icon,
-                size: 'normal',
-              },
-            }),
-          ]
-        ),
+        ],
+      },
+      [
+        h(SbIcon, {
+          props: {
+            name: icon,
+            size: 'normal',
+          },
+        }),
       ]
     )
   },
@@ -102,9 +104,16 @@ export const SbPaginationPagesText = {
 
   render(h, { props }) {
     const { currentPage, showCurrentPage, isPlaceholder, pages } = props
-    const text = showCurrentPage
-      ? `${currentPage} of ${pages} pages` // to compact container
-      : `of ${pages} pages` // to other container types
+    let text = ''
+    if (pages === 1) {
+      text = showCurrentPage
+        ? `${currentPage} of ${pages} page` // to compact container
+        : `of ${pages} page` // to other container types
+    } else {
+      text = showCurrentPage
+        ? `${currentPage} of ${pages} pages` // to compact container
+        : `of ${pages} pages` // to other container types
+    }
 
     return h(
       'span',
@@ -167,7 +176,13 @@ export const SbPaginationItemsText = {
     const lastCurrentPageItem =
       currentPage === 1 ? perPage : isTheLastPage ? total : currentPageItems
 
-    const text = `${firstCurrentPageItem}-${lastCurrentPageItem} of ${total} items`
+    let text = ''
+
+    if (firstCurrentPageItem === 1 && lastCurrentPageItem >= total) {
+      text = `${firstCurrentPageItem}-${total} of ${total} items`
+    } else {
+      text = `${firstCurrentPageItem}-${lastCurrentPageItem} of ${total} items`
+    }
 
     return h(
       'span',
