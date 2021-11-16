@@ -1,16 +1,15 @@
 <template>
   <li
     class="sb-select-list__item"
-    :class="{
-      'sb-select-list__item--selected': isSelected,
-    }"
+    :class="computedClasses"
     tabindex="0"
     @click="handleClick"
     @keydown="handleKeyDown"
   >
     <SbAvatar
       v-if="useAvatars"
-      :src="src"
+      :key="label"
+      :src="option.src"
       :name="label"
       show-name
       size="small"
@@ -51,6 +50,15 @@ export default {
       type: [String, Number],
       default: '',
     },
+    option: {
+      type: Object,
+      default: () => ({}),
+    },
+    itemValue: {
+      type: String,
+      default: 'value',
+    },
+    emitOption: Boolean,
 
     // Avatar properties
     useAvatars: Boolean,
@@ -58,22 +66,39 @@ export default {
       type: String,
       default: null,
     },
+
+    isFocused: Boolean,
   },
 
   computed: {
     isSelected() {
       return isArray(this.inputValue)
-        ? includes(this.inputValue, this.value)
+        ? this.isValueAlreadyExists()
         : this.value === this.inputValue
+    },
+
+    computedClasses() {
+      return [
+        this.isSelected && 'sb-select-list__item--selected',
+        this.isFocused && 'sb-select-list__item--focused',
+      ]
     },
   },
 
   methods: {
+    handleEmitValue() {
+      if (this.emitOption) {
+        return this.$emit('emit-value', this.option)
+      }
+
+      this.$emit('emit-value', this.value)
+    },
+
     /**
      * emits the 'emit-value' event
      */
     handleClick() {
-      this.$emit('emit-value', this.value)
+      this.handleEmitValue()
     },
 
     /**
@@ -82,8 +107,18 @@ export default {
      */
     handleKeyDown(event) {
       if (event.key === 'Enter' || event.key === ' ') {
-        this.$emit('emit-value', this.value)
+        this.handleEmitValue()
       }
+    },
+
+    isValueAlreadyExists() {
+      if (this.emitOption) {
+        const itemValue = this.value
+
+        return this.inputValue.some(($v) => $v[this.itemValue] === itemValue)
+      }
+
+      return includes(this.inputValue, this.value)
     },
   },
 }

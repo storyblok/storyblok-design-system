@@ -124,6 +124,10 @@ export default {
 
   props: {
     ...sharedProps,
+    visual: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({

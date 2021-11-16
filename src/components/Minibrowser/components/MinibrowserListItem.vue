@@ -3,7 +3,10 @@
     <component
       :is="as"
       class="sb-minibrowser__list-item"
-      :class="{ 'sb-minibrowser__list-item--active': isActive }"
+      :class="{
+        'sb-minibrowser__list-item--active': isActive,
+        'sb-minibrowser__list-item--disabled': isDisabled,
+      }"
       @click="handleClick"
     >
       <span class="sb-minibrowser__list-item-icon">
@@ -12,7 +15,16 @@
       </span>
 
       <div class="sb-minibrowser__list-item-container">
-        <span class="sb-minibrowser__list-item-name"> {{ label }} </span>
+        <div class="sb-minibrowser__list-item-name">
+          {{ label }}
+          <SbIcon
+            v-if="isStartpage"
+            v-tooltip="{ label: 'Homepage' }"
+            name="home"
+            size="small"
+            class="sb-minibrowser__list-item-icon-home"
+          />
+        </div>
 
         <span v-if="subtitle" class="sb-minibrowser__list-item-subtitle">
           {{ subtitle }}
@@ -30,9 +42,7 @@ import SbIcon from '../../Icon'
 export default {
   name: 'SbMinibrowserListItem',
 
-  components: {
-    SbIcon,
-  },
+  components: { SbIcon },
 
   inject: ['browserContext'],
 
@@ -44,6 +54,8 @@ export default {
     isActive: Boolean,
     isParent: Boolean,
     isEntry: Boolean,
+    isDisabled: Boolean,
+    isStartpage: Boolean,
     items: {
       type: Array,
       default: () => [],

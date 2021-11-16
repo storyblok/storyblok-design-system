@@ -7,7 +7,7 @@
   flex-direction: column;
   height: 100%;
   margin-left: auto;
-  max-height: 96vh;
+  max-height: calc(100vh - 40px);
   max-width: 624px;
   min-width: 400px;
   overflow: hidden;

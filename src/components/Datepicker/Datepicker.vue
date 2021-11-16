@@ -1,5 +1,9 @@
 <template>
-  <div v-click-outside="$_wrapClose" class="sb-datepicker">
+  <div
+    v-click-outside="$_wrapClose"
+    class="sb-datepicker"
+    :class="{ 'sb-datepicker--active': isOverlayVisible }"
+  >
     <div class="sb-datepicker__input">
       <SbTextField
         ref="input"
@@ -15,11 +19,13 @@
       />
 
       <template v-if="isShowTzOffset">
-        <SbTooltip v-if="tzTooltip" :label="tzTooltip" position="top">
-          <span class="sb-datepicker__timezone">
-            {{ tzOffset }}
-          </span>
-        </SbTooltip>
+        <span
+          v-if="tzTooltip"
+          v-tooltip="{ label: tzTooltip, position: 'top' }"
+          class="sb-datepicker__timezone"
+        >
+          {{ tzOffset }}
+        </span>
 
         <span v-else class="sb-datepicker__timezone">
           {{ tzOffset }}
@@ -62,7 +68,9 @@
         </button>
 
         <button
-          class="sb-datepicker__action-button sb-datepicker__action-button--primary"
+          class="
+            sb-datepicker__action-button sb-datepicker__action-button--primary
+          "
           @click="handleDoneAction"
         >
           Done
@@ -75,11 +83,10 @@
 <script>
 import dayjs from 'dayjs'
 
-import { ClickOutside } from '../../directives'
+import { ClickOutside, Tooltip } from '../../directives'
 import { includes } from '../../utils'
 import { SbTextField } from '../TextField'
 import { SbPopover } from '../Popover'
-import SbTooltip from '../Tooltip'
 
 import SbDatepickerHeader from './components/DatepickerHeader'
 import SbDatepickerTime from './components/DatepickerTime'
@@ -93,7 +100,6 @@ export default {
   name: 'SbDatepicker',
 
   components: {
-    SbTooltip,
     SbPopover,
     SbTextField,
     SbDatepickerHeader,
@@ -104,6 +110,7 @@ export default {
   },
 
   directives: {
+    tooltip: Tooltip,
     ClickOutside,
   },
 

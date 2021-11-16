@@ -1,4 +1,4 @@
-import SbTooltip from '../Tooltip'
+import { Tooltip } from '../../directives'
 
 /**
  * @method getLabelTruncated
@@ -48,6 +48,17 @@ const SbBreadcrumbLink = {
   },
   render(h, { props, listeners, slots }) {
     const { label } = props
+
+    const renderLabel = () => {
+      return h(
+        'span',
+        {
+          staticClass: 'sb-breadcrumbs__item-label',
+        },
+        label
+      )
+    }
+
     // if href exists, we understand that's expected a <a> tag
     if (props.href) {
       return h(
@@ -62,7 +73,7 @@ const SbBreadcrumbLink = {
             ...listeners,
           },
         },
-        [label, slots().default]
+        [renderLabel(), slots().default]
       )
     }
 
@@ -77,7 +88,7 @@ const SbBreadcrumbLink = {
           ...listeners,
         },
       },
-      [label, slots().default]
+      [renderLabel(), slots().default]
     )
   },
 }
@@ -92,18 +103,21 @@ const SbBreadcrumbLink = {
 const SbBreadcrumbItem = {
   name: 'SbBreadcrumbItem',
 
-  functional: true,
+  directives: {
+    tooltip: Tooltip,
+  },
 
   props: {
     isActive: Boolean,
+    showFullLabel: Boolean,
     ...sharedLinkProps,
   },
 
-  render(h, { props, listeners, slots }) {
-    const { isActive, title, href, to, as } = props
-    const label = props.label || ''
+  render(h) {
+    const { isActive, showFullLabel, title, href, to, as } = this
+    const label = this.label || ''
 
-    const isTruncated = label.length > 15
+    const isTruncated = !showFullLabel && label.length > 15
     const labelFormated = isTruncated ? getLabelTruncated(label) : label
     const breadcrumbsItemProps = {
       staticClass: 'sb-breadcrumbs__item',
@@ -114,9 +128,30 @@ const SbBreadcrumbItem = {
         // to identify that the last link is the current page
         'aria-current': isActive ? 'page' : null,
       },
+      directives: isTruncated
+        ? [
+            {
+              name: 'tooltip',
+              value: {
+                label,
+                position: 'bottom',
+              },
+            },
+          ]
+        : null,
     }
 
     const renderLabel = () => {
+      return h(
+        'span',
+        {
+          staticClass: 'sb-breadcrumbs__item-label',
+        },
+        labelFormated
+      )
+    }
+
+    const renderBreadcrumb = () => {
       if (!isActive) {
         return h(
           SbBreadcrumbLink,
@@ -129,36 +164,17 @@ const SbBreadcrumbItem = {
               label: labelFormated,
             },
             on: {
-              ...listeners,
+              ...this.$listeners,
             },
           },
-          [slots().default]
+          [this.$slots.default]
         )
       }
 
-      return [labelFormated, slots().default]
+      return [renderLabel(), this.$slots.default]
     }
 
-    const renderChildren = () => {
-      if (isTruncated) {
-        return [
-          h(
-            SbTooltip,
-            {
-              props: {
-                position: 'bottom',
-                label,
-              },
-            },
-            [renderLabel()]
-          ),
-        ]
-      }
-
-      return [renderLabel()]
-    }
-
-    return h('li', breadcrumbsItemProps, renderChildren())
+    return h('li', breadcrumbsItemProps, [renderBreadcrumb()])
   },
 }
 

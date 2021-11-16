@@ -12,6 +12,7 @@
         :value="nativeValue"
         :required="required"
         :disabled="disabled"
+        @click.stop
       />
 
       <div class="sb-checkbox__input">

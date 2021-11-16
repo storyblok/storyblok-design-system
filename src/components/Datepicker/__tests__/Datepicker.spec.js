@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils'
 import dayjs from 'dayjs'
 
-import SbTooltip from '../../Tooltip'
 import SbDatepicker from '../Datepicker.vue'
 import SbDatepickerData, { WithTzOffset } from '../Datepicker.stories'
 
@@ -136,18 +135,20 @@ describe('SbDatepicker component', () => {
       value: '2017-09-09',
     })
 
-    it('Should exist the SbTooltip component with correct label', () => {
-      const TooltipComponent = wrapper.findComponent(SbTooltip)
-      expect(TooltipComponent.exists()).toBe(true)
-      expect(TooltipComponent.props('label')).toBe(WithTzOffset.args.tzTooltip)
+    it('Should exist the tooltip with correct label', async () => {
+      await wrapper.find('.sb-datepicker__timezone').trigger('mouseover')
+
+      const tooltip = document.querySelector('[role="tooltip"]')
+
+      expect(tooltip.innerText).toBe(WithTzOffset.args.tzTooltip)
     })
 
-    it('Should not exist the SbTooltip component when the tzTooltip property is empty', async () => {
+    it('Should not exist the tooltip when the tzTooltip property is empty', async () => {
       await wrapper.setProps({
         tzTooltip: null,
       })
 
-      expect(wrapper.findComponent(SbTooltip).exists()).toBe(false)
+      expect(document.querySelector('[role="tooltip"]')).toBe(null)
     })
   })
 })

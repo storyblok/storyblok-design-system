@@ -3,22 +3,22 @@
     <div v-if="label" class="sb-form-item__top-container">
       <label v-if="label" class="sb-form-item__label" :for="labelFor">
         {{ label }}
-        <SbTooltip
+
+        <SbIcon
           v-if="helperIconText"
-          :label="helperIconText"
-          :text-align="helperTextAlign"
-        >
-          <SbIcon
-            v-if="helperIconText"
-            color="primary-dark"
-            name="help"
-            class="sb-form-item__helper-icon-text"
-          />
-        </SbTooltip>
+          v-tooltip="{ label: helperIconText, textAlign: helperTextAlign }"
+          color="primary-dark"
+          name="help"
+          class="sb-form-item__helper-icon-text"
+        />
       </label>
-      <span v-if="helperText" class="sb-form-item__helper-text">
+      <span
+        v-if="helperText && !$slots.helper"
+        class="sb-form-item__helper-text"
+      >
         {{ helperText }}
       </span>
+      <slot name="helper" />
     </div>
     <div class="sb-form-item__body">
       <slot />
@@ -28,14 +28,17 @@
 
 <script>
 import SbIcon from '../Icon'
-import SbTooltip from '../Tooltip'
+import { Tooltip } from '../../directives'
 
 export default {
   name: 'SbFormItem',
 
+  directives: {
+    tooltip: Tooltip,
+  },
+
   components: {
     SbIcon,
-    SbTooltip,
   },
 
   props: {
@@ -60,6 +63,14 @@ export default {
       type: String,
       default: null,
     },
+  },
+
+  mounted() {
+    if (this.helperText && this.$slots.helper) {
+      console.warn(
+        `[SbFormItem]: If the 'helper slot' and the helper-text property are set, only the contents of the slot will be shown`
+      )
+    }
   },
 }
 </script>

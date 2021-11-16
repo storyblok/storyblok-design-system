@@ -30,14 +30,8 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     }
   }
 
-  &__list-container {
-    max-height: 250px;
-    overflow-y: scroll;
-    padding: 13.5px 0;
-  }
-
   &__breadcrumbs {
-    padding: 10px $general-padding 13.5px;
+    padding: 10px $general-padding 13px;
 
     .sb-breadcrumbs__item--active {
       color: $sb-dark-blue-50;
@@ -50,13 +44,19 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     padding: 0;
   }
 
+  &__list > ul {
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 13.5px 0;
+  }
+
   &__list-header {
     align-items: center;
+    box-shadow: 0 1px 0 0 rgb(0 0 0 / 8%);
     display: flex;
     font-size: $font-size-sm;
-    margin: 0;
+    margin: 0 0 1px;
     padding: 9px $general-padding;
-    text-transform: uppercase;
 
     &-title {
       color: $sb-dark-blue-50;
@@ -104,8 +104,28 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
       margin-right: 10px;
     }
 
-    &--active {
+    &-icon-home {
       background-color: $light-50;
+      border: transparent;
+      border-radius: $base-border-radius;
+      cursor: pointer;
+      margin-left: 2px;
+      padding: 3px;
+
+      .sb-icon {
+        margin: 0;
+      }
+    }
+
+    &--active {
+      .sb-minibrowser__list-item-name {
+        @include selectedItem;
+      }
+    }
+
+    &--disabled {
+      cursor: not-allowed !important;
+      opacity: 0.5;
     }
 
     &:hover {
@@ -152,8 +172,12 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     right: $full-height-padding;
   }
 
+  &__input-container-clear .sb-icon:hover {
+    color: $sb-dark-blue-50;
+  }
+
   &--full-height &__breadcrumbs {
-    padding: 10px $full-height-padding 13.5px;
+    padding: 10px 30px;
   }
 
   &--borderless {

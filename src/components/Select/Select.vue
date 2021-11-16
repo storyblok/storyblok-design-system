@@ -5,11 +5,15 @@
     :class="{
       'sb-select--multiple': multiple,
       'sb-select--inline': inline,
+      'sb-select--loading': isLoading,
     }"
     :aria-expanded="isOpen ? 'true' : 'false'"
   >
     <SbSelectInner
       ref="inner"
+      :input-id="inputId"
+      :is-loading="isLoading"
+      :loading-label="loadingLabel"
       :clearable="clearable"
       :multiple="multiple"
       :inline="inline"
@@ -23,18 +27,24 @@
       :use-avatars="useAvatars"
       :options="options"
       :allow-create="allowCreate"
+      :is-disabled="isDisabled"
+      :emit-option="emitOption"
       @click="handleSelectInnerClick"
+      @keydown-enter="handleKeyDownEnter"
       @input="handleSearchInput"
       @emit-value="handleEmitValue"
       @close-list="hideList"
       @clear-all-values="handleClearAllValues"
       @remove-item-value="handleRemoveItemValue"
-    />
+    >
+      <slot name="innerSelect" />
+    </SbSelectInner>
 
     <SbSelectList
       v-if="!useMinibrowser"
       ref="list"
       :value="value"
+      :is-loading="isLoading"
       :search-input="searchInput"
       :item-label="itemLabel"
       :item-value="itemValue"
@@ -43,7 +53,10 @@
       :use-avatars="useAvatars"
       :no-data-text="noDataText"
       :allow-create="allowCreate"
+      :emit-option="emitOption"
       @emit-value="handleEmitValue"
+      @option-created="handleOptionCreated"
+      @focus-item="focusAtIndex($event)"
     />
 
     <slot name="minibrowser" />
@@ -51,6 +64,7 @@
 </template>
 
 <script>
+import { debounce } from 'throttle-debounce'
 import { ClickOutside } from '../../directives'
 import { canUseDOM, includes, toLowerCase, isString } from '../../utils'
 import SbSelectInner from './components/SelectInner'
@@ -81,6 +95,20 @@ export default {
       default: null,
     },
     multiple: Boolean,
+    disableInternalFilter: Boolean,
+    filterDebounce: {
+      type: Number,
+      default: 300,
+    },
+    isDisabled: Boolean,
+    emitOption: Boolean,
+
+    // loading properties
+    isLoading: Boolean,
+    loadingLabel: {
+      type: String,
+      default: 'Loading...',
+    },
 
     // inner props
     clearable: Boolean,
@@ -88,6 +116,10 @@ export default {
       type: String,
       default: '',
       required: true,
+    },
+    inputId: {
+      type: String,
+      default: '',
     },
     leftIcon: {
       type: String,
@@ -153,7 +185,11 @@ export default {
     },
 
     filteredOptions() {
-      if (this.filterable && this.hasValueToSearch) {
+      if (
+        this.filterable &&
+        this.hasValueToSearch &&
+        !this.disableInternalFilter
+      ) {
         return this.transformedOptions.filter((opt) => {
           return includes(
             toLowerCase(opt[this.itemLabel]),
@@ -169,7 +205,15 @@ export default {
       return this.searchInput && this.searchInput.length > 0
     },
 
+    hasInnerSlot() {
+      return !!this.$slots.innerSelect
+    },
+
     transformedOptions() {
+      if (this.emitOption) {
+        return this.options
+      }
+
       return this.options.map((opt) => {
         if (typeof opt === 'object') return opt
         return { [this.itemLabel]: opt, [this.itemValue]: opt }
@@ -202,6 +246,13 @@ export default {
 
     this.$_loadListItems()
 
+    this.$watch(
+      'searchInput',
+      debounce(this.filterDebounce, function (newValue) {
+        this.$emit('filter', newValue)
+      })
+    )
+
     this.$nextTick(() => {
       this.innerElement = this.$refs.inner.$el
     })
@@ -212,6 +263,8 @@ export default {
      * shows the items list
      */
     showList() {
+      if (this.isOpen) return
+
       this.isOpen = true
       this.$emit('show')
 
@@ -222,10 +275,7 @@ export default {
               .querySelector('.sb-select-inner__input')
               .focus()
         })
-        return
       }
-
-      this.activeIndex = 0
     },
 
     /**
@@ -239,21 +289,18 @@ export default {
      * hides the items list
      */
     hideList() {
+      if (!this.isOpen) return
+
       this.isOpen = false
       this.$emit('hide')
       this.activeIndex = -1
-
-      this.$nextTick(() => {
-        if (this.filterable && isString(this.value)) {
-          this.populateSearchInput(this.value)
-        }
-      })
     },
 
     /**
      * shows or hides the items list according to internal state
      */
     handleSelectInnerClick() {
+      if (this.isDisabled) return
       if (this.isOpen) {
         this.hideList()
       } else {
@@ -268,30 +315,62 @@ export default {
     handleEmitValue(value) {
       // doesn't close the list
       if (this.multiple) {
-        this.$emit('input', this.processMultipleValue(value))
+        this.searchInput = ''
+        const $value = this.processMultipleValue(value)
+        this.$emit('input', $value)
         return
       }
 
-      this.populateSearchInput(value)
+      this.searchInput = ''
       this.$emit('input', value)
       this.$_focusInner()
       this.hideList()
     },
 
     /**
-     * populates 'search input' variable depending on the type
+     * emits the input event to make this component compatible with v-model directive
      * @param {Array<String>|String} value
      */
-    populateSearchInput(value) {
-      if (this.inline || this.multiple) {
-        this.searchInput = ''
-      } else if (this.useAvatars && value) {
-        this.$nextTick(() => {
-          this.$nextTick(() => (this.searchInput = this.selectedItem.label))
-        })
-      } else {
-        this.searchInput = value
+    handleOptionCreated(value) {
+      this.searchInput = ''
+      this.$emit('option-created', value)
+      this.$_focusInner()
+      this.hideList()
+    },
+
+    /**
+     * check if the value exists on this.value
+     * but, based on this.emitOption, to check more
+     * properly the case when this.value is an array
+     * of objects
+     * @param  {String|Number|Object} value
+     * @return {Boolean}
+     */
+    isValueAlreadyExists(value) {
+      if (this.emitOption) {
+        const itemValue = value[this.itemValue]
+
+        return this.value.some(($v) => $v[this.itemValue] === itemValue)
       }
+
+      return includes(this.value, value)
+    },
+
+    /**
+     * remove a specific value from this.value, based on this.emitOption,
+     * to check more properly the case when this.value is an array
+     * of objects
+     * @param  {String|Number|Object} value
+     * @return {Array}
+     */
+    removeValueFromArray(value) {
+      if (this.emitOption) {
+        return this.value.filter(
+          (val) => val[this.itemValue] !== value[this.itemValue]
+        )
+      }
+
+      return this.value.filter((val) => val !== value)
     },
 
     /**
@@ -299,8 +378,8 @@ export default {
      * @param {String} value
      */
     processMultipleValue(value) {
-      if (includes(this.value, value)) {
-        return this.value.filter((val) => val !== value)
+      if (this.isValueAlreadyExists(value)) {
+        return this.removeValueFromArray(value)
       }
 
       return [...(this.value || []), value]
@@ -312,7 +391,8 @@ export default {
      */
     handleRemoveItemValue(itemValue) {
       if (this.multiple) {
-        this.$emit('input', this.processMultipleValue(itemValue))
+        const $value = this.processMultipleValue(itemValue)
+        this.$emit('input', $value)
         this.$_focusInner()
       }
     },
@@ -340,7 +420,6 @@ export default {
      */
     handleSearchInput(event) {
       this.searchInput = !isString(event) ? event.target.value : event
-      if (this.searchInput && this.filterable) this.showList()
     },
 
     /**
@@ -350,6 +429,7 @@ export default {
       this.showList()
 
       this.activeIndex = 0
+
       this.$_updateNavigation()
     },
 
@@ -440,6 +520,27 @@ export default {
 
         this.$_resetTabIndex()
       })
+    },
+
+    /**
+     * handle with keydown enter event from inner elemen
+     * trying to select the first item in the array with single one item
+     * or open the list if the list is not open
+     */
+    handleKeyDownEnter() {
+      if (!this.isOpen) {
+        this.showList()
+
+        this.activeIndex = 0
+        return
+      }
+
+      if (this.filteredOptions.length === 1) {
+        this.handleEmitValue(this.filteredOptions[0][this.itemValue])
+      }
+
+      this.$_focusInner()
+      this.hideList()
     },
   },
 }

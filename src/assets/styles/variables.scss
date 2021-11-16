@@ -51,7 +51,7 @@ $light-gray: #b1b5be;
 
 $black: #101525;
 $white: #fff;
-$black-trasparent: rgba(0, 0, 0, 0.1);
+$black-trasparent: rgba($sb-dark-blue, 0.3);
 // ----
 
 // Typography
@@ -61,9 +61,9 @@ $font-size-default: 1.6rem;
 $line-height-default: 1;
 
 $text-header: 2.5rem;
-$text-medium-header: 2.1rem;
+$text-medium-header: 2rem;
 $text-subheader: 1.8rem;
-$text-medium: 1.6rem;
+$text-medium: 1.5rem;
 $text-medium-small: 1.4rem;
 $text-small: 1.3rem;
 

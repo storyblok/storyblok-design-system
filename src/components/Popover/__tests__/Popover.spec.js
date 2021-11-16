@@ -75,7 +75,7 @@ describe('SbPopover component', () => {
 
       expect(Popover.vm.isOpen).toBe(false)
 
-      expect(Popover.vm.popoverInstance).not.toBeNull()
+      expect(Popover.vm.popoverInstance).toBeNull()
     })
   })
 })

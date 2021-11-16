@@ -14,8 +14,8 @@ const factory = (propsData) => {
 
 const fakeProps = {
   totalFiles: 2,
-  actualFile: 1,
-  actualFileName: 'test.png',
+  currentFile: 1,
+  currentFileName: 'test.png',
   percentageValue: 25,
   timeLeft: 50,
 }
@@ -34,10 +34,10 @@ describe('Tests for UploadDialog', () => {
 
     expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
 
-    expect(wrapper.findComponent(SbIcon).props('name')).toBe('refresh')
+    expect(wrapper.findComponent(SbIcon).props('name')).toBe('refreshing')
 
     const spanLabelHelper = [
-      `Uploading ${fakeProps.actualFile}/${fakeProps.totalFiles} - ${fakeProps.actualFileName}`,
+      `Uploading ${fakeProps.currentFile} of ${fakeProps.totalFiles} files - ${fakeProps.currentFileName}`,
       `${fakeProps.timeLeft} sec left`,
     ]
 
