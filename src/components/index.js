@@ -19,6 +19,7 @@ import SbRadio from './Radio'
 import SbSelect from './Select'
 import SbTag from './Tag'
 import SbTextField from './TextField'
+import SbToggle from './Toggle'
 import SbTooltip from './Tooltip'
 import SbUploadDialog from './UploadDialog'
 import SbNumberField from './NumberField'
@@ -65,6 +66,7 @@ export {
   SbSelect,
   SbTag,
   SbTextField,
+  SbToggle,
   SbTooltip,
   SbUploadDialog,
   SbNumberField,

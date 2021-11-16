@@ -1,6 +1,7 @@
 <template>
   <div
     class="sb-select-inner"
+    :class="{ 'sb-select-inner__disabled': isDisabled }"
     tabindex="0"
     v-on="$listeners"
     @keydown="handleKeyDown"
@@ -16,53 +17,78 @@
       <SbTag
         v-for="(tagLabel, key) in tagLabels"
         :key="key"
-        :label="tagLabel"
         tabindex="0"
-        closable
+        :closable="!isDisabled"
         @keydown="handleTagKeydown($event, tagLabel)"
         @close="removeItem($event, tagLabel)"
-      />
+      >
+        <template v-if="tagLabel">
+          <SbAvatar
+            v-if="isTagAvatarVisible"
+            :key="tagLabel[itemLabel]"
+            :src="getSource(tagLabel)"
+            size="small"
+            :name="tagLabel[itemLabel]"
+          />
+          <span>{{ tagLabel[itemLabel] }}</span>
+        </template>
+      </SbTag>
       <input
         v-if="filterable"
+        :id="inputId"
         ref="search"
         v-model="searchInputText"
         type="search"
         class="sb-select-inner__input"
+        :disabled="isDisabled"
         :style="inlineWidth"
-        :placeholder="innerLabel"
+        :placeholder="placeholderLabel"
         :readonly="!filterable"
         @focus="handleEmitSearchInput"
       />
     </div>
 
     <div v-if="isAvatarVisible && showAvatar" class="sb-select-inner__avatar">
-      <SbAvatar :src="avatarData.src" size="small" />
+      <SbAvatar
+        :src="avatarData.src"
+        size="small"
+        show-name
+        :name="innerLabel"
+      />
     </div>
 
     <input
       v-if="isInnerSearchVisible"
+      :id="inputId"
       v-model="searchInputText"
       type="search"
       class="sb-select-inner__input"
+      :disabled="isDisabled"
       :style="inlineWidth"
-      :placeholder="innerLabel"
+      :placeholder="placeholderLabel"
       :readonly="!filterable || inline"
       @focus="handleEmitSearchInput"
     />
 
+    <slot v-if="hasDefaultSlot" />
+    <span v-else-if="hidePlaceholder" class="sb-select-inner__value">
+      {{ innerLabel }}
+    </span>
+
     <div class="sb-select-inner__icons">
-      <SbTooltip v-if="showClearButton" label="Remove all">
-        <button
-          aria-label="Clear all values"
-          class="sb-select-inner__clear"
-          type="button"
-          @keydown="clearAllValuesKeydown"
-          @click="clearAllValues"
-        >
-          <SbIcon name="x-clear" />
-        </button>
-      </SbTooltip>
-      <SbIcon class="sb-select-inner__chevron" name="chevron-down" />
+      <button
+        v-if="showClearButton && !isDisabled"
+        v-tooltip="{ label: 'Remove all' }"
+        aria-label="Clear all values"
+        class="sb-select-inner__clear"
+        type="button"
+        @keydown="clearAllValuesKeydown"
+        @click="clearAllValues"
+      >
+        <SbIcon name="x-clear" />
+      </button>
+
+      <SbIcon class="sb-select-inner__chevron" :name="rightIconName" />
     </div>
   </div>
 </template>
@@ -73,8 +99,14 @@ import SbIcon from '../../Icon'
 import SbTag from '../../Tag'
 import SbAvatar from '../../Avatar'
 
+import { Tooltip } from '../../../directives'
+
 export default {
   name: 'SbSelectInner',
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   components: {
     SbIcon,
@@ -93,6 +125,11 @@ export default {
       default: '',
     },
 
+    inputId: {
+      type: String,
+      default: '',
+    },
+
     leftIcon: {
       type: String,
       default: null,
@@ -101,6 +138,13 @@ export default {
     allowCreate: Boolean,
     filterable: Boolean,
     multiple: Boolean,
+
+    // loading props
+    isLoading: Boolean,
+    loadingLabel: {
+      type: String,
+      default: 'Loading...',
+    },
 
     value: {
       type: [String, Number, Array],
@@ -123,7 +167,9 @@ export default {
       default: null,
     },
 
+    emitOption: Boolean,
     useAvatars: Boolean,
+    isDisabled: Boolean,
   },
 
   data: () => ({
@@ -142,17 +188,17 @@ export default {
 
     hasValue() {
       if (this.multiple || isArray(this.value)) {
-        return this.value.length > 0
+        return this.value?.length > 0
       }
 
       return this.value !== null
     },
 
-    innerLabel() {
-      if (!this.hasValue) {
-        return this.label
-      }
+    hasDefaultSlot() {
+      return !!this.$slots.default
+    },
 
+    innerLabel() {
       if (this.filterable && this.multiple) {
         return ''
       }
@@ -162,6 +208,28 @@ export default {
       }
 
       return this.currentOptionLabel
+    },
+
+    placeholderLabel() {
+      if (!this.hasValue) {
+        if (this.isLoading && this.loadingLabel) {
+          return this.loadingLabel
+        }
+
+        return this.label
+      }
+
+      return ''
+    },
+
+    hidePlaceholder() {
+      return (
+        this.hasValue &&
+        !this.multiple &&
+        !this.searchInputText.length &&
+        !this.sAvatarVisible &&
+        !this.showAvatar
+      )
     },
 
     currentOptionLabel() {
@@ -179,23 +247,33 @@ export default {
     },
 
     isTagsVisible() {
-      return this.hasValue && this.multiple
+      return this.hasValue && this.multiple && !this.hasDefaultSlot
     },
 
     showClearButton() {
-      return (this.hasValue && this.clearable) || this.isTagsVisible
+      return this.hasValue && this.clearable
     },
 
     tagLabels() {
-      if (!this.hasValue) {
+      if (!this.hasValue || !this.multiple) {
         return []
       }
 
-      return this.multiple ? this.value : []
+      return this.value.map(($v) => {
+        if (typeof $v === 'object') {
+          return $v
+        }
+
+        return this.options.find(($opt) => $opt[this.itemValue] === $v)
+      })
     },
 
     isAvatarVisible() {
-      return this.hasValue && this.useAvatars && this.avatarData
+      return this.hasValue && this.useAvatars && Boolean(this.avatarData)
+    },
+
+    isTagAvatarVisible() {
+      return this.hasValue && this.useAvatars && this.multiple
     },
 
     isInnerSearchVisible() {
@@ -220,13 +298,17 @@ export default {
       const width = this.inline ? `${this.innerLabel.length}ch` : '100%'
       return { width }
     },
+
+    rightIconName() {
+      return this.isLoading ? 'loading' : 'chevron-down'
+    },
   },
 
   watch: {
     searchInputText(val) {
       if (
         this.avatarData &&
-        val === this.avatarData.label &&
+        val === this.avatarData?.label &&
         this.isAvatarVisible
       ) {
         this.showAvatar = true
@@ -236,7 +318,9 @@ export default {
     value(val, oldVal) {
       const isSameValue = JSON.stringify(val) === JSON.stringify(oldVal)
       if (this.isSearchTextVisible && !isSameValue) {
-        this.$nextTick(() => this.$refs.search.focus())
+        if (oldVal.length && val.length) {
+          this.$nextTick(() => this.$refs.search.focus())
+        }
         return
       }
 
@@ -259,8 +343,8 @@ export default {
      * forward the 'input' event
      */
     handleEmitSearchInput() {
-      if (this.filterable) {
-        this.$emit('input', '')
+      if (this.filterable && !this.isDisabled) {
+        this.$emit('input', this.searchInputText)
 
         if (this.isAvatarVisible) {
           this.showAvatar = false
@@ -287,12 +371,12 @@ export default {
     },
 
     /**
-     * remove an item from value
+     * remove an item from value or name
      */
-    removeItem(event, tagValue) {
+    removeItem(event, selectedTag) {
       event.stopPropagation()
       event.preventDefault()
-      this.$emit('remove-item-value', tagValue)
+      this.$emit('remove-item-value', this.getComputedTagValue(selectedTag))
     },
 
     /**
@@ -308,7 +392,7 @@ export default {
           this.handleEmitValue(this.searchInputText)
           this.$emit('input', '')
         } else {
-          this.$emit('click')
+          this.$emit('keydown-enter')
         }
       }
 
@@ -342,10 +426,24 @@ export default {
         event.key === 'Backspace' ||
         event.key === 'Delete'
       ) {
-        this.$emit('remove-item-value', tagValue)
+        this.$emit('remove-item-value', this.getComputedTagValue(tagValue))
       }
 
       event.stopPropagation()
+    },
+
+    /**
+     * get the tag value based on emitOption property
+     */
+    getComputedTagValue(tag) {
+      return this.emitOption ? tag : tag[this.itemValue]
+    },
+
+    getSource(label) {
+      if (label?.src) {
+        return label.src
+      }
+      return ''
     },
   },
 }

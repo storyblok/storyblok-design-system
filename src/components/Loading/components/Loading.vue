@@ -72,7 +72,7 @@ export default {
 
     returnSizeOfSpinner() {
       if (this.returnIsSpinner) {
-        return `sb-loading__spinner--${this.size || 'normal'}`
+        return `sb-loading__spinner--${this.size || 'large'}`
       }
       return ''
     },

@@ -1,9 +1,9 @@
 <template>
   <SbBlockUi>
     <div class="sb-upload-dialog">
-      <SbIcon name="refresh" size="small" color="primary" />
+      <SbIcon name="refreshing" size="small" color="primary" />
       <span class="sb-upload-dialog__label"> {{ labelToUpload }} </span>
-      <span class="sb-upload-dialog__time-left">
+      <span v-if="timeLeft" class="sb-upload-dialog__time-left">
         {{ timeLeftLabel }}
       </span>
       <SbLoading type="bar" :value="percentageValue" />
@@ -26,11 +26,11 @@ export default {
   },
 
   props: {
-    actualFile: {
+    currentFile: {
       type: Number,
       default: 0,
     },
-    actualFileName: {
+    currentFileName: {
       type: String,
       default: null,
     },
@@ -50,7 +50,17 @@ export default {
 
   computed: {
     labelToUpload() {
-      return `Uploading ${this.actualFile}/${this.totalFiles} - ${this.actualFileName}`
+      if (this.currentFileName) {
+        return `${this.uploadingLabel} - ${this.currentFileName}`
+      }
+      return this.uploadingLabel
+    },
+
+    uploadingLabel() {
+      if (this.totalFiles === 1) {
+        return `Uploading ${this.currentFile} of ${this.totalFiles} file`
+      }
+      return `Uploading ${this.currentFile} of ${this.totalFiles} files`
     },
 
     timeLeftLabel() {

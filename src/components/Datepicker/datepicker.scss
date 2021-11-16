@@ -23,6 +23,10 @@
 .sb-datepicker {
   position: relative;
 
+  &--active .sb-textfield__input {
+    @include focusedTextField;
+  }
+
   &__input {
     position: relative;
   }

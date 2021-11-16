@@ -427,3 +427,45 @@ ModalClosingWithEsc.args = {
   title: 'Main Title',
   align: 'left',
 }
+
+export const ModalCloseOnHeader = (args, storyContext) => ({
+  mixins: [StoriesModalMixin(args, storyContext)],
+
+  components: {
+    SbModal,
+    SbModalHeader,
+    SbModalContent,
+  },
+
+  template: `
+  <div>
+    <SbButton
+      label="Open Modal!"
+      variant="primary"
+      @click="handleShowModal"
+      v-if="!showModal"
+      style="margin: 0 auto; display: flex; margin-top: 30%;"
+    />
+    <SbModal :is-open="showModal" v-on:hide="showModal = false" close-on-header>
+      <SbModalHeader :align="align" :title="title" />
+      <SbModalContent>
+        <div style="width: 100%;"><p style="text-align: left; margin: 0;">This Modal has a Close button on the header !</p></div>
+      </SbModalContent>
+    </SbModal>
+  </div>`,
+})
+
+ModalCloseOnHeader.parameters = {
+  docs: {
+    description: {
+      story: `This storie is to show that too we can render the close button directly in the modal header to add new design possibilities,
+        to activate this function, pass the prop 'close-on-header'. You will also need to add a template with slot:actions to add
+        other buttons next to the close button.`,
+    },
+  },
+}
+
+ModalCloseOnHeader.args = {
+  title: 'Main Title',
+  align: 'left',
+}

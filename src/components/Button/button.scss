@@ -8,6 +8,7 @@
   font-size: $font-size-lg;
   justify-content: center;
   padding: 14px 28px;
+  position: relative;
   transition: $base-transition;
   vertical-align: middle;
 
@@ -39,14 +40,18 @@
     }
 
     &:hover:not([disabled]) {
-      background-color: $sb-green-75;
+      background-color: darken($sb-green, 4%);
     }
 
     &[disabled] {
-      background-color: rgba($sb-green, 0.5);
+      background-color: rgba($sb-green, 0.6);
       color: $green-disabled;
 
       .sb-button__label {
+        opacity: 0.5;
+      }
+
+      .sb-icon {
         opacity: 0.5;
       }
     }
@@ -86,6 +91,11 @@
     &[disabled] {
       opacity: 0.5;
     }
+
+    .sb-loading svg {
+      color: $sb-dark-blue;
+      fill: $sb-dark-blue;
+    }
   }
 
   &--danger {
@@ -98,6 +108,19 @@
 
     &:focus {
       outline: 3px solid $red-25;
+    }
+  }
+
+  &--caution {
+    background-color: $orange;
+    color: $white;
+
+    &[disabled] {
+      opacity: 0.5;
+    }
+
+    &:focus {
+      outline: 3px solid $orange-25;
     }
   }
 
@@ -115,6 +138,7 @@
 
   &--small {
     font-size: $font-size-md;
+    min-height: 36px;
     padding: 8px 16px;
 
     .sb-loading {
@@ -129,12 +153,12 @@
   }
 
   &--small#{&}--loading {
-    min-height: 34px;
+    min-height: 36px;
   }
 
   &--small#{&}--has-icon,
   &--small#{&}--has-icon-right {
-    padding: 6px 16px 5px 9px;
+    padding: 5px 16px 5px 9px;
   }
 
   &--large {
@@ -183,7 +207,7 @@
   }
 
   &--has-icon-only {
-    min-height: 49px;
+    min-height: 48px;
     padding: 0 12px;
 
     .sb-icon {
@@ -192,8 +216,8 @@
   }
 
   &--has-icon-only#{&}--small {
-    min-height: 34px;
-    padding: 0 7px;
+    min-height: 36px;
+    padding: 0 5px;
   }
 
   &--has-icon-only#{&}--large {

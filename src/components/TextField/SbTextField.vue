@@ -4,7 +4,7 @@
       label
     }}</label>
     <div class="sb-textfield__inner">
-      <span v-if="prefix" class="sb-textfield__suffix">{{ prefix }}</span>
+      <span v-if="prefix" class="sb-textfield__prefix">{{ prefix }}</span>
       <input
         v-if="!isTextAreaType"
         :id="id"
@@ -54,33 +54,52 @@
       />
 
       <SbIcon
-        v-if="iconLeft && type !== 'password'"
+        v-if="iconLeft && type !== 'password' && !iconDescription"
         :name="iconLeft"
         class="sb-textfield__icon sb-textfield__icon--left"
         :color="iconColor"
+        @click="handleIconClick"
       />
+      <SbTooltip
+        v-if="iconLeft && type !== 'password' && iconDescription"
+        :label="iconDescription"
+        position="bottom"
+      >
+        <SbIcon
+          v-if="iconLeft && type !== 'password'"
+          :name="iconLeft"
+          class="sb-textfield__icon sb-textfield__icon--left"
+          :color="iconColor"
+          @click="handleIconClick"
+        />
+      </SbTooltip>
       <SbIcon
         v-if="(iconRight || error) && type !== 'password'"
         :name="iconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
+        @click="handleIconClick"
       />
       <SbIcon
-        v-if="type === 'password'"
+        v-if="internalIconRight && type === 'password'"
         :name="internalIconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
         @click="handleShowHidePassword"
       />
-      <SbTooltip v-if="showClearIcon" label="Clear">
-        <SbIcon
-          name="x-clear"
-          class="sb-textfield__icon sb-textfield__icon--right sb-textfield__icon--pointer"
-          :color="iconColor"
-          @click="handleClearableClick"
-        />
-      </SbTooltip>
-      <span v-if="suffix" class="sb-textfield__prefix">{{ suffix }}</span>
+      <SbIcon
+        v-if="showClearIcon"
+        v-tooltip="{ label: 'Clear' }"
+        name="x-clear"
+        class="
+          sb-textfield__icon
+          sb-textfield__icon--right
+          sb-textfield__icon--pointer
+        "
+        :color="iconColor"
+        @click="handleClearableClick"
+      />
+      <span v-if="suffix" class="sb-textfield__suffix">{{ suffix }}</span>
 
       <slot />
     </div>
@@ -111,9 +130,14 @@
 import SbIcon from '../Icon'
 
 import TextFieldMixin from '../../mixins/textfield-mixin'
+import { Tooltip } from '../../directives'
 
 export default {
   name: 'SbTextField',
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   components: { SbIcon },
 
@@ -125,6 +149,10 @@ export default {
     iconColor: {
       type: String,
       default: 'light-gray',
+    },
+    iconDescription: {
+      type: String,
+      default: null,
     },
   },
 
@@ -203,13 +231,19 @@ export default {
     },
   },
 
+  watch: {
+    autofocus(val) {
+      if (val) this.handleAutoFocus()
+    },
+  },
+
   mounted() {
     if (this.autofocus) this.handleAutoFocus()
   },
 
   methods: {
     handleAutoFocus() {
-      this.$refs.textfield.focus()
+      this.$nextTick(() => this.$refs.textfield?.focus())
     },
 
     handleShowHidePassword() {
@@ -248,6 +282,10 @@ export default {
 
     handleKeyUpInput(e) {
       this.$emit('keyup', e)
+    },
+
+    handleIconClick() {
+      this.$emit('icon-click')
     },
   },
 }

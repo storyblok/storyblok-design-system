@@ -40,7 +40,7 @@ const SbLink = {
       default: null,
     },
     to: {
-      type: String,
+      type: [String, Object],
       default: null,
     },
     variant: {

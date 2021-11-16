@@ -48,7 +48,7 @@
 
     &::after {
       background-color: $sb-green;
-      bottom: -1px;
+      bottom: 0;
       content: '';
       height: 3px;
       left: 0;
@@ -76,7 +76,7 @@
   width: 100%;
 
   &::after {
-    background-color: $light-gray;
+    background-color: $light;
     bottom: 0;
     content: '';
     height: 1px;

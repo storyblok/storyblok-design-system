@@ -4,6 +4,8 @@ import './assets/styles/global.scss'
 // Import vue components
 import * as components from './components'
 
+import { Tooltip } from './directives'
+
 // Import SbModal Plugin
 import createModalPlugin from './components/Modal/plugin/create-modal-plugin'
 
@@ -18,6 +20,8 @@ const BlokInkPlugin = {
     for (const key in components) {
       VueInstance.component(key, components[key])
     }
+
+    VueInstance.directive('tooltip', Tooltip)
 
     VueInstance.prototype.$sb = {
       // modal will be available in this.$sb.modal(options)

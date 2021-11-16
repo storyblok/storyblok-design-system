@@ -97,4 +97,29 @@ describe('Tests for SbModal', () => {
       wrapper.findComponent(SbModalFooter).findComponent(SbButton).exists()
     ).toBe(true)
   })
+
+  it('should be render a modal with the close button in header when pass close-on-header prop', () => {
+    const WrapperModal = {
+      components: {
+        SbModal,
+        SbModalHeader,
+      },
+      template: `
+        <SbModal is-open close-on-header>
+          <SbModalHeader align="left" title="Main header" />
+        </SbModal>
+      `,
+    }
+
+    const wrapper = shallowMount(WrapperModal)
+
+    expect(wrapper.findComponent(SbModalHeader).exists()).toBe(true)
+    expect(wrapper.findComponent(SbModalHeader).props().title).toBe(
+      'Main header'
+    )
+    expect(
+      wrapper.findComponent(SbModalHeader).find('sb-modal-header__actions')
+    )
+    expect(wrapper.findComponent(SbModalHeader).find('sb-modal__close-button'))
+  })
 })

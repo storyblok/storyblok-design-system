@@ -105,8 +105,8 @@ export const DropAreaWithUploadModal = (args) => ({
 
       <SbUploadDialog
         :total-files="5"
-        :actual-file="1"
-        actual-file-name="test.png"
+        :current-file="1"
+        current-file-name="test.png"
         :percentage-value="45"
         :time-left="125"
         v-if="hasFiles"

@@ -57,6 +57,18 @@ describe('Test SbButton Component', () => {
     expect(wrapper.find('button').text()).toBe('Secondary Button')
   })
 
+  it('test SbButton in caution color', async () => {
+    const wrapper = factory({
+      label: 'Caution Button',
+      variant: 'caution',
+    })
+
+    expect(wrapper.find('button').attributes('class')).toBe(
+      'sb-button sb-button--caution'
+    )
+    expect(wrapper.find('button').text()).toBe('Caution Button')
+  })
+
   it('test SbButton disabled', async () => {
     const wrapper = factory({
       label: 'Disabled Button',
@@ -143,8 +155,11 @@ describe('Test SbButton Component', () => {
       },
     })
 
-    it('should have an Tooltip component with correct text', () => {
-      expect(wrapper.find('.sb-tooltip').text()).toBe(iconDescription)
+    it('should have a tooltip with correct text', async () => {
+      await wrapper.find('button').trigger('focus')
+      expect(document.querySelector('[role="tooltip"]').innerText).toBe(
+        iconDescription
+      )
     })
   })
 

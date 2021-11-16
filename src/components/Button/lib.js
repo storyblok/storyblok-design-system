@@ -10,6 +10,7 @@ export const availableVariants = [
   'danger',
   'inverted-link',
   'primary-link',
+  'caution',
 ]
 
 /**

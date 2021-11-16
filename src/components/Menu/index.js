@@ -128,6 +128,7 @@ const SbMenuItem = {
         attrs: {
           ...this.$attrs,
           role: 'menuitemradio',
+          disabled: this.isDisabled,
         },
         on: {
           ...this.$listeners,
@@ -168,7 +169,7 @@ const SbMenuGroup = {
   props: {
     title: {
       type: String,
-      required: true,
+      default: '',
     },
     isTitleBold: {
       type: Boolean,
@@ -184,14 +185,16 @@ const SbMenuGroup = {
         },
       },
       [
-        h(
-          'p',
-          {
-            staticClass: 'sb-menu-group__title',
-            class: { 'sb-menu-group__title--bold': this.isTitleBold },
-          },
-          this.title
-        ),
+        this.title.length
+          ? h(
+              'p',
+              {
+                staticClass: 'sb-menu-group__title',
+                class: { 'sb-menu-group__title--bold': this.isTitleBold },
+              },
+              this.title
+            )
+          : null,
         ...this.$slots.default,
       ]
     )
@@ -224,6 +227,10 @@ const SbMenuList = {
     // eslint-disable-next-line
     reference: [String, Element, Object],
     usePortal: Boolean,
+    zIndex: {
+      type: Number,
+      default: 5,
+    },
   },
 
   computed: {
@@ -331,6 +338,7 @@ const SbMenuList = {
           placement: this.placement,
           reference: this.referenceEl,
           usePortal: this.usePortal,
+          zIndex: this.zIndex,
         },
 
         on: {
@@ -494,7 +502,10 @@ const SbMenuButton = {
         props: {
           iconRight: 'chevron-down',
           label: this.label,
-          variant: this.type,
+          isRounded: this.isRounded,
+          variant: this.variant,
+          size: this.size,
+          iconSize: this.iconSize,
         },
         on: {
           ...this.$listeners,
@@ -533,6 +544,11 @@ const SbMenu = {
     value: {
       type: Boolean,
       default: false,
+    },
+
+    focusWhenClose: {
+      type: Boolean,
+      default: true,
     },
   },
 
@@ -617,7 +633,7 @@ const SbMenu = {
       if (!this.isOpen) return
 
       this.isOpen = false
-      this.activeIndex = -1
+      if (this.focusWhenClose) this.activeIndex = -1
 
       this.$emit('close')
     },

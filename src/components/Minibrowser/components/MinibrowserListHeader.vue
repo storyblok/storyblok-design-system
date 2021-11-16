@@ -1,8 +1,10 @@
 <template>
   <div class="sb-minibrowser__list-header">
-    <SbIcon name="chevron-down" class="sb-minibrowser__list-header-icon" />
+    <slot name="left">
+      <SbIcon name="chevron-down" class="sb-minibrowser__list-header-icon" />
 
-    <p class="sb-minibrowser__list-header-title">{{ title }}</p>
+      <p class="sb-minibrowser__list-header-title">{{ title }}</p>
+    </slot>
 
     <slot name="right" />
   </div>

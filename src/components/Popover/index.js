@@ -85,6 +85,10 @@ const SbPopover = {
       type: Boolean,
       default: false,
     },
+    zIndex: {
+      type: Number,
+      default: 5,
+    },
   },
 
   data: () => ({
@@ -146,7 +150,7 @@ const SbPopover = {
     placement(newPlacement) {
       if (this.popoverInstance) {
         this.popoverInstance.state.options.placement = newPlacement
-        this.reference.setAttribute('data-show', '')
+        this.referenceEl.setAttribute('data-show', '')
       }
     },
   },
@@ -164,6 +168,7 @@ const SbPopover = {
       if (this.popoverInstance) {
         this.popoverEl.removeAttribute('data-show')
         this.$emit('hide')
+        this.$_destroyPopoverInstance()
       }
     },
 
@@ -223,7 +228,11 @@ const SbPopover = {
      * handler for click-outside directive
      */
     $_wrapClose(e) {
-      if (this.popoverInstance && !this.referenceEl.contains(e.target)) {
+      if (
+        this.popoverInstance &&
+        this.referenceEl &&
+        !this.referenceEl.contains(e.target)
+      ) {
         this.hidePopover()
       }
     },
@@ -257,7 +266,7 @@ const SbPopover = {
             },
             style: {
               display: this.isOpen ? 'unset' : 'none',
-              zIndex: 5,
+              zIndex: this.zIndex,
             },
             directives: [
               {

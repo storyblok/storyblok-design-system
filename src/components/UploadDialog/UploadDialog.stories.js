@@ -4,24 +4,24 @@ export default {
   title: 'Design System/Components/SbUploadDialog',
   component: SbUploadDialog,
   args: {
-    actualFile: 1,
-    actualFileName: 'test.png',
+    currentFile: 1,
+    currentFileName: 'test.png',
     percentageValue: 45,
     totalFiles: 5,
     timeLeft: 125,
   },
   argTypes: {
-    actualFile: {
-      name: 'actualFile',
-      description: 'The `actualFile` property defines the current upload step',
+    currentFile: {
+      name: 'currentFile',
+      description: 'The `currentFile` property defines the current upload step',
       control: {
         type: 'number',
       },
     },
-    actualFileName: {
-      name: 'actualFileName',
+    currentFileName: {
+      name: 'currentFileName',
       description:
-        'The `actualFileName` property defines the name of the current file being uploaded',
+        'The `currentFileName` property defines the name of the current file being uploaded',
       control: {
         type: 'text',
       },
@@ -60,8 +60,8 @@ export const Default = (args) => ({
 
   template: `
     <SbUploadDialog
-      :actual-file="actualFile"
-      :actual-file-name="actualFileName"
+      :current-file="currentFile"
+      :current-file-name="currentFileName"
       :percentage-value="percentageValue"
       :total-files="totalFiles"
       :time-left="timeLeft"
