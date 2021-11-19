@@ -586,6 +586,14 @@ const icons = {
     path: `
     <path fill="currentColor" fill-rule="evenodd" d="M7.558 5a2 2 0 0 1 1.898 1.368l.088.264A2 2 0 0 0 11.442 8H18a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h1.558zM12 10.5c-.84 0-1.5.732-1.5 1.611V13H10a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-.5v-.889l-.006-.145c-.068-.813-.7-1.466-1.494-1.466zm0 1c.264 0 .5.263.5.611V13h-1v-.889l.007-.102c.04-.296.256-.509.493-.509z"/>`,
   },
+  'content-story': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M13 5a2 2 0 0 1 1.995 1.85L15 7v10a2 2 0 0 1-1.85 1.995L13 19H6a2 2 0 0 1-1.995-1.85L4 17V7a2 2 0 0 1 1.85-1.995L6 5h7Zm5 2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-1V7h1Zm-5 0H6v10h7V7Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  'content-story-fill': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M13 5a2 2 0 0 1 1.995 1.85L15 7v10a2 2 0 0 1-1.85 1.995L13 19H6a2 2 0 0 1-1.995-1.85L4 17V7a2 2 0 0 1 1.85-1.995L6 5h7Zm5 2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-1V7h1Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
 }
 
 const partnerIcons = {

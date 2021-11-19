@@ -7,7 +7,7 @@
     target-slim
     :target="modalTarget"
   >
-    <SbBlokUi v-if="open" @mousedown="wrapClose">
+    <SbBlokUi v-if="open" :style="computedBlokUiStyle" @mousedown="wrapClose">
       <div
         ref="modal"
         class="sb-modal"
@@ -16,7 +16,7 @@
         :style="computedStyle"
         v-bind="{ ...$attrs }"
       >
-        <SbModalCloseButton />
+        <SbModalCloseButton v-if="showClose" />
         <slot />
       </div>
     </SbBlokUi>
@@ -66,9 +66,21 @@ export default {
       type: String,
       default: () => `#sb-modal-target-${randomString(4)}`,
     },
+    overlayPosition: {
+      type: String,
+      default: 'fixed',
+    },
+    overlayTransparent: {
+      type: Boolean,
+      default: false,
+    },
     customClass: {
       type: String,
       default: '',
+    },
+    showClose: {
+      type: Boolean,
+      default: true,
     },
   },
 
@@ -87,6 +99,14 @@ export default {
         this.scrollbar && 'sb-modal--scrollbar',
         this.closeOnHeader && 'sb-modal--close-on-header',
       ]
+    },
+
+    computedBlokUiStyle() {
+      const style = { position: this.overlayPosition }
+
+      if (this.overlayTransparent) style.background = 'none'
+
+      return { ...style }
     },
 
     computedStyle() {

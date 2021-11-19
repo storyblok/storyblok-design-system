@@ -1,5 +1,7 @@
-.menu {
-  @include popoverComponent();
-  width: 100%;
-  max-width: 184px;
+.sb-popover[data-popper-reference-hidden] {
+  opacity: 0;
+  pointer-events: none;
+  position: fixed !important;
+  right: 200%;
+  visibility: hidden;
 }

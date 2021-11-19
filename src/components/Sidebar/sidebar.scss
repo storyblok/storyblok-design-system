@@ -34,8 +34,9 @@
     box-sizing: border-box;
     display: inline-flex;
     flex-direction: column;
+    max-width: 280px;
     min-height: 100vh;
-    transition: all 0.2s ease;
+    transition: max-width 0.2s ease;
     width: 280px;
 
     &:hover .sb-button {
@@ -133,7 +134,7 @@
   // modifiers
   &--minimize {
     .sb-sidebar__content {
-      width: 80px;
+      max-width: 80px;
     }
 
     .sb-icon,
@@ -143,6 +144,11 @@
 
     .sb-sidebar-link--use-avatar {
       padding: 9px 15px 9px 17px;
+
+      .sb-avatar {
+        left: -8px;
+        position: relative;
+      }
     }
 
     .sb-sidebar-toggle .sb-button {
@@ -174,8 +180,6 @@
   }
 
   &--minimize &-link {
-    justify-content: center;
-
     &__label {
       display: none;
     }
