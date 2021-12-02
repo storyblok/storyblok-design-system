@@ -1,6 +1,7 @@
 {
   "name": "storyblok-design-system",
   "version": "0.0.0-development",
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib ./src/main.js",
