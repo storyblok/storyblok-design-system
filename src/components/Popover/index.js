@@ -68,7 +68,9 @@ const SbPopover = {
     },
 
     // component itself properties
-    isOpen: Boolean,
+    isOpen: {
+      type: Boolean,
+    },
     offset: {
       type: Array,
       default: () => [0, 8],
@@ -80,9 +82,13 @@ const SbPopover = {
     // eslint-disable-next-line
     reference: [String, Element],
     // eslint-disable-next-line
-    useAnchorId: String,
+    useAnchorId: {
+      type: String,
+    },
     // eslint-disable-next-line
-    usePortalTarget: String,
+    usePortalTarget: {
+      type: String,
+    },
     usePortal: {
       type: Boolean,
       default: false,
