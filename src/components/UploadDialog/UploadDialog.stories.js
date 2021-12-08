@@ -51,6 +51,12 @@ export default {
       },
     },
   },
+
+  parameters: {
+    docs: {
+      inlineStories: false,
+    },
+  },
 }
 
 export const Default = (args) => ({
