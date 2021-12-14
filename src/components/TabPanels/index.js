@@ -60,7 +60,7 @@ const SbTabPanels = {
   render(h, { slots, props, data }) {
     const children = slots().default.filter((e) => e.tag) || []
 
-    const processChilren = () => {
+    const processChildren = () => {
       return children.map((element) => {
         const elementProps = element.componentOptions.propsData
         const elementId = elementProps.name
@@ -82,7 +82,7 @@ const SbTabPanels = {
           ...data.$attrs,
         },
       },
-      processChilren()
+      processChildren()
     )
   },
 }
