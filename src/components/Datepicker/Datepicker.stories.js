@@ -14,7 +14,7 @@ const Template = (args) => ({
     <SbDatepicker
       :disabled="disabled"
       :placeholder="placeholder"
-      :tz-offset="tzOffset"
+      :time-zone="timeZone"
       :tz-tooltip="tzTooltip"
       :type="type"
       v-model="internalDatetimeValue"
@@ -28,16 +28,27 @@ export default {
   components: { SbDatepicker },
   args: {
     placeholder: 'Select date and time',
-    value: '',
+    value: '2021-12-02 00:00',
     type: 'datetime',
     disabled: false,
-    tzOffset: '',
+    timeZone: 'America/Detroit',
     tzTooltip: null,
   },
   argTypes: {
+    timeZone: {
+      name: 'timeZone',
+      description:
+        'Use this property to bind the user timezone, for example "America/Detroit". The component will calculate the offset automatically',
+      control: {
+        type: 'text',
+      },
+    },
     tzOffset: {
       name: 'tzOffset',
-      description: 'Use this property to bind the user tz offset.',
+      description: `Use this property to bind the user tz offset. NOTE: If you use this, timeZone value will be disconsidered.
+        Examples:
+        GMT +05:00 or +05:00
+        GMT -03:00 or -03:00`,
       control: {
         type: 'text',
       },
@@ -45,7 +56,7 @@ export default {
     tzTooltip: {
       name: 'tzTooltip',
       description:
-        'Use this property to display a tooltip message for `tzOffset` information.',
+        'Use this property to display a tooltip message for `timeZone` or `tzOffset` information.',
       control: {
         type: 'text',
       },
@@ -109,7 +120,7 @@ Disabled.parameters = {
 export const WithTzOffset = Template.bind({})
 
 WithTzOffset.args = {
-  tzOffset: 'GMT -02:00',
+  tzOffset: '-02:00',
   tzTooltip: 'Timezone can be changed in settings',
 }
 
@@ -117,7 +128,7 @@ WithTzOffset.parameters = {
   docs: {
     description: {
       story:
-        'Use `tzOffset` property to describe the user timezone. It is possible to use an optional property called `tzTpoltip` to display a tooltip message for `tzOffset` information.',
+        'Use `timeZone` property to describe the user timezone. It is possible to use an optional property called `tzTooltip` to display a tooltip message for `timeZone` information.',
     },
   },
 }
