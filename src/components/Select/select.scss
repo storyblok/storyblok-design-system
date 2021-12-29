@@ -160,6 +160,10 @@
 
   &__value {
     position: absolute;
+
+    &-icon-left {
+      margin-left: 35px;
+    }
   }
 
   &__avatar {
@@ -229,10 +233,8 @@
       outline: none;
     }
 
-    &--selected {
-      .sb-select-list__item-name {
-        @include selectedItem;
-      }
+    &--selected span {  
+      @include selectedItem; 
     }
   }
 
