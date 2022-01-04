@@ -2,35 +2,33 @@
   width: 100%;
 
   &__label {
-    color: $sb-dark-blue;
     display: block;
+    margin-bottom: 10px;
+    color: $sb-dark-blue;
     font-size: $text-medium-small;
     font-weight: $font-weight-medium;
     letter-spacing: 0;
-    margin-bottom: 10px;
   }
 
   &__inner {
-    display: flex;
     position: relative;
+    display: flex;
   }
 
   &__arrow {
     &--increase,
     &--decrease {
+      position: absolute;
+      right: 1px;
+      z-index: 1;
+      width: 31px;
+      padding: 0;
+      font-size: 13px;
+      text-align: center;
       background: $light-25;
       border: 0;
       border-left: 1px solid #dcdfe6;
       cursor: pointer;
-      font-size: 13px;
-      height: 23.5px;
-      padding: 0;
-      position: absolute;
-      right: 1px;
-      text-align: center;
-      top: 1px;
-      width: 31px;
-      z-index: 1;
 
       &:focus {
         outline: none;
@@ -38,14 +36,16 @@
     }
 
     &--increase {
+      bottom: initial;
+      top: 1px;
       border-radius: 0 5px 0 0;
     }
 
     &--decrease {
+      bottom: 1px;
+      top: initial;
       border-radius: 0 0 5px;
       border-top: 0.5px solid #dcdfe6;
-      bottom: 1px;
-      top: auto;
     }
 
     &--disabled {
@@ -55,17 +55,17 @@
   }
 
   &__input {
-    appearance: textfield;
-    border-radius: 5px;
+    width: 100%;
+    padding: 15px 17px;
     color: $sb-dark-blue;
     font-size: $text-medium-small;
-    padding: 15px 17px;
-    width: 100%;
+    border-radius: 5px;
+    appearance: textfield;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
-      appearance: none;
       margin: 0;
+      appearance: none;
     }
 
     &:disabled {
@@ -89,8 +89,8 @@
       }
 
       &:focus {
-        border-color: $sb-green;
         border-radius: 5px;
+        border-color: $sb-green;
         box-shadow: 0 0 0 3px $sb-green-25;
         outline: none;
       }
@@ -108,10 +108,10 @@
 
   &__message {
     display: block;
+    margin-top: 5px;
     font-size: $text-medium-small;
     font-weight: normal;
     letter-spacing: 0;
-    margin-top: 5px;
 
     &--error {
       color: $sb-dark-blue-50;
