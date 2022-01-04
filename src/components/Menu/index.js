@@ -233,6 +233,10 @@ const SbMenuList = {
       type: Number,
       default: 5,
     },
+    customClass: {
+      type: String,
+      default: '',
+    },
   },
 
   computed: {
@@ -360,6 +364,7 @@ const SbMenuList = {
               role: 'menu',
               'aria-labelledby': menuButtonId,
             },
+            class: this.customClass,
             on: {
               keydown: this.handleKeyDown,
             },

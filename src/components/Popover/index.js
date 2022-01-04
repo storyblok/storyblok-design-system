@@ -5,8 +5,10 @@ import {
   offset,
   preventOverflow,
   arrow,
+  hide,
 } from '@popperjs/core/lib/modifiers'
 
+import './popover.scss'
 import SbPortal from '../Portal'
 
 import { randomString, canUseDOM, includes } from '../../utils'
@@ -114,6 +116,7 @@ const SbPopover = {
           },
         },
         arrow,
+        hide,
       ]
 
       return [...defaultModifierValues, ...this.modifiers]
@@ -268,6 +271,7 @@ const SbPopover = {
           {
             attrs: {
               id: this.anchorId,
+              class: 'sb-popover',
               ...this.$attrs,
             },
             style: {

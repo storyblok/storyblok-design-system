@@ -25,6 +25,7 @@ describe('SbMenu component', () => {
           <SbMenuList
             placement="bottom-start"
             data-testid="menu-list"
+            :custom-class="'menu-list-options'"
           >
             <SbMenuGroup title="Actions">
               <SbMenuItem> Option 1 </SbMenuItem>
@@ -227,5 +228,11 @@ describe('SbMenu component', () => {
 
     // and the focus should be move to the button
     expect(buttonComponent.element).toEqual(document.activeElement)
+  })
+
+  it('should exist the custom class', async () => {
+    const menuListComponent = wrapper.find('[role="menu"]')
+
+    expect(menuListComponent.classes('menu-list-options')).toBe(true)
   })
 })
