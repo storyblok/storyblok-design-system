@@ -42,19 +42,6 @@
     &:hover:not([disabled]) {
       background-color: darken($sb-green, 4%);
     }
-
-    &[disabled] {
-      background-color: rgba($sb-green, 0.6);
-      color: $green-disabled;
-
-      .sb-button__label {
-        opacity: 0.5;
-      }
-
-      .sb-icon {
-        opacity: 0.5;
-      }
-    }
   }
 
   &--secondary {
@@ -67,11 +54,6 @@
 
     &:hover:not([disabled]) {
       background-color: $sb-dark-blue-75;
-    }
-
-    &[disabled] {
-      background-color: rgba($sb-dark-blue, 0.5);
-      color: $color-primary-dark;
     }
   }
 
@@ -88,10 +70,6 @@
       background-color: $light-50;
     }
 
-    &[disabled] {
-      opacity: 0.5;
-    }
-
     .sb-loading svg {
       color: $sb-dark-blue;
       fill: $sb-dark-blue;
@@ -102,10 +80,6 @@
     background-color: $red;
     color: $white;
 
-    &[disabled] {
-      opacity: 0.5;
-    }
-
     &:focus {
       outline: 3px solid $red-25;
     }
@@ -114,10 +88,6 @@
   &--caution {
     background-color: $orange;
     color: $white;
-
-    &[disabled] {
-      opacity: 0.5;
-    }
 
     &:focus {
       outline: 3px solid $orange-25;
@@ -223,5 +193,14 @@
   &--has-icon-only#{&}--large {
     min-height: 61px;
     padding: 0 18px;
+  }
+
+  &[disabled] {
+    background-color: $light;
+    color: $light-gray;
+
+    .sb-icon {
+      opacity: 0.5;
+    }
   }
 }
