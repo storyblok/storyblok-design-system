@@ -1,5 +1,6 @@
 <template>
   <div
+    :ref="_uid"
     v-click-outside="$_wrapClose"
     class="sb-datepicker"
     :class="{ 'sb-datepicker--active': isOverlayVisible }"
@@ -156,16 +157,16 @@ export default {
 
   data: () => ({
     forceVisibleTime: false,
-    internalDate: '',
+    internalDate: dayjs().format(),
     internalValue: '',
     inputElement: null,
     isOverlayVisible: false,
     internalVisualization: INTERNAL_VIEWS.CALENDAR,
     FORMATS: {
-      time: 'HH:mm',
       date: 'YYYY-MM-DD',
       datetime: 'YYYY-MM-DD HH:mm',
     },
+    hitClear: false,
   }),
 
   computed: {
@@ -229,12 +230,11 @@ export default {
     },
 
     tzOffsetValue() {
-      if (!this.timeZone) {
+      if (!this.timeZone || !this.internalValue) {
         return ''
       }
 
       if (this.tzOffset) return this.tzOffset.replace('GMT', '')
-
       return dayjs.tz(this.internalValue, this.timeZone).format('Z')
     },
   },
@@ -255,6 +255,14 @@ export default {
   methods: {
     handleCancelAction() {
       this.closeOverlay()
+
+      if (!this.internalValue) {
+        return
+      } else if (this.hitClear) {
+        this.internalValue = ''
+        return
+      }
+
       this.syncInternalValue(this.value)
     },
 
@@ -279,6 +287,8 @@ export default {
             this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat
           )
       }
+
+      this.hitClear = false
 
       this.$emit('input', utcTime)
 
@@ -339,6 +349,8 @@ export default {
     },
 
     handleClear(previousValue) {
+      this.internalValue = ''
+      this.hitClear = true
       this.$emit('input', '')
       this.$emit('clear', previousValue)
     },
@@ -348,27 +360,26 @@ export default {
     },
 
     syncInternalValue(value) {
-      let tzTime
-      const timeZone = this.timeZone ? this.timeZone : 'UTC'
-
       if (!value) {
-        tzTime = dayjs.utc().tz(timeZone).format(this.internalFormat)
+        this.internalValue = ''
       } else if (this.tzOffset) {
-        tzTime = dayjs
+        this.internalValue = dayjs
           .utc(value)
           .utcOffset(this.tzOffset)
           .format(this.internalFormat)
       } else {
-        tzTime = dayjs.utc(value).tz(this.tzValue).format(this.internalFormat)
+        this.internalValue = dayjs
+          .utc(value)
+          .tz(this.tzValue)
+          .format(this.internalFormat)
       }
 
-      this.internalValue = tzTime
-      this.internalDate = tzTime
+      if (this.internalValue === 'Invalid Date') this.internalValue = ''
     },
 
     $_wrapClose(e) {
       if (!this.$el.contains(e.target)) {
-        this.closeOverlay()
+        this.handleCancelAction()
       }
     },
   },

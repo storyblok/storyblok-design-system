@@ -63,10 +63,10 @@ export default {
     },
     type: {
       name: 'type',
+      options: [...datepickerOptions],
       description: 'Change the type of the input.',
       control: {
         type: 'select',
-        options: [...datepickerOptions],
       },
     },
   },

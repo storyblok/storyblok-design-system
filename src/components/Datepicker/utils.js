@@ -1,7 +1,7 @@
 /**
  * @type {Array<String>}
  */
-export const datepickerOptions = ['datetime', 'date', 'time']
+export const datepickerOptions = ['datetime', 'date']
 
 /**
  * @type {Object}
