@@ -35,15 +35,15 @@ export default {
       default: null,
     },
     percentageValue: {
-      type: [Number, String],
+      type: Number,
       default: 0,
     },
     timeLeft: {
-      type: [Number, String],
+      type: Number,
       default: 0,
     },
     totalFiles: {
-      type: [Number, String],
+      type: Number,
       default: 0,
     },
   },
@@ -57,9 +57,10 @@ export default {
     },
 
     uploadingLabel() {
-      const label = `Uploading ${this.currentFile} of ${this.totalFiles}`
-
-      return this.totalFiles > 1 ? `${label} files` : `${label} file`
+      if (this.totalFiles === 1) {
+        return `Uploading ${this.currentFile} of ${this.totalFiles} file`
+      }
+      return `Uploading ${this.currentFile} of ${this.totalFiles} files`
     },
 
     timeLeftLabel() {

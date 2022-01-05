@@ -5,16 +5,16 @@
   &__image,
   &__initials {
     @include avatarComponent();
-    
+
     width: $sb-avatar-normal;
     height: $sb-avatar-normal;
   }
 
   // image
   img {
+    vertical-align: middle;
     width: 100%;
     max-width: 100%;
-    vertical-align: middle;
     border-radius: 100%;
   }
 
@@ -27,31 +27,31 @@
   // initials
   &__initials {
     color: $white;
-    font-size: $font-size-xs;
+    font-size: $font-12;
+    font-weight: $font-weight-medium;
     text-align: center;
     text-transform: uppercase;
-    font-weight: $font-weight-medium;
   }
 
   // text (on the left)
   &__text-container {
     display: inline-block;
-    margin-left: 10px;
     vertical-align: middle;
+    margin-left: 10px;
   }
 
   &__text {
     display: block;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-medium;
     color: $primary-text-color;
+    font-size: $font-13;
+    font-weight: $font-weight-medium;
   }
 
   &__description {
     display: block;
-    font-size: $font-size-xs;
-    font-weight: $font-weight-regular;
     color: $light-gray;
+    font-size: $font-12;
+    font-weight: $font-weight-regular;
   }
 
   // sizes
@@ -77,8 +77,8 @@
 
   .sb-badge {
     position: absolute;
-    top: 0;
     right: -2px;
+    top: 0;
     border: 1px solid $white;
   }
 }

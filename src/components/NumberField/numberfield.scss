@@ -5,7 +5,7 @@
     display: block;
     margin-bottom: 10px;
     color: $sb-dark-blue;
-    font-size: $text-medium-small;
+    font-size: $font-14;
     font-weight: $font-weight-medium;
     letter-spacing: 0;
   }
@@ -20,8 +20,10 @@
     &--decrease {
       position: absolute;
       right: 1px;
+      top: 1px;
       z-index: 1;
       width: 31px;
+      height: 23.5px;
       padding: 0;
       font-size: 13px;
       text-align: center;
@@ -58,7 +60,7 @@
     width: 100%;
     padding: 15px 17px;
     color: $sb-dark-blue;
-    font-size: $text-medium-small;
+    font-size: $font-14;
     border-radius: 5px;
     appearance: textfield;
 
@@ -76,7 +78,7 @@
 
     &::placeholder {
       color: $sb-dark-blue-50;
-      font-size: $text-medium-small;
+      font-size: $font-14;
       font-weight: normal;
       letter-spacing: 0;
     }
@@ -109,7 +111,7 @@
   &__message {
     display: block;
     margin-top: 5px;
-    font-size: $text-medium-small;
+    font-size: $font-14;
     font-weight: normal;
     letter-spacing: 0;
 

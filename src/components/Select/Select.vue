@@ -29,6 +29,7 @@
       :allow-create="allowCreate"
       :is-disabled="isDisabled"
       :emit-option="emitOption"
+      :error="error"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
       @input="handleSearchInput"
@@ -39,6 +40,10 @@
     >
       <slot name="innerSelect" />
     </SbSelectInner>
+
+    <span v-if="showError" class="sb-select__message sb-select__message--error">
+      {{ errorMessage }}
+    </span>
 
     <SbSelectList
       v-if="!useMinibrowser"
@@ -60,6 +65,12 @@
     />
 
     <slot name="minibrowser" />
+
+    <input
+      class="sb-select__input--hidden"
+      :required="required"
+      :value="value"
+    />
   </div>
 </template>
 
@@ -94,6 +105,7 @@ export default {
       type: [String, Number, Array],
       default: null,
     },
+    required: Boolean,
     multiple: Boolean,
     disableInternalFilter: Boolean,
     filterDebounce: {
@@ -147,6 +159,11 @@ export default {
       type: String,
       default: 'Sorry, no result found.',
     },
+    errorMessage: {
+      type: String,
+      default: '',
+    },
+    error: Boolean,
   },
 
   data: () => ({
@@ -219,6 +236,10 @@ export default {
         return { [this.itemLabel]: opt, [this.itemValue]: opt }
       })
     },
+
+    showError() {
+      return this.error && this.errorMessage
+    },
   },
 
   watch: {
@@ -254,7 +275,9 @@ export default {
     )
 
     this.$nextTick(() => {
-      this.innerElement = this.$refs.inner.$el
+      if (this.$refs.inner) {
+        this.innerElement = this.$refs.inner.$el
+      }
     })
   },
 
@@ -271,6 +294,7 @@ export default {
       if (this.filterable) {
         this.$nextTick(() => {
           canUseDOM &&
+            this.$refs.inner &&
             this.$refs.inner.$el
               .querySelector('.sb-select-inner__input')
               .focus()
@@ -484,7 +508,7 @@ export default {
      * set focus to trigger button element
      */
     $_focusInner() {
-      canUseDOM && this.$refs.inner.$el.focus()
+      canUseDOM && this.$refs.inner && this.$refs.inner.$el.focus()
     },
 
     /**

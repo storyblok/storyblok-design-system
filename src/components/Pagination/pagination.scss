@@ -1,9 +1,9 @@
 .sb-pagination {
-  align-items: center;
-  color: $color-primary-dark;
   display: inline-flex;
-  font-size: $font-size-md;
+  align-items: center;
   height: 53px;
+  color: $color-primary-dark;
+  font-size: $font-14;
 
   // elements
   &__per-page-container {
@@ -16,25 +16,25 @@
   }
 
   &__select {
-    border: 0;
     margin: 0 10px;
+    border: 0;
   }
 
   &__placeholder {
     color: $sb-dark-blue-50;
-    font-size: $font-size-sm;
+    font-size: $font-13;
     font-weight: $font-weight-regular;
   }
 
   &__button {
+    display: block;
+    width: 32px;
+    height: 32px;
+    color: $color-primary-dark;
     background-color: transparent;
     border: 0;
     border-radius: $base-border-radius;
-    color: $color-primary-dark;
     cursor: pointer;
-    display: block;
-    height: 32px;
-    width: 32px;
 
     &:not(:disabled):hover {
       color: $color-primary;
@@ -60,14 +60,14 @@
   }
 
   &-dot {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    padding: 0;
     background-color: $light;
     border: 0;
     border-radius: 100%;
     cursor: pointer;
-    height: 10px;
-    padding: 0;
-    position: relative;
-    width: 10px;
 
     &:not(:first-child) {
       margin-left: 15px;
@@ -77,14 +77,14 @@
       background-color: $sb-dark-blue;
 
       &::after {
-        border: solid 2px $sb-dark-blue-25;
-        border-radius: 100%;
         content: '';
-        height: 14px;
-        left: -4px;
         position: absolute;
+        left: -4px;
         top: -4px;
         width: 14px;
+        height: 14px;
+        border: solid 2px $sb-dark-blue-25;
+        border-radius: 100%;
       }
     }
   }
@@ -99,8 +99,8 @@
   }
 
   &--compact {
-    box-shadow: none;
     width: 100%;
+    box-shadow: none;
   }
 
   &--compact > span {

@@ -1,22 +1,22 @@
 @mixin avatarComponent {
-  align-items: center;
-  border-radius: 100%;
   display: inline-flex;
+  align-items: center;
   justify-content: center;
   vertical-align: middle;
+  border-radius: 100%;
 }
 
 @mixin avatarComponentSize($size) {
-  height: $size;
   width: $size;
+  height: $size;
 }
 
 @mixin generalBoxShadow() {
+  z-index: 99999;
   background-color: $white;
   border: 1px solid $light;
   border-radius: 4px;
   box-shadow: $box-shadow-default;
-  z-index: 99999;
 }
 
 @mixin middleXY {
@@ -27,41 +27,41 @@
 
 // creates a box-shadow and a border for general suspense menu components
 @mixin popoverComponent {
+  overflow: hidden;
   border: 1px solid $light;
   border-radius: 4px;
   box-shadow: $box-shadow-default;
-  overflow: hidden;
 }
 
 // the following are the recommended styles for visually hiding content that will be read by a screen reader
 @mixin screenReaderOnly {
-  height: 1px;
-  left: -10000px;
-  overflow: hidden;
   position: absolute;
+  left: -10000px;
   top: auto;
+  overflow: hidden;
   width: 1px;
+  height: 1px;
 }
 
 // centers all of the child elements using flex approach
 @mixin flexCentering {
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 // reset all styles to a button to use it with icons, for example
 @mixin resetButtonStyle {
-  appearance: none;
+  padding: 0;
   background-color: transparent;
   border: 0;
   cursor: pointer;
-  padding: 0;
+  appearance: none;
 }
 
 @mixin base--icon-hover {
-  border-radius: $base-border-radius;
   padding: 6px;
+  border-radius: $base-border-radius;
   transition: $base-transition;
 
   &:hover {
@@ -99,16 +99,16 @@
 
 @mixin arrow {
   &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -3px;
+    width: 13px;
+    height: 13px;
     background-color: $white;
     border: 1px solid rgb(223, 227, 232);
-    clip-path: polygon(0 60%, 0 0, 60% 0);
-    content: '';
-    height: 13px;
-    left: 50%;
-    position: absolute;
-    top: -3px;
     transform: translateX(-50%) rotate(45deg);
-    width: 13px;
+    clip-path: polygon(0 60%, 0 0, 60% 0);
   }
 }
 
@@ -118,8 +118,8 @@
 }
 
 @mixin focusedTextField {
-  border-color: $sb-green;
   border-radius: 5px;
+  border-color: $sb-green;
   box-shadow: 0 0 0 3px $sb-green-25;
   outline: none;
 }

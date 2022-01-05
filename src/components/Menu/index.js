@@ -225,10 +225,8 @@ const SbMenuList = {
       default: 'bottom-end',
     },
     // eslint-disable-next-line
-    reference: [String, Object, Element],
-    usePortal: {
-      type: Boolean,
-    },
+    reference: [String, Element, Object],
+    usePortal: Boolean,
     zIndex: {
       type: Number,
       default: 5,

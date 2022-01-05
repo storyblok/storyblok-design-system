@@ -2,25 +2,25 @@
   margin-bottom: 20px;
 
   &__title {
+    margin-bottom: 20px;
     font-size: 3rem;
     font-weight: 500;
-    margin-bottom: 20px;
   }
 }
 
 .sb-colors {
-  height: 100px;
-  width: 250px;
-  padding: 0;
-  margin: -1px;
   display: inline-block;
+  width: 250px;
+  height: 100px;
+  margin: -1px;
+  padding: 0;
 
   &--container {
-    color: $light-gray;
-    font-size: $font-size-md;
-    height: 150px;
-    width: 250px;
     display: inline-grid;
+    width: 250px;
+    height: 150px;
     margin-bottom: 10px;
+    color: $light-gray;
+    font-size: $font-14;
   }
 }

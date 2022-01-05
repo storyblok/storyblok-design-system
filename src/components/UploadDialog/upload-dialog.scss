@@ -1,13 +1,13 @@
 .sb-upload-dialog {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 48px;
+  max-width: 602px;
+  margin: 0 auto;
   background-color: $white;
   border-radius: 5px;
   box-shadow: 0 3px 44px 13px rgba(0, 0, 0, 0.08);
-  display: inline-block;
-  height: 48px;
-  margin: 0 auto;
-  max-width: 602px;
-  position: relative;
-  width: 100%;
 
   svg {
     float: left;
@@ -18,16 +18,16 @@
 
   &__label {
     display: block;
-    font-size: $font-size-md;
     padding-top: 14px;
+    font-size: $font-14;
     text-align: left;
   }
 
   .sb-loading__bar {
-    border-radius: 0 0 5px 5px;
+    position: relative;
     bottom: -8px;
     overflow: auto;
-    position: relative;
+    border-radius: 0 0 5px 5px;
   }
 
   .sb-loading__bar::-webkit-progress-bar {
@@ -43,11 +43,11 @@
   }
 
   &__time-left {
-    color: $sb-dark-blue-50;
     float: right;
-    font-size: $font-size-md;
-    font-weight: $font-weight-regular;
     margin-top: -14px;
     padding-right: 19px;
+    color: $sb-dark-blue-50;
+    font-size: $font-14;
+    font-weight: $font-weight-regular;
   }
 }

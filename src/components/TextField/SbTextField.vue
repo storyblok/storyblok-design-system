@@ -154,6 +154,10 @@ export default {
       type: String,
       default: null,
     },
+    value: {
+      type: [String, Number, Boolean],
+      default: '',
+    },
   },
 
   computed: {

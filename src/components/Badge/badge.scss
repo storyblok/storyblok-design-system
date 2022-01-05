@@ -7,17 +7,17 @@
 }
 
 .sb-badge {
-  align-items: center;
-  border-radius: 5px;
-  color: $white;
-  display: inline-flex;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-medium;
-  justify-content: center;
-  letter-spacing: 0;
-  padding: 0 11px 0 4px;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 11px 0 4px;
+  color: $white;
+  font-size: $font-13;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0;
   text-align: center;
+  border-radius: 5px;
 
   &--positive {
     @include setColor($green);
@@ -48,21 +48,21 @@
   }
 
   &--contract {
-    border-radius: 100%;
+    width: 12px;
     height: 12px;
     padding: 0;
-    width: 12px;
+    border-radius: 100%;
   }
 
   &--inline-label {
-    background-color: $white;
     padding: 0;
+    background-color: $white;
 
     .sb-badge__label {
-      color: $color-primary-dark;
-      font-size: $font-size-md;
-      font-weight: $font-weight-medium;
       margin-left: 5px;
+      color: $color-primary-dark;
+      font-size: $font-14;
+      font-weight: $font-weight-medium;
     }
   }
 }

@@ -6,8 +6,8 @@
 input[type=search]::-ms-clear,
 input[type=search]::-ms-reveal {
   display: none;
-  height: 0;
   width: 0;
+  height: 0;
 }
 
 /* clears the 'X' icon from Chrome */
@@ -26,10 +26,10 @@ legend {
 }
 
 fieldset {
-  border: 0;
-  margin: 0;
   min-width: 0;
+  margin: 0;
   padding: 0.01em 0 0;
+  border: 0;
 }
 
 body:not(:-moz-handler-blocked) fieldset {
