@@ -88,10 +88,6 @@
       background-color: $light-50;
     }
 
-    &[disabled] {
-      opacity: 0.5;
-    }
-
     .sb-loading svg {
       color: $sb-dark-blue;
       fill: $sb-dark-blue;
@@ -102,10 +98,6 @@
     color: $white;
     background-color: $red;
 
-    &[disabled] {
-      opacity: 0.5;
-    }
-
     &:focus {
       outline: 3px solid $red-25;
     }
@@ -114,10 +106,6 @@
   &--caution {
     color: $white;
     background-color: $orange;
-
-    &[disabled] {
-      opacity: 0.5;
-    }
 
     &:focus {
       outline: 3px solid $orange-25;
@@ -233,5 +221,14 @@
   &--has-icon-only#{&}--large {
     min-height: 61px;
     padding: 0 18px;
+  }
+
+  &[disabled] {
+    background-color: $light;
+    color: $light-gray;
+
+    .sb-icon {
+      opacity: 0.5;
+    }
   }
 }
