@@ -9,10 +9,10 @@
     height: 90px;
 
     .sb-notification--link {
+      z-index: 1;
       float: right;
       margin-right: 20px;
       margin-top: 37px;
-      z-index: 1;
     }
   }
 
@@ -25,22 +25,22 @@
   }
 
   &--expandle-button {
-    margin-top: 22px;
-    margin-right: 20px;
-    padding: 0;
     float: right;
-    border: 0;
+    margin-right: 20px;
+    margin-top: 22px;
+    padding: 0;
     background: transparent;
+    border: 0;
     cursor: pointer;
   }
 
   &--btn {
-    margin-top: 22px;
-    margin-right: 20px;
-    padding: 0;
     float: right;
-    border: 0;
+    margin-right: 20px;
+    margin-top: 22px;
+    padding: 0;
     background: transparent;
+    border: 0;
     cursor: pointer;
 
     svg {
@@ -50,12 +50,12 @@
 
   // Status of notication
   &--icon-container {
-    height: 16px;
     display: inline-block;
-    background-color:  transparent;
+    height: 16px;
     margin-left: 18px;
     margin-right: 18px;
     margin-top: 21px;
+    background-color: transparent;
 
     svg {
       vertical-align: top;
@@ -83,8 +83,9 @@
   }
 
   &--general {
-    background-color: $white;
     @include generalBoxShadow();
+
+    background-color: $white;
     border-radius: 10px;
   }
 
@@ -94,41 +95,41 @@
   }
 
   &--title {
-    font-size: 24px;
-    font-weight: $font-weight-medium;
-    vertical-align: middle;
-    width: 75%;
     display: inline-block;
     overflow: hidden;
-    white-space: nowrap;
+    vertical-align: middle;
+    width: 75%;
+    font-size: $font-16;
+    font-weight: $font-weight-medium;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &--description {
+    overflow: hidden;
     margin-left: 52px;
     margin-right: 34px;
     margin-top: 13px;
-    font-size: $font-size-md;
+    font-size: $font-14;
     font-weight: $font-weight-regular;
     line-height: 15px;
-    overflow: hidden; 
     text-overflow: ellipsis;
   }
 
   &--link {
-    margin-left: 52px;
-    margin-top: 12px;
     overflow: hidden;
-    text-overflow: ellipsis;
+    margin-left: 52px;
     margin-right: 34px;
-    
+    margin-top: 12px;
+    text-overflow: ellipsis;
+
     a {
-      font-size: $font-size-md;
+      color: $primary-text-color;
+      font-size: $font-14;
       font-weight: $font-weight-regular;
       text-decoration: none;
-      text-decoration-color: $primary-text-color;
-      color: $primary-text-color;
       text-decoration: underline;
+      text-decoration-color: $primary-text-color;
     }
   }
 }

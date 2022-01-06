@@ -1,6 +1,6 @@
 @mixin setColor ($color, $textColor) {
-  background-color: $color;
   color: $textColor;
+  background-color: $color;
 
   &:hover {
     background-color: darken($color, 5%);
@@ -8,15 +8,15 @@
 }
 
 .sb-tag {
-  align-items: center;
-  border-radius: 5px;
-  display: inline-flex;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-medium;
-  justify-content: center;
-  padding: 3px 10px;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   vertical-align: middle;
+  padding: 3px 10px;
+  font-size: $font-13;
+  font-weight: $font-weight-medium;
+  border-radius: 5px;
 
   &--primary {
     @include setColor($color-primary, $white);
@@ -43,7 +43,7 @@
   }
 
   .sb-icon {
-    cursor: pointer;
     margin-left: 5px;
+    cursor: pointer;
   }
 }

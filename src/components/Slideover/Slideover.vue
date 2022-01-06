@@ -33,9 +33,7 @@ export default {
     SbBlokUi,
   },
   props: {
-    isOpen: {
-      type: Boolean,
-    },
+    isOpen: Boolean,
     orientation: {
       type: String,
       default: 'right',

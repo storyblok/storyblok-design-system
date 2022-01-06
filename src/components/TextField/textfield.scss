@@ -2,18 +2,18 @@
   width: 100%;
 
   &__label {
-    color: $sb-dark-blue;
     display: block;
-    font-size: $text-medium-small;
+    margin-bottom: 10px;
+    color: $sb-dark-blue;
+    font-size: $font-14;
     font-weight: $font-weight-medium;
     letter-spacing: 0;
-    margin-bottom: 10px;
   }
 
   &__icon {
-    cursor: pointer;
     position: absolute;
     top: 12px;
+    cursor: pointer;
 
     &:hover {
       color: $sb-dark-blue-50;
@@ -33,32 +33,31 @@
   }
 
   &__inner {
-    display: inline-flex;
     position: relative;
+    display: inline-flex;
     width: 100%;
   }
 
   &__textarea {
     box-sizing: border-box;
-    line-height: 25px;
     min-height: 130px;
+    line-height: 25px;
     resize: vertical;
   }
 
   &__input,
   &__textarea {
-    border-radius: 5px;
-    color: $sb-dark-blue;
-    font-size: $text-medium;
-    padding: 15px 17px;
-    transition: $base-transition;
     width: 100%;
+    padding: 15px 17px;
+    color: $sb-dark-blue;
+    font-size: $font-15;
+    border-radius: 5px;
+    transition: $base-transition;
 
-    /* stylelint-disable */
-    @media screen and (min-device-pixel-ratio: 0) {
+    /* stylelint-disable-next-line */
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
       font-size: 1.6rem;
     }
-    /* stylelint-enable */
 
     &:disabled {
       background: $light-25;
@@ -68,7 +67,7 @@
 
     &::placeholder {
       color: $sb-dark-blue-50;
-      font-size: $text-medium-small;
+      font-size: $font-14;
       font-weight: normal;
       letter-spacing: 0;
     }
@@ -107,8 +106,8 @@
 
     &--ghost {
       border: 0;
-      border-bottom: 1px solid $light;
       border-radius: 0;
+      border-bottom: 1px solid $light;
 
       &:focus {
         outline: none;
@@ -116,21 +115,21 @@
     }
 
     &--ghost-light {
+      position: relative;
+      display: block;
+      padding: 13px 0 13px 32px;
+      font-size: $font-13;
       background-color: $light-25;
       border: 1px solid transparent;
       border-radius: $base-border-radius;
-      display: block;
-      font-size: $font-size-sm;
-      padding: 13px 0 13px 32px;
-      position: relative;
 
       &:hover {
         border-color: $sb-green;
       }
 
       &:focus {
-        border-color: $sb-green;
         border-radius: 5px;
+        border-color: $sb-green;
         box-shadow: 0 0 0 3px $sb-green-25;
         outline: none;
       }
@@ -148,15 +147,16 @@
 
   &__prefix,
   &__suffix {
+    min-width: fill-available;
+    min-width: fit-content;
+    padding: 15px 17px;
+    color: $sb-dark-blue;
+    font-size: $font-14;
+    font-weight: normal;
+    letter-spacing: 0;
     background-color: $white;
     border: 1px solid $light;
     border-radius: 5px;
-    color: $sb-dark-blue;
-    font-size: $text-medium-small;
-    font-weight: normal;
-    letter-spacing: 0;
-    min-width: fit-content;
-    padding: 15px 17px;
   }
 
   &__suffix {
@@ -173,10 +173,10 @@
 
   &__message {
     display: block;
-    font-size: $text-medium-small;
+    margin-top: 5px;
+    font-size: $font-14;
     font-weight: normal;
     letter-spacing: 0;
-    margin-top: 5px;
 
     &--error {
       color: $red;
@@ -184,12 +184,12 @@
   }
 
   &__counter {
-    color: $sb-dark-blue-50;
     display: block;
-    font-size: $text-medium-small;
+    margin-top: 5px;
+    color: $sb-dark-blue-50;
+    font-size: $font-14;
     font-weight: $font-weight-regular;
     letter-spacing: 0;
-    margin-top: 5px;
 
     &--warning {
       color: $orange;

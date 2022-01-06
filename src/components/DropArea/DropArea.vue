@@ -135,7 +135,7 @@ export default {
      * fileFilter filters the files, 'and where files with an extension not accepted,
      * maximum size exceeded and number of files are filtered.
      */
-    $_fileFilter(fileArray, from = 'files') {
+    $_fileFilter([...fileArray]) {
       const files = []
 
       if (this.maxFile && this.$_checkMaximumNumberOfFiles(fileArray.length)) {
@@ -143,20 +143,13 @@ export default {
       }
 
       fileArray.forEach((item) => {
-        let file = []
+        const file = item
 
-        if (from === 'items' && item.kind === 'file') {
-          file = item.getAsFile()
-        }
-
-        if (this.accept && !this.$_checkAcceptedFiles(file.type || item.type)) {
+        if (this.accept && !this.$_checkAcceptedFiles(file.type)) {
           return
         }
 
-        if (
-          this.maxFileSize &&
-          this.$_checkMaximumFileSize(file.size || item.size)
-        ) {
+        if (this.maxFileSize && this.$_checkMaximumFileSize(file.size)) {
           return
         }
 
@@ -175,11 +168,7 @@ export default {
       e.stopPropagation()
       this.isOver = false
 
-      const data = e.dataTransfer
-
-      const files = data.items
-        ? this.$_fileFilter(data.items, 'items')
-        : this.$_fileFilter(data.files)
+      const files = this.$_fileFilter(e.dataTransfer.files)
 
       this.$emit('upload-files', files)
       this.$emit('close-drop-area')

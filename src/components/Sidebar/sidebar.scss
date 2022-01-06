@@ -1,6 +1,6 @@
 @mixin activeItemState() {
-  background-color: #262e48;
   color: $white;
+  background-color: #262e48;
 
   &::after {
     opacity: 1;
@@ -12,16 +12,16 @@
 
   // sidebar bottom
   &__bottom {
-    margin-bottom: 15px;
     position: relative;
+    margin-bottom: 15px;
 
     .sb-button {
-      min-height: auto;
-      opacity: 0;
-      padding: 0;
       position: absolute;
       right: -13px;
       top: -26px;
+      min-height: auto;
+      padding: 0;
+      opacity: 0;
 
       &:focus {
         opacity: 1;
@@ -30,13 +30,14 @@
   }
 
   &__content {
-    background-color: $color-primary-dark;
-    box-sizing: border-box;
     display: inline-flex;
     flex-direction: column;
-    min-height: 100vh;
-    transition: all 0.2s ease;
+    box-sizing: border-box;
     width: 280px;
+    max-width: 280px;
+    min-height: 100vh;
+    background-color: $color-primary-dark;
+    transition: max-width 0.2s ease;
 
     &:hover .sb-button {
       opacity: 1;
@@ -49,15 +50,15 @@
     padding: 28px;
 
     .sb-avatar {
-      cursor: pointer;
       display: block;
       margin-left: 30px;
+      cursor: pointer;
     }
   }
 
   &-logo {
-    color: $white;
     height: 26px;
+    color: $white;
 
     img {
       width: 100%;
@@ -77,16 +78,17 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    margin: 0;
     overflow-x: hidden;
+    margin: 0;
     padding: 0;
   }
 
   &-item {
-    list-style: none;
+    position: relative;
     margin-bottom: 1px;
     padding: 0 16px;
     white-space: nowrap;
+    list-style: none;
 
     svg {
       min-width: 24px;
@@ -94,19 +96,19 @@
   }
 
   &-link {
-    align-items: center;
-    border-radius: 8px;
-    color: $light-gray;
-    cursor: pointer;
+    position: relative;
     display: flex;
-    font-size: $font-size-md;
+    align-items: center;
+    vertical-align: middle;
+    padding: 12px;
+    color: $light-gray;
+    font-size: $font-14;
     font-weight: $font-weight-medium;
     letter-spacing: 0;
     line-height: inherit;
-    padding: 12px;
-    position: relative;
     text-decoration: none;
-    vertical-align: middle;
+    border-radius: 8px;
+    cursor: pointer;
 
     &:hover,
     &:focus {
@@ -133,7 +135,7 @@
   // modifiers
   &--minimize {
     .sb-sidebar__content {
-      width: 80px;
+      max-width: 80px;
     }
 
     .sb-icon,
@@ -143,11 +145,16 @@
 
     .sb-sidebar-link--use-avatar {
       padding: 9px 15px 9px 17px;
+
+      .sb-avatar {
+        position: relative;
+        left: -8px;
+      }
     }
 
     .sb-sidebar-toggle .sb-button {
-      background-color: $light-75;
       color: $color-primary-dark;
+      background-color: $light-75;
       opacity: 1;
 
       &:hover {
@@ -160,8 +167,8 @@
     }
 
     .sb-menu-list {
-      margin: 0 16px;
       min-width: 200px;
+      margin: 0 16px;
     }
   }
 
@@ -174,8 +181,6 @@
   }
 
   &--minimize &-link {
-    justify-content: center;
-
     &__label {
       display: none;
     }
@@ -183,27 +188,27 @@
 
   // mobile elements
   &__mobile-header {
+    display: none;
     align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 20px;
     background-color: $white;
     border-bottom: 1px solid $light;
-    box-sizing: border-box;
-    display: none;
-    padding: 10px 20px;
-    width: 100%;
 
     button {
-      appearance: none;
+      padding: 0;
       background-color: transparent;
       border: 0;
       cursor: pointer;
-      padding: 0;
+      appearance: none;
     }
   }
 
   &__mobile-header-menu-icon {
-    border-right: 1px solid $light;
     margin-right: 20px;
     padding: 10px 20px 10px 0;
+    border-right: 1px solid $light;
   }
 
   &__mobile-logo {
@@ -221,11 +226,11 @@
   }
 
   .sb-sidebar__content {
-    left: 0;
     position: absolute;
+    left: 0;
     top: 0;
-    transform: translateX(-110%);
     z-index: 4;
+    transform: translateX(-110%);
   }
 
   .sb-sidebar--active .sb-sidebar__content {

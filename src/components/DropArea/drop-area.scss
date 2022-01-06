@@ -2,16 +2,16 @@
   width: 100%;
 
   &__over {
-    background-color: rgba(19, 25, 45, 0.47);
-    bottom: 0;
-    box-sizing: border-box;
-    cursor: copy;
-    left: 0;
-    min-height: 100vh;
     position: fixed;
+    bottom: 0;
+    left: 0;
     right: 0;
     top: 0;
     z-index: 5;
+    box-sizing: border-box;
+    min-height: 100vh;
+    background-color: rgba(19, 25, 45, 0.47);
+    cursor: copy;
 
     .sb-drop-area__content {
       background-color: $white;
@@ -22,39 +22,39 @@
       background-color: $sb-green-25;
 
       svg {
-        height: 48px;
         width: 48px;
+        height: 48px;
       }
     }
   }
 
   &__content {
-    border: 1px solid transparent;
-    height: 500px;
-    left: 50%;
-    max-width: 500px;
     position: absolute;
+    left: 50%;
     top: 50%;
+    width: 100%;
+    height: 500px;
+    max-width: 500px;
+    border: 1px solid transparent;
     transform: translate(-50%, -50%);
     transition: all 0.05s ease;
-    width: 100%;
   }
 
   &__title {
-    color: $primary-text-color;
-    font-size: $text-medium-header;
-    font-weight: $font-weight-medium;
     margin: 20px 0 10px;
+    color: $primary-text-color;
+    font-size: $heading-lg;
+    font-weight: $font-weight-medium;
     text-align: center;
   }
 
   &__subtitle {
+    width: 80%;
+    margin: 0 auto;
     color: $light-gray;
     font-size: $font-size-default;
     font-weight: $font-weight-regular;
-    margin: 0 auto;
     text-align: center;
-    width: 80%;
 
     span {
       color: $sb-green;
@@ -67,20 +67,20 @@
   }
 
   &__icon {
-    align-items: center;
-    background-color: $white;
-    border-radius: 50%;
     display: flex;
-    height: 104px;
+    align-items: center;
     justify-content: center;
+    width: 104px;
+    height: 104px;
     margin: 0 auto;
     margin-top: 159px;
+    background-color: $white;
+    border-radius: 50%;
     transition: $base-transition;
-    width: 104px;
 
     svg {
-      height: 105px;
       width: 83px;
+      height: 105px;
     }
   }
 }

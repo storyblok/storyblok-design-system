@@ -97,7 +97,7 @@ const SbPortal = {
      * remove from the DOM the portal target
      */
     unmountTarget() {
-      if (!this.disabled && this.unmountOnDestroy) {
+      if (!this.disabled && this.unmountOnDestroy && !this.target.length) {
         canUseDOM &&
           this.portalTarget.isConnected &&
           document.body.removeChild(this.portalTarget)

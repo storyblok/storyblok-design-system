@@ -2,22 +2,22 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  font-size: $font-size-lg;
+  color: $color-primary;
+  font-size: $font-16;
   font-weight: $font-weight-medium;
   line-height: 20px;
   text-align: center;
+  text-decoration: none;
   background-color: transparent;
   border: 0;
   cursor: pointer;
-  text-decoration: none;
-  color: $color-primary;
 
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
-    height: 1px;
     width: 100%;
+    height: 1px;
     background-color: $color-primary;
     opacity: 0;
   }

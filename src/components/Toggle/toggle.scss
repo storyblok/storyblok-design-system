@@ -5,9 +5,9 @@ $toggle-circle: $toggle-width * 0.4;
 $toggle-padding: 4px;
 
 .sb-toggle {
-  height: $toggle-height;
   position: relative;
   width: $toggle-width;
+  height: $toggle-height;
 }
 
 .sb-toggle--primary .sb-toggle__label {
@@ -68,27 +68,27 @@ $toggle-padding: 4px;
 }
 
 .sb-toggle__label {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-indent: -9999px;
   background: $light;
   border-radius: $toggle-height;
   cursor: pointer;
-  display: block;
-  height: 100%;
-  position: relative;
-  text-indent: -9999px;
   transition: background-color 0.2s $toggle-easing 0.1s;
-  width: 100%;
 
   &::after {
+    content: '';
+    position: absolute;
+    left: $toggle-padding;
+    top: $toggle-padding;
+    z-index: 2;
+    width: $toggle-circle;
+    height: $toggle-circle;
     background: $white;
     border-radius: 100%;
-    content: '';
-    height: $toggle-circle;
-    left: $toggle-padding;
-    position: absolute;
-    top: $toggle-padding;
     transition: transform 0.3s $toggle-easing;
-    width: $toggle-circle;
-    z-index: 2;
   }
 
   &:active::after {
@@ -97,21 +97,21 @@ $toggle-padding: 4px;
 }
 
 .sb-toggle__icon {
-  height: $toggle-circle * 1.2;
-  pointer-events: none;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  width: $toggle-circle * 1.2;
   z-index: 0;
+  width: $toggle-circle * 1.2;
+  height: $toggle-circle * 1.2;
+  pointer-events: none;
+  transform: translateY(-50%);
 
   &--active {
-    color: $white;
     left: 2px;
+    color: $white;
   }
 
   &--inactive {
-    color: $light-gray;
     right: 2px;
+    color: $light-gray;
   }
 }
