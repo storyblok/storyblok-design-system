@@ -1,6 +1,6 @@
 @mixin setIconSize ($size) {
-  height: $size;
   width: $size;
+  height: $size;
 }
 
 @mixin setIconColor ($color) {
@@ -13,8 +13,8 @@
   @include setIconColor(currentColor);
 
   display: inline-block;
-  stroke-width: 2px;
   vertical-align: middle;
+  stroke-width: 2px;
 
   &--small {
     @include setIconSize($icon-small-size);

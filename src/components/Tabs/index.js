@@ -230,7 +230,7 @@ const SbTabs = {
       })
     }
 
-    const processChilren = () => {
+    const processChildren = () => {
       return children.map((element) => {
         const elementProps = element.componentOptions.propsData
         const elementId = elementProps.name
@@ -264,7 +264,7 @@ const SbTabs = {
         },
       },
       [
-        processChilren(),
+        processChildren(),
         ...this.additionalTabs,
         this.enableAddButton && renderAddButton(),
       ]

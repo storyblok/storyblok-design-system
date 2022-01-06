@@ -1,40 +1,40 @@
+@import 'animations';
+
 .sb-slideover {
-  background-color: $white;
-  border-radius: 5px;
+  position: fixed;
   bottom: 20px;
-  box-sizing: border-box;
+  right: 20px;
+  top: 20px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
   height: 100%;
-  margin-left: auto;
   max-height: calc(100vh - 40px);
   max-width: 624px;
   min-width: 400px;
-  overflow: hidden;
+  margin-left: auto;
   padding: 20px;
-  position: fixed;
-  right: 20px;
-  top: 20px;
+  background-color: $white;
+  border-radius: 5px;
 
   &--left {
     left: 20px;
+    right: auto;
     margin-left: initial;
     margin-right: auto;
-    right: auto;
   }
 
   &__close-button {
     @include base--icon-hover;
 
-    appearance: none;
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
     position: absolute;
     right: 20px;
     top: 23px;
     z-index: 2;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    appearance: none;
   }
 }
-
-@import 'animations';

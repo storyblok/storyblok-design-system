@@ -1,39 +1,39 @@
 .sb-button {
+  position: relative;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  padding: 14px 28px;
+  font-family: $primary-font-family;
+  font-size: $font-16;
   border: 1px solid transparent;
   border-radius: 5px;
   cursor: pointer;
-  display: inline-flex;
-  font-family: $primary-font-family;
-  font-size: $font-size-lg;
-  justify-content: center;
-  padding: 14px 28px;
-  position: relative;
   transition: $base-transition;
-  vertical-align: middle;
 
   .sb-loading {
     position: absolute;
   }
 
   &__label {
-    font-weight: $font-weight-medium;
     vertical-align: middle;
+    font-weight: $font-weight-medium;
   }
 
   &--inverted-link {
-    background: transparent;
     color: $white;
+    background: transparent;
   }
 
   &--primary-link {
-    background: transparent;
     color: $sb-green;
+    background: transparent;
   }
 
   &--primary {
-    background-color: $sb-green;
     color: $white;
+    background-color: $sb-green;
 
     &:focus {
       outline: 3px solid $sb-green-25;
@@ -42,24 +42,11 @@
     &:hover:not([disabled]) {
       background-color: darken($sb-green, 4%);
     }
-
-    &[disabled] {
-      background-color: rgba($sb-green, 0.6);
-      color: $green-disabled;
-
-      .sb-button__label {
-        opacity: 0.5;
-      }
-
-      .sb-icon {
-        opacity: 0.5;
-      }
-    }
   }
 
   &--secondary {
-    background-color: $sb-dark-blue;
     color: $white;
+    background-color: $sb-dark-blue;
 
     &:focus {
       outline: 3px solid $sb-dark-blue-25;
@@ -68,17 +55,12 @@
     &:hover:not([disabled]) {
       background-color: $sb-dark-blue-75;
     }
-
-    &[disabled] {
-      background-color: rgba($sb-dark-blue, 0.5);
-      color: $color-primary-dark;
-    }
   }
 
   &--ghost {
+    color: $sb-dark-blue;
     background-color: $white;
     border-color: $light;
-    color: $sb-dark-blue;
 
     &:focus {
       outline: 3px solid $light-25;
@@ -88,10 +70,6 @@
       background-color: $light-50;
     }
 
-    &[disabled] {
-      opacity: 0.5;
-    }
-
     .sb-loading svg {
       color: $sb-dark-blue;
       fill: $sb-dark-blue;
@@ -99,12 +77,8 @@
   }
 
   &--danger {
-    background-color: $red;
     color: $white;
-
-    &[disabled] {
-      opacity: 0.5;
-    }
+    background-color: $red;
 
     &:focus {
       outline: 3px solid $red-25;
@@ -112,12 +86,8 @@
   }
 
   &--caution {
-    background-color: $orange;
     color: $white;
-
-    &[disabled] {
-      opacity: 0.5;
-    }
+    background-color: $orange;
 
     &:focus {
       outline: 3px solid $orange-25;
@@ -137,13 +107,13 @@
   }
 
   &--small {
-    font-size: $font-size-md;
     min-height: 36px;
     padding: 8px 16px;
+    font-size: $font-14;
 
     .sb-loading {
-      height: 14px;
       width: 14px;
+      height: 14px;
     }
 
     .sb-loading svg {
@@ -156,9 +126,12 @@
     min-height: 36px;
   }
 
-  &--small#{&}--has-icon,
-  &--small#{&}--has-icon-right {
+  &--small#{&}--has-icon {
     padding: 5px 16px 5px 9px;
+  }
+
+  &--small#{&}--has-icon-right {
+    padding: 5px 9px 5px 16px;
   }
 
   &--large {
@@ -169,9 +142,12 @@
     min-height: 61px;
   }
 
-  &--large#{&}--has-icon,
+  &--large#{&}--has-icon {
+    padding: 18px 43px 17px 36px;
+  }
+
   &--large#{&}--has-icon-right {
-    padding: 18px 43px 17px;
+    padding: 18px 36px 17px 43px;
   }
 
   &[disabled] {
@@ -191,7 +167,11 @@
   }
 
   &--has-icon {
-    padding: 12px 28px 11px;
+    padding: 12px 28px 11px 21px;
+
+    .sb-loading {
+      margin-right: -7px;
+    }
 
     .sb-icon {
       margin-right: 5px;
@@ -199,7 +179,7 @@
   }
 
   &--has-icon-right {
-    padding: 12px 28px 11px;
+    padding: 12px 21px 11px 28px;
 
     .sb-icon {
       margin-left: 5px;
@@ -223,5 +203,14 @@
   &--has-icon-only#{&}--large {
     min-height: 61px;
     padding: 0 18px;
+  }
+
+  &[disabled] {
+    background-color: $light;
+    color: $light-gray;
+
+    .sb-icon {
+      opacity: 0.5;
+    }
   }
 }

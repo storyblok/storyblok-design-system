@@ -1,7 +1,7 @@
 <template>
   <div
     class="sb-select-inner"
-    :class="{ 'sb-select-inner__disabled': isDisabled }"
+    :class="hasSpecialClass"
     tabindex="0"
     v-on="$listeners"
     @keydown="handleKeyDown"
@@ -170,6 +170,7 @@ export default {
     emitOption: Boolean,
     useAvatars: Boolean,
     isDisabled: Boolean,
+    error: Boolean,
   },
 
   data: () => ({
@@ -184,6 +185,13 @@ export default {
       set(value) {
         return value
       },
+    },
+
+    hasSpecialClass() {
+      return [
+        this.error && 'sb-select-inner--error',
+        this.isDisabled && 'sb-select-inner__disabled',
+      ]
     },
 
     hasValue() {

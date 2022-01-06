@@ -1,5 +1,6 @@
 <template>
   <div
+    :ref="_uid"
     v-click-outside="$_wrapClose"
     class="sb-datepicker"
     :class="{ 'sb-datepicker--active': isOverlayVisible }"
@@ -24,11 +25,11 @@
           v-tooltip="{ label: tzTooltip, position: 'top' }"
           class="sb-datepicker__timezone"
         >
-          {{ tzOffset }}
+          {{ tzOffsetLabel }}
         </span>
 
         <span v-else class="sb-datepicker__timezone">
-          {{ tzOffset }}
+          {{ tzOffsetLabel }}
         </span>
       </template>
     </div>
@@ -82,6 +83,8 @@
 
 <script>
 import dayjs from 'dayjs'
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
 
 import { ClickOutside, Tooltip } from '../../directives'
 import { includes } from '../../utils'
@@ -95,6 +98,9 @@ import SbDatepickerMonths from './components/DatepickerMonths'
 import SbDatepickerYears from './components/DatepickerYears'
 
 import { datepickerOptions, INTERNAL_VIEWS } from './utils'
+
+dayjs.extend(timezone)
+dayjs.extend(utc)
 
 export default {
   name: 'SbDatepicker',
@@ -133,6 +139,11 @@ export default {
       default: '',
     },
 
+    timeZone: {
+      type: String,
+      default: 'UTC',
+    },
+
     tzTooltip: {
       type: String,
       default: null,
@@ -147,37 +158,32 @@ export default {
   data: () => ({
     forceVisibleTime: false,
     internalDate: dayjs().format(),
-    internalValue: dayjs().format(),
+    internalValue: '',
     inputElement: null,
     isOverlayVisible: false,
     internalVisualization: INTERNAL_VIEWS.CALENDAR,
+    FORMATS: {
+      date: 'YYYY-MM-DD',
+      datetime: 'YYYY-MM-DD HH:mm',
+    },
+    hitClear: false,
   }),
 
   computed: {
     internalFormat() {
-      const FORMATS = {
-        time: 'HH:mm',
-        date: 'YYYY-MM-DD',
-        datetime: 'YYYY-MM-DD HH:mm',
-      }
-
-      return FORMATS[this.type]
+      return this.FORMATS[this.type]
     },
 
     internalValueFormatted() {
-      if (!this.internalValue) {
-        return ''
-      }
-
-      return dayjs(this.internalValue).format(this.internalFormat)
+      return this.internalValue ? this.internalValue : ''
     },
 
-    isDisabledTime() {
+    isTimeDisabled() {
       return this.type === 'date'
     },
 
     isShowTzOffset() {
-      return !this.isDisabledTime && this.tzOffset && this.internalValue
+      return !this.isTimeDisabled && this.tzOffsetValue && this.internalValue
     },
 
     isShowCalendar() {
@@ -214,6 +220,23 @@ export default {
 
       return COMPONENTS[this.internalVisualization]
     },
+
+    tzValue() {
+      return this.isTimeDisabled ? 'UTC' : this.timeZone ? this.timeZone : 'UTC'
+    },
+
+    tzOffsetLabel() {
+      return `GMT ${this.tzOffsetValue}`
+    },
+
+    tzOffsetValue() {
+      if (!this.timeZone || !this.internalValue) {
+        return ''
+      }
+
+      if (this.tzOffset) return this.tzOffset.replace('GMT', '')
+      return dayjs.tz(this.internalValue, this.timeZone).format('Z')
+    },
   },
 
   watch: {
@@ -232,11 +255,42 @@ export default {
   methods: {
     handleCancelAction() {
       this.closeOverlay()
+
+      if (!this.internalValue) {
+        return
+      } else if (this.hitClear) {
+        this.internalValue = ''
+        return
+      }
+
       this.syncInternalValue(this.value)
     },
 
     handleDoneAction() {
-      this.$emit('input', this.internalValue)
+      let utcTime
+
+      if (!this.tzOffset) {
+        utcTime = dayjs
+          .tz(this.internalValue, this.tzValue)
+          .utc()
+          .format(
+            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat
+          )
+      } else {
+        const offset = this.tzOffset.replace(/[+-]/g, ($1) =>
+          $1 === '+' ? '-' : '+'
+        )
+        utcTime = dayjs
+          .utc(this.internalValue)
+          .utcOffset(offset)
+          .format(
+            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat
+          )
+      }
+
+      this.hitClear = false
+
+      this.$emit('input', utcTime)
 
       this.$nextTick(() => {
         this.closeOverlay()
@@ -260,8 +314,10 @@ export default {
     },
 
     handleComponentsInput(value) {
-      this.internalDate = value
-      this.internalValue = value
+      const inputTime = dayjs(value).format(this.internalFormat)
+
+      this.internalDate = inputTime
+      this.internalValue = inputTime
 
       if (this.type === 'date') {
         this.closeOverlay()
@@ -294,6 +350,7 @@ export default {
 
     handleClear(previousValue) {
       this.internalValue = ''
+      this.hitClear = true
       this.$emit('input', '')
       this.$emit('clear', previousValue)
     },
@@ -303,13 +360,26 @@ export default {
     },
 
     syncInternalValue(value) {
-      this.internalValue = value
-      this.internalDate = value || dayjs().format()
+      if (!value) {
+        this.internalValue = ''
+      } else if (this.tzOffset) {
+        this.internalValue = dayjs
+          .utc(value)
+          .utcOffset(this.tzOffset)
+          .format(this.internalFormat)
+      } else {
+        this.internalValue = dayjs
+          .utc(value)
+          .tz(this.tzValue)
+          .format(this.internalFormat)
+      }
+
+      if (this.internalValue === 'Invalid Date') this.internalValue = ''
     },
 
     $_wrapClose(e) {
       if (!this.$el.contains(e.target)) {
-        this.closeOverlay()
+        this.handleCancelAction()
       }
     },
   },

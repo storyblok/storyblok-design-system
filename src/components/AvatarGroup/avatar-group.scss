@@ -5,14 +5,14 @@
 }
 
 .sb-avatar-group {
-  display: inline-block;
   position: relative;
+  display: inline-block;
   width: 100%;
 
   .sb-avatar {
-    cursor: pointer;
-    margin-left: -10px;
     z-index: 2;
+    margin-left: -10px;
+    cursor: pointer;
 
     &:hover {
       position: relative;
@@ -34,14 +34,14 @@
     @include avatarComponent();
     @include avatarComponentSize(36px);
 
-    background-color: $light-75;
-    color: $color-primary-dark;
-    cursor: pointer;
-    font-size: $font-size-xs;
-    font-weight: $font-weight-regular;
-    margin-left: -10px;
     position: relative;
     z-index: 1;
+    margin-left: -10px;
+    color: $color-primary-dark;
+    font-size: $font-12;
+    font-weight: $font-weight-regular;
+    background-color: $light-75;
+    cursor: pointer;
   }
 
   >.sb-avatar:first-child {
@@ -51,8 +51,8 @@
   >.sb-avatar:hover {
     .sb-avatar__image,
     .sb-avatar__initials {
-      transform: translate(0, -10px);
       z-index: 99999;
+      transform: translate(0, -10px);
     }
   }
   // sizes
@@ -83,34 +83,34 @@
   }
 
   &__avatars {
+    position: absolute;
+    right: 0;
+    top: 120%;
+    z-index: 99999;
+    display: none;
+    overflow: auto;
+    max-height: 170px;
+    max-width: 100%;
+    min-width: 210px;
+    padding: 15px;
+    text-align: left;
     background-color: $white;
     border: 1px solid $light;
     border-radius: 4px;
     box-shadow: $box-shadow-default;
-    display: none;
-    max-height: 170px;
-    max-width: 100%;
-    min-width: 210px;
-    overflow: auto;
-    padding: 15px;
-    position: absolute;
-    right: 0;
-    text-align: left;
-    top: 120%;
-    z-index: 99999;
 
     .sb-avatar {
       display: inline-flex;
+      width: 100%;
       margin-bottom: 10px;
       margin-left: 0;
-      width: 100%;
 
       &__image,
       &__initials {
+        width: auto;
         height: auto;
         min-height: 32px;
         min-width: 32px;
-        width: auto;
       }
 
       &__initials {

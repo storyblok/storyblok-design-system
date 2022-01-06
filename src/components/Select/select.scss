@@ -1,14 +1,14 @@
 @mixin listPosition {
-  left: 0;
   position: absolute;
+  left: 0;
   top: calc(100% + 10px);
   z-index: 4;
 }
 
 .sb-select {
+  position: relative;
   display: inline-flex;
   flex-direction: column;
-  position: relative;
   width: 100%;
 
   &:focus-within .sb-select-inner {
@@ -23,8 +23,8 @@
       border: 0;
 
       &__label {
-        color: $sb-dark-blue-50;
         margin-right: 5px;
+        color: $sb-dark-blue-50;
       }
 
       &__chevron {
@@ -74,17 +74,29 @@
   }
 }
 
+.sb-select__message {
+  display: block;
+  margin-top: 5px;
+  font-size: 1.4rem;
+  font-weight: normal;
+  letter-spacing: 0;
+}
+
+.sb-select__message--error {
+  color: $red;
+}
+
 .sb-select-inner {
+  display: flex;
+  flex: 1;
   align-items: center;
+  padding: 11px 10px 11px 17px;
+  color: $sb-dark-blue;
+  font-size: $font-14;
   background-color: $white;
   border: 1px solid $light;
   border-radius: 5px;
-  color: $sb-dark-blue;
   cursor: pointer;
-  display: flex;
-  flex: 1;
-  font-size: $font-size-md;
-  padding: 11px 10px 11px 17px;
 
   &:hover {
     border-color: $sb-green;
@@ -101,8 +113,8 @@
     .sb-avatar__image,
     .sb-avatar img,
     .sb-avatar__initials {
-      height: 20px;
       width: 20px;
+      height: 20px;
     }
 
     .sb-avatar {
@@ -131,23 +143,23 @@
   }
 
   &__clear {
-    appearance: none;
+    padding: 0;
+    color: $light-gray;
     background-color: transparent;
     border: 0;
     border-radius: 50%;
-    color: $light-gray;
     cursor: pointer;
-    padding: 0;
+    appearance: none;
   }
 
   &__input {
-    border: 0;
-    color: $sb-dark-blue;
     flex: 1;
-    font-size: inherit;
-    outline: none;
-    padding: 0;
     width: 100%;
+    padding: 0;
+    color: $sb-dark-blue;
+    font-size: inherit;
+    border: 0;
+    outline: none;
 
     &:read-only {
       cursor: pointer;
@@ -189,40 +201,60 @@
   }
 }
 
+.sb-select-inner--error,
+.sb-select-inner--error:hover {
+  border: 1px solid $red;
+}
+
+.sb-select[aria-expanded='true'] .sb-select-inner--error,
+.sb-select:focus-within .sb-select-inner--error {
+  border-color: $red;
+  box-shadow: 0 0 0 3px rgb(255 179 176 / 30%);
+  outline: none;
+}
+
+.sb-select__input--hidden {
+  position: absolute;
+  top: 48px;
+  height: 0;
+  border: 0;
+  opacity: 0;
+}
+
 .sb-select-list {
   @include popoverComponent();
   @include listPosition();
 
-  background-color: $white;
-  box-sizing: border-box;
   display: none;
   flex: 1;
+  overflow: auto;
+  box-sizing: border-box;
+  width: 100%;
   max-height: 235px;
   min-width: 176px;
-  overflow: auto;
   padding: 13px 0;
-  width: 100%;
+  background-color: $white;
 
   ul {
-    list-style: none;
     margin: 0;
     padding: 0;
+    list-style: none;
   }
 
   &__item,
   &__create {
-    align-items: center;
-    appearance: none;
-    background-color: $white;
-    border: 0;
-    box-sizing: border-box;
-    cursor: pointer;
     display: flex;
-    font-size: $font-size-md;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
     margin: 0;
     padding: 10px 17px;
+    font-size: $font-14;
     text-align: left;
-    width: 100%;
+    background-color: $white;
+    border: 0;
+    cursor: pointer;
+    appearance: none;
 
     &--focused {
       background-color: $light-50;
@@ -238,18 +270,18 @@
 
   &__item-name,
   &__create {
-    color: $sb-dark-blue;
     min-height: 17px;
+    color: $sb-dark-blue;
   }
 
   &__create-label {
-    color: $sb-green;
     margin-right: 5px;
+    color: $sb-green;
   }
 
   &__empty {
-    color: $sb-dark-blue-50;
     display: block;
+    color: $sb-dark-blue-50;
     font-size: 1.3rem;
     text-align: center;
   }

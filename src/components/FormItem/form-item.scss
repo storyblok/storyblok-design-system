@@ -2,31 +2,31 @@
   margin-bottom: 16px;
 
   &__top-container {
-    align-items: center;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
   }
 
   &__label {
-    color: $sb-dark-blue;
-    font-size: $font-size-md;
-    font-weight: $font-weight-medium;
     position: relative;
+    color: $sb-dark-blue;
+    font-size: $font-14;
+    font-weight: $font-weight-medium;
   }
 
   &__label &__helper-icon-text {
-    left: 100%;
     position: absolute;
+    left: 100%;
     top: 50%;
     transform: translateY(-50%);
   }
 
   &__helper-text {
-    color: $sb-dark-blue-50;
-    font-size: $font-size-sm;
     margin-left: auto;
     padding-left: 10px;
+    color: $sb-dark-blue-50;
+    font-size: $font-13;
   }
 
   &--grouped &__body {

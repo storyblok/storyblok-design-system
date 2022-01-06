@@ -5,18 +5,18 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
 .sb-minibrowser {
   @include popoverComponent();
 
+  width: 100%;
   max-width: 300px;
   padding: 10px;
-  width: 100%;
 
   // components
   &__input-container {
-    color: $sb-dark-blue-50;
     position: relative;
+    color: $sb-dark-blue-50;
 
     &-icon {
-      left: 5px;
       position: absolute;
+      left: 5px;
       top: 50%;
       transform: translateY(-50%);
     }
@@ -39,30 +39,30 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   }
 
   &__list ul {
-    list-style: none;
     margin: 0;
     padding: 0;
+    list-style: none;
   }
 
   &__list > ul {
-    max-height: 250px;
     overflow-y: auto;
+    max-height: 250px;
     padding: 13.5px 0;
   }
 
   &__list-header {
-    align-items: center;
-    box-shadow: 0 1px 0 0 rgb(0 0 0 / 8%);
     display: flex;
-    font-size: $font-size-sm;
+    align-items: center;
     margin: 0 0 1px;
     padding: 9px $general-padding;
+    font-size: $font-13;
+    box-shadow: 0 1px 0 0 rgb(0 0 0 / 8%);
 
     &-title {
-      color: $sb-dark-blue-50;
       flex: 1;
       margin: 0;
       padding: 0;
+      color: $sb-dark-blue-50;
     }
 
     &-icon {
@@ -77,27 +77,27 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   }
 
   &__list-item {
-    align-items: center;
-    background-color: $white;
     display: flex;
+    align-items: center;
     margin-bottom: 1px;
     padding: 9px $general-padding;
+    background-color: $white;
 
     &-container {
       flex: 1;
     }
 
     &-name {
-      color: $color-primary-dark;
       display: block;
-      font-size: $font-size-md;
+      color: $color-primary-dark;
+      font-size: $font-14;
     }
 
     &-subtitle {
-      color: $light-gray;
       display: block;
-      font-size: $font-size-xs;
       margin-top: 2px;
+      color: $light-gray;
+      font-size: $font-12;
     }
 
     &-icon {
@@ -105,12 +105,12 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     }
 
     &-icon-home {
+      margin-left: 2px;
+      padding: 3px;
       background-color: $light-50;
       border: transparent;
       border-radius: $base-border-radius;
       cursor: pointer;
-      margin-left: 2px;
-      padding: 3px;
 
       .sb-icon {
         margin: 0;
@@ -135,10 +135,10 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   }
 
   &__not-found {
-    color: $sb-dark-blue-50;
-    font-size: $font-size-sm;
     margin: 0;
     padding-bottom: 27px;
+    color: $sb-dark-blue-50;
+    font-size: $font-13;
     text-align: center;
   }
 
@@ -152,15 +152,15 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   }
 
   &--full-height &__list-container {
-    border-top: 0;
     max-height: none;
     padding-top: 5px;
+    border-top: 0;
   }
 
   &--full-height &__list-item {
-    border-radius: 5px;
-    padding: 6px;
     position: relative;
+    padding: 6px;
+    border-radius: 5px;
   }
 
   &--full-height &__input {

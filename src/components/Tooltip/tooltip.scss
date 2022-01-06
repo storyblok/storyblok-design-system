@@ -8,8 +8,8 @@
 
         &::after {
           left: 50%;
-          margin-left: -5px;
           top: 100%;
+          margin-left: -5px;
         }
       }
     }
@@ -60,19 +60,19 @@
 }
 
 .sb-tooltip {
-  border-radius: 2px;
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.08);
-  box-sizing: border-box;
   display: none;
-  font-size: $font-size-xs;
-  line-height: 15px;
+  box-sizing: border-box;
   max-width: 180px;
   padding: 6px 10px;
+  font-size: $font-12;
+  line-height: 15px;
+  border-radius: 2px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.08);
 
   &--dark {
+    color: $white;
     background-color: $color-primary-dark;
     border: 1px solid $color-primary-dark;
-    color: $white;
 
     [data-popper-arrow]::before {
       background: $color-primary-dark;
@@ -81,9 +81,9 @@
   }
 
   &--light {
+    color: $sb-dark-blue;
     background-color: $white;
     border: 1px solid $light;
-    color: $sb-dark-blue;
 
     [data-popper-arrow]::before {
       background: $white;
@@ -115,10 +115,10 @@
 
   [data-popper-arrow],
   [data-popper-arrow]::before {
-    height: 6px;
     position: absolute;
-    width: 6px;
     z-index: -1;
+    width: 6px;
+    height: 6px;
   }
 
   [data-popper-arrow]::before {
