@@ -163,7 +163,6 @@ export default {
     isOverlayVisible: false,
     internalVisualization: INTERNAL_VIEWS.CALENDAR,
     FORMATS: {
-      time: 'HH:mm',
       date: 'YYYY-MM-DD',
       datetime: 'YYYY-MM-DD HH:mm',
     },
@@ -236,7 +235,6 @@ export default {
       }
 
       if (this.tzOffset) return this.tzOffset.replace('GMT', '')
-
       return dayjs.tz(this.internalValue, this.timeZone).format('Z')
     },
   },
