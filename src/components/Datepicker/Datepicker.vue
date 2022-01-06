@@ -44,6 +44,7 @@
           isCalendarView,
           isYearView,
           isMonthView,
+          isTimeView,
           value: internalDate,
         }"
         @previous-month="handlePreviousMonth"
@@ -186,6 +187,10 @@ export default {
 
     isCalendarView() {
       return this.internalVisualization === INTERNAL_VIEWS.CALENDAR
+    },
+
+    isTimeView() {
+      return this.internalVisualization === INTERNAL_VIEWS.TIME
     },
 
     isMonthView() {
