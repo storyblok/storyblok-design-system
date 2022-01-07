@@ -4,6 +4,7 @@ Storyblok's Design System
 
 ## Compatibility 
 Our current version is compatible with Vue 2. We will be working on a new version that will be Vue 3 compatible.
+
 ## Project setup
 ```sh
 yarn install # or npm run install
