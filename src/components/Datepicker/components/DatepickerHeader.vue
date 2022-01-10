@@ -52,7 +52,7 @@ import SbIcon from '../../Icon'
 import SbDatepickerWeek from './DatepickerWeek'
 
 export default {
-  name: 'SbDatepickerHeader',
+  name: 'SbDatepickerMonth',
 
   components: { SbIcon, SbDatepickerWeek },
 

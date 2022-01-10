@@ -52,17 +52,28 @@ const SlideoverTemplate = (args) => ({
 export default {
   title: 'Design System/Components/SbSlideover',
   component: SbSlideover,
-  args: {
-    orientation: 'right',
-  },
-  argTypes: {
-    orientation: {
-      name: 'orientation',
-      options: ['left', 'right'],
-      description:
-        'The prop `orientation` is used to define the position where the `Slideover` component will appear, the options are on the `left` or `right`, the default is on the `right`.',
-      control: {
-        type: 'select',
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Slideover focus the user’s attention exclusively on one task or piece of information via a window that sits on top of the page content.',
+      },
+      // Sets a delay for the component's stories
+      // the animation of the Slideover is 0.2s or 200ms
+      chromatic: { delay: 300 },
+    },
+    args: {
+      orientation: 'right',
+    },
+    argTypes: {
+      orientation: {
+        name: 'orientation',
+        description:
+          'The prop `orientation` is used to define the position where the `Slideover` component will appear, the options are on the `left` or `right`, the default is on the `right`.',
+        control: {
+          type: 'select',
+          options: ['left', 'right'],
+        },
       },
     },
   },

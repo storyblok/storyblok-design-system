@@ -69,7 +69,7 @@
       "git add"
     ],
     "*.{vue,scss,css}": [
-      "stylelint --config .stylelintrc.json --fix"
+      "stylelint --config ./.stylelintrc.json --fix"
     ]
   },
   "release": {
