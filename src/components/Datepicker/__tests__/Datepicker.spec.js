@@ -48,14 +48,6 @@ describe('SbDatepicker component', () => {
         wrapper.vm.internalVisualization === INTERNAL_VIEWS.CALENDAR
       ).toBeTruthy()
     })
-
-    it('Should change internal visualization property based on TIME type', async () => {
-      await wrapper.setProps({ type: 'time' })
-      wrapper.vm.handleInputClick()
-      expect(
-        wrapper.vm.internalVisualization === INTERNAL_VIEWS.TIME
-      ).toBeTruthy()
-    })
   })
 
   describe('test flows', () => {
