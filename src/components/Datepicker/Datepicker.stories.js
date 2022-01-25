@@ -63,10 +63,10 @@ export default {
     },
     type: {
       name: 'type',
+      options: [...datepickerOptions],
       description: 'Change the type of the input.',
       control: {
         type: 'select',
-        options: [...datepickerOptions],
       },
     },
   },
@@ -75,10 +75,6 @@ export default {
 export const Default = Template.bind({})
 
 export const TimeType = Template.bind({})
-
-TimeType.args = {
-  type: 'time',
-}
 
 TimeType.parameters = {
   docs: {

@@ -55,6 +55,7 @@
 
       <SbIcon
         v-if="iconLeft && type !== 'password' && !iconDescription"
+        :style="returnIconCustomColor"
         :name="iconLeft"
         class="sb-textfield__icon sb-textfield__icon--left"
         :color="iconColor"
@@ -67,6 +68,7 @@
       >
         <SbIcon
           v-if="iconLeft && type !== 'password'"
+          :style="returnIconCustomColor"
           :name="iconLeft"
           class="sb-textfield__icon sb-textfield__icon--left"
           :color="iconColor"
@@ -150,6 +152,10 @@ export default {
       type: String,
       default: 'light-gray',
     },
+    iconCustomColor: {
+      type: String,
+      default: null,
+    },
     iconDescription: {
       type: String,
       default: null,
@@ -232,6 +238,10 @@ export default {
       }
 
       return this.maxlengthParsed - this.computedValueLength
+    },
+
+    returnIconCustomColor() {
+      return this.iconCustomColor ? `color: ${this.iconCustomColor};` : ''
     },
   },
 
