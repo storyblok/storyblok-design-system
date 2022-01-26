@@ -26,6 +26,13 @@
       <span class="sb-sidebar-link__label">
         {{ label }}
       </span>
+
+      <SbIcon
+        v-if="hasIconBefore"
+        :size="iconBeforeSize"
+        :name="iconBefore"
+        class="sb-icon__before"
+      />
     </component>
 
     <slot />
@@ -76,6 +83,14 @@ export default {
       type: String,
       default: 'normal',
     },
+    iconBefore: {
+      type: String,
+      default: null,
+    },
+    iconBeforeSize: {
+      type: String,
+      default: 'normal',
+    },
     to: {
       type: [String, Object],
       default: null,
@@ -89,6 +104,10 @@ export default {
 
     hasAvatar() {
       return this.avatar !== null
+    },
+
+    hasIconBefore() {
+      return this.iconBefore !== null
     },
   },
 }

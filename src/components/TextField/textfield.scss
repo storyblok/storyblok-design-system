@@ -12,8 +12,8 @@
 
   &__icon {
     position: absolute;
-    top: 12px;
-    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
 
     &:hover {
       color: $sb-dark-blue-50;
@@ -147,7 +147,7 @@
 
   &__prefix,
   &__suffix {
-    min-width: fill-available;
+    min-width: stretch;
     min-width: fit-content;
     padding: 15px 17px;
     color: $sb-dark-blue;
