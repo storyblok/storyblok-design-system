@@ -111,7 +111,7 @@ export default {
     },
 
     hasIcon() {
-      return this.icon !== null
+      return this.icon
     },
   },
 }
