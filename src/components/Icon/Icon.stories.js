@@ -62,7 +62,7 @@ Default.args = {
 
 export const FallbackIcon = () => ({
   components: { SbIcon },
-  template: '<SbIcon name="fallback" size="x-large" />',
+  template: '<SbIcon name="avatar-fallback" size="x-large" color="green" />',
 })
 
 export const IconSizes = () => ({
