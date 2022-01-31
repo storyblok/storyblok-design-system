@@ -294,7 +294,7 @@ export const SbTab = {
       [
         this.icon && renderIcon(this.icon),
         this.allowShowEditInput && renderEditedTab(),
-        !this.allowShowEditInput && renderLabel(),
+        !this.allowShowEditInput && this.label && renderLabel(),
         this.editable && renderEditButton(),
       ]
     )

@@ -67,10 +67,10 @@
   }
 
   &--has-icon {
-    padding: 9px 10px 9px 5px;
+    padding: 9px 10px;
 
-    .sb-icon {
-      margin-right: 5px;
+    span {
+      margin-left: 5px;
     }
   }
 }
