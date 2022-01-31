@@ -11,6 +11,7 @@ const TabsTemplate = (template) => (args) => ({
         {
           label: 'First',
           name: 'first',
+          icon: 'calendar',
         },
         {
           label: 'Secondary',
@@ -57,6 +58,7 @@ const TabsTemplate = (template) => (args) => ({
           :key="tab.name"
           :label="tab.label"
           :name="tab.name"
+          :icon="tab.icon"
           @edit-tab="onEditTab"
         />
       </SbTabs>

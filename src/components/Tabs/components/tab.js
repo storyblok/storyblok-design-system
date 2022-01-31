@@ -163,6 +163,10 @@ export const SbTab = {
       type: Boolean,
       default: false,
     },
+    icon: {
+      type: String,
+      default: null,
+    },
   },
 
   data() {
@@ -236,6 +240,15 @@ export const SbTab = {
   },
 
   render(h) {
+    const renderIcon = (icon) => {
+      return h(SbIcon, {
+        props: {
+          size: 'normal',
+          name: icon,
+        },
+      })
+    }
+
     const renderEditedTab = () => {
       return h(SbEditableInput, {
         props: {
@@ -268,6 +281,7 @@ export const SbTab = {
           'aria-selected': this.activate + '',
         },
         class: {
+          'sb-tab--has-icon': this.icon,
           'sb-tab--editable': this.editable,
           'sb-tab--is-active': this.activate,
         },
@@ -278,8 +292,9 @@ export const SbTab = {
         },
       },
       [
+        this.icon && renderIcon(this.icon),
         this.allowShowEditInput && renderEditedTab(),
-        !this.allowShowEditInput && renderLabel(),
+        !this.allowShowEditInput && this.label && renderLabel(),
         this.editable && renderEditButton(),
       ]
     )
