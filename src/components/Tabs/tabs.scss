@@ -7,9 +7,6 @@
 }
 
 .sb-tab-edit-button {
-  position: absolute;
-  right: 0;
-  top: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,6 +55,8 @@
   }
 
   &--editable {
+    padding: 9px 0 9px 24px;
+
     &:hover,
     &:focus {
       .sb-tab-edit-button {
@@ -67,7 +66,7 @@
   }
 
   &--has-icon {
-    padding: 9px 10px;
+    padding: 9px 14px 9px 10px;
 
     span {
       margin-left: 5px;
