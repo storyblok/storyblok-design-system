@@ -151,12 +151,16 @@
   }
 
   &[disabled] {
-    color: $light-gray;
-    background-color: $light;
     cursor: not-allowed;
 
-    .sb-icon {
-      opacity: 0.5;
+    &:not(.sb-button--loading) {
+      color: $light-gray;
+      background-color: $light;
+
+
+      .sb-icon {
+        opacity: 0.5;
+      }
     }
   }
 
