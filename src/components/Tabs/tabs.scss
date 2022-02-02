@@ -7,9 +7,6 @@
 }
 
 .sb-tab-edit-button {
-  position: absolute;
-  right: 0;
-  top: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,7 +25,7 @@
   z-index: 0;
   display: flex;
   align-items: center;
-  padding: 14px 20px;
+  padding: 14px 15px;
   color: $sb-dark-blue-50;
   font-family: $primary-font-family;
   font-size: $font-14;
@@ -58,11 +55,21 @@
   }
 
   &--editable {
+    padding: 9px 0 9px 24px;
+
     &:hover,
     &:focus {
       .sb-tab-edit-button {
         opacity: 1;
       }
+    }
+  }
+
+  &--has-icon {
+    padding: 9px 14px 9px 10px;
+
+    span {
+      margin-left: 5px;
     }
   }
 }

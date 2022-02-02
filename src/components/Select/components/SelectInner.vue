@@ -71,7 +71,11 @@
     />
 
     <slot v-if="hasDefaultSlot" />
-    <span v-else-if="hidePlaceholder" class="sb-select-inner__value">
+    <span
+      v-else-if="hidePlaceholder"
+      class="sb-select-inner__value"
+      :class="{ 'sb-select-inner__value-icon-left': leftIcon }"
+    >
       {{ innerLabel }}
     </span>
 

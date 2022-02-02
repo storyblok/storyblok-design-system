@@ -41,8 +41,9 @@
       top: 0;
     }
 
-    &:hover {
-      ::placeholder {
+    &:hover,
+    &:focus {
+      .sb-select-inner__input::placeholder {
         color: $sb-dark-blue;
         opacity: 1;
       }
@@ -158,6 +159,7 @@
     padding: 0;
     color: $sb-dark-blue;
     font-size: inherit;
+    background-color: transparent;
     border: 0;
     outline: none;
 
@@ -172,6 +174,10 @@
 
   &__value {
     position: absolute;
+
+    &-icon-left {
+      margin-left: 35px;
+    }
   }
 
   &__avatar {
@@ -261,10 +267,8 @@
       outline: none;
     }
 
-    &--selected {
-      .sb-select-list__item-name {
-        @include selectedItem;
-      }
+    &--selected span {
+      @include selectedItem;
     }
   }
 

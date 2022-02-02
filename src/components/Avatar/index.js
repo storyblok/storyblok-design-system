@@ -204,7 +204,7 @@ const SbAvatar = {
     }
 
     const renderAvatar = () => {
-      if (this.$slots.default || this.isImageLoaded) {
+      if (this.$slots.default || this.isImageLoaded || !this.name) {
         return h(
           'div',
           {

@@ -156,7 +156,6 @@ export default {
   },
 
   data: () => ({
-    forceVisibleTime: false,
     internalDate: dayjs().format(),
     internalValue: '',
     inputElement: null,
@@ -184,14 +183,6 @@ export default {
 
     isShowTzOffset() {
       return !this.isTimeDisabled && this.tzOffsetValue && this.internalValue
-    },
-
-    isShowCalendar() {
-      if (this.forceVisibleTime || this.type === 'time') {
-        return false
-      }
-
-      return this.type === 'datetime' || this.type === 'date'
     },
 
     isCalendarView() {
@@ -344,8 +335,7 @@ export default {
       }
 
       this.isOverlayVisible = true
-      this.internalVisualization =
-        this.type === 'time' ? INTERNAL_VIEWS.TIME : INTERNAL_VIEWS.CALENDAR
+      this.internalVisualization = INTERNAL_VIEWS.CALENDAR
     },
 
     handleClear(previousValue) {

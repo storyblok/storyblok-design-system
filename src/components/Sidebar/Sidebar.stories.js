@@ -18,6 +18,12 @@ export const listItemsData = [
   {
     href: '#',
     icon: 'apps',
+    label: 'Apps Directory',
+  },
+  {
+    href: '#',
+    icon: 'partner-team',
+    iconBefore: 'chevron-down',
     label: 'Apps',
   },
 ]

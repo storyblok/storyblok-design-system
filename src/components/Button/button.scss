@@ -152,6 +152,16 @@
 
   &[disabled] {
     cursor: not-allowed;
+
+    &:not(.sb-button--loading) {
+      color: $light-gray;
+      background-color: $light;
+
+
+      .sb-icon {
+        opacity: 0.5;
+      }
+    }
   }
 
   .sb-icon {
@@ -203,14 +213,5 @@
   &--has-icon-only#{&}--large {
     min-height: 61px;
     padding: 0 18px;
-  }
-
-  &[disabled] {
-    background-color: $light;
-    color: $light-gray;
-
-    .sb-icon {
-      opacity: 0.5;
-    }
   }
 }

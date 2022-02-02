@@ -76,10 +76,6 @@ export const Default = Template.bind({})
 
 export const TimeType = Template.bind({})
 
-TimeType.args = {
-  type: 'time',
-}
-
 TimeType.parameters = {
   docs: {
     description: {
