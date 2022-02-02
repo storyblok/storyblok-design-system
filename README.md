@@ -33,7 +33,7 @@ yarn lint
 To learn how to use the Storyblok's Design System in your project go to:
 [https://www.storyblok.com/docs/guide/in-depth/design-system](https://www.storyblok.com/docs/guide/in-depth/design-system)
 
-## Thanks
+## Thanks to
 
 <a href="https://www.chromatic.com/"><img src="https://user-images.githubusercontent.com/321738/84662277-e3db4f80-af1b-11ea-88f5-91d67a5e59f6.png" width="153" height="30" alt="Chromatic" /></a>
 
