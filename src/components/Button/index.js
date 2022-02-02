@@ -114,8 +114,8 @@ const SbButton = {
           staticClass: `sb-button sb-button--${this.variant}`,
           attrs: {
             ...this.$attrs,
-            disabled: this.isDisabled,
-            'aria-disabled': this.isDisabled,
+            disabled: this.isDisabled || this.isLoading,
+            'aria-disabled': this.isDisabled || this.isLoading,
             type: this.type,
           },
           class: {
