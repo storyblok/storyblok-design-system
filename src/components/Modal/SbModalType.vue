@@ -9,7 +9,7 @@
       <div class="sb-modal__type--buttons">
         <SbButton
           data-testid="modal-type-cancel"
-          variant="ghost"
+          variant="tertiary"
           :label="cancelButtonLabel"
           @click="handleCancelAction"
         />

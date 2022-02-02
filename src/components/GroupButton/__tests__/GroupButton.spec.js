@@ -50,7 +50,7 @@ describe('Tests SbGroupButton component', () => {
 
     it('should have the correct variant property in each child component', () => {
       const template = `
-        <SbGroupButton size="small" variant="ghost">
+        <SbGroupButton size="small" variant="tertiary">
           <SbButton label="One" />
           <SbButton label="Two" />
           <SbButton label="Three" />

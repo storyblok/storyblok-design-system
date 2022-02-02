@@ -157,7 +157,7 @@ export default {
       description: '`SbButton` variant',
       control: {
         type: 'select',
-        options: ['primary', 'secondary', 'ghost', 'danger', 'caution'],
+        options: ['primary', 'secondary', 'tertiary', 'danger', 'caution'],
       },
     },
     tooltipPosition: {
@@ -236,20 +236,20 @@ Secondary.parameters = {
   },
 }
 
-export const Ghost = ButtonTemplate.bind({})
+export const Tertiary = ButtonTemplate.bind({})
 
-Ghost.args = {
-  label: 'Ghost',
-  variant: 'ghost',
+Tertiary.args = {
+  label: 'Tertiary',
+  variant: 'tertiary',
   icon: 'check-mark',
   iconRight: 'calendar',
 }
 
-Ghost.parameters = {
+Tertiary.parameters = {
   docs: {
     description: {
       story:
-        'For less prominent actions, ghost buttons can be used in isolation or paired with a primary button when there are multiple calls to action.',
+        'For less prominent actions, tertiary buttons can be used in isolation or paired with a primary button when there are multiple calls to action.',
     },
   },
 }
@@ -362,7 +362,7 @@ export const JustIcons = (args) => ({
     />
 
     <SbButton
-      variant="ghost"
+      variant="tertiary"
       :size="size"
       :icon="icon"
       :is-loading="isLoading"

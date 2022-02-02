@@ -182,7 +182,7 @@ export const AlongWithGroup = (args) => ({
   template: `
     <div style="display: flex; justify-content: center;">
       <SbMenu :value="value">
-        <SbGroupButton variant="ghost">
+        <SbGroupButton variant="tertiary">
           <SbButton label="Define Schema" />
           <SbMenuButton has-icon-only />
         </SbGroupButton>
