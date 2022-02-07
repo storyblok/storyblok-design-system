@@ -57,7 +57,7 @@
     }
   }
 
-  &--ghost {
+  &--tertiary {
     color: $sb-dark-blue;
     background-color: $white;
     border-color: $light;
@@ -156,7 +156,6 @@
     &:not(.sb-button--loading) {
       color: $light-gray;
       background-color: $light;
-
 
       .sb-icon {
         opacity: 0.5;

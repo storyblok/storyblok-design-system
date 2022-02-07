@@ -167,7 +167,7 @@ describe('Test SbButton Component', () => {
     const renderButton = (type) => {
       return mount(SbButton, {
         propsData: {
-          variant: 'ghost',
+          variant: 'tertiary',
           type: type,
         },
       })

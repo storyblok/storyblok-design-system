@@ -6,7 +6,7 @@ import { includes, availableSizes } from '../../utils'
 export const availableVariants = [
   'primary',
   'secondary',
-  'ghost',
+  'tertiary',
   'danger',
   'inverted-link',
   'primary-link',

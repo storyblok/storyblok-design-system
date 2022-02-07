@@ -90,7 +90,7 @@ const ModalTemplate = (args, storyContext) => ({
 
         <SbModalFooter>
           <SbButton label="Label" variant="primary"/>
-          <SbButton label="Label" variant="ghost"/>
+          <SbButton label="Label" variant="tertiary"/>
         </SbModalFooter>
 
       </SbModal>
@@ -313,7 +313,7 @@ export const ModalWithMediumSize = (args, storyContext) => ({
 
       <SbModalFooter>
         <SbButton label="Label" variant="primary"/>
-        <SbButton label="Label" variant="ghost"/>
+        <SbButton label="Label" variant="tertiary"/>
       </SbModalFooter>
     </SbModal>
   </div>`,
@@ -408,7 +408,7 @@ export const ModalClosingWithEsc = (args, storyContext) => ({
 
       <SbModalFooter>
         <SbButton label="Label" variant="primary"/>
-        <SbButton label="Label" variant="ghost"/>
+        <SbButton label="Label" variant="tertiary"/>
       </SbModalFooter>
     </SbModal>
   </div>`,
