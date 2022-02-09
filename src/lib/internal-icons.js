@@ -617,6 +617,10 @@ const icons = {
     viewBox: '0 0 24 24',
     path: `<path d="M13 5a2 2 0 0 1 1.995 1.85L15 7v10a2 2 0 0 1-1.85 1.995L13 19H6a2 2 0 0 1-1.995-1.85L4 17V7a2 2 0 0 1 1.85-1.995L6 5h7Zm5 2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-1V7h1Z" fill="currentColor" fill-rule="evenodd"/>`,
   },
+  filters: {
+    viewBox: '0 0 24 24',
+    path: `<path fill="#1B243F" fill-rule="evenodd" d="M14 16a1 1 0 0 1 0 2h-4a1 1 0 0 1 0-2h4Zm3-5a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2h10Zm2-5a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h14Z"/>`,
+  },
 }
 
 const partnerIcons = {
