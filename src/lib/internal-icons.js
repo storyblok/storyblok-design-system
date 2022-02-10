@@ -619,7 +619,7 @@ const icons = {
   },
   filters: {
     viewBox: '0 0 24 24',
-    path: `<path fill="#1B243F" fill-rule="evenodd" d="M14 16a1 1 0 0 1 0 2h-4a1 1 0 0 1 0-2h4Zm3-5a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2h10Zm2-5a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h14Z"/>`,
+    path: `<path fill="currentColor" fill-rule="evenodd" d="M14 16a1 1 0 0 1 0 2h-4a1 1 0 0 1 0-2h4Zm3-5a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2h10Zm2-5a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h14Z"/>`,
   },
 }
 
