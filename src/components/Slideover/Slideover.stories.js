@@ -42,7 +42,7 @@ const SlideoverTemplate = (args) => ({
 
         <SbModalFooter>
           <SbButton label="Label" variant="primary"/>
-          <SbButton label="Label" variant="ghost"/>
+          <SbButton label="Label" variant="tertiary"/>
         </SbModalFooter>
       </SbSlideover>
     </div>

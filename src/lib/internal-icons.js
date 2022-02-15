@@ -617,6 +617,14 @@ const icons = {
     viewBox: '0 0 24 24',
     path: `<path d="M13 5a2 2 0 0 1 1.995 1.85L15 7v10a2 2 0 0 1-1.85 1.995L13 19H6a2 2 0 0 1-1.995-1.85L4 17V7a2 2 0 0 1 1.85-1.995L6 5h7Zm5 2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-1V7h1Z" fill="currentColor" fill-rule="evenodd"/>`,
   },
+  filters: {
+    viewBox: '0 0 24 24',
+    path: `<path fill="currentColor" fill-rule="evenodd" d="M14 16a1 1 0 0 1 0 2h-4a1 1 0 0 1 0-2h4Zm3-5a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2h10Zm2-5a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h14Z"/>`,
+  },
+  pipelines: {
+    viewBox: '0 0 24 24',
+    path: `<path fill="currentColor" fill-rule="evenodd" d="M7 4a3 3 0 0 1 1 5.829v4.342a3.001 3.001 0 1 1-2 0V9.829A3.001 3.001 0 0 1 7 4Zm0 12a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM7 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm10.605 4.093.014.005a1.985 1.985 0 0 1 1.01.742 1.997 1.997 0 0 1 .366 1.01L19 12v2.171a3.001 3.001 0 1 1-2 0v-2.172h-1.17a3.001 3.001 0 1 1-.001-2L17 10a2.016 2.016 0 0 1 .578.085l.027.008ZM18 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-5-6a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/>`,
+  },
 }
 
 const partnerIcons = {
