@@ -1,3 +1,5 @@
+import SbButton from '../../Button'
+
 /**
  * SbDataTableActions
  *
@@ -5,6 +7,10 @@
  */
 export const SbDataTableActions = {
   props: {
+    actions: {
+      type: Array,
+      default: [],
+    },
     selectedRowsLength: {
       type: Number,
       default: 0,
@@ -15,32 +21,6 @@ export const SbDataTableActions = {
     labelSelectedRowsLength() {
       const labelItem = this.selectedRowsLength > 1 ? 'items' : 'item'
       return `${this.selectedRowsLength} ${labelItem} selected`
-    },
-  },
-
-  methods: {
-    handleCancel() {
-      console.warn('handleCancel')
-    },
-
-    handleCopy() {
-      console.warn('handleCopy')
-    },
-
-    handleDelete() {
-      console.warn('handleDelete')
-    },
-
-    handleMove() {
-      console.warn('handleMove')
-    },
-
-    handlePublish() {
-      console.warn('handlePublish')
-    },
-
-    handleUnpublish() {
-      console.warn('handleUnpublish')
     },
   },
 
@@ -55,82 +35,43 @@ export const SbDataTableActions = {
       )
     }
 
-    const renderActionMove = () => {
-      return h(
-        'button',
-        {
-          staticClass: 'sb-actions-menu__btn',
-          on: {
-            click: this.handleMove,
-          },
-        },
-        'Move'
-      )
-    }
-
-    const renderActionCopy = () => {
-      return h(
-        'button',
-        {
-          staticClass: 'sb-actions-menu__btn',
-          on: {
-            click: this.handleCopy,
-          },
-        },
-        'Copy'
-      )
-    }
-
-    const renderActionPublish = () => {
-      return h(
-        'button',
-        {
-          staticClass: 'sb-actions-menu__btn',
-          on: {
-            click: this.handlePublish,
-          },
-        },
-        'Publish'
-      )
-    }
-
-    const renderActionUnpublish = () => {
-      return h(
-        'button',
-        {
-          staticClass: 'sb-actions-menu__btn',
-          on: {
-            click: this.handleUnpublish,
-          },
-        },
-        'Unpublish'
-      )
-    }
-
-    const renderActionDelete = () => {
-      return h(
-        'button',
-        {
-          staticClass: 'sb-actions-menu__btn sb-actions-menu__btn-delete',
-          on: {
-            click: this.handleDelete,
-          },
-        },
-        'Delete'
-      )
-    }
-
     const renderActionCancel = () => {
       return h(
-        'button',
+        SbButton,
         {
+          props: {
+            variant: 'secondary',
+            size: 'small',
+          },
           staticClass: 'sb-actions-menu__btn sb-actions-menu__btn-cancel',
           on: {
-            click: this.handleCancel,
+            click: () => this.$emit('cancel'),
           },
         },
         'Cancel'
       )
+    }
+
+    const renderActions = () => {
+      const actions = this.actions.map((action) => {
+        return h(
+          SbButton,
+          {
+            props: {
+              variant: 'secondary',
+              size: 'small',
+              icon: action.icon,
+            },
+            staticClass: 'sb-actions-menu__btn',
+            on: {
+              click: () => this.$emit('click', action.value),
+            },
+          },
+          action.label
+        )
+      })
+
+      return actions
     }
 
     return h(
@@ -138,15 +79,7 @@ export const SbDataTableActions = {
       {
         staticClass: 'sb-actions-menu',
       },
-      [
-        renderSelectedRowsLength(),
-        renderActionMove(),
-        renderActionCopy(),
-        renderActionPublish(),
-        renderActionUnpublish(),
-        renderActionDelete(),
-        renderActionCancel(),
-      ]
+      [renderSelectedRowsLength(), renderActions(), renderActionCancel()]
     )
   },
 }

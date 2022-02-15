@@ -124,39 +124,35 @@
   box-sizing: border-box;
   width: 100%;
   min-height: 50px;
-  padding: 10px 20px;
+  padding: 0 20px;
   color: $white;
   background-color: $sb-dark-blue;
   border-radius: 5px;
 
   &__rows-selected {
     margin-right: auto;
-  }
-
-  &__btn {
-    margin: 0 5px;
-    padding: 8px 20px;
-    line-height: 1;
-    background: none;
-    border: 0;
-    cursor: pointer;
-    outline: none;
-  }
-
-  &__rows-selected,
-  &__btn {
     color: $white;
     font-family: $primary-font-family;
     font-size: 14px;
   }
 
-  &__btn-delete {
-    margin-right: 0;
+  &__btn:focus {
+    outline: 0;
   }
 
   &__btn-cancel {
-    margin-left: 0;
-    margin-right: -20px;
-    border-left: 1px solid rgba(255, 255, 255, 10%);
+    position: relative;
+    margin-left: 20px;
+    margin-right: -10px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -10px;
+      top: 0;
+      width: 1px;
+      background-color: rgba(255, 255, 255, 10%);
+    }
   }
 }
