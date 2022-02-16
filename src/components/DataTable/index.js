@@ -100,6 +100,12 @@ const SbDataTable = {
     },
   },
 
+  watch: {
+    items() {
+      this.deselectAll()
+    },
+  },
+
   methods: {
     /**
      * method to sort array of items
