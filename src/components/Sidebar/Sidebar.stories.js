@@ -63,7 +63,7 @@ const SidebarTemplate = (args) => ({
   template: `
     <SbSidebar
       v-bind="{ listItems }"
-
+      :logo="logo"
       :minimize.sync="internalMinimize"
     >
 
@@ -120,6 +120,7 @@ export default {
   args: {
     listItems: [...listItemsData],
     minimize: false,
+    logo: '',
   },
   argTypes: {
     minimize: {
@@ -128,6 +129,13 @@ export default {
         'Minimize the Sidebar to just show the icons. When use this property, you should put the `sync` modifier (like `:minimize.sync`) to allow the sidebar change the state itself',
       control: {
         type: 'boolean',
+      },
+    },
+    logo: {
+      name: 'logo',
+      description: 'Adds a custom logo (with a url to an image) to the sidebar',
+      control: {
+        type: 'string',
       },
     },
   },
@@ -148,4 +156,10 @@ Minimized.parameters = {
         'When you define the sidebar as `minimize`, it will collapse the sidebar to just show the link icons.',
     },
   },
+}
+
+export const CustomLogo = SidebarTemplate.bind({})
+
+CustomLogo.args = {
+  logo: 'https://bcassetcdn.com/social/bvrg7kkg12/preview.png',
 }
