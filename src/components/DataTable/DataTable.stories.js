@@ -3,6 +3,8 @@ import SbAvatar from '../Avatar'
 import SbAvatarGroup from '../AvatarGroup'
 
 const description = {
+  actions:
+    'It must be an array of objects representing the action buttons. Each object must have a `label` (which is the button label) and a `value` (which is the value that will be emitted in the `emit-action` event). You can also add an `icon` property to the object.',
   allowSelection: 'Allow row selection.',
   actionsMenu: 'Select a row to show the actions menu',
   component:
@@ -23,6 +25,7 @@ const DataTableTemplate = (args) => ({
   template: `
     <SbDataTable
       v-bind="{
+        actions,
         allowSelection,
         headers,
         isLoading,
@@ -47,6 +50,7 @@ export default {
     },
   },
   args: {
+    actions: [],
     allowSelection: false,
     headers: [],
     hideHeader: false,
@@ -56,6 +60,10 @@ export default {
     striped: false,
   },
   argTypes: {
+    actions: {
+      name: 'actions',
+      description: description.actions,
+    },
     allowSelection: {
       name: 'allowSelection',
       description: description.allowSelection,
@@ -102,6 +110,39 @@ export default {
     },
   },
 }
+
+export const defaultTableActionsData = [
+  {
+    label: 'Settings',
+    value: 'settings',
+    icon: 'configuration',
+  },
+  {
+    label: 'Move',
+    value: 'move',
+    icon: 'folder',
+  },
+  {
+    label: 'Duplicate',
+    value: 'duplicate',
+    icon: 'copy',
+  },
+  {
+    label: 'Publish',
+    value: 'publish',
+    icon: 'publish',
+  },
+  {
+    label: 'Unpublish',
+    value: 'unpublish',
+    icon: 'unpublish',
+  },
+  {
+    label: 'Delete',
+    value: 'delete',
+    icon: 'delete',
+  },
+]
 
 export const defaultTableHeadersData = [
   {
@@ -171,6 +212,7 @@ export const ActionsMenu = DataTableTemplate.bind({})
 
 ActionsMenu.args = {
   ...Default.args,
+  actions: [...defaultTableActionsData],
   allowSelection: true,
   selectionMode: 'multiple',
 }
@@ -256,6 +298,7 @@ export const Slots = (args) => ({
     <div>
       <SbDataTable
         v-bind="{
+          actions,
           allowSelection,
           headers,
           isLoading,
