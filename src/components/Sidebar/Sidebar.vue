@@ -14,7 +14,8 @@
       </div>
 
       <div class="sb-sidebar__mobile-logo">
-        <SbSidebarLogo variant="dark" />
+        <img v-if="logo" class="sb-custom-logo" :src="logo" />
+        <SbSidebarLogo v-else variant="dark" />
       </div>
 
       <div v-if="isMobileOpen" class="sb-sidebar__mobile-header-close-icon">
@@ -26,7 +27,8 @@
 
     <div class="sb-sidebar__content">
       <div class="sb-sidebar__top">
-        <SbSidebarLogo :minimize="minimize" />
+        <img v-if="logo" class="sb-custom-logo" :src="logo" />
+        <SbSidebarLogo v-else :minimize="minimize" />
       </div>
 
       <SbSidebarList>
@@ -76,6 +78,10 @@ export default {
     minimize: {
       type: Boolean,
       default: false,
+    },
+    logo: {
+      type: String,
+      default: '',
     },
   },
 
