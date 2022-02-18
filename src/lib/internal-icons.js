@@ -69,7 +69,7 @@ const icons = {
     viewBox: '0 0 24 24',
     path: `
       <g fill="none" fill-rule="evenodd">
-        <circle cx="12" cy="12" r="11" fill="currentColor" stroke="#FFF" stroke-width="2"/>
+        <circle cx="12" cy="12" r="11" fill="currentColor"/>
         <path fill="#FFF" d="M10.53 14.47c.537.536 1.024.78 1.47.78.446 0 .933-.244 1.47-.78a.75.75 0 0 1 1.06 1.06c-.796.797-1.642 1.22-2.53 1.22-.888 0-1.734-.423-2.53-1.22a.75.75 0 0 1 1.06-1.06zM9 9a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm6 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
         <circle cx="17.5" cy="13.5" r="2.5" fill="#1B243F" opacity=".091"/>
         <circle cx="6.5" cy="13.5" r="2.5" fill="#1B243F" opacity=".091"/>

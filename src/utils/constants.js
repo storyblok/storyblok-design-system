@@ -25,7 +25,9 @@ export const availableColors = [
 /**
  * @type {Array<string>}
  */
-export const availableBgColors = availableColors.map((color) => `bg-${color}`)
+export const availableColorsNoWhite = availableColors.filter(
+  (color) => color !== 'white'
+)
 
 /**
  * @type {Array<string>}

@@ -1,7 +1,12 @@
 import './avatar.scss'
 
 import { canUseDOM, includes } from '../../utils'
-import { isSizeValid, getInitials, generateRandomColor } from './utils.js'
+import {
+  isSizeValid,
+  getInitials,
+  generateRandomBgColor,
+  generateRandomColor,
+} from './utils.js'
 
 import SbBadge from '../Badge'
 import SbIcon from '../Icon'
@@ -218,13 +223,14 @@ const SbAvatar = {
       }
 
       if (this.name || this.friendlyName) {
+        const color = this.bgColor || generateRandomBgColor()
+        const bgColorClass = this.bgColor ? 'bg-' + color : color
         return h(
           'div',
           {
-            staticClass: 'sb-avatar__initials',
+            staticClass: `sb-avatar__initials ${bgColorClass}`,
             attrs: {
               ...(this.useTooltip && { tabindex: 0 }),
-              style: 'background-color: ' + this.backgroundColor,
             },
           },
           [
