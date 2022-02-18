@@ -23,6 +23,8 @@
 
       <SbIcon v-else-if="hasIcon" :size="iconSize" :name="icon" />
 
+      <div v-if="hasSeparator" class="separator"></div>
+
       <span class="sb-sidebar-link__label">
         {{ label }}
       </span>
@@ -94,6 +96,10 @@ export default {
     to: {
       type: [String, Object],
       default: null,
+    },
+    hasSeparator: {
+      type: Boolean,
+      default: false,
     },
   },
 
