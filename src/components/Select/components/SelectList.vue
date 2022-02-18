@@ -1,5 +1,5 @@
 <template>
-  <div v-show="!isLoading" class="sb-select-list" @keydown="handleKeyDown">
+  <div class="sb-select-list" @keydown="handleKeyDown">
     <ul>
       <template v-if="hasOptions">
         <SbSelectListItem
