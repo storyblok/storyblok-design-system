@@ -124,10 +124,17 @@
     .sb-icon {
       margin-right: 12px;
 
-      &__before {
+      &__right {
         position: absolute;
         right: 0;
       }
+    }
+
+    .sb-sidebar-link__label {
+      overflow: hidden;
+      min-height: 15px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .sb-avatar {

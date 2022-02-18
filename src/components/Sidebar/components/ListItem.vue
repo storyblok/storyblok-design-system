@@ -28,10 +28,10 @@
       </span>
 
       <SbIcon
-        v-if="hasIconBefore"
-        :size="iconBeforeSize"
-        :name="iconBefore"
-        class="sb-icon__before"
+        v-if="hasIconRight"
+        :size="iconRightSize"
+        :name="iconRight"
+        class="sb-icon__right"
       />
     </component>
 
@@ -83,11 +83,11 @@ export default {
       type: String,
       default: 'normal',
     },
-    iconBefore: {
+    iconRight: {
       type: String,
       default: null,
     },
-    iconBeforeSize: {
+    iconRightSize: {
       type: String,
       default: 'normal',
     },
@@ -106,8 +106,8 @@ export default {
       return this.avatar !== null
     },
 
-    hasIconBefore() {
-      return this.iconBefore !== null
+    hasIconRight() {
+      return this.iconRight
     },
 
     hasIcon() {
