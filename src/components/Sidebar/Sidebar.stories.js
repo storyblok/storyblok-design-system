@@ -23,7 +23,7 @@ export const listItemsData = [
   {
     href: '#',
     icon: 'partner-team',
-    iconBefore: 'chevron-down',
+    iconRight: 'chevron-down',
     label: 'Apps',
   },
 ]

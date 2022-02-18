@@ -23,15 +23,17 @@
 
       <SbIcon v-else-if="hasIcon" :size="iconSize" :name="icon" />
 
+      <div v-if="hasSeparator" class="separator"></div>
+
       <span class="sb-sidebar-link__label">
         {{ label }}
       </span>
 
       <SbIcon
-        v-if="hasIconBefore"
-        :size="iconBeforeSize"
-        :name="iconBefore"
-        class="sb-icon__before"
+        v-if="hasIconRight"
+        :size="iconRightSize"
+        :name="iconRight"
+        class="sb-icon__right"
       />
     </component>
 
@@ -83,17 +85,21 @@ export default {
       type: String,
       default: 'normal',
     },
-    iconBefore: {
+    iconRight: {
       type: String,
       default: null,
     },
-    iconBeforeSize: {
+    iconRightSize: {
       type: String,
       default: 'normal',
     },
     to: {
       type: [String, Object],
       default: null,
+    },
+    hasSeparator: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -106,8 +112,8 @@ export default {
       return this.avatar !== null
     },
 
-    hasIconBefore() {
-      return this.iconBefore !== null
+    hasIconRight() {
+      return this.iconRight
     },
 
     hasIcon() {

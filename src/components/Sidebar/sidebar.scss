@@ -34,6 +34,7 @@
     flex-direction: column;
     box-sizing: border-box;
     width: 280px;
+    max-height: 100vh;
     max-width: 280px;
     min-height: 100vh;
     background-color: $color-primary-dark;
@@ -83,6 +84,7 @@
     flex: 1;
     flex-direction: column;
     overflow-x: hidden;
+    overflow-y: auto;
     margin: 0;
     padding: 0;
   }
@@ -122,10 +124,24 @@
     .sb-icon {
       margin-right: 12px;
 
-      &__before {
+      &__right {
         position: absolute;
         right: 0;
       }
+    }
+
+    .separator {
+      width: 1px;
+      height: 24px;
+      margin: 0 7px 0 -8px;
+      background-color: $light-gray;
+    }
+
+    .sb-sidebar-link__label {
+      overflow: hidden;
+      min-height: 15px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .sb-avatar {
