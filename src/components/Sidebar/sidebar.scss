@@ -135,8 +135,12 @@
 .sb-sidebar-item--parent {
   margin: 0 16px;
   padding: 0;
-  // background-color: white;
+  background-color: #262e48;
   border-radius: 8px;
+
+  .sb-sidebar-link:hover {
+    background-color: #373f57;
+  }
 
   > :last-child {
     padding-bottom: 12px;
