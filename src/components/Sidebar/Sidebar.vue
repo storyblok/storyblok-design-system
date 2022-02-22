@@ -32,13 +32,16 @@
       </div>
 
       <SbSidebarList>
-        <SbSidebarListItem
-          v-for="(listItem, index) in listItems"
-          :key="index"
-          v-bind="listItem"
-        />
+        <div class="sb-sidebar-list__container transparent-scroll">
+          <SbSidebarListItem
+            v-for="(listItem, index) in listItems"
+            :key="index"
+            v-bind="listItem"
+          />
 
-        <slot />
+          <slot />
+          <span v-if="hasScrollbar" class="sb-sidebar-list__fade"></span>
+        </div>
       </SbSidebarList>
 
       <div class="sb-sidebar__bottom">
@@ -87,7 +90,13 @@ export default {
 
   data: () => ({
     isMobileOpen: false,
+    hasScrollbar: false,
+    sizeObserver: null,
   }),
+
+  mounted() {
+    this.createObserver()
+  },
 
   methods: {
     toggleMinimizedState() {
@@ -109,6 +118,26 @@ export default {
         this.$nextTick(() => {
           this.$emit('mobile-close')
         })
+      }
+    },
+
+    createObserver() {
+      if (window.ResizeObserver) {
+        this.sizeObserver = new ResizeObserver(() => {
+          this.checkScrollbar()
+        })
+        this.sizeObserver.observe(
+          document.getElementsByClassName('sb-sidebar-list__container')[0]
+        )
+      }
+    },
+
+    checkScrollbar() {
+      const list = document.getElementsByClassName(
+        'sb-sidebar-list__container'
+      )[0]
+      if (list) {
+        this.hasScrollbar = list.scrollHeight > list.clientHeight
       }
     },
   },

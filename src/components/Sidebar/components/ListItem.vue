@@ -3,6 +3,7 @@
     class="sb-sidebar-item"
     :class="{
       'sb-sidebar-item--active': active,
+      'sb-sidebar-item--parent': hasChildren,
     }"
   >
     <component
@@ -23,7 +24,7 @@
 
       <SbIcon v-else-if="hasIcon" :size="iconSize" :name="icon" />
 
-      <div v-if="hasSeparator" class="separator"></div>
+      <div v-if="hasSeparator" class="sb-separator"></div>
 
       <span class="sb-sidebar-link__label">
         {{ label }}
@@ -98,6 +99,10 @@ export default {
       default: null,
     },
     hasSeparator: {
+      type: Boolean,
+      default: false,
+    },
+    hasChildren: {
       type: Boolean,
       default: false,
     },
