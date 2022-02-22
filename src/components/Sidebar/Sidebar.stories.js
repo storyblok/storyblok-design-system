@@ -67,7 +67,7 @@ const SidebarTemplate = (args) => ({
       >
         <SbSidebarListItem
           label="Other activities"
-          class="sb-sidebar-submenu"
+          is-child
         />
       </SbSidebarListItem>
       <template slot="bottom">

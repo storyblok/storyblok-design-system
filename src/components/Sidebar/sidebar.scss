@@ -138,10 +138,6 @@
   background-color: #262e48;
   border-radius: 8px;
 
-  .sb-sidebar-link:hover {
-    background-color: #373f57;
-  }
-
   > :last-child {
     padding-bottom: 12px;
   }
@@ -153,11 +149,21 @@
   }
 }
 
-.sb-sidebar-submenu {
+.sb-sidebar-item--child {
   margin: 1px 0;
+
+  &.sb-sidebar-item--active {
+    .sb-sidebar-link {
+      background-color: #373f57;
+    }
+  }
 
   .sb-sidebar-link {
     padding-left: 32px;
+
+    &:hover {
+      background-color: #373f57;
+    }
   }
 }
 

@@ -1,11 +1,5 @@
 <template>
-  <li
-    class="sb-sidebar-item"
-    :class="{
-      'sb-sidebar-item--active': active,
-      'sb-sidebar-item--parent': hasChildren,
-    }"
-  >
+  <li class="sb-sidebar-item" :class="computedClasses">
     <component
       :is="as"
       class="sb-sidebar-link"
@@ -106,9 +100,20 @@ export default {
       type: Boolean,
       default: false,
     },
+    isChild: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
+    computedClasses() {
+      return {
+        'sb-sidebar-item--active': this.active,
+        'sb-sidebar-item--parent': this.hasChildren,
+        'sb-sidebar-item--child': this.isChild,
+      }
+    },
     ariaLabelText() {
       return this.active ? this.ariaLabel + ', Current Page' : this.ariaLabel
     },
