@@ -66,7 +66,7 @@ const SidebarTemplate = (args) => ({
         class="sb-sidebar-item--parent"
       >
         <SbSidebarListItem
-          label="Activities bla bla bla long text"
+          label="Other activities"
           class="sb-sidebar-submenu"
         />
       </SbSidebarListItem>
