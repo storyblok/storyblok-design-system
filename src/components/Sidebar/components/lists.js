@@ -16,7 +16,7 @@ const SbSidebarList = {
     return h(
       'ul',
       {
-        staticClass: 'sb-sidebar-list transparent-scroll',
+        staticClass: 'sb-sidebar-list',
         attrs: {
           role: 'navigation',
         },
