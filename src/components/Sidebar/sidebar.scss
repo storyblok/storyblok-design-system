@@ -189,11 +189,13 @@
 
   .sb-icon {
     margin-right: 12px;
+  }
 
-    &__right {
-      position: absolute;
-      right: 0;
-    }
+  .sb-icon__right {
+    position: absolute;
+    right: 0;
+    opacity: 1;
+    transition: all 0.2s ease;
   }
 
   .sb-separator {
@@ -261,6 +263,10 @@
   .sb-menu-list {
     min-width: 200px;
     margin: 0 16px;
+  }
+
+  .sb-icon__right {
+    opacity: 0;
   }
 }
 

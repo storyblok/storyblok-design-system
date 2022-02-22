@@ -24,12 +24,7 @@
         {{ label }}
       </span>
 
-      <SbIcon
-        v-if="hasIconRight"
-        :size="iconRightSize"
-        :name="iconRight"
-        class="sb-icon__right"
-      />
+      <SbIcon :size="iconRightSize" :name="iconRight" class="sb-icon__right" />
     </component>
 
     <slot />
@@ -120,10 +115,6 @@ export default {
 
     hasAvatar() {
       return this.avatar !== null
-    },
-
-    hasIconRight() {
-      return this.iconRight
     },
 
     hasIcon() {
