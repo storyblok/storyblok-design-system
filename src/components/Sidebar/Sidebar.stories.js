@@ -66,6 +66,7 @@ const SidebarTemplate = (args) => ({
         class="sb-sidebar-item--parent"
       >
         <SbSidebarListItem
+          v-if="!minimize"
           label="Other activities"
           is-child
         />
