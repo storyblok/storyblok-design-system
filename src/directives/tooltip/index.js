@@ -205,7 +205,7 @@ export default {
           el.__tooltip.options
         )
 
-        checkdelay = setInterval(function() {
+        checkdelay = setInterval(function () {
           if (!el.offsetHeight && el.__tooltip.popperInstance) {
             el.__tooltip.popperInstance.destroy()
             el.__tooltip.popperInstance = null
