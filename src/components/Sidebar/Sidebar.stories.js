@@ -13,18 +13,11 @@ export const listItemsData = [
     icon: 'content',
     label: 'Content',
     ariaLabel: 'Go to content',
-    active: true,
   },
   {
     href: '#',
     icon: 'apps',
     label: 'Apps Directory',
-  },
-  {
-    href: '#',
-    icon: 'partner-team',
-    iconRight: 'chevron-down',
-    label: 'Apps',
   },
 ]
 
@@ -66,7 +59,17 @@ const SidebarTemplate = (args) => ({
       :logo="logo"
       :minimize.sync="internalMinimize"
     >
-
+      <SbSidebarListItem
+        icon="partner-team"
+        icon-right="chevron-down"
+        label="Apps"
+        class="sb-sidebar-item--parent"
+      >
+        <SbSidebarListItem
+          label="Activities bla bla bla long text"
+          class="sb-sidebar-submenu"
+        />
+      </SbSidebarListItem>
       <template slot="bottom">
         <SbSidebarListItem
           href="#"

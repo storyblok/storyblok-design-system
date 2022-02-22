@@ -153,6 +153,14 @@
   }
 }
 
+.sb-sidebar-submenu {
+  margin: 1px 0;
+
+  .sb-sidebar-link {
+    padding-left: 32px;
+  }
+}
+
 .sb-sidebar-link {
   position: relative;
   display: flex;
