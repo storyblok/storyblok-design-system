@@ -206,9 +206,8 @@ export default {
         )
 
         checkdelay = setInterval(function () {
-          if (!el.offsetHeight && el.__tooltip.popperInstance) {
-            el.__tooltip.popperInstance.destroy()
-            el.__tooltip.popperInstance = null
+          if (!el.offsetHeight && el.__tooltip.popperInstance && tooltip) {
+            cleanup(el)
           }
 
           if (!el.__tooltip.popperInstance) {
