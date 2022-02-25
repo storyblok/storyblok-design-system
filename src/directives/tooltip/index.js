@@ -179,6 +179,7 @@ export default {
 
     const options = getOptions(binding)
     const label = getLabel(binding)
+    let checkdelay
 
     function showHandler(e) {
       if (
@@ -203,6 +204,16 @@ export default {
           tooltip,
           el.__tooltip.options
         )
+
+        checkdelay = setInterval(function () {
+          if (!el.offsetHeight && el.__tooltip.popperInstance && tooltip) {
+            cleanup(el)
+          }
+
+          if (!el.__tooltip.popperInstance) {
+            clearInterval(checkdelay)
+          }
+        }, 150)
       }
     }
 
