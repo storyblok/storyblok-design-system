@@ -189,6 +189,7 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   width: 100%;
+  background: $white;
 
   &__item {
     @include flexCentering();
@@ -208,6 +209,7 @@
   box-sizing: border-box;
   width: 100%;
   max-height: 252px;
+  background: $white;
 
   &__item {
     @include flexCentering();
