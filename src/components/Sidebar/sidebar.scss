@@ -130,6 +130,10 @@
   svg {
     min-width: 24px;
   }
+
+  .sb-icon__right {
+    pointer-events: none;
+  }
 }
 
 .sb-sidebar-item--parent {
