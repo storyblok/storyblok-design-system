@@ -211,9 +211,7 @@ export default {
             el.__tooltip.popperInstance &&
             tooltip
           ) {
-            el.__tooltip.popperInstance.destroy()
-            el.__tooltip.popperInstance = null
-            tooltip.remove()
+            cleanup(el)
           }
 
           if (!el.__tooltip.popperInstance) {
