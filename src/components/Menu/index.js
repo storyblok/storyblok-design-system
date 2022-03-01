@@ -287,6 +287,7 @@ const SbMenuList = {
           focusOnLastItem()
           break
         case 'Tab':
+          focusAtIndex((activeIndex + 1) % count)
           event.preventDefault()
           break
         case 'Escape':
