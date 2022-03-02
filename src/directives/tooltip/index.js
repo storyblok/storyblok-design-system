@@ -211,7 +211,12 @@ export default {
 
     function addInterval(tooltip, interval = 300) {
       return setInterval(() => {
-        if (!el.clientHeight && el.__tooltip.popperInstance && tooltip) {
+        const isVisible = !!(
+          el.offsetWidth ||
+          el.offsetHeight ||
+          el.getClientRects().length
+        )
+        if (!isVisible && el.__tooltip.popperInstance && tooltip) {
           cleanup(el)
         }
 
