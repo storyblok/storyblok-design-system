@@ -205,16 +205,25 @@ export default {
           el.__tooltip.options
         )
 
-        checkdelay = setInterval(function () {
-          if (!el.offsetHeight && el.__tooltip.popperInstance && tooltip) {
-            cleanup(el)
-          }
-
-          if (!el.__tooltip.popperInstance) {
-            clearInterval(checkdelay)
-          }
-        }, 150)
+        checkdelay = addInterval(tooltip)
       }
+    }
+
+    function addInterval(tooltip, interval = 300) {
+      return setInterval(() => {
+        const isVisible = !!(
+          el.offsetWidth ||
+          el.offsetHeight ||
+          el.getClientRects().length
+        )
+        if (!isVisible && el.__tooltip.popperInstance && tooltip) {
+          cleanup(el)
+        }
+
+        if (!el.__tooltip.popperInstance) {
+          clearInterval(checkdelay)
+        }
+      }, interval)
     }
 
     function hideHandler() {
