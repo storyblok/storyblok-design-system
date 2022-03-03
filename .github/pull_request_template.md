@@ -2,7 +2,7 @@
 
 ## Pull request type
 
-Jira Link: [DS-](url)
+Jira Link: [INT-](url)
 
 <!-- Please try to limit your pull request to one type, submit multiple pull requests if needed. 
 
