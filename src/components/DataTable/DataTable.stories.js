@@ -11,6 +11,8 @@ const description = {
     'Data tables are used to organize and display data efficiently. `SbDataTable` component allows for customization with additional functionality, as needed by your product’s users.',
   headers: 'It must be an array that represents the header content.',
   hideHeader: 'Toggle table header.',
+  hideLabelActionsBreakpoint:
+    'Sets the width of the viewport to hide the action buttons label.',
   isLoading: 'Show a loading over the table.',
   items:
     'It must be an array. Each entry in the array represents a row in the table.',
@@ -32,6 +34,7 @@ const DataTableTemplate = (args) => ({
         items,
         selectionMode,
         hideHeader,
+        hideLabelActionsBreakpoint,
         striped
       }"
     />
@@ -54,6 +57,7 @@ export default {
     allowSelection: false,
     headers: [],
     hideHeader: false,
+    hideLabelActionsBreakpoint: null,
     isLoading: false,
     items: [],
     selectionMode: 'single',
@@ -80,6 +84,13 @@ export default {
       description: description.hideHeader,
       control: {
         type: 'boolean',
+      },
+    },
+    hideLabelActionsBreakpoint: {
+      name: 'hideLabelActionsBreakpoint',
+      description: description.hideLabelActionsBreakpoint,
+      control: {
+        type: 'number',
       },
     },
     isLoading: {
@@ -215,6 +226,7 @@ ActionsMenu.args = {
   actions: [...defaultTableActionsData],
   allowSelection: true,
   selectionMode: 'multiple',
+  hideLabelActionsBreakpoint: 1000,
 }
 
 ActionsMenu.parameters = {
