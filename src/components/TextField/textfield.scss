@@ -54,11 +54,6 @@
     border-radius: 5px;
     transition: $base-transition;
 
-    /* stylelint-disable-next-line */
-    @media screen and (-webkit-min-device-pixel-ratio: 0) {
-      font-size: 1.6rem;
-    }
-
     &:disabled {
       background: $light-25;
       border: 1px solid $light !important;
