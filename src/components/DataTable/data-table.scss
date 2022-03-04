@@ -130,7 +130,7 @@
   border-radius: 5px;
 
   &__rows-selected {
-    margin-right: auto;
+    margin-left: 0;
     color: $white;
     font-family: $primary-font-family;
     font-size: 14px;
@@ -140,19 +140,11 @@
     outline: 0;
   }
 
-  &__btn-cancel {
-    position: relative;
-    margin-left: 20px;
-    margin-right: -10px;
+  &__btn {
+    margin-left: 10px;
+  }
 
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: -10px;
-      top: 0;
-      width: 1px;
-      background-color: rgba(255, 255, 255, 10%);
-    }
+  &__btn-cancel {
+    margin-right: auto;
   }
 }
