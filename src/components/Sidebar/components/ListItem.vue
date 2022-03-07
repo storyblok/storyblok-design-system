@@ -1,10 +1,5 @@
 <template>
-  <li
-    class="sb-sidebar-item"
-    :class="{
-      'sb-sidebar-item--active': active,
-    }"
-  >
+  <li class="sb-sidebar-item" :class="computedClasses">
     <component
       :is="as"
       class="sb-sidebar-link"
@@ -23,16 +18,13 @@
 
       <SbIcon v-else-if="hasIcon" :size="iconSize" :name="icon" />
 
+      <div v-if="hasSeparator" class="sb-separator"></div>
+
       <span class="sb-sidebar-link__label">
         {{ label }}
       </span>
 
-      <SbIcon
-        v-if="hasIconBefore"
-        :size="iconBeforeSize"
-        :name="iconBefore"
-        class="sb-icon__before"
-      />
+      <SbIcon :size="iconRightSize" :name="iconRight" class="sb-icon__right" />
     </component>
 
     <slot />
@@ -83,11 +75,11 @@ export default {
       type: String,
       default: 'normal',
     },
-    iconBefore: {
+    iconRight: {
       type: String,
       default: null,
     },
-    iconBeforeSize: {
+    iconRightSize: {
       type: String,
       default: 'normal',
     },
@@ -95,19 +87,34 @@ export default {
       type: [String, Object],
       default: null,
     },
+    hasSeparator: {
+      type: Boolean,
+      default: false,
+    },
+    hasChildren: {
+      type: Boolean,
+      default: false,
+    },
+    isChild: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
+    computedClasses() {
+      return {
+        'sb-sidebar-item--active': this.active,
+        'sb-sidebar-item--parent': this.hasChildren,
+        'sb-sidebar-item--child': this.isChild,
+      }
+    },
     ariaLabelText() {
       return this.active ? this.ariaLabel + ', Current Page' : this.ariaLabel
     },
 
     hasAvatar() {
       return this.avatar !== null
-    },
-
-    hasIconBefore() {
-      return this.iconBefore !== null
     },
 
     hasIcon() {

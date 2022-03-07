@@ -13,30 +13,29 @@
         </button>
       </div>
 
-      <div class="sb-sidebar__mobile-logo">
-        <SbSidebarLogo variant="dark" />
-      </div>
-
-      <div v-if="isMobileOpen" class="sb-sidebar__mobile-header-close-icon">
-        <button @click="closeSidebar">
-          <SbIcon name="close" />
-        </button>
+      <div class="sb-sidebar__mobile-logo" @click="closeSidebar">
+        <img v-if="logo" class="sb-custom-logo" :src="logo" />
+        <SbSidebarLogo v-else variant="dark" />
       </div>
     </div>
 
-    <div class="sb-sidebar__content">
+    <div v-click-outside="$_sidebarClose" class="sb-sidebar__content">
       <div class="sb-sidebar__top">
-        <SbSidebarLogo :minimize="minimize" />
+        <img v-if="logo" class="sb-custom-logo" :src="logo" />
+        <SbSidebarLogo v-else :minimize="minimize" />
       </div>
 
       <SbSidebarList>
-        <SbSidebarListItem
-          v-for="(listItem, index) in listItems"
-          :key="index"
-          v-bind="listItem"
-        />
+        <div class="sb-sidebar-list__container transparent-scroll">
+          <SbSidebarListItem
+            v-for="(listItem, index) in listItems"
+            :key="index"
+            v-bind="listItem"
+          />
 
-        <slot />
+          <slot />
+          <span v-if="hasScrollbar" class="sb-sidebar-list__fade"></span>
+        </div>
       </SbSidebarList>
 
       <div class="sb-sidebar__bottom">
@@ -49,6 +48,8 @@
 </template>
 
 <script>
+import { ClickOutside } from '../../directives'
+
 import SbIcon from '../Icon'
 import {
   SbSidebarList,
@@ -68,6 +69,10 @@ export default {
     SbSidebarToggle,
   },
 
+  directives: {
+    ClickOutside,
+  },
+
   props: {
     listItems: {
       type: Array,
@@ -77,11 +82,21 @@ export default {
       type: Boolean,
       default: false,
     },
+    logo: {
+      type: String,
+      default: '',
+    },
   },
 
   data: () => ({
     isMobileOpen: false,
+    hasScrollbar: false,
+    sizeObserver: null,
   }),
+
+  mounted() {
+    this.createObserver()
+  },
 
   methods: {
     toggleMinimizedState() {
@@ -103,6 +118,32 @@ export default {
         this.$nextTick(() => {
           this.$emit('mobile-close')
         })
+      }
+    },
+
+    createObserver() {
+      if (window.ResizeObserver) {
+        this.sizeObserver = new ResizeObserver(() => {
+          this.checkScrollbar()
+        })
+        this.sizeObserver.observe(
+          document.getElementsByClassName('sb-sidebar-list__container')[0]
+        )
+      }
+    },
+
+    checkScrollbar() {
+      const list = document.getElementsByClassName(
+        'sb-sidebar-list__container'
+      )[0]
+      if (list) {
+        this.hasScrollbar = list.scrollHeight > list.clientHeight
+      }
+    },
+
+    $_sidebarClose(e) {
+      if (!this.$el.contains(e.target) && this.isMobileOpen) {
+        this.closeSidebar()
       }
     },
   },

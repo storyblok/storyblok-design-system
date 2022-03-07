@@ -1,8 +1,7 @@
 import {
   getRandomNumber,
   availableSizes,
-  availableColors,
-  availableBgColors,
+  availableColorsNoWhite,
 } from '../../utils'
 
 /**
@@ -19,9 +18,9 @@ export const isSizeValid = (size) => availableSizes.indexOf(size) !== -1
  * @return {string}
  */
 export const generateRandomBgColor = () => {
-  const randomNumber = getRandomNumber(0, availableBgColors.length)
+  const randomNumber = getRandomNumber(0, availableColorsNoWhite.length)
 
-  return availableBgColors[randomNumber]
+  return 'bg-' + availableColorsNoWhite[randomNumber]
 }
 
 /**
@@ -30,9 +29,9 @@ export const generateRandomBgColor = () => {
  * @return {string}
  */
 export const generateRandomColor = () => {
-  const randomNumber = getRandomNumber(0, availableBgColors.length)
+  const randomNumber = getRandomNumber(0, availableColorsNoWhite.length)
 
-  return availableColors[randomNumber]
+  return availableColorsNoWhite[randomNumber]
 }
 
 /**

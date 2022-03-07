@@ -28,6 +28,10 @@ const SbDataTable = {
   }),
 
   props: {
+    actions: {
+      type: Array,
+      default: () => [],
+    },
     allowSelection: {
       required: false,
       type: Boolean,
@@ -93,6 +97,12 @@ const SbDataTable = {
         return this.doSort()
       }
       return this.items
+    },
+  },
+
+  watch: {
+    items() {
+      this.deselectAll()
     },
   },
 
@@ -183,7 +193,12 @@ const SbDataTable = {
     const renderActions = () => {
       return h(SbDataTableActions, {
         props: {
+          actions: this.actions,
           selectedRowsLength: this.selectedRows.length,
+        },
+        on: {
+          click: (value) => this.$emit('emit-action', value),
+          cancel: () => this.deselectAll(),
         },
       })
     }
