@@ -46,6 +46,10 @@ const SbDataTable = {
       type: Boolean,
       default: false,
     },
+    hideLabelActionsBreakpoint: {
+      type: Number,
+      default: null,
+    },
     isLoading: {
       required: false,
       type: Boolean,
@@ -103,6 +107,10 @@ const SbDataTable = {
   watch: {
     items() {
       this.deselectAll()
+    },
+
+    selectedRows(value) {
+      this.$emit('selected-rows', value)
     },
   },
 
@@ -194,6 +202,7 @@ const SbDataTable = {
       return h(SbDataTableActions, {
         props: {
           actions: this.actions,
+          hideLabelActionsBreakpoint: this.hideLabelActionsBreakpoint,
           selectedRowsLength: this.selectedRows.length,
         },
         on: {

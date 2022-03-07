@@ -1,4 +1,6 @@
 import SbButton from '../../Button'
+import { Tooltip } from '../../../directives'
+import { WindowResizeObserverMixin } from '../../../mixins'
 
 /**
  * SbDataTableActions
@@ -11,11 +13,21 @@ export const SbDataTableActions = {
       type: Array,
       default: [],
     },
+    hideLabelActionsBreakpoint: {
+      type: Number,
+      default: null,
+    },
     selectedRowsLength: {
       type: Number,
       default: 0,
     },
   },
+
+  directives: {
+    tooltip: Tooltip,
+  },
+
+  mixins: [WindowResizeObserverMixin()],
 
   computed: {
     labelSelectedRowsLength() {
@@ -48,7 +60,7 @@ export const SbDataTableActions = {
             click: () => this.$emit('cancel'),
           },
         },
-        'Cancel'
+        'Clear'
       )
     }
 
@@ -61,7 +73,17 @@ export const SbDataTableActions = {
               variant: 'secondary',
               size: 'small',
               icon: action.icon,
+              hasIconOnly: !this.isOnDesktop,
             },
+            directives: !this.isOnDesktop && [
+              {
+                name: 'tooltip',
+                value: {
+                  label: action.label,
+                  position: 'top',
+                },
+              },
+            ],
             staticClass: 'sb-actions-menu__btn',
             on: {
               click: () => this.$emit('click', action.value),
@@ -79,7 +101,7 @@ export const SbDataTableActions = {
       {
         staticClass: 'sb-actions-menu',
       },
-      [renderSelectedRowsLength(), renderActions(), renderActionCancel()]
+      [renderSelectedRowsLength(), renderActionCancel(), renderActions()]
     )
   },
 }
