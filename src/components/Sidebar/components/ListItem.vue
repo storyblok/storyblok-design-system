@@ -24,7 +24,12 @@
         {{ label }}
       </span>
 
-      <SbIcon :size="iconRightSize" :name="iconRight" class="sb-icon__right" />
+      <SbIcon
+        v-if="iconRight"
+        :size="iconRightSize"
+        :name="iconRight"
+        class="sb-icon__right"
+      />
     </component>
 
     <slot />
