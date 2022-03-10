@@ -212,7 +212,10 @@ const SbDataTable = {
         },
         on: {
           click: (value) => this.$emit('emit-action', value),
-          cancel: () => this.deselectAll(),
+          cancel: () => {
+            this.$emit('cancel')
+            this.deselectAll()
+          },
         },
       })
     }
