@@ -18,6 +18,9 @@ export const SbDataTableBodyRow = {
     row: {
       type: [Object, Array],
     },
+    index: {
+      type: Number,
+    },
     selectedRows: {
       type: Array,
     },
@@ -38,8 +41,8 @@ export const SbDataTableBodyRow = {
       if (!this.allowSelection) return
 
       this.isSelected
-        ? this.context.deselectRow(this.row)
-        : this.context.selectRow(this.row)
+        ? this.context.deselectRow(this.row, this.index)
+        : this.context.selectRow(this.row, this.index)
     },
   },
 

@@ -143,14 +143,19 @@ const SbDataTable = {
      * method to select body row(s)
      * @param {Object} row
      */
-    selectRow(row) {
+    selectRow(row, index) {
       if (this.selectionMode === 'single') {
         this.selectedRows = [row]
         return
       }
-      const index = this.selectedRows.indexOf(row)
-      if (index === -1) {
+
+      const indexOf = this.selectedRows.indexOf(row)
+      if (indexOf === -1) {
         this.selectedRows.push(row)
+
+        this.selectedRows = this.items.filter((item) => {
+          return this.selectedRows.indexOf(item) > -1
+        })
       }
     },
 
@@ -243,7 +248,7 @@ const SbDataTable = {
           }
         })
 
-        bodyData = this.sortedData.map((tableRow) => {
+        bodyData = this.sortedData.map((tableRow, index) => {
           const columns = children.map((tableData) => {
             return h(
               tableData.componentOptions.Ctor,
@@ -272,6 +277,7 @@ const SbDataTable = {
                 allowSelection: this.allowSelection,
                 headers: [...headerData],
                 row: tableRow,
+                index,
                 selectedRows: this.selectedRows,
               },
             },
