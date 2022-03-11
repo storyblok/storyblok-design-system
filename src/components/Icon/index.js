@@ -19,6 +19,11 @@ const SbIcon = {
       default: null,
       validator: (color) => availableColors.indexOf(color) !== -1,
     },
+    backgroundColor: {
+      type: String,
+      default: null,
+      validator: (color) => availableColors.indexOf(color) !== -1,
+    },
     name: {
       type: String,
       default: null,
@@ -38,10 +43,11 @@ const SbIcon = {
     const iconDeff = getSvgIcon(this.name)
     const sizeClass = this.size ? `sb-icon--${this.size}` : null
     const colorClass = this.color ? `sb-icon--color-${this.color}` : null
+    const bgClass = this.color ? `sb-icon--bg-${this.backgroundColor}` : null
 
     return h('svg', {
       staticClass: 'sb-icon',
-      class: [sizeClass, colorClass],
+      class: [sizeClass, colorClass, bgClass],
       attrs: {
         role: this.role || 'presentation',
         viewBox: iconDeff.viewBox,

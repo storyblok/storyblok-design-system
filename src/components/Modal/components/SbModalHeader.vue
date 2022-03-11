@@ -4,7 +4,12 @@
     class="sb-modal-header"
     :class="{ 'sb-modal-header--left': isLeftAlignment }"
   >
-    <SbIcon v-if="icon" :name="icon" size="x-large" />
+    <SbIcon
+      v-if="icon"
+      :name="icon"
+      size="x-large"
+      :background-color="iconBackground"
+    />
     <h1 class="sb-modal-header__title">
       {{ title }}
     </h1>
@@ -32,6 +37,10 @@ export default {
       default: null,
     },
     icon: {
+      type: String,
+      default: null,
+    },
+    iconBackground: {
       type: String,
       default: null,
     },

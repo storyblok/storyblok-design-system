@@ -8,6 +8,38 @@
   fill: $color;
 }
 
+$icon-colors: (
+  'primary': $color-primary,
+  'primary-dark': $color-primary-dark,
+  'secondary': $color-secondary,
+  'positive': $color-positive,
+  'negative': $color-negative,
+  'warning': $color-warning,
+  'white': $color-white,
+  'green': $green,
+  'yellow': $yellow,
+  'blue': $blue,
+  'orange': $orange,
+  'light': $light,
+  'light-gray': $light-gray,
+);
+
+$bg-colors: (
+  'primary': $sb-green-25,
+  'primary-dark': $sb-dark-blue-25,
+  'secondary': $sb-green-25,
+  'positive': $green-25,
+  'negative': $red-25,
+  'warning': $orange-25,
+  'white': $color-white,
+  'green': $green-25,
+  'yellow': $yellow-25,
+  'blue': $blue-25,
+  'orange': $orange-25,
+  'light': $light-25,
+  'light-gray': $light,
+);
+
 .sb-icon {
   @include setIconSize($icon-default-size);
   @include setIconColor(currentColor);
@@ -29,56 +61,20 @@
   }
 
   &--color {
-    &-primary {
-      @include setIconColor($color-primary);
+    @each $name, $colorVariable in $icon-colors {
+      &-#{$name} {
+        @include setIconColor($colorVariable);
+      }
     }
+  }
 
-    &-primary-dark {
-      @include setIconColor($color-primary-dark);
-    }
-
-    &-secondary {
-      @include setIconColor($color-secondary);
-    }
-
-    &-positive {
-      @include setIconColor($color-positive);
-    }
-
-    &-negative {
-      @include setIconColor($color-negative);
-    }
-
-    &-warning {
-      @include setIconColor($color-warning);
-    }
-
-    &-white {
-      @include setIconColor($color-white);
-    }
-
-    &-green {
-      @include setIconColor($green);
-    }
-
-    &-yellow {
-      @include setIconColor($yellow);
-    }
-
-    &-blue {
-      @include setIconColor($blue);
-    }
-
-    &-orange {
-      @include setIconColor($orange);
-    }
-
-    &-light {
-      @include setIconColor($light);
-    }
-
-    &-light-gray {
-      @include setIconColor($light-gray);
+  &--bg {
+    @each $name, $colorVariable in $bg-colors {
+      &-#{$name} {
+        padding: 12px;
+        background-color: $colorVariable;
+        border-radius: 100%;
+      }
     }
   }
 }
