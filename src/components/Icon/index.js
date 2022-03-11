@@ -43,7 +43,9 @@ const SbIcon = {
     const iconDeff = getSvgIcon(this.name)
     const sizeClass = this.size ? `sb-icon--${this.size}` : null
     const colorClass = this.color ? `sb-icon--color-${this.color}` : null
-    const bgClass = this.color ? `sb-icon--bg-${this.backgroundColor}` : null
+    const bgClass = this.backgroundColor
+      ? `sb-icon--bg-${this.backgroundColor}`
+      : null
 
     return h('svg', {
       staticClass: 'sb-icon',
