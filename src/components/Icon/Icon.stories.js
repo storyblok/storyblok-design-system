@@ -14,6 +14,7 @@ export default {
     color: 'primary',
     name: 'chevron-down',
     role: null,
+    backgroundColor: null,
   },
   argTypes: {
     color: {
