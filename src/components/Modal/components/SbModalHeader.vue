@@ -7,7 +7,7 @@
     <SbIcon
       v-if="icon"
       :name="icon"
-      size="x-large"
+      :size="iconSize"
       :background-color="iconBackground"
     />
     <h1 class="sb-modal-header__title">
@@ -39,6 +39,10 @@ export default {
     icon: {
       type: String,
       default: null,
+    },
+    iconSize: {
+      type: String,
+      default: 'x-large',
     },
     iconBackground: {
       type: String,
