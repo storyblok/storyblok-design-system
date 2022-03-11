@@ -8,6 +8,7 @@
       v-if="icon"
       :name="icon"
       :size="iconSize"
+      :color="iconColor"
       :background-color="iconBackground"
     />
     <h1 class="sb-modal-header__title">
@@ -37,6 +38,10 @@ export default {
       default: null,
     },
     icon: {
+      type: String,
+      default: null,
+    },
+    iconColor: {
       type: String,
       default: null,
     },
