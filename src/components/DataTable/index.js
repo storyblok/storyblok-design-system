@@ -143,14 +143,14 @@ const SbDataTable = {
      * method to select body row(s)
      * @param {Object} row
      */
-    selectRow(row, index) {
+    selectRow(row) {
       if (this.selectionMode === 'single') {
         this.selectedRows = [row]
         return
       }
 
-      const indexOf = this.selectedRows.indexOf(row)
-      if (indexOf === -1) {
+      const index = this.selectedRows.indexOf(row)
+      if (index === -1) {
         this.selectedRows.push(row)
 
         this.selectedRows = this.items.filter((item) => {
@@ -251,7 +251,7 @@ const SbDataTable = {
           }
         })
 
-        bodyData = this.sortedData.map((tableRow, index) => {
+        bodyData = this.sortedData.map((tableRow) => {
           const columns = children.map((tableData) => {
             return h(
               tableData.componentOptions.Ctor,
@@ -280,7 +280,6 @@ const SbDataTable = {
                 allowSelection: this.allowSelection,
                 headers: [...headerData],
                 row: tableRow,
-                index,
                 selectedRows: this.selectedRows,
               },
             },
