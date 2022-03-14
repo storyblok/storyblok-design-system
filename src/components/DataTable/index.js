@@ -148,9 +148,14 @@ const SbDataTable = {
         this.selectedRows = [row]
         return
       }
+
       const index = this.selectedRows.indexOf(row)
       if (index === -1) {
         this.selectedRows.push(row)
+
+        this.selectedRows = this.items.filter((item) => {
+          return this.selectedRows.indexOf(item) > -1
+        })
       }
     },
 
@@ -207,7 +212,10 @@ const SbDataTable = {
         },
         on: {
           click: (value) => this.$emit('emit-action', value),
-          cancel: () => this.deselectAll(),
+          cancel: () => {
+            this.$emit('cancel')
+            this.deselectAll()
+          },
         },
       })
     }
