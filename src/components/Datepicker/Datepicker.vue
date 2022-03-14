@@ -156,6 +156,7 @@ export default {
   },
 
   data: () => ({
+    isoString: '',
     internalDate: dayjs().format(),
     internalValue: '',
     inputElement: null,
@@ -365,6 +366,18 @@ export default {
       }
 
       if (this.internalValue === 'Invalid Date') this.internalValue = ''
+
+      this.isoString = this.internalValue
+        ? dayjs.utc(value).utcOffset(this.tzOffset).toISOString()
+        : ''
+      console.log(
+        'isoString =>',
+        this.isoString,
+        'value =>',
+        value,
+        'internalValue =>',
+        this.internalValue
+      )
     },
 
     $_wrapClose(e) {
