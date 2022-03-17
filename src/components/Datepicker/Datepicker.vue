@@ -123,6 +123,11 @@ export default {
   props: {
     disabled: Boolean,
 
+    isoDate: {
+      type: Boolean,
+      default: false,
+    },
+
     placeholder: {
       type: String,
       default: null,
@@ -282,7 +287,12 @@ export default {
 
       this.hitClear = false
 
-      this.$emit('input', utcTime)
+      if (this.isoDate) {
+        this.isoString = dayjs.utc(utcTime).toISOString()
+        this.$emit('input', this.isoString)
+      } else {
+        this.$emit('input', utcTime)
+      }
 
       this.$nextTick(() => {
         this.closeOverlay()
