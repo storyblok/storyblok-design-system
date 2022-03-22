@@ -109,7 +109,7 @@ export default {
       description: description.items,
     },
     keepSelectedOnChange: {
-      name: 'isLoading',
+      name: 'keepSelectedOnChange',
       description: description.keepSelectedOnChange,
       control: {
         type: 'boolean',
