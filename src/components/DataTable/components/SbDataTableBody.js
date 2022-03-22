@@ -29,7 +29,9 @@ export const SbDataTableBodyRow = {
     },
 
     isSelected() {
-      return this.selectedRows.some((row) => row === this.row)
+      return this.selectedRows.some(
+        (row) => JSON.stringify(row) === JSON.stringify(this.row)
+      )
     },
   },
 
