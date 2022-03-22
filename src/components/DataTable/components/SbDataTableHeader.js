@@ -114,8 +114,9 @@ export const SbDataTableHeaderRow = {
     headers: {
       type: Array,
     },
-    selectedRowsLength: {
-      type: Number,
+    selectedRows: {
+      type: Array,
+      default: [],
     },
     selectionMode: {
       type: String,
@@ -129,8 +130,13 @@ export const SbDataTableHeaderRow = {
     context() {
       return this.dataTableContext()
     },
+
     isIndeterminate() {
       return !this.allRowsSelected && !!this.selectedRowsLength
+    },
+
+    selectedRowsLength() {
+      return this.selectedRows.length
     },
   },
 
@@ -199,9 +205,9 @@ export const SbDataTableHeader = {
       required: false,
       type: Array,
     },
-    selectedRowsLength: {
-      required: false,
-      type: Number,
+    selectedRows: {
+      type: Array,
+      deafult: [],
     },
     selectionMode: {
       required: false,
@@ -220,7 +226,7 @@ export const SbDataTableHeader = {
           allowSelection: this.allowSelection,
           allRowsSelected: this.allRowsSelected,
           headers: this.headers,
-          selectedRowsLength: this.selectedRowsLength,
+          selectedRows: this.selectedRows,
           selectionMode: this.selectionMode,
           sortedKey: this.sortedKey,
         },

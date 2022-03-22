@@ -17,9 +17,9 @@ export const SbDataTableActions = {
       type: Number,
       default: null,
     },
-    selectedRowsLength: {
-      type: Number,
-      default: 0,
+    selectedRows: {
+      type: Array,
+      default: [],
     },
   },
 
@@ -33,6 +33,10 @@ export const SbDataTableActions = {
     labelSelectedRowsLength() {
       const labelItem = this.selectedRowsLength > 1 ? 'items' : 'item'
       return `${this.selectedRowsLength} ${labelItem} selected`
+    },
+
+    selectedRowsLength() {
+      return this.selectedRows.length
     },
   },
 

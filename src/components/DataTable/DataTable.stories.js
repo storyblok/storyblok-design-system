@@ -16,6 +16,8 @@ const description = {
   isLoading: 'Show a loading over the table.',
   items:
     'It must be an array. Each entry in the array represents a row in the table.',
+  keepSelectedOnChange:
+    'Saves the selected rows in memory in case there is a change of items, and selects the items again when reloading the same list.',
   selectionMode:
     'By default the selection mode is single, meaning only one row at a time can be selected. Use multiple, so multiple rows can be selected. `allowSelection: true` is required.',
   striped: 'Add zebra-striping to any table row within the `<tbody>.`',
@@ -32,6 +34,7 @@ const DataTableTemplate = (args) => ({
         headers,
         isLoading,
         items,
+        keepSelectedOnChange,
         selectionMode,
         hideHeader,
         hideLabelActionsBreakpoint,
@@ -60,6 +63,7 @@ export default {
     hideLabelActionsBreakpoint: null,
     isLoading: false,
     items: [],
+    keepSelectedOnChange: false,
     selectionMode: 'single',
     striped: false,
   },
@@ -103,6 +107,13 @@ export default {
     items: {
       name: 'items',
       description: description.items,
+    },
+    keepSelectedOnChange: {
+      name: 'keepSelectedOnChange',
+      description: description.keepSelectedOnChange,
+      control: {
+        type: 'boolean',
+      },
     },
     selectionMode: {
       name: 'selectionMode',
@@ -315,6 +326,7 @@ export const Slots = (args) => ({
           headers,
           isLoading,
           items,
+          keepSelectedOnChange,
           selectionMode,
           hideHeader,
           striped
