@@ -14,11 +14,20 @@ export default {
     color: 'primary',
     name: 'chevron-down',
     role: null,
+    backgroundColor: null,
   },
   argTypes: {
     color: {
       name: 'color',
       description: 'Color for SbIcon',
+      control: {
+        type: 'select',
+        options: availableColors,
+      },
+    },
+    backgroundColor: {
+      name: 'background color',
+      description: 'Background color for SbIcon',
       control: {
         type: 'select',
         options: availableColors,
@@ -53,12 +62,18 @@ export default {
 export const Default = (args) => ({
   components: { SbIcon },
   props: Object.keys(args),
-  template: '<SbIcon v-bind="{ name, color, size, role }" />',
+  template: '<SbIcon v-bind="{ name, color, backgroundColor, size, role }" />',
 })
 
 Default.args = {
   size: 'normal',
 }
+
+export const IconWithBackground = () => ({
+  components: { SbIcon },
+  template:
+    '<SbIcon name="schema" color="primary" background-color="primary" />',
+})
 
 export const FallbackIcon = () => ({
   components: { SbIcon },

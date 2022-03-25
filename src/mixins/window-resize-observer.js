@@ -21,11 +21,6 @@ const DEFAULT_BREAKPOINTS = {
  * @return {Vue.Component}
  */
 const WindowResizeObserverMixin = (options = {}) => {
-  const BREAKPOINTS = {
-    ...DEFAULT_BREAKPOINTS,
-    ...options.breakpoints,
-  }
-
   const debounceFunction = options.debounce || 300
 
   // @vue/component
@@ -36,19 +31,35 @@ const WindowResizeObserverMixin = (options = {}) => {
     }),
 
     computed: {
+      breakpoints() {
+        const BREAKPOINTS = {
+          ...DEFAULT_BREAKPOINTS,
+          ...options.breakpoints,
+        }
+
+        if (this.hideLabelActionsBreakpoint) {
+          return {
+            ...BREAKPOINTS,
+            DESKTOP: this.hideLabelActionsBreakpoint,
+          }
+        }
+
+        return BREAKPOINTS
+      },
+
       isOnMobile() {
-        return this.windowWidth <= BREAKPOINTS.MOBILE
+        return this.windowWidth <= this.breakpoints.MOBILE
       },
 
       isOnTablet() {
         return (
-          this.windowWidth > BREAKPOINTS.MOBILE &&
-          this.windowWidth <= BREAKPOINTS.DESKTOP
+          this.windowWidth > this.breakpoints.MOBILE &&
+          this.windowWidth <= this.breakpoints.DESKTOP
         )
       },
 
       isOnDesktop() {
-        return this.windowWidth > BREAKPOINTS.DESKTOP
+        return this.windowWidth > this.breakpoints.DESKTOP
       },
 
       isOnMobileOrTablet() {

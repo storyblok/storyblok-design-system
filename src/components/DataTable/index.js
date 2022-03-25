@@ -46,12 +46,24 @@ const SbDataTable = {
       type: Boolean,
       default: false,
     },
+    hideLabelActionsBreakpoint: {
+      type: Number,
+      default: null,
+    },
     isLoading: {
       required: false,
       type: Boolean,
       default: false,
     },
+    keepSelectedOnChange: {
+      type: Boolean,
+      default: false,
+    },
     items: {
+      type: Array,
+      default: () => [],
+    },
+    selectedItems: {
       type: Array,
       default: () => [],
     },
@@ -72,7 +84,10 @@ const SbDataTable = {
       if (this.selectionMode === 'single' || !this.selectedRows.length)
         return false
 
-      return this.selectedRows.length === this.items.length ? true : null
+      return this.selectedRows.length === this.items.length &&
+        this.hasSelectedRowsInList.length
+        ? true
+        : null
     },
 
     dataTableContext() {
@@ -86,6 +101,14 @@ const SbDataTable = {
         // method to control sorting
         toggleTableOrder: this.toggleTableOrder,
       }
+    },
+
+    hasSelectedRowsInList() {
+      return this.items.filter((item) =>
+        this.selectedRows.some(
+          (row) => JSON.stringify(item) === JSON.stringify(row)
+        )
+      )
     },
 
     showHeader() {
@@ -102,7 +125,13 @@ const SbDataTable = {
 
   watch: {
     items() {
-      this.deselectAll()
+      if (!this.keepSelectedOnChange) {
+        this.deselectAll()
+      }
+    },
+
+    selectedRows(value) {
+      this.$emit('selected-rows', value)
     },
   },
 
@@ -140,9 +169,14 @@ const SbDataTable = {
         this.selectedRows = [row]
         return
       }
+
       const index = this.selectedRows.indexOf(row)
       if (index === -1) {
         this.selectedRows.push(row)
+
+        this.selectedRows = this.items.filter((item) => {
+          return this.hasSelectedRowsInList.indexOf(item) > -1
+        })
       }
     },
 
@@ -194,11 +228,15 @@ const SbDataTable = {
       return h(SbDataTableActions, {
         props: {
           actions: this.actions,
-          selectedRowsLength: this.selectedRows.length,
+          hideLabelActionsBreakpoint: this.hideLabelActionsBreakpoint,
+          selectedRows: this.hasSelectedRowsInList,
         },
         on: {
           click: (value) => this.$emit('emit-action', value),
-          cancel: () => this.deselectAll(),
+          cancel: () => {
+            this.$emit('cancel')
+            this.deselectAll()
+          },
         },
       })
     }
@@ -263,7 +301,7 @@ const SbDataTable = {
                 allowSelection: this.allowSelection,
                 headers: [...headerData],
                 row: tableRow,
-                selectedRows: this.selectedRows,
+                selectedRows: this.hasSelectedRowsInList,
               },
             },
             columns
@@ -283,7 +321,7 @@ const SbDataTable = {
                   allowSelection: this.allowSelection,
                   allRowsSelected: this.allRowsSelected,
                   headers: this.headers,
-                  selectedRowsLength: this.selectedRows.length,
+                  selectedRows: this.hasSelectedRowsInList,
                   selectionMode: this.selectionMode,
                   sortedKey: this.sortKey,
                 },
@@ -295,7 +333,7 @@ const SbDataTable = {
                   allowSelection: this.allowSelection,
                   headers: this.headers,
                   items: this.sortedData,
-                  selectedRows: this.selectedRows,
+                  selectedRows: this.hasSelectedRowsInList,
                 },
               })
             : null,
@@ -307,7 +345,7 @@ const SbDataTable = {
                         allowSelection: this.allowSelection,
                         allRowsSelected: this.allRowsSelected,
                         headers: [...headerData],
-                        selectedRowsLength: this.selectedRows.length,
+                        selectedRows: this.hasSelectedRowsInList,
                         selectionMode: this.selectionMode,
                         sortedKey: this.sortKey,
                       },
@@ -330,7 +368,7 @@ const SbDataTable = {
         },
       },
       [
-        this.selectedRows.length > 0 && renderActions(),
+        this.hasSelectedRowsInList.length > 0 && renderActions(),
         renderTable(),
         this.isLoading && renderLoading(),
       ]

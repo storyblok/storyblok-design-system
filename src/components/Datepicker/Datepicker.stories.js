@@ -31,6 +31,7 @@ export default {
     value: '2021-12-02 00:00',
     type: 'datetime',
     disabled: false,
+    isoDate: false,
     timeZone: 'America/Detroit',
     tzTooltip: null,
   },
@@ -39,6 +40,11 @@ export default {
       name: 'timeZone',
       description:
         'Use this property to bind the user timezone, for example "America/Detroit". The component will calculate the offset automatically',
+      defaultValue: 'UTC',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: 'UTC' },
+      },
       control: {
         type: 'text',
       },
@@ -46,9 +52,12 @@ export default {
     tzOffset: {
       name: 'tzOffset',
       description: `Use this property to bind the user tz offset. NOTE: If you use this, timeZone value will be disconsidered.
-        Examples:
-        GMT +05:00 or +05:00
-        GMT -03:00 or -03:00`,
+        Examples: GMT +05:00 or +05:00 GMT -03:00 or -03:00`,
+      defaultValue: '',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '' },
+      },
       control: {
         type: 'text',
       },
@@ -57,6 +66,11 @@ export default {
       name: 'tzTooltip',
       description:
         'Use this property to display a tooltip message for `timeZone` or `tzOffset` information.',
+      defaultValue: null,
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: 'null' },
+      },
       control: {
         type: 'text',
       },
@@ -65,8 +79,26 @@ export default {
       name: 'type',
       options: [...datepickerOptions],
       description: 'Change the type of the input.',
+      defaultValue: 'datetime',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: 'datetime' },
+      },
       control: {
         type: 'select',
+      },
+    },
+    isoDate: {
+      name: 'isoDate',
+      description:
+        'If set to true, Datepicker will deliver the date as iso date format like 2010-02-27T05:00:37.845Z',
+      defaultValue: false,
+      table: {
+        type: { summary: 'Boolean' },
+        defaultValue: { summary: 'False' },
+      },
+      control: {
+        type: 'boolean',
       },
     },
   },

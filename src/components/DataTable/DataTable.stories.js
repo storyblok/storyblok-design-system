@@ -11,9 +11,13 @@ const description = {
     'Data tables are used to organize and display data efficiently. `SbDataTable` component allows for customization with additional functionality, as needed by your product’s users.',
   headers: 'It must be an array that represents the header content.',
   hideHeader: 'Toggle table header.',
+  hideLabelActionsBreakpoint:
+    'Sets the width of the viewport to hide the action buttons label.',
   isLoading: 'Show a loading over the table.',
   items:
     'It must be an array. Each entry in the array represents a row in the table.',
+  keepSelectedOnChange:
+    'Saves the selected rows in memory in case there is a change of items, and selects the items again when reloading the same list.',
   selectionMode:
     'By default the selection mode is single, meaning only one row at a time can be selected. Use multiple, so multiple rows can be selected. `allowSelection: true` is required.',
   striped: 'Add zebra-striping to any table row within the `<tbody>.`',
@@ -30,8 +34,10 @@ const DataTableTemplate = (args) => ({
         headers,
         isLoading,
         items,
+        keepSelectedOnChange,
         selectionMode,
         hideHeader,
+        hideLabelActionsBreakpoint,
         striped
       }"
     />
@@ -54,8 +60,10 @@ export default {
     allowSelection: false,
     headers: [],
     hideHeader: false,
+    hideLabelActionsBreakpoint: null,
     isLoading: false,
     items: [],
+    keepSelectedOnChange: false,
     selectionMode: 'single',
     striped: false,
   },
@@ -82,6 +90,13 @@ export default {
         type: 'boolean',
       },
     },
+    hideLabelActionsBreakpoint: {
+      name: 'hideLabelActionsBreakpoint',
+      description: description.hideLabelActionsBreakpoint,
+      control: {
+        type: 'number',
+      },
+    },
     isLoading: {
       name: 'isLoading',
       description: description.isLoading,
@@ -92,6 +107,13 @@ export default {
     items: {
       name: 'items',
       description: description.items,
+    },
+    keepSelectedOnChange: {
+      name: 'keepSelectedOnChange',
+      description: description.keepSelectedOnChange,
+      control: {
+        type: 'boolean',
+      },
     },
     selectionMode: {
       name: 'selectionMode',
@@ -215,6 +237,7 @@ ActionsMenu.args = {
   actions: [...defaultTableActionsData],
   allowSelection: true,
   selectionMode: 'multiple',
+  hideLabelActionsBreakpoint: 1000,
 }
 
 ActionsMenu.parameters = {
@@ -303,6 +326,7 @@ export const Slots = (args) => ({
           headers,
           isLoading,
           items,
+          keepSelectedOnChange,
           selectionMode,
           hideHeader,
           striped

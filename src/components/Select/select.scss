@@ -91,6 +91,7 @@
   display: flex;
   flex: 1;
   align-items: center;
+  overflow-x: hidden;
   padding: 11px 10px 11px 17px;
   color: $sb-dark-blue;
   font-size: $font-14;
@@ -174,6 +175,11 @@
 
   &__value {
     position: absolute;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    max-width: calc(100% - 60px);
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &-icon-left {
       margin-left: 35px;
