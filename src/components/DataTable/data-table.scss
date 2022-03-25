@@ -1,4 +1,13 @@
 .sb-data-table {
+  &__col-selection,
+  &__head-cell {
+    .sb-checkbox__inner:hover {
+      .sb-checkbox__input {
+        box-shadow: 0 0 0 2px rgba(217, 244, 243, 1);
+      }
+    }
+  }
+
   &__loading {
     position: absolute;
     bottom: 0;
