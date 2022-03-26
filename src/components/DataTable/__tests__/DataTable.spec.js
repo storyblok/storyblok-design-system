@@ -90,7 +90,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is checked
-      // expect(row.findComponent(SbCheckbox).props('value')).toBe(true)
+      expect(row.findComponent(SbCheckbox).props('value')).toBe(true)
 
       // should add class to selected row
       expect(row.classes('sb-data-table__row--selected')).toBe(true)
