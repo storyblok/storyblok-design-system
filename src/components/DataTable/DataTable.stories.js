@@ -5,7 +5,7 @@ import SbAvatarGroup from '../AvatarGroup'
 const description = {
   actions:
     'It must be an array of objects representing the action buttons. Each object must have a `label` (which is the button label) and a `value` (which is the value that will be emitted in the `emit-action` event). You can also add an `icon` property to the object.',
-  allowSelection: 'Allow row selection.',
+  allowSelection: 'Allows row selection when clicking on the checkbox.',
   actionsMenu: 'Select a row to show the actions menu',
   component:
     'Data tables are used to organize and display data efficiently. `SbDataTable` component allows for customization with additional functionality, as needed by your product’s users.',

@@ -80,12 +80,13 @@ describe('SbDataTable component', () => {
 
     it('should toggle the color of the checkbox and toggle the background color of the row itself', async () => {
       const row = wrapperSbDataTableBody.findAll('.sb-data-table__row').at(2)
+      const checkbox = wrapperSbDataTableBody.findAll('.sb-checkbox').at(2)
 
       // should actions menu is not visible
       expect(wrapper.findComponent(SbDataTableActions).exists()).toBe(false)
 
-      // when clicks the row
-      await row.trigger('click')
+      // when clicks the checkbox
+      await checkbox.trigger('click')
       await wrapper.vm.$nextTick()
 
       // should checkbox status is checked
@@ -105,8 +106,8 @@ describe('SbDataTable component', () => {
           .text()
       ).toBe('1 item selected')
 
-      // when clicks the same row again
-      await row.trigger('click')
+      // when clicks the same checkbox again
+      await checkbox.trigger('click')
       await wrapper.vm.$nextTick()
 
       // should checkbox status is unchecked
@@ -152,13 +153,15 @@ describe('SbDataTable component', () => {
     it('should toggle the color of each checkbox and toggle the background color of each row itself', async () => {
       const row = wrapperSbDataTableBody.findAll('.sb-data-table__row').at(2)
       const row2 = wrapperSbDataTableBody.findAll('.sb-data-table__row').at(3)
+      const checkbox = wrapperSbDataTableBody.findAll('.sb-checkbox').at(2)
+      const checkbox2 = wrapperSbDataTableBody.findAll('.sb-checkbox').at(3)
 
       // should actions menu is not visible
       expect(wrapper.findComponent(SbDataTableActions).exists()).toBe(false)
 
-      // when clicks the rows
-      await row.trigger('click')
-      await row2.trigger('click')
+      // when clicks the checkboxes
+      await checkbox.trigger('click')
+      await checkbox2.trigger('click')
       await wrapper.vm.$nextTick()
 
       // should checkboxes status are checked
@@ -181,7 +184,7 @@ describe('SbDataTable component', () => {
       ).toBe('2 items selected')
 
       // when clicks the first row again
-      await row.trigger('click')
+      await checkbox.trigger('click')
       await wrapper.vm.$nextTick()
 
       // should checkbox status is unchecked
@@ -199,7 +202,7 @@ describe('SbDataTable component', () => {
       ).toBe('1 item selected')
 
       // when clicks the second row again
-      await row2.trigger('click')
+      await checkbox2.trigger('click')
       await wrapper.vm.$nextTick()
 
       // should checkbox status is unchecked

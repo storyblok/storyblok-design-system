@@ -58,9 +58,6 @@ export const SbDataTableBodyRow = {
           'sb-data-table__row--selected':
             this.isSelected && this.allowSelection,
         },
-        on: {
-          click: this.handleRowSelected,
-        },
       },
       [
         this.allowSelection &&
@@ -69,6 +66,9 @@ export const SbDataTableBodyRow = {
             {
               staticClass: 'sb-data-table__body-cell',
               class: 'sb-data-table__col-selection',
+              on: {
+                click: this.handleRowSelected,
+              },
             },
             [
               h(SbCheckbox, {
