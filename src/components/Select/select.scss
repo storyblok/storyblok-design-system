@@ -180,6 +180,7 @@
     max-width: calc(100% - 60px);
     text-overflow: ellipsis;
     white-space: nowrap;
+    line-height: normal;
 
     &-icon-left {
       margin-left: 35px;
