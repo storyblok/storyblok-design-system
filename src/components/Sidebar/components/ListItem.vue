@@ -8,7 +8,6 @@
         'sb-sidebar-link--use-avatar': hasAvatar,
       }"
       v-bind="$attrs"
-      :href="href"
       :to="to"
       :aria-label="ariaLabelText"
       :aria-current="active && active + ''"
@@ -65,10 +64,6 @@ export default {
       default: null,
     },
     label: {
-      type: String,
-      default: null,
-    },
-    href: {
       type: String,
       default: null,
     },
