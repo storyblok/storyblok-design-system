@@ -175,7 +175,7 @@
 
   &__value {
     position: absolute;
-    overflow-x: hidden;
+    overflow: hidden;
     box-sizing: border-box;
     max-width: calc(100% - 60px);
     text-overflow: ellipsis;
@@ -183,6 +183,7 @@
 
     &-icon-left {
       margin-left: 35px;
+      max-width: calc(100% - 80px);
     }
   }
 
