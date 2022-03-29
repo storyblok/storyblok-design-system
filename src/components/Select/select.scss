@@ -175,14 +175,16 @@
 
   &__value {
     position: absolute;
-    overflow-x: hidden;
+    overflow: hidden;
     box-sizing: border-box;
     max-width: calc(100% - 60px);
     text-overflow: ellipsis;
     white-space: nowrap;
+    line-height: normal;
 
     &-icon-left {
       margin-left: 35px;
+      max-width: calc(100% - 80px);
     }
   }
 
