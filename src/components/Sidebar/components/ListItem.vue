@@ -135,7 +135,10 @@ export default {
       return this.as === 'router-link'
     },
     ariaLabelText() {
-      return this.active ? this.ariaLabel + ', Current Page' : this.ariaLabel
+      if (this.ariaLabel) {
+        return this.active ? this.ariaLabel + ', Current Page' : this.ariaLabel
+      }
+      return this.label
     },
   },
 }
