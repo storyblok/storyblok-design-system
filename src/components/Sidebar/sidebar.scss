@@ -60,8 +60,8 @@
   }
 
   .sb-custom-logo {
-    width: 100%;
     object-fit: contain;
+    width: 100%;
   }
 }
 
@@ -228,6 +228,11 @@
   &--use-avatar {
     padding: 9px 17px 9px 9px;
   }
+}
+
+.sb-sidebar-link-inner {
+  display: flex;
+  align-items: center;
 }
 
 // modifiers

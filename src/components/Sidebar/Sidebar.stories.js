@@ -4,18 +4,18 @@ import SbIcon from '../Icon'
 
 export const listItemsData = [
   {
-    href: '#',
+    href: '#back',
     icon: 'chevron-left',
     label: 'Back to Spaces',
   },
   {
-    href: '#',
+    href: '#content',
     icon: 'content',
     label: 'Content',
     ariaLabel: 'Go to content',
   },
   {
-    href: '#',
+    href: '#apps',
     icon: 'apps',
     label: 'Apps Directory',
   },

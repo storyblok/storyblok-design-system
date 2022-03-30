@@ -1,48 +1,59 @@
 <template>
-  <li class="sb-sidebar-item" :class="computedClasses">
-    <component
-      :is="as"
+  <li
+    class="sb-sidebar-item"
+    :class="computedClasses"
+    :aria-label="ariaLabelText"
+    :aria-current="active && active + ''"
+  >
+    <router-link
+      v-if="isRouterLink"
       class="sb-sidebar-link"
-      :class="{
-        'sb-sidebar-link--active': active,
-        'sb-sidebar-link--use-avatar': hasAvatar,
-      }"
+      :class="computedLinkClasses"
       v-bind="$attrs"
       :to="to"
-      :aria-label="ariaLabelText"
-      :aria-current="active && active + ''"
       v-on="$listeners"
     >
-      <SbAvatar v-if="hasAvatar" v-bind="avatar" />
-
-      <SbIcon v-else-if="hasIcon" :size="iconSize" :name="icon" />
-
-      <div v-if="hasSeparator" class="sb-separator"></div>
-
-      <span class="sb-sidebar-link__label">
-        {{ label }}
-      </span>
-
-      <SbIcon
-        v-if="iconRight"
-        :size="iconRightSize"
-        :name="iconRight"
-        class="sb-icon__right"
+      <ListItemInner
+        :avatar="avatar"
+        :icon-size="iconSize"
+        :icon="icon"
+        :icon-right="iconRight"
+        :icon-right-size="iconRightSize"
+        :has-separator="hasSeparator"
+        :label="label"
       />
-    </component>
-
+    </router-link>
+    <a
+      v-else
+      class="sb-sidebar-link"
+      :class="computedLinkClasses"
+      v-bind="$attrs"
+      :href="href"
+      v-on="$listeners"
+    >
+      <ListItemInner
+        :avatar="avatar"
+        :icon-size="iconSize"
+        :icon="icon"
+        :icon-right="iconRight"
+        :icon-right-size="iconRightSize"
+        :has-separator="hasSeparator"
+        :label="label"
+      />
+    </a>
     <slot />
   </li>
 </template>
 
 <script>
-import SbAvatar from '../../Avatar'
-import SbIcon from '../../Icon'
+import ListItemInner from './ListItemInner.vue'
 
 export default {
   name: 'SbSidebarListItem',
 
-  components: { SbAvatar, SbIcon },
+  components: {
+    ListItemInner,
+  },
 
   inheritAttrs: false,
 
@@ -109,16 +120,17 @@ export default {
         'sb-sidebar-item--child': this.isChild,
       }
     },
+    computedLinkClasses() {
+      return {
+        'sb-sidebar-link--active': this.active,
+        'sb-sidebar-link--use-avatar': this.hasAvatar,
+      }
+    },
+    isRouterLink() {
+      return this.as === 'router-link'
+    },
     ariaLabelText() {
       return this.active ? this.ariaLabel + ', Current Page' : this.ariaLabel
-    },
-
-    hasAvatar() {
-      return this.avatar !== null
-    },
-
-    hasIcon() {
-      return this.icon
     },
   },
 }
