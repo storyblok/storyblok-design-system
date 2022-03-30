@@ -23,7 +23,8 @@
         :label="label"
       />
     </router-link>
-    <a
+    <component
+      :is="as"
       v-else
       class="sb-sidebar-link"
       :class="computedLinkClasses"
@@ -40,7 +41,7 @@
         :has-separator="hasSeparator"
         :label="label"
       />
-    </a>
+    </component>
     <slot />
   </li>
 </template>
