@@ -103,6 +103,7 @@
 }
 
 .sb-sidebar-list__container {
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -176,7 +177,6 @@
   position: relative;
   display: flex;
   align-items: center;
-  overflow: hidden;
   vertical-align: middle;
   padding: 12px;
   color: $light-gray;
@@ -234,6 +234,7 @@
 .sb-sidebar-link-inner {
   display: flex;
   align-items: center;
+  max-width: 100%;
 }
 
 // modifiers
