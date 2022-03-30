@@ -233,6 +233,8 @@
 .sb-sidebar-link-inner {
   display: flex;
   align-items: center;
+  overflow: hidden;
+  min-width: 24px;
 }
 
 // modifiers

@@ -19,6 +19,12 @@ export const listItemsData = [
     icon: 'apps',
     label: 'Apps Directory',
   },
+  {
+    href: '#block',
+    icon: 'block-block',
+    label: 'A really long entry that goes over a few lines',
+    ariaLabel: 'Go to entry',
+  },
 ]
 
 const SidebarTemplate = (args) => ({
