@@ -71,6 +71,10 @@ export default {
       type: String,
       default: 'a',
     },
+    href: {
+      type: String,
+      default: null,
+    },
     avatar: {
       type: Object,
       default: null,
