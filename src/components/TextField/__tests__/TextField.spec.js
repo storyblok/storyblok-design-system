@@ -119,6 +119,10 @@ describe('SbTextField component', () => {
       maxlength: 15,
     })
 
+    const inputElement = wrapper.find('input')
+
+    await inputElement.trigger('input')
+
     const remaining = wrapper.find('.sb-textfield__counter')
 
     expect(remaining.text()).toBe('11 characters remaining')

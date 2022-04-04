@@ -207,7 +207,9 @@ export default {
     },
 
     showCounter() {
-      return this.maxlength && !this.showError && this.hasValue
+      return (
+        this.maxlength && !this.showError && this.hasValue && this.isOnInput
+      )
     },
 
     showError() {
@@ -283,6 +285,7 @@ export default {
     },
 
     handleBlurInput(e) {
+      this.isOnInput = false
       this.$emit('blur', e)
     },
 
