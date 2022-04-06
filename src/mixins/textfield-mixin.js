@@ -55,6 +55,7 @@ export default {
       internalValue: this.value,
       internalType: this.type,
       internalIconRight: this.iconRight,
+      isOnInput: false,
     }
   },
 
@@ -65,6 +66,7 @@ export default {
       },
       set(newValue) {
         this.internalValue = newValue
+        this.isOnInput = true
         this.$emit('input', newValue)
       },
     },

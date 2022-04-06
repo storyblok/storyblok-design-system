@@ -72,7 +72,7 @@
     }
   }
 
-  .sb-button:not(:first-child) {
+  .sb-button:not(:first-child):not(.sb-group-button:not(.sb-group-button--has-spaces)>.sb-button) {
     margin-left: 20px;
   }
 

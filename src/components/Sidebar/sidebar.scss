@@ -60,8 +60,8 @@
   }
 
   .sb-custom-logo {
-    width: 100%;
     object-fit: contain;
+    width: 100%;
   }
 }
 
@@ -103,6 +103,7 @@
 }
 
 .sb-sidebar-list__container {
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -228,6 +229,12 @@
   &--use-avatar {
     padding: 9px 17px 9px 9px;
   }
+}
+
+.sb-sidebar-link-inner {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
 }
 
 // modifiers
