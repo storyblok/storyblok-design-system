@@ -82,6 +82,34 @@ export const defaultSelectOptionsData = [
   },
 ]
 
+export const optionsWithPath = [
+  {
+    label: 'Option 1',
+    path: 'en/folder-text/us',
+    value: 1,
+  },
+  {
+    label: 'Option 2',
+    path: 'en/folder-text/us',
+    value: 2,
+  },
+  {
+    label: 'Option 3',
+    path: 'uk/folder-text/uk',
+    value: 3,
+  },
+  {
+    label: 'Option 4',
+    path: 'big/folder-1/folder-2/fodler-3/fodler-4/folder-5/fodler-6/a really-big-name-for-a-folder/story',
+    value: 4,
+  },
+  {
+    label: 'Option 5',
+    path: 'pt-br/folder-text/BR',
+    value: 5,
+  },
+]
+
 export const defaultAvatarsData = [
   {
     value: '001',
@@ -406,31 +434,5 @@ export const WithPath = SelectTemplate.bind({})
 
 WithPath.args = {
   showPath: true,
-  options: [
-    {
-      label: 'Option 1',
-      path: 'en/folder-text/us',
-      value: 1,
-    },
-    {
-      label: 'Option 2',
-      path: 'en/folder-text/us',
-      value: 2,
-    },
-    {
-      label: 'Option 3',
-      path: 'uk/folder-text/uk',
-      value: 3,
-    },
-    {
-      label: 'Option 4',
-      path: 'big/folder-1/folder-2/fodler-3/fodler-4/folder-5/fodler-6/a really-big-name-for-a-folder/story',
-      value: 4,
-    },
-    {
-      label: 'Option 5',
-      path: 'pt-br/folder-text/BR',
-      value: 5,
-    },
-  ],
+  options: optionsWithPath,
 }
