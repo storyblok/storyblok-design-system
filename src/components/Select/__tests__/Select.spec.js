@@ -931,7 +931,7 @@ describe('SbSelect component', () => {
         propsData: {
           label: 'Choose an option',
           options: [...defaultOptionsWithPathData],
-          showPath: true,
+          showSubtitle: true,
           emitOption: true,
           value: null,
         },
@@ -963,7 +963,7 @@ describe('SbSelect component', () => {
         propsData: {
           label: 'Choose an option',
           options: [...defaultOptionsWithPathData],
-          showPath: true,
+          showSubtitle: true,
           multi: true,
           emitOption: true,
           value: null,

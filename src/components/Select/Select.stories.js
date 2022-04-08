@@ -44,7 +44,7 @@ const SelectTemplate = (args) => ({
       :is-loading="isLoading"
       :loading-label="loadingLabel"
       :clearable="clearable"
-      :show-path="showPath"
+      :show-subtitle="showSubtitle"
       v-model="internalValue"
       style="max-width: 300px"
     />
@@ -147,7 +147,7 @@ export default {
     isLoading: false,
     loadingLabel: 'Loading...',
     disableInternalSearch: false,
-    showPath: false,
+    showSubtitle: false,
   },
 }
 
@@ -434,7 +434,7 @@ EmitOption.parameters = {
 export const WithPath = SelectTemplate.bind({})
 
 WithPath.args = {
-  showPath: true,
+  showSubtitle: true,
   options: [...defaultOptionsWithPathData],
 }
 
@@ -442,7 +442,7 @@ WithPath.parameters = {
   docs: {
     description: {
       story:
-        'When we pass the `showPath` prop, it will be possible to render a slug below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the slug will be shown in parentheses, the name of the key in the object that will bring the values of the path can have any name, by default it is `path` but you can pass any customizable name through the `itemPath` prop.',
+        'When we pass the `showSubtitle` prop, it will be possible to render a slug below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the slug will be shown in parentheses, the name of the key in the object that will bring the values of the path can have any name, by default it is `path` but you can pass any customizable name through the `itemSubtitle` prop.',
     },
   },
 }
