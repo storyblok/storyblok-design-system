@@ -30,6 +30,8 @@
       :is-disabled="isDisabled"
       :emit-option="emitOption"
       :error="error"
+      :show-path="showPath"
+      :item-path="itemPath"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
       @input="handleSearchInput"
@@ -59,6 +61,8 @@
       :no-data-text="noDataText"
       :allow-create="allowCreate"
       :emit-option="emitOption"
+      :show-path="showPath"
+      :item-path="itemPath"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -164,6 +168,12 @@ export default {
       default: '',
     },
     error: Boolean,
+
+    showPath: Boolean,
+    itemPath: {
+      type: String,
+      default: 'path',
+    },
   },
 
   data: () => ({
