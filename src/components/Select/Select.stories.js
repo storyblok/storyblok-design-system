@@ -44,6 +44,7 @@ const SelectTemplate = (args) => ({
       :is-loading="isLoading"
       :loading-label="loadingLabel"
       :clearable="clearable"
+      :show-path="showPath"
       v-model="internalValue"
       style="max-width: 300px"
     />
@@ -399,4 +400,37 @@ EmitOption.parameters = {
         'When we set the `emitOption` property, the `input` event will send the whole option object, instead of the `value` property in options objects. It is expected different value types in **single** and **multiple** value property. In **single** selection, the `value` property can be a `Number` or a `String`. In multiple selection, the `value` **must** be an array of objects defined in options. This could be useful if you want to use the `<SbSelect>` with `v-model`',
     },
   },
+}
+
+export const WithPath = SelectTemplate.bind({})
+
+WithPath.args = {
+  showPath: true,
+  options: [
+    {
+      label: 'Option 1',
+      path: 'en/folder-text/us',
+      value: 1,
+    },
+    {
+      label: 'Option 2',
+      path: 'en/folder-text/us',
+      value: 2,
+    },
+    {
+      label: 'Option 3',
+      path: 'uk/folder-text/uk',
+      value: 3,
+    },
+    {
+      label: 'Option 4',
+      path: 'big/folder-1/folder-2/fodler-3/fodler-4/folder-5/fodler-6/a really-big-name-for-a-folder/story',
+      value: 4,
+    },
+    {
+      label: 'Option 5',
+      path: 'pt-br/folder-text/BR',
+      value: 5,
+    },
+  ],
 }
