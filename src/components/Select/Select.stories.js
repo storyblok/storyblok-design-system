@@ -82,7 +82,7 @@ export const defaultSelectOptionsData = [
   },
 ]
 
-export const optionsWithPath = [
+export const defaultOptionsWithPathData = [
   {
     label: 'Option 1',
     path: 'en/folder-text/us',
@@ -147,6 +147,7 @@ export default {
     isLoading: false,
     loadingLabel: 'Loading...',
     disableInternalSearch: false,
+    showPath: false,
   },
 }
 
@@ -434,5 +435,14 @@ export const WithPath = SelectTemplate.bind({})
 
 WithPath.args = {
   showPath: true,
-  options: optionsWithPath,
+  options: [...defaultOptionsWithPathData],
+}
+
+WithPath.parameters = {
+  docs: {
+    description: {
+      story:
+        'When we pass the `showPath` prop, it will be possible to render a slug below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the slug will be shown in parentheses, the name of the key in the object that will bring the values of the path can have any name, by default it is `path` but you can pass any customizable name through the `itemPath` prop.',
+    },
+  },
 }

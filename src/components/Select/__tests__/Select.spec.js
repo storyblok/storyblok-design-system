@@ -10,7 +10,7 @@ import SbAvatar from '../../Avatar'
 import {
   defaultSelectOptionsData,
   defaultAvatarsData,
-  optionsWithPath,
+  defaultOptionsWithPathData,
 } from '../Select.stories'
 
 describe('SbSelect component', () => {
@@ -930,7 +930,7 @@ describe('SbSelect component', () => {
       const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
-          options: [...optionsWithPath],
+          options: [...defaultOptionsWithPathData],
           showPath: true,
           emitOption: true,
           value: null,
@@ -962,7 +962,7 @@ describe('SbSelect component', () => {
       const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
-          options: [...optionsWithPath],
+          options: [...defaultOptionsWithPathData],
           showPath: true,
           multi: true,
           emitOption: true,
