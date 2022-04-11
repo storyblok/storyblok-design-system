@@ -1,12 +1,14 @@
 .sb-notification {
+  box-sizing: border-box;
   width: 430px;
   height: 59px;
-  border-radius: 10px;
+  padding: 20px;
+  border-radius: $base-border-radius;
 
   // Notification modifiers
   &--full-content {
     width: 100%;
-    height: 90px;
+    height: auto;
 
     .sb-notification--link {
       z-index: 1;
@@ -21,7 +23,7 @@
   }
 
   &--expandable {
-    height: 136px;
+    height: auto;
   }
 
   &--expandle-button {
@@ -51,14 +53,15 @@
   // Status of notication
   &--icon-container {
     display: inline-block;
+    width: 16px;
     height: 16px;
-    margin-left: 18px;
-    margin-right: 18px;
-    margin-top: 21px;
+    margin-right: $medium-size;
     background-color: transparent;
 
     svg {
       vertical-align: top;
+      width: 100%;
+      height: 100%;
     }
   }
 
@@ -99,6 +102,7 @@
     overflow: hidden;
     vertical-align: middle;
     width: 75%;
+    color: $sb-dark-blue;
     font-size: $font-16;
     font-weight: $font-weight-medium;
     text-overflow: ellipsis;
@@ -107,12 +111,12 @@
 
   &--description {
     overflow: hidden;
-    margin-left: 52px;
-    margin-right: 34px;
-    margin-top: 13px;
+    margin-left: 32px;
+    margin-top: 12px;
+    color: $sb-dark-blue;
     font-size: $font-14;
     font-weight: $font-weight-regular;
-    line-height: 15px;
+    line-height: 1.2;
     text-overflow: ellipsis;
   }
 

@@ -62,10 +62,10 @@ const SbNotification = {
             'sb-notification--content':
               !this.isFull &&
               !this.isExpandable &&
-              (this.description || this.link),
+              (this.description || this.link || this.$slots.default),
             'sb-notification--full-content':
               this.isFull &&
-              (this.description || this.link) &&
+              (this.description || this.link || this.$slots.default) &&
               !this.isExpandable,
           },
         },
@@ -106,13 +106,16 @@ const SbNotification = {
     }
 
     const renderDescription = () => {
-      if (this.description) {
+      if (this.description || this.$slots.default) {
+        const toRender = this.description
+          ? capitalize(this.description)
+          : this.$slots.default
         return h(
           'div',
           {
             staticClass: 'sb-notification--description',
           },
-          capitalize(this.description)
+          toRender
         )
       }
       return null
@@ -179,10 +182,6 @@ const SbNotification = {
       if (this.isFull && this.link) {
         return renderLink()
       }
-      if (this.isFull) {
-        renderActionButton('close')
-      }
-      return renderActionButton('close')
     }
 
     if (this.isExpandable && !this.expandle) {
