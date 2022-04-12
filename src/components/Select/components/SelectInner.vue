@@ -30,10 +30,10 @@
             size="small"
             :name="tagLabel[itemLabel]"
           />
-          <span v-else-if="!showSubtitle">{{ tagLabel[itemLabel] }}</span>
-          <span v-else
-            >{{ tagLabel[itemLabel] }} ({{ tagLabel[itemSubtitle] }})</span
-          >
+          <span v-if="showSubtitle">
+            {{ tagLabel[itemLabel] }} ({{ tagLabel[itemSubtitle] }})
+          </span>
+          <span v-else>{{ tagLabel[itemLabel] }}</span>
         </template>
       </SbTag>
       <input
