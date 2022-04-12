@@ -2,8 +2,7 @@
   position: relative;
   box-sizing: border-box;
   width: 430px;
-  height: 59px;
-  padding: 20px;
+  padding: 16px;
   border-radius: $base-border-radius;
 
   // Notification modifiers
@@ -33,7 +32,7 @@
   &--btn {
     position: absolute;
     right: 20px;
-    top: 20px;
+    top: 18px;
     padding: 0;
     background: transparent;
     border: 0;
@@ -52,6 +51,7 @@
     width: 24px;
     height: 24px;
     margin-right: 8px;
+    margin-top: -1px;
     background-color: transparent;
   }
 
