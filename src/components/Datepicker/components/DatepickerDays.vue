@@ -87,7 +87,6 @@ export default {
      */
     $_getDayInWeek(dayJsInstance) {
       const _day = dayJsInstance.day()
-      debugger
       return _day === 0 ? 7 : _day
     },
   },
