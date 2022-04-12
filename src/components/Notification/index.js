@@ -1,9 +1,7 @@
 import './notification.scss'
 import { capitalize } from '../../utils'
 import SbIcon from '../Icon'
-import SbBadge from '../Badge'
 
-// @vue/component
 const SbNotification = {
   name: 'SbNotification',
 
@@ -74,11 +72,19 @@ const SbNotification = {
     }
 
     const renderStatusIcon = () => {
-      return h(SbBadge, {
+      const icons = {
+        error: 'square-error',
+        info: 'square-info',
+        general: 'square-info',
+        warning: 'square-warning',
+        positive: 'square-success',
+        negative: 'square-error',
+      }
+      return h(SbIcon, {
         staticClass: 'sb-notification--icon-container',
         props: {
-          onlyIcon: true,
-          type: this.status === 'general' ? 'info' : this.status,
+          size: 'small',
+          name: icons[this.status],
         },
       })
     }
@@ -175,20 +181,11 @@ const SbNotification = {
       )
     }
 
-    const discoverButtonToRender = () => {
-      if (this.isExpandable) {
-        return renderActionButton()
-      }
-      if (this.isFull && this.link) {
-        return renderLink()
-      }
-    }
-
     if (this.isExpandable && !this.expandle) {
       const fitContent = [
         renderStatusIcon(),
         renderTitle(),
-        discoverButtonToRender(),
+        this.isExpandable && renderActionButton(),
       ]
       return renderNotification(fitContent)
     }
@@ -196,10 +193,9 @@ const SbNotification = {
     const content = [
       renderStatusIcon(),
       renderTitle(),
-      discoverButtonToRender(),
       renderDescription(),
-      !this.isFull ? renderLink() : null,
-      this.isFull && this.isExpandable ? renderLink() : null,
+      this.isExpandable && renderActionButton(),
+      this.link && renderLink(),
     ]
 
     return renderNotification(content)
