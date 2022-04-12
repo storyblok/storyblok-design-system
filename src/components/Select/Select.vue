@@ -30,6 +30,8 @@
       :is-disabled="isDisabled"
       :emit-option="emitOption"
       :error="error"
+      :show-subtitle="showSubtitle"
+      :item-subtitle="itemSubtitle"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
       @input="handleSearchInput"
@@ -59,6 +61,8 @@
       :no-data-text="noDataText"
       :allow-create="allowCreate"
       :emit-option="emitOption"
+      :show-subtitle="showSubtitle"
+      :item-subtitle="itemSubtitle"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -164,6 +168,12 @@ export default {
       default: '',
     },
     error: Boolean,
+
+    showSubtitle: Boolean,
+    itemSubtitle: {
+      type: String,
+      default: 'path',
+    },
   },
 
   data: () => ({

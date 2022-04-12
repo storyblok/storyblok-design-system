@@ -178,13 +178,13 @@
     overflow: hidden;
     box-sizing: border-box;
     max-width: calc(100% - 60px);
+    line-height: normal;
     text-overflow: ellipsis;
     white-space: nowrap;
-    line-height: normal;
 
     &-icon-left {
-      margin-left: 35px;
       max-width: calc(100% - 80px);
+      margin-left: 35px;
     }
   }
 
@@ -297,4 +297,16 @@
     font-size: 1.3rem;
     text-align: center;
   }
+}
+
+.sb-select-list__item--with-path {
+  flex-flow: column;
+  align-items: flex-start;
+}
+
+.sb-select-list__item-subtitle {
+  display: block;
+  margin-top: 2px;
+  color: $light-gray;
+  font-size: $font-12;
 }

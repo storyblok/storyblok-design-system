@@ -30,7 +30,10 @@
             size="small"
             :name="tagLabel[itemLabel]"
           />
-          <span>{{ tagLabel[itemLabel] }}</span>
+          <span v-else-if="!showSubtitle">{{ tagLabel[itemLabel] }}</span>
+          <span v-else
+            >{{ tagLabel[itemLabel] }} ({{ tagLabel[itemSubtitle] }})</span
+          >
         </template>
       </SbTag>
       <input
@@ -175,6 +178,11 @@ export default {
     useAvatars: Boolean,
     isDisabled: Boolean,
     error: Boolean,
+    showSubtitle: Boolean,
+    itemSubtitle: {
+      type: String,
+      default: 'path',
+    },
   },
 
   data: () => ({
@@ -213,6 +221,12 @@ export default {
     innerLabel() {
       if (this.filterable && this.multiple) {
         return ''
+      }
+
+      if (this.showSubtitle && this.currentOptionValue) {
+        return `${this.currentOptionLabel} (${
+          this.currentOptionValue[this.itemSubtitle]
+        })`
       }
 
       if (this.inline) {
