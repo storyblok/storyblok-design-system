@@ -1,9 +1,7 @@
 import './notification.scss'
 import { capitalize } from '../../utils'
 import SbIcon from '../Icon'
-import SbBadge from '../Badge'
 
-// @vue/component
 const SbNotification = {
   name: 'SbNotification',
 
@@ -62,10 +60,10 @@ const SbNotification = {
             'sb-notification--content':
               !this.isFull &&
               !this.isExpandable &&
-              (this.description || this.link),
+              (this.description || this.link || this.$slots.default),
             'sb-notification--full-content':
               this.isFull &&
-              (this.description || this.link) &&
+              (this.description || this.link || this.$slots.default) &&
               !this.isExpandable,
           },
         },
@@ -74,11 +72,19 @@ const SbNotification = {
     }
 
     const renderStatusIcon = () => {
-      return h(SbBadge, {
+      const icons = {
+        error: 'square-error',
+        info: 'square-info',
+        general: 'square-info',
+        warning: 'square-warning',
+        positive: 'square-success',
+        negative: 'square-error',
+      }
+      return h(SbIcon, {
         staticClass: 'sb-notification--icon-container',
         props: {
-          onlyIcon: true,
-          type: this.status === 'general' ? 'info' : this.status,
+          size: 'small',
+          name: icons[this.status],
         },
       })
     }
@@ -106,13 +112,16 @@ const SbNotification = {
     }
 
     const renderDescription = () => {
-      if (this.description) {
+      if (this.description || this.$slots.default) {
+        const toRender = this.description
+          ? capitalize(this.description)
+          : this.$slots.default
         return h(
           'div',
           {
             staticClass: 'sb-notification--description',
           },
-          capitalize(this.description)
+          toRender
         )
       }
       return null
@@ -172,24 +181,11 @@ const SbNotification = {
       )
     }
 
-    const discoverButtonToRender = () => {
-      if (this.isExpandable) {
-        return renderActionButton()
-      }
-      if (this.isFull && this.link) {
-        return renderLink()
-      }
-      if (this.isFull) {
-        renderActionButton('close')
-      }
-      return renderActionButton('close')
-    }
-
     if (this.isExpandable && !this.expandle) {
       const fitContent = [
         renderStatusIcon(),
         renderTitle(),
-        discoverButtonToRender(),
+        this.isExpandable && renderActionButton(),
       ]
       return renderNotification(fitContent)
     }
@@ -197,10 +193,9 @@ const SbNotification = {
     const content = [
       renderStatusIcon(),
       renderTitle(),
-      discoverButtonToRender(),
       renderDescription(),
-      !this.isFull ? renderLink() : null,
-      this.isFull && this.isExpandable ? renderLink() : null,
+      this.isExpandable && renderActionButton(),
+      this.link && renderLink(),
     ]
 
     return renderNotification(content)
