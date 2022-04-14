@@ -10,7 +10,7 @@ import SbAvatar from '../../Avatar'
 import {
   defaultSelectOptionsData,
   defaultAvatarsData,
-  defaultOptionsWithPathData,
+  defaultOptionsWithCaptionData,
 } from '../Select.stories'
 
 describe('SbSelect component', () => {
@@ -925,13 +925,13 @@ describe('SbSelect component', () => {
     })
   })
 
-  describe('Show path on list option', () => {
-    it('should render a single option list with path', async () => {
+  describe('Show caption on list option', () => {
+    it('should render a single option list with caption', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
-          options: [...defaultOptionsWithPathData],
-          showSubtitle: true,
+          options: [...defaultOptionsWithCaptionData],
+          showCaption: true,
           emitOption: true,
           value: null,
         },
@@ -944,26 +944,26 @@ describe('SbSelect component', () => {
 
       const firstElement = wrapper.findAll('li').at(0)
 
-      // check if the first element on the list has the name and the path
+      // check if the first element on the list has the name and the caption
       expect(firstElement.text()).toBe('Option 1 en/folder-text/us')
 
       // cliking on the first element of the list
       await firstElement.trigger('click')
 
-      // check if the emit has the path on the response
+      // check if the emit has the caption on the response
       expect(wrapper.emitted().input[0][0]).toEqual({
         label: 'Option 1',
-        path: 'en/folder-text/us',
+        caption: 'en/folder-text/us',
         value: 1,
       })
     })
 
-    it('should render a multi option list with path', async () => {
+    it('should render a multi option list with caption', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           label: 'Choose an option',
-          options: [...defaultOptionsWithPathData],
-          showSubtitle: true,
+          options: [...defaultOptionsWithCaptionData],
+          showCaption: true,
           multi: true,
           emitOption: true,
           value: null,
@@ -987,16 +987,16 @@ describe('SbSelect component', () => {
       await firstElement.trigger('click')
       await secondElement.trigger('click')
 
-      // check if the emit has the path on the response
+      // check if the emit has the caption on the response
       expect(wrapper.emitted().input[0][0]).toEqual({
         label: 'Option 1',
-        path: 'en/folder-text/us',
+        caption: 'en/folder-text/us',
         value: 1,
       })
 
       expect(wrapper.emitted().input[1][0]).toEqual({
         label: 'Option 2',
-        path: 'en/folder-text/us',
+        caption: 'en/folder-text/us',
         value: 2,
       })
     })

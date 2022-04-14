@@ -14,8 +14,8 @@
           :emit-option="emitOption"
           :use-avatars="useAvatars"
           :is-focused="index === focusedItem ? true : false"
-          :show-subtitle="showSubtitle"
-          :path="option[itemSubtitle]"
+          :show-caption="showCaption"
+          :path="option[itemCaption]"
           @emit-value="handleEmitValue"
           @mouseenter.native="handleFocusItem(index)"
         />
@@ -85,8 +85,8 @@ export default {
       required: true,
     },
 
-    showSubtitle: Boolean,
-    itemSubtitle: {
+    showCaption: Boolean,
+    itemCaption: {
       type: String,
       default: 'path',
     },
