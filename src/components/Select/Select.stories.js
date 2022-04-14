@@ -44,7 +44,7 @@ const SelectTemplate = (args) => ({
       :is-loading="isLoading"
       :loading-label="loadingLabel"
       :clearable="clearable"
-      :show-subtitle="showSubtitle"
+      :show-caption="showCaption"
       v-model="internalValue"
       style="max-width: 300px"
     />
@@ -82,30 +82,31 @@ export const defaultSelectOptionsData = [
   },
 ]
 
-export const defaultOptionsWithPathData = [
+export const defaultOptionsWithCaptionData = [
   {
     label: 'Option 1',
-    path: 'en/folder-text/us',
+    caption: 'en/folder-text/us',
     value: 1,
   },
   {
     label: 'Option 2',
-    path: 'en/folder-text/us',
+    caption: 'en/folder-text/us',
     value: 2,
   },
   {
     label: 'Option 3',
-    path: 'uk/folder-text/uk',
+    caption: 'uk/folder-text/uk',
     value: 3,
   },
   {
     label: 'Option 4',
-    path: 'big/folder-1/folder-2/fodler-3/fodler-4/folder-5/fodler-6/a really-big-name-for-a-folder/story',
+    caption:
+      'big/folder-1/folder-2/fodler-3/fodler-4/folder-5/fodler-6/a really-big-name-for-a-folder/story',
     value: 4,
   },
   {
     label: 'Option 5',
-    path: 'pt-br/folder-text/BR',
+    caption: 'pt-br/folder-text/BR',
     value: 5,
   },
 ]
@@ -147,7 +148,7 @@ export default {
     isLoading: false,
     loadingLabel: 'Loading...',
     disableInternalSearch: false,
-    showSubtitle: false,
+    showCaption: false,
   },
 }
 
@@ -431,18 +432,18 @@ EmitOption.parameters = {
   },
 }
 
-export const WithPath = SelectTemplate.bind({})
+export const WithCaption = SelectTemplate.bind({})
 
-WithPath.args = {
-  showSubtitle: true,
-  options: [...defaultOptionsWithPathData],
+WithCaption.args = {
+  showCaption: true,
+  options: [...defaultOptionsWithCaptionData],
 }
 
-WithPath.parameters = {
+WithCaption.parameters = {
   docs: {
     description: {
       story:
-        'When we pass the `showSubtitle` prop, it will be possible to render a slug below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the slug will be shown in parentheses, the name of the key in the object that will bring the values of the path can have any name, by default it is `path` but you can pass any customizable name through the `itemSubtitle` prop.',
+        'When we pass the `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
     },
   },
 }

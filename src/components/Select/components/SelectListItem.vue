@@ -18,13 +18,13 @@
     <template v-else>
       <SbCheckbox v-if="multiple" :value="isSelected" />
 
-      <span v-if="!showSubtitle" class="sb-select-list__item-name">{{
+      <span v-if="!showCaption" class="sb-select-list__item-name">{{
         label
       }}</span>
 
       <div v-else class="sb-select-list__item--with-path">
         <span class="sb-select-list__item-name">{{ label }}</span>
-        <span v-if="showSubtitle" class="sb-select-list__item-subtitle">{{
+        <span v-if="showCaption" class="sb-select-list__item-caption">{{
           path
         }}</span>
       </div>
@@ -78,7 +78,7 @@ export default {
 
     isFocused: Boolean,
 
-    showSubtitle: Boolean,
+    showCaption: Boolean,
     path: {
       type: String,
       default: null,

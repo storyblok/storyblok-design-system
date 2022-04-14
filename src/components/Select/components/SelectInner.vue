@@ -30,8 +30,8 @@
             size="small"
             :name="tagLabel[itemLabel]"
           />
-          <span v-if="showSubtitle">
-            {{ tagLabel[itemLabel] }} ({{ tagLabel[itemSubtitle] }})
+          <span v-if="showCaption">
+            {{ tagLabel[itemLabel] }} ({{ tagLabel[itemCaption] }})
           </span>
           <span v-else>{{ tagLabel[itemLabel] }}</span>
         </template>
@@ -178,8 +178,8 @@ export default {
     useAvatars: Boolean,
     isDisabled: Boolean,
     error: Boolean,
-    showSubtitle: Boolean,
-    itemSubtitle: {
+    showCaption: Boolean,
+    itemCaption: {
       type: String,
       default: 'path',
     },
@@ -223,9 +223,9 @@ export default {
         return ''
       }
 
-      if (this.showSubtitle && this.currentOptionValue) {
+      if (this.showCaption && this.currentOptionValue) {
         return `${this.currentOptionLabel} (${
-          this.currentOptionValue[this.itemSubtitle]
+          this.currentOptionValue[this.itemCaption]
         })`
       }
 
