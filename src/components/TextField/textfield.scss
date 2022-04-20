@@ -45,10 +45,16 @@
     resize: vertical;
   }
 
+  &__input {
+    padding: 13px 17px;
+  }
+  &__textarea {
+    padding: 15px 17px;
+  }
+
   &__input,
   &__textarea {
     width: 100%;
-    padding: 15px 17px;
     color: $sb-dark-blue;
     font-size: $font-14;
     border-radius: 5px;
