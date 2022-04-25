@@ -672,7 +672,7 @@ const icons = {
   },
   'play-circle': {
     viewBox: '0 0 24 24',
-    path: `<g fill="#1B243F" fill-rule="evenodd"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 2a7 7 0 1 1 0 14 7 7 0 0 1 0-14Z" fill-rule="nonzero"/><path d="m13.877 12.832-2.447 1.632a1 1 0 0 1-1.555-.833V10.37a1 1 0 0 1 1.555-.833l2.447 1.632a1 1 0 0 1 0 1.664Z"/></g>`,
+    path: `<g fill="currentColor" fill-rule="evenodd"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 2a7 7 0 1 1 0 14 7 7 0 0 1 0-14Z" fill-rule="nonzero"/><path d="m13.877 12.832-2.447 1.632a1 1 0 0 1-1.555-.833V10.37a1 1 0 0 1 1.555-.833l2.447 1.632a1 1 0 0 1 0 1.664Z"/></g>`,
   },
 }
 
