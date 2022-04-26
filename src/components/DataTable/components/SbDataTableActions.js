@@ -79,11 +79,11 @@ export const SbDataTableActions = {
               icon: action.icon,
               hasIconOnly: !this.isOnDesktop,
             },
-            directives: !this.isOnDesktop && [
+            directives: (!this.isOnDesktop || action.tooltip) && [
               {
                 name: 'tooltip',
                 value: {
-                  label: action.label,
+                  label: action.tooltip ? action.tooltip : action.label,
                   position: 'top',
                 },
               },

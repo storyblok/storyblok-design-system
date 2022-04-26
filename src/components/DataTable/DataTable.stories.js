@@ -148,6 +148,7 @@ export const defaultTableActionsData = [
     label: 'Duplicate',
     value: 'duplicate',
     icon: 'copy',
+    tooltip: 'This option duplicates the item',
   },
   {
     label: 'Publish',
@@ -158,6 +159,7 @@ export const defaultTableActionsData = [
     label: 'Unpublish',
     value: 'unpublish',
     icon: 'unpublish',
+    tooltip: 'This option unpublishes the item',
   },
   {
     label: 'Delete',
