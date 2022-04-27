@@ -9,7 +9,6 @@ import {
 } from '../components'
 
 import SbCheckbox from '../../Checkbox'
-import SbLoading from '../../Loading'
 
 import {
   defaultTableHeadersData,
