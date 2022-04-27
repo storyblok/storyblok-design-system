@@ -31,9 +31,16 @@
     background: transparent;
   }
 
-  &--primary {
+  &--primary,
+  &--secondary,
+  &--tertiary,
+  &--danger,
+  &--caution {
     padding: 12px 28px;
     color: $white;
+  }
+
+  &--primary {
     background-color: $sb-green;
 
     &:focus {
@@ -46,8 +53,6 @@
   }
 
   &--secondary {
-    padding: 12px 28px;
-    color: $white;
     background-color: $sb-dark-blue;
 
     &:focus {
@@ -60,7 +65,6 @@
   }
 
   &--tertiary {
-    padding: 12px 28px;
     color: $sb-dark-blue;
     background-color: $white;
     border-color: $light;
@@ -80,8 +84,6 @@
   }
 
   &--danger {
-    padding: 12px 28px;
-    color: $white;
     background-color: $red;
 
     &:focus {
@@ -90,8 +92,6 @@
   }
 
   &--caution {
-    padding: 12px 28px;
-    color: $white;
     background-color: $orange;
 
     &:focus {
