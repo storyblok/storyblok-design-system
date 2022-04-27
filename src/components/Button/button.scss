@@ -32,6 +32,7 @@
   }
 
   &--primary {
+    padding: 12px 28px;
     color: $white;
     background-color: $sb-green;
 
@@ -45,6 +46,7 @@
   }
 
   &--secondary {
+    padding: 12px 28px;
     color: $white;
     background-color: $sb-dark-blue;
 
@@ -58,6 +60,7 @@
   }
 
   &--tertiary {
+    padding: 12px 28px;
     color: $sb-dark-blue;
     background-color: $white;
     border-color: $light;
@@ -77,6 +80,7 @@
   }
 
   &--danger {
+    padding: 12px 28px;
     color: $white;
     background-color: $red;
 
@@ -86,6 +90,7 @@
   }
 
   &--caution {
+    padding: 12px 28px;
     color: $white;
     background-color: $orange;
 
@@ -188,7 +193,7 @@
   }
 
   &--has-icon-right {
-    padding: 12px 21px 11px 28px;
+    padding: 10px 21px 9px 28px;
 
     .sb-icon {
       margin-left: 5px;
