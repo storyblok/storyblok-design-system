@@ -9,8 +9,6 @@ import {
   SbDataTableColumn,
 } from './components'
 
-import SbLoading from '../Loading'
-
 import { getPropertyValue, isNumeric } from '../../utils'
 
 /**
@@ -241,24 +239,6 @@ const SbDataTable = {
       })
     }
 
-    const renderLoading = () => {
-      return h(
-        'div',
-        {
-          staticClass: 'sb-data-table__loading',
-        },
-        [
-          h(SbLoading, {
-            props: {
-              type: 'spinner',
-              size: 'normal',
-              color: 'primary',
-            },
-          }),
-        ]
-      )
-    }
-
     const renderTable = () => {
       let headerData = []
       let bodyData = []
@@ -370,7 +350,7 @@ const SbDataTable = {
       [
         this.hasSelectedRowsInList.length > 0 && renderActions(),
         renderTable(),
-        this.isLoading && renderLoading(),
+        this.isLoading,
       ]
     )
   },
