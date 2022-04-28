@@ -31,8 +31,16 @@
     background: transparent;
   }
 
-  &--primary {
+  &--primary,
+  &--secondary,
+  &--tertiary,
+  &--danger,
+  &--caution {
+    padding: 12px 28px;
     color: $white;
+  }
+
+  &--primary {
     background-color: $sb-green;
 
     &:focus {
@@ -45,7 +53,6 @@
   }
 
   &--secondary {
-    color: $white;
     background-color: $sb-dark-blue;
 
     &:focus {
@@ -77,7 +84,6 @@
   }
 
   &--danger {
-    color: $white;
     background-color: $red;
 
     &:focus {
@@ -86,7 +92,6 @@
   }
 
   &--caution {
-    color: $white;
     background-color: $orange;
 
     &:focus {
@@ -176,7 +181,7 @@
   }
 
   &--has-icon {
-    padding: 12px 28px 11px 21px;
+    padding: 10px 19px 9px 14px;
 
     .sb-loading {
       margin-right: -7px;
@@ -188,7 +193,7 @@
   }
 
   &--has-icon-right {
-    padding: 12px 21px 11px 28px;
+    padding: 10px 21px 9px 28px;
 
     .sb-icon {
       margin-left: 5px;
