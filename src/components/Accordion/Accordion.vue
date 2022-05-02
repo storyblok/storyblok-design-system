@@ -6,7 +6,7 @@
       :aria-controls="`collapse${_uid}`"
       @click="toggleAccordion"
     >
-      <SbIcon :name="chevronIvon" />
+      <SbIcon :name="chevronIcon" />
       <p class="sb-accordion__title">{{ title }}</p>
 
       <SbIcon
@@ -61,7 +61,7 @@ export default {
     }
   },
   computed: {
-    chevronIvon() {
+    chevronIcon() {
       return this.isOpenLocal ? 'chevron-down' : 'chevron-right'
     },
     computedClass() {
