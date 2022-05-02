@@ -66,7 +66,7 @@ export default {
     },
     computedClass() {
       return {
-        'accordion--open': this.isOpenLocal,
+        'sb-accordion--open': this.isOpenLocal,
       }
     },
   },
