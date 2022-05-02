@@ -37,8 +37,9 @@ describe('Accordion component', () => {
 
   describe('with a icon', () => {
     const wrapper = factory({
-      legend: 'Group Name 2',
+      title: 'Group Name 2',
       icon: 'settings',
+      isOpen: true,
     })
 
     it('should render the Accordion component', () => {
