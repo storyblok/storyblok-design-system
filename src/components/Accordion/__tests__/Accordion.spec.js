@@ -27,7 +27,9 @@ describe('Accordion component', () => {
     })
 
     it('should render a title with "Group Name" text', () => {
-      const title = wrapper.findComponent(Accordion).find('.accordion__title')
+      const title = wrapper
+        .findComponent(Accordion)
+        .find('.sb-accordion__title')
       expect(title.exists()).toBe(true)
       expect(title.text()).toBe('Group Name')
     })
@@ -44,13 +46,15 @@ describe('Accordion component', () => {
     })
 
     it('should render a title with "Group Name 2" text', () => {
-      const title = wrapper.findComponent(Accordion).find('.accordion__title')
+      const title = wrapper
+        .findComponent(Accordion)
+        .find('.sb-accordion__title')
       expect(title.exists()).toBe(true)
       expect(title.text()).toBe('Group Name 2')
     })
 
     it('should render an icon element', () => {
-      const icon = wrapper.findComponent(Accordion).find('.accordion__icon')
+      const icon = wrapper.findComponent(Accordion).find('.sb-accordion__icon')
 
       expect(icon.exists()).toBe(true)
     })
