@@ -17,12 +17,18 @@ describe('SbTag component', () => {
       label,
     })
 
+    const IconComponent = wrapper.findComponent(SbIcon)
+
     it('should have the properly class', () => {
       expect(wrapper.classes('sb-tag--primary')).toBe(true)
     })
 
     it('should have a text with the correct label', () => {
       expect(wrapper.text()).toBe(label)
+    })
+
+    it('should not have an icon in its template', () => {
+      expect(IconComponent.exists()).toBe(false)
     })
   })
 
@@ -58,6 +64,7 @@ describe('SbTag component', () => {
     })
 
     it('should have an icon with close name', () => {
+      expect(IconComponent.exists()).toBe(true)
       expect(IconComponent.props('name')).toBe('close')
     })
 
