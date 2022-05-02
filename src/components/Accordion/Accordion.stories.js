@@ -10,6 +10,7 @@ export default {
     title: 'Group 1',
     icon: 'settings',
     iconDescription: 'Edit',
+    isOpen: false,
   },
 }
 
@@ -26,7 +27,8 @@ export const Default = (args) => ({
         v-bind="{
           title,
           icon,
-          iconDescription
+          iconDescription,
+          isOpen
         }"
         style="max-width: 300px"
       >

@@ -1,24 +1,28 @@
 <template>
-  <div class="accordion" :class="computedClass">
+  <div class="sb-accordion" :class="computedClass">
     <button
-      class="accordion__button"
-      :aria-expanded="isOpen"
+      class="sb-accordion__button"
+      :aria-expanded="isOpenLocal"
       :aria-controls="`collapse${_uid}`"
       @click="toggleAccordion"
     >
       <SbIcon :name="chevronIvon" />
-      <p class="accordion__title">{{ title }}</p>
+      <p class="sb-accordion__title">{{ title }}</p>
 
       <SbIcon
         v-if="icon"
         v-tooltip="{ label: iconDescription }"
         :name="icon"
-        class="accordion__icon"
+        class="sb-accordion__icon"
         @click="$emit('icon-click')"
       />
     </button>
 
-    <div v-show="isOpen" :id="`collapse${_uid}`" class="accordion__content">
+    <div
+      v-show="isOpenLocal"
+      :id="`collapse${_uid}`"
+      class="sb-accordion__content"
+    >
       <slot />
     </div>
   </div>
@@ -41,6 +45,10 @@ export default {
       type: String,
       default: '',
     },
+    isOpen: {
+      type: Boolean,
+      default: false,
+    },
     title: {
       type: String,
       default: null,
@@ -49,23 +57,31 @@ export default {
   },
   data() {
     return {
-      isOpen: false,
+      isOpenLocal: false,
     }
   },
   computed: {
     chevronIvon() {
-      return this.isOpen ? 'chevron-down' : 'chevron-right'
+      return this.isOpenLocal ? 'chevron-down' : 'chevron-right'
     },
     computedClass() {
       return {
-        'accordion--open': this.isOpen,
+        'accordion--open': this.isOpenLocal,
       }
     },
   },
+  watch: {
+    isOpen(newValue) {
+      this.isOpenLocal = newValue
+    },
+  },
+  mounted() {
+    this.isOpenLocal = this.isOpen
+  },
   methods: {
     toggleAccordion() {
-      this.isOpen = !this.isOpen
-      this.$emit('toggle-open', this.isOpen)
+      this.isOpenLocal = !this.isOpenLocal
+      this.$emit('toggle-open', this.isOpenLocal)
     },
   },
 }
