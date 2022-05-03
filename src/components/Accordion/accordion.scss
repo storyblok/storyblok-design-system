@@ -52,9 +52,11 @@
 }
 
 .sb-accordion__content {
+  overflow: hidden;
   box-sizing: border-box;
   width: 100%;
   padding: 8px $medium-size $medium-size $large-size;
+  will-change: height;
 }
 
 .sb-accordion__button {

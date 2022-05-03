@@ -14,26 +14,30 @@
         v-tooltip="{ label: iconDescription }"
         :name="icon"
         class="sb-accordion__icon"
-        @click="$emit('icon-click')"
+        @click.stop="$emit('icon-click')"
       />
     </button>
 
-    <div
-      v-show="isOpenLocal"
-      :id="`collapse${_uid}`"
-      class="sb-accordion__content"
-    >
-      <slot />
-    </div>
+    <AccordionTransition>
+      <div
+        v-show="isOpenLocal"
+        :id="`collapse${_uid}`"
+        class="sb-accordion__content"
+      >
+        <slot />
+      </div>
+    </AccordionTransition>
   </div>
 </template>
 
 <script>
 import SbIcon from '../Icon'
+import AccordionTransition from './AccordionTransition'
 
 export default {
   name: 'SbAccordion',
   components: {
+    AccordionTransition,
     SbIcon,
   },
   props: {
