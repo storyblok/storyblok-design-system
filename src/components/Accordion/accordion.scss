@@ -1,0 +1,90 @@
+.sb-accordion {
+  position: relative;
+  width: 100%;
+  color: $sb-dark-blue;
+  background: $white;
+
+  &:last-child .sb-accordion__button {
+    border-bottom: 1px solid $light;
+  }
+
+  &:first-child .sb-accordion__button {
+    border-top-width: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 1px;
+    height: 100%;
+    background-color: $sb-dark-blue;
+    opacity: 0;
+  }
+}
+
+.sb-accordion__title {
+  overflow: hidden;
+  max-width: 80%;
+  margin-left: 2px;
+  line-height: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sb-accordion--open {
+  background: $light-25;
+
+  .sb-accordion__button {
+    background: $light-25;
+    border-bottom-color: transparent;
+  }
+
+  &:hover .sb-accordion__button {
+    color: $sb-dark-blue;
+  }
+
+  &::after {
+    opacity: 1;
+  }
+}
+
+.sb-accordion__content {
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px $medium-size $medium-size $large-size;
+  will-change: height;
+}
+
+.sb-accordion__button {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  max-height: 48px;
+  margin: 0;
+  padding: 7px 6px;
+  font-size: $font-14;
+  font-weight: $font-weight-medium;
+  text-align: left;
+  background: $white;
+  border: 0;
+  border-top: 1px solid $light;
+  cursor: pointer;
+
+  &:hover {
+    color: $sb-green;
+  }
+
+  .sb-icon {
+    flex-shrink: 0;
+  }
+}
+
+.sb-accordion__icon {
+  margin-left: auto;
+}
