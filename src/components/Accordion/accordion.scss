@@ -4,7 +4,7 @@
   color: $sb-dark-blue;
   background: $white;
 
-  &:last-child .sb-accordion__button {
+  &:last-child {
     border-bottom: 1px solid $light;
   }
 
@@ -55,7 +55,7 @@
   overflow: hidden;
   box-sizing: border-box;
   width: 100%;
-  padding: 8px $medium-size $medium-size $large-size;
+  padding: $small-size $medium-size $medium-size $large-size;
   will-change: height;
 }
 
