@@ -306,7 +306,10 @@ export default {
     },
 
     isInnerSearchVisible() {
-      return !this.isTagsVisible && this.filterable
+      return (
+        !this.isTagsVisible &&
+        (this.filterable || this.placeholderLabel?.length)
+      )
     },
 
     isSearchTextVisible() {
