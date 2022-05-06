@@ -143,7 +143,10 @@ export default {
     },
 
     allowCreate: Boolean,
-    filterable: Boolean,
+    filterable: {
+      type: Boolean,
+      default: false,
+    },
     multiple: Boolean,
 
     // loading props
@@ -303,7 +306,7 @@ export default {
     },
 
     isInnerSearchVisible() {
-      return !this.isTagsVisible
+      return !this.isTagsVisible && this.filterable
     },
 
     isSearchTextVisible() {

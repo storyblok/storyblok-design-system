@@ -133,6 +133,10 @@
     margin-right: 10px;
   }
 
+  &__icons {
+    margin-left: auto;
+  }
+
   &__tags {
     display: flex;
     flex: 1;
@@ -265,7 +269,6 @@
     padding: 10px 17px;
     font-size: $font-14;
     text-align: left;
-    background-color: $white;
     border: 0;
     cursor: pointer;
     appearance: none;
