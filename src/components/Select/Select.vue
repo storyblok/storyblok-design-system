@@ -71,6 +71,7 @@
     <slot name="minibrowser" />
 
     <input
+      :id="inputId"
       class="sb-select__input--hidden"
       :required="required"
       :value="value"
