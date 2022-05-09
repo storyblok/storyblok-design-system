@@ -668,7 +668,7 @@ describe('SbSelect component', () => {
 
       const valueElement = wrapper.find('.sb-select-inner__value')
 
-      expect(innerInput.element.placeholder).toBe('')
+      expect(innerInput.element.placeholder).toBe('Loading...')
       expect(valueElement.text()).toBe('Option 1')
     })
 
@@ -682,7 +682,7 @@ describe('SbSelect component', () => {
         value: 'Option 1',
       })
 
-      expect(innerInput.element.placeholder).toBe('')
+      expect(innerInput.element.placeholder).toBe('Loading...')
     })
   })
 
