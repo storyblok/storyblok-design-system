@@ -21,6 +21,11 @@ const TabsTemplate = (template) => (args) => ({
           label: 'Third',
           name: 'third',
         },
+        {
+          label: 'Disabled',
+          name: 'disabled',
+          disabled: true,
+        },
       ],
       currentTab: 'first',
     }
@@ -59,6 +64,7 @@ const TabsTemplate = (template) => (args) => ({
           :label="tab.label"
           :name="tab.name"
           :icon="tab.icon"
+          :is-disabled="tab.disabled"
           @edit-tab="onEditTab"
         />
       </SbTabs>
@@ -147,6 +153,7 @@ export const WithTabPanels = TabsTemplate(`
         :key="tab.name"
         :label="tab.label"
         :name="tab.name"
+        :is-disabled="tab.disabled"
         @edit-tab="onEditTab"
       />
     </SbTabs>
@@ -180,6 +187,7 @@ export const EditableTabs = TabsTemplate(`
       :key="tab.name"
       :label="tab.label"
       :name="tab.name"
+      :is-disabled="tab.disabled"
       editable
       @edit-tab="onEditTab"
     />
