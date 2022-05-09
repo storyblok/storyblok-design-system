@@ -39,7 +39,7 @@ export default {
       const days = []
 
       for (let i = this.$_getDayInWeek(firstDate); i > 1; i--) {
-        const dateValue = firstDate.subtract(i, 'day')
+        const dateValue = firstDate.subtract(i - 1, 'day')
 
         days.push({
           label: dateValue.date(),

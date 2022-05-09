@@ -115,3 +115,7 @@
     border: 1px solid $light;
   }
 }
+
+.sb-radio__input[disabled] + label {
+  color: $sb-dark-blue-50;
+}

@@ -30,6 +30,8 @@
       :is-disabled="isDisabled"
       :emit-option="emitOption"
       :error="error"
+      :show-caption="showCaption"
+      :item-caption="itemCaption"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
       @input="handleSearchInput"
@@ -59,6 +61,8 @@
       :no-data-text="noDataText"
       :allow-create="allowCreate"
       :emit-option="emitOption"
+      :show-caption="showCaption"
+      :item-caption="itemCaption"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -67,6 +71,7 @@
     <slot name="minibrowser" />
 
     <input
+      :id="inputId"
       class="sb-select__input--hidden"
       :required="required"
       :value="value"
@@ -164,6 +169,12 @@ export default {
       default: '',
     },
     error: Boolean,
+
+    showCaption: Boolean,
+    itemCaption: {
+      type: String,
+      default: 'caption',
+    },
   },
 
   data: () => ({

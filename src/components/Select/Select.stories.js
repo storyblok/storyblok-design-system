@@ -44,6 +44,7 @@ const SelectTemplate = (args) => ({
       :is-loading="isLoading"
       :loading-label="loadingLabel"
       :clearable="clearable"
+      :show-caption="showCaption"
       v-model="internalValue"
       style="max-width: 300px"
     />
@@ -78,6 +79,35 @@ export const defaultSelectOptionsData = [
   {
     label: 'Option 7',
     value: 7,
+  },
+]
+
+export const defaultOptionsWithCaptionData = [
+  {
+    label: 'Option 1',
+    caption: 'en/folder-text/us',
+    value: 1,
+  },
+  {
+    label: 'Option 2',
+    caption: 'en/folder-text/us',
+    value: 2,
+  },
+  {
+    label: 'Option 3',
+    caption: 'uk/folder-text/uk',
+    value: 3,
+  },
+  {
+    label: 'Option 4',
+    caption:
+      'big/folder-1/folder-2/fodler-3/fodler-4/folder-5/fodler-6/a really-big-name-for-a-folder/story',
+    value: 4,
+  },
+  {
+    label: 'Option 5',
+    caption: 'pt-br/folder-text/BR',
+    value: 5,
   },
 ]
 
@@ -118,6 +148,7 @@ export default {
     isLoading: false,
     loadingLabel: 'Loading...',
     disableInternalSearch: false,
+    showCaption: false,
   },
 }
 
@@ -397,6 +428,22 @@ EmitOption.parameters = {
     description: {
       story:
         'When we set the `emitOption` property, the `input` event will send the whole option object, instead of the `value` property in options objects. It is expected different value types in **single** and **multiple** value property. In **single** selection, the `value` property can be a `Number` or a `String`. In multiple selection, the `value` **must** be an array of objects defined in options. This could be useful if you want to use the `<SbSelect>` with `v-model`',
+    },
+  },
+}
+
+export const WithCaption = SelectTemplate.bind({})
+
+WithCaption.args = {
+  showCaption: true,
+  options: [...defaultOptionsWithCaptionData],
+}
+
+WithCaption.parameters = {
+  docs: {
+    description: {
+      story:
+        'When we pass the `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
     },
   },
 }

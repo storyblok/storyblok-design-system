@@ -167,6 +167,10 @@ export const SbTab = {
       type: String,
       default: null,
     },
+    isDisabled: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -195,7 +199,9 @@ export const SbTab = {
      * handles with click on li element and triggers the active-tab event
      */
     handleClick() {
-      this.$_triggerActivateTab(this.name)
+      if (!this.isDisabled) {
+        this.$_triggerActivateTab(this.name)
+      }
     },
 
     /**
@@ -281,6 +287,7 @@ export const SbTab = {
           'aria-selected': this.activate + '',
         },
         class: {
+          'sb-tab--disabled': this.isDisabled,
           'sb-tab--has-icon': this.icon,
           'sb-tab--editable': this.editable,
           'sb-tab--is-active': this.activate,
@@ -295,7 +302,7 @@ export const SbTab = {
         this.icon && renderIcon(this.icon),
         this.allowShowEditInput && renderEditedTab(),
         !this.allowShowEditInput && this.label && renderLabel(),
-        this.editable && renderEditButton(),
+        this.editable && !this.isDisabled && renderEditButton(),
       ]
     )
   },

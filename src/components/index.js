@@ -1,5 +1,6 @@
 import SbAvatar from './Avatar'
 import SbAvatarGroup from './AvatarGroup'
+import SbAccordion from './Accordion'
 import SbBadge from './Badge'
 import SbBlockUi from './BlockUI'
 import SbButton from './Button'
@@ -47,6 +48,7 @@ export { SbPopover, SbPopoverArrow } from './Popover'
 export {
   SbAvatar,
   SbAvatarGroup,
+  SbAccordion,
   SbBadge,
   SbBlockUi,
   SbButton,

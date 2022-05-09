@@ -92,7 +92,7 @@
   flex: 1;
   align-items: center;
   overflow-x: hidden;
-  padding: 11px 10px 11px 17px;
+  padding: 10px 10px 9px 17px;
   color: $sb-dark-blue;
   font-size: $font-14;
   background-color: $white;
@@ -131,6 +131,10 @@
   // elements
   &__icon-left {
     margin-right: 10px;
+  }
+
+  &__icons {
+    margin-left: auto;
   }
 
   &__tags {
@@ -178,13 +182,13 @@
     overflow: hidden;
     box-sizing: border-box;
     max-width: calc(100% - 60px);
+    line-height: normal;
     text-overflow: ellipsis;
     white-space: nowrap;
-    line-height: normal;
 
     &-icon-left {
-      margin-left: 35px;
       max-width: calc(100% - 80px);
+      margin-left: 35px;
     }
   }
 
@@ -265,7 +269,6 @@
     padding: 10px 17px;
     font-size: $font-14;
     text-align: left;
-    background-color: $white;
     border: 0;
     cursor: pointer;
     appearance: none;
@@ -297,4 +300,16 @@
     font-size: 1.3rem;
     text-align: center;
   }
+}
+
+.sb-select-list__item--with-path {
+  flex-flow: column;
+  align-items: flex-start;
+}
+
+.sb-select-list__item-caption {
+  display: block;
+  margin-top: 2px;
+  color: $light-gray;
+  font-size: $font-12;
 }

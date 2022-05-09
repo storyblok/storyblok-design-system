@@ -1,6 +1,7 @@
 const { globalStyles } = require('../config/globals')
 
 module.exports = {
+  staticDirs: ['../public'],
   stories: ['../stories/**/*.stories.js', '../src/**/*.stories.js'],
   addons: ['@storybook/preset-scss', '@storybook/addon-essentials'],
   // https://storybook.js.org/docs/configurations/custom-webpack-config/

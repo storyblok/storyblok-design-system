@@ -1,19 +1,14 @@
 .sb-notification {
+  position: relative;
+  box-sizing: border-box;
   width: 430px;
-  height: 59px;
-  border-radius: 10px;
+  padding: 16px;
+  border-radius: $base-border-radius;
 
   // Notification modifiers
   &--full-content {
     width: 100%;
-    height: 90px;
-
-    .sb-notification--link {
-      z-index: 1;
-      float: right;
-      margin-right: 20px;
-      margin-top: 37px;
-    }
+    height: auto;
   }
 
   &--full {
@@ -21,7 +16,7 @@
   }
 
   &--expandable {
-    height: 136px;
+    height: auto;
   }
 
   &--expandle-button {
@@ -35,9 +30,9 @@
   }
 
   &--btn {
-    float: right;
-    margin-right: 20px;
-    margin-top: 22px;
+    position: absolute;
+    right: 20px;
+    top: 18px;
     padding: 0;
     background: transparent;
     border: 0;
@@ -45,21 +40,19 @@
 
     svg {
       vertical-align: top;
+      width: 24px;
+      height: 24px;
     }
   }
 
   // Status of notication
   &--icon-container {
     display: inline-block;
-    height: 16px;
-    margin-left: 18px;
-    margin-right: 18px;
-    margin-top: 21px;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    margin-top: -1px;
     background-color: transparent;
-
-    svg {
-      vertical-align: top;
-    }
   }
 
   &--positive {
@@ -76,10 +69,6 @@
 
   &--negative {
     background-color: $red-25;
-
-    .sb-notification--title {
-      color: $red;
-    }
   }
 
   &--general {
@@ -99,6 +88,7 @@
     overflow: hidden;
     vertical-align: middle;
     width: 75%;
+    color: $sb-dark-blue;
     font-size: $font-16;
     font-weight: $font-weight-medium;
     text-overflow: ellipsis;
@@ -106,20 +96,21 @@
   }
 
   &--description {
+    display: block;
     overflow: hidden;
-    margin-left: 52px;
-    margin-right: 34px;
-    margin-top: 13px;
+    margin-left: 32px;
+    margin-top: 12px;
+    color: $sb-dark-blue;
     font-size: $font-14;
     font-weight: $font-weight-regular;
-    line-height: 15px;
+    line-height: 1.2;
     text-overflow: ellipsis;
   }
 
   &--link {
+    display: block;
     overflow: hidden;
-    margin-left: 52px;
-    margin-right: 34px;
+    margin-left: 32px;
     margin-top: 12px;
     text-overflow: ellipsis;
 

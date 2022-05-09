@@ -14,6 +14,8 @@
           :emit-option="emitOption"
           :use-avatars="useAvatars"
           :is-focused="index === focusedItem ? true : false"
+          :show-caption="showCaption"
+          :path="option[itemCaption]"
           @emit-value="handleEmitValue"
           @mouseenter.native="handleFocusItem(index)"
         />
@@ -81,6 +83,12 @@ export default {
     searchInput: {
       type: [String, Number],
       required: true,
+    },
+
+    showCaption: Boolean,
+    itemCaption: {
+      type: String,
+      default: 'path',
     },
   },
 

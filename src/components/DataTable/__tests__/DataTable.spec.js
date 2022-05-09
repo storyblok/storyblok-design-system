@@ -9,7 +9,6 @@ import {
 } from '../components'
 
 import SbCheckbox from '../../Checkbox'
-import SbLoading from '../../Loading'
 
 import {
   defaultTableHeadersData,
@@ -319,10 +318,6 @@ describe('SbDataTable component', () => {
 
     it('should add the --loading modifier class', () => {
       expect(wrapper.classes('sb-data-table--loading')).toBe(true)
-    })
-
-    it('should render the SbLoading component', () => {
-      expect(wrapper.findComponent(SbLoading).exists()).toBe(true)
     })
   })
 

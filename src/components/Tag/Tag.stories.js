@@ -1,25 +1,9 @@
-import SbTag from '.'
+import SbTag from './index'
 import { tagTypes } from './lib'
-
-const BadgeTemplate = (args) => ({
-  components: { SbTag },
-  props: Object.keys(args),
-  template: `
-    <SbTag
-      v-bind="{
-        closable,
-        label,
-        type
-      }"
-
-      @close="onClick"
-    />
-  `,
-})
 
 export default {
   title: 'Design System/Components/SbTag',
-  component: SbTag,
+  components: SbTag,
   parameters: {
     docs: {
       description: {
@@ -61,9 +45,21 @@ export default {
   },
 }
 
-export const Default = BadgeTemplate.bind({})
+const getComponentOptions = (args) => ({
+  components: { SbTag },
+  props: Object.keys(args),
+  template: `
+    <SbTag
+      :closable="closable"
+      :label="label"
+      :type="type"
+      @close="onClick"
+  />`,
+})
 
-export const Closable = BadgeTemplate.bind({})
+export const Default = (args) => getComponentOptions(args)
+
+export const Closable = (args) => getComponentOptions(args)
 
 Closable.args = {
   closable: true,

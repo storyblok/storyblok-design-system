@@ -30,7 +30,10 @@
             size="small"
             :name="tagLabel[itemLabel]"
           />
-          <span>{{ tagLabel[itemLabel] }}</span>
+          <span v-if="showCaption">
+            {{ tagLabel[itemLabel] }} ({{ tagLabel[itemCaption] }})
+          </span>
+          <span v-else>{{ tagLabel[itemLabel] }}</span>
         </template>
       </SbTag>
       <input
@@ -140,7 +143,10 @@ export default {
     },
 
     allowCreate: Boolean,
-    filterable: Boolean,
+    filterable: {
+      type: Boolean,
+      default: false,
+    },
     multiple: Boolean,
 
     // loading props
@@ -175,6 +181,11 @@ export default {
     useAvatars: Boolean,
     isDisabled: Boolean,
     error: Boolean,
+    showCaption: Boolean,
+    itemCaption: {
+      type: String,
+      default: 'path',
+    },
   },
 
   data: () => ({
@@ -213,6 +224,12 @@ export default {
     innerLabel() {
       if (this.filterable && this.multiple) {
         return ''
+      }
+
+      if (this.showCaption && this.currentOptionValue) {
+        return `${this.currentOptionLabel} (${
+          this.currentOptionValue[this.itemCaption]
+        })`
       }
 
       if (this.inline) {
@@ -289,7 +306,10 @@ export default {
     },
 
     isInnerSearchVisible() {
-      return !this.isTagsVisible
+      return Boolean(
+        !this.isTagsVisible &&
+          (this.filterable || this.placeholderLabel?.length)
+      )
     },
 
     isSearchTextVisible() {

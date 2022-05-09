@@ -7,7 +7,11 @@ import SbIcon from '../../Icon'
 import SbTag from '../../Tag'
 import SbAvatar from '../../Avatar'
 
-import { defaultSelectOptionsData, defaultAvatarsData } from '../Select.stories'
+import {
+  defaultSelectOptionsData,
+  defaultAvatarsData,
+  defaultOptionsWithCaptionData,
+} from '../Select.stories'
 
 describe('SbSelect component', () => {
   describe('default behavior (single option)', () => {
@@ -664,7 +668,7 @@ describe('SbSelect component', () => {
 
       const valueElement = wrapper.find('.sb-select-inner__value')
 
-      expect(innerInput.element.placeholder).toBe('')
+      expect(innerInput.element.placeholder).toBe('Loading...')
       expect(valueElement.text()).toBe('Option 1')
     })
 
@@ -678,7 +682,7 @@ describe('SbSelect component', () => {
         value: 'Option 1',
       })
 
-      expect(innerInput.element.placeholder).toBe('')
+      expect(innerInput.element.placeholder).toBe('Loading...')
     })
   })
 
@@ -918,6 +922,83 @@ describe('SbSelect component', () => {
           },
         ],
       ])
+    })
+  })
+
+  describe('Show caption on list option', () => {
+    it('should render a single option list with caption', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultOptionsWithCaptionData],
+          showCaption: true,
+          emitOption: true,
+          value: null,
+        },
+      })
+
+      const innerElement = wrapper.find('.sb-select-inner')
+
+      // turn the list visible
+      await innerElement.trigger('click')
+
+      const firstElement = wrapper.findAll('li').at(0)
+
+      // check if the first element on the list has the name and the caption
+      expect(firstElement.text()).toBe('Option 1 en/folder-text/us')
+
+      // cliking on the first element of the list
+      await firstElement.trigger('click')
+
+      // check if the emit has the caption on the response
+      expect(wrapper.emitted().input[0][0]).toEqual({
+        label: 'Option 1',
+        caption: 'en/folder-text/us',
+        value: 1,
+      })
+    })
+
+    it('should render a multi option list with caption', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          label: 'Choose an option',
+          options: [...defaultOptionsWithCaptionData],
+          showCaption: true,
+          multi: true,
+          emitOption: true,
+          value: null,
+        },
+      })
+
+      const innerElement = wrapper.find('.sb-select-inner')
+
+      // turn the list visible
+      await innerElement.trigger('click')
+
+      const firstElement = wrapper.findAll('li').at(0)
+      const secondElement = wrapper.findAll('li').at(1)
+
+      // check if the elements has the correct values
+      expect(firstElement.text()).toBe('Option 1 en/folder-text/us')
+
+      expect(secondElement.text()).toBe('Option 2 en/folder-text/us')
+
+      // cliking on the two elements
+      await firstElement.trigger('click')
+      await secondElement.trigger('click')
+
+      // check if the emit has the caption on the response
+      expect(wrapper.emitted().input[0][0]).toEqual({
+        label: 'Option 1',
+        caption: 'en/folder-text/us',
+        value: 1,
+      })
+
+      expect(wrapper.emitted().input[1][0]).toEqual({
+        label: 'Option 2',
+        caption: 'en/folder-text/us',
+        value: 2,
+      })
     })
   })
 })
