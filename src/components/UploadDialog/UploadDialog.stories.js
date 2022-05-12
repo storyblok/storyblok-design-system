@@ -3,6 +3,9 @@ import SbUploadDialog from '.'
 export default {
   title: 'Design System/Components/SbUploadDialog',
   component: SbUploadDialog,
+  parameters: {
+    docs: { inlineStories: false },
+  },
   args: {
     currentFile: 1,
     currentFileName: 'test.png',
