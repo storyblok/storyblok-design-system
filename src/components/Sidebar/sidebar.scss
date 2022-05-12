@@ -323,7 +323,7 @@
   flex: 1;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: $tablets-landscape) {
   .sb-sidebar__mobile-header {
     display: flex;
   }

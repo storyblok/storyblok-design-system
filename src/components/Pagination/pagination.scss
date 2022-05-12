@@ -9,6 +9,11 @@
   &__per-page-container {
     margin-right: 120px;
     padding-left: 10px;
+
+    @media (min-width: $tablets-portrait) and (max-width: $desktops-large) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   &__pages-container {
@@ -91,6 +96,7 @@
 
   // modifiers
   &--full-width {
+    align-items: baseline;
     width: 100%;
   }
 

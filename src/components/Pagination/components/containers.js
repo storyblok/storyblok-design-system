@@ -127,19 +127,21 @@ export const SbPerPageContainer = {
         staticClass: 'sb-pagination__per-page-container',
       },
       [
-        h('span', 'Items per page:'),
-        h(SbPaginationSelect, {
-          attrs: {
-            'data-testid': 'per-page-select',
-          },
-          props: {
-            options: perPageOptions,
-            value: this.perPage,
-          },
-          on: {
-            change: this.onSelectChange,
-          },
-        }),
+        h('span', [
+          h('span', 'Items per page:'),
+          h(SbPaginationSelect, {
+            attrs: {
+              'data-testid': 'per-page-select',
+            },
+            props: {
+              options: perPageOptions,
+              value: this.perPage,
+            },
+            on: {
+              change: this.onSelectChange,
+            },
+          }),
+        ]),
         h(SbPaginationItemsText, {
           props: {
             total: this.total,
