@@ -152,7 +152,10 @@ export default {
     filterable: Boolean,
     inline: Boolean,
     useAvatars: Boolean,
-    emitSearch: Boolean,
+    emitSearch: {
+      type: Boolean,
+      default: false,
+    },
 
     itemLabel: {
       type: String,
