@@ -1,7 +1,7 @@
 import { SbSelect } from '.'
 import { SbMinibrowser } from '../Minibrowser'
 import { MOCK_DATA } from '../Minibrowser/Minibrowser.stories'
-import { toLowerCase } from '../../utils'
+import { toLowerCase, isString } from '../../utils'
 
 // @vue/component
 const SelectTemplate = (args) => ({
@@ -428,6 +428,61 @@ EmitOption.parameters = {
     description: {
       story:
         'When we set the `emitOption` property, the `input` event will send the whole option object, instead of the `value` property in options objects. It is expected different value types in **single** and **multiple** value property. In **single** selection, the `value` property can be a `Number` or a `String`. In multiple selection, the `value` **must** be an array of objects defined in options. This could be useful if you want to use the `<SbSelect>` with `v-model`',
+    },
+  },
+}
+
+export const EmitSearch = (args) => ({
+  components: {
+    SbSelect,
+  },
+
+  props: Object.keys(args),
+
+  data: () => ({
+    searchInput: '',
+  }),
+
+  methods: {
+    handleSearchValue(event) {
+      this.searchInput = !isString(event) ? event.target.value : event
+    },
+  },
+
+  template: `
+    <div>
+      <div style="margin-bottom: 30px">
+        <h2 style="margin-bottom: 10px"> Typed value {{ searchInput }} </h2>
+
+        <SbSelect
+          :label="label"
+          :options="options"
+          :multiple="multiple"
+          :left-icon="leftIcon"
+          :filterable="true"
+          :emit-search="true"
+          :use-avatars="useAvatars"
+          :inline="inline"
+          :no-data-text="noDataText"
+          :allow-create="allowCreate"
+          :is-loading="isLoading"
+          :loading-label="loadingLabel"
+          :clearable="clearable"
+          emit-option
+          :value="searchInput"
+          @input="handleSearchValue"
+          style="max-width: 300px"
+        />
+      </div>
+    </div>
+  `,
+})
+
+EmitSearch.parameters = {
+  docs: {
+    description: {
+      story:
+        'When we set the `emitSearch` property to true, the `input` event will send the value typed. It is useful when you want to forward values that are not in the dropdown list and the value typed will overwrite any values from the dropdown list. This must be used with filterable set to true.',
     },
   },
 }

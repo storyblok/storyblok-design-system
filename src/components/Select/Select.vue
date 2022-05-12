@@ -152,6 +152,8 @@ export default {
     filterable: Boolean,
     inline: Boolean,
     useAvatars: Boolean,
+    emitSearch: Boolean,
+
     itemLabel: {
       type: String,
       default: 'label',
@@ -455,6 +457,9 @@ export default {
      */
     handleSearchInput(event) {
       this.searchInput = !isString(event) ? event.target.value : event
+      if (this.emitSearch) {
+        this.$emit('input', this.searchInput)
+      }
     },
 
     /**
