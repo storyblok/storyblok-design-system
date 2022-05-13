@@ -4,7 +4,8 @@ export default {
   title: 'Design System/Components/SbUploadDialog',
   component: SbUploadDialog,
   parameters: {
-    docs: { inlineStories: false },
+    docs: { inlineStories: false, iframeHeight: 300 },
+    layout: 'fullscreen',
   },
   args: {
     currentFile: 1,
