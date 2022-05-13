@@ -86,6 +86,11 @@ export default {
       type: String,
       default: '',
     },
+    maxWidth: {
+      type: String,
+      default: '1000px',
+      required: false,
+    },
   },
 
   data: () => ({
@@ -95,6 +100,7 @@ export default {
   }),
 
   mounted() {
+    this.toggleSidebar()
     this.createObserver()
   },
 
@@ -126,10 +132,14 @@ export default {
         this.sizeObserver = new ResizeObserver(() => {
           this.checkScrollbar()
         })
+
         this.sizeObserver.observe(
           document.getElementsByClassName('sb-sidebar-list__container')[0]
         )
       }
+
+      // Used onresize here because if we observe a certain element with Resize Observer when manually expanding/collapsing the sidebar, it has no effect
+      window.onresize = () => this.toggleSidebar()
     },
 
     checkScrollbar() {
@@ -138,6 +148,13 @@ export default {
       )[0]
       if (list) {
         this.hasScrollbar = list.scrollHeight > list.clientHeight
+      }
+    },
+
+    toggleSidebar() {
+      if (window.matchMedia) {
+        const maxWidth = `(max-width: ${this.maxWidth})`
+        this.$emit('update:minimize', window.matchMedia(maxWidth).matches)
       }
     },
 
