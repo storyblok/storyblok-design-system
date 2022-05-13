@@ -486,7 +486,7 @@ EmitSearch.parameters = {
   docs: {
     description: {
       story:
-        'When we set the `emitSearch` property to true, the `input` event will send the value typed. It is useful when you want to forward values that are not in the dropdown list and the value typed will overwrite any values from the dropdown list. This must be used with filterable set to true.',
+        'When we set `emitSearch` property to true, the `input` event will send the typed value. It is useful when you want to forward values that are not in the dropdown list. Note that the typed value will overwrite any values from the dropdown list pre selected. This must be used with filterable set to true.',
     },
   },
 }
