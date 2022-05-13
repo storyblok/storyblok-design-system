@@ -445,7 +445,11 @@ export const EmitSearch = (args) => ({
 
   methods: {
     handleSearchValue(event) {
-      this.searchInput = !isString(event) ? event.target.value : event
+      if (!isString(event) && typeof event === 'object') {
+        this.searchInput = event.label
+      } else {
+        this.searchInput = !isString(event) ? event.target.value : event
+      }
     },
   },
 
