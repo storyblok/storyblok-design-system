@@ -35,15 +35,17 @@
 }
 
 .sb-accordion--open {
-  background: $light-25;
-
-  .sb-accordion__button {
+  &:hover {
     background: $light-25;
-    border-bottom-color: transparent;
   }
 
   &:hover .sb-accordion__button {
     color: $sb-dark-blue;
+    background: $light-25;
+  }
+
+  .sb-accordion__button {
+    border-bottom-color: transparent;
   }
 
   &::after {
@@ -90,7 +92,6 @@
   margin-left: auto;
 }
 
-.sb-accordion:hover .sb-accordion__icon,
-.sb-accordion--open .sb-accordion__icon {
+.sb-accordion:hover .sb-accordion__icon {
   display: block;
 }
