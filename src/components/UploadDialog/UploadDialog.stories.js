@@ -3,6 +3,10 @@ import SbUploadDialog from '.'
 export default {
   title: 'Design System/Components/SbUploadDialog',
   component: SbUploadDialog,
+  parameters: {
+    docs: { inlineStories: false, iframeHeight: 300 },
+    layout: 'fullscreen',
+  },
   args: {
     currentFile: 1,
     currentFileName: 'test.png',

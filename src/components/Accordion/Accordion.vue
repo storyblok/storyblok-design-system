@@ -53,6 +53,18 @@ export default {
       type: Boolean,
       default: false,
     },
+    noPadding: {
+      type: Boolean,
+      default: false,
+    },
+    noHighlight: {
+      type: Boolean,
+      default: false,
+    },
+    noBorder: {
+      type: Boolean,
+      default: false,
+    },
     title: {
       type: String,
       default: null,
@@ -71,6 +83,9 @@ export default {
     computedClass() {
       return {
         'sb-accordion--open': this.isOpenLocal,
+        'sb-accordion--no-highlight': this.noHighlight,
+        'sb-accordion--no-padding': this.noPadding,
+        'sb-accordion--no-border': this.noBorder,
       }
     },
   },

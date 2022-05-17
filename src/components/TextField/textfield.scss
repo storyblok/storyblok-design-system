@@ -48,6 +48,7 @@
   &__input {
     padding: 13.5px 17px;
   }
+
   &__textarea {
     padding: 15px 17px;
   }
@@ -194,6 +195,14 @@
 
     &--warning {
       color: $orange;
+    }
+  }
+}
+
+@supports (-moz-appearance:none) {
+  .sb-textfield {
+    &__input {
+      padding: 13px 17px;
     }
   }
 }
