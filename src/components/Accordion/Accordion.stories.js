@@ -13,6 +13,7 @@ export default {
     isOpen: false,
     noHighlight: false,
     noBorder: false,
+    noPadding: false,
   },
 }
 
@@ -32,7 +33,8 @@ export const Default = (args) => ({
           iconDescription,
           isOpen,
           noBorder,
-          noHighlight
+          noHighlight,
+          noPadding
         }"
         style="max-width: 300px"
       >
