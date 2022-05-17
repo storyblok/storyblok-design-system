@@ -3,7 +3,7 @@ import { SbSelect } from '../Select'
 import SbTextField from '../TextField'
 
 export default {
-  title: 'Design System/Components/Accordion',
+  title: 'Design System/Components/SbAccordion',
   component: Accordion,
   excludeStories: /.*Data$/,
   args: {
@@ -11,6 +11,9 @@ export default {
     icon: 'settings',
     iconDescription: 'Edit',
     isOpen: false,
+    noHighlight: false,
+    noBorder: false,
+    noPadding: false,
   },
 }
 
@@ -28,7 +31,10 @@ export const Default = (args) => ({
           title,
           icon,
           iconDescription,
-          isOpen
+          isOpen,
+          noBorder,
+          noHighlight,
+          noPadding
         }"
         style="max-width: 300px"
       >

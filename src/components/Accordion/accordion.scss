@@ -95,3 +95,28 @@
 .sb-accordion:hover .sb-accordion__icon {
   display: block;
 }
+
+
+.sb-accordion--no-highlight {
+  &.sb-accordion--open {
+    background: transparent;
+
+    &::after {
+      opacity: 0;
+    }
+  }
+}
+
+.sb-accordion--no-padding {
+  .sb-accordion__content {
+    padding-left: $small-size;
+    padding-right: 0;
+  }
+}
+
+.sb-accordion--no-border {
+  border-color: transparent;
+  .sb-accordion__button, &:last-child {
+    border-color: transparent;
+  }
+}
