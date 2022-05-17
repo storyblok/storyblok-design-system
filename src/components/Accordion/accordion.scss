@@ -104,6 +104,11 @@
     &::after {
       opacity: 0;
     }
+
+    &:hover .sb-accordion__button {
+      color: $sb-dark-blue;
+      background: transparent;
+    }
   }
 }
 

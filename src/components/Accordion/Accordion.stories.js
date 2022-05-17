@@ -47,6 +47,14 @@ export const Default = (args) => ({
 
       <Accordion
         title="Group 2"
+        v-bind="{
+          icon,
+          iconDescription,
+          isOpen,
+          noBorder,
+          noHighlight,
+          noPadding
+        }"
         style="max-width: 300px"
       >
           <SbTextField
@@ -58,6 +66,14 @@ export const Default = (args) => ({
 
       <Accordion
           title="Group 3"
+          v-bind="{
+            icon,
+            iconDescription,
+            isOpen,
+            noBorder,
+            noHighlight,
+            noPadding
+          }"
           style="max-width: 300px"
       >
       <SbTextField
@@ -69,6 +85,13 @@ export const Default = (args) => ({
       <Accordion
           title="Group with a very long title that should be truncated and not go over two or more lines"
           icon="delete"
+          v-bind="{
+            iconDescription,
+            isOpen,
+            noBorder,
+            noHighlight,
+            noPadding
+          }"
           style="max-width: 300px"
       >
       <SbTextField
