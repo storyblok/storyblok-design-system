@@ -202,7 +202,8 @@
 @supports (-moz-appearance:none) {
   .sb-textfield {
     &__input {
-      padding: 13px 17px;
+      padding-top: 13px;
+      padding-bottom: 13px;
     }
   }
 }
