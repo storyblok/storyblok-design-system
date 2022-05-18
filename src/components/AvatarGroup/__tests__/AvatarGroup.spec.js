@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import SbAvatarGroup, { MoreAvatar, MoreAvatars } from '..'
+import SbAvatarGroup, { SbMoreAvatars } from '..'
 import SbAvatar from '../../Avatar'
 
 const factory = (template, propsData = {}) => {
@@ -9,6 +9,7 @@ const factory = (template, propsData = {}) => {
     },
     components: {
       SbAvatar,
+      SbMoreAvatars,
       SbAvatarGroup,
     },
     template,
@@ -52,11 +53,18 @@ describe('SbAvatarGroup component', () => {
     const wrapper = {
       components: {
         SbAvatar,
+        SbMoreAvatars,
         SbAvatarGroup,
       },
       props: {
-        size: 'large',
-        maxElements: 5,
+        size: {
+          type: String,
+          default: 'large',
+        },
+        maxElements: {
+          type: Number,
+          default: 5,
+        },
       },
       template: `
         <SbAvatarGroup :size="size" :max-elements="maxElements">
@@ -79,15 +87,8 @@ describe('SbAvatarGroup component', () => {
     })
 
     it('should render, as the last element, the MoreAvatar component with +n text', () => {
-      expect(wrappers.findAllComponents(MoreAvatar).length).toBe(1)
-      expect(wrappers.findComponent(MoreAvatar).text()).toBe('+4')
-    })
-
-    it('should render the MoreAvatars component with the children', async () => {
-      const moreAvatar = wrappers.findComponent(MoreAvatar)
-      await moreAvatar.trigger('click')
-      const moreAvatars = wrappers.findComponent(MoreAvatars)
-      expect(moreAvatars.findAll('.sb-avatar').length).toBe(4)
+      expect(wrappers.findAllComponents(SbMoreAvatars).length).toBe(1)
+      expect(wrappers.findComponent(SbMoreAvatars).text()).toBe('+4')
     })
 
     it('should render the correct SbAvatar when changes the maxElements property', async () => {
@@ -96,10 +97,7 @@ describe('SbAvatarGroup component', () => {
       })
 
       expect(wrappers.findAll('.sb-avatar-group > .sb-avatar').length).toBe(7)
-      expect(wrappers.findComponent(MoreAvatar).text()).toBe('+2')
-      expect(
-        wrappers.findComponent(MoreAvatars).findAll('.sb-avatar').length
-      ).toBe(2)
+      expect(wrappers.findComponent(SbMoreAvatars).text()).toBe('+2')
     })
   })
 })

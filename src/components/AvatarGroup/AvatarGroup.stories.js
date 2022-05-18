@@ -1,4 +1,4 @@
-import SbAvatarGroup from './index'
+import SbAvatarGroup from './SbAvatarGroup'
 import SbAvatar from '../Avatar'
 
 // default export defines configurations to all stories
