@@ -268,6 +268,10 @@ export default {
         this.$_loadListItems()
       })
     },
+
+    searchInput(newValue) {
+      this.$emit('search-input', newValue)
+    },
   },
 
   mounted() {
