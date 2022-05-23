@@ -1,4 +1,5 @@
 import SbIcon from '../../Icon'
+import SbSelect from '../../Select'
 import { Tooltip } from '../../../directives'
 
 /**
@@ -209,8 +210,6 @@ export const SbPaginationItemsText = {
 export const SbPaginationSelect = {
   name: 'SbPaginationSelect',
 
-  functional: true,
-
   props: {
     options: {
       type: Array,
@@ -222,40 +221,30 @@ export const SbPaginationSelect = {
     },
   },
 
-  render(h, { props, listeners, data }) {
-    const { options } = props
+  methods: {
+    onSelectInput(value) {
+      this.$emit('change', value)
+    },
+  },
 
-    const processAriaLabel = (option) => {
-      const { ariaLabel, value } = option
-      return props.value === value ? `${ariaLabel}, Current` : ariaLabel
-    }
+  render(h) {
+    const parsedOpts = this.options.map((option) => {
+      return {
+        ...option,
+        label: `${option.label}`,
+      }
+    })
 
-    return h(
-      'select',
-      {
-        attrs: { ...(data.attrs || {}) },
-        staticClass: 'sb-pagination__select',
-        on: {
-          ...listeners,
-        },
+    return h(SbSelect, {
+      props: {
+        options: parsedOpts,
+        label: `${this.value}`,
+        inline: true,
+        showListOnTop: true,
       },
-      [
-        ...options.map((option) => {
-          return h(
-            'option',
-            {
-              attrs: {
-                ...(option.ariaLabel && {
-                  'aria-label': processAriaLabel(option),
-                }),
-                value: option.value,
-                selected: props.value === option.value,
-              },
-            },
-            option.label
-          )
-        }),
-      ]
-    )
+      on: {
+        input: this.onSelectInput,
+      },
+    })
   },
 }

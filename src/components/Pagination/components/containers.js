@@ -30,8 +30,8 @@ export const SbPagesContainer = {
   },
 
   methods: {
-    onSelectChange(event) {
-      this.$emit('page-change', Number(event.target.value))
+    onSelectChange(value) {
+      this.$emit('page-change', value)
     },
   },
 
@@ -108,8 +108,8 @@ export const SbPerPageContainer = {
   },
 
   methods: {
-    onSelectChange(event) {
-      this.$emit('per-page-change', Number(event.target.value))
+    onSelectChange(value) {
+      this.$emit('per-page-change', value)
     },
   },
 
