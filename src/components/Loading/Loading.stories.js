@@ -24,6 +24,7 @@ export default {
   component: SbLoading,
   parameters: {
     docs: {
+      inlineStories: false,
       description: {
         component:
           'Loading spinners are used when retrieving data or performing slow computations, and help to notify users that loading is underway.',
@@ -100,7 +101,6 @@ export const ProgressBar = (args) => ({
   components: { SbLoading },
   props: Object.keys(args),
   template: `
-    <div>
       <SbLoading
         v-bind="{
           type,
@@ -109,7 +109,6 @@ export const ProgressBar = (args) => ({
           showPercentage
         }"
       />
-    </div>
   `,
 })
 
@@ -175,6 +174,7 @@ export const SpinnerWithSizes = (args) => ({
 
 SpinnerWithSizes.parameters = {
   docs: {
+    iframeHeight: 200,
     description: {
       story:
         'When passing the prop `spinner` the component starts to render an animated spinner',
@@ -187,76 +187,62 @@ export const SpinnerWithPercentage = (args) => ({
   props: Object.keys(args),
   template: `
     <div>
-      <SbLoading
-        v-bind="{
-          type: 'spinner',
-          size: 'small',
-          value: 25,
-          showPercentage: true,
-          color
-        }"
-      />
-      <SbLoading
-        v-bind="{
-          type: 'spinner',
-          size: 'normal',
-          value: 25,
-          showPercentage: true,
-          color
-        }"
-      />
-      <SbLoading
-        v-bind="{
-          type: 'spinner',
-          size: 'large',
-          value: 25,
-          showPercentage: true,
-          color
-        }"
-      />
-      <SbLoading
-        v-bind="{
-          type: 'spinner',
-          size: 'x-large',
-          value: 25,
-          showPercentage: true,
-          color
-        }"
-      />
+      <div style="margin-bottom: 15px">
+        <SbLoading
+          v-bind="{
+            type: 'spinner',
+            size: 'small',
+            value: 25,
+            showPercentage: true,
+            color
+          }"
+        />
+      </div>
+      <div style="margin-bottom: 15px">
+        <SbLoading
+          v-bind="{
+            type: 'spinner',
+            size: 'normal',
+            value: 25,
+            showPercentage: true,
+            color
+          }"
+        />
+      </div>
+      <div style="margin-bottom: 15px">
+        <SbLoading
+          v-bind="{
+            type: 'spinner',
+            size: 'large',
+            value: 25,
+            showPercentage: true,
+            color
+          }"
+        />
+      </div>
+      <div style="margin-bottom: 15px">
+        <SbLoading
+          v-bind="{
+            type: 'spinner',
+            size: 'x-large',
+            value: 25,
+            showPercentage: true,
+            color
+          }"
+        />
+      </div>
     </div>
   `,
 })
 
 SpinnerWithPercentage.parameters = {
   docs: {
+    iframeHeight: 300,
     description: {
       story:
         'The spinners also show the percentage of the loanding, pass the `showPercentage` property so that the percentage is shown.',
     },
   },
-}
-
-export const BlockingUiLoadingSpinner = LoadingTemplate.bind({})
-
-BlockingUiLoadingSpinner.args = {
-  uiBlock: true,
-  size: 'x-large',
-}
-
-BlockingUiLoadingSpinner.parameters = {
-  docs: {
-    description: {
-      story:
-        'The `uiBlock` feature causes the user`s screen to be blocked during loading.',
-    },
-  },
-}
-
-export const BlockingUiLoadingProgressBar = LoadingTemplate.bind({})
-
-BlockingUiLoadingProgressBar.args = {
-  uiBlock: true,
-  type: 'bar',
 }
 
 export const LoadingWithPlaceholder = (args) => ({
