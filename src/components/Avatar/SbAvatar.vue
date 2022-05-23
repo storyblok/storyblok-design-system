@@ -2,16 +2,15 @@
   <div v-tooltip="avatarTooltipAttrs" :class="avatarClass" v-on="$listeners">
     <template v-if="showImage" v-bind="avatarImageAttrs">
       <slot>
-        <div class="sb-avatar__image">
+        <div v-if="isImageLoaded" class="sb-avatar__image">
           <img
-            v-show="isImageLoaded"
             :src="src"
             :alt="friendlyName || name"
             @load="handleImageLoad"
             @error="handleImageError"
           />
         </div>
-        <SbIcon v-show="!isImageLoaded" v-bind="fallbackIconAttrs" />
+        <SbIcon v-if="!isImageLoaded" v-bind="fallbackIconAttrs" />
         <SbBadge v-if="!!status" v-bind="badgeAttrs" />
       </slot>
     </template>
