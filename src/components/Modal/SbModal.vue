@@ -134,20 +134,28 @@ export default {
 
   created() {
     this.$_createPortalInstance()
-    this.handleCloseModalByPressingEsc()
   },
 
   methods: {
+    escapeEventListener(e) {
+      if (e.key === 'Escape') {
+        this.handleCloseModal()
+      }
+    },
+
+    removeListener() {
+      window.removeEventListener('keydown', this.escapeEventListener)
+    },
+
+    registerListener() {
+      window.addEventListener('keydown', this.escapeEventListener)
+    },
     /**
      * handler for closing the modal by pressing ESC on the keyboard
      */
     handleCloseModalByPressingEsc() {
       if (this.escCloses) {
-        window.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            this.handleCloseModal()
-          }
-        })
+        this.registerListener()
       }
     },
     /**
@@ -155,6 +163,7 @@ export default {
      */
     handleCloseModal() {
       if (this.open && this.escCloses) {
+        this.removeListener()
         this.open = false
         this.$nextTick(() => {
           document.querySelector('body').style.overflow = 'auto'
@@ -168,6 +177,7 @@ export default {
      */
     handleOpenModal() {
       if (!this.open) {
+        this.handleCloseModalByPressingEsc()
         this.open = true
         this.$nextTick(() => {
           document.querySelector('body').style.overflow = 'hidden'
