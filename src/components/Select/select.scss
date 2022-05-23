@@ -313,3 +313,9 @@
   color: $light-gray;
   font-size: $font-12;
 }
+
+.sb-select--inline .sb-select-list--above,
+.sb-select-list--above {
+  bottom: calc(100% + 10px);
+  top: unset;
+}
