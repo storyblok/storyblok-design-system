@@ -2,7 +2,6 @@ import { mount } from '@vue/test-utils'
 
 import SbPagination from '..'
 import { SbSelect } from '../../index'
-// import SbSelect from '../../Select'
 
 const factory = (propsData) => {
   return mount(SbPagination, {
