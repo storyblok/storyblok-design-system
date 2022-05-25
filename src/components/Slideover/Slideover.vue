@@ -63,7 +63,7 @@ export default {
       if (state) {
         this.handleOpenSlide()
       } else {
-        this.handleCloseSlide()
+        this.openSlideover = false
       }
     },
     preventClose(state) {
