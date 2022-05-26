@@ -13,9 +13,13 @@
   // image
   img {
     vertical-align: middle;
-    width: 100%;
-    max-width: 100%;
     border-radius: 100%;
+  }
+
+  img,
+  svg {
+    width: $sb-avatar-normal;
+    height: $sb-avatar-normal;
   }
 
   // initials
