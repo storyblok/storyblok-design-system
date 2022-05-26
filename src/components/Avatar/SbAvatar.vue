@@ -2,15 +2,21 @@
   <div v-tooltip="avatarTooltipAttrs" :class="avatarClass" v-on="$listeners">
     <template v-if="showImage" v-bind="avatarImageAttrs">
       <slot>
-        <div v-if="isImageLoaded" class="sb-avatar__image">
+        <div class="sb-avatar__image">
           <img
+            v-show="isImageLoaded"
             :src="src"
             :alt="friendlyName || name"
             @load="handleImageLoad"
             @error="handleImageError"
           />
+          <SbIcon
+            v-show="!isImageLoaded"
+            name="avatar-fallback"
+            size="large"
+            :color="fallbackAvatarColor"
+          />
         </div>
-        <SbIcon v-if="!isImageLoaded" v-bind="fallbackIconAttrs" />
         <SbBadge v-if="!!status" v-bind="badgeAttrs" />
       </slot>
     </template>
@@ -117,7 +123,7 @@ export default {
 
   data() {
     return {
-      isImageLoaded: true,
+      isImageLoaded: false,
     }
   },
 
@@ -157,14 +163,8 @@ export default {
       return this.useTooltip && { tabindex: 0 }
     },
 
-    fallbackIconAttrs() {
-      const color = this.bgColor || generateRandomColor()
-
-      return {
-        name: 'avatar-fallback',
-        size: 'large',
-        color,
-      }
+    fallbackAvatarColor() {
+      return this.bgColor || generateRandomColor()
     },
 
     badgeAttrs() {
