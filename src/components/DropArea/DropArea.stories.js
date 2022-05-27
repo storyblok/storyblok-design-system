@@ -5,11 +5,14 @@ export default {
   title: 'Design System/Components/SbDropArea',
   parameters: {
     docs: {
+      inlineStories: false,
+      iframeHeight: 400,
       description: {
         component:
           'The `SbDropArea` component serves as a container for uploading files, works with the drop file event, and issues a callback with the files, you must implement the upload function because the component does not have the same!',
       },
     },
+    layout: 'fullscreen',
   },
   args: {
     accept: '',
