@@ -22,7 +22,7 @@ const PaginationTemplate = (args) => ({
     },
   },
   template: `
-    <div style="padding: 20px">
+    <div style="padding: 20px; margin-top: 250px">
       <SbPagination
         v-bind="{
           carousel,

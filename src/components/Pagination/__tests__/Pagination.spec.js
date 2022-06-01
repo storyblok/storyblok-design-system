@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 
 import SbPagination from '..'
+import { SbSelect } from '../../index'
 
 const factory = (propsData) => {
   return mount(SbPagination, {
@@ -17,15 +18,11 @@ describe('SbPagination component', () => {
     })
 
     it('should have a per page select information with correct state', () => {
-      expect(
-        wrapper.find('[data-testid="per-page-select"]').element.value
-      ).toBe('25')
+      expect(wrapper.findComponent(SbSelect).props().label).toBe('25')
     })
 
     it('should have a page select information with correct state', () => {
-      expect(wrapper.find('[data-testid="page-select"]').element.value).toBe(
-        '1'
-      )
+      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('1')
     })
 
     it('should have the previous button disabled', () => {
@@ -56,9 +53,7 @@ describe('SbPagination component', () => {
     })
 
     it('should have the page select with this specific page', () => {
-      expect(wrapper.find('[data-testid="page-select"]').element.value).toBe(
-        '3'
-      )
+      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('3')
     })
 
     it('should not have the previous and next buttons disabled', () => {
@@ -87,9 +82,7 @@ describe('SbPagination component', () => {
     })
 
     it('should have the page select with this specific page', () => {
-      expect(wrapper.find('[data-testid="page-select"]').element.value).toBe(
-        '4'
-      )
+      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('4')
     })
 
     it('should have the next button disabled', () => {
@@ -113,9 +106,7 @@ describe('SbPagination component', () => {
     })
 
     it('should have the per page select with this specific value', () => {
-      expect(
-        wrapper.find('[data-testid="per-page-select"]').element.value
-      ).toBe('50')
+      expect(wrapper.findComponent(SbSelect).props().label).toBe('50')
     })
 
     it('should have the correct text with how many pages information', () => {
@@ -132,15 +123,11 @@ describe('SbPagination component', () => {
       perPage: 25,
     })
 
-    beforeEach(async () => {
-      await wrapper.find('[data-testid="per-page-select"]').setValue(50)
-
+    it('should emit the per-page-change event with the value select', async () => {
+      await wrapper.setProps({ value: 50 })
       await wrapper.vm.$nextTick()
-    })
 
-    it('should emit the per-page-change event with the value select', () => {
-      // getting the first result from first emit
-      expect(wrapper.emitted('per-page-change')[0][0]).toBe(50)
+      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('50')
     })
 
     it('should update the text with how many pages information', async () => {
@@ -160,14 +147,11 @@ describe('SbPagination component', () => {
       perPage: 25,
     })
 
-    beforeEach(async () => {
-      await wrapper.find('[data-testid="page-select"]').setValue(4)
-
+    it('should emit the input event with the value selected', async () => {
+      await wrapper.setProps({ value: 4 })
       await wrapper.vm.$nextTick()
-    })
 
-    it('should emit the input event with the value selected', () => {
-      expect(wrapper.emitted('input')[0][0]).toBe(4)
+      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('4')
     })
   })
 
@@ -215,11 +199,15 @@ describe('SbPagination component', () => {
     })
 
     it('should have three options with respective values', () => {
-      const options = wrapper.findAll('[data-testid="per-page-select"] option')
+      const options = wrapper.findComponent(SbSelect).props().options
+
       expect(options.length).toBe(3)
-      expect(options.at(0).element.value).toBe('5')
-      expect(options.at(1).element.value).toBe('15')
-      expect(options.at(2).element.value).toBe('30')
+
+      expect(options).toEqual([
+        { value: 5, label: '5', ariaLabel: 'Select per page 5 items' },
+        { value: 15, label: '15', ariaLabel: 'Select per page 15 items' },
+        { value: 30, label: '30', ariaLabel: 'Select per page 30 items' },
+      ])
     })
 
     it('should have the text showing pagination items information', () => {

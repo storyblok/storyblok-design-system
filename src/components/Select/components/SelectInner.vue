@@ -327,7 +327,12 @@ export default {
     },
 
     inlineWidth() {
-      const width = this.inline ? `${this.innerLabel.length}ch` : '100%'
+      const inlineLabelSize = this.currentOptionLabel
+        ? this.innerLabel.length
+        : this.label.length
+
+      const width = this.inline ? `${inlineLabelSize}ch` : '100%'
+
       return { width }
     },
 
