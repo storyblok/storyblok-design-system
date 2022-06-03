@@ -56,6 +56,15 @@ export default {
 }
 </pre>
 
+<h3 class="sb-translation__subtitle">Or set the Global mixin:</h3>
+<pre class="sb-translation__pre">
+// your-project/src/main.js
+
+import TranslationDsMixin from 'src/mixins/translationDsMixin'
+
+Vue.mixin(translationDsMixin)
+</pre>
+
       </div>
   
     </section>
