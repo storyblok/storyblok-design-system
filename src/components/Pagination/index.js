@@ -9,6 +9,7 @@ import {
   SbPagesContainer,
   SbPerPageContainer,
 } from './components'
+import { TranslationMixin } from '../../mixins'
 
 const DEFAULT_ROWS_PER_PAGE_DROPDOWN = [25, 50, 75, 100]
 
@@ -25,6 +26,8 @@ const SbPagination = {
   directives: {
     tooltip: Tooltip,
   },
+
+  mixins: [TranslationMixin],
 
   props: {
     carousel: {
@@ -110,7 +113,7 @@ const SbPagination = {
       },
       props: {
         icon: 'chevron-left',
-        tooltipLabel: 'Previous page',
+        tooltipLabel: this.$data.sbTranslations.previousPage,
         disabled: this.isFirstDisabled,
       },
       on: {
@@ -124,7 +127,7 @@ const SbPagination = {
       },
       props: {
         icon: 'chevron-right',
-        tooltipLabel: 'Next page',
+        tooltipLabel: this.$data.sbTranslations.nextPage,
         disabled: this.isLastDisabled,
       },
       on: {
@@ -157,6 +160,7 @@ const SbPagination = {
               pages: this.pages,
               currentPage: this.value,
               showCurrentPage: true,
+              sbTranslations: this.$data.sbTranslations,
             },
           }),
           rightArrowButton,

@@ -1,3 +1,5 @@
+import { TranslationMixin } from '../../../mixins'
+
 /**
  * @vue/component
  *
@@ -21,10 +23,14 @@ export const SbPaginationDot = {
       required: true,
       default: 1,
     },
+    sbTranslations: {
+      type: Object,
+      required: true,
+    },
   },
 
   render(h, { props, listeners }) {
-    const { page, currentPage } = props
+    const { page, currentPage, sbTranslations } = props
     const isCurrent = currentPage === page
     return h('button', {
       staticClass: 'sb-pagination-dot',
@@ -34,8 +40,8 @@ export const SbPaginationDot = {
       attrs: {
         page,
         'aria-label': isCurrent
-          ? `Curent page, Page ${page}`
-          : `Goto page ${page}`,
+          ? `${sbTranslations.currentPage} ${page}`
+          : `${sbTranslations.gotoPage} ${page}`,
         'aria-current': isCurrent + '',
       },
       on: {
@@ -54,6 +60,8 @@ export const SbPaginationDot = {
  */
 export const SbPaginationCarousel = {
   name: 'SbPaginationCarousel',
+
+  mixins: [TranslationMixin],
 
   props: {
     currentPage: {
@@ -83,6 +91,7 @@ export const SbPaginationCarousel = {
           props: {
             page: pageNumber,
             currentPage: this.currentPage,
+            sbTranslations: this.$data.sbTranslations,
           },
           on: {
             click: () => {
@@ -99,7 +108,7 @@ export const SbPaginationCarousel = {
         staticClass: 'sb-pagination-carousel-container',
         attrs: {
           role: 'navigation',
-          'aria-label': 'Pagination Navigation',
+          'aria-label': this.$data.sbTranslations.paginationNavigation,
         },
       },
       paginationDots

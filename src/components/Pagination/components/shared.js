@@ -101,19 +101,29 @@ export const SbPaginationPagesText = {
       type: Boolean,
       default: false,
     },
+    sbTranslations: {
+      type: Object,
+      required: true,
+    },
   },
 
   render(h, { props }) {
-    const { currentPage, showCurrentPage, isPlaceholder, pages } = props
+    const {
+      currentPage,
+      showCurrentPage,
+      isPlaceholder,
+      pages,
+      sbTranslations,
+    } = props
     let text = ''
     if (pages === 1) {
       text = showCurrentPage
-        ? `${currentPage} of ${pages} page` // to compact container
-        : `of ${pages} page` // to other container types
+        ? `${currentPage} ${sbTranslations.of} ${pages} ${sbTranslations.page}` // to compact container
+        : `${sbTranslations.of} ${pages} ${sbTranslations.page}` // to other container types
     } else {
       text = showCurrentPage
-        ? `${currentPage} of ${pages} pages` // to compact container
-        : `of ${pages} pages` // to other container types
+        ? `${currentPage} ${sbTranslations.of} ${pages} ${sbTranslations.page}s` // to compact container
+        : `${sbTranslations.of} ${pages} ${sbTranslations.page}s` // to other container types
     }
 
     return h(
@@ -166,10 +176,21 @@ export const SbPaginationItemsText = {
       type: Number,
       default: 100,
     },
+    sbTranslations: {
+      type: Object,
+      required: true,
+    },
   },
 
   render(h, { props }) {
-    const { currentPage, isPlaceholder, pages, perPage, total } = props
+    const {
+      currentPage,
+      isPlaceholder,
+      pages,
+      perPage,
+      total,
+      sbTranslations,
+    } = props
     const isTheLastPage = currentPage === pages
     const currentPageItems = currentPage * perPage
     const firstCurrentPageItem =
@@ -180,9 +201,9 @@ export const SbPaginationItemsText = {
     let text = ''
 
     if (firstCurrentPageItem === 1 && lastCurrentPageItem >= total) {
-      text = `${firstCurrentPageItem}-${total} of ${total} items`
+      text = `${firstCurrentPageItem}-${total} ${sbTranslations.of} ${total} ${sbTranslations.items}`
     } else {
-      text = `${firstCurrentPageItem}-${lastCurrentPageItem} of ${total} items`
+      text = `${firstCurrentPageItem}-${lastCurrentPageItem} ${sbTranslations.of} ${total} ${sbTranslations.items}`
     }
 
     return h(

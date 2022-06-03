@@ -1,3 +1,4 @@
+import { TranslationMixin } from '../../../mixins'
 import { buildSelectOptions, factorySelectOption } from '../utils'
 
 import {
@@ -15,6 +16,8 @@ import {
  */
 export const SbPagesContainer = {
   name: 'SbPagesContainer',
+
+  mixins: [TranslationMixin],
 
   props: {
     currentPage: {
@@ -38,7 +41,7 @@ export const SbPagesContainer = {
   render(h) {
     const pagesOptions = buildSelectOptions(
       this.pages,
-      (page) => `Go to page ${page}`
+      (page) => `${this.$data.sbTranslations.goToPage} ${page}`
     )
 
     return h(
@@ -63,6 +66,7 @@ export const SbPagesContainer = {
           props: {
             pages: this.pages,
             isPlaceholder: true,
+            sbTranslations: this.$data.sbTranslations,
           },
         }),
       ]
@@ -79,6 +83,8 @@ export const SbPagesContainer = {
  */
 export const SbPerPageContainer = {
   name: 'SbPerPageContainer',
+
+  mixins: [TranslationMixin],
 
   props: {
     currentPage: {
@@ -117,7 +123,8 @@ export const SbPerPageContainer = {
     const perPageOptions = this.perPageAvailable.map((perPage) => {
       return factorySelectOption(
         perPage,
-        (value) => `Select per page ${value} items`
+        (value) =>
+          `${this.$data.sbTranslations.selectPerPage} ${value} ${this.$data.sbTranslations.items}`
       )
     })
 
@@ -127,7 +134,7 @@ export const SbPerPageContainer = {
         staticClass: 'sb-pagination__per-page-container',
       },
       [
-        h('span', 'Items per page:'),
+        h('span', this.$data.sbTranslations.itemsPerPage),
         h(SbPaginationSelect, {
           attrs: {
             'data-testid': 'per-page-select',
@@ -147,6 +154,7 @@ export const SbPerPageContainer = {
             pages: this.pages,
             perPage: this.perPage,
             isPlaceholder: true,
+            sbTranslations: this.$data.sbTranslations,
           },
         }),
       ]
