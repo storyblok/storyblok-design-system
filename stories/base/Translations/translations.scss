@@ -1,0 +1,28 @@
+.sb-translation {
+    &__title {
+        margin-bottom: 20px;
+        font-size: 3rem;
+        font-weight: 500;
+    }
+
+    &__subtitle {
+        font-size: 15px; 
+        color: #545B6F; 
+        font-weight: 500; 
+        margin-top: 25px;
+        margin-bottom: 10px;
+    }
+
+    &__pre {
+        padding: 20px;
+        color: #252e48;
+        font-family: inherit;
+        font-size: $font-14;
+        line-height: 22px;
+        white-space: pre-wrap;
+        word-break: break-all;
+        background-color: $light-25;
+        border-radius: 5px;
+    }
+
+}
