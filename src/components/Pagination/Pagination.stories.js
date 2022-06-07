@@ -89,7 +89,7 @@ export default {
       description: 'Allow to use the component in a different language',
       control: {
         type: 'select',
-        options: ['en', 'de'],
+        options: ['en', 'de', 'pt-br'],
       },
     },
     isFullWidth: {
