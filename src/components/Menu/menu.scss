@@ -88,3 +88,8 @@
 .sb-menu-button-borderless {
   border: 0;
 }
+
+.sb-menu-item--is-link {
+  color: $black;
+  text-decoration: none;
+}

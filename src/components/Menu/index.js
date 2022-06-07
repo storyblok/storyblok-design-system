@@ -41,6 +41,14 @@ const SbMenuItem = {
       type: String,
       default: null,
     },
+    as: {
+      type: String,
+      default: 'button',
+    },
+    to: {
+      type: String,
+      default: null,
+    },
   },
 
   computed: {
@@ -119,16 +127,18 @@ const SbMenuItem = {
     const iconClass = this.icon ? `sb-menu-item--has-icon` : null
     const isDisabled = this.isDisabled ? `sb-menu-item--disabled` : null
     const auxText = this.auxText ? `sb-menu-item--aux-text` : null
+    const menuLinkClass = this.as ? `sb-menu-item--is-link` : null
 
     return h(
-      'button',
+      this.as,
       {
         staticClass: 'sb-menu-item',
-        class: [typeClass, iconClass, isDisabled, auxText],
+        class: [typeClass, iconClass, isDisabled, auxText, menuLinkClass],
         attrs: {
           ...this.$attrs,
           role: 'menuitemradio',
           disabled: this.isDisabled,
+          href: this.to,
         },
         on: {
           ...this.$listeners,
