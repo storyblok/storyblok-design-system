@@ -200,3 +200,36 @@ export const AlongWithGroup = (args) => ({
     </div>
   `,
 })
+
+export const WithLinksOnMenuItem = (args) => ({
+  props: Object.keys(args),
+  components: {
+    SbMenu,
+    SbMenuButton,
+    SbMenuList,
+    SbMenuItem,
+    SbMenuGroup,
+    SbButton,
+  },
+  template: `
+    <div>
+      <SbMenu :value="value">
+        <SbMenuButton label="Combo button" />
+
+        <SbMenuList placement="bottom-start">
+          <SbMenuGroup title="Links">
+            <SbMenuItem as="a" to="https://storyblok.com"> Link 1: Storyblok </SbMenuItem>
+
+            <SbMenuItem as="a" to="https://google.com"> Link 2: Google </SbMenuItem>
+          </SbMenuGroup>
+
+          <SbMenuGroup title="Buttons">
+            <SbMenuItem> Button 1 </SbMenuItem>
+
+            <SbMenuItem> Button 2 </SbMenuItem>
+          </SbMenuGroup>
+        </SbMenuList>
+      </SbMenu>
+    </div>
+  `,
+})
