@@ -11,5 +11,10 @@
   "of": "of",
   "page": "page",
   "pages": "pages",
-  "current": "Current"
+  "current": "Current",
+  "file": "file",
+  "files": "files",
+  "uploading": "Uploading",
+  "minAnd": "min and",
+  "secLeft": "sec left"
 }

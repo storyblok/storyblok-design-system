@@ -11,5 +11,10 @@
   "of": "von",
   "page": "Seite",
   "pages": "Seiten",
-  "current": "Derzeitig"
+  "current": "Derzeitig",
+  "file": "datei",
+  "files": "Ddteien",
+  "uploading": "Hochladen",
+  "minAnd": "min und",
+  "secLeft": "sekunde übrig"
 }
