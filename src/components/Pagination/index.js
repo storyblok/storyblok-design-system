@@ -1,4 +1,5 @@
 import './pagination.scss'
+import i18n from './i18n/index'
 
 import { Tooltip } from '../../directives'
 
@@ -55,6 +56,11 @@ const SbPagination = {
       type: Number,
       required: true,
     },
+    locale: {
+      type: String,
+      required: false,
+      default: 'en',
+    },
   },
 
   computed: {
@@ -110,7 +116,7 @@ const SbPagination = {
       },
       props: {
         icon: 'chevron-left',
-        tooltipLabel: 'Previous page',
+        tooltipLabel: i18n(this.locale, 'previousPage'),
         disabled: this.isFirstDisabled,
       },
       on: {
@@ -124,7 +130,7 @@ const SbPagination = {
       },
       props: {
         icon: 'chevron-right',
-        tooltipLabel: 'Next page',
+        tooltipLabel: i18n(this.locale, 'nextPage'),
         disabled: this.isLastDisabled,
       },
       on: {
@@ -157,6 +163,7 @@ const SbPagination = {
               pages: this.pages,
               currentPage: this.value,
               showCurrentPage: true,
+              locale: this.locale,
             },
           }),
           rightArrowButton,
@@ -171,6 +178,7 @@ const SbPagination = {
             currentPage: this.value,
             pages: this.pages,
             perPageAvailable: this.perPageAvailable,
+            locale: this.locale,
           },
           on: {
             'per-page-change': this.onPerPageChange,
@@ -180,6 +188,7 @@ const SbPagination = {
           props: {
             pages: this.pages,
             currentPage: this.value,
+            locale: this.locale,
           },
           on: {
             'page-change': this.onPageChange,

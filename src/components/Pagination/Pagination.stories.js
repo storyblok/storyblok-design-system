@@ -29,6 +29,7 @@ const PaginationTemplate = (args) => ({
           compact,
           customPerPageOptions,
           isFullWidth,
+          locale,
           total: total || 100
         }"
         :per-page="perPageData"
@@ -56,6 +57,7 @@ export default {
     compact: false,
     customPerPageOptions: [],
     isFullWidth: false,
+    locale: 'en',
     perPage: 10,
     total: 100,
     value: 1,
@@ -80,6 +82,14 @@ export default {
       description: 'Allow to user set a custom options to perPage select',
       control: {
         type: 'array',
+      },
+    },
+    locale: {
+      name: 'locale',
+      description: 'Allow to use the component in a different language',
+      control: {
+        type: 'select',
+        options: ['en', 'de'],
       },
     },
     isFullWidth: {

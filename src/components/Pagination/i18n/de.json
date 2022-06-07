@@ -1,0 +1,15 @@
+{
+  "itemsPerPage": "Elemente pro Seite:",
+  "item": "Element",
+  "items": "Elementen",
+  "selectPerPage": "Pro Seite",
+  "currentPage": "Aktive seite, Seite",
+  "gotoPage": "Gehe zu Seite",
+  "paginationNavigation": "Pagination Navigation",
+  "previousPage": "Vorherige Seite",
+  "nextPage": "Nächste Seite",
+  "of": "von",
+  "page": "Seite",
+  "pages": "Seiten",
+  "current": "Derzeitig"
+}

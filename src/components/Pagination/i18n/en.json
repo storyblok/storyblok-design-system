@@ -1,0 +1,15 @@
+{
+  "itemsPerPage": "Items per page:",
+  "item": "item",
+  "items": "items",
+  "selectPerPage": "Select per page",
+  "currentPage": "Current page, Page",
+  "gotoPage": "Go to page",
+  "paginationNavigation": "Pagination Navigation",
+  "previousPage": "Previous page",
+  "nextPage": "Next page",
+  "of": "of",
+  "page": "page",
+  "pages": "pages",
+  "current": "Current"
+}
