@@ -1,7 +1,7 @@
 import SbIcon from '../../Icon'
 import SbSelect from '../../Select'
 import { Tooltip } from '../../../directives'
-import i18n from '../i18n/index'
+import i18n from '../../../i18n/index'
 
 /**
  * @vue/component

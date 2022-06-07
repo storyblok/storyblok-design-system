@@ -1,5 +1,5 @@
 import { buildSelectOptions, factorySelectOption } from '../utils'
-import i18n from '../i18n/index'
+import i18n from '../../../i18n/index'
 
 import {
   SbPaginationSelect,
@@ -44,7 +44,7 @@ export const SbPagesContainer = {
   render(h) {
     const pagesOptions = buildSelectOptions(
       this.pages,
-      (page) => i18n(this.locale, 'gotoPage') + `${page}`
+      (page) => i18n(this.locale, 'goToPage') + `${page}`
     )
 
     return h(

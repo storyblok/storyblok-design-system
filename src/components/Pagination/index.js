@@ -1,5 +1,5 @@
 import './pagination.scss'
-import i18n from './i18n/index'
+import i18n from '../../i18n/index'
 
 import { Tooltip } from '../../directives'
 
