@@ -134,4 +134,44 @@ describe('SbMenuItem component', () => {
     // and should close the menu
     expect(wrapper.vm.isOpen).toBe(false)
   })
+
+  it('should render a link when pass a tag `a` in the prop', async () => {
+    const MenuComponent = {
+      components: {
+        ...MenuComponents,
+      },
+
+      data: () => ({
+        isOpen: true,
+      }),
+
+      methods: {
+        onSelectOptionFirst: onSelectOptionFirst,
+        onSelectOptionSecond: onSelectOptionSecond,
+      },
+
+      template: `
+      <div>
+        <SbMenu v-model="isOpen">
+          <SbMenuButton
+            label="Combo button"
+          />
+
+          <SbMenuList
+            placement="bottom-start"
+          >
+            <SbMenuItem as="a" to="https://storyblok.com"> Go for Storyblok </SbMenuItem>
+          </SbMenuList>
+        </SbMenu>
+      </div>
+    `,
+    }
+
+    const menuWrapper = factoryMountComponent(MenuComponent)
+    const link = menuWrapper.find('a')
+
+    expect(link.exists()).toBe(true)
+    expect(link.attributes('href')).toBe('https://storyblok.com')
+    expect(link.attributes('class')).toBe('sb-menu-item sb-menu-item--is-link')
+  })
 })
