@@ -160,7 +160,7 @@ describe('SbMenuItem component', () => {
           <SbMenuList
             placement="bottom-start"
           >
-            <SbMenuItem as="a" to="https://storyblok.com"> Go for Storyblok </SbMenuItem>
+            <SbMenuItem as="a" href="https://storyblok.com"> Go for Storyblok </SbMenuItem>
           </SbMenuList>
         </SbMenu>
       </div>

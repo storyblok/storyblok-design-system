@@ -45,10 +45,6 @@ const SbMenuItem = {
       type: String,
       default: 'button',
     },
-    to: {
-      type: String,
-      default: null,
-    },
   },
 
   computed: {
@@ -138,7 +134,6 @@ const SbMenuItem = {
           ...this.$attrs,
           role: 'menuitemradio',
           disabled: this.isDisabled,
-          href: this.to,
         },
         on: {
           ...this.$listeners,
