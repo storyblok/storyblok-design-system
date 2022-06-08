@@ -127,7 +127,7 @@ const SbMenuItem = {
     const iconClass = this.icon ? `sb-menu-item--has-icon` : null
     const isDisabled = this.isDisabled ? `sb-menu-item--disabled` : null
     const auxText = this.auxText ? `sb-menu-item--aux-text` : null
-    const menuLinkClass = this.as ? `sb-menu-item--is-link` : null
+    const menuLinkClass = this.as === 'a' ? `sb-menu-item--is-link` : null
 
     return h(
       this.as,
