@@ -146,6 +146,7 @@ const SbPagination = {
             props: {
               pages: this.pages,
               currentPage: this.value,
+              locale: this.locale,
             },
             on: {
               'change-page': this.onPageChange,
