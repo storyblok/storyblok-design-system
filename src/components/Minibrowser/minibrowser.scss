@@ -86,6 +86,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     &-container {
       flex: 1;
       overflow: hidden;
+      line-height: normal;
     }
 
     &-name {
