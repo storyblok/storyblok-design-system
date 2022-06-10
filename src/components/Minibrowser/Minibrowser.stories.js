@@ -59,7 +59,7 @@ export const MOCK_DATA = {
   SECOND_LEVEL: [
     {
       isParent: true,
-      label: 'PPC',
+      label: 'PPC',
       subtitle: 'ppc',
       value: '2.0',
     },
