@@ -30,7 +30,7 @@ export const SbPaginationDot = {
   },
 
   render(h, { props, listeners }) {
-    const { page, currentPage } = props
+    const { page, currentPage, locale } = props
     const isCurrent = currentPage === page
     return h('button', {
       staticClass: 'sb-pagination-dot',
@@ -40,8 +40,8 @@ export const SbPaginationDot = {
       attrs: {
         page,
         'aria-label': isCurrent
-          ? `${i18n(this.locale, 'currentPage')} ${page}`
-          : `${i18n(this.locale, 'goToPage')} ${page}`,
+          ? `${i18n(locale, 'currentPage')} ${page}`
+          : `${i18n(locale, 'goToPage')} ${page}`,
         'aria-current': isCurrent + '',
       },
       on: {
