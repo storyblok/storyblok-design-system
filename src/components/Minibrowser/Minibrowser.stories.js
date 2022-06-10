@@ -6,76 +6,93 @@ export const MOCK_DATA = {
   FIRST_LEVEL: [
     {
       label: 'Landing Page',
+      subtitle: 'landing-page',
       isParent: true,
       value: '1.0',
     },
     {
       label: 'Case Studies',
+      subtitle: 'case-studies',
       value: '1.1',
     },
     {
       label: 'Jobs',
+      subtitle: 'jobs',
       value: '1.2',
     },
     {
       label: 'Quotes',
+      subtitle: 'quotes',
       value: '1.3',
     },
     {
       label: 'Plugin',
+      subtitle: 'plugin',
       value: '1.4',
     },
     {
       label: 'About',
+      subtitle: 'about',
       value: '1.5',
     },
     {
       label: 'Pricing',
+      subtitle: 'pricing',
       value: '1.6',
     },
     {
       label: 'Stories',
+      subtitle: 'stories',
       value: '1.7',
     },
     {
       label: 'Marketing',
+      subtitle: 'marketing',
       value: '1.8',
     },
     {
       label: 'Open Source',
+      subtitle: 'open-source',
       value: '1.9',
     },
   ],
   SECOND_LEVEL: [
     {
       isParent: true,
-      label: 'PPC',
+      label: 'PPC',
+      subtitle: 'ppc',
       value: '2.0',
     },
     {
       label: 'Hp v1',
+      subtitle: 'hp-v1',
       value: '2.1',
     },
     {
       label: 'Hp v2',
+      subtitle: 'hp-v2',
       value: '2.2',
     },
     {
       label: 'Hp v3',
+      subtitle: 'hp-v3',
       value: '2.3',
     },
   ],
   THIRD_LEVEL: [
     {
       label: 'e-commerce',
+      subtitle: 'e-commerce',
       value: '3.0',
     },
     {
       label: 'for-developers',
+      subtitle: 'for-developers',
       value: '3.1',
     },
     {
       label: 'for-content-writers',
+      subtitle: 'for-content-writers',
       value: '3.2',
     },
   ],
@@ -264,9 +281,11 @@ WithGroups.args = {
       items: [
         {
           label: 'Case Studies',
+          subtitle: 'case-studies',
         },
         {
           label: 'Jobs',
+          subtitle: 'jobs',
         },
       ],
     },
@@ -324,9 +343,11 @@ WithGroupsSlot.args = {
       items: [
         {
           label: 'Case Studies',
+          subtitle: 'case-studies',
         },
         {
           label: 'Jobs',
+          subtitle: 'jobs',
         },
       ],
     },
@@ -376,9 +397,11 @@ Inline.args = {
       items: [
         {
           label: 'Case Studies',
+          subtitle: 'case-studies',
         },
         {
           label: 'Jobs',
+          subtitle: 'jobs',
         },
       ],
     },
