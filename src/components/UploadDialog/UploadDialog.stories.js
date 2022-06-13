@@ -10,6 +10,7 @@ export default {
   args: {
     currentFile: 1,
     currentFileName: 'test.png',
+    locale: 'en',
     percentageValue: 45,
     totalFiles: 5,
     timeLeft: 125,
@@ -28,6 +29,14 @@ export default {
         'The `currentFileName` property defines the name of the current file being uploaded',
       control: {
         type: 'text',
+      },
+    },
+    locale: {
+      name: 'locale',
+      description: 'Allow to use the component in a different language',
+      control: {
+        type: 'select',
+        options: ['en', 'de', 'pt-br'],
       },
     },
     percentageValue: {
@@ -69,6 +78,7 @@ export const Default = (args) => ({
       :percentage-value="percentageValue"
       :total-files="totalFiles"
       :time-left="timeLeft"
+      v-bind="{locale}"
     />
   `,
 })
