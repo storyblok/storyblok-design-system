@@ -1,7 +1,7 @@
 {
   "itemsPerPage": "Položky na stránku:",
-  "item": "item",
-  "items": "items",
+  "item": "položka",
+  "items": "položky",
   "selectPerPage": "Vybrať na stránku",
   "currentPage": "Aktuálna stránka, Strana",
   "goToPage": "Prejsť na stránku",
