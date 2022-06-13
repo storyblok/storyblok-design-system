@@ -1,0 +1,20 @@
+{
+  "itemsPerPage": "Articles par page :",
+  "item": "item",
+  "items": "items",
+  "selectPerPage": "Sélectionner par page",
+  "currentPage": "Page actuelle, Page",
+  "goToPage": "Aller à la page",
+  "paginationNavigation": "Navigation par pagination",
+  "previousPage": "Page précédente",
+  "nextPage": "Page suivante",
+  "of": "de",
+  "page": "page",
+  "pages": "pages",
+  "current": "Actuel",
+  "file": "fichier",
+  "files": "fichiers",
+  "uploading": "Téléchargement",
+  "minAnd": "min et",
+  "secLeft": "sec left"
+}

@@ -1,0 +1,20 @@
+{
+  "itemsPerPage": "Poster per sida:",
+  "item": "item",
+  "items": "objekt",
+  "selectPerPage": "Välj per sida",
+  "currentPage": "Aktuell sida, sida",
+  "goToPage": "Gå till sidan",
+  "paginationNavigation": "Navigering av sidindelning",
+  "previousPage": "Föregående sida",
+  "nextPage": "Nästa sida",
+  "of": "av",
+  "page": "sida",
+  "pages": "sidor",
+  "current": "Aktuell",
+  "file": "fil",
+  "files": "filer",
+  "uploading": "Uppladdning",
+  "minAnd": "min och",
+  "secLeft": "sek vänster"
+}

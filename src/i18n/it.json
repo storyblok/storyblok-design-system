@@ -1,0 +1,20 @@
+{
+  "itemsPerPage": "Elementi per pagina:",
+  "item": "voce",
+  "items": "voci",
+  "selectPerPage": "Seleziona per pagina",
+  "currentPage": "Pagina corrente, Pagina",
+  "goToPage": "Vai alla pagina",
+  "paginationNavigation": "Navigazione a paginazione",
+  "previousPage": "Pagina precedente",
+  "nextPage": "Pagina successiva",
+  "of": "di",
+  "page": "pagina",
+  "pages": "pagine",
+  "current": "corrente",
+  "file": "file",
+  "files": "file",
+  "uploading": "caricamento",
+  "minAnd": "min e",
+  "secLeft": "sec rimasti"
+}

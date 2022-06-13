@@ -1,0 +1,20 @@
+{
+  "itemsPerPage": "每页的项目：",
+  "item": "项目",
+  "items": "项目",
+  "selectPerPage": "每页选择",
+  "currentPage": "当前页, 页",
+  "goToPage": "转到页",
+  "paginationNavigation": "分页导航",
+  "previousPage": "上一页",
+  "nextPage": "下一页",
+  "of": "的",
+  "page": "页",
+  "pages": "页面",
+  "current": "当前",
+  "file": "文件",
+  "files": "文件",
+  "uploading": "上传",
+  "minAnd": "最小和",
+  "secLeft": "剩余秒数"
+}
