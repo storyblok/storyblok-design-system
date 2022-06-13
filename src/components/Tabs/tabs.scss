@@ -7,6 +7,9 @@
 }
 
 .sb-tab-edit-button {
+  position: absolute;
+  right: -20px;
+  top: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,6 +20,7 @@
   cursor: pointer;
   opacity: 0;
   transform: none;
+  transform: translateY(-50%);
   fill: currentColor;
 }
 
@@ -25,7 +29,8 @@
   z-index: 0;
   display: flex;
   align-items: center;
-  padding: 14px 15px;
+  margin-right: 25px;
+  padding: 14px 2px;
   color: $sb-dark-blue-50;
   font-family: $primary-font-family;
   font-size: $font-14;
@@ -55,7 +60,7 @@
   }
 
   &--editable {
-    padding: 9px 0 9px 24px;
+    padding: 9px 2px;
 
     &:hover,
     &:focus {
@@ -66,16 +71,11 @@
   }
 
   &--has-icon {
-    padding: 9px 14px 9px 10px;
+    padding: 9px 0;
 
     span {
       margin-left: 5px;
     }
-  }
-
-  &--disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
   }
 }
 
@@ -113,6 +113,7 @@
 
   &--container {
     .sb-tab--is-active {
+      padding: 8px;
       border: 1px solid $light-gray;
       border-radius: 5px 5px 0 0;
       border-bottom: 0;
@@ -132,6 +133,8 @@
     }
 
     .sb-tab--is-active {
+      padding-left: 8px;
+
       &::after {
         left: 0;
         top: 0;
