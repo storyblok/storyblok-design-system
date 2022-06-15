@@ -249,6 +249,7 @@ const SbDataTable = {
         headerData = children.map((element) => {
           return {
             ...element.componentOptions.propsData,
+            scopedSlots: element.data.scopedSlots,
           }
         })
 
