@@ -1,0 +1,20 @@
+{
+  "itemsPerPage": "1ページあたりの項目:",
+  "item": "項目",
+  "items": "アイテム",
+  "selectPerPage": "1ページあたりの選択",
+  "currentPage": "現在のページ, ページ",
+  "goToPage": "ページに移動",
+  "paginationNavigation": "ページネーションナビゲーション",
+  "previousPage": "前のページ",
+  "nextPage": "次のページ",
+  "of": "of",
+  "page": "ページ",
+  "pages": "ページ",
+  "current": "現在",
+  "file": "ファイル",
+  "files": "ファイル",
+  "uploading": "アップロード",
+  "minAnd": "分と",
+  "secLeft": "残り時間"
+}

@@ -1,0 +1,20 @@
+{
+  "itemsPerPage": "Pozycje na stronie:",
+  "item": "pozycja",
+  "items": "pozycje",
+  "selectPerPage": "Wybierz na stronę",
+  "currentPage": "Bieżąca strona, Strona",
+  "goToPage": "Przejdź do strony",
+  "paginationNavigation": "Nawigacja w paginacji",
+  "previousPage": "Poprzednia strona",
+  "nextPage": "Następna strona",
+  "of": "z",
+  "page": "strona",
+  "pages": "strony",
+  "current": "aktualny",
+  "file": "plik",
+  "files": "files",
+  "uploading": "Przesyłanie strony",
+  "minAnd": "min i",
+  "secLeft": "sek. w lewo"
+}

@@ -1,0 +1,20 @@
+{
+  "itemsPerPage": "Položky na stránku:",
+  "item": "položka",
+  "items": "položky",
+  "selectPerPage": "Vybrať na stránku",
+  "currentPage": "Aktuálna stránka, Strana",
+  "goToPage": "Prejsť na stránku",
+  "paginationNavigation": "Navigácia po stranách",
+  "previousPage": "Predchádzajúca stránka",
+  "nextPage": "Ďalšia stránka",
+  "of": "z",
+  "page": "stránka",
+  "pages": "stránky",
+  "current": "Aktuálne",
+  "file": "file",
+  "files": "súbory",
+  "uploading": "Nahrávanie",
+  "minAnd": "min a",
+  "secLeft": "sec left"
+}
