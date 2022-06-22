@@ -1,4 +1,5 @@
 import { buildSelectOptions, factorySelectOption } from '../utils'
+import i18n from '../../../i18n/index'
 
 import {
   SbPaginationSelect,
@@ -27,18 +28,23 @@ export const SbPagesContainer = {
       required: true,
       default: 10,
     },
+    locale: {
+      type: String,
+      required: false,
+      default: 'en',
+    },
   },
 
   methods: {
-    onSelectChange(event) {
-      this.$emit('page-change', Number(event.target.value))
+    onSelectChange(value) {
+      this.$emit('page-change', value)
     },
   },
 
   render(h) {
     const pagesOptions = buildSelectOptions(
       this.pages,
-      (page) => `Go to page ${page}`
+      (page) => i18n(this.locale, 'goToPage') + `${page}`
     )
 
     return h(
@@ -63,6 +69,7 @@ export const SbPagesContainer = {
           props: {
             pages: this.pages,
             isPlaceholder: true,
+            locale: this.locale,
           },
         }),
       ]
@@ -105,11 +112,16 @@ export const SbPerPageContainer = {
       required: true,
       default: 100,
     },
+    locale: {
+      type: String,
+      required: false,
+      default: 'en',
+    },
   },
 
   methods: {
-    onSelectChange(event) {
-      this.$emit('per-page-change', Number(event.target.value))
+    onSelectChange(value) {
+      this.$emit('per-page-change', value)
     },
   },
 
@@ -117,7 +129,10 @@ export const SbPerPageContainer = {
     const perPageOptions = this.perPageAvailable.map((perPage) => {
       return factorySelectOption(
         perPage,
-        (value) => `Select per page ${value} items`
+        (value) =>
+          i18n(this.locale, 'selectPerPage') +
+          ` ${value} ` +
+          i18n(this.locale, 'items')
       )
     })
 
@@ -127,7 +142,7 @@ export const SbPerPageContainer = {
         staticClass: 'sb-pagination__per-page-container',
       },
       [
-        h('span', 'Items per page:'),
+        h('span', i18n(this.locale, 'selectPerPage')),
         h(SbPaginationSelect, {
           attrs: {
             'data-testid': 'per-page-select',
@@ -147,6 +162,7 @@ export const SbPerPageContainer = {
             pages: this.pages,
             perPage: this.perPage,
             isPlaceholder: true,
+            locale: this.locale,
           },
         }),
       ]

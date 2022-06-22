@@ -13,8 +13,6 @@
   // image
   img {
     vertical-align: middle;
-    width: 100%;
-    max-width: 100%;
     border-radius: 100%;
   }
 
@@ -78,8 +76,8 @@
 
   .sb-badge {
     position: absolute;
-    right: -2px;
-    top: 0;
+    left: 30px;
+    top: 5px;
     border: 1px solid $white;
   }
 }

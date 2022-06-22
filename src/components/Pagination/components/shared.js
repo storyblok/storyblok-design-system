@@ -1,5 +1,7 @@
 import SbIcon from '../../Icon'
+import SbSelect from '../../Select'
 import { Tooltip } from '../../../directives'
+import i18n from '../../../i18n/index'
 
 /**
  * @vue/component
@@ -100,19 +102,28 @@ export const SbPaginationPagesText = {
       type: Boolean,
       default: false,
     },
+    locale: {
+      type: String,
+      required: false,
+      default: 'en',
+    },
   },
 
   render(h, { props }) {
-    const { currentPage, showCurrentPage, isPlaceholder, pages } = props
+    const { currentPage, showCurrentPage, isPlaceholder, pages, locale } = props
     let text = ''
+    const ofTranslated = i18n(locale, 'of')
+    const pageTranslated = i18n(locale, 'page')
+    const pagesTranslated = i18n(locale, 'pages')
+
     if (pages === 1) {
       text = showCurrentPage
-        ? `${currentPage} of ${pages} page` // to compact container
-        : `of ${pages} page` // to other container types
+        ? `${currentPage} ${ofTranslated} ${pages} ${pageTranslated}` // to compact container
+        : `${ofTranslated} ${pages} ${pageTranslated}` // to other container types
     } else {
       text = showCurrentPage
-        ? `${currentPage} of ${pages} pages` // to compact container
-        : `of ${pages} pages` // to other container types
+        ? `${currentPage} ${ofTranslated} ${pages} ${pagesTranslated}` // to compact container
+        : `${ofTranslated} ${pages} ${pagesTranslated}` // to other container types
     }
 
     return h(
@@ -165,10 +176,15 @@ export const SbPaginationItemsText = {
       type: Number,
       default: 100,
     },
+    locale: {
+      type: String,
+      required: false,
+      default: 'en',
+    },
   },
 
   render(h, { props }) {
-    const { currentPage, isPlaceholder, pages, perPage, total } = props
+    const { currentPage, isPlaceholder, pages, perPage, total, locale } = props
     const isTheLastPage = currentPage === pages
     const currentPageItems = currentPage * perPage
     const firstCurrentPageItem =
@@ -177,11 +193,13 @@ export const SbPaginationItemsText = {
       currentPage === 1 ? perPage : isTheLastPage ? total : currentPageItems
 
     let text = ''
+    const ofTranslated = i18n(locale, 'of')
+    const itemsTranslated = i18n(locale, 'items')
 
     if (firstCurrentPageItem === 1 && lastCurrentPageItem >= total) {
-      text = `${firstCurrentPageItem}-${total} of ${total} items`
+      text = `${firstCurrentPageItem}-${total} ${ofTranslated} ${total} ${itemsTranslated}`
     } else {
-      text = `${firstCurrentPageItem}-${lastCurrentPageItem} of ${total} items`
+      text = `${firstCurrentPageItem}-${lastCurrentPageItem} ${ofTranslated} ${total} ${itemsTranslated}`
     }
 
     return h(
@@ -209,8 +227,6 @@ export const SbPaginationItemsText = {
 export const SbPaginationSelect = {
   name: 'SbPaginationSelect',
 
-  functional: true,
-
   props: {
     options: {
       type: Array,
@@ -222,40 +238,30 @@ export const SbPaginationSelect = {
     },
   },
 
-  render(h, { props, listeners, data }) {
-    const { options } = props
+  methods: {
+    onSelectInput(value) {
+      this.$emit('change', value)
+    },
+  },
 
-    const processAriaLabel = (option) => {
-      const { ariaLabel, value } = option
-      return props.value === value ? `${ariaLabel}, Current` : ariaLabel
-    }
+  render(h) {
+    const parsedOpts = this.options.map((option) => {
+      return {
+        ...option,
+        label: `${option.label}`,
+      }
+    })
 
-    return h(
-      'select',
-      {
-        attrs: { ...(data.attrs || {}) },
-        staticClass: 'sb-pagination__select',
-        on: {
-          ...listeners,
-        },
+    return h(SbSelect, {
+      props: {
+        options: parsedOpts,
+        label: `${this.value}`,
+        inline: true,
+        showListOnTop: true,
       },
-      [
-        ...options.map((option) => {
-          return h(
-            'option',
-            {
-              attrs: {
-                ...(option.ariaLabel && {
-                  'aria-label': processAriaLabel(option),
-                }),
-                value: option.value,
-                selected: props.value === option.value,
-              },
-            },
-            option.label
-          )
-        }),
-      ]
-    )
+      on: {
+        input: this.onSelectInput,
+      },
+    })
   },
 }

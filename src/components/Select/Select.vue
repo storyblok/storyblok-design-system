@@ -63,6 +63,7 @@
       :emit-option="emitOption"
       :show-caption="showCaption"
       :item-caption="itemCaption"
+      :show-list-on-top="showListOnTop"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -156,6 +157,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    showListOnTop: Boolean,
 
     itemLabel: {
       type: String,
@@ -267,6 +269,10 @@ export default {
       this.$nextTick(() => {
         this.$_loadListItems()
       })
+    },
+
+    searchInput(newValue) {
+      this.$emit('search-input', newValue)
     },
   },
 

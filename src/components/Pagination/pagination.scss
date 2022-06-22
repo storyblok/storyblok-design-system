@@ -121,3 +121,30 @@
     border: 0;
   }
 }
+
+.sb-pagination__per-page-container,
+.sb-pagination__pages-container {
+  display: flex;
+  align-items: center;
+
+  .sb-select {
+    &[aria-expanded='true'] .sb-select-inner,
+    &:focus-within .sb-select-inner {
+      box-shadow: none;
+    }
+  }
+
+  .sb-select-list--above {
+    bottom: 100%;
+    min-width: auto;
+    padding: 0;
+
+    .sb-select-list__item {
+      justify-content: center;
+
+      .sb-select-list__item-name {
+        min-height: auto;
+      }
+    }
+  }
+}

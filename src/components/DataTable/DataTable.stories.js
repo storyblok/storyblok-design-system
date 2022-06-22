@@ -1,6 +1,8 @@
 import { SbDataTable, SbDataTableColumn } from '.'
 import SbAvatar from '../Avatar'
 import SbAvatarGroup from '../AvatarGroup'
+import SbIcon from '../Icon'
+import SbSelect from '../Select'
 
 const description = {
   actions:
@@ -363,6 +365,120 @@ Slots.args = {
     },
     { label: 'Authors' },
   ],
+  items: [
+    {
+      title: 'My second space',
+      editedOn: '3 days ago',
+      authors: [
+        {
+          name: 'John Doe',
+          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+        },
+        {
+          name: 'Kobe Bryant',
+          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+        },
+      ],
+    },
+    {
+      title: 'My first space',
+      editedOn: '3 days ago',
+      authors: [
+        {
+          name: 'John Doe',
+          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+        },
+        {
+          name: 'Kobe Bryant',
+          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+        },
+      ],
+    },
+    {
+      title: 'Storyblok Demo',
+      editedOn: '3 days ago',
+      authors: [
+        {
+          name: 'John Doe',
+          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+        },
+      ],
+    },
+  ],
+}
+
+export const CustomHeaderSlots = (args) => ({
+  components: {
+    SbDataTable,
+    SbAvatarGroup,
+    SbAvatar,
+    SbDataTableColumn,
+    SbIcon,
+    SbSelect,
+  },
+  props: Object.keys(args),
+  template: `
+    <div>
+      <SbDataTable
+        v-bind="{
+          actions,
+          allowSelection,
+          isLoading,
+          items,
+          keepSelectedOnChange,
+          selectionMode,
+          hideHeader,
+          striped
+        }"
+      >
+        <SbDataTableColumn label="Spaces" :sortable="true" value="title" width="50%">
+          <template slot="header">
+            <SbIcon name="content-story" /> With icon
+          </template>
+          <template #header>
+            <SbIcon name="content-story" /> With icon
+          </template>
+
+          <template #default="props">
+            <span class="sb-data-table__col-main">{{ props.row.title }}</span><br>
+            Edited {{ props.row.editedOn }}
+          </template>
+        </SbDataTableColumn>
+
+        <SbDataTableColumn label="Authors">
+          <template slot="header">
+            Custom component
+            <SbSelect :options="[{ label: 'Option 1', value: 'option1' }, { label: 'Option 2', value: 'option2' }]" label="Select an option" />
+          </template>
+
+          <template #header>
+            Custom component
+            <SbSelect :options="[{ label: 'Option 1', value: 'option1' }, { label: 'Option 2', value: 'option2' }]" label="Select an option" />
+          </template>
+          <template #default="props">
+            <SbAvatarGroup v-for="(author, index) in props.row.authors" :key="index">
+              <SbAvatar v-bind="author" />
+            </SbAvatarGroup>
+          </template>
+        </SbDataTableColumn>
+
+        <SbDataTableColumn label="Static">
+          <template slot="header">
+            <b>Custom text header</b>
+          </template>
+          <template #header>
+            <b>Custom text header</b>
+          </template>
+          <template #default>
+            Static content testing
+          </template>
+        </SbDataTableColumn>
+      </SbDataTable>
+    </div>
+  `,
+})
+
+CustomHeaderSlots.args = {
   items: [
     {
       title: 'My second space',

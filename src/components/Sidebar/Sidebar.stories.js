@@ -64,6 +64,7 @@ const SidebarTemplate = (args) => ({
       v-bind="{ listItems }"
       :logo="logo"
       :minimize.sync="internalMinimize"
+      :max-width="maxWidth"
     >
       <SbSidebarListItem
         icon="partner-team"
@@ -131,6 +132,7 @@ export default {
     listItems: [...listItemsData],
     minimize: false,
     logo: '',
+    maxWidth: null,
   },
   argTypes: {
     minimize: {
@@ -172,4 +174,19 @@ export const CustomLogo = SidebarTemplate.bind({})
 
 CustomLogo.args = {
   logo: 'https://bcassetcdn.com/social/bvrg7kkg12/preview.png',
+}
+
+export const MaxWidth = SidebarTemplate.bind({})
+
+MaxWidth.args = {
+  maxWidth: '800px',
+}
+
+MaxWidth.parameters = {
+  docs: {
+    description: {
+      story:
+        'When setting the `maxWidth` value, the sidebar will automatically collapse/expand when the window width is equal or lower than and greater than.',
+    },
+  },
 }

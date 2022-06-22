@@ -1,4 +1,4 @@
-import SbAvatar from './index'
+import SbAvatar from './SbAvatar'
 
 import { availableColors } from '../../utils'
 import { badgeTypes } from '../Badge/lib'

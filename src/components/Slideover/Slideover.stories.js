@@ -34,7 +34,7 @@ const SlideoverTemplate = (args) => ({
         @hide="show = false"
         :orientation="orientation">
 
-        <SbModalHeader title="Title" align="left" />
+        <SbModalHeader :title="title" align="left" />
 
         <SbModalContent style="flex: 1;">
           <p>Storyblok helps your team to tell your story and...</p>
@@ -52,8 +52,13 @@ const SlideoverTemplate = (args) => ({
 export default {
   title: 'Design System/Components/SbSlideover',
   component: SbSlideover,
+  parameters: {
+    docs: { inlineStories: false, iframeHeight: 500 },
+    layout: 'fullscreen',
+  },
   args: {
     orientation: 'right',
+    title: 'Title',
   },
   argTypes: {
     orientation: {
