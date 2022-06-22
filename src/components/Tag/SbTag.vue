@@ -4,7 +4,11 @@
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <slot>{{ label }}</slot>
+    <span class="sb-tag__label">
+      <slot>
+        {{ label }}
+      </slot>
+    </span>
     <SbIcon
       v-if="closable"
       v-tooltip="{
