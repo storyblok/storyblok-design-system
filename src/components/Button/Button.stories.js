@@ -19,6 +19,7 @@ const ButtonTemplate = (args) => ({
         :variant="variant"
         :is-disabled="isDisabled"
         :icon="icon"
+        :icon-color="iconColor"
         :label="label"
         :size="size"
         :type="type"
@@ -70,14 +71,15 @@ export default {
     isFullWidth: false,
     isRounded: false,
     icon: null,
-    iconDescription: null,
-    iconRight: null,
+    iconDescription: '',
+    iconRight: '',
     hasIconOnly: false,
     label: 'Default',
     size: null,
     variant: 'primary',
     tooltipPosition: 'bottom',
     type: null,
+    iconColor: '',
   },
   argTypes: {
     isDisabled: {
@@ -98,6 +100,13 @@ export default {
     iconRight: {
       name: 'iconRight',
       description: 'Icon on the right',
+      control: {
+        type: 'text',
+      },
+    },
+    iconColor: {
+      name: 'iconColor',
+      description: 'Icon color',
       control: {
         type: 'text',
       },
@@ -190,6 +199,7 @@ export const Default = (args) => ({
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :icon="icon"
+      :icon-color="iconColor"
       :icon-right="iconRight"
       :has-icon-only="hasIconOnly"
       :label="label"
@@ -197,6 +207,7 @@ export const Default = (args) => ({
       :variant="variant"
       :tooltip-position="tooltipPosition"
       :type="type"
+  
     />
   `,
 })
@@ -292,7 +303,7 @@ export const Sizes = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `<div>
-    <SbButton label="Small" size="small" :variant="variant" :icon="icon" />
+    <SbButton label="Small" size="small" :variant="variant" :icon="icon"  />
     <SbButton label="Default" :variant="variant" :icon="icon" />
     <SbButton label="Large" size="large" :variant="variant" :icon="icon" />
   </div>`,
@@ -345,6 +356,7 @@ export const JustIcons = (args) => ({
       variant="primary"
       :size="size"
       :icon="icon"
+      :icon-color="iconColor"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :type="type"
@@ -355,6 +367,7 @@ export const JustIcons = (args) => ({
       variant="secondary"
       :size="size"
       :icon="icon"
+      :icon-color="iconColor"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :type="type"
@@ -365,6 +378,7 @@ export const JustIcons = (args) => ({
       variant="tertiary"
       :size="size"
       :icon="icon"
+      :icon-color="iconColor"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
       :icon-description="iconDescription"
@@ -432,6 +446,7 @@ export const LoadingButton = (args) => ({
       :size="size"
       :variant="variant"
       :type="type"
+      :icon-color="iconColor"
     />`,
 })
 
