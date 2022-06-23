@@ -418,6 +418,16 @@ const SbMenuButton = {
     },
 
     isBorderless: Boolean,
+
+    hasIconRight: {
+      type: Boolean,
+      default: true,
+    },
+
+    iconColor: {
+      type: String,
+      default: null,
+    },
   },
 
   computed: {
@@ -486,6 +496,7 @@ const SbMenuButton = {
           isRounded: this.isRounded,
           hasIconOnly: true,
           icon: this.iconName || 'menu-vertical',
+          iconColor: this.iconColor,
           variant: this.variant,
           size: this.size,
           iconSize: this.iconSize,
@@ -511,7 +522,8 @@ const SbMenuButton = {
           'aria-expanded': isOpen ? 'true' : null,
         },
         props: {
-          iconRight: 'chevron-down',
+          iconColor: this.iconColor,
+          iconRight: this.hasIconRight ? 'chevron-down' : null,
           label: this.label,
           isRounded: this.isRounded,
           variant: this.variant,
