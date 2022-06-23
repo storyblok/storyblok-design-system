@@ -23,6 +23,7 @@ export default {
   },
   args: {
     value: true,
+    hasIconRight: true,
   },
   argTypes: {
     value: {
@@ -36,6 +37,14 @@ export default {
     focusWhenClose: {
       name: 'focusWhenClose',
       description: `When SbMenuList has more items than the screen's height, it could lead to an undesired scroll behavior. Set this property to false to prevent this.`,
+      control: {
+        type: 'boolean',
+      },
+      default: true,
+    },
+    hasIconRight: {
+      name: 'hasIconRight',
+      description: `When the down arrow icon which is located to the right of SbMenuButton is not needed for SbMenuButton, set this parameter to false.`,
       control: {
         type: 'boolean',
       },
@@ -57,7 +66,7 @@ export const Default = (args) => ({
   template: `
     <div>
       <SbMenu :value="value">
-        <SbMenuButton label="Combo button" />
+        <SbMenuButton label="Combo button" :has-icon-right="hasIconRight"/>
 
         <SbMenuList placement="bottom-start">
           <SbMenuGroup title="Actions">
@@ -89,7 +98,7 @@ export const WithSeparators = (args) => ({
   template: `
     <div>
       <SbMenu :value="value">
-        <SbMenuButton label="Combo button" />
+        <SbMenuButton label="Combo button" :has-icon-right="hasIconRight"/>
 
         <SbMenuList placement="bottom-start">
           <SbMenuItem> Option 1 </SbMenuItem>
@@ -122,7 +131,7 @@ export const WithIcons = (args) => ({
   template: `
     <div>
       <SbMenu :value="value">
-        <SbMenuButton label="Combo button" />
+        <SbMenuButton label="Combo button" :has-icon-right="hasIconRight"/>
 
         <SbMenuList placement="bottom-start">
           <SbMenuItem icon="calendar"> Option 1 </SbMenuItem>
@@ -151,7 +160,7 @@ export const ButtonWithJustIcon = (args) => ({
   template: `
     <div>
       <SbMenu :value="value">
-        <SbMenuButton has-icon-only is-rounded />
+        <SbMenuButton has-icon-only is-rounded/>
 
         <SbMenuList placement="bottom-start">
           <SbMenuItem icon="calendar"> Option 1 </SbMenuItem>
@@ -214,7 +223,7 @@ export const WithLinksOnMenuItem = (args) => ({
   template: `
     <div>
       <SbMenu :value="value">
-        <SbMenuButton label="Combo button" />
+        <SbMenuButton label="Combo button" :has-icon-right="hasIconRight"/>
 
         <SbMenuList placement="bottom-start">
           <SbMenuGroup title="Links">
@@ -231,5 +240,29 @@ export const WithLinksOnMenuItem = (args) => ({
         </SbMenuList>
       </SbMenu>
     </div>
+  `,
+})
+
+export const WithoutItemRight = (args) => ({
+  props: Object.keys(args),
+  components: {
+    SbMenu,
+    SbMenuButton,
+    SbMenuList,
+    SbMenuItem,
+    SbMenuGroup,
+    SbMenuSeparator,
+  },
+  template: `
+  <div>
+  <SbMenu :value="value">
+    <SbMenuButton label="Combo button" ref="contentButton" :has-icon-right="false" />
+
+    <SbMenuList placement="bottom-start" :reference="$refs.contentButton">
+      <SbMenuItem> Option 1 </SbMenuItem>
+      <SbMenuItem> Option 2 </SbMenuItem>
+    </SbMenuList>
+  </SbMenu>
+</div>
   `,
 })
