@@ -256,7 +256,7 @@ export const WithoutItemRight = (args) => ({
   template: `
   <div>
   <SbMenu :value="value">
-    <SbMenuButton label="Combo button" ref="contentButton" :has-icon-right="false" />
+    <SbMenuButton label="Combo button" ref="contentButton" :has-icon-right="hasIconRight" />
 
     <SbMenuList placement="bottom-start" :reference="$refs.contentButton">
       <SbMenuItem> Option 1 </SbMenuItem>
@@ -266,3 +266,7 @@ export const WithoutItemRight = (args) => ({
 </div>
   `,
 })
+
+WithoutItemRight.args = {
+  hasIconRight: false,
+}
