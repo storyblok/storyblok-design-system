@@ -32,6 +32,10 @@ const SbButton = {
       type: String,
       default: null,
     },
+    iconColor: {
+      type: String,
+      default: null,
+    },
     iconSize: {
       type: String,
       default: 'normal',
@@ -74,11 +78,12 @@ const SbButton = {
   render(h) {
     const useTooltip = this.hasIconOnly && this.iconDescription
 
-    const renderIcon = (icon) => {
+    const renderIcon = (icon, color) => {
       return h(SbIcon, {
         props: {
           size: this.iconSize,
           name: icon,
+          color: color,
         },
       })
     }
@@ -153,9 +158,9 @@ const SbButton = {
     }
 
     const content = [
-      this.icon && renderIcon(this.icon),
+      this.icon && renderIcon(this.icon, this.iconColor),
       !this.hasIconOnly && renderLabel(),
-      this.iconRight && renderIcon(this.iconRight),
+      this.iconRight && renderIcon(this.iconRight, this.iconColor),
     ]
 
     if (this.isLoading) {
