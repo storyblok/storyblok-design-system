@@ -86,6 +86,12 @@
   }
 }
 
+.sb-menu-button {
+  &:focus {
+    outline: none;
+  }
+}
+
 .sb-menu-button-borderless {
   border: 0;
 }
