@@ -183,11 +183,10 @@ const SbDataTable = {
      * @param {Object} row
      */
     deselectRow(row) {
-      const index = this.selectedRows.indexOf(row)
-
-      if (index > -1) {
-        this.selectedRows.splice(index, 1)
-      }
+      this.selectedRows = this.selectedRows.filter((selectedRow) => {
+        if (JSON.stringify(selectedRow) !== JSON.stringify(row))
+          return selectedRow
+      })
     },
 
     /**
