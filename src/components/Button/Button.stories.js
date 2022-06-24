@@ -303,7 +303,7 @@ export const Sizes = (args) => ({
   components: { SbButton },
   props: Object.keys(args),
   template: `<div>
-    <SbButton label="Small" size="small" :variant="variant" :icon="icon"  />
+    <SbButton label="Small" size="small" :variant="variant" :icon="icon" />
     <SbButton label="Default" :variant="variant" :icon="icon" />
     <SbButton label="Large" size="large" :variant="variant" :icon="icon" />
   </div>`,

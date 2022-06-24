@@ -83,7 +83,7 @@ const SbButton = {
         props: {
           size: this.iconSize,
           name: icon,
-          color: color,
+          color,
         },
       })
     }

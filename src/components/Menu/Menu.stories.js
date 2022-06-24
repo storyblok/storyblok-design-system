@@ -44,7 +44,7 @@ export default {
     },
     hasIconRight: {
       name: 'hasIconRight',
-      description: `When the down arrow icon which is located to the right of SbMenuButton is not needed for SbMenuButton, set this parameter to false.`,
+      description: `When the arrow down icon located at the right side of SbMenuButton is not needed for SbMenuButton, set this parameter to false.`,
       control: {
         type: 'boolean',
       },
