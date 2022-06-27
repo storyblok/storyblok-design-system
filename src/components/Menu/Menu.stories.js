@@ -288,7 +288,6 @@ export const WithIconLeft = (args) => ({
     ref="contentButton"
     icon="plus"
     label="Combo"
-    :variant="variant"
     size="small"
     :has-icon-right="hasIconRight"
   />
