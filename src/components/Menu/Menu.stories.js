@@ -267,6 +267,41 @@ export const WithoutIconRight = (args) => ({
   `,
 })
 
-WithoutItemRight.args = {
+WithoutIconRight.args = {
+  hasIconRight: false,
+}
+
+export const WithIconLeft = (args) => ({
+  props: Object.keys(args),
+  components: {
+    SbMenu,
+    SbMenuButton,
+    SbMenuList,
+    SbMenuItem,
+    SbMenuGroup,
+    SbMenuSeparator,
+  },
+  template: `
+  <div>
+  <SbMenu :value="value">
+  <SbMenuButton
+    ref="contentButton"
+    icon="plus"
+    label="Combo"
+    :variant="variant"
+    size="small"
+    :has-icon-right="hasIconRight"
+  />
+
+    <SbMenuList placement="bottom-start" :reference="$refs.contentButton">
+      <SbMenuItem> Option 1 </SbMenuItem>
+      <SbMenuItem> Option 2 </SbMenuItem>
+    </SbMenuList>
+  </SbMenu>
+</div>
+  `,
+})
+
+WithIconLeft.args = {
   hasIconRight: false,
 }
