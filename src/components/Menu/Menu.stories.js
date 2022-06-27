@@ -243,7 +243,7 @@ export const WithLinksOnMenuItem = (args) => ({
   `,
 })
 
-export const WithoutItemRight = (args) => ({
+export const WithoutIconRight = (args) => ({
   props: Object.keys(args),
   components: {
     SbMenu,
