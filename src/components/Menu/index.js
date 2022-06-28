@@ -419,9 +419,9 @@ const SbMenuButton = {
 
     isBorderless: Boolean,
 
-    hasIconRight: {
-      type: Boolean,
-      default: true,
+    iconRight: {
+      type: String,
+      default: 'chevron-down',
     },
 
     iconColor: {
@@ -523,7 +523,7 @@ const SbMenuButton = {
         },
         props: {
           iconColor: this.iconColor,
-          iconRight: this.hasIconRight ? 'chevron-down' : null,
+          iconRight: this.iconRight,
           label: this.label,
           isRounded: this.isRounded,
           variant: this.variant,
