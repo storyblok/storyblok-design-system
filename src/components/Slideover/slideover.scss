@@ -30,7 +30,7 @@
 
     position: absolute;
     right: 20px;
-    top: 23px;
+    top: 20px;
     z-index: 2;
     background-color: transparent;
     border: 0;
@@ -43,7 +43,8 @@
   }
 
   .sb-modal-header__title {
-    padding-right: 30px;
-    word-break: break-all;
+    word-break: break-word; 
+    width: calc(100% - 36px);
+    line-height: 36px; 
   }
 }
