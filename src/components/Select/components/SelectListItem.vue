@@ -1,6 +1,7 @@
 <template>
   <li
     class="sb-select-list__item"
+    :title="label"
     :class="computedClasses"
     tabindex="0"
     @click="handleClick"
