@@ -134,7 +134,7 @@ export default {
         type: 'number',
       },
     },
-    perPageChange: {
+    onPerPageChange: {
       action: 'perPageChange',
       description: 'Event triggered when Select per page amount is changed',
       control: {
@@ -142,7 +142,7 @@ export default {
         options: [25, 50, 75, 100],
       },
     },
-    pageChange: {
+    onPageChange: {
       action: 'pageChange',
       description: `Event triggered when one selects a specific page from page's list`,
       control: {
