@@ -80,7 +80,15 @@ export const SbDataTableHeaderCell = {
         },
       },
       [
-        this.column.label,
+        this.column?.scopedSlots?.header
+          ? h(
+              'div',
+              {
+                class: 'sb-data-table__header-template',
+              },
+              [this.column.scopedSlots.header()]
+            )
+          : this.column.label,
         this.isSortable &&
           h(SbIcon, {
             class: 'sb-data-table__sort-icon',

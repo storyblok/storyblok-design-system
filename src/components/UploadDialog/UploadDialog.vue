@@ -15,6 +15,7 @@
 import SbIcon from '../Icon'
 import SbLoading from '../Loading'
 import SbBlockUi from '../BlockUI'
+import i18n from '../../i18n/index'
 
 export default {
   name: 'SbUploadDialog',
@@ -46,6 +47,11 @@ export default {
       type: Number,
       default: 0,
     },
+    locale: {
+      type: String,
+      required: false,
+      default: 'en',
+    },
   },
 
   computed: {
@@ -57,23 +63,30 @@ export default {
     },
 
     uploadingLabel() {
+      const ofTranslated = i18n(this.locale, 'of')
+      const fileTranslated = i18n(this.locale, 'file')
+      const filesTranslated = i18n(this.locale, 'files')
+      const uploadingTranslated = i18n(this.locale, 'uploading')
+
       if (this.totalFiles === 1) {
-        return `Uploading ${this.currentFile} of ${this.totalFiles} file`
+        return `${uploadingTranslated} ${this.currentFile} ${ofTranslated} ${this.totalFiles} ${fileTranslated}`
       }
-      return `Uploading ${this.currentFile} of ${this.totalFiles} files`
+      return `${uploadingTranslated} ${this.currentFile} ${ofTranslated} ${this.totalFiles} ${filesTranslated}`
     },
 
     timeLeftLabel() {
       const time = parseInt(this.timeLeft)
+      const minAndTranslated = i18n(this.locale, 'minAnd')
+      const secLeftTranslated = i18n(this.locale, 'secLeft')
 
       if (time > 59) {
         const minutes = Math.floor(time / 60)
         const seconds = time % 60
 
-        return `${minutes} min and ${seconds} sec left`
+        return `${minutes} ${minAndTranslated} ${seconds} ${secLeftTranslated}`
       }
 
-      return `${this.timeLeft} sec left`
+      return `${this.timeLeft} ${secLeftTranslated}`
     },
   },
 }

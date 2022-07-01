@@ -229,7 +229,7 @@ describe('SbAvatar component', () => {
       bgColor: 'secondary',
     })
 
-    it.skip('should have the specific bg class', async () => {
+    it('should have the specific bg class', async () => {
       expect(wrapper.find('.sb-avatar__initials.bg-secondary').exists()).toBe(
         true
       )

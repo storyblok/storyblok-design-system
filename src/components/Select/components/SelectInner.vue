@@ -30,10 +30,12 @@
             size="small"
             :name="tagLabel[itemLabel]"
           />
-          <span v-if="showCaption">
-            {{ tagLabel[itemLabel] }} ({{ tagLabel[itemCaption] }})
+          <span :title="getTagTitle(tagLabel)">
+            <span v-if="showCaption">
+              {{ tagLabel[itemLabel] }} ({{ tagLabel[itemCaption] }})
+            </span>
+            <span v-else>{{ tagLabel[itemLabel] }}</span>
           </span>
-          <span v-else>{{ tagLabel[itemLabel] }}</span>
         </template>
       </SbTag>
       <input
@@ -76,8 +78,12 @@
     <slot v-if="hasDefaultSlot" />
     <span
       v-else-if="hidePlaceholder"
+      :title="innerLabel"
       class="sb-select-inner__value"
-      :class="{ 'sb-select-inner__value-icon-left': leftIcon }"
+      :class="{
+        'sb-select-inner__value-icon-left': leftIcon,
+        'sb-select-inner__value-filterable': filterable,
+      }"
     >
       {{ innerLabel }}
     </span>
@@ -327,7 +333,12 @@ export default {
     },
 
     inlineWidth() {
-      const width = this.inline ? `${this.innerLabel.length}ch` : '100%'
+      const inlineLabelSize = this.currentOptionLabel
+        ? this.innerLabel.length
+        : this.label.length
+
+      const width = this.inline ? `${inlineLabelSize}ch` : '100%'
+
       return { width }
     },
 
@@ -476,6 +487,17 @@ export default {
         return label.src
       }
       return ''
+    },
+
+    getTagTitle(tagLabel) {
+      const label = tagLabel[this.itemLabel]
+
+      if (this.showCaption) {
+        const caption = tagLabel[this.itemCaption]
+        return `${label} (${caption})`
+      }
+
+      return label
     },
   },
 }

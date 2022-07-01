@@ -5,6 +5,7 @@
  *
  * Render a dot button to change the page
  */
+import i18n from '../../../i18n/index'
 export const SbPaginationDot = {
   name: 'SbPaginationDot',
 
@@ -21,10 +22,15 @@ export const SbPaginationDot = {
       required: true,
       default: 1,
     },
+    locale: {
+      type: String,
+      required: false,
+      default: 'en',
+    },
   },
 
   render(h, { props, listeners }) {
-    const { page, currentPage } = props
+    const { page, currentPage, locale } = props
     const isCurrent = currentPage === page
     return h('button', {
       staticClass: 'sb-pagination-dot',
@@ -34,8 +40,8 @@ export const SbPaginationDot = {
       attrs: {
         page,
         'aria-label': isCurrent
-          ? `Curent page, Page ${page}`
-          : `Goto page ${page}`,
+          ? `${i18n(locale, 'currentPage')} ${page}`
+          : `${i18n(locale, 'goToPage')} ${page}`,
         'aria-current': isCurrent + '',
       },
       on: {
@@ -66,6 +72,11 @@ export const SbPaginationCarousel = {
       required: true,
       default: 10,
     },
+    locale: {
+      type: String,
+      required: false,
+      default: 'en',
+    },
   },
 
   methods: {
@@ -83,6 +94,7 @@ export const SbPaginationCarousel = {
           props: {
             page: pageNumber,
             currentPage: this.currentPage,
+            locale: this.locale,
           },
           on: {
             click: () => {
@@ -99,7 +111,7 @@ export const SbPaginationCarousel = {
         staticClass: 'sb-pagination-carousel-container',
         attrs: {
           role: 'navigation',
-          'aria-label': 'Pagination Navigation',
+          'aria-label': i18n(this.locale, 'paginationNavigation'),
         },
       },
       paginationDots

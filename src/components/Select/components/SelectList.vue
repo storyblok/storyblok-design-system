@@ -1,5 +1,9 @@
 <template>
-  <div class="sb-select-list" @keydown="handleKeyDown">
+  <div
+    class="sb-select-list"
+    :class="{ 'sb-select-list--above': showListOnTop }"
+    @keydown="handleKeyDown"
+  >
     <ul>
       <template v-if="hasOptions">
         <SbSelectListItem
@@ -90,6 +94,7 @@ export default {
       type: String,
       default: 'path',
     },
+    showListOnTop: Boolean,
   },
 
   data() {

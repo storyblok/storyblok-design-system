@@ -15,6 +15,7 @@
   padding: 8px 20px;
   color: $sb-dark-blue;
   font-size: $font-14;
+  line-height: normal;
   text-align: left;
   background-color: $white;
   border: 0;
@@ -87,4 +88,10 @@
 
 .sb-menu-button-borderless {
   border: 0;
+}
+
+.sb-menu-item--is-link {
+  width: initial;
+  color: $black;
+  text-decoration: none;
 }
