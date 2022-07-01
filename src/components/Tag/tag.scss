@@ -19,7 +19,10 @@
   border-radius: 5px;
 
   &__label {
+    display: flex;
     flex: 1;
+    gap: 5px;
+    align-items: center;
     overflow: auto;
     line-height: 1.4em;
     text-overflow: ellipsis;
