@@ -2,6 +2,10 @@ import SbButton from './index'
 
 import { availablePositions as availableTooltipPositions } from '../Tooltip/lib'
 import { availableButtonsTypes } from './lib'
+import { availableColors } from '../../utils'
+import LIB_ICONS from '../../lib/internal-icons'
+
+const availableIcons = Object.keys(LIB_ICONS)
 
 const ButtonTemplate = (args) => ({
   components: { SbButton },
@@ -101,21 +105,24 @@ export default {
       name: 'iconRight',
       description: 'Icon on the right',
       control: {
-        type: 'text',
+        type: 'select',
+        options: availableIcons,
       },
     },
     iconColor: {
       name: 'iconColor',
       description: 'Icon color',
       control: {
-        type: 'text',
+        type: 'select',
+        options: availableColors,
       },
     },
     icon: {
       name: 'icon',
       description: 'Icon before label (default on the left)',
       control: {
-        type: 'text',
+        type: 'select',
+        options: availableIcons,
       },
     },
     isFullWidth: {
