@@ -30,11 +30,11 @@
             size="small"
             :name="tagLabel[itemLabel]"
           />
-          <span :title="getTagTitle(tagLabel)">
-            <span v-if="showCaption">
+          <span class="sb-select-inner__tag" :title="getTagTitle(tagLabel)">
+            <template v-if="showCaption">
               {{ tagLabel[itemLabel] }} ({{ tagLabel[itemCaption] }})
-            </span>
-            <span v-else>{{ tagLabel[itemLabel] }}</span>
+            </template>
+            <template v-else>{{ tagLabel[itemLabel] || tagLabel }}</template>
           </span>
         </template>
       </SbTag>
@@ -299,7 +299,13 @@ export default {
           return $v
         }
 
-        return this.options.find(($opt) => $opt[this.itemValue] === $v)
+        const option = this.options.find(($opt) => $opt[this.itemValue] === $v)
+
+        if (this.allowCreate && !option) {
+          return this.emitOption ? { [this.itemValue]: $v } : $v
+        }
+
+        return option
       })
     },
 
@@ -479,7 +485,7 @@ export default {
      * get the tag value based on emitOption property
      */
     getComputedTagValue(tag) {
-      return this.emitOption ? tag : tag[this.itemValue]
+      return this.emitOption ? tag : tag[this.itemValue] || tag
     },
 
     getSource(label) {
@@ -490,7 +496,7 @@ export default {
     },
 
     getTagTitle(tagLabel) {
-      const label = tagLabel[this.itemLabel]
+      const label = tagLabel[this.itemLabel] || tagLabel
 
       if (this.showCaption) {
         const caption = tagLabel[this.itemCaption]

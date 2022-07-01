@@ -30,6 +30,14 @@ const SelectTemplate = (args) => ({
     },
   },
 
+  methods: {
+    handleOptionCreated(value) {
+      const newValue = { value, label: value }
+      this.options.push(newValue)
+      this.internalValue.push(value)
+    },
+  },
+
   template: `
     <SbSelect
       :label="label"
@@ -47,8 +55,8 @@ const SelectTemplate = (args) => ({
       :show-caption="showCaption"
       v-model="internalValue"
       style="max-width: 300px"
-    />
-  `,
+      @option-created="handleOptionCreated"
+    />`,
 })
 
 export const defaultSelectOptionsData = [

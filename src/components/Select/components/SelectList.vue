@@ -30,9 +30,10 @@
         @keydown.enter="handleOptionCreated(searchInput)"
         @click="handleOptionCreated(searchInput)"
       >
-        <span class="sb-select-list__create-label">Create tag</span> "{{
-          searchInput
-        }}"
+        <span class="sb-select-list__create-label">Create tag</span>
+        <span class="sb-select-list__create-value" :title="searchInput">
+          "{{ searchInput }}"
+        </span>
       </li>
       <li v-else-if="!hasOptions && !isLoading">
         <span class="sb-select-list__empty">{{ noDataText }}</span>
