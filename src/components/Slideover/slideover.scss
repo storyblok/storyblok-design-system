@@ -43,8 +43,8 @@
   }
 
   .sb-modal-header__title {
-    word-break: break-word; 
     width: calc(100% - 36px);
-    line-height: 36px; 
+    line-height: 30px;
+    word-break: break-word;
   }
 }
