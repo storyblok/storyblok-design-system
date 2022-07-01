@@ -18,6 +18,13 @@
   font-weight: $font-weight-medium;
   border-radius: 5px;
 
+  &__label {
+    flex: 1;
+    overflow: auto;
+    line-height: 1.4em;
+    text-overflow: ellipsis;
+  }
+
   &--primary {
     @include setColor($color-primary, $white);
   }
