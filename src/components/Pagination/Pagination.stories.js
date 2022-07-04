@@ -135,10 +135,28 @@ export default {
       },
     },
     onPerPageChange: {
-      action: 'perPageChanged',
+      action: 'perPageChange',
+      description: 'Event triggered when Select per page amount is changed',
+      control: {
+        type: 'select',
+        options: [25, 50, 75, 100],
+      },
     },
     onPageChange: {
-      action: 'pageChanged',
+      action: 'pageChange',
+      description: `Event triggered when one selects a specific page from page's list`,
+      control: {
+        type: 'select',
+        options: Array.from({ length: 10 }, (_, i) => i + 1),
+      },
+    },
+    onPreviousPage: {
+      action: 'onPreviousPage',
+      description: 'Event triggered when one presses the previous button',
+    },
+    onNextPage: {
+      action: 'onNextPage',
+      description: 'Event triggered when one presses the next button',
     },
   },
 }
