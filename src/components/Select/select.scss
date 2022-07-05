@@ -127,6 +127,11 @@
     .sb-avatar__initials {
       font-size: 0.7em;
     }
+
+    .sb-select-inner__tag {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   // elements
@@ -290,6 +295,8 @@
 
   &__item-name,
   &__create {
+    gap: 5px;
+    overflow: hidden;
     min-height: 17px;
     color: $sb-dark-blue;
   }
@@ -300,8 +307,14 @@
   }
 
   &__create-label {
-    margin-right: 5px;
     color: $sb-green;
+  }
+
+  &__create-value {
+    flex: 1;
+    overflow: hidden;
+    line-height: 1.5rem;
+    text-overflow: ellipsis;
   }
 
   &__empty {
