@@ -41,16 +41,13 @@
   &__textarea {
     box-sizing: border-box;
     min-height: 130px;
+    padding: 15px 17px;
     line-height: 25px;
     resize: vertical;
   }
 
   &__input {
     padding: 13.5px 17px;
-  }
-
-  &__textarea {
-    padding: 15px 17px;
   }
 
   &__input,
@@ -202,8 +199,8 @@
 @supports (-moz-appearance:none) {
   .sb-textfield {
     &__input {
-      padding-top: 13px;
       padding-bottom: 13px;
+      padding-top: 13px;
     }
   }
 }
