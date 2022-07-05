@@ -40,6 +40,7 @@ const SelectTemplate = (args) => ({
       :use-avatars="useAvatars"
       :inline="inline"
       :no-data-text="noDataText"
+      :no-data-text-tag="noDataTextTag"
       :allow-create="allowCreate"
       :is-loading="isLoading"
       :loading-label="loadingLabel"
@@ -143,6 +144,7 @@ export default {
     useAvatars: false,
     inline: false,
     noDataText: 'Sorry, no result found.',
+    noDataTextTag: 'Start typing to add new tag.',
     allowCreate: false,
     clearable: false,
     isLoading: false,
@@ -210,6 +212,7 @@ export const LazySearch = (args) => ({
       :use-avatars="useAvatars"
       :inline="inline"
       :no-data-text="noDataText"
+      :no-data-text-tag="noDataTextTag"
       :allow-create="allowCreate"
       :is-loading="internalLoading"
       :loading-label="loadingLabel"
@@ -246,6 +249,7 @@ AllowCreate.args = {
   allowCreate: true,
   filterable: true,
   multiple: true,
+  noDataTextTag: 'Start typing to add new tag.',
 }
 
 export const WithIcon = SelectTemplate.bind({})
@@ -377,6 +381,7 @@ export const EmitOption = (args) => ({
           :use-avatars="useAvatars"
           :inline="inline"
           :no-data-text="noDataText"
+          :no-data-text-tag="noDataTextTag"
           :allow-create="allowCreate"
           :is-loading="isLoading"
           :loading-label="loadingLabel"
@@ -406,6 +411,7 @@ export const EmitOption = (args) => ({
         :use-avatars="useAvatars"
         :inline="inline"
         :no-data-text="noDataText"
+        :no-data-text-tag="noDataTextTag"
         :allow-create="allowCreate"
         :is-loading="isLoading"
         :loading-label="loadingLabel"
@@ -468,6 +474,7 @@ export const EmitSearch = (args) => ({
           :use-avatars="useAvatars"
           :inline="inline"
           :no-data-text="noDataText"
+          :no-data-text-tag="noDataTextTag"
           :allow-create="allowCreate"
           :is-loading="isLoading"
           :loading-label="loadingLabel"
