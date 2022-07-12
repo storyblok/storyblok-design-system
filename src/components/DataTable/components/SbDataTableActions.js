@@ -21,6 +21,11 @@ export const SbDataTableActions = {
       type: Array,
       default: [],
     },
+    sticky: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
   },
 
   directives: {
@@ -104,6 +109,9 @@ export const SbDataTableActions = {
       'div',
       {
         staticClass: 'sb-actions-menu',
+        class: {
+          'sb-actions-menu--sticky': this.sticky,
+        },
       },
       [renderSelectedRowsLength(), renderActionCancel(), renderActions()]
     )
