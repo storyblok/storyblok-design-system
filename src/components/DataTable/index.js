@@ -75,6 +75,11 @@ const SbDataTable = {
       type: Boolean,
       default: false,
     },
+    stickyMenu: {
+      required: false,
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
@@ -227,6 +232,7 @@ const SbDataTable = {
           actions: this.actions,
           hideLabelActionsBreakpoint: this.hideLabelActionsBreakpoint,
           selectedRows: this.hasSelectedRowsInList,
+          sticky: this.stickyMenu,
         },
         on: {
           click: (value) => this.$emit('emit-action', value),

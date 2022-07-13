@@ -23,6 +23,7 @@ const description = {
   selectionMode:
     'By default the selection mode is single, meaning only one row at a time can be selected. Use multiple, so multiple rows can be selected. `allowSelection: true` is required.',
   striped: 'Add zebra-striping to any table row within the `<tbody>.`',
+  stickyMenu: 'Fixes the actions menu at the top when scrolling down',
 }
 
 const DataTableTemplate = (args) => ({
@@ -40,7 +41,8 @@ const DataTableTemplate = (args) => ({
         selectionMode,
         hideHeader,
         hideLabelActionsBreakpoint,
-        striped
+        striped,
+        stickyMenu
       }"
     />
   `,
@@ -68,6 +70,7 @@ export default {
     keepSelectedOnChange: false,
     selectionMode: 'single',
     striped: false,
+    stickyMenu: false,
   },
   argTypes: {
     actions: {
@@ -128,6 +131,13 @@ export default {
     striped: {
       name: 'striped',
       description: description.striped,
+      control: {
+        type: 'boolean',
+      },
+    },
+    stickyMenu: {
+      name: 'stickyMenu',
+      description: description.stickyMenu,
       control: {
         type: 'boolean',
       },
@@ -309,6 +319,194 @@ Striped.parameters = {
   docs: {
     description: {
       story: description.striped,
+    },
+  },
+}
+
+export const StickyMenu = DataTableTemplate.bind({})
+
+StickyMenu.args = {
+  ...Default.args,
+  items: [
+    ...defaultTableItemsData,
+    {
+      name: 'French Fries',
+      calories: 261,
+      fat: 1.0,
+      carbs: 21,
+      protein: 3.0,
+      iron: '2%',
+    },
+    {
+      name: 'Hamburger',
+      calories: 271,
+      fat: 1.2,
+      carbs: 22,
+      protein: 4.0,
+      iron: '3%',
+    },
+    {
+      name: 'Chocolate Pizza',
+      calories: 244,
+      fat: 1.4,
+      carbs: 277,
+      protein: 8.0,
+      iron: '1%',
+    },
+    {
+      name: 'Green Tea',
+      calories: 1,
+      fat: 1,
+      carbs: 100,
+      protein: 4.0,
+      iron: '2%',
+    },
+    {
+      name: 'Blueberry Juice',
+      calories: 344,
+      fat: 1.55,
+      carbs: 277,
+      protein: 7.0,
+      iron: '1%',
+    },
+    {
+      name: 'Water',
+      calories: 1,
+      fat: 0,
+      carbs: 10,
+      protein: 2.0,
+      iron: '0%',
+    },
+    {
+      name: 'Soda',
+      calories: 1444,
+      fat: 1.0,
+      carbs: 217,
+      protein: 5.0,
+      iron: '1%',
+    },
+    {
+      name: 'Petit Gateau',
+      calories: 1244,
+      fat: 5.4,
+      carbs: 577,
+      protein: 9.0,
+      iron: '1%',
+    },
+    {
+      name: 'Cookie',
+      calories: 344,
+      fat: 5.5,
+      carbs: 877,
+      protein: 9.0,
+      iron: '1%',
+    },
+    {
+      name: 'Jellybeans',
+      calories: 644,
+      fat: 5.7,
+      carbs: 578,
+      protein: 8.0,
+      iron: '1%',
+    },
+    {
+      name: 'Milkshake',
+      calories: 944,
+      fat: 5.8,
+      carbs: 567,
+      protein: 2.0,
+      iron: '3%',
+    },
+    {
+      name: 'Pasta',
+      calories: 644,
+      fat: 5.6,
+      carbs: 587,
+      protein: 1.0,
+      iron: '1%',
+    },
+    {
+      name: 'Cappuccino',
+      calories: 244,
+      fat: 1.8,
+      carbs: 167,
+      protein: 1.0,
+      iron: '3%',
+    },
+    {
+      name: 'Coffee',
+      calories: 44,
+      fat: 4.8,
+      carbs: 547,
+      protein: 5.0,
+      iron: '3%',
+    },
+    {
+      name: 'Energy Drink',
+      calories: 1244,
+      fat: 12.8,
+      carbs: 5567,
+      protein: 4.0,
+      iron: '3%',
+    },
+    {
+      name: 'Orange Juice',
+      calories: 122,
+      fat: 2.8,
+      carbs: 57,
+      protein: 3.0,
+      iron: '1%',
+    },
+    {
+      name: 'Bread',
+      calories: 344,
+      fat: 13.8,
+      carbs: 5367,
+      protein: 3.0,
+      iron: '3%',
+    },
+    {
+      name: 'Tomatoes',
+      calories: 144,
+      fat: 1.8,
+      carbs: 7,
+      protein: 1.0,
+      iron: '1%',
+    },
+    {
+      name: 'Meat',
+      calories: 422,
+      fat: 14.8,
+      carbs: 167,
+      protein: 2.0,
+      iron: '3%',
+    },
+    {
+      name: 'Cheese',
+      calories: 442,
+      fat: 4.8,
+      carbs: 1670,
+      protein: 1.0,
+      iron: '3%',
+    },
+    {
+      name: 'Lasagna',
+      calories: 1422,
+      fat: 140.8,
+      carbs: 2167,
+      protein: 4.0,
+      iron: '3%',
+    },
+  ],
+  stickyMenu: true,
+  allowSelection: true,
+  selectionMode: 'multiple',
+}
+
+StickyMenu.parameters = {
+  docs: {
+    description: {
+      story: description.stickyMenu,
     },
   },
 }
