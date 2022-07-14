@@ -123,7 +123,7 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+  appearance: none;
 }
 
 @supports (-webkit-appearance:none) and (stroke-color:transparent) {

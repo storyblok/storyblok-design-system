@@ -96,7 +96,6 @@
   display: block;
 }
 
-
 .sb-accordion--no-highlight {
   &.sb-accordion--open {
     background: transparent;
@@ -121,7 +120,9 @@
 
 .sb-accordion--no-border {
   border-color: transparent;
-  .sb-accordion__button, &:last-child {
+
+  .sb-accordion__button,
+  &:last-child {
     border-color: transparent;
   }
 }
