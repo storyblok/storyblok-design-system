@@ -65,7 +65,10 @@ export default {
       type: String,
       default: null,
     },
-    isRequired: Boolean,
+    isRequired: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   mounted() {
