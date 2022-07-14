@@ -1,4 +1,4 @@
-import SbColors from '.'
+import SbColors from './Colors.vue'
 
 export default {
   title: 'Design System/Base/Colors',

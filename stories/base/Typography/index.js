@@ -1,22 +1,8 @@
-import './typography.scss'
+import Typography from './Typography.vue';
 
 const SbTypography = {
   name: 'SbTypography',
-
-  render (h) {
-    const renderTypos = () => {
-      return h('div', {
-        staticClass: 'sb-typography'
-      })
-    }
-
-    return h('div', {
-      staticClass: 'sb-typography--container'
-    },
-    [
-      renderTypos()
-    ])
-  }
+  component: Typography,
 }
 
 export default SbTypography

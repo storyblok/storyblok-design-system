@@ -1,5 +1,3 @@
-import { MountingPortal } from 'portal-vue'
-
 import { canUseDOM } from '../../utils'
 
 /**
@@ -13,8 +11,6 @@ import { canUseDOM } from '../../utils'
  */
 const SbPortal = {
   name: 'SbPortal',
-
-  components: { MountingPortal },
 
   props: {
     // component props
@@ -113,11 +109,11 @@ const SbPortal = {
     }
 
     return h(
-      'MountingPortal',
+      'Teleport',
       {
         props: {
           append: this.append,
-          mountTo: this.target,
+          to: this.target,
           disabled: this.disabled,
           name: this.name,
           order: this.order,

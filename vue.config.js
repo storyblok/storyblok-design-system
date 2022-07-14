@@ -1,5 +1,6 @@
-const { globalStyles } = require('./config/globals')
 
+const path = require('path')
+const { globalStyles } = require('./config/globals')
 function addStyleResource(rule) {
   rule.use('style-resource').loader('style-resources-loader').options({
     patterns: globalStyles,
@@ -7,6 +8,17 @@ function addStyleResource(rule) {
 }
 
 module.exports = {
+  configureWebpack: {
+    resolve: {
+      alias: {
+        vue$: path.resolve(
+          __dirname,
+          'node_modules/vue/runtime.esm-bundler.js'
+        ),
+      },
+      symlinks: false,
+    }
+  },
   chainWebpack: (config) => {
     config.resolve.alias.set('vue', '@vue/compat')
 
