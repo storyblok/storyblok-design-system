@@ -248,8 +248,8 @@ const SbDataTable = {
       let headerData = []
       let bodyData = []
 
-      if (this.$slots.default) {
-        const children = this.$slots.default.filter((e) => e.tag)
+      if (this.$slots.default()) {
+        const children = this.$slots.default().filter((e) => e.tag)
 
         headerData = children.map((element) => {
           return {
@@ -313,7 +313,7 @@ const SbDataTable = {
                 },
               })
             : null,
-          this.sortedData.length && !this.$slots.default
+          this.sortedData.length && !this.$slots.default()
             ? h(SbDataTableBody, {
                 props: {
                   allowSelection: this.allowSelection,
@@ -323,7 +323,7 @@ const SbDataTable = {
                 },
               })
             : null,
-          this.$slots.default
+          this.$slots.default()
             ? [
                 !this.hideHeader
                   ? h(SbDataTableHeader, {

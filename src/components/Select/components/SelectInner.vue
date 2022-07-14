@@ -3,7 +3,7 @@
     class="sb-select-inner"
     :class="hasSpecialClass"
     tabindex="0"
-    v-on="$listeners"
+    v-bind="$attrs"
     @keydown="handleKeyDown"
   >
     <SbIcon
@@ -224,7 +224,7 @@ export default {
     },
 
     hasDefaultSlot() {
-      return !!this.$slots.default
+      return !!this.$slots.default()
     },
 
     innerLabel() {

@@ -110,7 +110,7 @@ const SbMenuItem = {
         return h('span', this.label)
       }
 
-      return this.$slots.default
+      return this.$slots.default()
     }
 
     const renderAuxText = () => {
@@ -136,7 +136,6 @@ const SbMenuItem = {
           disabled: this.isDisabled,
         },
         on: {
-          ...this.$listeners,
           click: this.handleClick,
           keydown: this.handleKeyDown,
         },
@@ -200,7 +199,7 @@ const SbMenuGroup = {
               this.title
             )
           : null,
-        ...this.$slots.default,
+        ...this.$slots.default(),
       ]
     )
   },
@@ -374,9 +373,9 @@ const SbMenuList = {
             },
           },
           [
-            this.$slots.top,
+            this.$slots.top(),
             !!items.length && renderMenuItems(items),
-            this.$slots.default,
+            this.$slots.default(),
           ]
         ),
       ]
@@ -502,7 +501,6 @@ const SbMenuButton = {
           iconSize: this.iconSize,
         },
         on: {
-          ...this.$listeners,
           click: this.handleClick,
           keydown: this.handleKeyDown,
         },
@@ -531,7 +529,6 @@ const SbMenuButton = {
           iconSize: this.iconSize,
         },
         on: {
-          ...this.$listeners,
           click: this.handleClick,
           keydown: this.handleKeyDown,
         },
@@ -539,7 +536,7 @@ const SbMenuButton = {
           'sb-menu-button-borderless': this.isBorderless,
         },
       },
-      this.$slots.default
+      this.$slots.default()
     )
   },
 }
@@ -772,13 +769,13 @@ const SbMenu = {
         },
       },
       [
-        this.$scopedSlots.button &&
-          this.$scopedSlots.button({
+        this.$slots.button() &&
+          this.$slots.button({
             isOpen: this.isOpen,
             menuListId: this.menuListId,
             menuButtonId: this.menuButtonId,
           }),
-        ...this.$slots.default,
+        ...this.$slots.default(),
       ]
     )
   },

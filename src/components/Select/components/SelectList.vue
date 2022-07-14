@@ -21,7 +21,7 @@
           :show-caption="showCaption"
           :path="option[itemCaption]"
           @emit-value="handleEmitValue"
-          @mouseenter.native="handleFocusItem(index)"
+          @mouseenter="handleFocusItem(index)"
         />
       </template>
       <li

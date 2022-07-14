@@ -204,7 +204,7 @@ describe('SbAvatar component', () => {
 
       const tooltip = document.querySelector('[role="tooltip"]')
 
-      expect(tooltip.getAttribute('data-popper-placement')).toBe('bottom')
+      expect(tooltip).toHaveAttribute('data-popper-placement', 'bottom')
     })
 
     it('should have the correct label as property', async () => {

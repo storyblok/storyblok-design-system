@@ -56,7 +56,7 @@ const SbBadge = {
     }
 
     const renderLabel = () => {
-      const textLabel = this.label || this.$slots.default
+      const textLabel = this.label || this.$slots.default()
       const label = isValidNumber(this.number) ? this.number : textLabel
 
       return h(
@@ -70,7 +70,7 @@ const SbBadge = {
 
     const isRenderIcon = !this.contract && !isValidNumber(this.number)
     const hasLabelToRender =
-      this.label || this.$slots.default || isValidNumber(this.number)
+      this.label || this.$slots.default() || isValidNumber(this.number)
 
     const children = [
       isRenderIcon && renderIcon(),

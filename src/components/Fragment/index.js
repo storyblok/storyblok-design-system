@@ -9,7 +9,7 @@ const SbFragment = {
   components: { Fragment },
 
   render(h) {
-    return h('Fragment', this.$slots.default)
+    return h('Fragment', this.$slots.default())
   },
 }
 

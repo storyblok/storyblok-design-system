@@ -80,9 +80,6 @@ const SbEditableInput = {
         placeholder: 'Type a label to new tab',
       },
       ref: 'editInput',
-      on: {
-        ...this.$listeners,
-      },
     })
   },
 }
@@ -97,14 +94,11 @@ const SbEditButton = {
     tooltip: Tooltip,
   },
 
-  render(h, { listeners }) {
+  render(h) {
     return h(
       'button',
       {
         staticClass: 'sb-tab-edit-button',
-        on: {
-          ...listeners,
-        },
         directives: [
           {
             name: 'tooltip',
@@ -293,7 +287,6 @@ export const SbTab = {
           'sb-tab--is-active': this.activate,
         },
         on: {
-          ...this.$listeners,
           click: this.handleClick,
           keydown: this.handleKeyDown,
         },

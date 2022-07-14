@@ -57,9 +57,6 @@ const SbIcon = {
       domProps: {
         innerHTML: iconDeff.path,
       },
-      on: {
-        ...this.$listeners,
-      },
     })
   },
 }

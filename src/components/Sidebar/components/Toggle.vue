@@ -8,7 +8,7 @@
       tooltip-position="right"
       :icon="icon"
       :icon-description="iconDescription"
-      v-on="$listeners"
+      v-bind="$attrs"
     />
   </div>
 </template>

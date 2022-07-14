@@ -54,7 +54,7 @@ export default {
 
   computed: {
     avatars() {
-      return this.$slots.default.filter(({ tag }) => tag)
+      return this.$slots.default().filter(({ tag }) => tag)
     },
 
     totalAvatars() {

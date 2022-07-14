@@ -34,7 +34,7 @@ const SbCardHeader = {
         )
       }
 
-      return this.$slots.default
+      return this.$slots.default()
     }
 
     return h(
@@ -106,7 +106,7 @@ const SbCardFooter = {
       {
         staticClass: 'sb-card__footer',
       },
-      this.$slots.default
+      this.$slots.default()
     )
   },
 }
@@ -134,7 +134,7 @@ const SbCardContent = {
         staticClass: 'sb-card__content',
       },
       [
-        this.$slots.default,
+        this.$slots.default(),
 
         this.isLoading &&
           h(
@@ -198,7 +198,7 @@ const SbCard = {
           'sb-card--loading': this.isLoading,
         },
       },
-      this.$slots.default
+      this.$slots.default()
     )
   },
 }

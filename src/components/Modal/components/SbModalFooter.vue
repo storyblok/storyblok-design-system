@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-modal-footer" v-on="$listeners">
+  <div class="sb-modal-footer" v-bind="$attrs">
     <slot v-if="!footer" />
     <div v-else v-html="footer" />
   </div>

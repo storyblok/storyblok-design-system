@@ -4,8 +4,8 @@
       data-testid="sb-more-avatars-btn"
       class="sb-avatar-group__more"
       :aria-expanded="expanded"
+      v-bind="$attrs"
       @click="handleClick"
-      v-on="$listeners"
     >
       {{ label }}
     </button>

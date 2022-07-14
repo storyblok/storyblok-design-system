@@ -51,7 +51,7 @@ const SbPortal = {
     }
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     this.unmountTarget()
   },
 
@@ -106,7 +106,7 @@ const SbPortal = {
   },
 
   render(h) {
-    const children = this.$slots.default
+    const children = this.$slots.default()
 
     if (this.disabled) {
       return children[0]

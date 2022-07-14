@@ -11,7 +11,6 @@
       :class="computedLinkClasses"
       v-bind="$attrs"
       :to="to"
-      v-on="$listeners"
     >
       <ListItemInner
         :avatar="avatar"
@@ -30,7 +29,6 @@
       :class="computedLinkClasses"
       v-bind="$attrs"
       :href="href"
-      v-on="$listeners"
     >
       <ListItemInner
         :avatar="avatar"

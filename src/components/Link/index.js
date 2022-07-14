@@ -84,13 +84,13 @@ const SbLink = {
         )
       }
 
-      if (this.$slots.default) {
+      if (this.$slots.default()) {
         return h(
           'span',
           {
             staticClass: 'sb-link__label',
           },
-          this.$slots.default
+          this.$slots.default()
         )
       }
 
@@ -118,7 +118,6 @@ const SbLink = {
         ],
         attrs: getAttrs(),
         props: getProps(),
-        on: { ...this.$listeners },
       },
       [
         this.icon && renderIcon(this.icon),

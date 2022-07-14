@@ -159,7 +159,7 @@ const SbPopover = {
   },
 
   // clean
-  beforeDestroy() {
+  beforeUnmount() {
     this.$_destroyPopoverInstance()
   },
 
@@ -279,7 +279,7 @@ const SbPopover = {
               },
             ],
           },
-          this.$slots.default
+          this.$slots.default()
         ),
       ]
     )

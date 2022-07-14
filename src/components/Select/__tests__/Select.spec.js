@@ -451,7 +451,7 @@ describe('SbSelect component', () => {
       const firstElement = wrapper.findAll('li').at(0)
 
       // and the focus should change to the first element
-      expect(firstElement.element).toEqual(document.activeElement)
+      expect(firstElement.element).toHaveFocus()
 
       // when press the Escape key
       await wrapper.find('.sb-select-list').trigger('keydown', {
@@ -462,7 +462,7 @@ describe('SbSelect component', () => {
       expect(wrapper.vm.isOpen).toBe(false)
 
       // and the focus should change to inner element
-      expect(innerElement.element).toEqual(document.activeElement)
+      expect(innerElement.element).toHaveFocus()
     })
 
     it('should emit an input event when press Enter in a list option', async () => {
@@ -488,7 +488,7 @@ describe('SbSelect component', () => {
       const secondElement = wrapper.findAll('li').at(1)
 
       // should change the focus to second element
-      expect(secondElement.element).toEqual(document.activeElement)
+      expect(secondElement.element).toHaveFocus()
 
       await secondElement.trigger('keydown', {
         key: 'Enter',
@@ -535,7 +535,7 @@ describe('SbSelect component', () => {
       const secondElement = wrapper.findAll('li').at(1)
 
       // should change the focus to second element
-      expect(secondElement.element).toEqual(document.activeElement)
+      expect(secondElement.element).toHaveFocus()
 
       await secondElement.trigger('keydown', {
         key: 'Enter',
@@ -568,9 +568,7 @@ describe('SbSelect component', () => {
       })
 
       // should change the focus to second element
-      expect(wrapper.findAll('li').at(0).element).toEqual(
-        document.activeElement
-      )
+      expect(wrapper.findAll('li').at(0).element).toHaveFocus()
     })
 
     it('should move focus to last element when press ArrowUp', async () => {
@@ -589,9 +587,7 @@ describe('SbSelect component', () => {
       })
 
       // should change the focus to second element
-      expect(wrapper.findAll('li').at(6).element).toEqual(
-        document.activeElement
-      )
+      expect(wrapper.findAll('li').at(6).element).toHaveFocus()
     })
   })
 
@@ -617,7 +613,7 @@ describe('SbSelect component', () => {
       expect(wrapper.emitted('input')[0]).toEqual([[3]])
 
       // and the focus should change to inner element
-      expect(wrapper.find(innerClass).element).toEqual(document.activeElement)
+      expect(wrapper.find(innerClass).element).toHaveFocus()
     })
   })
 

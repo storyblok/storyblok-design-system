@@ -97,7 +97,7 @@ export default {
   },
 
   render(h) {
-    const children = this.$slots.default || []
+    const children = this.$slots.default() || []
 
     if (children.length !== 1) {
       return console.warn(

@@ -99,13 +99,13 @@ const SbButton = {
         )
       }
 
-      if (this.$slots.default) {
+      if (this.$slots.default()) {
         return h(
           'span',
           {
             staticClass: 'sb-button__label',
           },
-          this.$slots.default
+          this.$slots.default()
         )
       }
 
@@ -135,7 +135,6 @@ const SbButton = {
             'sb-button--loading': this.isLoading,
           },
           on: {
-            ...this.$listeners,
             click:
               !this.isDisabled || !this.isLoading
                 ? ($event) => this.$emit('click', $event)

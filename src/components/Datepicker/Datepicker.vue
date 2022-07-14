@@ -15,7 +15,7 @@
         :disabled="disabled"
         :placeholder="placeholder"
         :value="internalValueFormatted"
-        @click.native="handleInputClick"
+        @click="handleInputClick"
         @clear="handleClear"
       />
 

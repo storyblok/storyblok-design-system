@@ -31,7 +31,7 @@ import SbIcon from '../../Icon'
 import { sharedProps } from '../utils'
 
 export default {
-  name: 'Loading',
+  name: 'LoadingElement',
 
   components: {
     SbIcon,

@@ -81,9 +81,9 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeTruthy()
 
     // and should move the focus to the last item
-    expect(wrapper.findAll('[role="menuitemradio"]').at(3).element).toEqual(
-      document.activeElement
-    )
+    expect(
+      wrapper.findAll('[role="menuitemradio"]').at(3).element
+    ).toHaveFocus()
 
     // when continues press the ArrowUp key
     await menuListComponent.trigger('keydown', {
@@ -93,9 +93,9 @@ describe('SbMenu component', () => {
     await wrapper.vm.$nextTick()
 
     // should move the focus to the third item
-    expect(wrapper.findAll('[role="menuitemradio"]').at(2).element).toEqual(
-      document.activeElement
-    )
+    expect(
+      wrapper.findAll('[role="menuitemradio"]').at(2).element
+    ).toHaveFocus()
 
     // when press the ArrowDown key
     await menuListComponent.trigger('keydown', {
@@ -105,9 +105,9 @@ describe('SbMenu component', () => {
     await wrapper.vm.$nextTick()
 
     // should back the focus to the last item
-    expect(wrapper.findAll('[role="menuitemradio"]').at(3).element).toEqual(
-      document.activeElement
-    )
+    expect(
+      wrapper.findAll('[role="menuitemradio"]').at(3).element
+    ).toHaveFocus()
 
     // when press the Escape key
     await menuListComponent.trigger('keydown', {
@@ -120,7 +120,7 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeFalsy()
 
     // and back to focus to button
-    expect(buttonComponent.element).toEqual(document.activeElement)
+    expect(buttonComponent.element).toHaveFocus()
 
     // when press the ArrowDown key when the button is focused
     await buttonComponent.trigger('keydown', {
@@ -133,9 +133,9 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeTruthy()
 
     // and should move the focus to the first item
-    expect(wrapper.findAll('[role="menuitemradio"]').at(0).element).toEqual(
-      document.activeElement
-    )
+    expect(
+      wrapper.findAll('[role="menuitemradio"]').at(0).element
+    ).toHaveFocus()
 
     await menuListComponent.trigger('keydown', {
       key: 'Escape',
@@ -152,7 +152,7 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeFalsy()
 
     // and back to focus to button
-    expect(buttonComponent.element).toEqual(document.activeElement)
+    expect(buttonComponent.element).toHaveFocus()
   })
 
   it('should perform the navigation using the Home and End keys', async () => {
@@ -175,9 +175,9 @@ describe('SbMenu component', () => {
     await wrapper.vm.$nextTick()
 
     // should move the focus to the last item
-    expect(wrapper.findAll('[role="menuitemradio"]').at(3).element).toEqual(
-      document.activeElement
-    )
+    expect(
+      wrapper.findAll('[role="menuitemradio"]').at(3).element
+    ).toHaveFocus()
 
     // when press the Home key
     await menuListComponent.trigger('keydown', {
@@ -187,9 +187,9 @@ describe('SbMenu component', () => {
     await wrapper.vm.$nextTick()
 
     // should move the focus to the first item
-    expect(wrapper.findAll('[role="menuitemradio"]').at(0).element).toEqual(
-      document.activeElement
-    )
+    expect(
+      wrapper.findAll('[role="menuitemradio"]').at(0).element
+    ).toHaveFocus()
 
     // when press the Escape key
     await menuListComponent.trigger('keydown', {
@@ -202,7 +202,7 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeFalsy()
 
     // and back to focus to button
-    expect(buttonComponent.element).toEqual(document.activeElement)
+    expect(buttonComponent.element).toHaveFocus()
   })
 
   it('should close the menu when clicks on item', async () => {
@@ -227,7 +227,7 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeFalsy()
 
     // and the focus should be move to the button
-    expect(buttonComponent.element).toEqual(document.activeElement)
+    expect(buttonComponent.element).toHaveFocus()
   })
 
   it('should exist the custom class', async () => {

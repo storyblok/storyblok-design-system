@@ -1,9 +1,5 @@
 <template>
-  <div
-    :class="[staticClass, { 'sb-tag--closable': this.closable }]"
-    v-bind="$attrs"
-    v-on="$listeners"
-  >
+  <div :class="[staticClass, { 'sb-tag--closable': closable }]" v-bind="$attrs">
     <span class="sb-tag__label">
       <slot>
         {{ label }}

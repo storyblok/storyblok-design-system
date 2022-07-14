@@ -57,7 +57,7 @@ describe('SbBreadcrumbItem component', () => {
       const tooltip = document.querySelector('[role="tooltip"]')
 
       expect(tooltip.innerText).toBe(label)
-      expect(tooltip.getAttribute('data-popper-placement')).toBe('bottom')
+      expect(tooltip).toHaveAttribute('data-popper-placement', 'bottom')
       await wrapper.trigger('mouseleave')
     })
 

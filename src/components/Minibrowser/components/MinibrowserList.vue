@@ -6,7 +6,7 @@
 
     <slot name="items" :items="items" />
 
-    <ul v-if="!$scopedSlots.items">
+    <ul v-if="!$slots.items">
       <SbMiniBrowserListItem
         v-for="(item, key) in items"
         :key="key"
@@ -42,7 +42,7 @@ export default {
 
   computed: {
     isInternalTitleVisible() {
-      return this.title && !this.$scopedSlots.header
+      return this.title && !this.$slots.header
     },
   },
 }
