@@ -2,6 +2,7 @@ import './icon.scss'
 
 import { getSvgIcon, iconSizes } from './utils'
 import { availableColors } from '../../utils'
+import { h } from 'vue'
 
 /**
  * @vue/component
@@ -39,7 +40,7 @@ const SbIcon = {
     },
   },
 
-  render(h) {
+  render() {
     const iconDeff = getSvgIcon(this.name)
     const sizeClass = this.size ? `sb-icon--${this.size}` : null
     const colorClass = this.color ? `sb-icon--color-${this.color}` : null

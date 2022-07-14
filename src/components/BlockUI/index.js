@@ -1,10 +1,11 @@
 import './block.scss'
+import { h } from 'vue'
 
 const SbBlockUi = {
   name: 'SbBlockUi',
   inheritAttrs: false,
 
-  render(h) {
+  render() {
     return h(
       'div',
       {

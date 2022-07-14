@@ -1,6 +1,7 @@
 import './notification.scss'
 import { capitalize } from '../../utils'
 import SbIcon from '../Icon'
+import { h } from 'vue'
 
 const SbNotification = {
   name: 'SbNotification',
@@ -48,7 +49,7 @@ const SbNotification = {
     },
   },
 
-  render(h) {
+  render() {
     const renderNotification = (content) => {
       return h(
         'div',

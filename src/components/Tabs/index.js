@@ -3,6 +3,7 @@ import { cleanChildren } from '../../utils'
 import { SbTab, SbTabAdd } from './components'
 
 import { Tooltip } from '../../directives'
+import { h } from 'vue'
 
 import './tabs.scss'
 
@@ -216,7 +217,7 @@ const SbTabs = {
     },
   },
 
-  render(h) {
+  render() {
     const children = this.$slots.default().filter((e) => e.tag) || []
 
     const renderAddButton = () => {

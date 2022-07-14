@@ -1,5 +1,6 @@
 import { SbCheckbox } from '../../Checkbox'
 import SbIcon from '../../Icon'
+import { h } from 'vue'
 
 /**
  * SbDataTableHeaderCell
@@ -67,7 +68,7 @@ export const SbDataTableHeaderCell = {
 
   inject: ['dataTableContext'],
 
-  render(h) {
+  render() {
     return h(
       'th',
       {
@@ -158,7 +159,7 @@ export const SbDataTableHeaderRow = {
 
   inject: ['dataTableContext'],
 
-  render(h) {
+  render() {
     return h('tr', [
       this.allowSelection &&
         h(
@@ -227,7 +228,7 @@ export const SbDataTableHeader = {
     },
   },
 
-  render(h) {
+  render() {
     return h('thead', [
       h(SbDataTableHeaderRow, {
         props: {

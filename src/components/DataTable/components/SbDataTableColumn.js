@@ -3,6 +3,8 @@
  *
  * Render the content inside the component
  */
+import { h } from 'vue'
+
 export const SbDataTableColumn = {
   name: 'SbDataTableColumn',
 
@@ -24,7 +26,7 @@ export const SbDataTableColumn = {
     },
   },
 
-  render(h) {
+  render() {
     return h(
       'td',
       {

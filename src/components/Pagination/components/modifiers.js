@@ -6,6 +6,8 @@
  * Render a dot button to change the page
  */
 import i18n from '../../../i18n/index'
+import { h } from 'vue'
+
 export const SbPaginationDot = {
   name: 'SbPaginationDot',
 
@@ -29,7 +31,7 @@ export const SbPaginationDot = {
     },
   },
 
-  render(h, { props, listeners }) {
+  render(_, { props, listeners }) {
     const { page, currentPage, locale } = props
     const isCurrent = currentPage === page
     return h('button', {
@@ -85,7 +87,7 @@ export const SbPaginationCarousel = {
     },
   },
 
-  render(h) {
+  render() {
     const paginationDots = []
 
     for (let pageNumber = 1; pageNumber <= this.pages; pageNumber++) {

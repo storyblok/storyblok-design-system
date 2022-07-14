@@ -1,4 +1,5 @@
 import './tab-panels.scss'
+import { h } from 'vue'
 
 /**
  * @vue/component
@@ -21,7 +22,7 @@ const SbTabPanel = {
     },
   },
 
-  render(h) {
+  render() {
     return h(
       'div',
       {

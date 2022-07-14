@@ -1,4 +1,5 @@
 import { canUseDOM } from '../../utils'
+import { h } from 'vue'
 
 /**
  * @vue/component
@@ -101,7 +102,7 @@ const SbPortal = {
     },
   },
 
-  render(h) {
+  render() {
     const children = this.$slots.default()
 
     if (this.disabled) {

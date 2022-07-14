@@ -4,6 +4,7 @@ import SbIcon from '../Icon'
 
 import { badgeTypes, mapIconByTypes } from './lib'
 import { isValidNumber } from '../../utils'
+import { h } from 'vue'
 
 // @vue/component
 const SbBadge = {
@@ -37,7 +38,7 @@ const SbBadge = {
     },
   },
 
-  render(h) {
+  render() {
     const badgeProps = {
       staticClass: `sb-badge sb-badge--${this.type}`,
       class: {

@@ -3,6 +3,8 @@
  *
  * Render a input checkbox
  */
+import { h } from 'vue'
+
 export const SbDataTableInput = {
   props: {
     disable: {
@@ -100,7 +102,7 @@ export const SbDataTableInput = {
     },
   },
 
-  render(h) {
+  render() {
     const renderInputCheckbox = () => {
       return [
         h(

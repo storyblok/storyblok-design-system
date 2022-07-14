@@ -1,4 +1,5 @@
 import './menu.scss'
+import { h } from 'vue'
 
 import { SbPopover } from '../Popover'
 import SbButton from '../Button'
@@ -95,7 +96,7 @@ const SbMenuItem = {
     },
   },
 
-  render(h) {
+  render() {
     const renderIcon = () => {
       return h(SbIcon, {
         props: {
@@ -155,7 +156,7 @@ const SbMenuSeparator = {
 
   functional: true,
 
-  render(h) {
+  render() {
     return h('hr', {
       staticClass: 'sb-menu-separator',
     })
@@ -180,7 +181,7 @@ const SbMenuGroup = {
     },
   },
 
-  render(h) {
+  render() {
     return h(
       'div',
       {
@@ -305,7 +306,7 @@ const SbMenuList = {
     },
   },
 
-  render(h) {
+  render() {
     const { menuListId, menuButtonId, closeMenu } = this.context
 
     const items = this.items || []
@@ -478,7 +479,7 @@ const SbMenuButton = {
     },
   },
 
-  render(h) {
+  render() {
     const { isOpen, menuButtonId } = this.context
 
     if (this.hasIconOnly) {
@@ -759,7 +760,7 @@ const SbMenu = {
     },
   },
 
-  render(h) {
+  render() {
     return h(
       'div',
       {

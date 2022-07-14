@@ -1,5 +1,6 @@
 import './pagination.scss'
 import i18n from '../../i18n/index'
+import { h } from 'vue'
 
 import { Tooltip } from '../../directives'
 
@@ -109,7 +110,7 @@ const SbPagination = {
     },
   },
 
-  render(h) {
+  render() {
     const leftArrowButton = h(SbPaginationButton, {
       attrs: {
         'data-testid': 'pagination-previous-button',

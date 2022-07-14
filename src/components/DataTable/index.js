@@ -1,4 +1,5 @@
 // styles
+import { h } from 'vue'
 import './data-table.scss'
 
 import {
@@ -225,7 +226,7 @@ const SbDataTable = {
     }
   },
 
-  render(h) {
+  render() {
     const renderActions = () => {
       return h(SbDataTableActions, {
         props: {

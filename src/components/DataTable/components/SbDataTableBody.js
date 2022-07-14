@@ -1,4 +1,5 @@
 import { SbCheckbox } from '../../Checkbox'
+import { h } from 'vue'
 
 /**
  * SbDataTableBodyRow
@@ -47,7 +48,7 @@ export const SbDataTableBodyRow = {
 
   inject: ['dataTableContext'],
 
-  render(h) {
+  render() {
     const mainColumnIndex = this.headers.findIndex((col) => col.main)
 
     return h(
@@ -131,7 +132,7 @@ export const SbDataTableBody = {
     },
   },
 
-  render(h) {
+  render() {
     return h('tbody', [
       this.items.map((row) => {
         return h(SbDataTableBodyRow, {

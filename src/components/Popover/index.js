@@ -10,6 +10,7 @@ import {
 
 import './popover.scss'
 import SbPortal from '../Portal'
+import { h } from 'vue'
 
 import { randomString, canUseDOM, includes } from '../../utils'
 
@@ -241,7 +242,7 @@ const SbPopover = {
     },
   },
 
-  render(h) {
+  render() {
     if (this.isOpen && !this.popoverInstance) {
       this.$_createPopoverInstance()
     }

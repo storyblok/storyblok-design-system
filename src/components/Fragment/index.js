@@ -1,4 +1,5 @@
 import { Fragment } from 'vue-fragment'
+import { h } from 'vue'
 
 /**
  * This wrapper component to vue-fragment library
@@ -8,7 +9,7 @@ const SbFragment = {
 
   components: { Fragment },
 
-  render(h) {
+  render() {
     return h('Fragment', this.$slots.default())
   },
 }

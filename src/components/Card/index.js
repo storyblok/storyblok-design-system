@@ -4,6 +4,8 @@ import { SbMenu, SbMenuButton, SbMenuList } from '../Menu'
 import SbLoading from '../Loading'
 
 // @vue/component
+import { h } from 'vue'
+
 const SbCardHeader = {
   name: 'SbCardHeader',
 
@@ -22,7 +24,7 @@ const SbCardHeader = {
     },
   },
 
-  render(h) {
+  render() {
     const renderTitle = () => {
       if (this.title) {
         return h(
@@ -69,7 +71,7 @@ const SbCardOptions = {
     },
   },
 
-  render(h) {
+  render() {
     return h(
       'div',
       {
@@ -100,7 +102,7 @@ const SbCardOptions = {
 const SbCardFooter = {
   name: 'SbCardFooter',
 
-  render(h) {
+  render() {
     return h(
       'div',
       {
@@ -127,7 +129,7 @@ const SbCardContent = {
     },
   },
 
-  render(h) {
+  render() {
     return h(
       'div',
       {
@@ -189,7 +191,7 @@ const SbCard = {
     },
   },
 
-  render(h) {
+  render() {
     return h(
       'div',
       {

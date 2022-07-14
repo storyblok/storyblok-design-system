@@ -1,4 +1,5 @@
 // other components
+import { h } from 'vue'
 import SbIcon from '../Icon'
 
 // styles
@@ -49,7 +50,7 @@ const SbLink = {
     },
   },
 
-  render(h) {
+  render() {
     const getAttrs = () => {
       const attrs = {}
 

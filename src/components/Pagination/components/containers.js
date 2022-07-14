@@ -1,5 +1,6 @@
 import { buildSelectOptions, factorySelectOption } from '../utils'
 import i18n from '../../../i18n/index'
+import { h } from 'vue'
 
 import {
   SbPaginationSelect,
@@ -41,7 +42,7 @@ export const SbPagesContainer = {
     },
   },
 
-  render(h) {
+  render() {
     const pagesOptions = buildSelectOptions(
       this.pages,
       (page) => i18n(this.locale, 'goToPage') + `${page}`
@@ -125,7 +126,7 @@ export const SbPerPageContainer = {
     },
   },
 
-  render(h) {
+  render() {
     const perPageOptions = this.perPageAvailable.map((perPage) => {
       return factorySelectOption(
         perPage,

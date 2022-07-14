@@ -1,6 +1,7 @@
 import SbButton from '../../Button'
 import { Tooltip } from '../../../directives'
 import { WindowResizeObserverMixin } from '../../../mixins'
+import { h } from 'vue'
 
 /**
  * SbDataTableActions
@@ -45,7 +46,7 @@ export const SbDataTableActions = {
     },
   },
 
-  render(h) {
+  render() {
     const renderSelectedRowsLength = () => {
       return h(
         'span',

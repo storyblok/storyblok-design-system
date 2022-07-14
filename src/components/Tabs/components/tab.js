@@ -2,6 +2,7 @@ import SbIcon from '../../Icon'
 
 import { Tooltip } from '../../../directives'
 import { capitalize } from '../../../utils'
+import { h } from 'vue'
 
 // @vue/component
 export const SbTabAdd = {
@@ -73,7 +74,7 @@ const SbEditableInput = {
     this.$refs.editInput.focus()
   },
 
-  render(h) {
+  render() {
     return h('input', {
       attrs: {
         value: this.value,
@@ -94,7 +95,7 @@ const SbEditButton = {
     tooltip: Tooltip,
   },
 
-  render(h) {
+  render() {
     return h(
       'button',
       {
@@ -239,7 +240,7 @@ export const SbTab = {
     },
   },
 
-  render(h) {
+  render() {
     const renderIcon = (icon) => {
       return h(SbIcon, {
         props: {

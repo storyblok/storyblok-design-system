@@ -2,6 +2,7 @@ import SbIcon from '../../Icon'
 import SbSelect from '../../Select'
 import { Tooltip } from '../../../directives'
 import i18n from '../../../i18n/index'
+import { h } from 'vue'
 
 /**
  * @vue/component
@@ -244,7 +245,7 @@ export const SbPaginationSelect = {
     },
   },
 
-  render(h) {
+  render() {
     const parsedOpts = this.options.map((option) => {
       return {
         ...option,

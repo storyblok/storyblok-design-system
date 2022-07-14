@@ -1,6 +1,7 @@
 import './tooltip.scss'
 import { canUseDOM, includes, randomString } from '../../utils'
 import { availablePositions } from './lib'
+import { h } from 'vue'
 
 import SbFragment from '../Fragment'
 import { SbPopover, SbPopoverArrow } from '../Popover'
@@ -96,7 +97,7 @@ export default {
     },
   },
 
-  render(h) {
+  render() {
     const children = this.$slots.default() || []
 
     if (children.length !== 1) {
