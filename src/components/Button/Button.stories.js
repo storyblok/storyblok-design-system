@@ -33,6 +33,7 @@ const ButtonTemplate = (args) => ({
         :variant="variant"
         :is-disabled="isDisabled"
         :icon-right="iconRight"
+        :icon-color="iconColor"
         :label="label"
         :size="size"
         :type="type"
@@ -50,6 +51,7 @@ const ButtonTemplate = (args) => ({
       <SbButton
         :variant="variant"
         is-loading
+        :icon-color="iconColor"
         :is-disabled="isDisabled"
         :size="size"
         :type="type"
@@ -468,6 +470,27 @@ LoadingButton.parameters = {
   docs: {
     description: {
       story: 'Types of buttons with loading',
+    },
+  },
+}
+
+LoadingButton.argTypes = {
+  icon: {
+    control: {
+      type: 'select',
+      options: [],
+    },
+  },
+  iconRight: {
+    control: {
+      type: 'select',
+      options: [],
+    },
+  },
+  iconColor: {
+    control: {
+      type: 'select',
+      options: [],
     },
   },
 }
