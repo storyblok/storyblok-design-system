@@ -194,6 +194,10 @@
       color: $orange;
     }
   }
+
+  &__required {
+    color: $red;
+  }
 }
 
 @supports (-moz-appearance:none) {

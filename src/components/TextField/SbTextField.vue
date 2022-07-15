@@ -1,8 +1,8 @@
 <template>
   <div class="sb-textfield">
-    <label v-if="label" :for="id" class="sb-textfield__label">{{
-      label
-    }}</label>
+    <label v-if="label" :for="id" class="sb-textfield__label">
+      {{ label }} <span v-if="required" class="sb-textfield__required">*</span>
+    </label>
     <div class="sb-textfield__inner">
       <span v-if="prefix" class="sb-textfield__prefix">{{ prefix }}</span>
       <input
@@ -93,7 +93,11 @@
         v-if="showClearIcon"
         v-tooltip="{ label: 'Clear' }"
         name="x-clear"
-        class="sb-textfield__icon sb-textfield__icon--right sb-textfield__icon--pointer"
+        class="
+          sb-textfield__icon
+          sb-textfield__icon--right
+          sb-textfield__icon--pointer
+        "
         :color="iconColor"
         @click="handleClearableClick"
       />
