@@ -93,11 +93,7 @@
         v-if="showClearIcon"
         v-tooltip="{ label: 'Clear' }"
         name="x-clear"
-        class="
-          sb-textfield__icon
-          sb-textfield__icon--right
-          sb-textfield__icon--pointer
-        "
+        :class="computedIconClasses"
         :color="iconColor"
         @click="handleClearableClick"
       />
@@ -169,6 +165,14 @@ export default {
   computed: {
     hasValue() {
       return this.computedValue !== null && ('' + this.computedValue).length > 0
+    },
+
+    computedIconClasses() {
+      return [
+        'sb-textfield__icon',
+        'sb-textfield__icon--right',
+        'sb-textfield__icon--pointer',
+      ]
     },
 
     hasSpecialClass() {
