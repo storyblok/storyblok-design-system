@@ -4,6 +4,8 @@
       <label v-if="label" class="sb-form-item__label" :for="labelFor">
         {{ label }}
 
+        <span v-if="isRequired" class="sb-form-item__required">*</span>
+
         <SbIcon
           v-if="helperIconText"
           v-tooltip="{ label: helperIconText, textAlign: helperTextAlign }"
@@ -63,6 +65,7 @@ export default {
       type: String,
       default: null,
     },
+    isRequired: Boolean,
   },
 
   mounted() {
