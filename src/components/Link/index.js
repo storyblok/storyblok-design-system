@@ -12,54 +12,16 @@ import './link.scss'
  *
  * SbLink is a component used primarly to navigation
  */
-const SbLink = {
-  name: 'SbLink',
-
-  props: {
-    as: {
-      type: String,
-      default: 'a',
-    },
-    label: {
-      type: String,
-      default: null,
-    },
-    href: {
-      type: String,
-      default: null,
-    },
-    icon: {
-      type: String,
-      default: null,
-    },
-    iconRight: {
-      type: String,
-      default: null,
-    },
-    title: {
-      type: String,
-      default: null,
-    },
-    to: {
-      type: [String, Object],
-      default: null,
-    },
-    variant: {
-      type: String,
-      default: '',
-    },
-  },
-
-  render() {
+const SbLink = (props, {slots}) => {
     const getAttrs = () => {
       const attrs = {}
 
-      if (this.title) {
-        attrs.title = this.title
+      if (props.title) {
+        attrs.title = props.title
       }
 
-      if (this.as === 'a') {
-        attrs.href = this.href
+      if (props.as === 'a') {
+        attrs.href = props.href
       }
 
       return attrs
@@ -75,23 +37,23 @@ const SbLink = {
     }
 
     const renderLabel = () => {
-      if (this.label) {
+      if (props.label) {
         return h(
           'span',
           {
-            staticClass: 'sb-link__label',
+            class: 'sb-link__label',
           },
-          this.label
+          props.label
         )
       }
 
-      if (this.$slots.default()) {
+      if (slots.default()) {
         return h(
           'span',
           {
-            staticClass: 'sb-link__label',
+            class: 'sb-link__label',
           },
-          this.$slots.default()
+          slots.default()
         )
       }
 
@@ -101,31 +63,65 @@ const SbLink = {
     const getProps = () => {
       const props = {}
 
-      if (this.as !== 'a' && this.to) {
-        props.to = this.to
+      if (props.as !== 'a' && props.to) {
+        props.to = props.to
       }
 
       return props
     }
 
     return h(
-      this.as || 'a',
+      props.as || 'a',
       {
-        staticClass: 'sb-link',
         class: [
-          this.icon && 'sb-link--has-icon',
-          this.iconRight && 'sb-link--has-icon-right',
-          this.variant && `sb-link--${this.variant}`,
+          'sb-link',
+          props.icon && 'sb-link--has-icon',
+          props.iconRight && 'sb-link--has-icon-right',
+          props.variant && `sb-link--${props.variant}`,
         ],
         attrs: getAttrs(),
         props: getProps(),
       },
       [
-        this.icon && renderIcon(this.icon),
+        props.icon && renderIcon(props.icon),
         renderLabel(),
-        this.iconRight && renderIcon(this.iconRight),
+        props.iconRight && renderIcon(props.iconRight),
       ]
     )
+}
+
+SbLink.props = {
+  as: {
+    type: String,
+    default: 'a',
+  },
+  label: {
+    type: String,
+    default: null,
+  },
+  href: {
+    type: String,
+    default: null,
+  },
+  icon: {
+    type: String,
+    default: null,
+  },
+  iconRight: {
+    type: String,
+    default: null,
+  },
+  title: {
+    type: String,
+    default: null,
+  },
+  to: {
+    type: [String, Object],
+    default: null,
+  },
+  variant: {
+    type: String,
+    default: '',
   },
 }
 

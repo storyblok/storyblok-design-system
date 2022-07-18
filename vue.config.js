@@ -11,26 +11,26 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        vue$: path.resolve(__dirname, 'node_modules/@vue/runtime-dom'),
+        // vue$: path.resolve(__dirname, 'node_modules/@vue/runtime-dom'),
+        vue$: path.resolve(__dirname, 'node_modules/@vue/compat'),
       },
       symlinks: false,
     }
   },
   chainWebpack: (config) => {
-    // config.resolve.alias.set('vue', '@vue/compat')
-    // config.module
-    //   .rule('vue')
-    //   .use('vue-loader')
-    //   .tap((options) => {
-    //     return {
-    //       ...options,
-    //       compilerOptions: {
-    //         compatConfig: {
-    //           MODE: 2,
-    //         },
-    //       },
-    //     }
-    //   })
+    config.module
+      .rule('vue')
+      .use('vue-loader')
+      .tap((options) => {
+        return {
+          ...options,
+          compilerOptions: {
+            compatConfig: {
+              MODE: 3,
+            },
+          },
+        }
+      })
 
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
 

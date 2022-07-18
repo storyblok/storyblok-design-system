@@ -13,32 +13,8 @@ const logoSvgPath = `
   </g>
 `
 
-/**
- * @vue/component
- *
- * SbSidebarLogo component
- *
- * Render the Storyblok Logo
- */
-const SbSidebarLogo = {
-  name: 'SbSidebarLogo',
-
-  functional: true,
-
-  props: {
-    minimize: {
-      type: Boolean,
-      default: false,
-    },
-
-    variant: {
-      type: String,
-      default: 'white',
-    },
-  },
-
-  render(_, { props }) {
-    return h('svg', {
+const SbSidebarLogo = (props) => {
+   return h('svg', {
       staticClass: 'sb-sidebar-logo',
       class: [props.variant && `sb-sidebar-logo--${props.variant}`],
       attrs: {
@@ -50,6 +26,17 @@ const SbSidebarLogo = {
         innerHTML: logoSvgPath,
       },
     })
+}
+
+SbSidebarLogo.props = {
+  minimize: {
+    type: Boolean,
+    default: false,
+  },
+
+  variant: {
+    type: String,
+    default: 'white',
   },
 }
 

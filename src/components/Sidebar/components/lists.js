@@ -8,12 +8,7 @@ import { h } from 'vue'
  *
  * Render a list container to SbSidebarLink component
  */
-const SbSidebarList = {
-  name: 'SbSidebarList',
-
-  functional: true,
-
-  render(_, { slots }) {
+const SbSidebarList = (_, {slots}) => {
     return h(
       'ul',
       {
@@ -22,10 +17,9 @@ const SbSidebarList = {
           role: 'navigation',
         },
       },
-      slots().default
+      slots.default()
     )
-  },
-}
+  }
 
 /**
  * @vue/component
@@ -34,43 +28,7 @@ const SbSidebarList = {
  *
  * Render a list item to SbSidebar list and may render a single item
  */
-const SbSidebarLink = {
-  name: 'SbSidebarLink',
-
-  functional: true,
-
-  props: {
-    active: {
-      type: Boolean,
-      default: false,
-    },
-    ariaLabel: {
-      type: String,
-      default: null,
-    },
-    as: {
-      type: String,
-      default: 'a',
-    },
-    label: {
-      type: String,
-      default: null,
-    },
-    href: {
-      type: String,
-      default: null,
-    },
-    icon: {
-      type: String,
-      default: null,
-    },
-    to: {
-      type: String,
-      default: null,
-    },
-  },
-
-  render(_, { props, listeners, data }) {
+const SbSidebarLink = (props, data) => {
     const renderLabel = () => {
       return h(
         'span',
@@ -116,6 +74,36 @@ const SbSidebarLink = {
       },
       [renderIcon(), renderLabel()]
     )
+}
+
+SbSidebarLink.props = {
+  active: {
+    type: Boolean,
+    default: false,
+  },
+  ariaLabel: {
+    type: String,
+    default: null,
+  },
+  as: {
+    type: String,
+    default: 'a',
+  },
+  label: {
+    type: String,
+    default: null,
+  },
+  href: {
+    type: String,
+    default: null,
+  },
+  icon: {
+    type: String,
+    default: null,
+  },
+  to: {
+    type: String,
+    default: null,
   },
 }
 

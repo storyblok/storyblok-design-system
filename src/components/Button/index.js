@@ -17,72 +17,13 @@ import { sharedProps } from './lib'
  *
  * SbButton is a component used for clickable user interactions
  */
-const SbButton = {
-  name: 'SbButton',
-
-  directives: {
-    tooltip: Tooltip,
-  },
-
-  props: {
-    hasIconOnly: {
-      type: Boolean,
-      default: false,
-    },
-    icon: {
-      type: String,
-      default: null,
-    },
-    iconColor: {
-      type: String,
-      default: null,
-    },
-    iconSize: {
-      type: String,
-      default: 'normal',
-    },
-    iconRight: {
-      type: String,
-      default: null,
-    },
-    iconDescription: {
-      type: String,
-      default: null,
-    },
-    isDisabled: {
-      type: Boolean,
-      default: false,
-    },
-    isFullWidth: {
-      type: Boolean,
-      default: false,
-    },
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
-    isRounded: {
-      type: Boolean,
-      default: false,
-    },
-    label: {
-      type: String,
-      default: null,
-    },
-    tooltipPosition: {
-      type: String,
-      default: 'bottom',
-    },
-    ...sharedProps,
-  },
-
-  render() {
-    const useTooltip = this.hasIconOnly && this.iconDescription
+const SbButton = (props, {slots, attrs}) => {
+    const useTooltip = props.hasIconOnly && props.iconDescription
 
     const renderIcon = (icon, color) => {
       return h(SbIcon, {
         props: {
-          size: this.iconSize,
+          size: props.iconSize,
           name: icon,
           color,
         },
@@ -90,23 +31,23 @@ const SbButton = {
     }
 
     const renderLabel = () => {
-      if (this.label) {
+      if (props.label) {
         return h(
           'span',
           {
-            staticClass: 'sb-button__label',
+            class: 'sb-button__label',
           },
-          this.label
+          props.label
         )
       }
 
-      if (this.$slots.default()) {
+      if (slots.default()) {
         return h(
           'span',
           {
-            staticClass: 'sb-button__label',
+            class: 'sb-button__label',
           },
-          this.$slots.default()
+          slots.default()
         )
       }
 
@@ -117,28 +58,29 @@ const SbButton = {
       return h(
         'button',
         {
-          staticClass: `sb-button sb-button--${this.variant}`,
           attrs: {
-            ...this.$attrs,
-            disabled: this.isDisabled || this.isLoading,
-            'aria-disabled': this.isDisabled || this.isLoading,
-            type: this.type,
+            ...attrs,
+            disabled: props.isDisabled || props.isLoading,
+            'aria-disabled': props.isDisabled || props.isLoading,
+            type: props.type,
           },
           class: {
-            'sb-button--disabled': this.isDisabled,
-            'sb-button--small': this.size === 'small',
-            'sb-button--large': this.size === 'large',
-            'sb-button--full': this.isFullWidth,
-            'sb-button--rounded': this.isRounded,
-            'sb-button--has-icon-only': this.hasIconOnly,
-            'sb-button--has-icon': this.icon,
-            'sb-button--has-icon-right': this.iconRight,
-            'sb-button--loading': this.isLoading,
+            'sb-button': true,
+            [`sb-button--${props.variant}`]: true,
+            'sb-button--disabled': props.isDisabled,
+            'sb-button--small': props.size === 'small',
+            'sb-button--large': props.size === 'large',
+            'sb-button--full': props.isFullWidth,
+            'sb-button--rounded': props.isRounded,
+            'sb-button--has-icon-only': props.hasIconOnly,
+            'sb-button--has-icon': props.icon,
+            'sb-button--has-icon-right': props.iconRight,
+            'sb-button--loading': props.isLoading,
           },
           on: {
             click:
-              !this.isDisabled || !this.isLoading
-                ? ($event) => this.$emit('click', $event)
+              !props.isDisabled || !props.isLoading
+                ? ($event) => props.$emit('click', $event)
                 : '',
           },
           directives: useTooltip
@@ -146,8 +88,8 @@ const SbButton = {
                 {
                   name: 'tooltip',
                   value: {
-                    label: this.iconDescription,
-                    position: this.tooltipPosition,
+                    label: props.iconDescription,
+                    position: props.tooltipPosition,
                   },
                 },
               ]
@@ -158,12 +100,12 @@ const SbButton = {
     }
 
     const content = [
-      this.icon && renderIcon(this.icon, this.iconColor),
-      !this.hasIconOnly && renderLabel(),
-      this.iconRight && renderIcon(this.iconRight, this.iconColor),
+      props.icon && renderIcon(props.icon, props.iconColor),
+      !props.hasIconOnly && renderLabel(),
+      props.iconRight && renderIcon(props.iconRight, props.iconColor),
     ]
 
-    if (this.isLoading) {
+    if (props.isLoading) {
       const whiteLoading = [
         'primary',
         'secondary',
@@ -180,14 +122,69 @@ const SbButton = {
             type: 'spinner',
             size: 'small',
             color:
-              whiteLoading.indexOf(this.variant) < 4 ? 'white' : 'primary-dark',
+              whiteLoading.indexOf(props.variant) < 4 ? 'white' : 'primary-dark',
           },
         }),
       ])
     }
 
     return renderButton(content)
+}
+
+SbButton.props = {
+  hasIconOnly: {
+    type: Boolean,
+    default: false,
   },
+  icon: {
+    type: String,
+    default: null,
+  },
+  iconColor: {
+    type: String,
+    default: null,
+  },
+  iconSize: {
+    type: String,
+    default: 'normal',
+  },
+  iconRight: {
+    type: String,
+    default: null,
+  },
+  iconDescription: {
+    type: String,
+    default: null,
+  },
+  isDisabled: {
+    type: Boolean,
+    default: false,
+  },
+  isFullWidth: {
+    type: Boolean,
+    default: false,
+  },
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
+  isRounded: {
+    type: Boolean,
+    default: false,
+  },
+  label: {
+    type: String,
+    default: null,
+  },
+  tooltipPosition: {
+    type: String,
+    default: 'bottom',
+  },
+  ...sharedProps,
+}
+
+SbButton.directives = {
+  tooltip: Tooltip,
 }
 
 export default SbButton
