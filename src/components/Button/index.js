@@ -3,6 +3,7 @@ import SbIcon from '../Icon'
 import SbLoading from '../Loading'
 
 import { Tooltip } from '../../directives'
+import { h } from 'vue'
 
 // styles
 import './button.scss'
@@ -75,7 +76,7 @@ const SbButton = {
     ...sharedProps,
   },
 
-  render(h) {
+  render() {
     const useTooltip = this.hasIconOnly && this.iconDescription
 
     const renderIcon = (icon, color) => {

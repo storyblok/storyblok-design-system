@@ -1,3 +1,5 @@
+import { h } from 'vue'
+
 const logoSvgPath = `
   <g fill="none" fill-rule="evenodd">
     <path fill="#FFF" d="M4 4h20v20H4z"/>
@@ -35,7 +37,7 @@ const SbSidebarLogo = {
     },
   },
 
-  render(h, { props }) {
+  render(_, { props }) {
     return h('svg', {
       staticClass: 'sb-sidebar-logo',
       class: [props.variant && `sb-sidebar-logo--${props.variant}`],

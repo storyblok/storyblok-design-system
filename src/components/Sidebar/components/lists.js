@@ -1,4 +1,5 @@
 import SbIcon from '../../Icon'
+import { h } from 'vue'
 
 /**
  * @vue/component
@@ -12,7 +13,7 @@ const SbSidebarList = {
 
   functional: true,
 
-  render(h, { slots }) {
+  render(_, { slots }) {
     return h(
       'ul',
       {
@@ -69,7 +70,7 @@ const SbSidebarLink = {
     },
   },
 
-  render(h, { props, listeners, data }) {
+  render(_, { props, listeners, data }) {
     const renderLabel = () => {
       return h(
         'span',

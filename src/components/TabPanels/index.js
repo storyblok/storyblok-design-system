@@ -58,7 +58,7 @@ const SbTabPanels = {
     },
   },
 
-  render(h, { slots, props, data }) {
+  render(_, { slots, props, data }) {
     const children = slots().default.filter((e) => e.tag) || []
 
     const processChildren = () => {

@@ -1,4 +1,5 @@
 import { Tooltip } from '../../directives'
+import { h } from 'vue'
 
 /**
  * @method getLabelTruncated
@@ -46,7 +47,7 @@ const SbBreadcrumbLink = {
   props: {
     ...sharedLinkProps,
   },
-  render(h, { props, listeners, slots }) {
+  render(_, { props, listeners, slots }) {
     const { label } = props
 
     const renderLabel = () => {
@@ -113,7 +114,7 @@ const SbBreadcrumbItem = {
     ...sharedLinkProps,
   },
 
-  render(h) {
+  render() {
     const { isActive, showFullLabel, title, href, to, as } = this
     const label = this.label || ''
 

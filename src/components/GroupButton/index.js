@@ -2,6 +2,7 @@
 import './group-button.scss'
 
 import { sharedProps } from '../Button/lib'
+import { h } from 'vue'
 
 /**
  * @vue/component
@@ -20,7 +21,7 @@ const SbGroupButton = {
     ...sharedProps,
   },
 
-  render(h, context) {
+  render(_, context) {
     const { props, slots } = context
     const data = context.data || {}
 

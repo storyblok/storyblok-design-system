@@ -1,3 +1,5 @@
+// import { configureCompat } from 'vue'
+
 // Import global assets
 import './assets/styles/global.scss'
 
@@ -28,6 +30,10 @@ const BlokInkPlugin = {
     }
   },
 }
+
+// configureCompat({
+//   MODE: 2,
+// })
 
 // Auto-install when vue is found
 let GlobalVue = null

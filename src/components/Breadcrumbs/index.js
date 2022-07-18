@@ -2,6 +2,7 @@ import './breadcrumbs.scss'
 
 import { SbBreadcrumbItem } from './BreadcrumItem'
 import SbIcon from '../Icon'
+import { h } from 'vue'
 
 /**
  * @vue/component
@@ -23,7 +24,7 @@ const SbBreadcrumbDropdown = {
     active: Boolean,
   },
 
-  render(h, { props }) {
+  render(_, { props }) {
     const renderChildren = () => {
       return h(
         'ul',
@@ -62,7 +63,7 @@ const SbBreadcrumbSeparator = {
     active: Boolean,
   },
 
-  render(h, { props, listeners }) {
+  render(_, { props, listeners }) {
     return h(
       'li',
       {
@@ -114,7 +115,7 @@ const SbBreadcrumbs = {
     },
   },
 
-  render(h) {
+  render() {
     const breadcrumbsProps = {
       staticClass: 'sb-breadcrumbs',
       class: {
