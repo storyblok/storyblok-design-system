@@ -43,14 +43,11 @@ export default {
       : null
 
     const classes = ['sb-icon', sizeClass, colorClass, bgClass]
-
-    const role = props.role || 'presentation'
     const viewBox = icon.viewBox
 
     return {
       classes,
       iconPath: icon.path,
-      role,
       viewBox,
     }
   },
