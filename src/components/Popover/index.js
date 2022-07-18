@@ -280,7 +280,7 @@ const SbPopover = {
               },
             ],
           },
-          this.$slots.default()
+          this.$slots?.default()
         ),
       ]
     )

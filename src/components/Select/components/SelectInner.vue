@@ -224,7 +224,7 @@ export default {
     },
 
     hasDefaultSlot() {
-      return !!this.$slots.default()
+      return !!this.$slots?.default()
     },
 
     innerLabel() {

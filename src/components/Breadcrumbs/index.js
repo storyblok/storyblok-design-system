@@ -172,7 +172,7 @@ const SbBreadcrumbs = {
       )
     }
 
-    return h('nav', breadcrumbsProps, [...children, this.$slots.default()])
+    return h('nav', breadcrumbsProps, [...children, this.$slots?.default()])
   },
 }
 

@@ -179,7 +179,7 @@ export default {
     },
 
     showImage() {
-      return this.src || this.$slots.default()
+      return this.src || this.$slots?.default && this.$slots.default()
     },
 
     showDescription() {

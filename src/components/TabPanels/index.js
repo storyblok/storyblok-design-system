@@ -34,7 +34,7 @@ const SbTabPanel = {
           'aria-hidden': !this.activate + '',
         },
       },
-      this.$slots.default()
+      this.$slots?.default()
     )
   },
 }

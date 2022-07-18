@@ -12,7 +12,7 @@ const SbBlockUi = {
         class: 'sb-block-ui',
         attrs: this.$attrs,
       },
-      [this.$slots.default()]
+      [this.$slots?.default()]
     )
   },
 }

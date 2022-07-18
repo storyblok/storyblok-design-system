@@ -11,8 +11,8 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        // vue$: path.resolve(__dirname, 'node_modules/@vue/runtime-dom'),
-        vue$: path.resolve(__dirname, 'node_modules/@vue/compat'),
+        vue$: path.resolve(__dirname, 'node_modules/@vue/runtime-dom'),
+        // vue$: path.resolve(__dirname, 'node_modules/@vue/compat'),
       },
       symlinks: false,
     }

@@ -82,8 +82,8 @@ export const SbDataTableBodyRow = {
               }),
             ]
           ),
-        this.$slots.default()
-          ? this.$slots.default()
+        this.$slots?.default()
+          ? this.$slots?.default()
           : this.headers.map((elem, index) => {
               return h(
                 'td',

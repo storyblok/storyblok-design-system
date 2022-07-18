@@ -103,7 +103,7 @@ const SbPortal = {
   },
 
   render() {
-    const children = this.$slots.default()
+    const children = this.$slots?.default()
 
     if (this.disabled) {
       return children[0]

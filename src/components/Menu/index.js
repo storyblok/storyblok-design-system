@@ -111,7 +111,7 @@ const SbMenuItem = {
         return h('span', this.label)
       }
 
-      return this.$slots.default()
+      return this.$slots?.default()
     }
 
     const renderAuxText = () => {
@@ -200,7 +200,7 @@ const SbMenuGroup = {
               this.title
             )
           : null,
-        ...this.$slots.default(),
+        ...this.$slots?.default(),
       ]
     )
   },
@@ -376,7 +376,7 @@ const SbMenuList = {
           [
             this.$slots.top(),
             !!items.length && renderMenuItems(items),
-            this.$slots.default(),
+            this.$slots?.default(),
           ]
         ),
       ]
@@ -537,7 +537,7 @@ const SbMenuButton = {
           'sb-menu-button-borderless': this.isBorderless,
         },
       },
-      this.$slots.default()
+      this.$slots?.default()
     )
   },
 }
@@ -776,7 +776,7 @@ const SbMenu = {
             menuListId: this.menuListId,
             menuButtonId: this.menuButtonId,
           }),
-        ...this.$slots.default(),
+        ...this.$slots?.default(),
       ]
     )
   },

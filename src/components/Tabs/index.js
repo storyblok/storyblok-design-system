@@ -85,11 +85,11 @@ const SbTabs = {
 
   methods: {
     /**
-     * load children to data from this.$el and this.$slots.default()
+     * load children to data from this.$el and this.$slots?.default()
      */
     $_loadChildren() {
       this.childVNodes = Object.assign({}, this.$el.children)
-      this.children = cleanChildren(this.$slots.default())
+      this.children = cleanChildren(this.$slots?.default())
     },
 
     /**
@@ -218,7 +218,7 @@ const SbTabs = {
   },
 
   render() {
-    const children = this.$slots.default().filter((e) => e.tag) || []
+    const children = this.$slots?.default().filter((e) => e.tag) || []
 
     const renderAddButton = () => {
       return h(SbTabAdd, {

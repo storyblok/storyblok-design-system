@@ -165,11 +165,11 @@ const SbBreadcrumbItem = {
               label: labelFormated,
             },
           },
-          [this.$slots.default()]
+          [this.$slots?.default()]
         )
       }
 
-      return [renderLabel(), this.$slots.default()]
+      return [renderLabel(), this.$slots?.default()]
     }
 
     return h('li', breadcrumbsItemProps, [renderBreadcrumb()])
