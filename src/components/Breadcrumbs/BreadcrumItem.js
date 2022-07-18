@@ -47,7 +47,7 @@ const SbBreadcrumbLink = {
   props: {
     ...sharedLinkProps,
   },
-  render(props, {listeners, slots }) {
+  render(props, { listeners, slots }) {
     const { label } = props
 
     const renderLabel = () => {
