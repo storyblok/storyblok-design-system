@@ -21,8 +21,8 @@ const SbGroupButton = {
     ...sharedProps,
   },
 
-  render(_, context) {
-    const { props, slots } = context
+  render(props, context) {
+    const { slots } = context
     const data = context.data || {}
 
     const children = slots().default.filter((e) => e.tag)

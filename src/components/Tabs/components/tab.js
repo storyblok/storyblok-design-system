@@ -14,7 +14,7 @@ export const SbTabAdd = {
     tooltip: Tooltip,
   },
 
-  render(_, { listeners, props }) {
+  render(props, { listeners }) {
     return h(
       'li',
       {

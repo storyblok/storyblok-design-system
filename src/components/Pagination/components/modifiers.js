@@ -31,7 +31,7 @@ export const SbPaginationDot = {
     },
   },
 
-  render(_, { props, listeners }) {
+  render(props, { listeners }) {
     const { page, currentPage, locale } = props
     const isCurrent = currentPage === page
     return h('button', {

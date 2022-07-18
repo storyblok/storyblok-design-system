@@ -35,7 +35,7 @@ export const SbPaginationButton = {
     },
   },
 
-  render(_, { props, listeners, data }) {
+  render(props, { listeners, data }) {
     const { icon, tooltipLabel, disabled } = props
 
     return h(
@@ -110,7 +110,7 @@ export const SbPaginationPagesText = {
     },
   },
 
-  render(_, { props }) {
+  render(props) {
     const { currentPage, showCurrentPage, isPlaceholder, pages, locale } = props
     let text = ''
     const ofTranslated = i18n(locale, 'of')
@@ -184,7 +184,7 @@ export const SbPaginationItemsText = {
     },
   },
 
-  render(_, { props }) {
+  render(props) {
     const { currentPage, isPlaceholder, pages, perPage, total, locale } = props
     const isTheLastPage = currentPage === pages
     const currentPageItems = currentPage * perPage

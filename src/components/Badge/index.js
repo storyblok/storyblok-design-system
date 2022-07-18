@@ -40,12 +40,11 @@ const SbBadge = {
 
   render() {
     const badgeProps = {
-      staticClass: `sb-badge sb-badge--${this.type}`,
-      class: {
+      class: ['sb-badge', `sb-badge--${this.type}`,{
         'sb-badge--contract': this.contract,
         'sb-badge--only-icon': this.onlyIcon,
         'sb-badge--inline-label': this.inlineLabel,
-      },
+      }],
     }
 
     const renderIcon = () => {
@@ -57,13 +56,13 @@ const SbBadge = {
     }
 
     const renderLabel = () => {
-      const textLabel = this.label || this.$slots?.default()
+      const textLabel = this.label || this.$slots?.default && this.$slots.default()
       const label = isValidNumber(this.number) ? this.number : textLabel
 
       return h(
         'span',
         {
-          staticClass: 'sb-badge__label',
+          class: ['sb-badge__label'],
         },
         label
       )
@@ -71,7 +70,7 @@ const SbBadge = {
 
     const isRenderIcon = !this.contract && !isValidNumber(this.number)
     const hasLabelToRender =
-      this.label || this.$slots?.default() || isValidNumber(this.number)
+      this.label || this.$slots?.default && this.$slots?.default() || isValidNumber(this.number)
 
     const children = [
       isRenderIcon && renderIcon(),

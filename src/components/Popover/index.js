@@ -290,11 +290,11 @@ const SbPopover = {
 const SbPopoverArrow = {
   name: 'SbPopoverArrow',
   functional: true,
-  render(_, { data, ...rest }) {
+  render(props, { attrs, ...rest }) {
     return h('div', {
       ...rest,
       attrs: {
-        ...data.attrs,
+        ...attrs,
         'data-popper-arrow': true,
         role: 'presentation',
       },
