@@ -2,6 +2,6 @@
 import '../src/assets/styles/global.scss'
 import './preview.css'
 import BlokInkPlugin from '../src/main'
-import { app } from '@storybook/vue3';
+import { app } from '@storybook/vue3'
 
-app.use(BlokInkPlugin);
+app.use(BlokInkPlugin)

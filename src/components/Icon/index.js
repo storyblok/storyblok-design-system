@@ -1,5 +1,5 @@
 import './icon.scss'
 
-import SbIcon from './Icon'
+import SbIcon from './SbIcon'
 
 export default SbIcon

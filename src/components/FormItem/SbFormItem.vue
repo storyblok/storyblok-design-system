@@ -18,7 +18,7 @@
       >
         {{ helperText }}
       </span>
-      <slot name="helper" ></slot>
+      <slot name="helper"></slot>
     </div>
     <div class="sb-form-item__body">
       <slot></slot>

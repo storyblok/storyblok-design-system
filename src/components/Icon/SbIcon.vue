@@ -7,6 +7,7 @@ import { getSvgIcon, iconSizes } from './utils'
 import { availableColors } from '../../utils'
 
 export default {
+  name: 'SbIcon',
   props: {
     color: {
       type: String,
@@ -33,7 +34,7 @@ export default {
       validator: (size) => iconSizes.indexOf(size) !== -1,
     },
   },
-  setup (props) {
+  setup(props) {
     const icon = getSvgIcon(props.name)
     const sizeClass = props.size ? `sb-icon--${props.size}` : null
     const colorClass = props.color ? `sb-icon--color-${props.color}` : null
@@ -50,8 +51,8 @@ export default {
       classes,
       iconPath: icon.path,
       role,
-      viewBox
+      viewBox,
     }
-  }
+  },
 }
 </script>

@@ -14,18 +14,18 @@ const logoSvgPath = `
 `
 
 const SbSidebarLogo = (props) => {
-   return h('svg', {
-      staticClass: 'sb-sidebar-logo',
-      class: [props.variant && `sb-sidebar-logo--${props.variant}`],
-      attrs: {
-        role: 'img',
-        'aria-label': 'Storyblok Official Logo',
-        viewBox: props.minimize ? '0 0 29 33' : '0 0 158 33',
-      },
-      domProps: {
-        innerHTML: logoSvgPath,
-      },
-    })
+  return h('svg', {
+    staticClass: 'sb-sidebar-logo',
+    class: [props.variant && `sb-sidebar-logo--${props.variant}`],
+    attrs: {
+      role: 'img',
+      'aria-label': 'Storyblok Official Logo',
+      viewBox: props.minimize ? '0 0 29 33' : '0 0 158 33',
+    },
+    domProps: {
+      innerHTML: logoSvgPath,
+    },
+  })
 }
 
 SbSidebarLogo.props = {
