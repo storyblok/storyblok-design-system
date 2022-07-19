@@ -1,15 +1,12 @@
 import Accordion from './index'
-import { SbSelect } from '../Select'
-import SbTextField from '../TextField'
 
 export default {
   title: 'Design System/Components/SbAccordion',
   component: Accordion,
-  excludeStories: /.*Data$/,
   args: {
     title: 'Group 1',
-    icon: 'settings',
-    iconDescription: 'Edit',
+    icon: '',
+    iconDescription: '',
     isOpen: false,
     noHighlight: false,
     noBorder: false,
@@ -17,89 +14,66 @@ export default {
   },
 }
 
-export const Default = (args) => ({
-  components: { Accordion, SbSelect, SbTextField },
-  props: Object.keys(args),
-  data: () => ({
-    label: 'Headline',
-    placeholder: 'Enter something',
-  }),
+const Template = (args) => ({
+  components: { Accordion },
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <Accordion
-        v-bind="{
-          title,
-          icon,
-          iconDescription,
-          isOpen,
-          noBorder,
-          noHighlight,
-          noPadding
-        }"
+        v-bind="args"
         style="max-width: 300px"
       >
-        <SbTextField
-          :label="label"
-          :placeholder="placeholder"
-          style="margin-bottom: 15px;"
-        />
+        <h2>Some text</h2>
+        <p>Some more text</p>
       </Accordion>
 
       <Accordion
-        title="Group 2"
-        v-bind="{
-          icon,
-          iconDescription,
-          isOpen,
-          noBorder,
-          noHighlight,
-          noPadding
-        }"
+        v-bind="args"
         style="max-width: 300px"
       >
-          <SbTextField
-          :label="label"
-          :placeholder="placeholder"
-          style="margin-bottom: 15px;"
-        />
+        <h2>Some text</h2>
+        <p>Some more text</p>
       </Accordion>
 
       <Accordion
-          title="Group 3"
-          v-bind="{
-            icon,
-            iconDescription,
-            isOpen,
-            noBorder,
-            noHighlight,
-            noPadding
-          }"
+          v-bind="args"
           style="max-width: 300px"
       >
-      <SbTextField
-      :label="label"
-      :placeholder="placeholder"
-      style="margin-bottom: 15px;"
-    />
-      </Accordion>
-      <Accordion
-          title="Group with a very long title that should be truncated and not go over two or more lines"
-          icon="delete"
-          v-bind="{
-            iconDescription,
-            isOpen,
-            noBorder,
-            noHighlight,
-            noPadding
-          }"
-          style="max-width: 300px"
-      >
-      <SbTextField
-      :label="label"
-      :placeholder="placeholder"
-      style="margin-bottom: 15px;"
-    />
+        <h2>Some text</h2>
+        <p>Some more text</p>
       </Accordion>
     </div>
   `,
 })
+
+export const Default = Template.bind({})
+Default.args = { title: 'Hello World' }
+
+export const WithIcon = Template.bind({})
+WithIcon.args = {
+  title: 'Hello World with Icon',
+  icon: 'delete',
+  iconDescription: 'Delete',
+}
+
+export const isOpen = Template.bind({})
+isOpen.args = {
+  isOpen: true,
+}
+
+export const noHighlight = Template.bind({})
+noHighlight.args = {
+  noHighlight: true,
+}
+
+export const noBorder = Template.bind({})
+noBorder.args = {
+  noBorder: true,
+}
+
+export const noPadding = Template.bind({})
+noPadding.args = {
+  noPadding: true,
+}
