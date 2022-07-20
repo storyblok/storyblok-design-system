@@ -14,14 +14,11 @@
     background-color: rgba(19, 25, 45, 0.47);
     cursor: copy;
 
-    div {
-      pointer-events: none;
-    }
-
     .sb-drop-area__content {
       width: 90%;
       background-color: $white;
       border-radius: 50%;
+      pointer-events: none;
       aspect-ratio: 1/1;
     }
 
