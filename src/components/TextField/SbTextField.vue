@@ -76,7 +76,7 @@
         />
       </SbTooltip>
       <SbIcon
-        v-if="(iconRight || error) && type !== 'password'"
+        v-if="(iconRight || (error && iconRight)) && type !== 'password'"
         :name="iconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
