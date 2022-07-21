@@ -251,8 +251,10 @@ export default {
     },
 
     hasIconRight(){
-      return (this.iconRight || (this.error && this.iconRight)) && this.type !== 'password'
-    }
+      return (
+        (this.iconRight || (this.error && this.iconRight)) && this.type !== 'password'
+      )
+    },
   },
 
   watch: {
