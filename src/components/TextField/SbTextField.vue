@@ -250,9 +250,10 @@ export default {
       return this.iconCustomColor ? `color: ${this.iconCustomColor};` : ''
     },
 
-    hasIconRight(){
+    hasIconRight() {
       return (
-        (this.iconRight || (this.error && this.iconRight)) && this.type !== 'password'
+        (this.iconRight || (this.error && this.iconRight)) &&
+        this.type !== 'password'
       )
     },
   },
