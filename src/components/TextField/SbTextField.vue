@@ -76,7 +76,7 @@
         />
       </SbTooltip>
       <SbIcon
-        v-if="(iconRight || (error && iconRight)) && type !== 'password'"
+        v-if="hasIconRight"
         :name="iconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
@@ -249,6 +249,10 @@ export default {
     returnIconCustomColor() {
       return this.iconCustomColor ? `color: ${this.iconCustomColor};` : ''
     },
+
+    hasIconRight(){
+      return (this.iconRight || (this.error && this.iconRight)) && this.type !== 'password'
+    }
   },
 
   watch: {
