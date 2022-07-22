@@ -125,7 +125,7 @@ export default {
           },
         }
       }
-      return null
+      return false
     },
     loadingColor() {
       const whiteLoading = [
