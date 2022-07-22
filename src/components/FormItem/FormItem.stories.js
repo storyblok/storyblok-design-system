@@ -10,6 +10,7 @@ export default {
     label: 'Label',
     helperIconText: 'Helper icon text',
     helperText: 'Helper text',
+    isRequired: false,
   },
 }
 
@@ -29,6 +30,7 @@ export const Default = (args) => ({
         :helper-icon-text="helperIconText"
         :helper-text="helperText"
         style="margin-bottom: 20px"
+        :is-required="isRequired"
       >
         <SbTextField
           :placeholder="placeholder"
@@ -56,7 +58,7 @@ export const Default = (args) => ({
         />
       </SbFormItem>
 
-      <SbFormItem :label="label" grouped>
+      <SbFormItem :label="label" :is-required="isRequired" grouped>
         <SbTextField
           name="example"
           id="textfield"
