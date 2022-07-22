@@ -118,11 +118,8 @@ export default {
     useTooltipDirective() {
       if (this.hasIconOnly && this.iconDescription) {
         return {
-          name: 'tooltip',
-          value: {
-            label: this.iconDescription,
-            position: this.tooltipPosition,
-          },
+          label: this.iconDescription,
+          position: this.tooltipPosition,
         }
       }
       return false
