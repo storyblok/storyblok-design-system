@@ -9,7 +9,6 @@ import SbDatepicker from './Datepicker'
 import SbDropArea from './DropArea'
 import SbFormGroup from './FormGroup'
 import SbFormItem from './FormItem'
-import SbFragment from './Fragment'
 import SbGroupButton from './GroupButton'
 import SbIcon from './Icon'
 import SbLink from './Link'
@@ -57,7 +56,6 @@ export {
   SbDropArea,
   SbFormGroup,
   SbFormItem,
-  SbFragment,
   SbGroupButton,
   SbIcon,
   SbLink,
