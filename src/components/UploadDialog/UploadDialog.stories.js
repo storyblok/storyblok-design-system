@@ -88,12 +88,7 @@ export const Default = (args) => ({
 
   template: `
     <SbUploadDialog
-      :current-file="currentFile"
-      :current-file-name="currentFileName"
-      :percentage-value="percentageValue"
-      :total-files="totalFiles"
-      :time-left="timeLeft"
-      :locale="locale"
+      v-bind="args"
     />
   `,
 })
