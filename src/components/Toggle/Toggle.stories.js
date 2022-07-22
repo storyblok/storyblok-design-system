@@ -39,7 +39,9 @@ export default {
 
 export const Default = (args) => ({
   components: { SbToggle },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <SbToggle
@@ -83,7 +85,9 @@ export const Default = (args) => ({
 
 export const WithIcon = (args) => ({
   components: { SbToggle },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <div style="margin-bottom: 20px">
@@ -103,7 +107,9 @@ export const WithIcon = (args) => ({
 })
 export const WithVariant = (args) => ({
   components: { SbToggle },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <SbToggle

@@ -55,7 +55,9 @@ export const Default = (args) => ({
     SbButton,
     SbPopover,
   },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     isOpen: false,
   }),

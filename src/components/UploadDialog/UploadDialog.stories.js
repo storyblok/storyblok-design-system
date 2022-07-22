@@ -82,7 +82,9 @@ export default {
 export const Default = (args) => ({
   components: { SbUploadDialog },
 
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
 
   template: `
     <SbUploadDialog
@@ -91,7 +93,7 @@ export const Default = (args) => ({
       :percentage-value="percentageValue"
       :total-files="totalFiles"
       :time-left="timeLeft"
-      v-bind="{locale}"
+      :locale="locale"
     />
   `,
 })

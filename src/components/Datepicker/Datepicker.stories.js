@@ -4,7 +4,9 @@ import { datepickerOptions } from './utils'
 const Template = (args) => ({
   components: { SbDatepicker },
 
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
 
   data: () => ({
     internalDatetimeValue: '2017-09-09 00:00',

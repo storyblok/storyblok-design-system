@@ -28,22 +28,12 @@ const description = {
 
 const DataTableTemplate = (args) => ({
   components: { SbDataTable },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbDataTable
-      v-bind="{
-        actions,
-        allowSelection,
-        headers,
-        isLoading,
-        items,
-        keepSelectedOnChange,
-        selectionMode,
-        hideHeader,
-        hideLabelActionsBreakpoint,
-        striped,
-        stickyMenu
-      }"
+      v-bind="args"
     />
   `,
 })
@@ -518,21 +508,13 @@ export const Slots = (args) => ({
     SbAvatar,
     SbDataTableColumn,
   },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <SbDataTable
-        v-bind="{
-          actions,
-          allowSelection,
-          headers,
-          isLoading,
-          items,
-          keepSelectedOnChange,
-          selectionMode,
-          hideHeader,
-          striped
-        }"
+        v-bind="args"
       >
         <SbDataTableColumn label="Spaces" :sortable="true" value="title" v-slot="props" width="50%">
           <span class="sb-data-table__col-main">{{ props.row.title }}</span><br>
@@ -614,20 +596,13 @@ export const CustomHeaderSlots = (args) => ({
     SbIcon,
     SbSelect,
   },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <SbDataTable
-        v-bind="{
-          actions,
-          allowSelection,
-          isLoading,
-          items,
-          keepSelectedOnChange,
-          selectionMode,
-          hideHeader,
-          striped
-        }"
+        v-bind="args"
       >
         <SbDataTableColumn label="Spaces" :sortable="true" value="title" width="50%">
           <template slot="header">

@@ -75,79 +75,44 @@ export default {
 
 export const Default = (args) => ({
   components: { SbLink },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbLink
-      v-bind="{
-        as,
-        label,
-        href,
-        title,
-        type
-      }"
+      v-bind="args"
     />
   `,
 })
 
 export const InlineLabel = (args) => ({
   components: { SbLink },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
-    <SbLink
-      v-bind="{
-        as,
-        href,
-        title,
-        type
-      }"
-    >
+    <SbLink>
       {{ label }}
     </SbLink>
   `,
 })
 
-// export const Secondary = args => ({
-//   props: Object.keys(args),
-//   components: { SbLink },
-//   template: `<div>
-//     <SbLink
-//       v-bind="{
-//         label,
-//         type
-//       }"
-//     />
-//   </div>`
-// })
-
-// Secondary.args = {
-//   label: 'Secondary link button',
-//   type: 'secondary'
-// }
-
 export const WithIcon = (args) => ({
   components: { SbLink },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div>
       <div>
         <SbLink
-          v-bind="{
-            label: primaryLabel,
-            href,
-            title,
-            icon
-          }"
+          v-bind="args"
         />
       </div>
 
       <div style="margin-top: 20px">
         <SbLink
-          v-bind="{
-            label: secondaryLabel,
-            href,
-            title,
-            iconRight,
-            type: 'secondary'
-          }"
+          v-bind="args"
+          type="secondary"
         />
       </div>
   </div>`,

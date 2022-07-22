@@ -4,17 +4,12 @@ import { loadingTypes, loadingSizes } from './utils'
 
 const LoadingBlockTemplate = (args) => ({
   components: { SbLoading },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbLoading
-      v-bind="{
-        type,
-        size,
-        value,
-        showPercentage,
-        color,
-        uiBlock
-      }"
+      v-bind="args"
     />
   `,
 })

@@ -15,7 +15,9 @@ export default {
 
 export const Default = (args) => ({
   components: { SbButton, SbFormItem, SbRadio, SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 'Selected',
     placeholder: 'Placeholder',

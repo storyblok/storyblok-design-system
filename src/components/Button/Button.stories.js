@@ -9,7 +9,9 @@ const availableIcons = Object.keys(LIB_ICONS)
 
 const ButtonTemplate = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <SbButton
@@ -200,7 +202,9 @@ export default {
 
 export const Default = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbButton
       :is-rounded="isRounded"
@@ -216,7 +220,7 @@ export const Default = (args) => ({
       :variant="variant"
       :tooltip-position="tooltipPosition"
       :type="type"
-  
+
     />
   `,
 })
@@ -310,7 +314,9 @@ Caution.parameters = {
 
 export const Sizes = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div>
     <SbButton label="Small" size="small" :variant="variant" :icon="icon" />
     <SbButton label="Default" :variant="variant" :icon="icon" />
@@ -329,7 +335,9 @@ Sizes.parameters = {
 
 export const FullWidth = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div style="max-width: 500px;">
     <SbButton
       :variant="variant"
@@ -359,7 +367,9 @@ FullWidth.parameters = {
 
 export const JustIcons = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div style="max-width: 500px;">
     <SbButton
       variant="primary"
@@ -416,7 +426,9 @@ JustIcons.parameters = {
 
 export const InlineLabel = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div style="max-width: 500px;">
     <SbButton
       :variant="variant"
@@ -445,7 +457,9 @@ InlineLabel.parameters = {
 
 export const LoadingButton = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbButton
       :is-rounded="isRounded"

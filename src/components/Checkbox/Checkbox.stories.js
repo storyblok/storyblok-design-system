@@ -16,7 +16,9 @@ export default {
 
 export const Default = (args) => ({
   components: { SbCheckbox },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <SbCheckbox
@@ -45,7 +47,9 @@ export const Default = (args) => ({
 
 export const Selected = (args) => ({
   components: { SbCheckbox },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <div style="margin-bottom: 20px">
@@ -96,7 +100,9 @@ export const Selected = (args) => ({
 
 export const Inline = (args) => ({
   components: { SbCheckbox },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <div style="margin-bottom: 20px;">

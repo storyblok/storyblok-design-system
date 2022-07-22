@@ -4,7 +4,9 @@ import { SbTabPanels, SbTabPanel } from '../TabPanels'
 // @vue/component
 const TabsTemplate = (template) => (args) => ({
   components: { SbTabs, SbTab, SbTabPanel, SbTabPanels },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data() {
     return {
       tabs: [

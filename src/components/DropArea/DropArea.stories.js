@@ -76,7 +76,9 @@ export default {
 
 export const Default = (args) => ({
   components: { SbDropArea },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbDropArea
       :accept="accept"
@@ -90,7 +92,9 @@ export const Default = (args) => ({
 
 export const DropAreaWithUploadModal = (args) => ({
   components: { SbDropArea, SbUploadDialog },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data() {
     return {
       hasFiles: true,
@@ -119,7 +123,9 @@ export const DropAreaWithUploadModal = (args) => ({
 
 export const DefaultWithUploadButton = (args) => ({
   components: { SbDropArea },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbDropArea
       :accept="accept"

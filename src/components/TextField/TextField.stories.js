@@ -28,7 +28,9 @@ export default {
 
 export const Default = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 'Boris Spassky',
     internalType: 'password',
@@ -140,7 +142,9 @@ export const Default = (args) => ({
 
 export const withIcon = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 'Boris Spassky',
   }),
@@ -232,7 +236,9 @@ export const withIcon = (args) => ({
 
 export const Ghost = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 'Boris Spassky',
     internalType: 'text',
@@ -286,7 +292,9 @@ export const Ghost = (args) => ({
 
 export const withText = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 'Boris Spassky',
   }),
@@ -324,7 +332,9 @@ export const withText = (args) => ({
 
 export const TextArea = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 'Boris Spassky',
   }),

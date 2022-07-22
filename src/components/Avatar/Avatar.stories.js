@@ -109,19 +109,12 @@ export default {
 
 export const Default = (args) => ({
   components: { SbAvatar },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbAvatar
-      v-bind="{
-        bgColor,
-        description,
-        descriptionPosition,
-        name,
-        size,
-        showName,
-        src,
-        status
-      }"
+      v-bind="args"
     />
   `,
 })
@@ -223,31 +216,22 @@ WithUsername.parameters = {
 
 export const WithDescription = (args) => ({
   components: { SbAvatar },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div>
     <div>
       <SbAvatar
-        v-bind="{
-          description,
-          descriptionPosition: 'top',
-          name,
-          size,
-          showName,
-          bgColor: 'primary',
-        }"
+        v-bind="args"
+        descriptionPosition="top"
       />
     </div>
 
     <div style="margin-top: 20px">
       <SbAvatar
-        v-bind="{
-          description,
-          descriptionPosition: 'bottom',
-          name,
-          size,
-          showName,
-          bgColor: 'primary-dark',
-        }"
+        v-bind="args"
+        descriptionPosition="bottom"
+        bg-color="primary-dark"
       />
     </div>
   </div>`,
@@ -297,7 +281,9 @@ WithFallback.parameters = {
 
 export const WithStatus = (args) => ({
   components: { SbAvatar },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: '<SbAvatar :src="src" :status="status" :size="size" />',
 })
 
@@ -308,7 +294,9 @@ WithStatus.args = {
 
 export const WithInitials = (args) => ({
   components: { SbAvatar },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div>
     <SbAvatar :size="size" :name="name" :bg-color="bgColor" />
   </div>`,
@@ -357,7 +345,9 @@ WithInternalElements.parameters = {
 
 export const WithTooltip = (args) => ({
   components: { SbAvatar },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: '<SbAvatar :src="src" :name="name" :use-tooltip="useTooltip" />',
 })
 

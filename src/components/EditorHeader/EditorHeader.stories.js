@@ -50,20 +50,12 @@ const actionsList = [
 
 const EditorTemplate = (args) => ({
   components: { SbEditorHeader },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbEditorHeader
-      v-bind="{
-        languages,
-        users,
-        actions,
-        options,
-        spaceStatus,
-        hasSaveButton,
-        showPublishedIcon,
-        headerTitle,
-        headerSubTitle,
-      }"
+      v-bind="args"
     />
   `,
 })

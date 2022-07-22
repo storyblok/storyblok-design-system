@@ -24,7 +24,9 @@ export default {
 
 export const Default = (args) => ({
   components: { SbNumberField },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 10,
   }),

@@ -37,7 +37,9 @@ const SidebarTemplate = (args) => ({
     SbMenuItem,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
 
   data: () => ({
     internalMinimize: false,

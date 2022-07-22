@@ -2,18 +2,12 @@ import SbNotification from './index'
 
 const NotificationTemplate = (args) => ({
   components: { SbNotification },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbNotification
-      v-bind="{
-        status,
-        title,
-        description ,
-        linkName,
-        link,
-        isExpandable,
-        isFull,
-      }"/>`,
+      v-bind="args"/>`,
 })
 
 export default {
@@ -94,58 +88,30 @@ export const Default = NotificationTemplate.bind({})
 
 export const AllStatus = (args) => ({
   components: { SbNotification },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div>
     <SbNotification
-      v-bind="{
-        status: 'positive',
-        title,
-        description ,
-        linkName,
-        link,
-        isExpandable,
-        isFull
-      }"/>
+      status="positive"
+      v-bind="args"
+    />
     <SbNotification
-      v-bind="{
-        status: 'general',
-        title,
-        description ,
-        linkName,
-        link,
-        isExpandable,
-        isFull
-      }"/>
+      status="general"
+      v-bind="args"
+    />
     <SbNotification
-      v-bind="{
-        status: 'warning',
-        title,
-        description ,
-        linkName,
-        link,
-        isExpandable,
-        isFull
-      }"/>
+      status="warning"
+      v-bind="args"
+    />
     <SbNotification
-      v-bind="{
-        status: 'info',
-        title,
-        description ,
-        linkName,
-        link,
-        isExpandable,
-        isFull
-    }"/>
+     status="info"
+      v-bind="args"
+      />
     <SbNotification
-      v-bind="{
-        status: 'negative',
-        title,
-        description ,
-        linkName,
-        link,
-        isExpandable,
-        isFull
-      }"/>
+      status="negativ"
+      v-bind="args"
+      />
   </div>`,
 })
 
@@ -160,48 +126,31 @@ AllStatus.parameters = {
 
 export const AllSizes = (args) => ({
   components: { SbNotification },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div>
     <SbNotification
-        v-bind="{
-          status: 'positive',
-          title,
-          description ,
-          linkName,
-          link,
-          isExpandable,
-          isFull
-    }"/>
+        status="positive"
+        v-bind="args"
+      />
     <SbNotification
-      v-bind="{
-        status: 'positive',
-        title,
-        description: 'This is a awesome component from Storyblok DS.',
-        linkName,
-        link: 'http://#',
-        isExpandable,
-        isFull
-    }"/>
+      status="positive"
+      description="This is a awesome component from Storyblok DS."
+      link="http://#"
+      v-bind="args"
+      />
     <SbNotification
-      v-bind="{
-        status: 'negative',
-        title,
-        description,
-        linkName,
-        link,
-        isExpandable,
-        isFull: true
-    }"/>
+      status="negative"
+      isFull="true"
+      v-bind="args"/>
     <SbNotification
-        v-bind="{
-          status: 'negative',
-          title,
-          description: 'This is a awesome component from Storyblok Desing Sistem',
-          linkName,
-          link: 'http://#',
-          isExpandable,
-          isFull: true
-    }"/>
+      status="negative"
+      description="This is a awesome component from Storyblok Desing Sistem"
+      link="http://#"
+      isFull="true"
+      v-bind="args"
+      />
   </div>`,
 })
 
@@ -216,31 +165,28 @@ AllSizes.parameters = {
 
 export const ExpandableNotification = (args) => ({
   components: { SbNotification },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div>
     <SbNotification
-        v-bind="{
-          status: 'info',
-          title,
-          description: 'This is a awesome component from Storyblok Desing Sistem',
-          linkName,
-          link: 'http://#',
-          isExpandable: true,
-          isFull
-    }"/>
+        status="info"
+        description="This is a awesome component from Storyblok Desing Sistem"
+        link="http://#"
+        isExpandable="true"
+        v-bind="args"
+        />
 
     <br />
 
     <SbNotification
-        v-bind="{
-          status: 'info',
-          title,
-          description: 'This is a awesome component from Storyblok Desing Sistem',
-          linkName,
-          link: 'http://#',
-          isExpandable: true,
-          isFull: true
-    }"/>
+      status="info"
+      description="This is a awesome component from Storyblok Desing Sistem"
+      isExpandable="true"
+      link="http://#"
+      isFull="true"
+      v-bind="args"
+    />
   </div>`,
 })
 

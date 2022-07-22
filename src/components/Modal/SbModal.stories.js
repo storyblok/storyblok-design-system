@@ -37,7 +37,9 @@ const StoriesModalMixin = (args, storyContext) => {
   return {
     mixins: [StorybookInjectionsMixin(storyContext)],
 
-    props: Object.keys(args),
+    setup() {
+      return { args }
+    },
 
     data: () => ({
       showModal: false,
@@ -77,11 +79,7 @@ const ModalTemplate = (args, storyContext) => ({
         @hide="showModal = false"
       >
         <SbModalHeader
-          v-bind="{
-            title,
-            icon,
-            align,
-          }"
+          v-bind="args"
         />
 
         <SbModalContent>
@@ -101,7 +99,9 @@ const ModalTemplate = (args, storyContext) => ({
 const ModalTypeTemplate = (args, storyContext) => ({
   mixins: [StorybookInjectionsMixin(storyContext)],
 
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
 
   components: { SbModalType },
 
@@ -221,9 +221,7 @@ export const ModalWithoutFooter = (args, storyContext) => ({
     />
     <SbModal :is-open="showModal" v-on:hide="showModal = false">
       <SbModalHeader
-        v-bind="{
-          title,
-        }"
+        v-bind="args"
       />
 
       <SbModalContent>

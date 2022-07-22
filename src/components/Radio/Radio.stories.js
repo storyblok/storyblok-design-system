@@ -18,7 +18,9 @@ export default {
 
 export const Default = (args) => ({
   components: { SbRadio },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 'Jon Doe',
   }),
@@ -39,7 +41,9 @@ export const Default = (args) => ({
 
 export const Selected = (args) => ({
   components: { SbRadio },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 'Jon Doe',
   }),
@@ -67,7 +71,9 @@ export const Selected = (args) => ({
 
 export const Inline = (args) => ({
   components: { SbRadio },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 'Jon Doe',
   }),

@@ -121,7 +121,9 @@ export default {
 const MinibrowserTemplate = (args) => ({
   components: { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader },
 
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
 
   data: () => ({
     internalLoading: false,

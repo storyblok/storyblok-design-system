@@ -68,7 +68,9 @@ export default {
 }
 
 export const Default = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -100,7 +102,9 @@ export const Default = (args) => ({
 })
 
 export const WithSeparators = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -133,7 +137,9 @@ export const WithSeparators = (args) => ({
 })
 
 export const WithIcons = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -162,7 +168,9 @@ export const WithIcons = (args) => ({
 })
 
 export const ButtonWithJustIcon = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -191,7 +199,9 @@ export const ButtonWithJustIcon = (args) => ({
 })
 
 export const AlongWithGroup = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -225,7 +235,9 @@ export const AlongWithGroup = (args) => ({
 })
 
 export const WithLinksOnMenuItem = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -258,7 +270,9 @@ export const WithLinksOnMenuItem = (args) => ({
 })
 
 export const WithoutIconRight = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -286,7 +300,9 @@ WithoutIconRight.args = {
 }
 
 export const WithIconLeft = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -303,7 +319,7 @@ export const WithIconLeft = (args) => ({
     :icon="icon"
     label="Combo"
     size="small"
-    :icon-right="iconRight" 
+    :icon-right="iconRight"
   />
 
     <SbMenuList placement="bottom-start" :reference="$refs.contentButton">
