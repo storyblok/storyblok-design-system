@@ -19,8 +19,11 @@
   border-radius: 5px;
 
   &__label {
+    display: flex;
     flex: 1;
-    overflow: auto;
+    gap: 5px;
+    align-items: center;
+    overflow: hidden;
     line-height: 1.4em;
     text-overflow: ellipsis;
   }

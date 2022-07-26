@@ -59,6 +59,7 @@
       :multiple="multiple"
       :use-avatars="useAvatars"
       :no-data-text="noDataText"
+      :no-data-text-tag="noDataTextTag"
       :allow-create="allowCreate"
       :emit-option="emitOption"
       :show-caption="showCaption"
@@ -170,6 +171,10 @@ export default {
     noDataText: {
       type: String,
       default: 'Sorry, no result found.',
+    },
+    noDataTextTag: {
+      type: String,
+      default: 'Start typing to add new tag.',
     },
     errorMessage: {
       type: String,

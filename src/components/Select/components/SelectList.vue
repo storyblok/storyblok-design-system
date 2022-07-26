@@ -30,9 +30,13 @@
         @keydown.enter="handleOptionCreated(searchInput)"
         @click="handleOptionCreated(searchInput)"
       >
-        <span class="sb-select-list__create-label">Create tag</span> "{{
-          searchInput
-        }}"
+        <span class="sb-select-list__create-label">Create tag</span>
+        <span class="sb-select-list__create-value" :title="searchInput">
+          "{{ searchInput }}"
+        </span>
+      </li>
+      <li v-else-if="showTextStartingTagCreation">
+        <span class="sb-select-list__empty"> {{ noDataTextTag }} </span>
       </li>
       <li v-else-if="!hasOptions && !isLoading">
         <span class="sb-select-list__empty">{{ noDataText }}</span>
@@ -81,6 +85,10 @@ export default {
       default: 'value',
     },
     noDataText: {
+      type: String,
+      required: true,
+    },
+    noDataTextTag: {
       type: String,
       required: true,
     },
@@ -143,6 +151,15 @@ export default {
         this.allowCreate &&
         this.multiple &&
         this.searchInput
+      )
+    },
+
+    showTextStartingTagCreation() {
+      return (
+        (this.hasPartialMatch || !this.hasOptions) &&
+        !this.hasExactMatch &&
+        this.allowCreate &&
+        this.multiple
       )
     },
   },

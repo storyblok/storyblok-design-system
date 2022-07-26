@@ -9,6 +9,9 @@ import {
 
 import SbButton from '../Button'
 import SbGroupButton from '../GroupButton'
+import LIB_ICONS from '../../lib/internal-icons'
+
+const availableIcons = Object.keys(LIB_ICONS)
 
 export default {
   title: 'Design System/Components/SbMenu',
@@ -23,6 +26,8 @@ export default {
   },
   args: {
     value: true,
+    iconRight: 'chevron-down',
+    icon: null,
   },
   argTypes: {
     value: {
@@ -38,6 +43,24 @@ export default {
       description: `When SbMenuList has more items than the screen's height, it could lead to an undesired scroll behavior. Set this property to false to prevent this.`,
       control: {
         type: 'boolean',
+      },
+      default: true,
+    },
+    iconRight: {
+      name: 'IconRight',
+      description: `When the arrow down icon located at the right side of SbMenuButton is not needed for SbMenuButton, set this parameter to false.`,
+      control: {
+        type: 'select',
+        options: availableIcons,
+      },
+      default: true,
+    },
+    icon: {
+      name: 'Icon',
+      description: `When the arrow down icon located at the left side of SbMenuButton is not needed for SbMenuButton, set this parameter to false.`,
+      control: {
+        type: 'select',
+        options: availableIcons,
       },
       default: true,
     },
@@ -57,7 +80,7 @@ export const Default = (args) => ({
   template: `
     <div>
       <SbMenu :value="value">
-        <SbMenuButton label="Combo button" />
+        <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
           <SbMenuGroup title="Actions">
@@ -89,7 +112,7 @@ export const WithSeparators = (args) => ({
   template: `
     <div>
       <SbMenu :value="value">
-        <SbMenuButton label="Combo button" />
+        <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
           <SbMenuItem> Option 1 </SbMenuItem>
@@ -122,7 +145,7 @@ export const WithIcons = (args) => ({
   template: `
     <div>
       <SbMenu :value="value">
-        <SbMenuButton label="Combo button" />
+        <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
           <SbMenuItem icon="calendar"> Option 1 </SbMenuItem>
@@ -151,7 +174,7 @@ export const ButtonWithJustIcon = (args) => ({
   template: `
     <div>
       <SbMenu :value="value">
-        <SbMenuButton has-icon-only is-rounded />
+        <SbMenuButton has-icon-only is-rounded :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
           <SbMenuItem icon="calendar"> Option 1 </SbMenuItem>
@@ -214,7 +237,7 @@ export const WithLinksOnMenuItem = (args) => ({
   template: `
     <div>
       <SbMenu :value="value">
-        <SbMenuButton label="Combo button" />
+        <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
           <SbMenuGroup title="Links">
@@ -233,3 +256,66 @@ export const WithLinksOnMenuItem = (args) => ({
     </div>
   `,
 })
+
+export const WithoutIconRight = (args) => ({
+  props: Object.keys(args),
+  components: {
+    SbMenu,
+    SbMenuButton,
+    SbMenuList,
+    SbMenuItem,
+    SbMenuGroup,
+    SbMenuSeparator,
+  },
+  template: `
+  <div>
+  <SbMenu :value="value">
+    <SbMenuButton label="Combo button" ref="contentButton" :icon-right="iconRight" :icon="icon" />
+
+    <SbMenuList placement="bottom-start" :reference="$refs.contentButton">
+      <SbMenuItem> Option 1 </SbMenuItem>
+      <SbMenuItem> Option 2 </SbMenuItem>
+    </SbMenuList>
+  </SbMenu>
+</div>
+  `,
+})
+
+WithoutIconRight.args = {
+  iconRight: null,
+}
+
+export const WithIconLeft = (args) => ({
+  props: Object.keys(args),
+  components: {
+    SbMenu,
+    SbMenuButton,
+    SbMenuList,
+    SbMenuItem,
+    SbMenuGroup,
+    SbMenuSeparator,
+  },
+  template: `
+  <div>
+  <SbMenu :value="value">
+  <SbMenuButton
+    ref="contentButton"
+    :icon="icon"
+    label="Combo"
+    size="small"
+    :icon-right="iconRight" 
+  />
+
+    <SbMenuList placement="bottom-start" :reference="$refs.contentButton">
+      <SbMenuItem> Option 1 </SbMenuItem>
+      <SbMenuItem> Option 2 </SbMenuItem>
+    </SbMenuList>
+  </SbMenu>
+</div>
+  `,
+})
+
+WithIconLeft.args = {
+  iconRight: null,
+  icon: 'plus',
+}

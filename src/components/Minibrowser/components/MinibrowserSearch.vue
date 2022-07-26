@@ -7,11 +7,7 @@
   >
     <input
       ref="input"
-      class="
-        sb-textfield__input
-        sb-textfield__input--default
-        sb-textfield__input--ghost-light
-      "
+      class="sb-textfield__input sb-textfield__input--default sb-textfield__input--ghost-light"
       type="search"
       :value="value"
       :placeholder="placeholder"

@@ -11,18 +11,6 @@
   &:first-child .sb-accordion__button {
     border-top-width: 0;
   }
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    width: 1px;
-    height: 100%;
-    background-color: $sb-dark-blue;
-    opacity: 0;
-  }
 }
 
 .sb-accordion__title {
@@ -46,10 +34,6 @@
 
   .sb-accordion__button {
     border-bottom-color: transparent;
-  }
-
-  &::after {
-    opacity: 1;
   }
 }
 
@@ -96,14 +80,9 @@
   display: block;
 }
 
-
 .sb-accordion--no-highlight {
   &.sb-accordion--open {
     background: transparent;
-
-    &::after {
-      opacity: 0;
-    }
 
     &:hover .sb-accordion__button {
       color: $sb-dark-blue;
@@ -121,7 +100,9 @@
 
 .sb-accordion--no-border {
   border-color: transparent;
-  .sb-accordion__button, &:last-child {
+
+  .sb-accordion__button,
+  &:last-child {
     border-color: transparent;
   }
 }

@@ -75,6 +75,11 @@ const SbDataTable = {
       type: Boolean,
       default: false,
     },
+    stickyMenu: {
+      required: false,
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
@@ -183,11 +188,10 @@ const SbDataTable = {
      * @param {Object} row
      */
     deselectRow(row) {
-      const index = this.selectedRows.indexOf(row)
-
-      if (index > -1) {
-        this.selectedRows.splice(index, 1)
-      }
+      this.selectedRows = this.selectedRows.filter((selectedRow) => {
+        if (JSON.stringify(selectedRow) !== JSON.stringify(row))
+          return selectedRow
+      })
     },
 
     /**
@@ -228,6 +232,7 @@ const SbDataTable = {
           actions: this.actions,
           hideLabelActionsBreakpoint: this.hideLabelActionsBreakpoint,
           selectedRows: this.hasSelectedRowsInList,
+          sticky: this.stickyMenu,
         },
         on: {
           click: (value) => this.$emit('emit-action', value),

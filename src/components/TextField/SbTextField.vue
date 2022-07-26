@@ -1,8 +1,8 @@
 <template>
   <div class="sb-textfield">
-    <label v-if="label" :for="id" class="sb-textfield__label">{{
-      label
-    }}</label>
+    <label v-if="label" :for="id" class="sb-textfield__label">
+      {{ label }} <span v-if="required" class="sb-textfield__required">*</span>
+    </label>
     <div class="sb-textfield__inner">
       <span v-if="prefix" class="sb-textfield__prefix">{{ prefix }}</span>
       <input
@@ -76,7 +76,7 @@
         />
       </SbTooltip>
       <SbIcon
-        v-if="(iconRight || error) && type !== 'password'"
+        v-if="hasIconRight"
         :name="iconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
@@ -93,11 +93,7 @@
         v-if="showClearIcon"
         v-tooltip="{ label: 'Clear' }"
         name="x-clear"
-        class="
-          sb-textfield__icon
-          sb-textfield__icon--right
-          sb-textfield__icon--pointer
-        "
+        :class="computedIconClasses"
         :color="iconColor"
         @click="handleClearableClick"
       />
@@ -169,6 +165,14 @@ export default {
   computed: {
     hasValue() {
       return this.computedValue !== null && ('' + this.computedValue).length > 0
+    },
+
+    computedIconClasses() {
+      return [
+        'sb-textfield__icon',
+        'sb-textfield__icon--right',
+        'sb-textfield__icon--pointer',
+      ]
     },
 
     hasSpecialClass() {
@@ -244,6 +248,13 @@ export default {
 
     returnIconCustomColor() {
       return this.iconCustomColor ? `color: ${this.iconCustomColor};` : ''
+    },
+
+    hasIconRight() {
+      return (
+        (this.iconRight || (this.error && this.iconRight)) &&
+        this.type !== 'password'
+      )
     },
   },
 
