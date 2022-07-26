@@ -90,14 +90,17 @@ const SbPagination = {
     handlePreviousPage() {
       if (!this.isFirstDisabled) {
         this.updateValue(this.value - 1)
+        this.$emit('on-previous-page', this.value - 1)
       }
     },
     handleNextPage() {
       if (!this.isLastDisabled) {
         this.updateValue(this.value + 1)
+        this.$emit('on-next-page', this.value + 1)
       }
     },
     onPageChange(page) {
+      this.$emit('page-change', page)
       this.updateValue(page)
     },
     onPerPageChange(perPage) {
