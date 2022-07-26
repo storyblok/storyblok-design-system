@@ -2,10 +2,10 @@
   <button
     v-tooltip="useTooltipDirective"
     :class="activeClasses"
-    v-bind="$attrs"
     :disabled="isDisabled || isLoading"
     :ariaDisabled="isDisabled || isLoading"
     :type="type"
+    v-on="$listeners"
     @click="handleClick"
   >
     <SbLoading
