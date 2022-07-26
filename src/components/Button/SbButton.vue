@@ -5,7 +5,7 @@
     :disabled="isDisabled || isLoading"
     :ariaDisabled="isDisabled || isLoading"
     :type="type"
-    v-on="$listeners"
+    v-on="localListeners"
     @click="handleClick"
   >
     <SbLoading
@@ -98,6 +98,10 @@ export default {
   emits: ['click'],
 
   computed: {
+    localListeners() {
+      const { click, ...listeners } = this.$listeners
+      return listeners
+    },
     activeClasses() {
       return [
         'sb-button',
