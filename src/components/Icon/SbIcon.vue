@@ -2,8 +2,8 @@
   <svg
     :class="classes"
     :role="role || 'presentation'"
-    :viewBox="iconDeff.viewBox"
-    v-html="iconDeff.path"
+    :viewBox="icon.viewBox"
+    v-html="icon.path"
   ></svg>
 </template>
 
@@ -40,7 +40,7 @@ export default {
     },
   },
   computed: {
-    iconDeff() {
+    icon() {
       const iconDeff = iconPaths[this.name]
 
       if (!iconDeff) {
