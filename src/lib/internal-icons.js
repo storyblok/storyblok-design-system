@@ -391,6 +391,15 @@ const icons = {
       </path>
     `,
   },
+  reload: {
+    viewBox: '0 0 24 24',
+    path: `
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <path d="M18.0755413,8.52085599 C16.8682048,6.41705513 14.5995879,5 12,5 C8.13400675,5 5,8.13400675 5,12 C5,13.3356896 5.37410096,14.5840032 6.02324021,15.6458782 C7.25295664,17.657473 9.46969633,19 12,19 C14.3253003,19 16.3857878,17.8662016 17.658789,16.1212783" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      <circle fill="currentColor" cx="18" cy="9.5" r="2.5"></circle>
+    </g>
+    `,
+  },
   schema: {
     viewBox: '0 0 24 24',
     path: `<path fill="currentColor" fill-rule="evenodd" d="M18 14a1 1 0 0 1 1 1v1h1a1 1 0 0 1 0 2h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 1-1zm-7 0a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h6zm0 2H5v2h6v-2zm9-12a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h15zm0 2H5v4h15V6z"/>`,
