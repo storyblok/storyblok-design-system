@@ -65,8 +65,6 @@ export default {
 </script>
 
 <style lang="scss">
-
-
 $icon-colors: (
   'primary': $color-primary,
   'primary-dark': $color-primary-dark,
