@@ -2,8 +2,8 @@
   <div class="sb-card__header" v-bind="$attrs">
     <component :is="as" v-if="title" class="sb-card__title"
       >{{ title }}
-      <slot></slot>
     </component>
+    <slot v-else></slot>
     <SbCardOptions v-if="options" :options="options"></SbCardOptions>
   </div>
 </template>

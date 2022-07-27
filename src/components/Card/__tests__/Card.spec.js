@@ -1,14 +1,15 @@
 import {
   SbCard,
-  SbCardHeader,
   SbCardContent,
   SbCardFooter,
+  SbCardHeader,
   SbCardOptions,
 } from '../'
 
 import SbLink from '../../Link'
 
 import { mount } from '@vue/test-utils'
+import SbLoading from '../../Loading'
 import {
   SbMenu,
   SbMenuButton,
@@ -16,7 +17,6 @@ import {
   SbMenuItem,
   SbMenuSeparator,
 } from '../../Menu'
-import SbLoading from '../../Loading'
 
 const cardOptionsMock = [
   {
@@ -73,8 +73,8 @@ describe('SbCardHeader component', () => {
       expect(wrapper.classes('sb-card__header')).toBe(true)
     })
 
-    it('should render a span with text', () => {
-      expect(wrapper.find('span').text()).toBe(title)
+    it('should render title', () => {
+      expect(wrapper.find('.sb-card__title').text()).toBe(title)
     })
   })
 
