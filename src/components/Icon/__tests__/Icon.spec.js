@@ -8,7 +8,7 @@ const factory = (propsData) => {
 }
 
 describe('SbIcon component', () => {
-  it('should not appent the size class when do not pass the correct size', () => {
+  it('should not append the size class when do not pass the correct size', () => {
     const wrapper = factory({
       name: 'calendar',
     })
@@ -53,6 +53,17 @@ describe('SbIcon component', () => {
       })
 
       expect(wrapper.classes('sb-icon--color-primary')).toBe(true)
+    })
+  })
+
+  describe('when pass role attribute', () => {
+    it('should append role attribute', () => {
+      const wrapper = factory({
+        name: 'calendar',
+        role: 'test',
+      })
+
+      expect(wrapper.attributes('role')).toBe('test')
     })
   })
 })
