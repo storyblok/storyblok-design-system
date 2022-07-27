@@ -3,6 +3,7 @@
     :class="classes"
     :role="role || 'presentation'"
     :viewBox="icon.viewBox"
+    v-on="$listeners"
     v-html="icon.path"
   ></svg>
 </template>
