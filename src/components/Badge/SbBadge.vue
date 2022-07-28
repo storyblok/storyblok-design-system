@@ -4,6 +4,7 @@
     <span v-if="hasLabelToRender" class="sb-badge__label"
       ><slot>{{ activeLabel }}</slot></span
     >
+    <slot v-else></slot>
   </div>
 </template>
 
