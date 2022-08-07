@@ -1,6 +1,6 @@
 <template>
   <div class="sb-card__options">
-    <SbMenu>
+    <SbMenu v-if="options">
       <SbMenuButton
         icon-name="menu-horizontal"
         :has-icon-only="true"
