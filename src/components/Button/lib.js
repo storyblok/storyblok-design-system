@@ -1,4 +1,4 @@
-import { includes, availableSizes } from '../../utils'
+import { availableSizes, includes } from '../../utils'
 
 /**
  * @type {Array<string>}
@@ -11,6 +11,7 @@ export const availableVariants = [
   'inverted-link',
   'primary-link',
   'caution',
+  'ghost',
 ]
 
 /**
