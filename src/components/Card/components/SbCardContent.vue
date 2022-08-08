@@ -2,7 +2,7 @@
   <div class="sb-card__content">
     <slot></slot>
     <div v-if="isLoading" class="sb-card__loading">
-      <SbLoading size="x-large" color="primary"></SbLoading>
+      <SbLoading size="x-large" color="primary" />
     </div>
   </div>
 </template>
