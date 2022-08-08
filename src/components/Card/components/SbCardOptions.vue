@@ -12,10 +12,8 @@
 </template>
 
 <script>
-import { SbMenu, SbMenuButton, SbMenuList } from '../../Menu'
 export default {
   name: 'SbCardOptions',
-  components: [SbMenu, SbMenuButton, SbMenuList],
   props: {
     options: {
       type: Array,
