@@ -1,5 +1,11 @@
 <template>
-  <svg :class="classes" :role="role" :viewBox="viewBox" v-html="iconPath"></svg>
+  <svg
+    class="sb-icon"
+    :class="[sizeClass, colorClass, bgClass]"
+    :role="role ? role : 'presentation'"
+    :viewBox="iconDeff.viewBox"
+    v-html="iconDeff.path"
+  ></svg>
 </template>
 
 <script>
@@ -22,7 +28,6 @@ export default {
     name: {
       type: String,
       default: null,
-      required: true,
     },
     role: {
       type: String,
@@ -34,22 +39,19 @@ export default {
       validator: (size) => iconSizes.indexOf(size) !== -1,
     },
   },
-  setup(props) {
-    const icon = getSvgIcon(props.name)
-    const sizeClass = props.size ? `sb-icon--${props.size}` : null
-    const colorClass = props.color ? `sb-icon--color-${props.color}` : null
-    const bgClass = props.backgroundColor
-      ? `sb-icon--bg-${props.backgroundColor}`
-      : null
-
-    const classes = ['sb-icon', sizeClass, colorClass, bgClass]
-    const viewBox = icon.viewBox
-
-    return {
-      classes,
-      iconPath: icon.path,
-      viewBox,
-    }
+  computed: {
+    iconDeff() {
+      return getSvgIcon(this.name)
+    },
+    sizeClass() {
+      return this.size ? `sb-icon--${this.size}` : null
+    },
+    colorClass() {
+      return this.color ? `sb-icon--color-${this.color}` : null
+    },
+    bgClass() {
+      return this.backgroundColor ? `sb-icon--bg-${this.backgroundColor}` : null
+    },
   },
 }
 </script>
