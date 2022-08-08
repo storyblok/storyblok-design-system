@@ -8,12 +8,12 @@
     :to="to"
     v-on="$listeners"
   >
-    <SbIcon v-if="icon" :name="icon"></SbIcon>
+    <SbIcon v-if="icon" :name="icon" />
     <span v-if="label" class="sb-link__label">{{ label }}</span>
     <span v-if="$slots.default" class="sb-link__label">
       <slot></slot>
     </span>
-    <SbIcon v-if="iconRight" :name="iconRight"></SbIcon>
+    <SbIcon v-if="iconRight" :name="iconRight" />
   </component>
 </template>
 <script>
