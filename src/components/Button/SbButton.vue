@@ -8,22 +8,22 @@
     v-on="localListeners"
     @click="handleClick"
   >
-    <template v-if="isLoading">
-      <span class="sb-button__label">{{ label }}</span>
-      <SbLoading type="spinner" size="small" :color="loadingColor" />
-    </template>
-    <template v-else>
-      <SbIcon v-if="icon" :size="iconSize" :name="icon" :color="iconColor" />
-      <span v-if="!hasIconOnly" class="sb-button__label"
-        ><slot>{{ label }}</slot></span
-      >
-      <SbIcon
-        v-if="iconRight"
-        :size="iconSize"
-        :name="iconRight"
-        :color="iconColor"
-      />
-    </template>
+    <SbIcon v-if="icon" :size="iconSize" :name="icon" :color="iconColor" />
+    <span v-if="!hasIconOnly" class="sb-button__label">
+      <slot>{{ label }}</slot>
+    </span>
+    <SbIcon
+      v-if="iconRight"
+      :size="iconSize"
+      :name="iconRight"
+      :color="iconColor"
+    />
+    <SbLoading
+      v-if="isLoading"
+      type="spinner"
+      size="small"
+      :color="loadingColor"
+    />
   </button>
 </template>
 
