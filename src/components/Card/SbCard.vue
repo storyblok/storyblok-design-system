@@ -25,7 +25,6 @@ export default {
   computed: {
     cardContext() {
       return {
-        // states
         isLoading: this.isLoading,
       }
     },
