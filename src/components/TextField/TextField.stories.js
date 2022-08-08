@@ -101,6 +101,20 @@ export const Default = (args) => ({
         error
       />
       <SbTextField
+      style="margin-bottom: 20px;"
+      :id="id"
+      :name="name"
+      label="With error but no icon"
+      :disabled="disabled"
+      :required="required"
+      :placeholder="placeholder"
+      iconRight=""
+      native-value="Some text with error but no icon"
+      v-model="internalValue"
+      :errorMessage="errorMessage"
+      error
+    />
+      <SbTextField
         style="margin-bottom: 20px;"
         :id="id"
         :name="name"
