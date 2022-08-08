@@ -5,9 +5,8 @@
         :icon-name="'menu-horizontal'"
         :has-icon-only="true"
         :variant="'tertiary'"
-      >
-      </SbMenuButton>
-      <SbMenuList :items="options" :placement="'bottom-end'"></SbMenuList>
+      />
+      <SbMenuList :items="options" :placement="'bottom-end'" />
     </SbMenu>
   </div>
 </template>

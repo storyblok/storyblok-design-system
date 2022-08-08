@@ -4,7 +4,7 @@
       >{{ title }}
     </component>
     <slot v-else></slot>
-    <SbCardOptions v-if="options" :options="options"></SbCardOptions>
+    <SbCardOptions v-if="options" :options="options" />
   </div>
 </template>
 <script>
