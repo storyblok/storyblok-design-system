@@ -11,7 +11,6 @@ export const availableVariants = [
   'inverted-link',
   'primary-link',
   'caution',
-  'ghost',
 ]
 
 /**
