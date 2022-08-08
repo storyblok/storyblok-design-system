@@ -4,7 +4,7 @@
       <SbMenuButton
         :icon-name="'menu-horizontal'"
         :has-icon-only="true"
-        :variant="'primary'"
+        :variant="'tertiary'"
       >
       </SbMenuButton>
       <SbMenuList :items="options" :placement="'bottom-end'"></SbMenuList>
