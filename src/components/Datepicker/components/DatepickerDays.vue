@@ -7,6 +7,7 @@
       :class="{
         'sb-datepicker-days__item--inactive': !dayItem.inMonth,
         'sb-datepicker-days__item--active': dayItem.checked,
+        'sb-datepicker-days__item--current': dayItem.current,
       }"
       @click="($evt) => handleDayClick($evt, dayItem)"
     >
@@ -46,6 +47,7 @@ export default {
           date: dateValue,
           inMonth: false,
           checked: false,
+          current: false,
         })
       }
 
@@ -56,7 +58,8 @@ export default {
           label: i,
           date: dateValue,
           inMonth: true,
-          checked: dayjs(this.value).isSame(dateValue),
+          checked: dayjs(this.value).isSame(dateValue, 'day'),
+          current: dayjs().isSame(dateValue, 'day'),
         })
       }
 
@@ -69,6 +72,7 @@ export default {
           date: dateValue,
           inMonth: false,
           checked: false,
+          current: false,
         })
       }
 
