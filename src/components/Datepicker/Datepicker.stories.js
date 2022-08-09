@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { SbDatepicker } from '.'
 import { datepickerOptions } from './utils'
 
@@ -7,7 +8,7 @@ const Template = (args) => ({
   props: Object.keys(args),
 
   data: () => ({
-    internalDatetimeValue: '2017-09-09 00:00',
+    internalDatetimeValue: dayjs(),
   }),
 
   template: `
