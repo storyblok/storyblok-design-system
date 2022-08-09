@@ -18,8 +18,7 @@
       v-if="!isExpandable && description"
       class="sb-notification--description"
     >
-      {{ descriptionToRender }}
-      <slot></slot>
+      {{ descriptionToRender }}<slot></slot>
     </div>
     <button
       v-if="isExpandable"
@@ -94,18 +93,6 @@ export default {
     return {
       expanded: false,
       staticClass: `sb-notification sb-notification--${this.status}`,
-      dynamicClass: {
-        'sb-notification--expandable': this.expanded,
-        'sb-notification--full': this.isFull,
-        'sb-notification--content':
-          !this.isFull &&
-          !this.isExpandable &&
-          (this.description || this.link || this.$slots.default),
-        'sb-notification--full-content':
-          this.isFull &&
-          (this.description || this.link || this.$slots.default) &&
-          !this.isExpandable,
-      },
       icons: {
         error: 'square-error',
         info: 'square-info',
@@ -117,6 +104,20 @@ export default {
     }
   },
   computed: {
+    dynamicClass() {
+      return {
+        'sb-notification--expandable': this.expandle,
+        'sb-notification--full': this.isFull,
+        'sb-notification--content':
+          !this.isFull &&
+          !this.isExpandable &&
+          (this.description || this.link || this.$slots.default),
+        'sb-notification--full-content':
+          this.isFull &&
+          (this.description || this.link || this.$slots.default) &&
+          !this.isExpandable,
+      }
+    },
     descriptionToRender() {
       return this.description
         ? capitalize(this.description)
