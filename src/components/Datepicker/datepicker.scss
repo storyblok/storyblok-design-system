@@ -9,6 +9,14 @@
     background-color: $sb-dark-blue-25;
   }
 
+  &--current {
+    background-color: $light-50;
+
+    &:hover {
+      background-color: $sb-green-25;
+    }
+  }
+
   &--active {
     font-size: $font-19;
     font-weight: $font-weight-medium;
@@ -76,7 +84,7 @@
 
 .sb-datepicker-header {
   z-index: 2;
-  background-color: $light;
+  background-color: $light-50;
 
   &__top {
     display: flex;
@@ -121,7 +129,7 @@
 .sb-datepicker-week {
   display: flex;
   padding-bottom: 10px;
-  background-color: $light;
+  background-color: $light-50;
 
   span {
     flex: 1;
