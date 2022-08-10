@@ -23,7 +23,7 @@ export default {
     suffix: '.com',
 
     maxlength: 60,
-    mask: '####-##-##'
+    mask: '####-##-##',
   },
 }
 
@@ -389,7 +389,7 @@ export const withMask = (args) => ({
 
 withMask.args = {
   placeholder: '####-##-##',
-  mask: '####-##-##'
+  mask: '####-##-##',
 }
 withMask.parameters = {
   docs: {

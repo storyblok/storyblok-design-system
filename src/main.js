@@ -12,7 +12,6 @@ import createModalPlugin from './components/Modal/plugin/create-modal-plugin'
 // Prefered: as a plugin (directive + filter) + custom placeholders support
 import VueMask from 'v-mask'
 
-
 // Create module definition for Vue.use()
 const BlokInkPlugin = {
   installed: false,

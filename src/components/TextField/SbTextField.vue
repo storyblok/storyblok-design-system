@@ -10,6 +10,7 @@
         :id="id"
         ref="textfield"
         v-model="computedValue"
+        v-mask="mask"
         v-bind="$attrs"
         class="sb-textfield__input"
         :type="internalType"
@@ -26,7 +27,6 @@
         @keydown="handleKeyDownInput"
         @keypress="handleKeyPressInput"
         @keyup="handleKeyUpInput"
-        v-mask="mask"
       />
 
       <textarea
@@ -163,8 +163,8 @@ export default {
     },
     mask: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
 
   computed: {
