@@ -26,6 +26,7 @@
         @keydown="handleKeyDownInput"
         @keypress="handleKeyPressInput"
         @keyup="handleKeyUpInput"
+        v-mask="mask"
       />
 
       <textarea
@@ -160,6 +161,10 @@ export default {
       type: [String, Number, Boolean],
       default: '',
     },
+    mask: {
+      type: String,
+      default: ''
+    }
   },
 
   computed: {
