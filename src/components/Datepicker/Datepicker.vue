@@ -8,7 +8,9 @@
     <div class="sb-datepicker__input">
       <SbTextField
         ref="input"
-        readonly
+        v-model="internalValue"
+        :mask="internalMask"
+        :readonly="readonly"
         clearable
         type="text"
         icon-left="calendar"
@@ -17,6 +19,7 @@
         :value="internalValueFormatted"
         @click.native="handleInputClick"
         @clear="handleClear"
+        v-on:keyup.enter="handleDoneAction"
       />
 
       <template v-if="isShowTzOffset">
@@ -121,6 +124,11 @@ export default {
   props: {
     disabled: Boolean,
 
+    readonly: {
+      type: Boolean,
+      default: true,
+    },
+
     isoDate: {
       type: Boolean,
       default: false,
@@ -168,10 +176,18 @@ export default {
       date: 'YYYY-MM-DD',
       datetime: 'YYYY-MM-DD HH:mm',
     },
+    MASKS: {
+      date: '####-##-##',
+      datetime: '####-##-## ##:##',
+    },
     hitClear: false,
   }),
 
   computed: {
+    internalMask() {
+      return this.MASKS[this.type]
+    },
+
     internalFormat() {
       return this.FORMATS[this.type]
     },
@@ -237,6 +253,11 @@ export default {
     value: {
       handler: 'syncInternalValue',
       immediate: true,
+    },
+    internalValue() {
+      if (this.internalValue.length >= 4) {
+        this.internalDate =this.internalValue
+      }
     },
   },
 
