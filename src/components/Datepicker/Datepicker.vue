@@ -19,7 +19,7 @@
         :value="internalValueFormatted"
         @click.native="handleInputClick"
         @clear="handleClear"
-        v-on:keyup.enter="handleDoneAction"
+        @keyup.enter="handleDoneAction"
       />
 
       <template v-if="isShowTzOffset">
@@ -256,7 +256,7 @@ export default {
     },
     internalValue() {
       if (this.internalValue.length >= 4) {
-        this.internalDate =this.internalValue
+        this.internalDate = this.internalValue
       }
     },
   },
