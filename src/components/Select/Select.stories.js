@@ -204,6 +204,10 @@ export const Default = SelectTemplate.bind({})
 
 export const Multiple = SelectTemplate.bind({})
 
+Multiple.args = {
+  multiple: true,
+}
+
 export const OptionsWithIcon = SelectTemplate.bind({})
 
 export const Filterable = SelectTemplate.bind({})
