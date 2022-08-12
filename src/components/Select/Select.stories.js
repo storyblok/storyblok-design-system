@@ -157,7 +157,7 @@ export const defaultOptionsWithIconData = [
   {
     label: 'Option 4',
     value: 4,
-    icon: 'clock',
+    icon: 'plus',
   },
   {
     label: 'Option 5',
