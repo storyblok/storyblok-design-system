@@ -138,7 +138,7 @@ export const defaultAvatarsData = [
   },
 ]
 
-export const defaultOptionsWithIcons = [
+export const defaultOptionsWithIcon = [
   {
     label: 'Option 1',
     value: 1,
@@ -162,7 +162,7 @@ export const defaultOptionsWithIcons = [
   {
     label: 'Option 5',
     value: 5,
-    icon: 'give-feedback',
+    icon: 'home',
   },
   {
     label: 'Option 6',
@@ -211,7 +211,7 @@ Multiple.args = {
 export const OptionsWithIcon = SelectTemplate.bind({})
 
 OptionsWithIcon.args = {
-  options: [...defaultOptionsWithIcons],
+  options: [...defaultOptionsWithIcon],
 }
 
 export const Filterable = SelectTemplate.bind({})
