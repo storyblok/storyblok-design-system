@@ -303,6 +303,7 @@
 
   &__item-name {
     overflow: hidden;
+    line-height: normal;
     text-overflow: ellipsis;
   }
 
@@ -328,6 +329,10 @@
 .sb-select-list__item--with-path {
   flex-flow: column;
   align-items: flex-start;
+}
+
+.sb-select-list__item-icon {
+  margin-right: 10px;
 }
 
 .sb-select-list__item-caption {
