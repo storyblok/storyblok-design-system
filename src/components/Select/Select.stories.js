@@ -210,6 +210,10 @@ Multiple.args = {
 
 export const OptionsWithIcon = SelectTemplate.bind({})
 
+OptionsWithIcon.args = {
+  options: [...defaultOptionsWithIcons],
+}
+
 export const Filterable = SelectTemplate.bind({})
 
 Filterable.args = {
