@@ -138,6 +138,44 @@ export const defaultAvatarsData = [
   },
 ]
 
+export const defaultOptionsWithIcons = [
+  {
+    label: 'Option 1',
+    value: 1,
+    icon: 'home',
+  },
+  {
+    label: 'Option 2',
+    value: 2,
+    icon: 'folder-fill',
+  },
+  {
+    label: 'Option 3',
+    value: 3,
+    icon: 'folder-fill',
+  },
+  {
+    label: 'Option 4',
+    value: 4,
+    icon: 'clock',
+  },
+  {
+    label: 'Option 5',
+    value: 5,
+    icon: 'give-feedback',
+  },
+  {
+    label: 'Option 6',
+    value: 6,
+    icon: 'plus',
+  },
+  {
+    label: 'Option 7',
+    value: 7,
+    icon: 'refresh',
+  },
+]
+
 export default {
   title: 'Design System/Components/Form/SbSelect',
   component: SbSelect,
@@ -166,9 +204,7 @@ export const Default = SelectTemplate.bind({})
 
 export const Multiple = SelectTemplate.bind({})
 
-Multiple.args = {
-  multiple: true,
-}
+export const OptionsWithIcon = SelectTemplate.bind({})
 
 export const Filterable = SelectTemplate.bind({})
 
