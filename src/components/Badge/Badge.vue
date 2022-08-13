@@ -11,6 +11,8 @@
 import { isValidNumber } from '../../utils'
 import SbIcon from '../Icon'
 import { mapIconByTypes } from './lib'
+import './badge.scss'
+
 export default {
   components: {
     SbIcon,
