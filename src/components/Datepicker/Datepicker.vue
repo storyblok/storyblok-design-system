@@ -182,7 +182,6 @@ export default {
       type: Boolean,
       default: false,
     },
-
   },
 
   data: () => ({
@@ -203,6 +202,10 @@ export default {
   }),
 
   computed: {
+    hasDayDisabled() {
+      return this.maxDate || this.minDate || this.disabledPast
+    },
+
     internalMask() {
       return this.MASKS[this.type]
     },
@@ -302,6 +305,11 @@ export default {
 
     handleDoneAction() {
       let utcTime
+
+      if (this.hasDayDisabled && this.dateValidation()) {
+        this.handleClear(this.internalValue)
+        return
+      }
 
       if (!this.tzOffset) {
         utcTime = dayjs
@@ -413,6 +421,25 @@ export default {
       }
 
       if (this.internalValue === 'Invalid Date') this.internalValue = ''
+    },
+
+    dateValidation() {
+      let disabled = false
+      if (this.disabledPast && dayjs().isAfter(this.internalValue, 'day')) {
+        disabled = true
+      } else if (
+        this.minDate &&
+        dayjs(this.internalValue).isSameOrBefore(this.minDate, 'day')
+      ) {
+        disabled = true
+      } else if (
+        this.maxDate &&
+        dayjs(this.internalValue).isSameOrAfter(this.maxDate, 'day')
+      ) {
+        disabled = true
+      }
+
+      return disabled
     },
 
     $_wrapClose(e) {

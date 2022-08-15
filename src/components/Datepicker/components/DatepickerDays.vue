@@ -119,18 +119,23 @@ export default {
     },
 
     setDisabledDay(dateValue) {
-      let disabled = false;
+      let disabled = false
       if (this.disabledPast && dayjs().isAfter(dateValue, 'day')) {
         disabled = true
-      } else if (this.minDate && dayjs(dateValue).isSameOrBefore(this.minDate, 'day')) {
+      } else if (
+        this.minDate &&
+        dayjs(dateValue).isSameOrBefore(this.minDate, 'day')
+      ) {
         disabled = true
-      } else if (this.maxDate && dayjs(dateValue).isSameOrAfter(this.maxDate, 'day')) {
+      } else if (
+        this.maxDate &&
+        dayjs(dateValue).isSameOrAfter(this.maxDate, 'day')
+      ) {
         disabled = true
       }
 
       return disabled
-
-    }
+    },
   },
 }
 </script>
