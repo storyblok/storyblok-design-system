@@ -255,7 +255,11 @@ export default {
     },
 
     tzOffsetValue() {
-      if (!this.timeZone || !this.internalValue || (this.internalValue.length <= 4) ) {
+      if (
+        !this.timeZone ||
+        !this.internalValue ||
+        this.internalValue.length <= 4
+      ) {
         return ''
       }
 
