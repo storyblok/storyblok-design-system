@@ -42,7 +42,7 @@ export default {
     readonly: true,
     minDate: null,
     maxDate: null,
-    disabledPast: false
+    disabledPast: false,
   },
   argTypes: {
     timeZone: {
@@ -190,9 +190,8 @@ NoReadOnly.parameters = {
 export const MinMaxDate = Template.bind({})
 
 MinMaxDate.args = {
-  placeholder: 'YYYY-MM-DD',
-  minDate:  dayjs().subtract(3, 'day').format('YYYY-MM-DD'),
-  maxDate:   dayjs().add(3, 'day').format('YYYY-MM-DD'),
+  minDate: dayjs().subtract(3, 'day').format('YYYY-MM-DD'),
+  maxDate: dayjs().add(3, 'day').format('YYYY-MM-DD'),
 }
 
 MinMaxDate.parameters = {
@@ -207,8 +206,7 @@ MinMaxDate.parameters = {
 export const DisabledDatePast = Template.bind({})
 
 DisabledDatePast.args = {
-  placeholder: 'YYYY-MM-DD',
-  disabledPast: true
+  disabledPast: true,
 }
 
 DisabledDatePast.parameters = {
@@ -219,4 +217,3 @@ DisabledDatePast.parameters = {
     },
   },
 }
-
