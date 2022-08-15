@@ -62,6 +62,7 @@
         :internal-date="internalDate"
         :min-date="minDate"
         :max-date="maxDate"
+        :disabled-past="disabledPast"
         @input="handleComponentsInput"
       />
 
@@ -175,6 +176,11 @@ export default {
     maxDate: {
       type: String,
       default: null,
+    },
+
+    disabledPast: {
+      type: Boolean,
+      default: false,
     },
 
   },

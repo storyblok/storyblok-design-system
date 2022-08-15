@@ -45,6 +45,10 @@ export default {
       type: String,
       default: null,
     },
+    disabledPast: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     days() {
@@ -115,7 +119,9 @@ export default {
     },
 
     setDisabledDay(dateValue) {
-      if (this.minDate && dayjs(dateValue).isSameOrBefore(this.minDate, 'day')) {
+      if (this.disabledPast && dayjs().isAfter(dateValue, 'day')) {
+        return true
+      } else if (this.minDate && dayjs(dateValue).isSameOrBefore(this.minDate, 'day')) {
         return true;
       } else if (this.maxDate && dayjs(dateValue).isSameOrAfter(this.maxDate, 'day')) {
         return true
