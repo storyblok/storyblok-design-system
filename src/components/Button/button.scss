@@ -12,210 +12,218 @@
   cursor: pointer;
   transition: $base-transition;
 
-  .sb-loading {
-    position: absolute;
-  }
-
-  &__label {
-    vertical-align: middle;
-    font-weight: $font-weight-medium;
-  }
-
-  &--inverted-link {
-    color: $white;
-    background: transparent;
-  }
-
-  &--primary-link {
-    color: $sb-green;
-    background: transparent;
-  }
-
-  &--primary,
-  &--secondary,
-  &--tertiary,
-  &--danger,
-  &--caution {
-    padding: 12px 28px;
-    color: $white;
-  }
-
-  &--primary {
-    background-color: $sb-green;
-
-    &:focus {
-      outline: 3px solid $sb-green-25;
-    }
-
-    &:hover:not([disabled]) {
-      background-color: darken($sb-green, 4%);
-    }
-  }
-
-  &--secondary {
-    background-color: $sb-dark-blue;
-
-    &:focus {
-      outline: 3px solid $sb-dark-blue-25;
-    }
-
-    &:hover:not([disabled]) {
-      background-color: $sb-dark-blue-75;
-    }
-  }
-
-  &--tertiary {
-    color: $sb-dark-blue;
-    background-color: $white;
-    border-color: $light;
-
-    &:focus {
-      outline: 3px solid $light-25;
-    }
-
-    &:hover:not([disabled]) {
-      background-color: $light-50;
-    }
-
-    .sb-loading svg {
-      color: $sb-dark-blue;
-      fill: $sb-dark-blue;
-    }
-  }
-
-  &--danger {
-    background-color: $red;
-
-    &:focus {
-      outline: 3px solid $red-25;
-    }
-  }
-
-  &--caution {
-    background-color: $orange;
-
-    &:focus {
-      outline: 3px solid $orange-25;
-    }
-  }
-
-  &--loading {
-    max-height: 49px;
-
-    > .sb-icon {
-      opacity: 0;
-    }
-
-    .sb-button__label {
-      opacity: 0 !important;
-    }
-  }
-
-  &--small {
-    min-height: 36px;
-    padding: 8px 16px;
-    font-size: $font-14;
-
-    .sb-loading {
-      width: 14px;
-      height: 14px;
-    }
-
-    .sb-loading svg {
-      margin-left: -6px;
-      margin-top: -6px;
-    }
-  }
-
-  &--small#{&}--loading {
-    min-height: 36px;
-  }
-
-  &--small#{&}--has-icon {
-    padding: 5px 16px 5px 9px;
-  }
-
-  &--small#{&}--has-icon-right {
-    padding: 5px 9px 5px 16px;
-  }
-
-  &--large {
-    padding: 20px 43px;
-  }
-
-  &--large#{&}--loading {
-    min-height: 61px;
-  }
-
-  &--large#{&}--has-icon {
-    padding: 18px 43px 17px 36px;
-  }
-
-  &--large#{&}--has-icon-right {
-    padding: 18px 36px 17px 43px;
-  }
-
-  &[disabled] {
-    cursor: not-allowed;
-
-    &:not(.sb-button--loading) {
-      color: $light-gray;
-      background-color: $light;
-
-      .sb-icon {
-        opacity: 0.5;
-      }
-    }
-  }
-
   .sb-icon {
     vertical-align: middle;
   }
 
-  &--full {
-    width: 100%;
+  .sb-loading {
+    position: absolute;
+  }
+}
+
+// button variations
+
+.sb-button--primary,
+.sb-button--secondary,
+.sb-button--tertiary,
+.sb-button--danger,
+.sb-button--caution {
+  padding: 12px 28px;
+  color: $white;
+}
+
+.sb-button--primary {
+  background-color: $sb-green;
+
+  &:focus {
+    outline: 3px solid $sb-green-25;
   }
 
-  &--rounded {
-    border-radius: 50%;
+  &:hover:not([disabled]) {
+    background-color: darken($sb-green, 4%);
+  }
+}
+
+.sb-button--secondary {
+  background-color: $sb-dark-blue;
+
+  &:focus {
+    outline: 3px solid $sb-dark-blue-25;
   }
 
-  &--has-icon {
-    padding: 10px 19px 9px 14px;
+  &:hover:not([disabled]) {
+    background-color: $sb-dark-blue-75;
+  }
+}
 
-    .sb-loading {
-      margin-right: -7px;
-    }
+.sb-button--tertiary {
+  color: $sb-dark-blue;
+  background-color: $white;
+  border-color: $light;
+
+  &:focus {
+    outline: 3px solid $light-25;
+  }
+
+  &:hover:not([disabled]) {
+    background-color: $light-50;
+  }
+
+  .sb-loading svg {
+    color: $sb-dark-blue;
+    fill: $sb-dark-blue;
+  }
+}
+
+.sb-button--danger {
+  background-color: $red;
+
+  &:focus {
+    outline: 3px solid $red-25;
+  }
+}
+
+.sb-button--caution {
+  background-color: $orange;
+
+  &:focus {
+    outline: 3px solid $orange-25;
+  }
+}
+
+.sb-button--full {
+  width: 100%;
+}
+
+.sb-button--rounded {
+  border-radius: 50%;
+}
+
+.sb-button--loading {
+  max-height: 49px;
+
+  > .sb-icon {
+    opacity: 0;
+  }
+
+  .sb-button__label {
+    opacity: 0 !important;
+  }
+}
+
+.sb-button[disabled] {
+  cursor: not-allowed;
+
+  &:not(.sb-button--loading) {
+    color: $light-gray;
+    background-color: $light;
 
     .sb-icon {
-      margin-right: 5px;
+      opacity: 0.5;
     }
   }
+}
 
-  &--has-icon-right {
-    padding: 10px 21px 9px 28px;
+// button sizes
 
-    .sb-icon {
-      margin-left: 5px;
-    }
+.sb-button--small {
+  min-height: 36px;
+  padding: 8px 16px;
+  font-size: $font-14;
+
+  .sb-loading {
+    width: 14px;
+    height: 14px;
   }
 
-  &--has-icon-only {
-    min-height: 48px;
-    padding: 0 12px;
+  .sb-loading svg {
+    margin-left: -6px;
+    margin-top: -6px;
+  }
+}
 
-    .sb-icon {
-      margin: 0;
-    }
+.sb-button--small.sb-button--loading {
+  min-height: 36px;
+}
+
+.sb-button--small.sb-button--has-icon {
+  padding: 5px 16px 5px 9px;
+}
+
+.sb-button--small.sb-button--has-icon-right {
+  padding: 5px 9px 5px 16px;
+}
+
+.sb-button--small.sb-button--has-icon-only {
+  min-height: 36px;
+  padding: 0 5px;
+}
+
+.sb-button--large {
+  padding: 20px 43px;
+}
+
+.sb-button--large.sb-button--loading {
+  min-height: 61px;
+}
+
+.sb-button--large.sb-button--has-icon {
+  padding: 18px 43px 17px 36px;
+}
+
+.sb-button--large.sb-button--has-icon-right {
+  padding: 18px 36px 17px 43px;
+}
+
+.sb-button--large.sb-button--has-icon-only {
+  min-height: 61px;
+  padding: 0 18px;
+}
+
+// with icons
+
+.sb-button--has-icon {
+  padding: 10px 19px 9px 14px;
+
+  .sb-loading {
+    margin-right: -7px;
   }
 
-  &--has-icon-only#{&}--small {
-    min-height: 36px;
-    padding: 0 5px;
+  .sb-icon {
+    margin-right: 5px;
   }
+}
 
-  &--has-icon-only#{&}--large {
-    min-height: 61px;
-    padding: 0 18px;
+.sb-button--has-icon-right {
+  padding: 10px 21px 9px 28px;
+
+  .sb-icon {
+    margin-left: 5px;
   }
+}
+
+.sb-button--has-icon-only {
+  min-height: 48px;
+  padding: 0 12px;
+
+  .sb-icon {
+    margin: 0;
+  }
+}
+
+// button elements
+
+.sb-button__label {
+  vertical-align: middle;
+  font-weight: $font-weight-medium;
+}
+
+.sb-button--inverted-link {
+  color: $white;
+  background: transparent;
+}
+
+.sb-button--primary-link {
+  color: $sb-green;
+  background: transparent;
 }
