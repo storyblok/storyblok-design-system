@@ -21,6 +21,8 @@ const Template = (args) => ({
       :readonly="readonly"
       v-model="internalDatetimeValue"
       style="width: 29.4rem"
+      :min-date="minDate"
+      :max-date="maxDate"
     />
   `,
 })
@@ -37,6 +39,8 @@ export default {
     timeZone: 'America/Detroit',
     tzTooltip: null,
     readonly: true,
+    minDate: null,
+    maxDate: null
   },
   argTypes: {
     timeZone: {
@@ -170,9 +174,28 @@ NoReadOnly.args = {
   readonly: false,
   placeholder: 'YYYY-MM-DD',
   type: 'date',
+  minDate:  dayjs().subtract(3, 'day'),
+  maxDate:   dayjs().add(3, 'day'),
 }
 
 NoReadOnly.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use `readonly=false` property to enable manual data entry in Datepicker',
+    },
+  },
+}
+
+export const MinMaxDate = Template.bind({})
+
+MinMaxDate.args = {
+  placeholder: 'YYYY-MM-DD',
+  minDate:  dayjs().subtract(3, 'day'),
+  maxDate:   dayjs().add(3, 'day'),
+}
+
+MinMaxDate.parameters = {
   docs: {
     description: {
       story:

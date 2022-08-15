@@ -8,6 +8,7 @@
         'sb-datepicker-days__item--inactive': !dayItem.inMonth,
         'sb-datepicker-days__item--active': dayItem.checked,
         'sb-datepicker-days__item--current': dayItem.current,
+        'sb-datepicker-days__item--disabled': dayItem.disabled,
       }"
       @click="($evt) => handleDayClick($evt, dayItem)"
     >
@@ -18,6 +19,11 @@
 
 <script>
 import dayjs from 'dayjs'
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+
+dayjs.extend(isSameOrAfter)
+dayjs.extend(isSameOrBefore)
 
 export default {
   name: 'SbDatepickerDays',
@@ -28,6 +34,14 @@ export default {
       default: null,
     },
     internalDate: {
+      type: String,
+      default: null,
+    },
+    minDate: {
+      type: String,
+      default: null,
+    },
+    maxDate: {
       type: String,
       default: null,
     },
@@ -48,6 +62,7 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
+          disabled: this.setDisabledDay(dateValue),
         })
       }
 
@@ -60,6 +75,7 @@ export default {
           inMonth: true,
           checked: dayjs(this.value).isSame(dateValue, 'day'),
           current: dayjs().isSame(dateValue, 'day'),
+          disabled: this.setDisabledDay(dateValue),
         })
       }
 
@@ -73,6 +89,7 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
+          disabled: this.setDisabledDay(dateValue),
         })
       }
 
@@ -81,6 +98,9 @@ export default {
   },
   methods: {
     handleDayClick($event, day) {
+      if (day.disabled) {
+        return
+      }
       $event.stopPropagation()
       this.$emit('input', day.date.format())
     },
@@ -93,6 +113,17 @@ export default {
       const _day = dayJsInstance.day()
       return _day === 0 ? 7 : _day
     },
+
+    setDisabledDay(dateValue) {
+      if (this.minDate && dayjs(dateValue).isSameOrBefore(this.minDate, 'day')) {
+        return true;
+      } else if (this.maxDate && dayjs(dateValue).isSameOrAfter(this.maxDate, 'day')) {
+        return true
+      }
+
+      return false
+
+    }
   },
 }
 </script>

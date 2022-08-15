@@ -60,6 +60,8 @@
         :is="isComponentView"
         :value="internalValue"
         :internal-date="internalDate"
+        :min-date="minDate"
+        :max-date="maxDate"
         @input="handleComponentsInput"
       />
 
@@ -164,6 +166,17 @@ export default {
       type: String,
       default: '',
     },
+
+    minDate: {
+      type: String,
+      default: null,
+    },
+
+    maxDate: {
+      type: String,
+      default: null,
+    },
+
   },
 
   data: () => ({
