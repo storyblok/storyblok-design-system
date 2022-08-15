@@ -10,10 +10,8 @@
         ref="input"
         v-model="internalValue"
         :mask="internalMask"
-        :readonly="readonly"
-        clearable
         type="text"
-        icon-left="calendar"
+        icon-right="calendar"
         :disabled="disabled"
         :placeholder="placeholder"
         :value="internalValueFormatted"
@@ -126,11 +124,6 @@ export default {
 
   props: {
     disabled: Boolean,
-
-    readonly: {
-      type: Boolean,
-      default: true,
-    },
 
     isoDate: {
       type: Boolean,
