@@ -26,6 +26,16 @@
       background-color: $sb-green-25;
     }
   }
+
+  &--disabled {
+    color: $sb-dark-blue-50;
+    text-decoration: line-through;
+    cursor: no-drop;
+
+    &:hover {
+      background-color: white;
+    }
+  }
 }
 
 .sb-datepicker {
