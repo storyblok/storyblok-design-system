@@ -199,7 +199,7 @@ MinMaxDate.parameters = {
   docs: {
     description: {
       story:
-        'Use `readonly=false` property to enable manual data entry in Datepicker',
+        'Add the `minDate` attribute to establish a minimum selectable date and add the `maxDate` attribute to establish a maximum selectable date.',
     },
   },
 }
