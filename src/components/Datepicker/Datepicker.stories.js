@@ -215,7 +215,7 @@ DisabledDatePast.parameters = {
   docs: {
     description: {
       story:
-        'Add the `minDate` attribute to establish a minimum selectable date and add the `maxDate` attribute to establish a maximum selectable date.',
+        'Add the `disabled-past` attribute to disabled select dates in past.',
     },
   },
 }
