@@ -23,6 +23,7 @@ const Template = (args) => ({
       style="width: 29.4rem"
       :min-date="minDate"
       :max-date="maxDate"
+      :disabled-past="disabledPast"
     />
   `,
 })
@@ -40,7 +41,8 @@ export default {
     tzTooltip: null,
     readonly: true,
     minDate: null,
-    maxDate: null
+    maxDate: null,
+    disabledPast: false
   },
   argTypes: {
     timeZone: {
@@ -174,8 +176,6 @@ NoReadOnly.args = {
   readonly: false,
   placeholder: 'YYYY-MM-DD',
   type: 'date',
-  minDate:  dayjs().subtract(3, 'day'),
-  maxDate:   dayjs().add(3, 'day'),
 }
 
 NoReadOnly.parameters = {
@@ -191,8 +191,8 @@ export const MinMaxDate = Template.bind({})
 
 MinMaxDate.args = {
   placeholder: 'YYYY-MM-DD',
-  minDate:  dayjs().subtract(3, 'day'),
-  maxDate:   dayjs().add(3, 'day'),
+  minDate:  dayjs().subtract(3, 'day').format('YYYY-MM-DD'),
+  maxDate:   dayjs().add(3, 'day').format('YYYY-MM-DD'),
 }
 
 MinMaxDate.parameters = {
@@ -203,3 +203,20 @@ MinMaxDate.parameters = {
     },
   },
 }
+
+export const DisabledDatePast = Template.bind({})
+
+DisabledDatePast.args = {
+  placeholder: 'YYYY-MM-DD',
+  disabledPast: true
+}
+
+DisabledDatePast.parameters = {
+  docs: {
+    description: {
+      story:
+        'Add the `minDate` attribute to establish a minimum selectable date and add the `maxDate` attribute to establish a maximum selectable date.',
+    },
+  },
+}
+
