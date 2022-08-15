@@ -18,7 +18,6 @@ const Template = (args) => ({
       :time-zone="timeZone"
       :tz-tooltip="tzTooltip"
       :type="type"
-      :readonly="readonly"
       v-model="internalDatetimeValue"
       style="width: 29.4rem"
       :min-date="minDate"
@@ -39,7 +38,6 @@ export default {
     isoDate: false,
     timeZone: 'America/Detroit',
     tzTooltip: null,
-    readonly: true,
     minDate: null,
     maxDate: null,
     disabledPast: false,
@@ -166,23 +164,6 @@ WithTzOffset.parameters = {
     description: {
       story:
         'Use `timeZone` property to describe the user timezone. It is possible to use an optional property called `tzTooltip` to display a tooltip message for `timeZone` information.',
-    },
-  },
-}
-
-export const NoReadOnly = Template.bind({})
-
-NoReadOnly.args = {
-  readonly: false,
-  placeholder: 'YYYY-MM-DD',
-  type: 'date',
-}
-
-NoReadOnly.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use `readonly=false` property to enable manual data entry in Datepicker',
     },
   },
 }
