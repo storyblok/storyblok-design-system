@@ -15,7 +15,7 @@
         :disabled="disabled"
         :placeholder="placeholder"
         :value="internalValueFormatted"
-        @click.native="handleInputClick"
+        @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
       />
@@ -255,7 +255,7 @@ export default {
     },
 
     tzOffsetValue() {
-      if (!this.timeZone || !this.internalValue) {
+      if (!this.timeZone || !this.internalValue || (this.internalValue.length <= 4) ) {
         return ''
       }
 
@@ -417,22 +417,22 @@ export default {
     },
 
     dateValidation() {
-      let disabled = false
+      let valid = false
       if (this.disabledPast && dayjs().isAfter(this.internalValue, 'day')) {
-        disabled = true
+        valid = true
       } else if (
         this.minDate &&
         dayjs(this.internalValue).isSameOrBefore(this.minDate, 'day')
       ) {
-        disabled = true
+        valid = true
       } else if (
         this.maxDate &&
         dayjs(this.internalValue).isSameOrAfter(this.maxDate, 'day')
       ) {
-        disabled = true
+        valid = true
       }
 
-      return disabled
+      return valid
     },
 
     $_wrapClose(e) {
