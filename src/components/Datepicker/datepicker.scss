@@ -47,6 +47,10 @@
 
   &__input {
     position: relative;
+
+    .sb-textfield__icon {
+      cursor: pointer
+    }
   }
 
   &__timezone {
@@ -89,6 +93,9 @@
     &--primary {
       color: $color-primary;
     }
+
+
+
   }
 }
 
