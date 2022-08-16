@@ -76,7 +76,7 @@
           class="sb-datepicker__action-button sb-datepicker__action-button--primary"
           @click="handleDoneAction"
         >
-          Done
+          Apply
         </button>
       </div>
     </SbPopover>
