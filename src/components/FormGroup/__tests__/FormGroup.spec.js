@@ -1,8 +1,12 @@
-import { mount } from '@vue/test-utils'
+import { mount, createLocalVue } from '@vue/test-utils'
 
 import SbFormGroup from '..'
 
 import SbTextField from '../../TextField'
+
+import VueMask from 'v-mask'
+const localVue = createLocalVue();
+localVue.use(VueMask);
 
 const factory = (propsData) => {
   return mount(SbFormGroup, {
@@ -13,6 +17,7 @@ const factory = (propsData) => {
     stubs: {
       SbTextField,
     },
+    localVue
   })
 }
 
