@@ -1,8 +1,6 @@
 import SbTextField from '..'
-import { mount, createLocalVue } from '@vue/test-utils'
-import VueMask from 'v-mask'
-const localVue = createLocalVue()
-localVue.use(VueMask)
+import { mount } from '@vue/test-utils'
+const localVue = global.localVue
 
 const factory = (propsData) => {
   return mount(SbTextField, {

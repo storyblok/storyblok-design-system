@@ -3,5 +3,6 @@ module.exports = {
   transformIgnorePatterns: [
     // ignores popper lib
     'node_modules/(?!(@popperjs)/)'
-  ]
+  ],
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.js'],
 }

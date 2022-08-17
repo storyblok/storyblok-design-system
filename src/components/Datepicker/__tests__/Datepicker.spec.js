@@ -1,14 +1,11 @@
-import { mount, createLocalVue } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import dayjs from 'dayjs'
 
 import SbDatepicker from '../Datepicker.vue'
 import SbDatepickerData, { WithTzOffset } from '../Datepicker.stories'
 
 import { INTERNAL_VIEWS } from '../utils'
-
-import VueMask from 'v-mask'
-const localVue = createLocalVue()
-localVue.use(VueMask)
+const localVue = global.localVue
 
 describe('SbDatepicker component', () => {
   const factory = (propsData) => {

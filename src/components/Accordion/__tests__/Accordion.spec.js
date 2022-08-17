@@ -1,12 +1,10 @@
-import { mount, createLocalVue } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 
 import Accordion from '..'
 
 import SbTextField from '../../TextField'
 
-import VueMask from 'v-mask'
-const localVue = createLocalVue()
-localVue.use(VueMask)
+const localVue = global.localVue
 
 const factory = (propsData) => {
   return mount(Accordion, {
