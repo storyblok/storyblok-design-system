@@ -124,12 +124,12 @@ export default {
         disabled = true
       } else if (
         this.minDate &&
-        dayjs(dateValue).isSameOrBefore(this.minDate, 'day')
+        dayjs(dateValue).isBefore(this.minDate, 'day')
       ) {
         disabled = true
       } else if (
         this.maxDate &&
-        dayjs(dateValue).isSameOrAfter(this.maxDate, 'day')
+        dayjs(dateValue).isAfter(this.maxDate, 'day')
       ) {
         disabled = true
       }
