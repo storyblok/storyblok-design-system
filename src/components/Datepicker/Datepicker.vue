@@ -86,6 +86,7 @@
 <script>
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 import utc from 'dayjs/plugin/utc'
 
 import { ClickOutside, Tooltip } from '../../directives'
@@ -102,6 +103,7 @@ import SbDatepickerYears from './components/DatepickerYears'
 import { datepickerOptions, INTERNAL_VIEWS } from './utils'
 
 dayjs.extend(timezone)
+dayjs.extend(customParseFormat)
 dayjs.extend(utc)
 
 export default {
@@ -302,8 +304,9 @@ export default {
 
     handleDoneAction() {
       let utcTime
-
-      if (this.hasDayDisabled && this.dateValidation()) {
+      
+      const isValid = dayjs(this.internalValue, this.internalFormat, true).isValid()
+      if (!isValid || (this.hasDayDisabled && this.dateValidation())) {
         this.handleClear(this.internalValue)
         return
       }
@@ -434,8 +437,8 @@ export default {
         dayjs(this.internalValue).isSameOrAfter(this.maxDate, 'day')
       ) {
         valid = true
-      }
-
+      } 
+      
       return valid
     },
 
