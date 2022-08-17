@@ -304,8 +304,12 @@ export default {
 
     handleDoneAction() {
       let utcTime
-      
-      const isValid = dayjs(this.internalValue, this.internalFormat, true).isValid()
+
+      const isValid = dayjs(
+        this.internalValue,
+        this.internalFormat,
+        true
+      ).isValid()
       if (!isValid || (this.hasDayDisabled && this.dateValidation())) {
         this.handleClear(this.internalValue)
         return
@@ -437,8 +441,8 @@ export default {
         dayjs(this.internalValue).isSameOrAfter(this.maxDate, 'day')
       ) {
         valid = true
-      } 
-      
+      }
+
       return valid
     },
 

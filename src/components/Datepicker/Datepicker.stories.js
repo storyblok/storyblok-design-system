@@ -134,7 +134,7 @@ export default {
       control: {
         type: 'boolean',
       },
-    }
+    },
   },
 }
 

@@ -6,8 +6,8 @@ import SbIcon from '../../Icon'
 import SbTextField from '../../TextField'
 
 import VueMask from 'v-mask'
-const localVue = createLocalVue();
-localVue.use(VueMask);
+const localVue = createLocalVue()
+localVue.use(VueMask)
 
 const factory = (propsData) => {
   return mount(SbFormItem, {
@@ -18,7 +18,7 @@ const factory = (propsData) => {
     stubs: {
       SbTextField,
     },
-    localVue
+    localVue,
   })
 }
 

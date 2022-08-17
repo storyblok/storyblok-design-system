@@ -7,14 +7,14 @@ import SbDatepickerData, { WithTzOffset } from '../Datepicker.stories'
 import { INTERNAL_VIEWS } from '../utils'
 
 import VueMask from 'v-mask'
-const localVue = createLocalVue();
-localVue.use(VueMask);
+const localVue = createLocalVue()
+localVue.use(VueMask)
 
 describe('SbDatepicker component', () => {
   const factory = (propsData) => {
     return mount(SbDatepicker, {
       propsData,
-      localVue
+      localVue,
     })
   }
   const { placeholder } = SbDatepickerData.args
