@@ -310,7 +310,7 @@ export default {
         this.internalFormat,
         true
       ).isValid()
-      if (!isValid || (this.hasDayDisabled && this.dateValidation())) {
+      if (!isValid || (this.hasDayDisabled && this.isDateDisabled())) {
         this.handleClear(this.internalValue)
         return
       }
@@ -427,7 +427,7 @@ export default {
       if (this.internalValue === 'Invalid Date') this.internalValue = ''
     },
 
-    dateValidation() {
+    isDateDisabled() {
       let valid = false
       if (this.disabledPast && dayjs().isAfter(this.internalValue, 'day')) {
         valid = true

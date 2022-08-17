@@ -19,11 +19,6 @@
 
 <script>
 import dayjs from 'dayjs'
-import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-
-dayjs.extend(isSameOrAfter)
-dayjs.extend(isSameOrBefore)
 
 export default {
   name: 'SbDatepickerDays',
@@ -66,7 +61,7 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
-          disabled: this.setDisabledDay(dateValue),
+          disabled: this.isDisabledDay(dateValue),
         })
       }
 
@@ -79,7 +74,7 @@ export default {
           inMonth: true,
           checked: dayjs(this.value).isSame(dateValue, 'day'),
           current: dayjs().isSame(dateValue, 'day'),
-          disabled: this.setDisabledDay(dateValue),
+          disabled: this.isDisabledDay(dateValue),
         })
       }
 
@@ -93,7 +88,7 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
-          disabled: this.setDisabledDay(dateValue),
+          disabled: this.isDisabledDay(dateValue),
         })
       }
 
@@ -118,7 +113,7 @@ export default {
       return _day === 0 ? 7 : _day
     },
 
-    setDisabledDay(dateValue) {
+    isDisabledDay(dateValue) {
       let disabled = false
       if (this.disabledPast && dayjs().isAfter(dateValue, 'day')) {
         disabled = true
