@@ -37,9 +37,9 @@ export default {
     disabled: false,
     isoDate: false,
     timeZone: 'America/Detroit',
-    tzTooltip: null,
-    minDate: null,
-    maxDate: null,
+    tzTooltip: '',
+    minDate: '',
+    maxDate: '',
     disabledPast: false,
   },
   argTypes: {
@@ -108,6 +108,33 @@ export default {
         type: 'boolean',
       },
     },
+    minDate: {
+      name: 'minDate',
+      description:
+        'If set, Datepicker will disable dates before the date entered in minDate',
+      defaultValue: '',
+      control: {
+        type: 'text',
+      },
+    },
+    maxDate: {
+      name: 'maxDate',
+      description:
+        'If set, Datepicker will disable dates after the date entered in maxDate',
+      defaultValue: '',
+      control: {
+        type: 'text',
+      },
+    },
+    disabledPast: {
+      name: 'disabledPast',
+      description:
+        'If set to true, Datepicker will disable dates before the current date',
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    }
   },
 }
 
