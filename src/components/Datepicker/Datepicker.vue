@@ -387,7 +387,7 @@ export default {
         return
       }
 
-      this.isOverlayVisible = true
+      this.isOverlayVisible = !this.isOverlayVisible
       this.internalVisualization = INTERNAL_VIEWS.CALENDAR
     },
 
