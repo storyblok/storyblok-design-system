@@ -19,6 +19,10 @@
     <template v-else>
       <SbCheckbox v-if="multiple" :value="isSelected" />
 
+      <span class="sb-select-list__item-icon">
+        <SbIcon v-if="option.icon" :name="option.icon" />
+      </span>
+
       <span v-if="!showCaption" class="sb-select-list__item-name">{{
         label
       }}</span>
