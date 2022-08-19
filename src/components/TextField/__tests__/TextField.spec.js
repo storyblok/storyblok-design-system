@@ -1,9 +1,11 @@
 import SbTextField from '..'
 import { mount } from '@vue/test-utils'
+const localVue = global.localVue
 
 const factory = (propsData) => {
   return mount(SbTextField, {
     propsData,
+    localVue,
   })
 }
 

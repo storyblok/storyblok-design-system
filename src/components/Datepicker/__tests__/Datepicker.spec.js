@@ -5,11 +5,13 @@ import SbDatepicker from '../Datepicker.vue'
 import SbDatepickerData, { WithTzOffset } from '../Datepicker.stories'
 
 import { INTERNAL_VIEWS } from '../utils'
+const localVue = global.localVue
 
 describe('SbDatepicker component', () => {
   const factory = (propsData) => {
     return mount(SbDatepicker, {
       propsData,
+      localVue,
     })
   }
   const { placeholder } = SbDatepickerData.args

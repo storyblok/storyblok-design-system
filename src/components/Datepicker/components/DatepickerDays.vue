@@ -7,6 +7,8 @@
       :class="{
         'sb-datepicker-days__item--inactive': !dayItem.inMonth,
         'sb-datepicker-days__item--active': dayItem.checked,
+        'sb-datepicker-days__item--current': dayItem.current,
+        'sb-datepicker-days__item--disabled': dayItem.disabled,
       }"
       @click="($evt) => handleDayClick($evt, dayItem)"
     >
@@ -30,6 +32,18 @@ export default {
       type: String,
       default: null,
     },
+    minDate: {
+      type: String,
+      default: null,
+    },
+    maxDate: {
+      type: String,
+      default: null,
+    },
+    disabledPast: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     days() {
@@ -46,6 +60,8 @@ export default {
           date: dateValue,
           inMonth: false,
           checked: false,
+          current: false,
+          disabled: this.isDisabledDay(dateValue),
         })
       }
 
@@ -56,7 +72,9 @@ export default {
           label: i,
           date: dateValue,
           inMonth: true,
-          checked: dayjs(this.value).isSame(dateValue),
+          checked: dayjs(this.value).isSame(dateValue, 'day'),
+          current: dayjs().isSame(dateValue, 'day'),
+          disabled: this.isDisabledDay(dateValue),
         })
       }
 
@@ -69,6 +87,8 @@ export default {
           date: dateValue,
           inMonth: false,
           checked: false,
+          current: false,
+          disabled: this.isDisabledDay(dateValue),
         })
       }
 
@@ -77,6 +97,9 @@ export default {
   },
   methods: {
     handleDayClick($event, day) {
+      if (day.disabled) {
+        return
+      }
       $event.stopPropagation()
       this.$emit('input', day.date.format())
     },
@@ -88,6 +111,25 @@ export default {
     $_getDayInWeek(dayJsInstance) {
       const _day = dayJsInstance.day()
       return _day === 0 ? 7 : _day
+    },
+
+    isDisabledDay(dateValue) {
+      let disabled = false
+      if (this.disabledPast && dayjs().isAfter(dateValue, 'day')) {
+        disabled = true
+      } else if (
+        this.minDate &&
+        dayjs(dateValue).isBefore(this.minDate, 'day')
+      ) {
+        disabled = true
+      } else if (
+        this.maxDate &&
+        dayjs(dateValue).isAfter(this.maxDate, 'day')
+      ) {
+        disabled = true
+      }
+
+      return disabled
     },
   },
 }

@@ -23,6 +23,7 @@ export default {
     suffix: '.com',
 
     maxlength: 60,
+    mask: '####-##-##',
   },
 }
 
@@ -360,3 +361,41 @@ export const TextArea = (args) => ({
     </div>
   `,
 })
+
+export const withMask = (args) => ({
+  components: { SbTextField },
+  props: Object.keys(args),
+  data: () => ({
+    internalValue: '',
+  }),
+  template: `
+    <div style="max-width: 300px">
+      <SbTextField
+        style="margin-bottom: 20px;"
+        :id="id"
+        :name="name"
+        label="With mask"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+        :mask="mask"
+      />
+    </div>
+  `,
+})
+
+withMask.args = {
+  placeholder: '####-##-##',
+  mask: '####-##-##',
+}
+withMask.parameters = {
+  docs: {
+    description: {
+      story:
+        'Use "#" for numbers (0-9), "A" for letter in any case (a-z,A-Z), "N" for number or letter (a-z,A-Z,0-9), "X" for any symbol and "?" for optional (next character)',
+    },
+  },
+}

@@ -10,6 +10,7 @@
         :id="id"
         ref="textfield"
         v-model="computedValue"
+        v-mask="mask"
         v-bind="$attrs"
         class="sb-textfield__input"
         :type="internalType"
@@ -158,6 +159,10 @@ export default {
     },
     value: {
       type: [String, Number, Boolean],
+      default: '',
+    },
+    mask: {
+      type: String,
       default: '',
     },
   },
