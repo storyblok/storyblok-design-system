@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { SbDatepicker } from '.'
 import { datepickerOptions } from './utils'
 
@@ -7,7 +8,7 @@ const Template = (args) => ({
   props: Object.keys(args),
 
   data: () => ({
-    internalDatetimeValue: '2017-09-09 00:00',
+    internalDatetimeValue: dayjs().format('YYYY-MM-DD HH:mm'),
   }),
 
   template: `
@@ -19,6 +20,9 @@ const Template = (args) => ({
       :type="type"
       v-model="internalDatetimeValue"
       style="width: 29.4rem"
+      :min-date="minDate"
+      :max-date="maxDate"
+      :disabled-past="disabledPast"
     />
   `,
 })
@@ -33,7 +37,10 @@ export default {
     disabled: false,
     isoDate: false,
     timeZone: 'America/Detroit',
-    tzTooltip: null,
+    tzTooltip: '',
+    minDate: '',
+    maxDate: '',
+    disabledPast: false,
   },
   argTypes: {
     timeZone: {
@@ -101,6 +108,33 @@ export default {
         type: 'boolean',
       },
     },
+    minDate: {
+      name: 'minDate',
+      description:
+        'If set, Datepicker will disable dates before the date entered in minDate',
+      defaultValue: '',
+      control: {
+        type: 'text',
+      },
+    },
+    maxDate: {
+      name: 'maxDate',
+      description:
+        'If set, Datepicker will disable dates after the date entered in maxDate',
+      defaultValue: '',
+      control: {
+        type: 'text',
+      },
+    },
+    disabledPast: {
+      name: 'disabledPast',
+      description:
+        'If set to true, Datepicker will disable dates before the current date',
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 }
 
@@ -157,6 +191,37 @@ WithTzOffset.parameters = {
     description: {
       story:
         'Use `timeZone` property to describe the user timezone. It is possible to use an optional property called `tzTooltip` to display a tooltip message for `timeZone` information.',
+    },
+  },
+}
+
+export const MinMaxDate = Template.bind({})
+
+MinMaxDate.args = {
+  minDate: dayjs().subtract(3, 'day').format('YYYY-MM-DD'),
+  maxDate: dayjs().add(3, 'day').format('YYYY-MM-DD'),
+}
+
+MinMaxDate.parameters = {
+  docs: {
+    description: {
+      story:
+        'Add the `minDate` attribute to establish a minimum selectable date and add the `maxDate` attribute to establish a maximum selectable date.',
+    },
+  },
+}
+
+export const DisabledDatePast = Template.bind({})
+
+DisabledDatePast.args = {
+  disabledPast: true,
+}
+
+DisabledDatePast.parameters = {
+  docs: {
+    description: {
+      story:
+        'Add the `disabled-past` attribute to disabled select dates in past.',
     },
   },
 }

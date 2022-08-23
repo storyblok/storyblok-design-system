@@ -5,6 +5,8 @@ import SbFormItem from '..'
 import SbIcon from '../../Icon'
 import SbTextField from '../../TextField'
 
+const localVue = global.localVue
+
 const factory = (propsData) => {
   return mount(SbFormItem, {
     propsData,
@@ -14,6 +16,7 @@ const factory = (propsData) => {
     stubs: {
       SbTextField,
     },
+    localVue,
   })
 }
 
