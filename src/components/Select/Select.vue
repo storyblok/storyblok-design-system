@@ -366,9 +366,21 @@ export default {
     handleEmitValue(value) {
       // doesn't close the list
       if (this.multiple) {
-        this.searchInput = ''
-        const $value = this.processMultipleValue(value)
-        this.$emit('input', $value)
+        const valueExists = this.options.find(
+          (option) =>
+            option === value ||
+            option[this.itemValue] === value ||
+            option[this.itemLabel] === value
+        )
+
+        if (valueExists) {
+          const parsedValue = this.emitOption ? valueExists : value
+          const inputValue = this.processMultipleValue(parsedValue)
+          this.$emit('input', inputValue)
+        } else if (this.allowCreate) {
+          this.handleOptionCreated(value)
+        }
+
         return
       }
 
@@ -385,6 +397,9 @@ export default {
     handleOptionCreated(value) {
       this.searchInput = ''
       this.$emit('option-created', value)
+
+      if (this.multiple) return
+
       this.$_focusInner()
       this.hideList()
     },
