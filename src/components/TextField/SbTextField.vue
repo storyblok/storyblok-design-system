@@ -127,6 +127,7 @@
 
 <script>
 import SbIcon from '../Icon'
+import { VueMaskDirective } from 'v-mask'
 
 import TextFieldMixin from '../../mixins/textfield-mixin'
 import { Tooltip } from '../../directives'
@@ -136,6 +137,7 @@ export default {
 
   directives: {
     tooltip: Tooltip,
+    mask: VueMaskDirective,
   },
 
   components: { SbIcon },
