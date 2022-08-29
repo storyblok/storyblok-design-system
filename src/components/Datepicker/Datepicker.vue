@@ -269,9 +269,7 @@ export default {
         return ''
       }
 
-      if (this.tzOffset) {
-        return this.tzOffset.replace('GMT', '')
-      }
+      if (this.tzOffset) return this.tzOffset.replace('GMT', '')
       return dayjs.tz(this.internalValue, this.timeZone).format('Z')
     },
   },
