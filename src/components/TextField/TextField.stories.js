@@ -395,7 +395,7 @@ withMask.parameters = {
   docs: {
     description: {
       story:
-        'Use "#" for numbers (0-9), "A" for letter in any case (a-z,A-Z), "N" for number or letter (a-z,A-Z,0-9), "X" for any symbol and "?" for optional (next character)',
+        'Use "#" for numbers (0-9), “S” for letter in any case (a-z,A-Z), “X” for number or letter (a-z,A-Z,0-9), “*” for repeat and “!” for optional (next character).',
     },
   },
 }
