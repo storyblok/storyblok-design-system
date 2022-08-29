@@ -10,7 +10,7 @@
         :id="id"
         ref="textfield"
         v-model="computedValue"
-        v-mask="mask"
+        v-maska="mask"
         v-bind="$attrs"
         class="sb-textfield__input"
         :type="internalType"
@@ -127,7 +127,7 @@
 
 <script>
 import SbIcon from '../Icon'
-import { VueMaskDirective } from 'v-mask'
+import { maska } from 'maska'
 
 import TextFieldMixin from '../../mixins/textfield-mixin'
 import { Tooltip } from '../../directives'
@@ -137,7 +137,7 @@ export default {
 
   directives: {
     tooltip: Tooltip,
-    mask: VueMaskDirective,
+    maska,
   },
 
   components: { SbIcon },
