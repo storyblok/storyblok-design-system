@@ -1,6 +1,6 @@
 import { createLocalVue } from '@vue/test-utils'
-import VueMask from 'v-mask'
+import { maska } from 'maska'
 
 global.localVue = createLocalVue()
 
-global.localVue.use(VueMask)
+global.localVue.use(maska)
