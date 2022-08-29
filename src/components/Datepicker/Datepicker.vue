@@ -257,6 +257,10 @@ export default {
     },
 
     tzOffsetValue() {
+      if (!dayjs(this.internalValue, this.internalFormat, true).isValid()) {
+        return
+      }
+
       if (
         !this.timeZone ||
         !this.internalValue ||
@@ -265,7 +269,9 @@ export default {
         return ''
       }
 
-      if (this.tzOffset) return this.tzOffset.replace('GMT', '')
+      if (this.tzOffset) {
+        return this.tzOffset.replace('GMT', '')
+      }
       return dayjs.tz(this.internalValue, this.timeZone).format('Z')
     },
   },
@@ -275,8 +281,11 @@ export default {
       handler: 'syncInternalValue',
       immediate: true,
     },
-    internalValue() {
-      if (this.internalValue.length >= 4) {
+    internalValueFormatted() {
+      if (
+        this.internalValue.length >= 4 &&
+        dayjs(this.internalValue, this.internalFormat, true).isValid()
+      ) {
         this.internalDate = this.internalValue
       }
     },
