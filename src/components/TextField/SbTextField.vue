@@ -60,6 +60,7 @@
         :name="iconLeft"
         class="sb-textfield__icon sb-textfield__icon--left"
         :color="iconColor"
+        data-testid="sb-textfield-icon-click"
         @click="handleIconClick"
       />
       <SbTooltip
@@ -73,6 +74,7 @@
           :name="iconLeft"
           class="sb-textfield__icon sb-textfield__icon--left"
           :color="iconColor"
+          data-testid="sb-textfield-icon-click"
           @click="handleIconClick"
         />
       </SbTooltip>
@@ -81,6 +83,7 @@
         :name="iconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
+        data-testid="sb-textfield-icon-click"
         @click="handleIconClick"
       />
       <SbIcon
@@ -88,6 +91,7 @@
         :name="internalIconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
+        data-testid="sb-textfield-icon-click"
         @click="handleShowHidePassword"
       />
       <SbIcon
