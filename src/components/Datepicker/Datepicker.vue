@@ -15,6 +15,7 @@
         :disabled="disabled"
         :placeholder="placeholder"
         :value="internalValueFormatted"
+        :error="invalidDate"
         @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
@@ -195,6 +196,7 @@ export default {
       datetime: '####-##-## ##:##',
     },
     hitClear: false,
+    invalidDate: false,
   }),
 
   computed: {
@@ -286,6 +288,7 @@ export default {
         dayjs(this.internalValue, this.internalFormat, true).isValid()
       ) {
         this.internalDate = this.internalValue
+        this.invalidDate = false
       }
     },
   },
@@ -319,7 +322,7 @@ export default {
         true
       ).isValid()
       if (!isValid || (this.hasDayDisabled && this.isDateDisabled())) {
-        this.handleClear(this.internalValue)
+        this.invalidDate = true
         return
       }
 
