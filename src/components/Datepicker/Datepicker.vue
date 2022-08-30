@@ -18,6 +18,7 @@
         @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
+        @blur="handleDoneAction"
       />
 
       <template v-if="isShowTzOffset">
