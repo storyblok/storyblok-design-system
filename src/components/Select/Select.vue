@@ -364,7 +364,6 @@ export default {
      * @param {Array<String>|String} value
      */
     handleEmitValue(value) {
-      // doesn't close the list
       if (this.multiple) {
         const valueExists = this.options.find(
           (option) =>
