@@ -15,9 +15,11 @@
         :disabled="disabled"
         :placeholder="placeholder"
         :value="internalValueFormatted"
+        :error="invalidDate"
         @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
+        @blur="handleDoneAction"
       />
 
       <template v-if="isShowTzOffset">
@@ -194,6 +196,7 @@ export default {
       datetime: '####-##-## ##:##',
     },
     hitClear: false,
+    invalidDate: false,
   }),
 
   computed: {
@@ -257,6 +260,10 @@ export default {
     },
 
     tzOffsetValue() {
+      if (!dayjs(this.internalValue, this.internalFormat, true).isValid()) {
+        return
+      }
+
       if (
         !this.timeZone ||
         !this.internalValue ||
@@ -275,9 +282,13 @@ export default {
       handler: 'syncInternalValue',
       immediate: true,
     },
-    internalValue() {
-      if (this.internalValue.length >= 4) {
+    internalValueFormatted() {
+      if (
+        this.internalValue.length >= 4 &&
+        dayjs(this.internalValue, this.internalFormat, true).isValid()
+      ) {
         this.internalDate = this.internalValue
+        this.invalidDate = false
       }
     },
   },
@@ -311,7 +322,7 @@ export default {
         true
       ).isValid()
       if (!isValid || (this.hasDayDisabled && this.isDateDisabled())) {
-        this.handleClear(this.internalValue)
+        this.invalidDate = true
         return
       }
 
