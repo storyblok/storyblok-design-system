@@ -1,8 +1,13 @@
 name: Daily Sync Sonarcube
 
+# on:
+#   schedule:
+#     - cron: '0 0 * * 1-5'
+
 on:
-  schedule:
-    - cron: '0 0 * * 1-5'
+  push:
+    branches:
+      - chore/setup-sonarqube
 
 jobs:
   sonarqube:
