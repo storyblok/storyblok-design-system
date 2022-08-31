@@ -16,6 +16,7 @@
     "@popperjs/core": "^2.11.5",
     "@vue/compat": "^3.2.37",
     "dayjs": "^1.11.3",
+    "maska": "^1.5.0",
     "portal-vue": "^2.1.7",
     "throttle-debounce": "^4.0.1",
     "vue-fragment": "^1.6.0"

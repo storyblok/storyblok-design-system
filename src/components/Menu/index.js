@@ -571,6 +571,11 @@ const SbMenu = {
       type: Boolean,
       default: true,
     },
+
+    focusWhenOpen: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   data: () => ({
@@ -620,11 +625,12 @@ const SbMenu = {
         return
       }
 
-      this.$nextTick(() => {
-        this.$_focusButton()
-
-        this.$_resetTabIndex()
-      })
+      if (this.focusWhenOpen) {
+        this.$nextTick(() => {
+          this.$_focusButton()
+          this.$_resetTabIndex()
+        })
+      }
     },
 
     isOpen(state) {

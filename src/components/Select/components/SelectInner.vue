@@ -91,7 +91,7 @@
     <div class="sb-select-inner__icons">
       <button
         v-if="showClearButton && !isDisabled"
-        v-tooltip="{ label: 'Remove all' }"
+        v-tooltip="{ label: 'Clear selection' }"
         aria-label="Clear all values"
         class="sb-select-inner__clear"
         type="button"

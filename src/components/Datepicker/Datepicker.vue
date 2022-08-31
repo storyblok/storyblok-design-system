@@ -8,15 +8,18 @@
     <div class="sb-datepicker__input">
       <SbTextField
         ref="input"
-        readonly
-        clearable
+        v-model="internalValue"
+        :mask="internalMask"
         type="text"
-        icon-left="calendar"
+        icon-right="calendar"
         :disabled="disabled"
         :placeholder="placeholder"
         :value="internalValueFormatted"
-        @click="handleInputClick"
+        :error="invalidDate"
+        @icon-click="handleInputClick"
         @clear="handleClear"
+        @keyup.enter="handleDoneAction"
+        @blur="handleDoneAction"
       />
 
       <template v-if="isShowTzOffset">
@@ -57,6 +60,9 @@
         :is="isComponentView"
         :value="internalValue"
         :internal-date="internalDate"
+        :min-date="minDate"
+        :max-date="maxDate"
+        :disabled-past="disabledPast"
         @input="handleComponentsInput"
       />
 
@@ -72,7 +78,7 @@
           class="sb-datepicker__action-button sb-datepicker__action-button--primary"
           @click="handleDoneAction"
         >
-          Done
+          Apply
         </button>
       </div>
     </SbPopover>
@@ -82,6 +88,7 @@
 <script>
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 import utc from 'dayjs/plugin/utc'
 
 import { ClickOutside, Tooltip } from '../../directives'
@@ -98,6 +105,7 @@ import SbDatepickerYears from './components/DatepickerYears'
 import { datepickerOptions, INTERNAL_VIEWS } from './utils'
 
 dayjs.extend(timezone)
+dayjs.extend(customParseFormat)
 dayjs.extend(utc)
 
 export default {
@@ -156,6 +164,21 @@ export default {
       type: String,
       default: '',
     },
+
+    minDate: {
+      type: String,
+      default: null,
+    },
+
+    maxDate: {
+      type: String,
+      default: null,
+    },
+
+    disabledPast: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({
@@ -168,10 +191,23 @@ export default {
       date: 'YYYY-MM-DD',
       datetime: 'YYYY-MM-DD HH:mm',
     },
+    MASKS: {
+      date: '####-##-##',
+      datetime: '####-##-## ##:##',
+    },
     hitClear: false,
+    invalidDate: false,
   }),
 
   computed: {
+    hasDayDisabled() {
+      return this.maxDate || this.minDate || this.disabledPast
+    },
+
+    internalMask() {
+      return this.MASKS[this.type]
+    },
+
     internalFormat() {
       return this.FORMATS[this.type]
     },
@@ -224,7 +260,15 @@ export default {
     },
 
     tzOffsetValue() {
-      if (!this.timeZone || !this.internalValue) {
+      if (!dayjs(this.internalValue, this.internalFormat, true).isValid()) {
+        return
+      }
+
+      if (
+        !this.timeZone ||
+        !this.internalValue ||
+        this.internalValue.length <= 4
+      ) {
         return ''
       }
 
@@ -237,6 +281,15 @@ export default {
     value: {
       handler: 'syncInternalValue',
       immediate: true,
+    },
+    internalValueFormatted() {
+      if (
+        this.internalValue.length >= 4 &&
+        dayjs(this.internalValue, this.internalFormat, true).isValid()
+      ) {
+        this.internalDate = this.internalValue
+        this.invalidDate = false
+      }
     },
   },
 
@@ -262,6 +315,16 @@ export default {
 
     handleDoneAction() {
       let utcTime
+
+      const isValid = dayjs(
+        this.internalValue,
+        this.internalFormat,
+        true
+      ).isValid()
+      if (!isValid || (this.hasDayDisabled && this.isDateDisabled())) {
+        this.invalidDate = true
+        return
+      }
 
       if (!this.tzOffset) {
         utcTime = dayjs
@@ -342,7 +405,7 @@ export default {
         return
       }
 
-      this.isOverlayVisible = true
+      this.isOverlayVisible = !this.isOverlayVisible
       this.internalVisualization = INTERNAL_VIEWS.CALENDAR
     },
 
@@ -373,6 +436,25 @@ export default {
       }
 
       if (this.internalValue === 'Invalid Date') this.internalValue = ''
+    },
+
+    isDateDisabled() {
+      let valid = false
+      if (this.disabledPast && dayjs().isAfter(this.internalValue, 'day')) {
+        valid = true
+      } else if (
+        this.minDate &&
+        dayjs(this.internalValue).isSameOrBefore(this.minDate, 'day')
+      ) {
+        valid = true
+      } else if (
+        this.maxDate &&
+        dayjs(this.internalValue).isSameOrAfter(this.maxDate, 'day')
+      ) {
+        valid = true
+      }
+
+      return valid
     },
 
     $_wrapClose(e) {

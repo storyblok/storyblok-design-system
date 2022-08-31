@@ -69,6 +69,9 @@ export const SbDataTableActions = {
           on: {
             click: () => this.$emit('cancel'),
           },
+          attrs: {
+            'data-testid': 'sb-data-table-action__clear',
+          },
         },
         'Clear'
       )
@@ -97,6 +100,9 @@ export const SbDataTableActions = {
             staticClass: 'sb-actions-menu__btn',
             on: {
               click: () => this.$emit('click', action.value),
+            },
+            attrs: {
+              'data-testid': `sb-data-table-action__${action.value}`,
             },
           },
           action.label
