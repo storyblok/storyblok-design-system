@@ -82,8 +82,6 @@ export const WithIcon = (args) => ({
       <SbFormItem
         :icon="icon"
         :label="label"
-        :helper-icon-text="helperIconText"
-        :helper-text="helperText"
         style="margin-bottom: 20px"
         :is-required="isRequired"
       >
