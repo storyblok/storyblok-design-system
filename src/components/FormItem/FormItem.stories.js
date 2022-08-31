@@ -79,14 +79,10 @@ export const WithIcon = (args) => ({
   }),
   template: `
     <div>
-      <SbFormItem
-        :icon="icon"
-        :label="label"
-        style="margin-bottom: 20px"
-        :is-required="isRequired"
-      >
+      <SbFormItem :icon="icon" :label="label">
         <SbTextField
-          :placeholder="placeholder"
+          name="example"
+          id="textfield"
         />
       </SbFormItem>
     </div>
