@@ -1,6 +1,8 @@
 <template>
   <div class="sb-form-item" :class="{ 'sb-form-item--grouped': grouped }">
     <div v-if="label" class="sb-form-item__top-container">
+      <SbIcon v-if="icon" :name="icon" />
+
       <label v-if="label" class="sb-form-item__label" :for="labelFor">
         {{ label }}
 
@@ -66,6 +68,10 @@ export default {
       default: null,
     },
     isRequired: Boolean,
+    icon: {
+      type: String,
+      default: null,
+    },
   },
 
   mounted() {

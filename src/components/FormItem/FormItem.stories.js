@@ -11,6 +11,7 @@ export default {
     helperIconText: 'Helper icon text',
     helperText: 'Helper text',
     isRequired: false,
+    icon: 'form',
   },
 }
 
@@ -64,6 +65,31 @@ export const Default = (args) => ({
         />
 
         <SbButton label="Just a button" />
+      </SbFormItem>
+    </div>
+  `,
+})
+
+export const WithIcon = (args) => ({
+  components: { SbTextField },
+  props: Object.keys(args),
+  data: () => ({
+    internalValue: 'Selected',
+    placeholder: 'Placeholder',
+  }),
+  template: `
+    <div>
+      <SbFormItem
+        :icon="icon"
+        :label="label"
+        :helper-icon-text="helperIconText"
+        :helper-text="helperText"
+        style="margin-bottom: 20px"
+        :is-required="isRequired"
+      >
+        <SbTextField
+          :placeholder="placeholder"
+        />
       </SbFormItem>
     </div>
   `,
