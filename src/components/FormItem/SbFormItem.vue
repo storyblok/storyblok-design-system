@@ -1,7 +1,7 @@
 <template>
   <div class="sb-form-item" :class="{ 'sb-form-item--grouped': grouped }">
     <div v-if="label" class="sb-form-item__top-container">
-      <SbIcon v-if="icon" :name="icon" />
+      <SbIcon v-if="icon" class="sb-form-item__icon" :name="icon" />
 
       <label v-if="label" class="sb-form-item__label" :for="labelFor">
         {{ label }}
