@@ -25,9 +25,13 @@
 
 <script>
 import { Tooltip } from '../../directives'
+import SbBreadcrumbLink from './BreadcrumbLink'
 
 export default {
   name: 'SbBreadcrumbItem',
+  components: {
+    SbBreadcrumbLink,
+  },
   directives: {
     tooltip: Tooltip,
   },
