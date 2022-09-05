@@ -380,6 +380,8 @@ export default {
           this.handleOptionCreated(value)
         }
 
+        this.searchInput = ''
+
         return
       }
 
