@@ -8,8 +8,13 @@
 </template>
 
 <script>
+import SbBreadcrumbItem from './BreadcrumbItem'
+
 export default {
   name: 'SbBreadcrumbDropdown',
+  components: {
+    SbBreadcrumbItem,
+  },
   props: {
     items: {
       type: Array,

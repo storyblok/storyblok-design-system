@@ -1,5 +1,5 @@
 <template>
-  <component :is="as">
+  <component :is="as" v-bind="computedAttrs" v-on="$listeners">
     <span v-if="label" class="sb-breadcrumbs__item-label">{{ label }}</span>
     <slot></slot>
   </component>
@@ -27,6 +27,20 @@ export default {
     href: String,
     to: [String, Object],
     replace: Boolean,
+  },
+
+  computed: {
+    computedAttrs() {
+      if (this.href) {
+        return {
+          title: this.title,
+          href: this.href,
+          target: this.target,
+        }
+      }
+
+      return this._props
+    },
   },
 }
 </script>

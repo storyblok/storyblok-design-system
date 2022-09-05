@@ -71,15 +71,10 @@ export default {
     },
     computedTooltip() {
       if (!this.isTruncated) return ''
-      return [
-        {
-          name: 'tooltip',
-          value: {
-            label: this.label,
-            position: 'bottom',
-          },
-        },
-      ]
+      return {
+        label: this.label,
+        position: 'bottom',
+      }
     },
     isTruncated() {
       return !this.showFullLabel && this.label.length > 15
