@@ -1,3 +1,5 @@
+import './card.scss'
+
 import SbCardContent from './CardContent.vue'
 import SbCardFooter from './CardFooter.vue'
 import SbCardHeader from './CardHeader.vue'
