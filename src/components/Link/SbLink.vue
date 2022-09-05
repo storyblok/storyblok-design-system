@@ -9,7 +9,8 @@
     v-on="$listeners"
   >
     <SbIcon v-if="icon" :name="icon" />
-    <span v-if="label" class="sb-link__label">{{ label }}<slot></slot></span>
+    <span v-if="label" class="sb-link__label">{{ label }}</span>
+    <slot v-else></slot>
     <SbIcon v-if="iconRight" :name="iconRight" />
   </component>
 </template>
