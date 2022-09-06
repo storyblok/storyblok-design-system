@@ -92,3 +92,16 @@ export const JustIcons = (args) => ({
     </SbGroupButton>
   `,
 })
+
+export const InvertedLink = (args) => ({
+  components: { SbGroupButton, SbButton },
+  props: Object.keys(args),
+  template: `
+    <div style="background-color:#1b243f;height:100px;">
+      <SbGroupButton variant="inverted-link">
+          <SbButton label="First button" />
+          <SbButton label="Second button" />
+      </SbGroupButton>
+    </div>
+  `,
+})
