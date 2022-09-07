@@ -81,7 +81,7 @@ const SbCardOptions = {
             props: {
               iconName: 'menu-horizontal',
               hasIconOnly: true,
-              variant: 'ghost',
+              variant: 'tertiary',
             },
           }),
           h(SbMenuList, {

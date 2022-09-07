@@ -8,7 +8,7 @@
       >
         <SbMenuListItems :items="item.group.items" />
       </SbMenuGroup>
-      <SbMenuItem v-bind="item" />
+      <SbMenuItem v-else v-bind="item" />
     </li>
   </ul>
 </template>
