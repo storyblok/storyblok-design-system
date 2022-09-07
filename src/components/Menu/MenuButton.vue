@@ -5,7 +5,6 @@
     aria-haspopup="true"
     :aria-expanded="isOpen ? 'true' : null"
     v-bind="{
-      ...$attrs,
       icon: hasIconOnly ? activeIconName || 'menu-vertical' : activeIconName,
       iconColor,
       iconRight: hasIconOnly ? '' : iconRight,
