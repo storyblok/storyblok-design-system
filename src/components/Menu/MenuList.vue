@@ -28,12 +28,15 @@
 
 <script>
 import SbMenuListItems from './MenuListItems'
+import SbPopover from '../Popover'
+
 import { isVueComponent } from '../../utils'
 export default {
   name: 'SbMenuList',
 
   components: {
     SbMenuListItems,
+    SbPopover,
   },
 
   inject: ['menuContext'],
