@@ -7,7 +7,7 @@
     <div v-if="hasHeaderSlot" class="sb-data-table__header-template">
       <VNodes :vnodes="this.column.scopedSlots.header()" />
     </div>
-    <div v-else>{{ column.label }}</div>
+    <template v-else>{{ column.label }}</template>
     <SbIcon
       v-if="isSortable"
       class="sb-data-table__sort-icon"
