@@ -9,12 +9,20 @@
     v-bind="$attrs"
   >
     <SbTab
-      v-for="tab in children"
-      :key="tab.componentOptions.propsData.name"
+      v-for="(tab, i) in children"
+      :key="`tab-${i}`"
       v-bind="tab.componentOptions.propsData"
       :activate="tab.componentOptions.propsData.name === value"
       @activate-tab="handleActiveTab"
       @keydown="handleKeyDown"
+    />
+    <SbTab
+      v-for="(newTab, i) in additionalTabs"
+      :key="`new-tab-${i}`"
+      class="sb-tab sb-tab__new-tab"
+      v-bind="newTab.props"
+      @edit-tab="handleEditTabOnCreate"
+      @cancel-edit-tab="handleCancelEditOnCreate"
     />
     <SbTabAdd
       v-if="enableAddButton"
@@ -70,12 +78,13 @@ export default {
     return {
       additionalTabs: [],
       onAddTab: false,
+      refreshKey: 1,
     }
   },
 
   computed: {
     children() {
-      return cleanChildren(this.$slots.default)
+      return this.refreshKey ? cleanChildren(this.$slots.default, 'SbTab') : []
     },
     childrenCount() {
       return this.children.length
@@ -101,25 +110,16 @@ export default {
       this.triggerActiveTab(newTabName)
     },
 
-    createNewTab(h) {
+    createNewTab() {
       this.onAddTab = true
 
-      this.additionalTabs.push(
-        h(SbTab, {
-          attrs: {
-            class: 'sb-tab sb-tab__new-tab',
-          },
-          props: {
-            label: 'New tab',
-            name: 'new-tab',
-            showEditInput: true,
-          },
-          on: {
-            'edit-tab': this.handleEditTabOnCreate,
-            'cancel-edit-tab': this.handleCancelEditOnCreate,
-          },
-        })
-      )
+      this.additionalTabs.push({
+        props: {
+          label: 'New tab',
+          name: 'new-tab',
+          showEditInput: true,
+        },
+      })
     },
 
     getTabNameFromNode(vnode) {
@@ -131,6 +131,7 @@ export default {
     },
 
     handleEditTabOnCreate(content) {
+      this.refreshKey++
       this.onAddTab = false
       this.additionalTabs = []
       this.$emit('new-tab', content)

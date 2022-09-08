@@ -121,7 +121,7 @@ export default {
         this.internalEditable = false
         this.triggerActivateTab(this.name)
         this.$emit('edit-tab', {
-          label: capitalize(event.target.value) || this.label,
+          label: this.capitalize(event.target.value) || this.label,
           name: this.name,
         })
       }
