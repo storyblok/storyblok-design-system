@@ -8,14 +8,17 @@
     role="tablist"
     v-bind="$attrs"
   >
-    <SbTab
-      v-for="(tab, i) in children"
-      :key="`tab-${i}`"
-      v-bind="tab.componentOptions.propsData"
-      :activate="tab.componentOptions.propsData.name === value"
-      @activate-tab="handleActiveTab"
-      @keydown="handleKeyDown"
-    />
+    <template v-if="children.length">
+      <SbTab
+        v-for="(tab, i) in children"
+        :key="`tab-${i}`"
+        v-bind="tab.componentOptions.propsData"
+        :activate="tab.componentOptions.propsData.name === value"
+        @activate-tab="handleActiveTab"
+        @keydown="handleKeyDown"
+      />
+    </template>
+    <slot v-else />
     <SbTab
       v-for="(newTab, i) in additionalTabs"
       :key="`new-tab-${i}`"
