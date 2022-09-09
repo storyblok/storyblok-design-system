@@ -10,7 +10,7 @@
   >
     <SbIcon v-if="icon" :name="icon" />
     <span v-if="label" class="sb-link__label">{{ label }}</span>
-    <slot v-else></slot>
+    <span v-else-if="$slots.default" class="sb-link__label"><slot /></span>
     <SbIcon v-if="iconRight" :name="iconRight" />
   </component>
 </template>
