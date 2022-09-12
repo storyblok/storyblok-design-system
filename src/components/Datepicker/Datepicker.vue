@@ -89,8 +89,6 @@
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import utc from 'dayjs/plugin/utc'
 
 import { ClickOutside, Tooltip } from '../../directives'
@@ -108,8 +106,6 @@ import { datepickerOptions, INTERNAL_VIEWS } from './utils'
 
 dayjs.extend(timezone)
 dayjs.extend(customParseFormat)
-dayjs.extend(isSameOrBefore)
-dayjs.extend(isSameOrAfter)
 dayjs.extend(utc)
 
 export default {
@@ -448,15 +444,13 @@ export default {
 
     isMinDateDisabled() {
       return (
-        this.minDate &&
-        dayjs(this.internalValue).isSameOrBefore(this.minDate, 'day')
+        this.minDate && dayjs(this.internalValue).isBefore(this.minDate, 'day')
       )
     },
 
     isMaxDateDisabled() {
       return (
-        this.maxDate &&
-        dayjs(this.internalValue).isSameOrAfter(this.maxDate, 'day')
+        this.maxDate && dayjs(this.internalValue).isAfter(this.maxDate, 'day')
       )
     },
 
