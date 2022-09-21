@@ -27,7 +27,6 @@ describe('Tests SbGroupButton component', () => {
         </SbGroupButton>
       `
       const wrapper = factory(template)
-
       expect(wrapper.findAllComponents(SbButton).length).toBe(3)
     })
   })

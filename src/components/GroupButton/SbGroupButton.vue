@@ -5,8 +5,8 @@
   >
     <component
       :is="element.componentOptions.tag"
-      v-for="element of buttons"
-      :key="element.name"
+      v-for="(element, index) in buttons"
+      :key="index"
       v-bind="getButtonsAttrs(element)"
     />
   </div>
@@ -25,18 +25,15 @@ export default {
     },
     ...sharedProps,
   },
-  computed: {
-    buttons() {
-      return this.$slots.default.filter(({ tag }) => tag)
-    },
-  },
   methods: {
     getButtonsAttrs(element) {
       return {
         ...element.componentOptions.propsData,
-        size: this.size,
-        variant: this.variant,
+        ...this.$props,
       }
+    },
+    getButtons() {
+      return this.$slots.default.filter(({ tag }) => tag)
     },
   },
 }
