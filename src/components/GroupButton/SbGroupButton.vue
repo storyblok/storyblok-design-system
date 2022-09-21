@@ -5,7 +5,7 @@
   >
     <component
       :is="element.componentOptions.tag"
-      v-for="(element, index) in buttons"
+      v-for="(element, index) in getButtons()"
       :key="index"
       v-bind="getButtonsAttrs(element)"
     />
@@ -14,11 +14,15 @@
 
 <script>
 import './group-button.scss'
+import SbButton from '../Button'
 
 import { sharedProps } from '../Button/lib'
 
 export default {
   name: 'SbGroupButton',
+  components: {
+    SbButton,
+  },
   props: {
     hasSpaces: {
       type: Boolean,

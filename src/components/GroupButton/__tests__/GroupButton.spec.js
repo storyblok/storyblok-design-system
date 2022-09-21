@@ -5,8 +5,8 @@ import SbButton from '../../Button'
 const factory = (template, propsData = {}) => {
   const Wrapper = {
     components: {
-      SbButton,
       SbGroupButton,
+      SbButton,
     },
     template,
   }
@@ -26,6 +26,7 @@ describe('Tests SbGroupButton component', () => {
           <SbButton label="Three" />
         </SbGroupButton>
       `
+
       const wrapper = factory(template)
       expect(wrapper.findAllComponents(SbButton).length).toBe(3)
     })
