@@ -48,6 +48,21 @@ describe('Tests SbGroupButton component', () => {
       })
     })
 
+    it('should have the correct type property in each child component', () => {
+      const template = `
+        <SbGroupButton type="reset">
+          <SbButton label="One" />
+          <SbButton label="Two" />
+          <SbButton label="Three" />
+        </SbGroupButton>
+      `
+      const wrapper = factory(template)
+
+      wrapper.findAllComponents(SbButton).wrappers.forEach((wrapper) => {
+        expect(wrapper.props('type')).toBe('reset')
+      })
+    })
+
     it('should have the correct variant property in each child component', () => {
       const template = `
         <SbGroupButton size="small" variant="ghost">
