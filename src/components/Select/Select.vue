@@ -66,6 +66,8 @@
       :show-caption="showCaption"
       :item-caption="itemCaption"
       :show-list-on-top="showListOnTop"
+      :infinite-scroll="infiniteScroll"
+      :loading-more-text="loadingMoreText"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -188,6 +190,11 @@ export default {
     itemCaption: {
       type: String,
       default: 'caption',
+    },
+    infiniteScroll: Boolean,
+    loadingMoreText: {
+      type: String,
+      default: 'Loading more...',
     },
   },
 
@@ -603,7 +610,9 @@ export default {
      * emit a load-more event when the user scroll till the end of the list of items
      */
     handleInfiniteScroll() {
-      this.$emit('load-more')
+      if (this.infiniteScroll) {
+        this.$emit('load-more')
+      }
     },
   },
 }
