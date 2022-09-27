@@ -66,7 +66,7 @@
       :show-caption="showCaption"
       :item-caption="itemCaption"
       :show-list-on-top="showListOnTop"
-      :infinite-scroll="infiniteScroll"
+      :is-loading-more="isLoadingMore"
       :loading-more-text="loadingMoreText"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
@@ -192,6 +192,7 @@ export default {
       default: 'caption',
     },
     infiniteScroll: Boolean,
+    isLoadingMore: Boolean,
     loadingMoreText: {
       type: String,
       default: 'Loading more...',

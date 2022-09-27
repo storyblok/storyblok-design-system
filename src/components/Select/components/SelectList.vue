@@ -35,7 +35,7 @@
           "{{ searchInput }}"
         </span>
       </li>
-      <li v-else-if="showLoadingMoreText">
+      <li v-else-if="isLoadingMore">
         <span class="sb-select-list__empty">
           <SbLoading color="primary" size="small" />
           {{ loadingMoreText }}
@@ -109,7 +109,7 @@ export default {
       default: 'path',
     },
     showListOnTop: Boolean,
-    infiniteScroll: Boolean,
+    isLoadingMore: Boolean,
     loadingMoreText: {
       type: String,
       required: true,
@@ -172,10 +172,6 @@ export default {
         this.allowCreate &&
         this.multiple
       )
-    },
-
-    showLoadingMoreText() {
-      return this.infiniteScroll && this.hasOptions && this.isLoading
     },
   },
 
