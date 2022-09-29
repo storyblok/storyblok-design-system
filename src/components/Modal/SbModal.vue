@@ -7,7 +7,12 @@
     target-slim
     :target="modalTarget"
   >
-    <SbBlokUi v-if="open" :style="computedBlokUiStyle" @mousedown="wrapClose">
+    <SbBlokUi
+      v-if="open"
+      :class="uiClass"
+      :style="computedBlokUiStyle"
+      @mousedown="wrapClose"
+    >
       <div
         ref="modal"
         class="sb-modal"
@@ -81,6 +86,14 @@ export default {
     showClose: {
       type: Boolean,
       default: true,
+    },
+    disableDiscard: {
+      type: Boolean,
+      default: false,
+    },
+    uiClass: {
+      type: String,
+      default: '',
     },
   },
 
@@ -162,6 +175,9 @@ export default {
      * handler for close modal
      */
     handleCloseModal() {
+      if (this.disableDiscard) {
+        return
+      }
       if (this.open && this.escCloses) {
         this.removeListener()
         this.open = false
