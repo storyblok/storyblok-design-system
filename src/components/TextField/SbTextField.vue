@@ -97,6 +97,7 @@
       <SbIcon
         v-if="showClearIcon"
         v-tooltip="{ label: 'Clear' }"
+        class="sb-textfield__icon--clearable"
         name="x-clear"
         :class="computedIconClasses"
         :color="iconColor"

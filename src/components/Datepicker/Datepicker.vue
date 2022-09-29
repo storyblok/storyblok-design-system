@@ -16,6 +16,7 @@
         :placeholder="placeholder"
         :value="internalValueFormatted"
         :error="invalidDate"
+        clearable
         @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
@@ -315,6 +316,11 @@ export default {
 
     handleDoneAction() {
       let utcTime
+
+      if (this.internalValue === '') {
+        this.handleClear()
+        return
+      }
 
       const isValid = dayjs(
         this.internalValue,

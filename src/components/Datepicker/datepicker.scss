@@ -33,7 +33,7 @@
     cursor: no-drop;
 
     &:hover {
-      background-color: white;
+      background-color: $white;
     }
   }
 }
@@ -49,7 +49,7 @@
     position: relative;
 
     .sb-textfield__icon {
-      cursor: pointer
+      cursor: pointer;
     }
   }
 
@@ -91,10 +91,17 @@
     }
 
     &--primary {
-      color: white;
+      color: $white;
       background-color: $color-primary;
     }
+  }
 
+  .sb-textfield__icon--clearable {
+    right: 40px;
+  }
+
+  .sb-textfield {
+    padding-right: 70px;
   }
 }
 
