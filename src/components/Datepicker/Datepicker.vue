@@ -11,7 +11,7 @@
         v-model="internalValue"
         :mask="internalMask"
         type="text"
-        icon-right="calendar"
+        icon-left="calendar"
         :disabled="disabled"
         :placeholder="placeholder"
         :value="internalValueFormatted"
