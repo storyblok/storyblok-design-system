@@ -5,7 +5,7 @@
     @click="toggleSort"
   >
     <div v-if="hasHeaderSlot" class="sb-data-table__header-template">
-      <VNodes :vnodes="this.column.scopedSlots.header()" />
+      <VNodes :vnodes="column.scopedSlots.header()" />
     </div>
     <template v-else>{{ column.label }}</template>
     <SbIcon
