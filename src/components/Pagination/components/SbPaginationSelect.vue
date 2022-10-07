@@ -1,7 +1,7 @@
 <template>
   <SbSelect
     :options="parsedOptions"
-    :label="value + ''"
+    :label="activeLabel"
     inline
     show-list-on-top
     @input="onSelectInput"
@@ -31,12 +31,13 @@ export default {
 
   computed: {
     parsedOptions() {
-      return this.options.map((option) => {
-        return {
-          ...option,
-          label: `${option.label}`,
-        }
-      })
+      return this.options.map((option) => ({
+        ...option,
+        label: `${option.label}`,
+      }))
+    },
+    activeLabel() {
+      return String(this.value)
     },
   },
 

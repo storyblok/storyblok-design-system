@@ -1,12 +1,5 @@
 <template>
-  <div
-    class="sb-pagination"
-    :class="{
-      'sb-pagination--full-width': isFullWidth,
-      'sb-pagination--carousel': carousel,
-      'sb-pagination--compact': compact,
-    }"
-  >
+  <div class="sb-pagination" :class="computedClasses">
     <template v-if="carousel || compact">
       <SbPaginationButton
         data-testid="pagination-previous-button"
@@ -149,15 +142,18 @@ export default {
       return this.value >= this.pages
     },
     perPageAvailable() {
-      if (
-        this.customPerPageOptions !== null &&
-        Array.isArray(this.customPerPageOptions) &&
-        this.customPerPageOptions.length !== 0
-      ) {
-        return this.customPerPageOptions
-      }
+      const shouldShowCustomPage = this.customPerPageOptions?.length > 0
 
-      return DEFAULT_ROWS_PER_PAGE_DROPDOWN
+      return shouldShowCustomPage
+        ? this.customPerPageOptions
+        : DEFAULT_ROWS_PER_PAGE_DROPDOWN
+    },
+    computedClasses() {
+      return {
+        'sb-pagination--full-width': this.isFullWidth,
+        'sb-pagination--carousel': this.carousel,
+        'sb-pagination--compact': this.compact,
+      }
     },
   },
 
