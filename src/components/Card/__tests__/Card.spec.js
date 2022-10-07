@@ -9,13 +9,7 @@ import {
 import SbLink from '../../Link'
 
 import { mount } from '@vue/test-utils'
-import {
-  SbMenu,
-  SbMenuButton,
-  SbMenuGroup,
-  SbMenuItem,
-  SbMenuSeparator,
-} from '../../Menu'
+import { SbMenu, SbMenuButton, SbMenuItem, SbMenuSeparator } from '../../Menu'
 import SbLoading from '../../Loading'
 
 const cardOptionsMock = [
@@ -152,16 +146,13 @@ describe('SbCardOptions component', () => {
   })
 
   it('should render the SbMenuGroup along with SbMenuItems', () => {
-    const group = wrapper.findComponent(SbMenuGroup)
-    const groupItems = group.findAllComponents(SbMenuItem)
+    const groupItems = wrapper.findAllComponents(SbMenuItem)
 
-    expect(group.exists()).toBe(true)
+    expect(groupItems.length).toBe(5)
 
-    expect(groupItems.length).toBe(2)
+    expect(groupItems.at(3).props('label')).toBe('Group Item 1')
 
-    expect(groupItems.at(0).props('label')).toBe('Group Item 1')
-
-    expect(groupItems.at(1).props('label')).toBe('Group Item 2')
+    expect(groupItems.at(4).props('label')).toBe('Group Item 2')
   })
 })
 
