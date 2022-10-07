@@ -35,6 +35,12 @@
           "{{ searchInput }}"
         </span>
       </li>
+      <li v-else-if="isLoadingMore">
+        <span class="sb-select-list__empty">
+          <SbLoading color="primary" size="small" />
+          {{ loadingMoreText }}
+        </span>
+      </li>
       <li v-else-if="showTextStartingTagCreation">
         <span class="sb-select-list__empty"> {{ noDataTextTag }} </span>
       </li>
@@ -103,6 +109,11 @@ export default {
       default: 'path',
     },
     showListOnTop: Boolean,
+    isLoadingMore: Boolean,
+    loadingMoreText: {
+      type: String,
+      required: true,
+    },
   },
 
   data() {

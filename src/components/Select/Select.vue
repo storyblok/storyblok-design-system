@@ -50,6 +50,7 @@
     <SbSelectList
       v-if="!useMinibrowser"
       ref="list"
+      v-infinite-scroll="{ handler: handleInfiniteScroll }"
       :value="value"
       :is-loading="isLoading"
       :search-input="searchInput"
@@ -65,6 +66,8 @@
       :show-caption="showCaption"
       :item-caption="itemCaption"
       :show-list-on-top="showListOnTop"
+      :is-loading-more="isLoadingMore"
+      :loading-more-text="loadingMoreText"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -83,7 +86,7 @@
 
 <script>
 import { debounce } from 'throttle-debounce'
-import { ClickOutside } from '../../directives'
+import { ClickOutside, InfiniteScroll } from '../../directives'
 import { canUseDOM, includes, toLowerCase, isString } from '../../utils'
 import SbSelectInner from './components/SelectInner'
 import SbSelectList from './components/SelectList'
@@ -93,6 +96,7 @@ export default {
 
   directives: {
     ClickOutside,
+    InfiniteScroll,
   },
 
   components: {
@@ -186,6 +190,12 @@ export default {
     itemCaption: {
       type: String,
       default: 'caption',
+    },
+    infiniteScroll: Boolean,
+    isLoadingMore: Boolean,
+    loadingMoreText: {
+      type: String,
+      default: 'Loading more...',
     },
   },
 
@@ -595,6 +605,15 @@ export default {
 
       this.$_focusInner()
       this.hideList()
+    },
+
+    /**
+     * emit a load-more event when the user scroll till the end of the list of items
+     */
+    handleInfiniteScroll() {
+      if (this.infiniteScroll) {
+        this.$emit('load-more')
+      }
     },
   },
 }
