@@ -1,4 +1,4 @@
-@mixin setColor ($color, $textColor) {
+@mixin setColor($color, $textColor) {
   color: $textColor;
   background-color: $color;
 
@@ -50,6 +50,10 @@
 
   &--light-info {
     @include setColor($blue-25, $primary-text-color);
+  }
+
+  &--success {
+    @include setColor($green, $white);
   }
 
   .sb-icon {

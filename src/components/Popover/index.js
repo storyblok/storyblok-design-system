@@ -302,3 +302,5 @@ const SbPopoverArrow = {
 }
 
 export { SbPopover, SbPopoverArrow }
+
+export default SbPopover

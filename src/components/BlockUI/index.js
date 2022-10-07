@@ -1,20 +1,6 @@
 import './block.scss'
 
-const SbBlockUi = {
-  name: 'SbBlockUi',
-  inheritAttrs: false,
+import SbBlockUi from './BlockUi.vue'
 
-  render(h) {
-    return h(
-      'div',
-      {
-        class: 'sb-block-ui',
-        on: this.$listeners,
-        attrs: this.$attrs,
-      },
-      [this.$slots.default]
-    )
-  },
-}
-
+export { SbBlockUi }
 export default SbBlockUi
