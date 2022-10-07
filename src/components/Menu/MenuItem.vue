@@ -2,13 +2,7 @@
   <component
     :is="as"
     class="sb-menu-item"
-    :class="{
-      [`sb-menu-item--${type}`]: !!type,
-      'sb-menu-item--has-icon': !!icon,
-      'sb-menu-item--disabled': isDisabled,
-      'sb-menu-item--aux-text': !!auxText,
-      'sb-menu-item--is-link': as === 'a',
-    }"
+    :class="computedClasses"
     :disabled="isDisabled"
     role="menuitemradio"
     @click="handleClick"
@@ -59,6 +53,15 @@ export default {
   computed: {
     context() {
       return this.menuContext()
+    },
+    computedClasses() {
+      return {
+        [`sb-menu-item--${this.type}`]: !!this.type,
+        'sb-menu-item--has-icon': !!this.icon,
+        'sb-menu-item--disabled': this.isDisabled,
+        'sb-menu-item--aux-text': !!this.auxText,
+        'sb-menu-item--is-link': this.as === 'a',
+      }
     },
   },
 

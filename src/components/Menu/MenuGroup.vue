@@ -1,12 +1,6 @@
 <template>
   <div role="group">
-    <p
-      v-if="title.length"
-      :class="[
-        'sb-menu-group__title',
-        { 'sb-menu-group__title--bold': isTitleBold },
-      ]"
-    >
+    <p v-if="title.length" :class="computedClasses">
       {{ title }}
     </p>
     <slot />
@@ -16,13 +10,21 @@
 <script>
 export default {
   name: 'SbMenuGroup',
+
   props: {
     title: {
       type: String,
       default: '',
     },
-    isTitleBold: {
-      type: Boolean,
+    isTitleBold: Boolean,
+  },
+
+  computed: {
+    computedClasses() {
+      return [
+        'sb-menu-group__title',
+        { 'sb-menu-group__title--bold': this.isTitleBold },
+      ]
     },
   },
 }
