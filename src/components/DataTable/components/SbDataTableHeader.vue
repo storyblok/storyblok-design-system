@@ -3,7 +3,7 @@
     <tr>
       <th v-if="allowSelection" class="sb-data-table__head-cell">
         <SbCheckbox
-          v-if="selectionMode === 'multiple'"
+          v-if="isMultiple"
           :indeterminate="isIndeterminate"
           :value="allRowsSelected"
           @click.native="handleAllRowsSelected"
@@ -61,6 +61,10 @@ export default {
 
     selectedRowsLength() {
       return this.selectedRows.length
+    },
+
+    isMultiple() {
+      return this.selectionMode === 'multiple'
     },
   },
 
