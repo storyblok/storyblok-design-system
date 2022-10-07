@@ -3,20 +3,21 @@
     <SbIcon
       class="sb-notification--icon-container"
       size="small"
-      :name="icons[status]"
-    ></SbIcon>
+      :name="iconStatus"
+    />
     <span v-if="title" class="sb-notification--title">
-      {{ capitalizeText(title) }}
+      {{ capitalizedTitle }}
     </span>
     <div v-if="isDescriptionVisible" class="sb-notification--description">
-      {{ descriptionToRender }}<slot></slot>
+      {{ descriptionToRender }}
+      <slot></slot>
     </div>
     <button
       v-if="isExpandable"
       class="sb-notification--btn"
       @click="expandNotification"
     >
-      <SbIcon size="small" :name="chevronText"></SbIcon>
+      <SbIcon size="small" :name="chevronText" />
     </button>
     <div v-if="isLinkVisible" class="sb-notification--link">
       <a :href="link" target="_blank" :title="`Link to ${linkName}`">
@@ -25,7 +26,7 @@
           v-if="isFull && !isExpandable"
           size="small"
           name="chevron-right"
-        ></SbIcon>
+        />
       </a>
     </div>
   </div>
@@ -34,6 +35,7 @@
 <script>
 import { capitalize } from '../../utils'
 import SbIcon from '../Icon'
+
 export default {
   name: 'SbNotification',
   components: { SbIcon },
@@ -82,24 +84,18 @@ export default {
   },
   computed: {
     computedClasses() {
+      const hasContent = this.description || this.link || this.$slots.default
+      const hasFullContent = this.isFull && !this.isExpandable && hasContent
+      const isRegularContent = !this.isFull && !this.isExpandable && hasContent
       return [
         `sb-notification sb-notification--${this.status}`,
-        this.dynamicClass,
+        {
+          'sb-notification--expandable': this.isExpandable,
+          'sb-notification--full': this.isFull,
+          'sb-notification--content': isRegularContent,
+          'sb-notification--full-content': hasFullContent,
+        },
       ]
-    },
-    dynamicClass() {
-      return {
-        'sb-notification--expandable': this.expandle,
-        'sb-notification--full': this.isFull,
-        'sb-notification--content':
-          !this.isFull &&
-          !this.isExpandable &&
-          (this.description || this.link || this.$slots.default),
-        'sb-notification--full-content':
-          this.isFull &&
-          (this.description || this.link || this.$slots.default) &&
-          !this.isExpandable,
-      }
     },
     descriptionToRender() {
       return this.description
@@ -123,13 +119,16 @@ export default {
     isLinkVisible() {
       return this.link && (this.isExpandableAndExpanded || !this.isExpandable)
     },
+    capitalizedTitle() {
+      return capitalize(this.title || '')
+    },
+    iconStatus() {
+      return this.icons[this.status]
+    },
   },
   methods: {
     expandNotification() {
       this.expanded = !this.expanded
-    },
-    capitalizeText(text = '') {
-      return capitalize(text)
     },
   },
 }
