@@ -80,7 +80,7 @@ export const Default = (args) => ({
     SbMenuSeparator,
   },
   template: `
-    <div>
+    <div style="min-height: 300px;">
       <SbMenu :value="value">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
@@ -114,7 +114,7 @@ export const WithSeparators = (args) => ({
     SbMenuSeparator,
   },
   template: `
-    <div>
+    <div style="min-height: 300px;">
       <SbMenu :value="value">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
@@ -149,7 +149,7 @@ export const WithIcons = (args) => ({
     SbMenuSeparator,
   },
   template: `
-    <div>
+    <div style="min-height: 300px;">
       <SbMenu :value="value">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
@@ -180,7 +180,7 @@ export const ButtonWithJustIcon = (args) => ({
     SbMenuSeparator,
   },
   template: `
-    <div>
+    <div style="min-height: 300px;">
       <SbMenu :value="value">
         <SbMenuButton has-icon-only is-rounded :icon-right="iconRight" :icon="icon"/>
 
@@ -213,9 +213,9 @@ export const AlongWithGroup = (args) => ({
     SbGroupButton,
   },
   template: `
-    <div style="display: flex; justify-content: center;">
+    <div style="display: flex; justify-content: center; min-height: 300px;">
       <SbMenu :value="value">
-        <SbGroupButton variant="ghost">
+        <SbGroupButton variant="tertiary">
           <SbButton label="Define Schema" />
           <SbMenuButton has-icon-only />
         </SbGroupButton>
@@ -247,7 +247,7 @@ export const WithLinksOnMenuItem = (args) => ({
     SbButton,
   },
   template: `
-    <div>
+    <div style="min-height: 300px;">
       <SbMenu :value="value">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
@@ -282,7 +282,7 @@ export const WithoutIconRight = (args) => ({
     SbMenuSeparator,
   },
   template: `
-  <div>
+  <div style="min-height: 300px;">
   <SbMenu :value="value">
     <SbMenuButton label="Combo button" ref="contentButton" :icon-right="iconRight" :icon="icon" />
 
@@ -312,7 +312,7 @@ export const WithIconLeft = (args) => ({
     SbMenuSeparator,
   },
   template: `
-  <div>
+  <div style="min-height: 300px;">
   <SbMenu :value="value">
   <SbMenuButton
     ref="contentButton"
