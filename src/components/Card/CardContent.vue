@@ -9,6 +9,7 @@
 
 <script>
 import SbLoading from '../Loading'
+
 export default {
   name: 'SbCardContent',
   components: {
