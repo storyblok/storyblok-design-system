@@ -868,6 +868,24 @@ const pictogramIcons = {
     <g fill="none" fill-rule="evenodd"><circle cx="58" cy="55" r="55" fill="url(#search-empty-state-a)"/><g transform="translate(0 22)"><path fill="#CDCFD4" d="M20 0h76a5 5 0 0 1 5 5v59H15V5a5 5 0 0 1 5-5z"/><rect width="116" height="6" y="64" fill="#C3C5CA" rx="3"/><g transform="translate(21 6)">    <mask id="search-empty-state-c" fill="#fff"><use xlink:href="#search-empty-state-b"/></mask><use fill="#F8F9FA" xlink:href="#search-empty-state-b"/><path fill="#1B243F" d="M0 0h13v52H0z" mask="url(#search-empty-state-c)"/></g>  <rect width="9" height="3" x="40" y="19" fill="#E0E1E5" rx="1.5"/><rect width="9" height="3" x="40" y="12" fill="#E0E1E5" rx="1.5"/><rect width="9" height="3" x="52" y="19" fill="#E0E1E5" rx="1.5"/><circle cx="87.5" cy="20.5" r="1.5" fill="#E0E1E5"/><rect width="9" height="3" x="40" y="31" fill="#E0E1E5" rx="1.5"/><rect width="9" height="3" x="52" y="31" fill="#E0E1E5" rx="1.5"/><circle cx="87.5" cy="32.5" r="1.5" fill="#E0E1E5"/><rect width="29" height="3" x="40" y="25" fill="#E0E1E5" rx="1.5"/><circle cx="87.5" cy="26.5" r="1.5" fill="#E0E1E5"/></g><circle cx="96" cy="28" r="16" fill="#000" fill-opacity=".153"/><circle cx="97" cy="26" r="16" fill="#00B3B0"/><path fill="#FFF" d="M91.697 21.197a5 5 0 0 1 7.708 6.292l2.898 2.9a1 1 0 0 1-1.414 1.414l-2.9-2.899a5.002 5.002 0 0 1-6.292-7.707zm1.413 1.413a3 3 0 1 0 4.243 4.243 3 3 0 0 0-4.243-4.243z"/></g>
     `,
   },
+  'user-pictogram': {
+    viewBox: '0 0 48 48',
+    path: `
+      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-696.000000, -406.000000)">
+          <g transform="translate(410.000000, 371.000000)">
+            <g transform="translate(286.000000, 35.000000)">
+              <circle fill="#D9F4F3" cx="24" cy="24" r="24"></circle>
+              <g transform="translate(16.380952, 14.666667)" fill="#00B3B0">
+                <path d="M3.61904762,4 C3.61904762,6.209139 5.40990862,8 7.61904762,8 C9.82818662,8 11.6190476,6.209139 11.6190476,4 C11.6190476,1.790861 9.82818662,1.37054459e-15 7.61904762,1.77635684e-15 C5.40990862,2.18216909e-15 3.61904762,1.790861 3.61904762,4 Z"></path>
+                <path d="M7.61904762,9.33333333 C11.8269314,9.33333333 15.2380952,12.7444971 15.2380952,16.952381 L15.2380952,20 L15.2380952,20 L0,20 L0,16.952381 C3.72861276e-16,12.7444971 3.41116381,9.33333333 7.61904762,9.33333333 Z"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    `,
+  },
 }
 
 const blockIcons = {
