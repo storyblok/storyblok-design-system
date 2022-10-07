@@ -365,3 +365,57 @@ WithTooltip.parameters = {
     },
   },
 }
+
+export const MultipleAvatarsWithTheSameColor = () => ({
+  components: { SbAvatar },
+  template: `<div>
+    <SbAvatar name="Ada Lovelace" />
+
+    <SbAvatar name="Ada Lovelace" />
+
+    <SbAvatar name="Alan Turing" />
+
+    <SbAvatar name="Alan Turing" />
+
+    <SbAvatar name="Alan Turing" />
+
+    <SbAvatar name="John von Neumann" />
+
+    <SbAvatar name="John von Neumann" />
+
+    <SbAvatar name="Tommy Flowers" />
+
+    <SbAvatar name="Tommy Flowers" />
+
+    <SbAvatar name="Tommy Flowers" />
+
+    <SbAvatar name="John von Neumann" />
+
+    <SbAvatar name="George Boole" />
+
+    <SbAvatar name="George Boole" />
+
+    <SbAvatar name="Ramon Llull" />
+
+    <SbAvatar name="Ramon Llull" />
+
+    <SbAvatar name="Ramon Llull" />
+
+    <SbAvatar name="Joseph Marie Jacquard" />
+
+    <SbAvatar name="Joseph Marie Jacquard" />
+
+    <SbAvatar name="Banū Mūsā" />
+
+    <SbAvatar name="Banū Mūsā" />
+  </div>`,
+})
+
+MultipleAvatarsWithTheSameColor.parameters = {
+  docs: {
+    description: {
+      story:
+        'This story is to show for the user when we have a list with a lot of users, and if the avatar initials is the same, the color for this avatar will be the same and not a randomized color.',
+    },
+  },
+}

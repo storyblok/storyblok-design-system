@@ -32,6 +32,7 @@ export const AllColors = () => ({
       <h1 class="sb-color-pallete__title">Neutral Colors</h1>
 
       <SbColors color-name="#B1B5BE" name="Light Gray 100% (text/icon color)"/>
+      <SbColors color-name="#415467" name="Blue Gray 100% (text/icon color)"/>
 
       <br />
 

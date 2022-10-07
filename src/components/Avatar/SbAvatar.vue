@@ -135,7 +135,8 @@ export default {
     },
 
     avatarInitialsClass() {
-      const color = this.bgColor || generateRandomBgColor()
+      const color =
+        this.bgColor || generateRandomBgColor(this.friendlyName || this.name)
       const bgColorClass = this.bgColor ? `bg-${color}` : color
 
       return ['sb-avatar__initials', bgColorClass]
