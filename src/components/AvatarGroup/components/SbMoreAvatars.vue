@@ -17,7 +17,7 @@
       :aria-hidden="!expanded"
     >
       <component
-        :is="element.componentOptions.tag"
+        :is="element.type.name"
         v-for="(element, index) of avatars"
         :key="index"
         v-bind="getAvatarAttrs(element)"
@@ -58,21 +58,16 @@ export default {
 
   methods: {
     getAvatarAttrs(element) {
-      const name = truncate(
-        MAX_NAME_LENGTH,
-        element.componentOptions.propsData.name || ''
-      )
+      const name = truncate(MAX_NAME_LENGTH, element.props.name || '')
 
       const friendlyName = truncate(
         MAX_NAME_LENGTH,
-        element.componentOptions.propsData.friendlyName || ''
+        element.props.friendlyName || ''
       )
 
       return {
-        ...element.componentOptions.propsData,
-        title:
-          element.componentOptions.propsData.name ||
-          element.componentOptions.propsData.friendlyName,
+        ...element.props,
+        title: element.props.name || element.props.friendlyName,
         name,
         friendlyName,
         showName: true,

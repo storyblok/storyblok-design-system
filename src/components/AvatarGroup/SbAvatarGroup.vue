@@ -1,7 +1,7 @@
 <template>
   <div :class="avatarGroupClass">
     <component
-      :is="element.componentOptions.tag"
+      :is="element.type.name"
       v-for="(element, index) of visibleAvatars"
       :key="element.name"
       v-bind="getAvatarAttrs(element, index)"
@@ -54,7 +54,9 @@ export default {
 
   computed: {
     avatars() {
-      return this.$slots?.default().filter(({ tag }) => tag)
+      const children = this.$slots.default && this.$slots.default()
+      console.log(children)
+      return children.filter(({ type }) => type.name === 'SbAvatar')
     },
 
     totalAvatars() {
@@ -93,7 +95,7 @@ export default {
   methods: {
     getAvatarAttrs(element, index) {
       return {
-        ...element.componentOptions.propsData,
+        ...element.props,
         useTooltip: true,
         size: this.size,
         bgColor: availableColors[index],
