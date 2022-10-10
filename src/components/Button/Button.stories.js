@@ -443,50 +443,21 @@ export const LoadingButton = (args) => ({
     return { args }
   },
   template: `
-    <SbButton
-      :is-rounded="args.isRounded"
-      :is-full-width="args.isFullWidth"
-      :is-loading="args.isLoading"
-      :is-disabled="args.isDisabled"
-      :size="args.size"
-      :variant="args.variant"
-      :type="args.type"
-      :icon-color="args.iconColor"
-    />`,
+    <SbButton v-bind="args" />
+    `,
 })
 
-LoadingButton.args = ButtonTemplate.bind({})
-
 LoadingButton.args = {
-  variant: 'primary',
   isLoading: true,
+  label: 'Default',
+  variant: 'primary',
+  size: 'small',
 }
 
 LoadingButton.parameters = {
   docs: {
     description: {
       story: 'Types of buttons with loading',
-    },
-  },
-}
-
-LoadingButton.argTypes = {
-  icon: {
-    control: {
-      type: 'select',
-      options: [],
-    },
-  },
-  iconRight: {
-    control: {
-      type: 'select',
-      options: [],
-    },
-  },
-  iconColor: {
-    control: {
-      type: 'select',
-      options: [],
     },
   },
 }
