@@ -58,7 +58,7 @@ export const Default = (args) => ({
   },
   template: `
     <SbCard :isLoading="isLoading">
-      <SbCardHeader :as="as" :title="title" />
+      <SbCardHeader v-bind="args" />
 
       <SbCardContent>
         <div
@@ -140,7 +140,7 @@ export const Loading = (args) => ({
 
   template: `
     <SbCard :isLoading="isLoading">
-      <SbCardHeader :title="title" />
+      <SbCardHeader v-bind="args" />
 
       <SbCardContent>
         <div
@@ -238,7 +238,7 @@ export const WithMenuComponent = (args) => ({
 
   template: `
     <SbCard :isLoading="isLoading">
-      <SbCardHeader :title="title" :options="options" />
+      <SbCardHeader v-bind="args" :options="options" />
 
       <SbCardContent>
         <div
