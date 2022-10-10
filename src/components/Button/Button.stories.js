@@ -327,13 +327,8 @@ export const FullWidth = (args) => ({
   },
   template: `<div style="max-width: 500px;">
     <SbButton
-      :variant="variant"
-      :is-loading="isLoading"
-      :is-disabled="isDisabled"
-      :size="size"
-      :is-full-width="isFullWidth"
-      :label="label"
-      :type="type"
+      is-full-width
+      label="Full width"
     />
   </div>`,
 })
