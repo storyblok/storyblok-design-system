@@ -24,36 +24,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-.sb-breadcrumbs__dropdown {
-  @include generalBoxShadow();
-
-  position: absolute;
-  left: 0;
-  top: calc(100% + 10px);
-  display: block;
-  margin: 0;
-  padding: 9px 0;
-
-  .sb-breadcrumbs__item {
-    display: block;
-    font-size: $font-14;
-    text-decoration: none;
-  }
-
-  .sb-breadcrumbs__item a {
-    display: block;
-    padding: 6px 15px;
-    text-decoration: none;
-
-    &:hover {
-      background-color: $light-50;
-    }
-  }
-
-  .sb-breadcrumbs__item:last-child {
-    margin-bottom: 0;
-  }
-}
-</style>

@@ -1,16 +1,13 @@
 <template>
   <nav class="sb-breadcrumbs" aria-label="breadcrumb" :class="activeClass">
-    <template v-if="items.length > 6">
-      <SbBreadcrumbItem v-bind="items[0]" />
+    <template v-if="isLargerThanSixItems">
+      <SbBreadcrumbItem v-bind="firstItem" />
       <SbBreadcrumbSeparator />
-      <SbBreadcrumbDropdown
-        :items="items.slice(1, -1)"
-        :active="showDropdown"
-      />
-      <span @click="toggleDropdown"
-        ><SbBreadcrumbSeparator :active="showDropdown"
-      /></span>
-      <SbBreadcrumbItem v-bind="items.slice(-1)[0]" />
+      <SbBreadcrumbDropdown :items="middleItems" :active="showDropdown" />
+      <span @click="toggleDropdown">
+        <SbBreadcrumbSeparator :active="showDropdown" />
+      </span>
+      <SbBreadcrumbItem v-bind="lastItem" />
     </template>
 
     <template v-else>
@@ -50,6 +47,18 @@ export default {
       return {
         'sb-breadcrumbs--large-section': this.isLargeSection,
       }
+    },
+    firstItem() {
+      return this.items[0]
+    },
+    middleItems() {
+      return this.items.slice(1, -1)
+    },
+    lastItem() {
+      return this.items.slice(-1)[0]
+    },
+    isLargerThanSixItems() {
+      return this.items.length > 6
     },
   },
 

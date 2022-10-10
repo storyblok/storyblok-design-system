@@ -6,6 +6,7 @@
 
 <script>
 import SbIcon from '../Icon/SbIcon.vue'
+
 export default {
   name: 'BreadcrumbSeperator',
   components: { SbIcon },
@@ -24,18 +25,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-.sb-breadcrumbs__separator {
-  display: inline-flex;
-  margin-right: 5px;
-  cursor: pointer;
-  list-style: none;
-  transition: 0.1s ease-in-out;
-
-  &--active {
-    background-color: $light-50;
-    transform: rotate(90deg);
-  }
-}
-</style>

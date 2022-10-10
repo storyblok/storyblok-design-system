@@ -45,17 +45,29 @@ export default {
       default: '',
     },
 
-    title: String,
-    target: String,
+    title: {
+      type: String,
+      default: '',
+    },
+    target: {
+      type: String,
+      default: '',
+    },
     isActive: Boolean,
     showFullLabel: Boolean,
 
     append: Boolean,
     disabled: Boolean,
     exact: Boolean,
-    exactActiveClass: String,
+    exactActiveClass: {
+      type: String,
+      default: '',
+    },
     link: Boolean,
-    href: String,
+    href: {
+      type: String,
+      default: '',
+    },
     to: [String, Object],
     replace: Boolean,
   },
@@ -77,7 +89,8 @@ export default {
       }
     },
     isTruncated() {
-      return !this.showFullLabel && this.label.length > 15
+      const MAX_LABEL_LENGTH = 15
+      return !this.showFullLabel && this.label.length > MAX_LABEL_LENGTH
     },
     labelFormatted() {
       return this.isTruncated ? this.getLabelTruncated(this.label) : this.label
@@ -86,30 +99,9 @@ export default {
 
   methods: {
     getLabelTruncated(label) {
-      return `${label.slice(0, 13)}...`
+      const LABEL_TRUNCATE_LENGTH = 13
+      return `${label.slice(0, LABEL_TRUNCATE_LENGTH)}...`
     },
   },
 }
 </script>
-
-<style lang="scss">
-.sb-breadcrumbs__item {
-  display: inline-flex;
-  color: $primary-text-color;
-  font-size: $font-13;
-
-  &--active {
-    color: $color-primary-dark;
-  }
-
-  a {
-    color: $primary-text-color;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-}
-</style>
