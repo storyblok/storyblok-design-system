@@ -3,6 +3,7 @@
     <component
       :is="parentElementTag"
       :id="anchorId"
+      ref="elementRef"
       v-click-outside="wrapClose"
       class="sb-popover"
       v-bind="$attrs"
@@ -134,9 +135,10 @@ export default {
     },
 
     popoverEl() {
-      return this.usePortal
-        ? canUseDOM && document.querySelector(`#${this.anchorId}`)
-        : this.$el
+      if (this.usePortal && canUseDOM) {
+        return document.querySelector(`#${this.anchorId}`)
+      }
+      return this.$refs.elementRef
     },
 
     computedStyle() {
