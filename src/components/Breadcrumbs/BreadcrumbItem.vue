@@ -44,12 +44,7 @@ export default {
       type: String,
       default: '',
     },
-
     title: {
-      type: String,
-      default: '',
-    },
-    target: {
       type: String,
       default: '',
     },
@@ -59,14 +54,10 @@ export default {
     append: Boolean,
     disabled: Boolean,
     exact: Boolean,
-    exactActiveClass: {
-      type: String,
-      default: '',
-    },
     link: Boolean,
     href: {
       type: String,
-      default: '',
+      default: null,
     },
     to: [String, Object],
     replace: Boolean,
