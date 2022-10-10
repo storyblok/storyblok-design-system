@@ -55,7 +55,6 @@ export default {
   computed: {
     avatars() {
       const children = this.$slots.default && this.$slots.default()
-      console.log(children)
       return children.filter(({ type }) => type.name === 'SbAvatar')
     },
 
