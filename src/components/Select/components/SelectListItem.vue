@@ -82,6 +82,7 @@ export default {
     },
 
     isFocused: Boolean,
+    selected: Boolean,
 
     showCaption: Boolean,
     path: {
@@ -99,7 +100,7 @@ export default {
 
     computedClasses() {
       return [
-        this.isSelected && 'sb-select-list__item--selected',
+        (this.isSelected || this.selected) && 'sb-select-list__item--selected',
         this.isFocused && 'sb-select-list__item--focused',
       ]
     },
@@ -138,7 +139,7 @@ export default {
         return this.inputValue.some(($v) => $v[this.itemValue] === itemValue)
       }
 
-      return includes(this.inputValue, this.value)
+      return this.selected || includes(this.inputValue, this.value)
     },
   },
 }

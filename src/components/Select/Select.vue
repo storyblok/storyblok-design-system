@@ -68,6 +68,8 @@
       :show-list-on-top="showListOnTop"
       :is-loading-more="isLoadingMore"
       :loading-more-text="loadingMoreText"
+      :all-option-value="firstOptionValue"
+      :first-value-is-all-value="firstValueIsAllValue"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -118,6 +120,7 @@ export default {
     },
     required: Boolean,
     multiple: Boolean,
+    firstValueIsAllValue: Boolean,
     disableInternalFilter: Boolean,
     filterDebounce: {
       type: Number,
@@ -234,6 +237,10 @@ export default {
       return this.$slots.minibrowser && this.innerElement
     },
 
+    firstOptionValue() {
+      return this.options.length > 0 ? this.options[0].value : null
+    },
+
     filteredOptions() {
       if (
         this.filterable &&
@@ -288,6 +295,27 @@ export default {
 
     searchInput(newValue) {
       this.$emit('search-input', newValue)
+    },
+
+    value(newVal, oldVal) {
+      if (this.multiple && this.firstValueIsAllValue) {
+        if (
+          oldVal.length === 1 &&
+          oldVal.includes(this.firstOptionValue) &&
+          newVal.length > 1
+        ) {
+          this.$emit(
+            'input',
+            newVal.filter((item) => item !== this.firstOptionValue)
+          )
+        }
+        if (
+          !oldVal.includes(this.firstOptionValue) &&
+          newVal.includes(this.firstOptionValue)
+        ) {
+          this.$emit('input', [this.firstOptionValue])
+        }
+      }
     },
   },
 

@@ -55,6 +55,7 @@ const SelectTemplate = (args) => ({
       :clearable="clearable"
       :show-caption="showCaption"
       v-model="internalValue"
+      :first-value-is-all-value="firstValueIsAllValue"
       style="max-width: 300px"
       @option-created="handleOptionCreated"
     />`,
@@ -88,6 +89,25 @@ export const defaultSelectOptionsData = [
   {
     label: 'Option 7',
     value: 7,
+  },
+]
+
+export const selectOptionsDataWithAllOption = [
+  {
+    label: 'All options',
+    value: 0,
+  },
+  {
+    label: 'Option 1',
+    value: 1,
+  },
+  {
+    label: 'Option 2',
+    value: 2,
+  },
+  {
+    label: 'Option 3',
+    value: 3,
   },
 ]
 
@@ -185,6 +205,7 @@ export default {
     options: [...defaultSelectOptionsData],
     value: null,
     multiple: false,
+    firstValueIsAllValue: false,
     filterable: false,
     leftIcon: null,
     useAvatars: false,
@@ -206,6 +227,14 @@ export const Multiple = SelectTemplate.bind({})
 
 Multiple.args = {
   multiple: true,
+}
+
+export const MultipleWithAllOption = SelectTemplate.bind({})
+
+MultipleWithAllOption.args = {
+  multiple: true,
+  options: selectOptionsDataWithAllOption,
+  firstValueIsAllValue: true,
 }
 
 export const OptionsWithIcon = SelectTemplate.bind({})
