@@ -9,6 +9,7 @@ import SbAvatar from '../../Avatar'
 
 import {
   defaultSelectOptionsData,
+  selectOptionsDataWithAllOption,
   defaultAvatarsData,
   defaultOptionsWithCaptionData,
 } from '../Select.stories'
@@ -201,6 +202,32 @@ describe('SbSelect component', () => {
       await buttonComponent.trigger('click')
 
       expect(wrapper.emitted('input')[0][0]).toEqual([])
+    })
+  })
+
+  describe('multiple option - all values', () => {
+    const defaultsPropsData = {
+      label: 'Choose an option',
+      options: [...selectOptionsDataWithAllOption],
+      firstValueIsAllValue: true,
+      multiple: true,
+    }
+
+    const getFirstValue = (wrapper, event) => wrapper.emitted(event)[0][0]
+
+    it('should emit an input event with an array of values', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          ...defaultsPropsData,
+          value: [],
+        },
+      })
+
+      const innerElement = wrapper.find('.sb-select-inner')
+      await innerElement.trigger('click')
+      await wrapper.findAll('li').at(0).trigger('click')
+      expect(wrapper.find('ul').exists()).toBe(true)
+      expect(getFirstValue(wrapper, 'input')).toEqual([0])
     })
   })
 

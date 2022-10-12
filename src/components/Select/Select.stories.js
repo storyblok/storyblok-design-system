@@ -39,7 +39,8 @@ const SelectTemplate = (args) => ({
   },
 
   template: `
-    <SbSelect
+    <div style="min-height: 300px">
+      <SbSelect
       :label="label"
       :options="options"
       :multiple="multiple"
@@ -58,7 +59,9 @@ const SelectTemplate = (args) => ({
       :first-value-is-all-value="firstValueIsAllValue"
       style="max-width: 300px"
       @option-created="handleOptionCreated"
-    />`,
+    />
+    </div>
+    `,
 })
 
 export const defaultSelectOptionsData = [
@@ -284,6 +287,7 @@ export const LazySearch = (args) => ({
   },
 
   template: `
+  <div style="min-height: 300px">
     <SbSelect
       :label="label"
       :options="internalOptions"
@@ -303,6 +307,7 @@ export const LazySearch = (args) => ({
       style="max-width: 300px"
       @filter="handleFilter"
     />
+    </div>
   `,
 })
 
@@ -397,23 +402,25 @@ export const WithMinibrowser = (args) => ({
   },
 
   template: `
-    <SbSelect
-      ref="select"
-      :label="label"
-      :left-icon="leftIcon"
-      :filterable="filterable"
-      :use-avatars="useAvatars"
-      :inline="inline"
-      v-model="internalValue"
-      style="max-width: 300px"
-    >
-      <SbMinibrowser
-        slot="minibrowser"
-        :options="minibrowserOptions"
-        @select-item="onSelectItem"
-        @close="handleCloseBrowser"
-      />
-    </SbSelect>
+    <div style="min-height: 300px">
+      <SbSelect
+        ref="select"
+        :label="label"
+        :left-icon="leftIcon"
+        :filterable="filterable"
+        :use-avatars="useAvatars"
+        :inline="inline"
+        v-model="internalValue"
+        style="max-width: 300px"
+      >
+        <SbMinibrowser
+          slot="minibrowser"
+          :options="minibrowserOptions"
+          @select-item="onSelectItem"
+          @close="handleCloseBrowser"
+        />
+      </SbSelect>
+    </div>
   `,
 })
 
@@ -450,7 +457,7 @@ export const EmitOption = (args) => ({
 
   template: `
     <div>
-      <div style="margin-bottom: 30px">
+      <div style="min-height: 300px">
         <h2 style="margin-bottom: 10px"> Single Select </h2>
 
         <SbSelect
@@ -542,7 +549,7 @@ export const EmitSearch = (args) => ({
 
   template: `
     <div>
-      <div style="margin-bottom: 30px">
+      <div style="min-height: 300px;">
         <h2 style="margin-bottom: 10px"> Typed value {{ searchInput }} </h2>
 
         <SbSelect
