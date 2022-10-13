@@ -2,33 +2,6 @@ import dayjs from 'dayjs'
 import { SbDatepicker } from '.'
 import { datepickerOptions } from './utils'
 
-const Template = (args) => ({
-  components: { SbDatepicker },
-
-  setup() {
-    return { args }
-  },
-
-  data: () => ({
-    internalDatetimeValue: dayjs().format('YYYY-MM-DD HH:mm'),
-  }),
-
-  template: `
-    <SbDatepicker
-      :disabled="disabled"
-      :placeholder="placeholder"
-      :time-zone="timeZone"
-      :tz-tooltip="tzTooltip"
-      :type="type"
-      v-model="internalDatetimeValue"
-      style="width: 29.4rem"
-      :min-date="minDate"
-      :max-date="maxDate"
-      :disabled-past="disabledPast"
-    />
-  `,
-})
-
 export default {
   title: 'Design System/Components/Form/SbDatepicker',
   components: { SbDatepicker },
@@ -140,17 +113,27 @@ export default {
   },
 }
 
-export const Default = Template.bind({})
+const Template = (args) => ({
+  components: { SbDatepicker },
 
-export const TimeType = Template.bind({})
-
-TimeType.parameters = {
-  docs: {
-    description: {
-      story: 'Use `time` type to only change the time option.',
-    },
+  setup() {
+    return { args }
   },
-}
+
+  data: () => ({
+    internalDatetimeValue: dayjs().format('YYYY-MM-DD HH:mm'),
+  }),
+
+  template: `
+    <div class="large">
+      <SbDatepicker
+        v-bind="args"
+      />
+    </div>
+  `,
+})
+
+export const Default = Template.bind({})
 
 export const DateType = Template.bind({})
 
