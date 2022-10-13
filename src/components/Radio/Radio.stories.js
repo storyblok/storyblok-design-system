@@ -26,15 +26,8 @@ export const Default = (args) => ({
   }),
   template: `
     <SbRadio
-      :name="name"
-      :id="id"
-      :outline="outline"
-      :inline="inline"
-      :label="label"
-      :disabled="disabled"
-      :required="required"
+      v-bind="args"
       v-model="internalValue"
-      :native-value="nativeValue"
     />
   `,
 })
@@ -49,22 +42,27 @@ export const Selected = (args) => ({
   }),
   template: `
     <div>
-      <SbRadio
-        style="margin-bottom: 10px;"
-        id="selected"
-        label="Jon Doe"
-        v-model="internalValue"
-        name="input"
-        native-value="Jon Doe"
-      />
+      <div class="mb-20">
+        <SbRadio
+          v-bind="args"
+          id="selected"
+          label="Jon Doe"
+          v-model="internalValue"
+          name="input"
+          native-value="Jon Doe"
+        />
+      </div>
 
-      <SbRadio
-        id="unselected"
-        label="Albert Einstein"
-        v-model="internalValue"
-        name="input"
-        native-value="Albert Einstein"
-      />
+      <div class="mb-20">
+        <SbRadio
+          v-bind="args"
+          id="unselected"
+          label="Albert Einstein"
+          v-model="internalValue"
+          name="input"
+          native-value="Albert Einstein"
+        />
+      </div>
     </div>
   `,
 })
@@ -79,9 +77,9 @@ export const Inline = (args) => ({
   }),
   template: `
     <div>
-      <div style="margin-bottom: 20px;">
+      <div class="mb-20">
         <SbRadio
-          style="margin-right: 10px;"
+          v-bind="args"
           name="radio-inline"
           id="inline"
           label="Jon Doe"
@@ -91,7 +89,7 @@ export const Inline = (args) => ({
         />
 
         <SbRadio
-          style="margin-right: 10px;"
+          v-bind="args"
           name="radio-inline"
           id="inline-selected"
           label="Albert Einstein"
@@ -101,7 +99,7 @@ export const Inline = (args) => ({
         />
 
         <SbRadio
-          style="margin-right: 10px;"
+          v-bind="args"
           name="radio-inline"
           id="inline-disabled"
           v-model="internalValue"
@@ -114,7 +112,7 @@ export const Inline = (args) => ({
 
       <div>
         <SbRadio
-          style="margin-right: 10px;"
+          v-bind="args"
           name="radio-outline"
           id="inline"
           label="Jon Doe"
@@ -125,7 +123,7 @@ export const Inline = (args) => ({
         />
 
         <SbRadio
-          style="margin-right: 10px;"
+          v-bind="args"
           name="radio-outline"
           id="inline-selected"
           label="Albert Einstein"
@@ -136,7 +134,7 @@ export const Inline = (args) => ({
         />
 
         <SbRadio
-          style="margin-right: 10px;"
+          v-bind="args"
           name="radio-outline"
           id="inline-disabled"
           v-model="internalValue"
