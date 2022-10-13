@@ -298,7 +298,7 @@ export const WithInitials = (args) => ({
     return { args }
   },
   template: `<div>
-    <SbAvatar :size="size" :name="name" :bg-color="bgColor" />
+    <SbAvatar name="John Doe" />
   </div>`,
 })
 
