@@ -202,6 +202,17 @@ describe('SbSelect component', () => {
 
       expect(wrapper.emitted('input')[0][0]).toEqual([])
     })
+
+    it('should not show a tag if the value are not included in the list of available options to choose', () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          ...defaultsPropsData,
+          value: [10902],
+        },
+      })
+
+      expect(wrapper.findAllComponents(SbTag)).toHaveLength(0)
+    })
   })
 
   describe('leftIcon property', () => {

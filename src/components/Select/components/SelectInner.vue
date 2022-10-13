@@ -294,19 +294,23 @@ export default {
         return []
       }
 
-      return this.value.map(($v) => {
-        if (typeof $v === 'object') {
-          return $v
-        }
+      return this.value
+        .map(($v) => {
+          if (typeof $v === 'object') {
+            return $v
+          }
 
-        const option = this.options.find(($opt) => $opt[this.itemValue] === $v)
+          const option = this.options.find(
+            ($opt) => $opt[this.itemValue] === $v
+          )
 
-        if (this.allowCreate && !option) {
-          return this.emitOption ? { [this.itemValue]: $v } : $v
-        }
+          if (this.allowCreate && !option) {
+            return this.emitOption ? { [this.itemValue]: $v } : $v
+          }
 
-        return option
-      })
+          return option
+        })
+        .filter((option) => option !== null && option !== undefined)
     },
 
     isAvatarVisible() {
