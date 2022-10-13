@@ -9,3 +9,11 @@ body {
 .large {
   min-height: 450px;
 }
+
+.mw-300 {
+  max-width: 300px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
