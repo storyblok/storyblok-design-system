@@ -205,7 +205,7 @@ describe('SbSelect component', () => {
     })
   })
 
-  describe('multiple option - all values', () => {
+  describe('Multiselect with a "all" option', () => {
     const defaultsPropsData = {
       label: 'Choose an option',
       options: [...selectOptionsDataWithAllOption],
@@ -215,18 +215,32 @@ describe('SbSelect component', () => {
 
     const getFirstValue = (wrapper, event) => wrapper.emitted(event)[0][0]
 
-    it('should emit an input event with an array of values', async () => {
+    it('should uncheck the "all option" when other options are selected', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
         propsData: {
           ...defaultsPropsData,
-          value: [],
+          value: [0],
+        },
+      })
+
+      const innerElement = wrapper.find('.sb-select-inner')
+      await innerElement.trigger('click')
+      await wrapper.findAll('li').at(1).trigger('click')
+      expect(wrapper.find('ul').exists()).toBe(true)
+      expect(getFirstValue(wrapper, 'input')).toEqual([1])
+    })
+
+    it('should uncheck all other option when "all option" is selected', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          ...defaultsPropsData,
+          value: [1, 2],
         },
       })
 
       const innerElement = wrapper.find('.sb-select-inner')
       await innerElement.trigger('click')
       await wrapper.findAll('li').at(0).trigger('click')
-      expect(wrapper.find('ul').exists()).toBe(true)
       expect(getFirstValue(wrapper, 'input')).toEqual([0])
     })
   })

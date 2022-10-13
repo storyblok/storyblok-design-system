@@ -296,27 +296,6 @@ export default {
     searchInput(newValue) {
       this.$emit('search-input', newValue)
     },
-
-    value(newVal, oldVal) {
-      if (this.multiple && this.firstValueIsAllValue) {
-        if (
-          oldVal.length === 1 &&
-          oldVal.includes(this.firstOptionValue) &&
-          newVal.length > 1
-        ) {
-          this.$emit(
-            'input',
-            newVal.filter((item) => item !== this.firstOptionValue)
-          )
-        }
-        if (
-          !oldVal.includes(this.firstOptionValue) &&
-          newVal.includes(this.firstOptionValue)
-        ) {
-          this.$emit('input', [this.firstOptionValue])
-        }
-      }
-    },
   },
 
   mounted() {
@@ -406,7 +385,8 @@ export default {
       if (this.multiple) {
         this.searchInput = ''
         const $value = this.processMultipleValue(value)
-        this.$emit('input', $value)
+
+        this.$emit('input', this.validateValue($value, this.value))
         return
       }
 
@@ -414,6 +394,24 @@ export default {
       this.$emit('input', value)
       this.$_focusInner()
       this.hideList()
+    },
+
+    validateValue(newVal, oldVal) {
+      if (!this.firstValueIsAllValue) return newVal
+      if (
+        oldVal.length === 1 &&
+        oldVal.includes(this.firstOptionValue) &&
+        newVal.length > 1
+      ) {
+        return newVal.filter((item) => item !== this.firstOptionValue)
+      }
+      if (
+        !oldVal.includes(this.firstOptionValue) &&
+        newVal.includes(this.firstOptionValue)
+      ) {
+        return [this.firstOptionValue]
+      }
+      return newVal
     },
 
     /**

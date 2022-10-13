@@ -259,9 +259,12 @@ export default {
     },
 
     shouldBeChecked(index) {
-      if (this.firstValueIsAllValue) {
-        return this.value.includes(this.allOptionValue) && index > 0
-      }
+      return (
+        this.firstValueIsAllValue &&
+        this.value &&
+        this.value.includes(this.allOptionValue) &&
+        index > 0
+      )
     },
   },
 }
