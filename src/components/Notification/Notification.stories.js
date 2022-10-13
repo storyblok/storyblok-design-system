@@ -7,7 +7,8 @@ const NotificationTemplate = (args) => ({
   },
   template: `
     <SbNotification
-      v-bind="args"/>`,
+      v-bind="args"
+    />`,
 })
 
 export default {
@@ -93,24 +94,24 @@ export const AllStatus = (args) => ({
   },
   template: `<div>
     <SbNotification
+    v-bind="args"
       status="positive"
-      v-bind="args"
     />
     <SbNotification
+    v-bind="args"
       status="general"
-      v-bind="args"
     />
     <SbNotification
+    v-bind="args"
       status="warning"
-      v-bind="args"
     />
     <SbNotification
+    v-bind="args"
      status="info"
-      v-bind="args"
       />
     <SbNotification
+    v-bind="args"
       status="negativ"
-      v-bind="args"
       />
   </div>`,
 })
@@ -131,25 +132,26 @@ export const AllSizes = (args) => ({
   },
   template: `<div>
     <SbNotification
+      v-bind="args"
         status="positive"
-        v-bind="args"
       />
     <SbNotification
+      v-bind="args"
       status="positive"
       description="This is a awesome component from Storyblok DS."
       link="http://#"
-      v-bind="args"
       />
     <SbNotification
+      v-bind="args"
       status="negative"
       isFull="true"
-      v-bind="args"/>
+      />
     <SbNotification
+      v-bind="args"
       status="negative"
       description="This is a awesome component from Storyblok Desing Sistem"
       link="http://#"
       isFull="true"
-      v-bind="args"
       />
   </div>`,
 })
@@ -170,22 +172,22 @@ export const ExpandableNotification = (args) => ({
   },
   template: `<div>
     <SbNotification
+        v-bind="args"
         status="info"
         description="This is a awesome component from Storyblok Desing Sistem"
         link="http://#"
         isExpandable="true"
-        v-bind="args"
         />
 
     <br />
 
     <SbNotification
+      v-bind="args"
       status="info"
       description="This is a awesome component from Storyblok Desing Sistem"
       isExpandable="true"
       link="http://#"
       isFull="true"
-      v-bind="args"
     />
   </div>`,
 })
