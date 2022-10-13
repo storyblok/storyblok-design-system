@@ -6,14 +6,12 @@
 
 <script>
 import { sharedProps } from '../Button/lib'
+import VNodes from './VNodes'
 
 export default {
   name: 'SbGroupButton',
   components: {
-    VNodes: {
-      functional: true,
-      render: (h, ctx) => ctx.props.vnodes,
-    },
+    VNodes,
   },
   props: {
     hasSpaces: {
@@ -29,15 +27,17 @@ export default {
     },
     activeSlots() {
       const children = this.$slots.default && this.$slots.default()
-      return children
-        .filter((b) => b.tag)
+      const chilrenWithProps = children
+        .filter((b) => b.__v_isVNode)
         .map((button) => {
-          button.componentOptions.propsData = {
-            ...button.componentOptions.propsData,
-            ...this._props,
+          button.props = {
+            ...button.props,
+            ...this.$props,
           }
           return button
         })
+
+      return chilrenWithProps
     },
   },
 }
