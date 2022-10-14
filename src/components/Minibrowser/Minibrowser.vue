@@ -194,7 +194,7 @@ export default {
      */
     handleSearchInput(value) {
       const isEvent = typeof value === 'object'
-      const inputValue = isEvent ? String(event?.target?.value) : value
+      const inputValue = isEvent ? String(value?.target?.value) : value
       this.searchInput = inputValue
 
       this.filterHandler()
