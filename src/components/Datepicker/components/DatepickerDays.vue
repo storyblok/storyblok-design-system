@@ -113,23 +113,24 @@ export default {
       return _day === 0 ? 7 : _day
     },
 
-    isDisabledDay(dateValue) {
-      let disabled = false
-      if (this.disabledPast && dayjs().isAfter(dateValue, 'day')) {
-        disabled = true
-      } else if (
-        this.minDate &&
-        dayjs(dateValue).isBefore(this.minDate, 'day')
-      ) {
-        disabled = true
-      } else if (
-        this.maxDate &&
-        dayjs(dateValue).isAfter(this.maxDate, 'day')
-      ) {
-        disabled = true
-      }
+    isDateDisabledPast(dateValue) {
+      return this.disabledPast && dayjs().isAfter(dateValue, 'day')
+    },
 
-      return disabled
+    isMinDateDisabled(dateValue) {
+      return this.minDate && dayjs(dateValue).isBefore(this.minDate, 'day')
+    },
+
+    isMaxDateDisabled(dateValue) {
+      return this.maxDate && dayjs(dateValue).isAfter(this.maxDate, 'day')
+    },
+
+    isDisabledDay(dateValue) {
+      return !!(
+        this.isDateDisabledPast(dateValue) ||
+        this.isMinDateDisabled(dateValue) ||
+        this.isMaxDateDisabled(dateValue)
+      )
     },
   },
 }

@@ -276,6 +276,30 @@ export default {
       if (this.tzOffset) return this.tzOffset.replace('GMT', '')
       return dayjs.tz(this.internalValue, this.timeZone).format('Z')
     },
+
+    isDateDisabledPast() {
+      return this.disabledPast && dayjs().isAfter(this.internalValue, 'day')
+    },
+
+    isMinDateDisabled() {
+      return (
+        this.minDate && dayjs(this.internalValue).isBefore(this.minDate, 'day')
+      )
+    },
+
+    isMaxDateDisabled() {
+      return (
+        this.maxDate && dayjs(this.internalValue).isAfter(this.maxDate, 'day')
+      )
+    },
+
+    isDateDisabled() {
+      return !!(
+        this.isDateDisabledPast ||
+        this.isMinDateDisabled ||
+        this.isMaxDateDisabled
+      )
+    },
   },
 
   watch: {
@@ -327,7 +351,7 @@ export default {
         this.internalFormat,
         true
       ).isValid()
-      if (!isValid || (this.hasDayDisabled && this.isDateDisabled())) {
+      if (!isValid || (this.hasDayDisabled && this.isDateDisabled)) {
         this.invalidDate = true
         return
       }
@@ -442,25 +466,6 @@ export default {
       }
 
       if (this.internalValue === 'Invalid Date') this.internalValue = ''
-    },
-
-    isDateDisabled() {
-      let valid = false
-      if (this.disabledPast && dayjs().isAfter(this.internalValue, 'day')) {
-        valid = true
-      } else if (
-        this.minDate &&
-        dayjs(this.internalValue).isSameOrBefore(this.minDate, 'day')
-      ) {
-        valid = true
-      } else if (
-        this.maxDate &&
-        dayjs(this.internalValue).isSameOrAfter(this.maxDate, 'day')
-      ) {
-        valid = true
-      }
-
-      return valid
     },
 
     $_wrapClose(e) {
