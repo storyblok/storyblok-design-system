@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-numberfield">
+  <div class="sb-numberfield" v-bind="$attrs">
     <label v-if="label" :for="id" class="sb-numberfield__label">
       {{ label }}
     </label>
@@ -22,7 +22,6 @@
         :id="id"
         :key="componentKey"
         :value="computedValue"
-        v-bind="$attrs"
         class="sb-numberfield__input"
         data-testid="sb-numberfield__input"
         :autocomplete="autocomplete"
