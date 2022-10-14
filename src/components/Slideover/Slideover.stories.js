@@ -11,15 +11,7 @@ const SlideoverTemplate = (args) => ({
     SbModalFooter,
   },
   setup() {
-    return { args }
-  },
-  mounted() {
-    this.handleOpenSlide()
-  },
-  methods: {
-    handleOpenSlide() {
-      this.show = true
-    },
+    return { ...args }
   },
   data: () => ({
     show: false,
@@ -28,7 +20,7 @@ const SlideoverTemplate = (args) => ({
     <div>
       <SbButton
         label="Open Slideover!"
-        @click="handleOpenSlide"
+        @click="show = true"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
       <SbSlideover
@@ -88,14 +80,6 @@ export const SlideoverWithoutFooter = (args) => ({
   setup() {
     return { args }
   },
-  mounted() {
-    this.handleOpenSlide()
-  },
-  methods: {
-    handleOpenSlide() {
-      this.show = true
-    },
-  },
   data: () => ({
     show: false,
   }),
@@ -103,7 +87,7 @@ export const SlideoverWithoutFooter = (args) => ({
     <div>
       <SbButton
         label="Open Slideover!"
-        @click="handleOpenSlide"
+        @click="show = true"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
       <SbSlideover
@@ -124,15 +108,7 @@ export const SlideoverWithoutFooter = (args) => ({
 export const SlideoverInMaxSize = (args) => ({
   components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
   setup() {
-    return { args }
-  },
-  mounted() {
-    this.handleOpenSlide()
-  },
-  methods: {
-    handleOpenSlide() {
-      this.show = true
-    },
+    return { ...args }
   },
   data: () => ({
     show: false,
@@ -141,7 +117,7 @@ export const SlideoverInMaxSize = (args) => ({
     <div>
       <SbButton
         label="Open Slideover!"
-        @click="handleOpenSlide"
+        @click="show = true"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
       <SbSlideover

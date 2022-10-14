@@ -1,7 +1,7 @@
 <template>
-  <transition name="bg-fade" @enter="openSlideover = true">
+  <Transition name="bg-fade" @enter="openSlideover = true">
     <SbBlokUi v-if="openBlokUI" @mousedown="handlePreventClose">
-      <transition :name="returnAnimationName" @leave="handleCloseSlide">
+      <Transition :name="returnAnimationName" @leave="handleCloseSlide">
         <div
           v-if="openSlideover"
           ref="blok"
@@ -18,9 +18,9 @@
 
           <slot />
         </div>
-      </transition>
+      </Transition>
     </SbBlokUi>
-  </transition>
+  </Transition>
 </template>
 
 <script>
