@@ -193,7 +193,9 @@ export default {
      * @param {String} value
      */
     handleSearchInput(value) {
-      this.searchInput = value
+      const isEvent = typeof value === 'object'
+      const inputValue = isEvent ? String(event?.target?.value) : value
+      this.searchInput = inputValue
 
       this.filterHandler()
     },
