@@ -9,9 +9,7 @@ const SelectTemplate = (args) => ({
     SbSelect,
   },
 
-  setup() {
-    return { args }
-  },
+  props: Object.keys(args),
 
   data: () => ({
     internalValue: null,
@@ -259,9 +257,7 @@ export const LazySearch = (args) => ({
     SbSelect,
   },
 
-  setup() {
-    return { args }
-  },
+  props: Object.keys(args),
 
   data: () => ({
     internalSearch: true,
@@ -375,9 +371,7 @@ export const WithMinibrowser = (args) => ({
     SbMinibrowser,
   },
 
-  setup() {
-    return { args }
-  },
+  props: Object.keys(args),
 
   data: () => ({
     internalValue: null,
@@ -436,9 +430,7 @@ export const EmitOption = (args) => ({
     SbMinibrowser,
   },
 
-  setup() {
-    return { args }
-  },
+  props: Object.keys(args),
 
   data: () => ({
     singleSelectValue: null,
@@ -539,9 +531,7 @@ export const EmitSearch = (args) => ({
     SbSelect,
   },
 
-  setup() {
-    return { args }
-  },
+  props: Object.keys(args),
 
   data: () => ({
     searchInput: '',
