@@ -1,53 +1,9 @@
-<template>
-  <ul
-    class="sb-tabs"
-    :class="{
-      'sb-tabs--container': !isVertical && type === 'container',
-      'sb-tabs--vertical': isVertical,
-    }"
-    role="tablist"
-    v-bind="$attrs"
-  >
-    <template v-if="children.length">
-      <SbTab
-        v-for="(tab, i) in children"
-        :key="`tab-${i}`"
-        v-bind="tab.componentOptions.propsData"
-        :activate="tab.componentOptions.propsData.name === value"
-        @activate-tab="handleActiveTab"
-        @keydown="handleKeyDown"
-      />
-    </template>
-    <slot v-else />
-    <SbTab
-      v-for="(newTab, i) in additionalTabs"
-      :key="`new-tab-${i}`"
-      class="sb-tab sb-tab__new-tab"
-      v-bind="newTab.props"
-      @edit-tab="handleEditTabOnCreate"
-      @cancel-edit-tab="handleCancelEditOnCreate"
-    />
-    <SbTabAdd
-      v-if="enableAddButton"
-      :new-tab-label="newTabLabel"
-      @click="createNewTab"
-    />
-  </ul>
-</template>
-
-<script>
-import { cleanChildren } from '../../utils'
-import { Tooltip } from '../../directives'
-
 import { SbTab, SbTabAdd } from './components'
+import { Tooltip } from '../../directives'
+import { cleanChildren } from '../../utils'
 
-export default {
+const SbTabs = {
   name: 'SbTabs',
-
-  components: {
-    SbTab,
-    SbTabAdd,
-  },
 
   directives: {
     tooltip: Tooltip,
@@ -80,15 +36,13 @@ export default {
   data() {
     return {
       additionalTabs: [],
+      children: [],
+      childVNodes: [],
       onAddTab: false,
-      refreshKey: 1,
     }
   },
 
   computed: {
-    children() {
-      return this.refreshKey ? cleanChildren(this.$slots.default, 'SbTab') : []
-    },
     childrenCount() {
       return this.children.length
     },
@@ -105,24 +59,46 @@ export default {
     },
   },
 
+  updated() {
+    this.$nextTick(this.loadChildren)
+  },
+
+  mounted() {
+    this.$nextTick(this.loadChildren)
+  },
+
   methods: {
+    loadChildren() {
+      this.childVNodes = Object.assign({}, this.$el.children)
+      this.children = cleanChildren(this.$slots.default)
+    },
+
     changeActiveTab(index) {
-      this.$el.children[index].focus()
+      this.childVNodes[index].focus()
 
       const newTabName = this.getTabNameFromNode(this.children[index])
       this.triggerActiveTab(newTabName)
     },
 
-    createNewTab() {
+    createNewTab(h) {
       this.onAddTab = true
 
-      this.additionalTabs.push({
-        props: {
-          label: 'New tab',
-          name: 'new-tab',
-          showEditInput: true,
-        },
-      })
+      this.additionalTabs.push(
+        h(SbTab, {
+          attrs: {
+            class: 'sb-tab sb-tab__new-tab',
+          },
+          props: {
+            label: 'New tab',
+            name: 'new-tab',
+            showEditInput: true,
+          },
+          on: {
+            'edit-tab': this.handleEditTabOnCreate,
+            'cancel-edit-tab': this.handleCancelEditOnCreate,
+          },
+        })
+      )
     },
 
     getTabNameFromNode(vnode) {
@@ -134,7 +110,6 @@ export default {
     },
 
     handleEditTabOnCreate(content) {
-      this.refreshKey++
       this.onAddTab = false
       this.additionalTabs = []
       this.$emit('new-tab', content)
@@ -191,5 +166,63 @@ export default {
       this.$emit('keydown', event)
     },
   },
+
+  render(h) {
+    const children = this.$slots.default.filter((e) => e.tag) || []
+
+    const renderAddButton = () => {
+      return h(SbTabAdd, {
+        props: {
+          newTabLabel: this.newTabLabel,
+        },
+        on: {
+          click: () => this.createNewTab(h),
+        },
+      })
+    }
+
+    const processChildren = () => {
+      return children.map((element) => {
+        const elementProps = element.componentOptions.propsData
+        const elementId = elementProps.name
+
+        element.componentOptions.propsData = {
+          ...element.componentOptions.propsData,
+          activate: elementId === this.value,
+        }
+
+        element.componentOptions.listeners = {
+          ...element.componentOptions.listeners,
+          'activate-tab': this.handleActiveTab,
+          keydown: this.handleKeyDown,
+        }
+
+        return element
+      })
+    }
+
+    return h(
+      'ul',
+      {
+        staticClass: 'sb-tabs',
+        class: {
+          'sb-tabs--container': !this.isVertical && this.type === 'container',
+          'sb-tabs--vertical': this.isVertical,
+        },
+        attrs: {
+          ...this.$attrs,
+          role: 'tablist',
+        },
+      },
+      [
+        processChildren(),
+        ...this.additionalTabs,
+        this.enableAddButton && renderAddButton(),
+      ]
+    )
+  },
 }
-</script>
+
+export { SbTabs }
+
+export default SbTabs
