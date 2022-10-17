@@ -172,6 +172,18 @@ export default {
     },
   },
 
+  emits: [
+    'input',
+    'focus',
+    'blur',
+    'keydown',
+    'keypress',
+    'keyup',
+    'icon-click',
+    'clear',
+    'update:modelValue',
+  ],
+
   computed: {
     hasValue() {
       return this.computedValue !== null && ('' + this.computedValue).length > 0

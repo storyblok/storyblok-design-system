@@ -68,6 +68,7 @@ export default {
         this.internalValue = newValue
         this.isOnInput = true
         this.$emit('input', newValue)
+        this.$emit('update:modelValue', newValue)
       },
     },
   },
