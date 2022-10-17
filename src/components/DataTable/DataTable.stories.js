@@ -24,6 +24,9 @@ const description = {
     'By default the selection mode is single, meaning only one row at a time can be selected. Use multiple, so multiple rows can be selected. `allowSelection: true` is required.',
   striped: 'Add zebra-striping to any table row within the `<tbody>.`',
   stickyMenu: 'Fixes the actions menu at the top when scrolling down',
+  lockedItem:
+    'Shows a lock icon instead of the checkbox input for specific items from the items prop that have "selectable: false" inside the object.',
+  hideActionsMenu: 'Hides the blue actions menu on the top of the Data Table',
 }
 
 const DataTableTemplate = (args) => ({
@@ -61,6 +64,7 @@ export default {
     selectionMode: 'single',
     striped: false,
     stickyMenu: false,
+    hideActionsMenu: false,
   },
   argTypes: {
     actions: {
@@ -128,6 +132,13 @@ export default {
     stickyMenu: {
       name: 'stickyMenu',
       description: description.stickyMenu,
+      control: {
+        type: 'boolean',
+      },
+    },
+    hideActionsMenu: {
+      name: 'hideActionsMenu',
+      description: description.hideActionsMenu,
       control: {
         type: 'boolean',
       },
@@ -294,6 +305,76 @@ SelectionMode.parameters = {
   docs: {
     description: {
       story: description.selectionMode,
+    },
+  },
+}
+
+export const LockedItem = DataTableTemplate.bind({})
+
+LockedItem.args = {
+  ...Default.args,
+  allowSelection: true,
+  selectionMode: 'multiple',
+  striped: true,
+  items: [
+    {
+      name: 'French Fries',
+      calories: 261,
+      fat: 1.0,
+      carbs: 21,
+      protein: 3.0,
+      iron: '2%',
+      selectable: false,
+    },
+    {
+      name: 'Hamburger',
+      calories: 271,
+      fat: 1.2,
+      carbs: 22,
+      protein: 4.0,
+      iron: '3%',
+    },
+    {
+      name: 'Chocolate Pizza',
+      calories: 244,
+      fat: 1.4,
+      carbs: 277,
+      protein: 8.0,
+      iron: '1%',
+    },
+    {
+      name: 'Green Tea',
+      calories: 1,
+      fat: 1,
+      carbs: 100,
+      protein: 4.0,
+      iron: '2%',
+      selectable: false,
+    },
+  ],
+}
+
+LockedItem.parameters = {
+  docs: {
+    description: {
+      story: description.lockedItem,
+    },
+  },
+}
+
+export const HideActionsMenu = DataTableTemplate.bind({})
+
+HideActionsMenu.args = {
+  ...Default.args,
+  allowSelection: true,
+  selectionMode: 'multiple',
+  hideActionsMenu: true,
+}
+
+HideActionsMenu.parameters = {
+  docs: {
+    description: {
+      story: description.hideActionsMenu,
     },
   },
 }

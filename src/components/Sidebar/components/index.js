@@ -1,4 +1,5 @@
-export * from './lists'
-export * from './top'
+export { default as SbSidebarLogo } from './Logo'
+export { default as SbSidebarLink } from './Link'
+export { default as SbSidebarList } from './List'
 export { default as SbSidebarToggle } from './Toggle'
 export { default as SbSidebarListItem } from './ListItem'

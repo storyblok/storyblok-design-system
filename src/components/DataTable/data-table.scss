@@ -8,6 +8,10 @@
     }
   }
 
+  &__col-locked svg {
+    margin-left: -4px;
+  }
+
   &__loading {
     position: absolute;
     bottom: 0;

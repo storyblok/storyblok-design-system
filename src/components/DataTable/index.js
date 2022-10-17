@@ -33,10 +33,14 @@ const SbDataTable = {
 
   computed: {
     allRowsSelected() {
+      const selectableItems = this.items.filter(
+        (item) => item.selectable !== false
+      )
+
       if (this.selectionMode === 'single' || !this.selectedRows.length)
         return false
 
-      return this.selectedRows.length === this.items.length &&
+      return this.selectedRows.length === selectableItems.length &&
         this.hasSelectedRowsInList.length
         ? true
         : null
@@ -147,7 +151,7 @@ const SbDataTable = {
      * method to select all body row(s)
      */
     selectAll() {
-      this.selectedRows = [...this.items]
+      this.selectedRows = this.items.filter((item) => item.selectable !== false)
     },
 
     /**
@@ -176,21 +180,23 @@ const SbDataTable = {
 
   render() {
     const renderActions = () => {
-      return h(SbDataTableActions, {
-        props: {
-          actions: this.actions,
-          hideLabelActionsBreakpoint: this.hideLabelActionsBreakpoint,
-          selectedRows: this.hasSelectedRowsInList,
-          sticky: this.stickyMenu,
-        },
-        on: {
-          click: (value) => this.$emit('emit-action', value),
-          cancel: () => {
-            this.$emit('cancel')
-            this.deselectAll()
-          },
-        },
-      })
+      return this.hideActionsMenu
+        ? null
+        : h(SbDataTableActions, {
+            props: {
+              actions: this.actions,
+              hideLabelActionsBreakpoint: this.hideLabelActionsBreakpoint,
+              selectedRows: this.hasSelectedRowsInList,
+              sticky: this.stickyMenu,
+            },
+            on: {
+              click: (value) => this.$emit('emit-action', value),
+              cancel: () => {
+                this.$emit('cancel')
+                this.deselectAll()
+              },
+            },
+          })
     }
 
     const renderTable = () => {

@@ -41,7 +41,8 @@ const SelectTemplate = (args) => ({
   },
 
   template: `
-    <SbSelect
+    <div style="min-height: 300px">
+      <SbSelect
       :label="label"
       :options="options"
       :multiple="multiple"
@@ -57,9 +58,12 @@ const SelectTemplate = (args) => ({
       :clearable="clearable"
       :show-caption="showCaption"
       v-model="internalValue"
+      :first-value-is-all-value="firstValueIsAllValue"
       style="max-width: 300px"
       @option-created="handleOptionCreated"
-    />`,
+    />
+    </div>
+    `,
 })
 
 export const defaultSelectOptionsData = [
@@ -90,6 +94,25 @@ export const defaultSelectOptionsData = [
   {
     label: 'Option 7',
     value: 7,
+  },
+]
+
+export const selectOptionsDataWithAllOption = [
+  {
+    label: 'All options',
+    value: 0,
+  },
+  {
+    label: 'Option 1',
+    value: 1,
+  },
+  {
+    label: 'Option 2',
+    value: 2,
+  },
+  {
+    label: 'Option 3',
+    value: 3,
   },
 ]
 
@@ -187,6 +210,7 @@ export default {
     options: [...defaultSelectOptionsData],
     value: null,
     multiple: false,
+    firstValueIsAllValue: false,
     filterable: false,
     leftIcon: null,
     useAvatars: false,
@@ -208,6 +232,14 @@ export const Multiple = SelectTemplate.bind({})
 
 Multiple.args = {
   multiple: true,
+}
+
+export const MultipleWithAllOption = SelectTemplate.bind({})
+
+MultipleWithAllOption.args = {
+  multiple: true,
+  options: selectOptionsDataWithAllOption,
+  firstValueIsAllValue: true,
 }
 
 export const OptionsWithIcon = SelectTemplate.bind({})
@@ -259,6 +291,7 @@ export const LazySearch = (args) => ({
   },
 
   template: `
+  <div style="min-height: 300px">
     <SbSelect
       :label="label"
       :options="internalOptions"
@@ -278,6 +311,7 @@ export const LazySearch = (args) => ({
       style="max-width: 300px"
       @filter="handleFilter"
     />
+    </div>
   `,
 })
 
@@ -374,23 +408,25 @@ export const WithMinibrowser = (args) => ({
   },
 
   template: `
-    <SbSelect
-      ref="select"
-      :label="label"
-      :left-icon="leftIcon"
-      :filterable="filterable"
-      :use-avatars="useAvatars"
-      :inline="inline"
-      v-model="internalValue"
-      style="max-width: 300px"
-    >
-      <SbMinibrowser
-        slot="minibrowser"
-        :options="minibrowserOptions"
-        @select-item="onSelectItem"
-        @close="handleCloseBrowser"
-      />
-    </SbSelect>
+    <div style="min-height: 300px">
+      <SbSelect
+        ref="select"
+        :label="label"
+        :left-icon="leftIcon"
+        :filterable="filterable"
+        :use-avatars="useAvatars"
+        :inline="inline"
+        v-model="internalValue"
+        style="max-width: 300px"
+      >
+        <SbMinibrowser
+          slot="minibrowser"
+          :options="minibrowserOptions"
+          @select-item="onSelectItem"
+          @close="handleCloseBrowser"
+        />
+      </SbSelect>
+    </div>
   `,
 })
 
@@ -429,7 +465,7 @@ export const EmitOption = (args) => ({
 
   template: `
     <div>
-      <div style="margin-bottom: 30px">
+      <div style="min-height: 300px">
         <h2 style="margin-bottom: 10px"> Single Select </h2>
 
         <SbSelect
@@ -523,7 +559,7 @@ export const EmitSearch = (args) => ({
 
   template: `
     <div>
-      <div style="margin-bottom: 30px">
+      <div style="min-height: 300px;">
         <h2 style="margin-bottom: 10px"> Typed value {{ searchInput }} </h2>
 
         <SbSelect

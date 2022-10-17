@@ -485,7 +485,8 @@ export default {
      * get the tag value based on emitOption property
      */
     getComputedTagValue(tag) {
-      return this.emitOption ? tag : tag[this.itemValue] || tag
+      const value = this.emitOption ? tag : tag[this.itemValue]
+      return value !== undefined ? value : tag
     },
 
     getSource(label) {
