@@ -6,7 +6,7 @@
 
 <script>
 import { sharedProps } from '../Button/lib'
-import VNodes from './VNodes'
+import VNodes from '../../utils/VNodes'
 
 export default {
   name: 'SbGroupButton',
