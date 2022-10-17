@@ -1,17 +1,14 @@
 <template>
   <li
     class="sb-tab"
-    :class="{
-      'sb-tab--disabled': isDisabled,
-      'sb-tab--has-icon': icon,
-      'sb-tab--editable': editable,
-      'sb-tab--is-active': activate,
-    }"
+    :class="computedClasses"
     :tabindex="activate ? 0 : -1"
     :aria-selected="activate + ''"
     role="tab"
+    v-bind="$attrs"
     @click="handleClick"
     @keydown="handleKeyDown"
+    v-on="$listeners"
   >
     <SbIcon v-if="icon" :name="icon" size="normal" />
     <SbEditableInput
@@ -91,6 +88,14 @@ export default {
   computed: {
     allowShowEditInput() {
       return this.showEditInput || this.internalEditable
+    },
+    computedClasses() {
+      return {
+        'sb-tab--disabled': this.isDisabled,
+        'sb-tab--has-icon': this.icon,
+        'sb-tab--editable': this.editable,
+        'sb-tab--is-active': this.activate,
+      }
     },
   },
 
