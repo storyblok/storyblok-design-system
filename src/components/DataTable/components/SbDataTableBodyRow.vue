@@ -6,11 +6,18 @@
     }"
   >
     <td
-      v-if="allowSelection"
+      v-if="allowSelection && row.selectable !== false"
       class="sb-data-table__body-cell sb-data-table__col-selection"
       @click="handleRowSelected"
     >
       <SbCheckbox :value="isSelected" @click="handleRowSelected" />
+    </td>
+
+    <td
+      v-else-if="allowSelection && row.selectable === false"
+      class="sb-data-table__body-cell sb-data-table__col-locked"
+    >
+      <SbIcon name="lock" />
     </td>
 
     <slot v-if="$slots.default" />
@@ -31,6 +38,7 @@
 
 <script>
 import SbCheckbox from '../../Checkbox'
+import SbIcon from '../../Icon'
 import sharedProps from '../sharedProps'
 
 export default {
@@ -38,6 +46,7 @@ export default {
 
   components: {
     SbCheckbox,
+    SbIcon,
   },
 
   inject: ['dataTableContext'],
