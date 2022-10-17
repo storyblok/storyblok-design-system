@@ -437,7 +437,7 @@ export default {
       if (this.emitOption) {
         const itemValue = value[this.itemValue]
 
-        return this.value.some(($v) => $v[this.itemValue] === itemValue)
+        return this.value?.some(($v) => $v[this.itemValue] === itemValue)
       }
 
       return includes(this.value, value)

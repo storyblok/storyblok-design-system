@@ -10,7 +10,7 @@
  */
 export const includes = (iterable, value) => {
   if (typeof iterable.indexOf === 'function') {
-    return iterable.indexOf(value) !== -1
+    return iterable?.indexOf(value) !== -1
   }
 
   return false
