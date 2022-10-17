@@ -111,7 +111,7 @@ export default {
     minDate: {
       name: 'minDate',
       description:
-        'If set, Datepicker will disable dates before the date entered in minDate',
+        'If set, Datepicker will disable dates before the date entered in minDate. Expected format `YYYY-MM-DD`.',
       defaultValue: '',
       control: {
         type: 'text',
@@ -120,7 +120,7 @@ export default {
     maxDate: {
       name: 'maxDate',
       description:
-        'If set, Datepicker will disable dates after the date entered in maxDate',
+        'If set, Datepicker will disable dates after the date entered in maxDate. Expected format `YYYY-MM-DD`.',
       defaultValue: '',
       control: {
         type: 'text',
@@ -206,7 +206,7 @@ MinMaxDate.parameters = {
   docs: {
     description: {
       story:
-        'Add the `minDate` attribute to establish a minimum selectable date and add the `maxDate` attribute to establish a maximum selectable date.',
+        'Add the `minDate` attribute to establish a minimum selectable date and add the `maxDate` attribute to establish a maximum selectable date. Expected format `YYYY-MM-DD`.',
     },
   },
 }

@@ -13,7 +13,7 @@ const Template = (args) => ({
       <SbBreadcrumbs v-bind="{ isLargeSection }">
         <template v-for="(item, index) in items">
           <SbBreadcrumbItem
-            :key="index"
+            :key="item.label"
             :is-active="index === lastIndex"
             :label="item.label"
           />
