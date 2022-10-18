@@ -1,6 +1,5 @@
 import { SbTab, SbTabAdd } from './components'
 import { Tooltip } from '../../directives'
-import { cleanChildren } from '../../utils'
 
 const SbTabs = {
   name: 'SbTabs',
@@ -70,7 +69,9 @@ const SbTabs = {
   methods: {
     loadChildren() {
       this.childVNodes = Object.assign({}, this.$el.children)
-      this.children = cleanChildren(this.$slots.default)
+      this.children =
+        this.$slots.default &&
+        this.$slots.default().filter((child) => child.type.name)
     },
 
     changeActiveTab(index) {
@@ -102,7 +103,7 @@ const SbTabs = {
     },
 
     getTabNameFromNode(vnode) {
-      return vnode.componentOptions.propsData.name
+      return vnode.props.name
     },
 
     triggerActiveTab(identifier) {
@@ -183,18 +184,14 @@ const SbTabs = {
 
     const processChildren = () => {
       return children.map((element) => {
-        const elementProps = element.componentOptions.propsData
+        const elementProps = element.props
         const elementId = elementProps.name
 
-        element.componentOptions.propsData = {
-          ...element.componentOptions.propsData,
+        element.props = {
+          ...element.props,
           activate: elementId === this.value,
-        }
-
-        element.componentOptions.listeners = {
-          ...element.componentOptions.listeners,
-          'activate-tab': this.handleActiveTab,
-          keydown: this.handleKeyDown,
+          onKeydown: this.handleKeyDown,
+          onActivateTab: this.handleActiveTab,
         }
 
         return element
@@ -204,11 +201,13 @@ const SbTabs = {
     return h(
       'div',
       {
-        staticClass: 'sb-tabs',
-        class: {
-          'sb-tabs--container': !this.isVertical && this.type === 'container',
-          'sb-tabs--vertical': this.isVertical,
-        },
+        class: [
+          'sb-tabs',
+          {
+            'sb-tabs--container': !this.isVertical && this.type === 'container',
+            'sb-tabs--vertical': this.isVertical,
+          },
+        ],
         attrs: {
           ...this.$attrs,
           role: 'tablist',
