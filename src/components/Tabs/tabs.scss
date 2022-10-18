@@ -43,14 +43,10 @@
   &:hover {
     color: $primary-text-color;
   }
-
-  &:focus .sb-tab__label {
-    outline-offset: 2px;
-    outline: $sb-green-25 solid;
-  }
 }
 
-.sb-tab--is-active {
+.sb-tab--is-active,
+.sb-tab:focus {
   z-index: 3;
   color: $primary-text-color;
   font-weight: $font-weight-medium;
@@ -64,6 +60,10 @@
     height: 3px;
     background-color: $sb-green;
   }
+}
+
+.sb-tab:focus::after {
+  background-color: $sb-dark-blue;
 }
 
 .sb-tab--editable {
