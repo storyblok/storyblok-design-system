@@ -15,9 +15,11 @@ const factory = (
   }
 
   return mount(WrapperComponent, {
-    stubs: {
-      SbFragment: true,
-      MountingPortal: true,
+    global: {
+      stubs: {
+        SbFragment: true,
+        MountingPortal: true,
+      },
     },
   })
 }

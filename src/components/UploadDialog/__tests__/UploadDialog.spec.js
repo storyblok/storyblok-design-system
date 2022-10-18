@@ -6,9 +6,9 @@ import SbIcon from '../../Icon'
 import SbLoading from '../../Loading'
 import SbBlockUi from '../../BlockUI'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbUploadDialog, {
-    propsData,
+    props,
   })
 }
 

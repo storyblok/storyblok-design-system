@@ -1,9 +1,9 @@
 import SbCheckbox from '..'
 import { mount } from '@vue/test-utils'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbCheckbox, {
-    propsData,
+    props,
   })
 }
 
@@ -18,6 +18,7 @@ describe('SbCheckbox component', () => {
     expect(inputElement.attributes('type')).toBe('checkbox')
     expect(inputElement.attributes('checked')).toBeUndefined()
     expect(inputElement.attributes('value')).toBe('false')
+    expect(inputElement.attributes('disabled')).toBeUndefined()
     expect(wrapper.text()).toBe('Default')
   })
 
@@ -27,7 +28,7 @@ describe('SbCheckbox component', () => {
       disabled: true,
     })
 
-    expect(wrapper.find('input').attributes('disabled')).toBe('disabled')
+    expect(wrapper.find('input').attributes('disabled')).toBeDefined()
     expect(wrapper.text()).toBe('Default - Disabled')
   })
 
@@ -39,7 +40,7 @@ describe('SbCheckbox component', () => {
 
     await wrapper.find('input').trigger('click')
 
-    expect(wrapper.emitted('input')[0]).toEqual([true])
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([true])
   })
 
   it('should have the outline and inline classes', async () => {

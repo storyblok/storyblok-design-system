@@ -39,7 +39,7 @@ describe('Test SbTabs', () => {
     })
 
     it('should emit an input event and change the select tab', async () => {
-      const secondTab = wrapper.findAllComponents(SbTab).at(1)
+      const secondTab = wrapper.findAllComponents(SbTab)[1]
 
       secondTab.trigger('click')
 
@@ -100,7 +100,7 @@ describe('Test SbTabs', () => {
       // like we have three tabs,
       // when we click the add button
       // we should have a fourth tab with 'New tab' inside a input
-      const newTab = wrapper.findAllComponents(SbTab).at(2)
+      const newTab = wrapper.findAllComponents(SbTab)[2]
 
       expect(newTab.exists()).toBe(true)
 
@@ -128,7 +128,7 @@ describe('Test SbTabs', () => {
       // like we have three tabs,
       // when we click the add button
       // we should have a fourth tab with 'New tab' inside a input
-      const newTab = wrapper.findAllComponents(SbTab).at(3)
+      const newTab = wrapper.findAllComponents(SbTab)[3]
 
       const inputElement = newTab.find('input')
 

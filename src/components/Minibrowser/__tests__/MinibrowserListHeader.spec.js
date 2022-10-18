@@ -4,7 +4,7 @@ import SbMinibrowserListHeader from '../components/MinibrowserListHeader'
 describe('SbMinibrowserListHeader component', () => {
   it('should render the correct text', () => {
     const wrapper = mount(SbMinibrowserListHeader, {
-      propsData: {
+      props: {
         title: 'An awesome title',
       },
     })
@@ -14,7 +14,7 @@ describe('SbMinibrowserListHeader component', () => {
 
   it('should render the content passed as right slot', () => {
     const wrapper = mount(SbMinibrowserListHeader, {
-      propsData: {
+      props: {
         title: 'An awesome title',
       },
       slots: {

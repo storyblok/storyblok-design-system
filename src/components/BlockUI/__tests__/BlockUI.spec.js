@@ -2,7 +2,7 @@ import SbBlockUi from '../index'
 import SbLoading from '../../Loading/index'
 import { mount } from '@vue/test-utils'
 
-const factory = (template, propsData = {}) => {
+const factory = (template, props = {}) => {
   const Wrapper = {
     components: {
       SbBlockUi,
@@ -12,7 +12,7 @@ const factory = (template, propsData = {}) => {
   }
 
   return mount(Wrapper, {
-    propsData,
+    props,
   })
 }
 
@@ -28,7 +28,7 @@ describe('Test if BlockUi render correctly', () => {
 
   it('Test if BlockUi render a component', async () => {
     const template = `
-        <SbLoading type="spinner" size="normal" value=35 uiBlock />
+        <SbLoading type="spinner" size="normal" uiBlock />
       `
     const wrapper = factory(template)
 

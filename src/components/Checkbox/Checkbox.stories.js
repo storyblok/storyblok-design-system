@@ -6,7 +6,7 @@ export default {
   args: {
     id: 'example',
     name: 'example',
-    value: false,
+    modelValue: false,
     nativeValue: false,
     indeterminate: false,
     disabled: false,
@@ -17,7 +17,7 @@ export default {
 export const Default = (args) => ({
   components: { SbCheckbox },
   setup() {
-    return { args }
+    return { ...args }
   },
   template: `
     <div>
@@ -25,7 +25,7 @@ export const Default = (args) => ({
         :name="name"
         id="inactive"
         label="Inactive"
-        :value="value"
+        :modelValue="modelValue"
         :disabled="disabled"
         :required="required"
         inline
@@ -36,7 +36,7 @@ export const Default = (args) => ({
         :name="name"
         id="inactive-disabled"
         label="Inactive - Disabled"
-        :value="value"
+        :modelValue="modelValue"
         :required="required"
         disabled
         inline
@@ -48,7 +48,7 @@ export const Default = (args) => ({
 export const Selected = (args) => ({
   components: { SbCheckbox },
   setup() {
-    return { args }
+    return { ...args }
   },
   template: `
     <div>
@@ -57,7 +57,7 @@ export const Selected = (args) => ({
           id="selected"
           label="Selected"
           :name="name"
-          :value="true"
+          :modelValue="true"
           native-value="Selected"
           inline
           style="margin-right: 10px;"
@@ -67,7 +67,7 @@ export const Selected = (args) => ({
           id="selected-disabled"
           label="Selected - Disabled"
           :name="name"
-          :value="true"
+          :modelValue="true"
           native-value="Selected - Disabled"
           disabled
           inline
@@ -101,7 +101,7 @@ export const Selected = (args) => ({
 export const Inline = (args) => ({
   components: { SbCheckbox },
   setup() {
-    return { args }
+    return { ...args }
   },
   template: `
     <div>
@@ -120,7 +120,7 @@ export const Inline = (args) => ({
           id="inline-selected"
           label="Selected"
           native-value="Selected"
-          :value="true"
+          :modelValue="true"
           inline
           style="margin-right: 10px;"
         />
@@ -152,7 +152,7 @@ export const Inline = (args) => ({
           id="outline-selected"
           label="Selected"
           native-value="Selected"
-          :value="true"
+          :modelValue="true"
           inline
           outline
           style="margin-right: 10px;"

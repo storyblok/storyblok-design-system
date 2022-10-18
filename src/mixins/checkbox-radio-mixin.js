@@ -1,6 +1,6 @@
 export default {
   props: {
-    value: [String, Number, Boolean, Array],
+    modelValue: [String, Number, Boolean, Array],
     nativeValue: [String, Number, Boolean],
 
     id: String,
@@ -8,6 +8,8 @@ export default {
     required: Boolean,
     name: String,
   },
+
+  emits: ['update:modelValue'],
 
   data() {
     return {
@@ -29,7 +31,7 @@ export default {
   },
 
   watch: {
-    value(newValue) {
+    modelValue(newValue) {
       this.internalValue = newValue
     },
   },

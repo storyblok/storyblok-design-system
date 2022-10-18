@@ -3,9 +3,9 @@ import SbButton from '../../Button'
 
 import { mount } from '@vue/test-utils'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbHeaderTitle, {
-    propsData,
+    props,
   })
 }
 

@@ -3,14 +3,16 @@ import SbBlockUI from '../../BlockUI'
 import { mount } from '@vue/test-utils'
 import { loadingSizes } from '../utils'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbLoading, {
-    propsData,
+    props,
     slots: {
       default: '<SbLoadingPlaceholder width="20px" height="10px" />',
     },
-    stubs: {
-      SbLoadingPlaceholder,
+    global: {
+      stubs: {
+        SbLoadingPlaceholder,
+      },
     },
   })
 }

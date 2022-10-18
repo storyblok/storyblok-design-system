@@ -1,9 +1,9 @@
 import SbDropArea from '..'
 import { mount } from '@vue/test-utils'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbDropArea, {
-    propsData,
+    props,
   })
 }
 

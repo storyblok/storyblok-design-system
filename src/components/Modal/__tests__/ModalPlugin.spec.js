@@ -9,9 +9,7 @@ import {
 
 describe('Tests for ModalPlugin', () => {
   const wrapper = shallowMount(ModalPlugin, {
-    propsData: {},
-    mocks: {},
-    stubs: {},
+    props: {},
     methods: {},
   })
 

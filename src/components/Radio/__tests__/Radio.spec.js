@@ -1,9 +1,9 @@
 import SbRadio from '..'
 import { mount } from '@vue/test-utils'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbRadio, {
-    propsData,
+    props,
   })
 }
 
@@ -39,7 +39,7 @@ describe('SbRadio component', () => {
 
     await wrapper.find('input').trigger('click')
 
-    expect(wrapper.emitted('input')[0]).toEqual(['Jon Doe'])
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual(['Jon Doe'])
   })
 
   it('should have the outline and inline classes', async () => {

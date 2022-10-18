@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils'
 import SbIcon from '..'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbIcon, {
-    propsData,
+    props,
   })
 }
 

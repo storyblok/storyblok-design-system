@@ -11,9 +11,7 @@ import SbButton from '../../Button'
 
 describe('Tests for SbModalType', () => {
   const wrapper = shallowMount(SbModalType, {
-    propsData: {},
-    mocks: {},
-    stubs: {},
+    props: {},
     methods: {},
   })
 

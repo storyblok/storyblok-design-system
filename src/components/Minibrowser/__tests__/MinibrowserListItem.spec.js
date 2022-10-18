@@ -21,7 +21,7 @@ const factory = (mountProps) => {
 describe('SbMinibrowserListItem component', () => {
   it('should render the correct text', () => {
     const wrapper = factory({
-      propsData: {
+      props: {
         label: 'An awesome label',
       },
     })
@@ -31,7 +31,7 @@ describe('SbMinibrowserListItem component', () => {
 
   it('render content from default slot', () => {
     const wrapper = factory({
-      propsData: {
+      props: {
         label: '',
       },
       slots: {
@@ -48,7 +48,7 @@ describe('SbMinibrowserListItem component', () => {
 
   it('render content from icon slot', () => {
     const wrapper = factory({
-      propsData: {
+      props: {
         label: 'An awesome label',
       },
       slots: {
@@ -63,7 +63,7 @@ describe('SbMinibrowserListItem component', () => {
 
   it('should include the --active modifier when specify isActive state', () => {
     const wrapper = factory({
-      propsData: {
+      props: {
         isActive: true,
         label: 'An awesome label',
       },
@@ -79,7 +79,7 @@ describe('SbMinibrowserListItem component', () => {
 
   it('should render the subtitle text', () => {
     const wrapper = factory({
-      propsData: {
+      props: {
         label: 'An awesome label',
         subtitle: 'An awesome subtitle',
       },

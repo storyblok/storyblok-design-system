@@ -8,9 +8,9 @@ import { INTERNAL_VIEWS } from '../utils'
 const localVue = global.localVue
 
 describe('SbDatepicker component', () => {
-  const factory = (propsData) => {
+  const factory = (props) => {
     return mount(SbDatepicker, {
-      propsData,
+      props,
       localVue,
     })
   }

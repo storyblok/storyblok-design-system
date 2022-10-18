@@ -3,9 +3,9 @@ import { mount } from '@vue/test-utils'
 import SbPagination from '..'
 import { SbSelect } from '../../index'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbPagination, {
-    propsData,
+    props,
   })
 }
 
@@ -22,7 +22,7 @@ describe('SbPagination component', () => {
     })
 
     it('should have a page select information with correct state', () => {
-      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('1')
+      expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('1')
     })
 
     it('should have the previous button disabled', () => {
@@ -53,7 +53,7 @@ describe('SbPagination component', () => {
     })
 
     it('should have the page select with this specific page', () => {
-      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('3')
+      expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('3')
     })
 
     it('should not have the previous and next buttons disabled', () => {
@@ -82,7 +82,7 @@ describe('SbPagination component', () => {
     })
 
     it('should have the page select with this specific page', () => {
-      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('4')
+      expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('4')
     })
 
     it('should have the next button disabled', () => {
@@ -127,7 +127,7 @@ describe('SbPagination component', () => {
       await wrapper.setProps({ value: 50 })
       await wrapper.vm.$nextTick()
 
-      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('50')
+      expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('50')
     })
 
     it('should update the text with how many pages information', async () => {
@@ -151,7 +151,7 @@ describe('SbPagination component', () => {
       await wrapper.setProps({ value: 4 })
       await wrapper.vm.$nextTick()
 
-      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('4')
+      expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('4')
     })
   })
 
@@ -170,7 +170,7 @@ describe('SbPagination component', () => {
       await wrapper.vm.$nextTick()
 
       // get the input event result (the result is: [[2]])
-      expect(wrapper.emitted('input')[0][0]).toBe(2)
+      expect(wrapper.emitted('update:modelValue')[0][0]).toBe(2)
     })
 
     it('should emit the input event when previous button is clicked', async () => {
@@ -186,7 +186,7 @@ describe('SbPagination component', () => {
       await wrapper.vm.$nextTick()
 
       // get the input event result (the result is: [[2]])
-      expect(wrapper.emitted('input')[0][0]).toBe(2)
+      expect(wrapper.emitted('update:modelValue')[0][0]).toBe(2)
     })
   })
 
@@ -271,11 +271,11 @@ describe('SbPagination component', () => {
 
     it('should emit the page when click a dot button', async () => {
       const dotButtons = wrapper.findAll('nav button')
-      const thirdPageDot = dotButtons.at(2)
+      const thirdPageDot = dotButtons[2]
 
       await thirdPageDot.trigger('click')
 
-      expect(wrapper.emitted('input')[0][0]).toBe(3)
+      expect(wrapper.emitted('update:modelValue')[0][0]).toBe(3)
     })
   })
 })

@@ -6,7 +6,7 @@ import { listItemsData } from '../Sidebar.stories'
 describe('Test SbSidebar component', () => {
   describe('when in default behavior', () => {
     const wrapper = mount(SbSidebar, {
-      propsData: {
+      props: {
         listItems: [...listItemsData],
       },
       slots: {
@@ -19,9 +19,11 @@ describe('Test SbSidebar component', () => {
           />
         `,
       },
-      stubs: {
-        SbSidebarListItem: SbSidebarListItem,
-        SbButton: true,
+      global: {
+        stubs: {
+          SbSidebarListItem: SbSidebarListItem,
+          SbButton: true,
+        },
       },
     })
 
@@ -44,7 +46,7 @@ describe('Test SbSidebar component', () => {
 
   describe('when in minimized state', () => {
     const wrapper = mount(SbSidebar, {
-      propsData: {
+      props: {
         listItems: [...listItemsData],
         minimize: true,
       },
@@ -58,11 +60,13 @@ describe('Test SbSidebar component', () => {
           />
         `,
       },
-      stubs: {
-        SbSidebarListItem: SbSidebarListItem,
-        SbButton: SbButton,
-        SbFragment: true,
-        MountingPortal: true,
+      global: {
+        stubs: {
+          SbSidebarListItem: SbSidebarListItem,
+          SbButton: SbButton,
+          SbFragment: true,
+          MountingPortal: true,
+        },
       },
     })
 

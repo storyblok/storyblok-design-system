@@ -81,9 +81,7 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeTruthy()
 
     // and should move the focus to the last item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(3).element
-    ).toHaveFocus()
+    expect(wrapper.findAll('[role="menuitemradio"]')[3].element).toHaveFocus()
 
     // when continues press the ArrowUp key
     await menuListComponent.trigger('keydown', {
@@ -93,9 +91,7 @@ describe('SbMenu component', () => {
     await wrapper.vm.$nextTick()
 
     // should move the focus to the third item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(2).element
-    ).toHaveFocus()
+    expect(wrapper.findAll('[role="menuitemradio"]')[2].element).toHaveFocus()
 
     // when press the ArrowDown key
     await menuListComponent.trigger('keydown', {
@@ -105,9 +101,7 @@ describe('SbMenu component', () => {
     await wrapper.vm.$nextTick()
 
     // should back the focus to the last item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(3).element
-    ).toHaveFocus()
+    expect(wrapper.findAll('[role="menuitemradio"]')[3].element).toHaveFocus()
 
     // when press the Escape key
     await menuListComponent.trigger('keydown', {
@@ -133,9 +127,7 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeTruthy()
 
     // and should move the focus to the first item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(0).element
-    ).toHaveFocus()
+    expect(wrapper.findAll('[role="menuitemradio"]')[0].element).toHaveFocus()
 
     await menuListComponent.trigger('keydown', {
       key: 'Escape',
@@ -175,9 +167,7 @@ describe('SbMenu component', () => {
     await wrapper.vm.$nextTick()
 
     // should move the focus to the last item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(3).element
-    ).toHaveFocus()
+    expect(wrapper.findAll('[role="menuitemradio"]')[3].element).toHaveFocus()
 
     // when press the Home key
     await menuListComponent.trigger('keydown', {
@@ -187,9 +177,7 @@ describe('SbMenu component', () => {
     await wrapper.vm.$nextTick()
 
     // should move the focus to the first item
-    expect(
-      wrapper.findAll('[role="menuitemradio"]').at(0).element
-    ).toHaveFocus()
+    expect(wrapper.findAll('[role="menuitemradio"]')[0].element).toHaveFocus()
 
     // when press the Escape key
     await menuListComponent.trigger('keydown', {
@@ -218,7 +206,7 @@ describe('SbMenu component', () => {
     expect(menuListComponent.isVisible()).toBeTruthy()
 
     // when select a specific item
-    await wrapper.findAll('[role="menuitemradio"]').at(1).trigger('click')
+    await wrapper.findAll('[role="menuitemradio"]')[1].trigger('click')
 
     // the clicks should be triggered
     expect(onSelectOption).toHaveBeenCalled()

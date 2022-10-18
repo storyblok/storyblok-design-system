@@ -1,9 +1,9 @@
 import SbToggle from '..'
 import { mount } from '@vue/test-utils'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbToggle, {
-    propsData,
+    props,
   })
 }
 
@@ -39,7 +39,7 @@ describe('SbToggle component', () => {
 
     await wrapper.find('input').trigger('click')
 
-    expect(wrapper.emitted('input')[0]).toEqual([true])
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([true])
   })
 
   it('should have the primary class', async () => {

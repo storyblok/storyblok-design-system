@@ -2,9 +2,9 @@ import SbTextField from '..'
 import { mount } from '@vue/test-utils'
 const localVue = global.localVue
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbTextField, {
-    propsData,
+    props,
     localVue,
   })
 }
@@ -88,7 +88,7 @@ describe('SbTextField component', () => {
 
     await inputElement.trigger('input')
 
-    expect(wrapper.emitted('input')[0]).toEqual(['New Value'])
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual(['New Value'])
     expect(wrapper.vm.internalValue).toBe('New Value')
   })
 
@@ -145,10 +145,10 @@ describe('SbTextField component', () => {
 })
 
 describe('SbTextField as textarea', () => {
-  const factory = (propsData) => {
+  const factory = (props) => {
     return mount(SbTextField, {
-      propsData: {
-        ...propsData,
+      props: {
+        ...props,
         type: 'textarea',
       },
     })
@@ -166,7 +166,7 @@ describe('SbTextField as textarea', () => {
 
     await textareaElement.trigger('input')
 
-    expect(wrapper.emitted('input')[0]).toEqual(['New Value'])
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual(['New Value'])
     expect(wrapper.vm.internalValue).toBe('New Value')
   })
 

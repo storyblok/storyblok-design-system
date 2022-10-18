@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import SbGroupButton from '..'
 import SbButton from '../../Button'
 
-const factory = (template, propsData = {}) => {
+const factory = (template, props = {}) => {
   const Wrapper = {
     components: {
       SbButton,
@@ -12,7 +12,7 @@ const factory = (template, propsData = {}) => {
   }
 
   return mount(Wrapper, {
-    propsData,
+    props,
   })
 }
 
