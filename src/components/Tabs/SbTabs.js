@@ -202,7 +202,7 @@ const SbTabs = {
     }
 
     return h(
-      'ul',
+      'div',
       {
         staticClass: 'sb-tabs',
         class: {

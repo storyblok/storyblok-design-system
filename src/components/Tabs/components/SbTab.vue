@@ -1,10 +1,11 @@
 <template>
-  <li
+  <button
     class="sb-tab"
     :class="computedClasses"
-    :tabindex="activate ? 0 : -1"
+    :tabindex="computedTabIndex"
     :aria-selected="activate + ''"
     role="tab"
+    type="button"
     v-bind="$attrs"
     @click="handleClick"
     v-on="$listeners"
@@ -22,7 +23,7 @@
       v-if="editable && !isDisabled"
       @click="handleClickEditButton"
     />
-  </li>
+  </button>
 </template>
 
 <script>
@@ -95,6 +96,9 @@ export default {
         'sb-tab--editable': this.editable,
         'sb-tab--is-active': this.activate,
       }
+    },
+    computedTabIndex() {
+      return this.activate ? null : -1
     },
   },
 
