@@ -295,20 +295,22 @@ export default {
       }
 
       return this.value
-        .map(($v) => {
-          if (typeof $v === 'object') {
-            return $v
+        .map((value) => {
+          if (typeof value === 'object') {
+            return value
           }
 
-          const option = this.options.find(
-            ($opt) => $opt[this.itemValue] === $v
+          const selectedOption = this.options.find(
+            (option) => option[this.itemValue] === value
           )
 
-          if (this.allowCreate && !option) {
-            return this.emitOption ? { [this.itemValue]: $v } : $v
+          const shouldCreate = this.allowCreate && !selectedOption
+
+          if (shouldCreate) {
+            return this.emitOption ? { [this.itemValue]: value } : value
           }
 
-          return option
+          return selectedOption
         })
         .filter((option) => option !== null && option !== undefined)
     },
