@@ -12,7 +12,7 @@ describe('Test SbTab component', () => {
     })
 
     // select the button to edit the tag
-    const buttonComponent = wrapper.find('button')
+    const buttonComponent = wrapper.find('.sb-tab-edit-button')
 
     it('should perform the edit a tab function', async () => {
       await buttonComponent.trigger('click')
