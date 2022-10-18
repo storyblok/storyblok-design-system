@@ -14,14 +14,24 @@
       </div>
 
       <div class="sb-sidebar__mobile-logo" @click="closeSidebar">
-        <img v-if="logo" class="sb-custom-logo" :src="logo" />
+        <img
+          v-if="logo"
+          class="sb-custom-logo"
+          :src="logo"
+          alt="Custom Sidebar Logo"
+        />
         <SbSidebarLogo v-else variant="dark" />
       </div>
     </div>
 
     <div v-click-outside="$_sidebarClose" class="sb-sidebar__content">
       <div class="sb-sidebar__top">
-        <img v-if="logo" class="sb-custom-logo" :src="logo" />
+        <img
+          v-if="logo"
+          class="sb-custom-logo"
+          :src="logo"
+          alt="Custom Sidebar Logo"
+        />
         <SbSidebarLogo v-else :minimize="minimize" />
       </div>
 

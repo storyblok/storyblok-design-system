@@ -20,6 +20,7 @@
           :is-focused="index === focusedItem ? true : false"
           :show-caption="showCaption"
           :path="option[itemCaption]"
+          :selected="shouldBeChecked(index)"
           @emit-value="handleEmitValue"
           @mouseenter.native="handleFocusItem(index)"
         />
@@ -114,6 +115,11 @@ export default {
       type: String,
       required: true,
     },
+    allOptionValue: {
+      type: [String, Number],
+      value: '',
+    },
+    firstValueIsAllValue: Boolean,
   },
 
   data() {
@@ -250,6 +256,15 @@ export default {
     handleFocusItem(index) {
       this.focusedItem = index
       this.$emit('focus-item', index)
+    },
+
+    shouldBeChecked(index) {
+      return (
+        this.firstValueIsAllValue &&
+        this.value &&
+        this.value.includes(this.allOptionValue) &&
+        index > 0
+      )
     },
   },
 }

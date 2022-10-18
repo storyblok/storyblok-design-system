@@ -68,6 +68,8 @@
       :show-list-on-top="showListOnTop"
       :is-loading-more="isLoadingMore"
       :loading-more-text="loadingMoreText"
+      :all-option-value="firstOptionValue"
+      :first-value-is-all-value="firstValueIsAllValue"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -118,6 +120,7 @@ export default {
     },
     required: Boolean,
     multiple: Boolean,
+    firstValueIsAllValue: Boolean,
     disableInternalFilter: Boolean,
     filterDebounce: {
       type: Number,
@@ -232,6 +235,10 @@ export default {
 
     useMinibrowser() {
       return this.$slots.minibrowser && this.innerElement
+    },
+
+    firstOptionValue() {
+      return this.options.length > 0 ? this.options[0].value : null
     },
 
     filteredOptions() {
@@ -378,7 +385,8 @@ export default {
       if (this.multiple) {
         this.searchInput = ''
         const $value = this.processMultipleValue(value)
-        this.$emit('input', $value)
+
+        this.$emit('input', this.validateValue($value, this.value))
         return
       }
 
@@ -386,6 +394,24 @@ export default {
       this.$emit('input', value)
       this.$_focusInner()
       this.hideList()
+    },
+
+    validateValue(newVal, oldVal) {
+      if (!this.firstValueIsAllValue) return newVal
+      if (
+        oldVal.length === 1 &&
+        oldVal.includes(this.firstOptionValue) &&
+        newVal.length > 1
+      ) {
+        return newVal.filter((item) => item !== this.firstOptionValue)
+      }
+      if (
+        !oldVal.includes(this.firstOptionValue) &&
+        newVal.includes(this.firstOptionValue)
+      ) {
+        return [this.firstOptionValue]
+      }
+      return newVal
     },
 
     /**

@@ -53,4 +53,8 @@ export default {
     type: Boolean,
     default: false,
   },
+  hideActionsMenu: {
+    type: Boolean,
+    default: false,
+  },
 }
