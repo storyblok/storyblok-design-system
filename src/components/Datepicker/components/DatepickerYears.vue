@@ -29,6 +29,8 @@ export default {
     },
   },
 
+  emits: ['input'],
+
   computed: {
     yearsList() {
       const years = []

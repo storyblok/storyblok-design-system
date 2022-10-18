@@ -131,6 +131,14 @@ export default {
     },
   },
 
+  emits: [
+    'input',
+    'on-next-page',
+    'on-previous-page',
+    'page-change',
+    'per-page-change',
+  ],
+
   computed: {
     pages() {
       return Math.ceil(this.total / this.perPage)

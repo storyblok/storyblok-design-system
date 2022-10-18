@@ -42,6 +42,8 @@ export default {
     },
   },
 
+  emits: ['input'],
+
   data: () => ({
     internalHour: null,
     internalMinutes: null,

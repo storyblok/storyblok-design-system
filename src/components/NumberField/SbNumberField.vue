@@ -68,6 +68,8 @@ export default {
 
   inheritAttrs: false,
 
+  emits: ['blur', 'change', 'focus', 'input', 'keydown'],
+
   computed: {
     isMinArrowDisabled() {
       return this.calculateDecreasement(this.value, this.step) < this.min
