@@ -44,6 +44,8 @@ export default {
     },
   },
 
+  emits: ['change-page'],
+
   computed: {
     ariaLabel() {
       return i18n(this.locale, 'paginationNavigation')

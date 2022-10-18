@@ -173,6 +173,16 @@ export default {
     },
   },
 
+  emits: [
+    'blur',
+    'clear',
+    'focus',
+    'icon-click',
+    'keydown',
+    'keypress',
+    'keyup',
+  ],
+
   computed: {
     hasValue() {
       return this.computedValue !== null && ('' + this.computedValue).length > 0

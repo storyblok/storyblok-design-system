@@ -50,6 +50,8 @@ export default {
     },
   },
 
+  emits: ['click', 'keydown'],
+
   computed: {
     context() {
       return this.menuContext()

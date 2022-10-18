@@ -44,6 +44,8 @@ export default {
     },
   },
 
+  emits: ['close', 'input', 'open'],
+
   data: () => ({
     activeIndex: -1,
     focusableElements: [],

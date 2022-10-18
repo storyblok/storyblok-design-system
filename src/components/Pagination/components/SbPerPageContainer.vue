@@ -64,6 +64,8 @@ export default {
     },
   },
 
+  emits: ['per-page-change'],
+
   computed: {
     selectPerPageTranslated() {
       return i18n(this.locale, 'selectPerPage')

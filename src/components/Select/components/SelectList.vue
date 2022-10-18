@@ -122,6 +122,8 @@ export default {
     firstValueIsAllValue: Boolean,
   },
 
+  emits: ['emit-value', 'focus-item', 'keydown', 'option-created'],
+
   data() {
     return {
       focusedItem: -1,

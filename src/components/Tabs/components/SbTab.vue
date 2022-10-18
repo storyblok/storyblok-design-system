@@ -78,6 +78,8 @@ export default {
     },
   },
 
+  emits: ['activate-tab', 'cancel-edit-tab', 'edit-tab', 'keydown'],
+
   data() {
     return {
       internalEditable: this.edited,

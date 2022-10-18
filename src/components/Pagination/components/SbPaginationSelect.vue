@@ -29,6 +29,8 @@ export default {
     },
   },
 
+  emits: ['change'],
+
   computed: {
     parsedOptions() {
       return this.options.map((option) => ({

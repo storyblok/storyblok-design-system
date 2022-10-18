@@ -41,6 +41,8 @@ export default {
     },
   },
 
+  emits: ['page-change'],
+
   computed: {
     pagesOptions() {
       return buildSelectOptions(

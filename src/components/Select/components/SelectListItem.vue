@@ -91,6 +91,8 @@ export default {
     },
   },
 
+  emits: ['emit-value'],
+
   computed: {
     isSelected() {
       return isArray(this.inputValue)

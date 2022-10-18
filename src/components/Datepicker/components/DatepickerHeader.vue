@@ -67,6 +67,8 @@ export default {
     },
   },
 
+  emits: ['change-month', 'change-year', 'next-month', 'previous-month'],
+
   computed: {
     iconColor() {
       return this.isDisabled ? 'light-gray' : 'primary-dark'

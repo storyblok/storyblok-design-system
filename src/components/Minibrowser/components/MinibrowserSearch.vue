@@ -55,6 +55,8 @@ export default {
     },
   },
 
+  emits: ['input', 'keydown'],
+
   computed: {
     context() {
       return this.browserContext()

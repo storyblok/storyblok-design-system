@@ -182,6 +182,8 @@ export default {
     },
   },
 
+  emits: ['clear', 'input'],
+
   data: () => ({
     internalDate: dayjs().format(),
     internalValue: '',

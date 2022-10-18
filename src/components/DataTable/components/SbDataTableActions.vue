@@ -48,12 +48,16 @@ export default {
   },
 
   mixins: [WindowResizeObserverMixin()],
+
   props: {
     actions: sharedProps.actions,
     hideLabelActionsBreakpoint: sharedProps.hideLabelActionsBreakpoint,
     selectedRows: sharedProps.selectedRows,
     sticky: sharedProps.stickyMenu,
   },
+
+  emits: ['cancel', 'click'],
+
   computed: {
     activeClasses() {
       return {

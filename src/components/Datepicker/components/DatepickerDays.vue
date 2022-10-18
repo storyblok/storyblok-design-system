@@ -45,6 +45,8 @@ export default {
       default: false,
     },
   },
+
+  emits: ['input'],
   computed: {
     days() {
       const daysInTheMonth = dayjs(this.internalDate).daysInMonth()

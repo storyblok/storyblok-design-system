@@ -28,6 +28,7 @@ import SbBlokUi from '../BlockUI'
 import SbIcon from '../Icon'
 export default {
   name: 'SbSlideover',
+
   components: {
     SbIcon,
     SbBlokUi,
@@ -45,6 +46,8 @@ export default {
       default: false,
     },
   },
+
+  emits: ['hide', 'prevent-closing', 'show'],
   data() {
     return {
       openBlokUI: false || this.isOpen,
