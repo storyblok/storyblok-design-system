@@ -23,7 +23,7 @@ const SbTabs = {
       type: String,
       default: null,
     },
-    value: {
+    modelValue: {
       type: [String, Number],
       default: '',
     },
@@ -102,7 +102,7 @@ const SbTabs = {
     },
 
     triggerActiveTab(identifier) {
-      this.$emit('input', identifier)
+      this.$emit('update:modelValue', identifier)
     },
 
     handleEditTabOnCreate(content) {

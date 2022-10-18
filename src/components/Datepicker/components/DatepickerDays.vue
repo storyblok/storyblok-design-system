@@ -24,7 +24,7 @@ export default {
   name: 'SbDatepickerDays',
 
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: null,
     },
@@ -46,7 +46,7 @@ export default {
     },
   },
 
-  emits: ['input'],
+  emits: ['update:modelValue'],
   computed: {
     days() {
       const daysInTheMonth = dayjs(this.internalDate).daysInMonth()
@@ -103,7 +103,7 @@ export default {
         return
       }
       $event.stopPropagation()
-      this.$emit('input', day.date.format())
+      this.$emit('update:modelValue', day.date.format())
     },
 
     /**

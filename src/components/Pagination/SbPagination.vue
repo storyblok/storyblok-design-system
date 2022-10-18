@@ -120,7 +120,7 @@ export default {
       type: Number,
       default: 100,
     },
-    value: {
+    modelValue: {
       type: Number,
       required: true,
     },
@@ -132,7 +132,7 @@ export default {
   },
 
   emits: [
-    'input',
+    'update:modelValue',
     'on-next-page',
     'on-previous-page',
     'page-change',
@@ -188,7 +188,7 @@ export default {
       this.updateValue(1)
     },
     updateValue(value) {
-      this.$emit('input', value)
+      this.$emit('update:modelValue', value)
     },
   },
 }

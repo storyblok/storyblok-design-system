@@ -60,7 +60,7 @@ export default {
       default: '',
     },
     multiple: Boolean,
-    value: {
+    modelValue: {
       type: [String, Number],
       default: '',
     },

@@ -12,7 +12,7 @@ export default {
   name: 'SbEditableInput',
 
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: '',
     },

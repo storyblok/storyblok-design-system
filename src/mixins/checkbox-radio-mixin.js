@@ -23,7 +23,7 @@ export default {
 
       set(newValue) {
         this.internalValue = newValue
-        this.$emit('input', newValue)
+        this.$emit('update:modelValue', newValue)
       },
     },
   },

@@ -12,7 +12,7 @@
       :clear-search-label="clearSearchLabel"
       :value="searchInput"
       :placeholder="placeholder"
-      @input="handleSearchInput"
+      @update:modelValue="handleSearchInput"
       @keydown="handleSearchKeydown"
     />
 

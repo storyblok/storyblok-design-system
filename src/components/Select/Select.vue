@@ -34,7 +34,7 @@
       :item-caption="itemCaption"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
-      @input="handleSearchInput"
+      @update:modelValue="handleSearchInput"
       @emit-value="handleEmitValue"
       @close-list="hideList"
       @clear-all-values="handleClearAllValues"
@@ -114,7 +114,7 @@ export default {
 
   props: {
     // component props
-    value: {
+    modelValue: {
       type: [String, Number, Array],
       default: null,
     },
@@ -205,7 +205,7 @@ export default {
   emits: [
     'filter',
     'hide',
-    'input',
+    'update:modelValue',
     'load-more',
     'option-created',
     'search-input',
@@ -396,12 +396,12 @@ export default {
         this.searchInput = ''
         const $value = this.processMultipleValue(value)
 
-        this.$emit('input', this.validateValue($value, this.value))
+        this.$emit('update:modelValue', this.validateValue($value, this.value))
         return
       }
 
       this.searchInput = ''
-      this.$emit('input', value)
+      this.$emit('update:modelValue', value)
       this.$_focusInner()
       this.hideList()
     },
@@ -489,7 +489,7 @@ export default {
     handleRemoveItemValue(itemValue) {
       if (this.multiple) {
         const $value = this.processMultipleValue(itemValue)
-        this.$emit('input', $value)
+        this.$emit('update:modelValue', $value)
         this.$_focusInner()
       }
     },
@@ -500,14 +500,14 @@ export default {
      */
     handleClearAllValues() {
       if (this.multiple) {
-        this.$emit('input', [])
+        this.$emit('update:modelValue', [])
         this.hideList()
         this.$_focusInner()
         return
       }
 
       this.searchInput = ''
-      this.$emit('input', null)
+      this.$emit('update:modelValue', null)
       this.hideList()
       this.$_focusInner()
     },
@@ -518,7 +518,7 @@ export default {
     handleSearchInput(event) {
       this.searchInput = !isString(event) ? event.target.value : event
       if (this.emitSearch) {
-        this.$emit('input', this.searchInput)
+        this.$emit('update:modelValue', this.searchInput)
       }
     },
 

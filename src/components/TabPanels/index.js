@@ -50,7 +50,7 @@ const SbTabPanels = {
   functional: true,
 
   props: {
-    value: {
+    modelValue: {
       type: [String, Number],
       required: true,
     },

@@ -126,7 +126,7 @@ export default {
         type: 'number',
       },
     },
-    value: {
+    modelValue: {
       name: 'value',
       description:
         'Current page. The value property has to be used for `v-model` directive',

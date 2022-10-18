@@ -30,7 +30,7 @@ export default {
     icon: null,
   },
   argTypes: {
-    value: {
+    modelValue: {
       name: 'value',
       description:
         'Controls the open menu state. The value property has to be used for `v-model` directive',

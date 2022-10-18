@@ -53,7 +53,7 @@ export default {
         options: [...loadingSizes],
       },
     },
-    value: {
+    modelValue: {
       name: 'value',
       description:
         'The prop `value` must be entered to change the loading status, it ranges from 0 to 100.',

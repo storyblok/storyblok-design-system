@@ -19,7 +19,7 @@ export default {
     sortable: {
       type: Boolean,
     },
-    value: {
+    modelValue: {
       type: String,
       default: null,
     },

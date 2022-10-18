@@ -61,7 +61,7 @@ export default {
     isMonthView: Boolean,
     isTimeView: Boolean,
     isYearView: Boolean,
-    value: {
+    modelValue: {
       type: String,
       default: null,
     },

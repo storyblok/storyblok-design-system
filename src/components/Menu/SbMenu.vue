@@ -28,7 +28,7 @@ export default {
       default: false,
     },
 
-    value: {
+    modelValue: {
       type: Boolean,
       default: false,
     },
@@ -44,7 +44,7 @@ export default {
     },
   },
 
-  emits: ['close', 'input', 'open'],
+  emits: ['close', 'update:modelValue', 'open'],
 
   data: () => ({
     activeIndex: -1,
@@ -102,7 +102,7 @@ export default {
     },
 
     isOpen(state) {
-      this.$emit('input', state)
+      this.$emit('update:modelValue', state)
     },
 
     value(state) {

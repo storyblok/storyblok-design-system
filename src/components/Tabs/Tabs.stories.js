@@ -116,7 +116,7 @@ export default {
         options: ['container'],
       },
     },
-    value: {
+    modelValue: {
       name: 'value',
       description:
         'Current tab. The value property has to be used for `v-model` directive',

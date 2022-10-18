@@ -18,7 +18,7 @@ export const sharedProps = {
     type: String,
     validator: (size) => loadingSizes.indexOf(size) !== -1,
   },
-  value: {
+  modelValue: {
     type: [Number, String],
     default: 0,
   },

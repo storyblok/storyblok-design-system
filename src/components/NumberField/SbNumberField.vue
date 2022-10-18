@@ -133,7 +133,7 @@ export default {
   },
 
   watch: {
-    value: {
+    modelValue: {
       handler(value) {
         let newValue = value === undefined ? value : Number(value)
 
@@ -157,7 +157,7 @@ export default {
 
         this.internalValue = newValue
         this.userInput = null
-        this.$emit('input', newValue)
+        this.$emit('update:modelValue', newValue)
       },
       immediate: true,
     },
@@ -250,7 +250,7 @@ export default {
       }
 
       this.userInput = null
-      this.$emit('input', newValue)
+      this.$emit('update:modelValue', newValue)
       this.$emit('change', newValue, this.internalValue)
       this.internalValue = newValue
     },

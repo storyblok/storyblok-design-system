@@ -162,7 +162,7 @@ export default {
       default: 'Loading...',
     },
 
-    value: {
+    modelValue: {
       type: [String, Number, Array],
       default: null,
     },
@@ -198,7 +198,7 @@ export default {
     'clear-all-values',
     'close-list',
     'emit-value',
-    'input',
+    'update:modelValue',
     'keydown-enter',
     'remove-item-value',
   ],
@@ -402,7 +402,7 @@ export default {
      */
     handleEmitSearchInput() {
       if (this.filterable && !this.isDisabled) {
-        this.$emit('input', this.searchInputText)
+        this.$emit('update:modelValue', this.searchInputText)
 
         if (this.isAvatarVisible) {
           this.showAvatar = false
@@ -448,7 +448,7 @@ export default {
         event.preventDefault()
         if (this.allowCreate && this.searchInputText.length) {
           this.handleEmitValue(this.searchInputText)
-          this.$emit('input', '')
+          this.$emit('update:modelValue', '')
         } else {
           this.$emit('keydown-enter')
         }

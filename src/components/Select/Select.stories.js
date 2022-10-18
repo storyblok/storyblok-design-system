@@ -16,7 +16,7 @@ const SelectTemplate = (args) => ({
   }),
 
   watch: {
-    value: {
+    modelValue: {
       handler(newValue) {
         this.internalValue = newValue
       },
@@ -379,7 +379,7 @@ export const WithMinibrowser = (args) => ({
   }),
 
   watch: {
-    value: {
+    modelValue: {
       handler(newValue) {
         this.internalValue = newValue
       },
@@ -440,7 +440,7 @@ export const EmitOption = (args) => ({
   }),
 
   watch: {
-    value: {
+    modelValue: {
       handler(newValue) {
         this.internalValue = newValue
       },
@@ -476,7 +476,7 @@ export const EmitOption = (args) => ({
           :clearable="clearable"
           emit-option
           :value="singleSelectValue"
-          @input="handleSingleSelect"
+          @update:modelValue="handleSingleSelect"
           style="max-width: 300px"
         />
 

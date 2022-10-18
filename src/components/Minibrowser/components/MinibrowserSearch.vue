@@ -49,13 +49,13 @@ export default {
       type: String,
       default: null,
     },
-    value: {
+    modelValue: {
       type: String,
       required: true,
     },
   },
 
-  emits: ['input', 'keydown'],
+  emits: ['update:modelValue', 'keydown'],
 
   computed: {
     context() {
@@ -95,7 +95,7 @@ export default {
      */
     clearSearchInputValue(event) {
       event.stopPropagation()
-      this.$emit('input', '')
+      this.$emit('update:modelValue', '')
     },
 
     /**
@@ -103,7 +103,7 @@ export default {
      * @param {Event} event
      */
     handleSearchInput(event) {
-      this.$emit('input', event.target.value)
+      this.$emit('update:modelValue', event.target.value)
     },
 
     /**

@@ -67,7 +67,7 @@ export default {
 
   props: {
     // input itself value
-    value: {
+    modelValue: {
       type: [String, Number, Array],
       default: null,
     },

@@ -64,7 +64,7 @@
         :min-date="minDate"
         :max-date="maxDate"
         :disabled-past="disabledPast"
-        @input="handleComponentsInput"
+        @update:modelValue="handleComponentsInput"
       />
 
       <div class="sb-datepicker__actions">
@@ -161,7 +161,7 @@ export default {
       default: null,
     },
 
-    value: {
+    modelValue: {
       type: String,
       default: '',
     },
@@ -182,7 +182,7 @@ export default {
     },
   },
 
-  emits: ['clear', 'input'],
+  emits: ['clear', 'update:modelValue'],
 
   data: () => ({
     internalDate: dayjs().format(),
@@ -305,7 +305,7 @@ export default {
   },
 
   watch: {
-    value: {
+    modelValue: {
       handler: 'syncInternalValue',
       immediate: true,
     },
@@ -381,9 +381,9 @@ export default {
 
       if (this.isoDate) {
         this.isoString = dayjs.utc(utcTime).toISOString()
-        this.$emit('input', this.isoString)
+        this.$emit('update:modelValue', this.isoString)
       } else {
-        this.$emit('input', utcTime)
+        this.$emit('update:modelValue', utcTime)
       }
 
       this.$nextTick(() => {
@@ -444,7 +444,7 @@ export default {
     handleClear(previousValue) {
       this.internalValue = ''
       this.hitClear = true
-      this.$emit('input', '')
+      this.$emit('update:modelValue', '')
       this.$emit('clear', previousValue)
     },
 
