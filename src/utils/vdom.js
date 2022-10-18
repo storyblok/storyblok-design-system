@@ -3,10 +3,7 @@
  * @param  {Array} vnodes
  * @return {Array}
  */
-export const cleanChildren = (vnodes = [], label = '') => {
-  if (label.length) {
-    return vnodes.filter((vnode) => vnode.tag?.includes(label))
-  }
+export const cleanChildren = (vnodes = []) => {
   return vnodes.filter((vnode) => vnode.tag)
 }
 
