@@ -1,28 +1,28 @@
 import { mount } from '@vue/test-utils'
 import dayjs from 'dayjs'
+import Maska from 'maska'
 
 import SbDatepicker from '../Datepicker.vue'
 import SbDatepickerData, { WithTzOffset } from '../Datepicker.stories'
 
 import { INTERNAL_VIEWS } from '../utils'
-const localVue = global.localVue
 
 describe('SbDatepicker component', () => {
   const factory = (props) => {
     return mount(SbDatepicker, {
       props,
-      localVue,
+      plugins: [Maska],
     })
   }
   const { placeholder } = SbDatepickerData.args
   const { timeZone } = SbDatepickerData.args
   const { type } = SbDatepickerData.args
-  const { value } = SbDatepickerData.args
+  const { modelValue } = SbDatepickerData.args
   const wrapper = factory({
     placeholder,
     timeZone,
     type,
-    value,
+    modelValue,
   })
 
   describe('test datepicker I/Os', () => {
@@ -75,7 +75,7 @@ describe('SbDatepicker component', () => {
     const wrapper = factory({
       ...SbDatepickerData.args,
       ...WithTzOffset.args,
-      value: '2017-09-09',
+      modelValue: '2017-09-09',
     })
 
     it('Should exist the tooltip with correct label', async () => {

@@ -74,7 +74,7 @@ export default {
           label: i,
           date: dateValue,
           inMonth: true,
-          checked: dayjs(this.value).isSame(dateValue, 'day'),
+          checked: dayjs(this.modelValue).isSame(dateValue, 'day'),
           current: dayjs().isSame(dateValue, 'day'),
           disabled: this.isDisabledDay(dateValue),
         })

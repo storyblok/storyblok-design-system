@@ -14,7 +14,7 @@
         icon-left="calendar"
         :disabled="disabled"
         :placeholder="placeholder"
-        :value="internalValueFormatted"
+        :model-value="internalValueFormatted"
         :error="invalidDate"
         clearable
         @icon-click="handleInputClick"
@@ -49,7 +49,7 @@
           isYearView,
           isMonthView,
           isTimeView,
-          value: internalDate,
+          modelValue: internalDate,
         }"
         @previous-month="handlePreviousMonth"
         @next-month="handleNextMonth"
@@ -59,7 +59,7 @@
 
       <component
         :is="isComponentView"
-        :value="internalValue"
+        :model-value="internalValue"
         :internal-date="internalDate"
         :min-date="minDate"
         :max-date="maxDate"

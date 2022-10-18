@@ -7,7 +7,7 @@ export default {
   components: { SbDatepicker },
   args: {
     placeholder: 'Select date and time',
-    value: '2021-12-02 00:00',
+    modelValue: '2021-12-02 00:00',
     type: 'datetime',
     disabled: false,
     isoDate: false,

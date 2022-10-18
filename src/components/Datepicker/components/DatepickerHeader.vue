@@ -80,18 +80,18 @@ export default {
 
     title() {
       if (this.isDisabled) {
-        return dayjs(this.value).format('MMM D, YYYY')
+        return dayjs(this.modelValue).format('MMM D, YYYY')
       }
 
-      return dayjs(this.value).format('MMM, YYYY')
+      return dayjs(this.modelValue).format('MMM, YYYY')
     },
 
     currentMonth() {
-      return dayjs(this.value).format('MMM')
+      return dayjs(this.modelValue).format('MMM')
     },
 
     currentYear() {
-      return dayjs(this.value).format('YYYY')
+      return dayjs(this.modelValue).format('YYYY')
     },
 
     label() {

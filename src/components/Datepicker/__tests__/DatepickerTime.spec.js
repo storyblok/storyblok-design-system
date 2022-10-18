@@ -38,7 +38,7 @@ describe('SbDatepickerTime component', () => {
     it('Should emit date for input on click', async () => {
       const wrapper = mount(SbDatepickerTime)
       const value = dayjs().format()
-      await wrapper.setProps({ value })
+      await wrapper.setProps({ modelValue: value })
       wrapper.vm.$_processInput()
       expect(wrapper.emitted().input[0].length).toBe(1)
     })
