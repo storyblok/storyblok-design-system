@@ -1,5 +1,6 @@
 import { SbTab, SbTabAdd } from './components'
 import { Tooltip } from '../../directives'
+import { h } from 'vue'
 
 const SbTabs = {
   name: 'SbTabs',
@@ -69,9 +70,9 @@ const SbTabs = {
   methods: {
     loadChildren() {
       this.childVNodes = Object.assign({}, this.$el.children)
-      this.children =
-        this.$slots.default &&
-        this.$slots.default().filter((child) => child.type.name)
+      this.children = this.$slots.default
+        ? this.$slots.default()[0]?.children
+        : []
     },
 
     changeActiveTab(index) {
@@ -86,18 +87,12 @@ const SbTabs = {
 
       this.additionalTabs.push(
         h(SbTab, {
-          attrs: {
-            class: 'sb-tab sb-tab__new-tab',
-          },
-          props: {
-            label: 'New tab',
-            name: 'new-tab',
-            showEditInput: true,
-          },
-          on: {
-            'edit-tab': this.handleEditTabOnCreate,
-            'cancel-edit-tab': this.handleCancelEditOnCreate,
-          },
+          class: 'sb-tab sb-tab__new-tab',
+          label: 'New tab',
+          name: 'new-tab',
+          showEditInput: true,
+          onEditTab: this.handleEditTabOnCreate,
+          onCancelEditTab: this.handleCancelEditTabOnCreate,
         })
       )
     },
@@ -168,17 +163,16 @@ const SbTabs = {
     },
   },
 
-  render(h) {
-    const children = this.$slots.default.filter((e) => e.tag) || []
+  render() {
+    const children = this.$slots.default
+      ? this.$slots.default()[0]?.children
+      : []
+    console.log(children)
 
     const renderAddButton = () => {
       return h(SbTabAdd, {
-        props: {
-          newTabLabel: this.newTabLabel,
-        },
-        on: {
-          click: () => this.createNewTab(h),
-        },
+        newTabLabel: this.newTabLabel,
+        onClick: () => this.createNewTab(h),
       })
     }
 
@@ -187,14 +181,12 @@ const SbTabs = {
         const elementProps = element.props
         const elementId = elementProps.name
 
-        element.props = {
-          ...element.props,
+        return {
+          ...element,
           activate: elementId === this.value,
           onKeydown: this.handleKeyDown,
           onActivateTab: this.handleActiveTab,
         }
-
-        return element
       })
     }
 
@@ -208,10 +200,8 @@ const SbTabs = {
             'sb-tabs--vertical': this.isVertical,
           },
         ],
-        attrs: {
-          ...this.$attrs,
-          role: 'tablist',
-        },
+        ...this.$attrs,
+        role: 'tablist',
       },
       [
         processChildren(),

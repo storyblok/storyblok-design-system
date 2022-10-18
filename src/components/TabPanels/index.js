@@ -26,15 +26,13 @@ const SbTabPanel = {
     return h(
       'div',
       {
-        staticClass: 'sb-tab-panel',
-        attrs: {
-          ...this.$attrs,
-          role: 'tabpanel',
-          tabindex: this.activate ? 0 : -1,
-          'aria-hidden': !this.activate + '',
-        },
+        class: 'sb-tab-panel',
+        ...this.$attrs,
+        role: 'tabpanel',
+        tabindex: this.activate ? 0 : -1,
+        'aria-hidden': !this.activate + '',
       },
-      this.$slots?.default()
+      this.$slots?.default && this.$slots.default()
     )
   },
 }
@@ -58,30 +56,26 @@ const SbTabPanels = {
     },
   },
 
-  render(_, { slots, props, data }) {
-    const children = slots().default.filter((e) => e.tag) || []
+  render() {
+    const children = (this.slots?.default && this.slots.default()) || []
 
     const processChildren = () => {
       return children.map((element) => {
-        const elementProps = element.componentOptions.propsData
+        const elementProps = element.props
         const elementId = elementProps.name
 
-        element.componentOptions.propsData = {
-          ...element.componentOptions.propsData,
+        return {
+          ...element.props,
           activate: elementId === props.value,
         }
-
-        return element
       })
     }
 
     return h(
       'div',
       {
-        staticClass: 'sb-tab-panels',
-        attrs: {
-          ...data.$attrs,
-        },
+        class: 'sb-tab-panels',
+        ...this.$attrs,
       },
       processChildren()
     )
