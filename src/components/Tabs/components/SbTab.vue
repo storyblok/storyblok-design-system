@@ -8,7 +8,6 @@
     v-bind="$attrs"
     @click="handleClick"
     @keydown="handleKeyDown"
-    v-on="$listeners"
   >
     <SbIcon v-if="icon" :name="icon" size="normal" />
     <SbEditableInput

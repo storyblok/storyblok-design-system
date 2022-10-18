@@ -28,6 +28,7 @@ export default {
   directives: {
     tooltip: Tooltip,
   },
+
   props: {
     newTabLabel: {
       type: String,

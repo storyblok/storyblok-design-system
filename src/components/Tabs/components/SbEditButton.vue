@@ -14,9 +14,14 @@
 
 <script>
 import { Tooltip } from '../../../directives'
+import SbIcon from '../../Icon'
 
 export default {
   name: 'SbEditButton',
+
+  components: {
+    SbIcon,
+  },
 
   directives: {
     tooltip: Tooltip,
