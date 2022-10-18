@@ -202,6 +202,16 @@ export default {
     },
   },
 
+  emits: [
+    'filter',
+    'hide',
+    'input',
+    'load-more',
+    'option-created',
+    'search-input',
+    'show',
+  ],
+
   data: () => ({
     isOpen: false,
     activeIndex: -1,

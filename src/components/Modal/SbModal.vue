@@ -84,6 +84,8 @@ export default {
     },
   },
 
+  emits: ['hide', 'show'],
+
   data() {
     return {
       open: false || this.isOpen,

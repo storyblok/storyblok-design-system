@@ -43,6 +43,8 @@ export default {
     },
   },
 
+  emits: ['input'],
+
   computed: {
     hasValue() {
       return this.value && this.value.length > 0

@@ -120,6 +120,8 @@ export default {
     },
   },
 
+  emits: ['clear-navigation', 'close', 'filter', 'navigate', 'select-item'],
+
   data: () => ({
     filterHandler: null,
     searchInput: '',

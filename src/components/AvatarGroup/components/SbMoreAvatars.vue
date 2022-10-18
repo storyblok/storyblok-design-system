@@ -50,6 +50,8 @@ export default {
     },
   },
 
+  emits: ['click'],
+
   data() {
     return {
       expanded: false,

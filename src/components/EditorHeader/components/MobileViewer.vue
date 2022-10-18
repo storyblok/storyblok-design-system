@@ -68,6 +68,8 @@ export default {
     ...sharedProps,
   },
 
+  emits: ['changes'],
+
   methods: {
     /**
      * method to emit new language

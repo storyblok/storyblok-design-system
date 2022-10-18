@@ -173,15 +173,13 @@ export default {
   },
 
   emits: [
-    'input',
-    'focus',
     'blur',
+    'clear',
+    'focus',
+    'icon-click',
     'keydown',
     'keypress',
     'keyup',
-    'icon-click',
-    'clear',
-    'update:modelValue',
   ],
 
   computed: {

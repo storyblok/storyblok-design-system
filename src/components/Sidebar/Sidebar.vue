@@ -103,6 +103,8 @@ export default {
     },
   },
 
+  emits: ['mobile-close', 'mobile-open', 'update:minimize'],
+
   data: () => ({
     isMobileOpen: false,
     hasScrollbar: false,

@@ -194,6 +194,15 @@ export default {
     },
   },
 
+  emits: [
+    'clear-all-values',
+    'close-list',
+    'emit-value',
+    'input',
+    'keydown-enter',
+    'remove-item-value',
+  ],
+
   data: () => ({
     showAvatar: false,
   }),

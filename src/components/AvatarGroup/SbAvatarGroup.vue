@@ -46,6 +46,8 @@ export default {
     },
   },
 
+  emits: ['click'],
+
   data() {
     return {
       isVisibleDropdown: false,

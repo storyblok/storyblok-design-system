@@ -76,6 +76,8 @@ export default {
     },
   },
 
+  emits: ['close-drop-area', 'pick-files', 'upload-files'],
+
   data() {
     return {
       isOver: false,
