@@ -45,8 +45,7 @@
   }
 }
 
-.sb-tab--is-active,
-.sb-tab:focus {
+.sb-tab--is-active {
   z-index: 3;
   color: $primary-text-color;
   font-weight: $font-weight-medium;
@@ -62,8 +61,8 @@
   }
 }
 
-.sb-tab:focus::after {
-  background-color: $sb-dark-blue;
+.sb-tab:focus {
+  color: $sb-green;
 }
 
 .sb-tab--editable {
