@@ -5,7 +5,7 @@
         <SbCheckbox
           v-if="isMultiple"
           :indeterminate="isIndeterminate"
-          :value="allRowsSelected"
+          :model-value="allRowsSelected"
           @click="handleAllRowsSelected"
         />
       </th>

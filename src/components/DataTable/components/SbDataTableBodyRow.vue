@@ -10,7 +10,7 @@
       class="sb-data-table__body-cell sb-data-table__col-selection"
       @click="handleRowSelected"
     >
-      <SbCheckbox :value="isSelected" @click="handleRowSelected" />
+      <SbCheckbox :model-value="isSelected" @click="handleRowSelected" />
     </td>
 
     <td

@@ -89,7 +89,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is checked
-      expect(row.findComponent(SbCheckbox).props('value')).toBe(true)
+      expect(row.findComponent(SbCheckbox).props('modelValue')).toBe(true)
 
       // should add class to selected row
       expect(row.classes('sb-data-table__row--selected')).toBe(true)
@@ -164,8 +164,8 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkboxes status are checked
-      expect(row.findComponent(SbCheckbox).props('value')).toBe(true)
-      expect(row2.findComponent(SbCheckbox).props('value')).toBe(true)
+      expect(row.findComponent(SbCheckbox).props('modelValue')).toBe(true)
+      expect(row2.findComponent(SbCheckbox).props('modelValue')).toBe(true)
 
       // should add class to selected rows
       expect(row.classes('sb-data-table__row--selected')).toBe(true)
@@ -187,7 +187,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is unchecked
-      expect(row.findComponent(SbCheckbox).props('value')).toBe(false)
+      expect(row.findComponent(SbCheckbox).props('modelValue')).toBe(false)
 
       // should remove class to selected row
       expect(row.classes('sb-data-table__row--selected')).toBe(false)
@@ -205,7 +205,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is unchecked
-      expect(row2.findComponent(SbCheckbox).props('value')).toBe(false)
+      expect(row2.findComponent(SbCheckbox).props('modelValue')).toBe(false)
 
       // should remove class to selected row
       expect(row2.classes('sb-data-table__row--selected')).toBe(false)
@@ -254,12 +254,12 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should all checkboxes status are checked
-      rows.wrappers.forEach((wrapper) => {
-        expect(wrapper.findComponent(SbCheckbox).props('value')).toBe(true)
+      rows.forEach((wrapper) => {
+        expect(wrapper.findComponent(SbCheckbox).props('modelValue')).toBe(true)
       })
 
       // should add class to all rows
-      rows.wrappers.forEach((wrapper) => {
+      rows.forEach((wrapper) => {
         expect(wrapper.classes('sb-data-table__row--selected')).toBe(true)
       })
 
