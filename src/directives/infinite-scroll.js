@@ -102,7 +102,7 @@ const InfiniteScroll = {
    * @param  {Element} el element binded to directive
    * @param  {{ value: InfiniteScrollOptions }} binding  object with arguments to directive
    */
-  inserted(el, binding) {
+  mounted(el, binding) {
     if (typeof binding.value.handler !== 'function') {
       console.warn(
         '[v-infinite-scroll] - it should need to specify a function as a handler'
@@ -129,7 +129,7 @@ const InfiniteScroll = {
    * @method unbind
    * @param  {Element} el element binded to directive
    */
-  unbind(el) {
+  unmounted(el) {
     if (!el.__infiniteScroll) return
 
     if (el.__infiniteScroll.scrollEventTarget) {

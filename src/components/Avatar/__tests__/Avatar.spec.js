@@ -3,34 +3,19 @@ import { waitMs } from '../../../utils/tests-utils'
 import SbAvatar from '..'
 import SbBadge from '../../Badge'
 
-const LOAD_FAILURE_SRC = 'LOAD_FAILURE_SRC'
 const LOAD_SUCCESS_SRC = 'LOAD_SUCCESS_SRC'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbAvatar, {
-    propsData,
-    stubs: {
-      SbFragment: true,
-      MountingPortal: true,
+    props,
+    global: {
+      stubs: {
+        SbFragment: true,
+        MountingPortal: true,
+      },
     },
   })
 }
-
-beforeAll(() => {
-  process.browser = true // Mock process.browser for SbAvatar created()
-
-  // Mock Img
-  // eslint-disable-next-line accessor-pairs
-  Object.defineProperty(global.Image.prototype, 'src', {
-    set(src) {
-      if (src === LOAD_FAILURE_SRC) {
-        setTimeout(() => this.onerror(new Error('mocked error')))
-      } else if (src === LOAD_SUCCESS_SRC) {
-        setTimeout(() => this.onload())
-      }
-    },
-  })
-})
 
 describe('SbAvatar component', () => {
   describe('when use a correct image', () => {
@@ -200,7 +185,11 @@ describe('SbAvatar component', () => {
         name,
       })
 
+      await wrapper.vm.$nextTick()
+
       await wrapper.trigger('mouseover')
+
+      await wrapper.vm.$nextTick()
 
       const tooltip = document.querySelector('[role="tooltip"]')
 

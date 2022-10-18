@@ -6,9 +6,9 @@ import { h } from 'vue'
 
 const localVue = global.localVue
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(Accordion, {
-    propsData,
+    props,
     slots: {
       default: h(SbTextField),
     },

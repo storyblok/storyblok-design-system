@@ -17,7 +17,7 @@ export const Default = (args) => ({
   },
 
   setup() {
-    return { args }
+    return { ...args }
   },
 
   template: `
