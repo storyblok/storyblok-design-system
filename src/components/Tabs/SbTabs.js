@@ -167,7 +167,6 @@ const SbTabs = {
     const children = this.$slots.default
       ? this.$slots.default()[0]?.children
       : []
-    console.log(children)
 
     const renderAddButton = () => {
       return h(SbTabAdd, {
