@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
 
 import Accordion from '..'
-
 import SbTextField from '../../TextField'
+import { h } from 'vue'
 
 const localVue = global.localVue
 
@@ -10,10 +10,7 @@ const factory = (propsData) => {
   return mount(Accordion, {
     propsData,
     slots: {
-      default: `<SbTextField />`,
-    },
-    stubs: {
-      SbTextField,
+      default: h(SbTextField),
     },
     localVue,
   })

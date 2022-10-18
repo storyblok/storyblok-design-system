@@ -34,6 +34,7 @@
 import SbIcon from '../Icon'
 import AccordionTransition from './AccordionTransition'
 import { computed, watch, ref } from 'vue'
+import { Tooltip } from '../../directives'
 
 export default {
   name: 'SbAccordion',
@@ -41,6 +42,10 @@ export default {
   components: {
     AccordionTransition,
     SbIcon,
+  },
+
+  directives: {
+    tooltip: Tooltip,
   },
 
   props: {
