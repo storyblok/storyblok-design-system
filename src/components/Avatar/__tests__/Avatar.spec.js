@@ -185,11 +185,7 @@ describe('SbAvatar component', () => {
         name,
       })
 
-      await wrapper.vm.$nextTick()
-
       await wrapper.trigger('mouseover')
-
-      await wrapper.vm.$nextTick()
 
       const tooltip = document.querySelector('[role="tooltip"]')
 
