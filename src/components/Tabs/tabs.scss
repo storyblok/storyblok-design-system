@@ -44,9 +44,9 @@
     color: $primary-text-color;
   }
 
-  &:focus {
-    background-color: $sb-green-25;
-    border-radius: $base-border-radius;
+  &:focus .sb-tab__label {
+    outline-offset: 2px;
+    outline: $sb-green-25 solid;
   }
 }
 

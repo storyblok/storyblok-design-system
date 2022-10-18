@@ -16,7 +16,7 @@
       :value="label"
       @keydown="handleKeyDownEditInput"
     />
-    <span v-else-if="label">
+    <span v-else-if="label" class="sb-tab__label">
       {{ capitalize(label) }}
     </span>
     <SbEditButton
