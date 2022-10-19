@@ -126,7 +126,6 @@ export default {
     computedLinkClasses() {
       return {
         'sb-sidebar-link--active': this.active,
-        'sb-sidebar-link--use-avatar': this.hasAvatar,
       }
     },
     isRouterLink() {

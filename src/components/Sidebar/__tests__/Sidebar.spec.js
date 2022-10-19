@@ -1,4 +1,5 @@
-import { mount } from '@vue/test-utils'
+import { mount, RouterLinkStub } from '@vue/test-utils'
+
 import { SbSidebar, SbSidebarListItem } from '..'
 import SbButton from '../../Button'
 import { listItemsData } from '../Sidebar.stories'
@@ -14,7 +15,7 @@ describe('Test SbSidebar component', () => {
           <SbSidebarListItem
             data-testid="bottom-link"
             href="#"
-            icon="sidebar-report"
+            icon="help"
             label="Report a problem"
           />
         `,
@@ -23,6 +24,7 @@ describe('Test SbSidebar component', () => {
         stubs: {
           SbSidebarListItem: SbSidebarListItem,
           SbButton: true,
+          RouterLink: RouterLinkStub,
         },
       },
     })
@@ -55,7 +57,7 @@ describe('Test SbSidebar component', () => {
           <SbSidebarListItem
             data-testid="bottom-link"
             href="#"
-            icon="sidebar-report"
+            icon="help"
             label="Report a problem"
           />
         `,
@@ -66,6 +68,7 @@ describe('Test SbSidebar component', () => {
           SbButton: SbButton,
           SbFragment: true,
           MountingPortal: true,
+          RouterLink: RouterLinkStub,
         },
       },
     })
