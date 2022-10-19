@@ -97,43 +97,22 @@ export const InlineLabel = (args) => ({
   `,
 })
 
-export const WithIcon = (args) => ({
+export const WithIconLeft = () => ({
   components: { SbLink },
-  setup() {
-    return { args }
-  },
-  template: `<div>
-      <div>
+  template: `
         <SbLink
-          v-bind="args"
+          icon="check-mark"
+          primary-label="With icon left"
         />
-      </div>
-
-      <div style="margin-top: 20px">
-        <SbLink
-          v-bind="args"
-          type="secondary"
-        />
-      </div>
-  </div>`,
+    `,
 })
 
-WithIcon.args = {
-  icon: 'check-mark',
-  iconRight: 'calendar',
-  primaryLabel: 'Icon before',
-  secondaryLabel: 'Icon after',
-}
-
-WithIcon.argTypes = {
-  primaryLabel: {
-    control: {
-      type: 'text',
-    },
-  },
-  secondaryLabel: {
-    control: {
-      type: 'text',
-    },
-  },
-}
+export const WithIconRight = () => ({
+  components: { SbLink },
+  template: `
+        <SbLink
+          icon-right="check-mark"
+          secondary-label="With icon left"
+        />
+    `,
+})
