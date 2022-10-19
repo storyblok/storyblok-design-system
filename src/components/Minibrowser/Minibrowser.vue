@@ -10,7 +10,7 @@
     <SbMinibrowserSearch
       v-if="!hideSearch"
       :clear-search-label="clearSearchLabel"
-      :value="searchInput"
+      :model-value="searchInput"
       :placeholder="placeholder"
       @update:modelValue="handleSearchInput"
       @keydown="handleSearchKeydown"

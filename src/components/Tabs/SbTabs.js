@@ -9,6 +9,8 @@ const SbTabs = {
     tooltip: Tooltip,
   },
 
+  emits: ['update:modelValue', 'new-tab', 'keydown'],
+
   props: {
     orientation: {
       type: String,
@@ -48,7 +50,7 @@ const SbTabs = {
     },
     currentIndex() {
       return this.children.findIndex((child) => {
-        return this.getTabNameFromNode(child) === this.value
+        return this.getTabNameFromNode(child) === this.modelValue
       })
     },
     enableAddButton() {
@@ -88,11 +90,13 @@ const SbTabs = {
       this.additionalTabs.push(
         h(SbTab, {
           class: 'sb-tab sb-tab__new-tab',
-          label: 'New tab',
-          name: 'new-tab',
-          showEditInput: true,
-          onEditTab: this.handleEditTabOnCreate,
-          onCancelEditTab: this.handleCancelEditTabOnCreate,
+          props: {
+            label: 'New tab',
+            name: 'new-tab',
+            showEditInput: true,
+            onEditTab: this.handleEditTabOnCreate,
+            onCancelEditTab: this.handleCancelEditTabOnCreate,
+          },
         })
       )
     },
@@ -165,7 +169,9 @@ const SbTabs = {
 
   render() {
     const children = this.$slots.default
-      ? this.$slots.default()[0]?.children
+      ? this.$slots.default().length === 1
+        ? this.$slots.default()[0]?.children
+        : this.$slots.default()
       : []
 
     const renderAddButton = () => {
@@ -176,16 +182,21 @@ const SbTabs = {
     }
 
     const processChildren = () => {
-      return children.map((element) => {
+      return children?.map((element) => {
         const elementProps = element.props
         const elementId = elementProps.name
 
-        return {
+        const newElement = {
           ...element,
-          activate: elementId === this.value,
-          onKeydown: this.handleKeyDown,
-          onActivateTab: this.handleActiveTab,
+          props: {
+            ...elementProps,
+            activate: elementId === this.modelValue,
+            onKeydown: this.handleKeyDown,
+            onActivateTab: this.handleActiveTab,
+          },
         }
+
+        return newElement
       })
     }
 

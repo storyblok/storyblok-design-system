@@ -30,7 +30,7 @@ export default {
   args: {
     type: 'spinner',
     size: 'normal',
-    value: 0,
+    modelValue: 0,
     showPercentage: false,
     color: 'primary',
     uiBlock: false,
@@ -112,5 +112,5 @@ export const BlockingUiLoadingProgressBar = LoadingBlockTemplate.bind({})
 BlockingUiLoadingProgressBar.args = {
   uiBlock: true,
   type: 'bar',
-  value: 30,
+  modelValue: 30,
 }

@@ -11,7 +11,7 @@ export default {
     required: false,
     placeholder: 'Placeholder text',
     readonly: false,
-    value: 'Boris Spassky',
+    modelValue: 'Boris Spassky',
     nativeValue: 'Boris Spassky',
     errorMessage: 'Some error message',
 
@@ -30,7 +30,7 @@ export default {
 export const Default = (args) => ({
   components: { SbTextField },
   setup() {
-    return { args }
+    return { ...args }
   },
   data: () => ({
     internalValue: 'Boris Spassky',
@@ -41,114 +41,126 @@ export const Default = (args) => ({
     <div style="max-width: 300px">
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
-        :label="args.label"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :readonly="args.readonly"
+        :id="id"
+        :name="name"
+        :label="label"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
         :native-valueargs.="nativeValue"
         v-model="internalValue"
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="With remaining characters counter"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :readonly="args.readonly"
-        :maxlength="args.maxlength"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :maxlength="maxlength"
         :native-valueargs.="nativeValue"
         v-model="internalValue"
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="Disabled text input"
-        :required="args.required"
-        :placeholder="args.placeholder"
+        :required="required"
+        :placeholder="placeholder"
         :native-valueargs.="nativeValue"
         v-model="internalValue"
         disabled
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="Read only"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
         :native-valueargs.="nativeValue"
         v-model="internalValue"
         readonly
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="With error"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
         iconRight="square-error"
         native-value="Some text with error"
         v-model="internalValue"
-        :errorMessage="args.errorMessage"
+        :errorMessage="errorMessage"
         error
       />
       <SbTextField
       style="margin-bottom: 20px;"
-      :id="args.id"
-      :name="args.name"
+      :id="id"
+      :name="name"
       label="With error but no icon"
-      :disabled="args.disabled"
-      :required="args.required"
-      :placeholder="args.placeholder"
+      :disabled="disabled"
+      :required="required"
+      :placeholder="placeholder"
       iconRight=""
       native-value="Some text with error but no icon"
       v-model="internalValue"
-      :errorMessage="args.errorMessage"
+      :errorMessage="errorMessage"
       error
     />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="Clearable"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
         native-value="Boris Spassky"
         v-model="internalValue"
         clearable
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="Show / Hide password"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
         iconRight="view"
         type="password"
         native-value="Boris Spassky"
         v-model="internalValue"
       />
       <SbTextField
-        :id="args.id"
-        :name="args.name"
-        :label="args.label"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :readonly="args.readonly"
-        :maxlength="args.maxlength"
+        style="margin-bottom: 20px;"
+        :id="id"
+        :name="name"
+        :label="label"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :maxlength="maxlength"
+        v-model="internalValue"
+      />
+      <SbTextField
+        :id="id"
+        :name="name"
+        label="With max length"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        maxlength="200"
         v-model="internalValue"
       />
     </div>
@@ -158,7 +170,7 @@ export const Default = (args) => ({
 export const withIcon = (args) => ({
   components: { SbTextField },
   setup() {
-    return { args }
+    return { ...args }
   },
   data: () => ({
     internalValue: 'Boris Spassky',
@@ -167,39 +179,39 @@ export const withIcon = (args) => ({
     <div style="max-width: 300px">
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="With icon before"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :readonly="args.readonly"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
         iconLeft="search"
         native-value="Boris Spassky"
         v-model="internalValue"
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="With icon after"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :readonly="args.readonly"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
         iconRight="search"
         native-value="Boris Spassky"
         v-model="internalValue"
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="Ghost with icon before"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :readonly="args.readonly"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
         iconLeft="search"
         native-value="Boris Spassky"
         v-model="internalValue"
@@ -207,13 +219,13 @@ export const withIcon = (args) => ({
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="Ghost with icon after"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :readonly="args.readonly"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
         iconRight="search"
         native-value="Boris Spassky"
         v-model="internalValue"
@@ -221,24 +233,24 @@ export const withIcon = (args) => ({
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="Default clearable with icon"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
         iconLeft="search"
         native-value="Boris Spassky"
         v-model="internalValue"
         clearable
       />
       <SbTextField
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="Ghost clearable with icon"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
         iconLeft="search"
         native-value="Boris Spassky"
         v-model="internalValue"
@@ -252,7 +264,7 @@ export const withIcon = (args) => ({
 export const Ghost = (args) => ({
   components: { SbTextField },
   setup() {
-    return { args }
+    return { ...args }
   },
   data: () => ({
     internalValue: 'Boris Spassky',
@@ -263,25 +275,25 @@ export const Ghost = (args) => ({
     <div style="max-width: 300px">
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
-        :label="args.label"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :readonly="args.readonly"
+        :id="id"
+        :name="name"
+        :label="label"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
         native-value="Boris Spassky"
         v-model="internalValue"
         ghost
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="Clearable"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
         native-value="Boris Spassky"
         v-model="internalValue"
         clearable
@@ -289,12 +301,12 @@ export const Ghost = (args) => ({
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="Show / Hide password"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
         iconRight="view"
         type="password"
         native-value="Boris Spassky"
@@ -308,7 +320,7 @@ export const Ghost = (args) => ({
 export const withText = (args) => ({
   components: { SbTextField },
   setup() {
-    return { args }
+    return { ...args }
   },
   data: () => ({
     internalValue: 'Boris Spassky',
@@ -317,27 +329,27 @@ export const withText = (args) => ({
     <div style="max-width: 300px">
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="With text before"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :prefix="args.prefix"
-        :readonly="args.readonly"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :prefix="prefix"
+        :readonly="readonly"
         native-value="Boris Spassky"
         v-model="internalValue"
       />
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="With text after"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :readonly="args.readonly"
-        :suffix="args.suffix"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :suffix="suffix"
         native-value="Boris Spassky"
         v-model="internalValue"
       />
@@ -348,7 +360,7 @@ export const withText = (args) => ({
 export const TextArea = (args) => ({
   components: { SbTextField },
   setup() {
-    return { args }
+    return { ...args }
   },
   data: () => ({
     internalValue: 'Boris Spassky',
@@ -357,15 +369,15 @@ export const TextArea = (args) => ({
     <div style="max-width: 300px">
       <SbTextField
         type="textarea"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="Textarea element"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :readonly="args.readonly"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
         native-value="Boris Spassky"
-        :maxlength="args.maxlength"
+        :maxlength="maxlength"
         v-model="internalValue"
       />
     </div>
@@ -375,7 +387,7 @@ export const TextArea = (args) => ({
 export const withMask = (args) => ({
   components: { SbTextField },
   setup() {
-    return { args }
+    return { ...args }
   },
   data: () => ({
     internalValue: '',
@@ -384,16 +396,16 @@ export const withMask = (args) => ({
     <div style="max-width: 300px">
       <SbTextField
         style="margin-bottom: 20px;"
-        :id="args.id"
-        :name="args.name"
+        :id="id"
+        :name="name"
         label="With mask"
-        :disabled="args.disabled"
-        :required="args.required"
-        :placeholder="args.placeholder"
-        :readonly="args.readonly"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
         native-value="Boris Spassky"
         v-model="internalValue"
-        :mask="args.mask"
+        :mask="mask"
       />
     </div>
   `,

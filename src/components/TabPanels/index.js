@@ -23,16 +23,18 @@ const SbTabPanel = {
   },
 
   render() {
+    const children = this.$slots.default ? this.$slots.default() : null
+
     return h(
       'div',
       {
-        class: 'sb-tab-panel',
         ...this.$attrs,
+        class: 'sb-tab-panel',
         role: 'tabpanel',
         tabindex: this.activate ? 0 : -1,
-        'aria-hidden': !this.activate + '',
+        'aria-hidden': !this.activate,
       },
-      this.$slots?.default && this.$slots.default()
+      children
     )
   },
 }
@@ -47,8 +49,6 @@ const SbTabPanel = {
 const SbTabPanels = {
   name: 'SbTabPanels',
 
-  functional: true,
-
   props: {
     modelValue: {
       type: [String, Number],
@@ -57,7 +57,7 @@ const SbTabPanels = {
   },
 
   render() {
-    const children = (this.slots?.default && this.slots.default()) || []
+    const children = this.$slots.default ? this.$slots.default() : null
 
     const processChildren = () => {
       return children.map((element) => {
@@ -65,8 +65,11 @@ const SbTabPanels = {
         const elementId = elementProps.name
 
         return {
-          ...element.props,
-          activate: elementId === props.value,
+          ...element,
+          props: {
+            ...elementProps,
+            activate: elementId === this.modelValue,
+          },
         }
       })
     }
@@ -74,8 +77,8 @@ const SbTabPanels = {
     return h(
       'div',
       {
-        class: 'sb-tab-panels',
         ...this.$attrs,
+        class: 'sb-tab-panels',
       },
       processChildren()
     )

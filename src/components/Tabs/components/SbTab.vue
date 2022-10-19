@@ -8,11 +8,12 @@
     type="button"
     v-bind="$attrs"
     @click="handleClick"
+    @keydown="handleKeyDown"
   >
     <SbIcon v-if="icon" :name="icon" size="normal" />
     <SbEditableInput
       v-if="allowShowEditInput"
-      :value="label"
+      :model-value="label"
       @keydown="handleKeyDownEditInput"
     />
     <span v-else-if="label" class="sb-tab__label">

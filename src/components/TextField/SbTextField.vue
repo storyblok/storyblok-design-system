@@ -130,6 +130,7 @@
 
 <script>
 import SbIcon from '../Icon'
+import SbTooltip from '../Tooltip'
 import { maska } from 'maska'
 
 import TextFieldMixin from '../../mixins/textfield-mixin'
@@ -143,7 +144,7 @@ export default {
     maska,
   },
 
-  components: { SbIcon },
+  components: { SbIcon, SbTooltip },
 
   mixins: [TextFieldMixin],
 
@@ -180,6 +181,7 @@ export default {
     'keydown',
     'keypress',
     'keyup',
+    'update:modelValue',
   ],
 
   computed: {
@@ -313,6 +315,7 @@ export default {
     },
 
     handleFocusInput(e) {
+      this.isOnInput = true
       this.$emit('focus', e)
     },
 

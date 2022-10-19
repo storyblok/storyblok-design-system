@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-modal-content" v-bind="{ ...$attrs }">
+  <div class="sb-modal-content" v-bind="$attrs">
     <slot v-if="!modalContent" />
     <div v-else v-html="modalContent" />
   </div>

@@ -14,16 +14,11 @@ describe('Tests for SbModal', () => {
       SbModalFooter,
       SbButton,
     },
-    methods: {
-      handleShowModal() {
-        this.showModal = true
-      },
-    },
     data: () => ({
       showModal: true,
     }),
     template: `
-      <SbModal is-open-modal v-on:hide="showModal = false">
+      <SbModal is-open-modal @hide="showModal = false">
         <SbModalHeader
           title="Awesome Title"
         />
@@ -49,7 +44,7 @@ describe('Tests for SbModal', () => {
   const wrapper = shallowMount(WrapperComponent)
 
   it('Test if SBModal component renderer correctly', () => {
-    expect(wrapper.findComponent(SbModalHeader).props().title).toBe(
+    expect(wrapper.findComponent(SbModalHeader).props('title')).toBe(
       'Awesome Title'
     )
 

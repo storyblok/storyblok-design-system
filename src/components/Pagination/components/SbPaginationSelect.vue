@@ -39,7 +39,7 @@ export default {
       }))
     },
     activeLabel() {
-      return String(this.value)
+      return String(this.modelValue)
     },
   },
 

@@ -14,7 +14,7 @@
         :class="computedClasses"
         role="dialog"
         :style="computedStyle"
-        v-bind="{ ...$attrs }"
+        v-bind="$attrs"
       >
         <SbModalCloseButton v-if="showClose" />
         <slot />

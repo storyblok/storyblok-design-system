@@ -67,15 +67,15 @@ export default {
 
   inheritAttrs: false,
 
-  emits: ['blur', 'change', 'focus', 'input', 'keydown'],
+  emits: ['blur', 'change', 'focus', 'update:modelValue', 'keydown'],
 
   computed: {
     isMinArrowDisabled() {
-      return this.calculateDecreasement(this.value, this.step) < this.min
+      return this.calculateDecreasement(this.modelValue, this.step) < this.min
     },
 
     isMaxArrowDisabled() {
-      return this.calculateIncreasement(this.value, this.step) > this.max
+      return this.calculateIncreasement(this.modelValue, this.step) > this.max
     },
 
     precisionNumber() {
@@ -88,7 +88,7 @@ export default {
 
         return this.precision
       } else {
-        return Math.max(this.getPrecision(this.value), stepPrecision)
+        return Math.max(this.getPrecision(this.modelValue), stepPrecision)
       }
     },
 
@@ -219,7 +219,7 @@ export default {
         return
       }
 
-      const value = this.value || 0
+      const value = this.modelValue || 0
       const newValue = this.calculateIncreasement(value, this.step)
       this.setInternalValue(newValue)
     },
@@ -229,7 +229,7 @@ export default {
         return
       }
 
-      const value = this.value || 0
+      const value = this.modelValue || 0
       const newValue = this.calculateDecreasement(value, this.step)
       this.setInternalValue(newValue)
     },

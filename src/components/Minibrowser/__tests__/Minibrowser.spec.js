@@ -187,7 +187,7 @@ describe('SbMinibrowser component', () => {
 
     searchInput.setValue('foobar')
 
-    searchInput.element.focus()
+    searchInput.trigger('focus')
 
     await wrapper.vm.$nextTick()
 

@@ -9,7 +9,7 @@
       ref="input"
       class="sb-textfield__input sb-textfield__input--default sb-textfield__input--ghost-light"
       type="search"
-      :value="value"
+      :value="modelValue"
       :placeholder="placeholder"
       @input="handleSearchInput"
       @keydown="handleSearchKeydown"
@@ -74,7 +74,7 @@ export default {
     },
 
     hasValue() {
-      return typeof this.value === 'string' && this.value.length > 0
+      return typeof this.modelValue === 'string' && this.modelValue.length > 0
     },
 
     showCloseIcon() {
@@ -112,7 +112,7 @@ export default {
      */
     handleSearchKeydown(event) {
       if (event.key === 'Escape') {
-        if (this.value.length) {
+        if (this.modelValue.length) {
           this.clearSearchInputValue(event)
           return
         }

@@ -11,7 +11,7 @@
           :key="index"
           :option="option"
           :label="option[itemLabel]"
-          :value="option[itemValue]"
+          :model-value="option[itemValue]"
           :item-value="itemValue"
           :input-value="value"
           :multiple="multiple"

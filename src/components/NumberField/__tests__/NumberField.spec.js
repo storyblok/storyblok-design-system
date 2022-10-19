@@ -26,11 +26,11 @@ describe('SbNumberField component', () => {
 
       const inputElement = wrapper.find('input')
 
-      inputElement.element.focus()
+      inputElement.trigger('focus')
       await wrapper.vm.$nextTick()
       expect(wrapper.emitted('focus')).toBeTruthy()
 
-      inputElement.element.blur()
+      inputElement.trigger('blur')
       await wrapper.vm.$nextTick()
       expect(wrapper.emitted('blur')).toBeTruthy()
     })

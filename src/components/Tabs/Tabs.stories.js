@@ -4,9 +4,7 @@ import { SbTabPanels, SbTabPanel } from '../TabPanels'
 // @vue/component
 const TabsTemplate = (template) => (args) => ({
   components: { SbTabs, SbTab, SbTabPanel, SbTabPanels },
-  setup() {
-    return { args }
-  },
+  props: Object.keys(args),
   data() {
     return {
       tabs: [
@@ -33,7 +31,7 @@ const TabsTemplate = (template) => (args) => ({
     }
   },
   watch: {
-    value(newValue) {
+    modelValue(newValue) {
       this.currentTab = newValue
     },
   },
@@ -81,7 +79,7 @@ export default {
     orientation: 'horizontal',
     showAddButton: false,
     type: null,
-    value: 'first',
+    modelValue: 'first',
   },
   parameters: {
     docs: {
@@ -117,9 +115,9 @@ export default {
       },
     },
     modelValue: {
-      name: 'value',
+      name: 'modelValue',
       description:
-        'Current tab. The value property has to be used for `v-model` directive',
+        'Current tab. The modelValue property has to be used for `v-model` directive',
       control: {
         type: 'text',
       },

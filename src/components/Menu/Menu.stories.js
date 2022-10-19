@@ -25,13 +25,13 @@ export default {
     },
   },
   args: {
-    value: true,
+    modelValue: true,
     iconRight: 'chevron-down',
     icon: null,
   },
   argTypes: {
     modelValue: {
-      name: 'value',
+      name: 'modelValue',
       description:
         'Controls the open menu state. The value property has to be used for `v-model` directive',
       control: {
@@ -69,7 +69,7 @@ export default {
 
 export const Default = (args) => ({
   setup() {
-    return { args }
+    return { ...args }
   },
   components: {
     SbMenu,
@@ -81,7 +81,7 @@ export const Default = (args) => ({
   },
   template: `
     <div style="min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
@@ -103,7 +103,7 @@ export const Default = (args) => ({
 
 export const WithSeparators = (args) => ({
   setup() {
-    return { args }
+    return { ...args }
   },
   components: {
     SbMenu,
@@ -115,7 +115,7 @@ export const WithSeparators = (args) => ({
   },
   template: `
     <div style="min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
@@ -138,7 +138,7 @@ export const WithSeparators = (args) => ({
 
 export const WithIcons = (args) => ({
   setup() {
-    return { args }
+    return { ...args }
   },
   components: {
     SbMenu,
@@ -150,7 +150,7 @@ export const WithIcons = (args) => ({
   },
   template: `
     <div style="min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
@@ -169,7 +169,7 @@ export const WithIcons = (args) => ({
 
 export const ButtonWithJustIcon = (args) => ({
   setup() {
-    return { args }
+    return { ...args }
   },
   components: {
     SbMenu,
@@ -181,7 +181,7 @@ export const ButtonWithJustIcon = (args) => ({
   },
   template: `
     <div style="min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbMenuButton has-icon-only is-rounded :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
@@ -200,7 +200,7 @@ export const ButtonWithJustIcon = (args) => ({
 
 export const AlongWithGroup = (args) => ({
   setup() {
-    return { args }
+    return { ...args }
   },
   components: {
     SbMenu,
@@ -214,7 +214,7 @@ export const AlongWithGroup = (args) => ({
   },
   template: `
     <div style="display: flex; justify-content: center; min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbGroupButton variant="tertiary">
           <SbButton label="Define Schema" />
           <SbMenuButton has-icon-only />
@@ -236,7 +236,7 @@ export const AlongWithGroup = (args) => ({
 
 export const WithLinksOnMenuItem = (args) => ({
   setup() {
-    return { args }
+    return { ...args }
   },
   components: {
     SbMenu,
@@ -248,7 +248,7 @@ export const WithLinksOnMenuItem = (args) => ({
   },
   template: `
     <div style="min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
@@ -271,7 +271,7 @@ export const WithLinksOnMenuItem = (args) => ({
 
 export const WithoutIconRight = (args) => ({
   setup() {
-    return { args }
+    return { ...args }
   },
   components: {
     SbMenu,
@@ -283,7 +283,7 @@ export const WithoutIconRight = (args) => ({
   },
   template: `
   <div style="min-height: 300px;">
-  <SbMenu :value="value">
+  <SbMenu :modelValue="modelValue">
     <SbMenuButton label="Combo button" ref="contentButton" :icon-right="iconRight" :icon="icon" />
 
     <SbMenuList placement="bottom-start" :reference="$refs.contentButton">
@@ -301,7 +301,7 @@ WithoutIconRight.args = {
 
 export const WithIconLeft = (args) => ({
   setup() {
-    return { args }
+    return { ...args }
   },
   components: {
     SbMenu,
@@ -313,7 +313,7 @@ export const WithIconLeft = (args) => ({
   },
   template: `
   <div style="min-height: 300px;">
-  <SbMenu :value="value">
+  <SbMenu :modelValue="modelValue">
   <SbMenuButton
     ref="contentButton"
     :icon="icon"

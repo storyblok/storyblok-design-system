@@ -17,6 +17,7 @@ describe('SbToggle component', () => {
 
     expect(inputElement.attributes('type')).toBe('checkbox')
     expect(inputElement.attributes('checked')).toBeUndefined()
+    expect(inputElement.attributes('disabled')).toBeUndefined()
     expect(inputElement.attributes('value')).toBe('false')
     expect(wrapper.text()).toBe('Default')
   })
@@ -27,7 +28,7 @@ describe('SbToggle component', () => {
       disabled: true,
     })
 
-    expect(wrapper.find('input').attributes('disabled')).toBe('disabled')
+    expect(wrapper.find('input').attributes('disabled')).toBeDefined()
     expect(wrapper.text()).toBe('Default - Disabled')
   })
 
@@ -46,7 +47,7 @@ describe('SbToggle component', () => {
     const wrapper = factory({
       label: 'Default',
       nativeValue: false,
-      value: false,
+      modelValue: false,
     })
 
     expect(wrapper.classes('sb-toggle--primary')).toBe(true)

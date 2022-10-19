@@ -10,10 +10,7 @@ import {
 import SbButton from '../../Button'
 
 describe('Tests for SbModalType', () => {
-  const wrapper = shallowMount(SbModalType, {
-    props: {},
-    methods: {},
-  })
+  const wrapper = shallowMount(SbModalType)
 
   it('Test if SbModalType renderer correctly', async () => {
     wrapper.vm.show()

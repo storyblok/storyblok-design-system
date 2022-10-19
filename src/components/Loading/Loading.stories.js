@@ -29,7 +29,7 @@ export default {
   args: {
     type: 'spinner',
     size: 'normal',
-    value: 0,
+    modelValue: 0,
     showPercentage: false,
     color: 'primary',
     uiBlock: false,
@@ -54,9 +54,9 @@ export default {
       },
     },
     modelValue: {
-      name: 'value',
+      name: 'modelValue',
       description:
-        'The prop `value` must be entered to change the loading status, it ranges from 0 to 100.',
+        'The prop `modelValue` must be entered to change the loading status, it ranges from 0 to 100.',
       control: {
         type: 'range',
         options: [0, 100, 1], // [min, max, step]
@@ -106,7 +106,7 @@ export const ProgressBar = (args) => ({
 
 ProgressBar.args = {
   type: 'bar',
-  value: 25,
+  modelValue: 25,
   showPercentage: true,
 }
 
@@ -172,7 +172,7 @@ export const SpinnerWithPercentage = (args) => ({
           v-bind="args"
           type='spinner'
           size='small'
-          value="25"
+          modelValue="25"
           showPercentage="true"
         />
       </div>
@@ -181,7 +181,7 @@ export const SpinnerWithPercentage = (args) => ({
           v-bind="args"
           type='spinner'
           size='normal'
-          value="25"
+          modelValue="25"
           showPercentage="true"
         />
       </div>
@@ -190,7 +190,7 @@ export const SpinnerWithPercentage = (args) => ({
           v-bind="args"
           type='spinner'
           size='large'
-          value="25"
+          modelValue="25"
           showPercentage="true"
         />
       </div>
@@ -199,7 +199,7 @@ export const SpinnerWithPercentage = (args) => ({
           v-bind="args"
           type='spinner'
           size='x-large'
-          value="25"
+          modelValue="25"
           showPercentage="true"
         />
       </div>

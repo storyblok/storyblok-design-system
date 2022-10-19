@@ -128,6 +128,7 @@ const Template = (args) => ({
     <div class="large">
       <SbDatepicker
         v-bind="args"
+        v-model="internalDatetimeValue"
       />
     </div>
   `,

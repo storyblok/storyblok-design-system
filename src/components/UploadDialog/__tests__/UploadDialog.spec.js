@@ -28,7 +28,7 @@ describe('Tests for UploadDialog', () => {
 
     expect(wrapper.findComponent(SbLoading).exists()).toBe(true)
 
-    expect(wrapper.findComponent(SbLoading).props('value')).toBe(
+    expect(wrapper.findComponent(SbLoading).props('modelValue')).toBe(
       fakeProps.percentageValue
     )
 

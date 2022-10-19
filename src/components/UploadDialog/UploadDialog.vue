@@ -6,7 +6,7 @@
       <span v-if="timeLeft" class="sb-upload-dialog__time-left">
         {{ timeLeftLabel }}
       </span>
-      <SbLoading type="bar" :value="percentageValue" />
+      <SbLoading type="bar" :model-value="percentageValue" />
     </div>
   </SbBlockUi>
 </template>

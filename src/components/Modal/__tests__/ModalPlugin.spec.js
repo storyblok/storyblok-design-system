@@ -8,10 +8,7 @@ import {
 } from '..'
 
 describe('Tests for ModalPlugin', () => {
-  const wrapper = shallowMount(ModalPlugin, {
-    props: {},
-    methods: {},
-  })
+  const wrapper = shallowMount(ModalPlugin)
 
   it('Test if the show function is called', async () => {
     wrapper.vm.show = jest.fn()

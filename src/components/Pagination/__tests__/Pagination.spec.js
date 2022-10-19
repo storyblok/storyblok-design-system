@@ -12,7 +12,7 @@ const factory = (props) => {
 describe('SbPagination component', () => {
   describe('when use the SbPagination with intial data', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
     })
@@ -47,7 +47,7 @@ describe('SbPagination component', () => {
 
   describe('when pass a specific page property', () => {
     const wrapper = factory({
-      value: 3,
+      modelValue: 3,
       total: 100,
       perPage: 25,
     })
@@ -76,7 +76,7 @@ describe('SbPagination component', () => {
 
   describe('when it is the last page', () => {
     const wrapper = factory({
-      value: 4,
+      modelValue: 4,
       total: 100,
       perPage: 30,
     })
@@ -100,7 +100,7 @@ describe('SbPagination component', () => {
 
   describe('when pass a specific perPage property', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 50,
     })
@@ -118,13 +118,13 @@ describe('SbPagination component', () => {
 
   describe('when changes the perPage by using the select', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
     })
 
     it('should emit the per-page-change event with the value select', async () => {
-      await wrapper.setProps({ value: 50 })
+      await wrapper.setProps({ modelValue: 50 })
       await wrapper.vm.$nextTick()
 
       expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('50')
@@ -142,13 +142,13 @@ describe('SbPagination component', () => {
 
   describe('when changes the page by using the select', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
     })
 
     it('should emit the input event with the value selected', async () => {
-      await wrapper.setProps({ value: 4 })
+      await wrapper.setProps({ modelValue: 4 })
       await wrapper.vm.$nextTick()
 
       expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('4')
@@ -157,7 +157,7 @@ describe('SbPagination component', () => {
 
   describe('when changes the page by using the buttons', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
     })
@@ -176,7 +176,7 @@ describe('SbPagination component', () => {
     it('should emit the input event when previous button is clicked', async () => {
       // setting the value manually to the previous button is not disable
       await wrapper.setProps({
-        value: 5,
+        modelValue: 5,
       })
 
       await wrapper
@@ -192,7 +192,7 @@ describe('SbPagination component', () => {
 
   describe('when pass the customPerPageOptions property', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 60,
       perPage: 5,
       customPerPageOptions: [5, 15, 30],
@@ -204,9 +204,9 @@ describe('SbPagination component', () => {
       expect(options.length).toBe(3)
 
       expect(options).toEqual([
-        { value: 5, label: '5', ariaLabel: 'Select per page 5 items' },
-        { value: 15, label: '15', ariaLabel: 'Select per page 15 items' },
-        { value: 30, label: '30', ariaLabel: 'Select per page 30 items' },
+        { modelValue: 5, label: '5', ariaLabel: 'Select per page 5 items' },
+        { modelValue: 15, label: '15', ariaLabel: 'Select per page 15 items' },
+        { modelValue: 30, label: '30', ariaLabel: 'Select per page 30 items' },
       ])
     })
 
@@ -219,7 +219,7 @@ describe('SbPagination component', () => {
 
   describe('with isFullWidth property', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
       isFullWidth: true,
@@ -232,7 +232,7 @@ describe('SbPagination component', () => {
 
   describe('with compact property', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
       compact: true,
@@ -251,7 +251,7 @@ describe('SbPagination component', () => {
 
   describe('with carousel property', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
       carousel: true,

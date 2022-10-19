@@ -43,14 +43,14 @@ describe('Tests SbGroupButton component', () => {
       `
       const wrapper = factory(template)
 
-      wrapper.findAllComponents(SbButton).wrappers.forEach((wrapper) => {
+      wrapper.findAllComponents(SbButton).forEach((wrapper) => {
         expect(wrapper.props('size')).toBe('large')
       })
     })
 
     it('should have the correct variant property in each child component', () => {
       const template = `
-        <SbGroupButton size="small" variant="ghost">
+        <SbGroupButton size="small" variant="tertiary">
           <SbButton label="One" />
           <SbButton label="Two" />
           <SbButton label="Three" />
@@ -58,9 +58,9 @@ describe('Tests SbGroupButton component', () => {
       `
       const wrapper = factory(template)
 
-      wrapper.findAllComponents(SbButton).wrappers.forEach((wrapper) => {
+      wrapper.findAllComponents(SbButton).forEach((wrapper) => {
         expect(wrapper.props('size')).toBe('small')
-        expect(wrapper.props('variant')).toBe('ghost')
+        expect(wrapper.props('variant')).toBe('tertiary')
       })
     })
   })

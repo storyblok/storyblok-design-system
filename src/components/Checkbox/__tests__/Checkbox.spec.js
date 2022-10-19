@@ -47,7 +47,7 @@ describe('SbCheckbox component', () => {
     const wrapper = factory({
       label: 'Default',
       nativeValue: false,
-      value: false,
+      modelValue: false,
       inline: true,
       outline: true,
     })

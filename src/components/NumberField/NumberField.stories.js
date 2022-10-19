@@ -16,7 +16,7 @@ export default {
     step: 1,
     precision: 0,
     readonly: false,
-    value: 10,
+    modelValue: 10,
     errorMessage: 'Some error message',
     error: false,
   },

@@ -163,13 +163,13 @@ describe('test SbTooltip component', () => {
     it('should perform the show on focus hide on blur', async () => {
       expect(TooltipComponent.attributes('aria-hidden')).toBe('true')
 
-      ButtonComponent.element.focus()
+      ButtonComponent.trigger('focus')
 
       await wrapper.vm.$nextTick()
 
       expect(TooltipComponent.attributes('aria-hidden')).toBe('false')
 
-      ButtonComponent.element.blur()
+      ButtonComponent.trigger('blur')
 
       await wrapper.vm.$nextTick()
 
@@ -179,7 +179,7 @@ describe('test SbTooltip component', () => {
     it('should perform the show on focus hide on escape key is pressed', async () => {
       expect(TooltipComponent.attributes('aria-hidden')).toBe('true')
 
-      ButtonComponent.element.focus()
+      ButtonComponent.trigger('focus')
 
       await wrapper.vm.$nextTick()
 

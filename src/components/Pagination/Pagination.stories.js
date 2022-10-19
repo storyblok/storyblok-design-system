@@ -8,7 +8,7 @@ const PaginationTemplate = (args) => ({
     perPageData: 10,
   }),
   watch: {
-    value(val) {
+    modelValue(val) {
       this.currentPage = val
     },
     perPage(val) {
@@ -60,7 +60,7 @@ export default {
     locale: 'en',
     perPage: 10,
     total: 100,
-    value: 1,
+    modelValue: 1,
   },
   argTypes: {
     carousel: {
@@ -127,7 +127,7 @@ export default {
       },
     },
     modelValue: {
-      name: 'value',
+      name: 'modelValue',
       description:
         'Current page. The value property has to be used for `v-model` directive',
       control: {

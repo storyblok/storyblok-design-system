@@ -10,7 +10,7 @@
 
         <SbIcon
           v-if="helperIconText"
-          v-tooltip="{ label: helperIconText, textAlign: helperTextAlign }"
+          v-tooltip="computedTooltip"
           color="primary-dark"
           name="help"
           class="sb-form-item__helper-icon-text"
@@ -71,6 +71,15 @@ export default {
     icon: {
       type: String,
       default: null,
+    },
+  },
+
+  computed: {
+    computedTooltip() {
+      if (this.helperIconText) {
+        return { label: this.helperIconText, textAlign: this.helperTextAlign }
+      }
+      return null
     },
   },
 

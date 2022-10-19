@@ -3,7 +3,7 @@
     <SbPaginationSelect
       data-testid="page-select"
       :options="pagesOptions"
-      :value="currentPage"
+      :model-value="currentPage"
       @change="onSelectChange"
     />
     <SbPaginationPagesText :pages="pages" is-placeholder :locale="locale" />

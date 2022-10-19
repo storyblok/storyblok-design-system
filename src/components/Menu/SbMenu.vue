@@ -105,7 +105,7 @@ export default {
       this.$emit('update:modelValue', state)
     },
 
-    value(state) {
+    modelValue(state) {
       if (state) {
         this.focusOnFirstItem()
       } else {
@@ -115,7 +115,7 @@ export default {
   },
 
   mounted() {
-    this.isOpen = this.value || false
+    this.isOpen = this.modelValue || false
 
     this.loadListItems()
   },

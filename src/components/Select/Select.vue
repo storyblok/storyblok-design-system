@@ -18,7 +18,7 @@
       :multiple="multiple"
       :inline="inline"
       :label="label"
-      :value="value"
+      :model-value="modelValue"
       :search-input="searchInput"
       :filterable="filterable"
       :item-label="itemLabel"
@@ -51,7 +51,7 @@
       v-if="!useMinibrowser"
       ref="list"
       v-infinite-scroll="{ handler: handleInfiniteScroll }"
-      :value="value"
+      :model-value="modelValue"
       :is-loading="isLoading"
       :search-input="searchInput"
       :item-label="itemLabel"
@@ -81,7 +81,7 @@
       :id="inputId"
       class="sb-select__input--hidden"
       :required="required"
-      :value="value"
+      :modelValue="value"
     />
   </div>
 </template>

@@ -475,7 +475,7 @@ export const EmitOption = (args) => ({
           :loading-label="loadingLabel"
           :clearable="clearable"
           emit-option
-          :value="singleSelectValue"
+          :modelValue="singleSelectValue"
           @update:modelValue="handleSingleSelect"
           style="max-width: 300px"
         />
@@ -568,7 +568,7 @@ export const EmitSearch = (args) => ({
           :loading-label="loadingLabel"
           :clearable="clearable"
           emit-option
-          :value="searchInput"
+          :modelValue="searchInput"
           @input="handleSearchValue"
           style="max-width: 300px"
         />

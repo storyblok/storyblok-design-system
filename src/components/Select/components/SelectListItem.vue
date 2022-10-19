@@ -17,7 +17,7 @@
     />
 
     <template v-else>
-      <SbCheckbox v-if="multiple" :value="isSelected" />
+      <SbCheckbox v-if="multiple" :model-value="isSelected" />
 
       <span class="sb-select-list__item-icon">
         <SbIcon v-if="option.icon" :name="option.icon" />
