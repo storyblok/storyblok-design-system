@@ -39,7 +39,7 @@ export default {
         }
       }
 
-      return this._props
+      return this.$props
     },
   },
 }

@@ -103,7 +103,7 @@ describe('SbBreadcrumbItem component', () => {
         as: 'router-link',
       })
 
-      expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
+      expect(wrapper.findComponent('router-link').props('to')).toStrictEqual({
         name: 'TestView',
       })
       expect(wrapper.text()).toBe('Just router-l...')
@@ -118,7 +118,7 @@ describe('SbBreadcrumbItem component', () => {
         as: 'nuxt-link',
       })
 
-      expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
+      expect(wrapper.findComponent('nuxt-link').props('to')).toStrictEqual({
         name: 'TestNuxtView',
       })
       expect(wrapper.text()).toBe('Just nuxt-lin...')
@@ -198,7 +198,7 @@ describe('SbBreadcrumbItem component', () => {
       }
       const wrapper = factory({}, mountOptions)
 
-      expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
+      expect(wrapper.findComponent('nuxt-link').props('to')).toStrictEqual({
         name: 'TestNuxtView',
       })
 
