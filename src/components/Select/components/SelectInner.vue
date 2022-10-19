@@ -246,7 +246,7 @@ export default {
     },
 
     placeholderLabel() {
-      if (!this.hasValue) {
+      if (!this.hasValue || (this.multiple && !this.tagLabels.length)) {
         if (this.isLoading && this.loadingLabel) {
           return this.loadingLabel
         }
