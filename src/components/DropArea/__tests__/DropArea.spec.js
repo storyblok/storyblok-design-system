@@ -58,13 +58,13 @@ describe('Test if SbDropArea renderer correctly', () => {
 
     wrapper.vm.handleDropFile(fakeEvent)
 
-    wrapper.vm.$emit('upload-file', fakeEvent.dataTransfer.files[0])
+    wrapper.vm.$emit('upload-files', fakeEvent.dataTransfer.files[0])
 
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.emitted('upload-file')).toBeTruthy()
+    expect(wrapper.emitted('upload-files')).toBeTruthy()
 
-    expect(wrapper.emitted('upload-file')[0]).toEqual([
+    expect(wrapper.emitted('upload-files')[0][0]).toEqual([
       fakeEvent.dataTransfer.files[0],
     ])
   })
