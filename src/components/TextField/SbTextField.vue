@@ -10,6 +10,7 @@
         :id="id"
         ref="textfield"
         v-model="computedValue"
+        v-maska="mask"
         v-bind="$attrs"
         class="sb-textfield__input"
         :type="internalType"
@@ -59,6 +60,7 @@
         :name="iconLeft"
         class="sb-textfield__icon sb-textfield__icon--left"
         :color="iconColor"
+        data-testid="sb-textfield-icon-click"
         @click="handleIconClick"
       />
       <SbTooltip
@@ -72,6 +74,7 @@
           :name="iconLeft"
           class="sb-textfield__icon sb-textfield__icon--left"
           :color="iconColor"
+          data-testid="sb-textfield-icon-click"
           @click="handleIconClick"
         />
       </SbTooltip>
@@ -80,6 +83,7 @@
         :name="iconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
+        data-testid="sb-textfield-icon-click"
         @click="handleIconClick"
       />
       <SbIcon
@@ -87,13 +91,14 @@
         :name="internalIconRight"
         class="sb-textfield__icon sb-textfield__icon--right"
         :color="iconColor"
+        data-testid="sb-textfield-icon-click"
         @click="handleShowHidePassword"
       />
       <SbIcon
         v-if="showClearIcon"
         v-tooltip="{ label: 'Clear' }"
         name="x-clear"
-        :class="computedIconClasses"
+        :class="computedClearIconClasses"
         :color="iconColor"
         @click="handleClearableClick"
       />
@@ -126,6 +131,7 @@
 
 <script>
 import SbIcon from '../Icon'
+import { maska } from 'maska'
 
 import TextFieldMixin from '../../mixins/textfield-mixin'
 import { Tooltip } from '../../directives'
@@ -135,6 +141,7 @@ export default {
 
   directives: {
     tooltip: Tooltip,
+    maska,
   },
 
   components: { SbIcon },
@@ -160,18 +167,33 @@ export default {
       type: [String, Number, Boolean],
       default: '',
     },
+    mask: {
+      type: String,
+      default: '',
+    },
   },
+
+  emits: [
+    'blur',
+    'clear',
+    'focus',
+    'icon-click',
+    'keydown',
+    'keypress',
+    'keyup',
+  ],
 
   computed: {
     hasValue() {
       return this.computedValue !== null && ('' + this.computedValue).length > 0
     },
 
-    computedIconClasses() {
+    computedClearIconClasses() {
       return [
         'sb-textfield__icon',
         'sb-textfield__icon--right',
         'sb-textfield__icon--pointer',
+        'sb-textfield__icon--clearable',
       ]
     },
 

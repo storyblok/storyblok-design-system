@@ -20,6 +20,7 @@
           :is-focused="index === focusedItem ? true : false"
           :show-caption="showCaption"
           :path="option[itemCaption]"
+          :selected="shouldBeChecked(index)"
           @emit-value="handleEmitValue"
           @mouseenter.native="handleFocusItem(index)"
         />
@@ -33,6 +34,12 @@
         <span class="sb-select-list__create-label">Create tag</span>
         <span class="sb-select-list__create-value" :title="searchInput">
           "{{ searchInput }}"
+        </span>
+      </li>
+      <li v-else-if="isLoadingMore">
+        <span class="sb-select-list__empty">
+          <SbLoading color="primary" size="small" />
+          {{ loadingMoreText }}
         </span>
       </li>
       <li v-else-if="showTextStartingTagCreation">
@@ -103,7 +110,19 @@ export default {
       default: 'path',
     },
     showListOnTop: Boolean,
+    isLoadingMore: Boolean,
+    loadingMoreText: {
+      type: String,
+      required: true,
+    },
+    allOptionValue: {
+      type: [String, Number],
+      value: '',
+    },
+    firstValueIsAllValue: Boolean,
   },
+
+  emits: ['emit-value', 'focus-item', 'keydown', 'option-created'],
 
   data() {
     return {
@@ -239,6 +258,15 @@ export default {
     handleFocusItem(index) {
       this.focusedItem = index
       this.$emit('focus-item', index)
+    },
+
+    shouldBeChecked(index) {
+      return (
+        this.firstValueIsAllValue &&
+        this.value &&
+        this.value.includes(this.allOptionValue) &&
+        index > 0
+      )
     },
   },
 }

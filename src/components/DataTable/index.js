@@ -10,6 +10,7 @@ import {
 } from './components'
 
 import { getPropertyValue, isNumeric } from '../../utils'
+import sharedProps from './sharedProps'
 
 /**
  * SbDataTable
@@ -26,68 +27,19 @@ const SbDataTable = {
   }),
 
   props: {
-    actions: {
-      type: Array,
-      default: () => [],
-    },
-    allowSelection: {
-      required: false,
-      type: Boolean,
-      default: false,
-    },
-    headers: {
-      type: Array,
-      default: () => [],
-    },
-    hideHeader: {
-      required: false,
-      type: Boolean,
-      default: false,
-    },
-    hideLabelActionsBreakpoint: {
-      type: Number,
-      default: null,
-    },
-    isLoading: {
-      required: false,
-      type: Boolean,
-      default: false,
-    },
-    keepSelectedOnChange: {
-      type: Boolean,
-      default: false,
-    },
-    items: {
-      type: Array,
-      default: () => [],
-    },
-    selectedItems: {
-      type: Array,
-      default: () => [],
-    },
-    selectionMode: {
-      required: false,
-      type: String,
-      default: 'single',
-    },
-    striped: {
-      required: false,
-      type: Boolean,
-      default: false,
-    },
-    stickyMenu: {
-      required: false,
-      type: Boolean,
-      default: false,
-    },
+    ...sharedProps,
   },
 
   computed: {
     allRowsSelected() {
+      const selectableItems = this.items.filter(
+        (item) => item.selectable !== false
+      )
+
       if (this.selectionMode === 'single' || !this.selectedRows.length)
         return false
 
-      return this.selectedRows.length === this.items.length &&
+      return this.selectedRows.length === selectableItems.length &&
         this.hasSelectedRowsInList.length
         ? true
         : null
@@ -198,7 +150,7 @@ const SbDataTable = {
      * method to select all body row(s)
      */
     selectAll() {
-      this.selectedRows = [...this.items]
+      this.selectedRows = this.items.filter((item) => item.selectable !== false)
     },
 
     /**
@@ -227,21 +179,23 @@ const SbDataTable = {
 
   render(h) {
     const renderActions = () => {
-      return h(SbDataTableActions, {
-        props: {
-          actions: this.actions,
-          hideLabelActionsBreakpoint: this.hideLabelActionsBreakpoint,
-          selectedRows: this.hasSelectedRowsInList,
-          sticky: this.stickyMenu,
-        },
-        on: {
-          click: (value) => this.$emit('emit-action', value),
-          cancel: () => {
-            this.$emit('cancel')
-            this.deselectAll()
-          },
-        },
-      })
+      return this.hideActionsMenu
+        ? null
+        : h(SbDataTableActions, {
+            props: {
+              actions: this.actions,
+              hideLabelActionsBreakpoint: this.hideLabelActionsBreakpoint,
+              selectedRows: this.hasSelectedRowsInList,
+              sticky: this.stickyMenu,
+            },
+            on: {
+              click: (value) => this.$emit('emit-action', value),
+              cancel: () => {
+                this.$emit('cancel')
+                this.deselectAll()
+              },
+            },
+          })
     }
 
     const renderTable = () => {

@@ -324,6 +324,11 @@
     color: $sb-dark-blue-50;
     font-size: 1.3rem;
     text-align: center;
+
+    .sb-loading {
+      display: inline-block;
+      margin-right: 10px;
+    }
   }
 }
 

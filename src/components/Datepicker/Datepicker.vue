@@ -8,15 +8,19 @@
     <div class="sb-datepicker__input">
       <SbTextField
         ref="input"
-        readonly
-        clearable
+        v-model="internalValue"
+        :mask="internalMask"
         type="text"
         icon-left="calendar"
         :disabled="disabled"
         :placeholder="placeholder"
         :value="internalValueFormatted"
-        @click.native="handleInputClick"
+        :error="invalidDate"
+        clearable
+        @icon-click="handleInputClick"
         @clear="handleClear"
+        @keyup.enter="handleDoneAction"
+        @blur="handleDoneAction"
       />
 
       <template v-if="isShowTzOffset">
@@ -57,6 +61,9 @@
         :is="isComponentView"
         :value="internalValue"
         :internal-date="internalDate"
+        :min-date="minDate"
+        :max-date="maxDate"
+        :disabled-past="disabledPast"
         @input="handleComponentsInput"
       />
 
@@ -72,7 +79,7 @@
           class="sb-datepicker__action-button sb-datepicker__action-button--primary"
           @click="handleDoneAction"
         >
-          Done
+          Apply
         </button>
       </div>
     </SbPopover>
@@ -82,6 +89,7 @@
 <script>
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 import utc from 'dayjs/plugin/utc'
 
 import { ClickOutside, Tooltip } from '../../directives'
@@ -98,6 +106,7 @@ import SbDatepickerYears from './components/DatepickerYears'
 import { datepickerOptions, INTERNAL_VIEWS } from './utils'
 
 dayjs.extend(timezone)
+dayjs.extend(customParseFormat)
 dayjs.extend(utc)
 
 export default {
@@ -156,7 +165,24 @@ export default {
       type: String,
       default: '',
     },
+
+    minDate: {
+      type: String,
+      default: null,
+    },
+
+    maxDate: {
+      type: String,
+      default: null,
+    },
+
+    disabledPast: {
+      type: Boolean,
+      default: false,
+    },
   },
+
+  emits: ['clear', 'input'],
 
   data: () => ({
     internalDate: dayjs().format(),
@@ -168,10 +194,23 @@ export default {
       date: 'YYYY-MM-DD',
       datetime: 'YYYY-MM-DD HH:mm',
     },
+    MASKS: {
+      date: '####-##-##',
+      datetime: '####-##-## ##:##',
+    },
     hitClear: false,
+    invalidDate: false,
   }),
 
   computed: {
+    hasDayDisabled() {
+      return this.maxDate || this.minDate || this.disabledPast
+    },
+
+    internalMask() {
+      return this.MASKS[this.type]
+    },
+
     internalFormat() {
       return this.FORMATS[this.type]
     },
@@ -224,12 +263,44 @@ export default {
     },
 
     tzOffsetValue() {
-      if (!this.timeZone || !this.internalValue) {
+      if (!dayjs(this.internalValue, this.internalFormat, true).isValid()) {
+        return
+      }
+
+      if (
+        !this.timeZone ||
+        !this.internalValue ||
+        this.internalValue.length <= 4
+      ) {
         return ''
       }
 
       if (this.tzOffset) return this.tzOffset.replace('GMT', '')
       return dayjs.tz(this.internalValue, this.timeZone).format('Z')
+    },
+
+    isDateDisabledPast() {
+      return this.disabledPast && dayjs().isAfter(this.internalValue, 'day')
+    },
+
+    isMinDateDisabled() {
+      return (
+        this.minDate && dayjs(this.internalValue).isBefore(this.minDate, 'day')
+      )
+    },
+
+    isMaxDateDisabled() {
+      return (
+        this.maxDate && dayjs(this.internalValue).isAfter(this.maxDate, 'day')
+      )
+    },
+
+    isDateDisabled() {
+      return !!(
+        this.isDateDisabledPast ||
+        this.isMinDateDisabled ||
+        this.isMaxDateDisabled
+      )
     },
   },
 
@@ -237,6 +308,15 @@ export default {
     value: {
       handler: 'syncInternalValue',
       immediate: true,
+    },
+    internalValueFormatted() {
+      if (
+        this.internalValue.length >= 4 &&
+        dayjs(this.internalValue, this.internalFormat, true).isValid()
+      ) {
+        this.internalDate = this.internalValue
+        this.invalidDate = false
+      }
     },
   },
 
@@ -262,6 +342,21 @@ export default {
 
     handleDoneAction() {
       let utcTime
+
+      if (this.internalValue === '') {
+        this.handleClear()
+        return
+      }
+
+      const isValid = dayjs(
+        this.internalValue,
+        this.internalFormat,
+        true
+      ).isValid()
+      if (!isValid || (this.hasDayDisabled && this.isDateDisabled)) {
+        this.invalidDate = true
+        return
+      }
 
       if (!this.tzOffset) {
         utcTime = dayjs
@@ -342,7 +437,7 @@ export default {
         return
       }
 
-      this.isOverlayVisible = true
+      this.isOverlayVisible = !this.isOverlayVisible
       this.internalVisualization = INTERNAL_VIEWS.CALENDAR
     },
 

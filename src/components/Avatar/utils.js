@@ -17,10 +17,22 @@ export const isSizeValid = (size) => availableSizes.indexOf(size) !== -1
  * @method generateRandomBgColor
  * @return {string}
  */
-export const generateRandomBgColor = () => {
-  const randomNumber = getRandomNumber(0, availableColorsNoWhite.length)
+export const generateRandomBgColor = (username) => {
+  const [firstWord, secondWord] = username.split(' ')
+  const second = secondWord || firstWord
+  const initialsSize = firstWord.charCodeAt(0) - 65 + second.charCodeAt(0) - 65
+  const sizeOfTheColors = availableColorsNoWhite.length
 
-  return 'bg-' + availableColorsNoWhite[randomNumber]
+  let position = 0
+
+  for (let index = 0; index < initialsSize; index++) {
+    position++
+    if (index === sizeOfTheColors || position === sizeOfTheColors) {
+      position = 0
+    }
+  }
+
+  return 'bg-' + availableColorsNoWhite[position]
 }
 
 /**

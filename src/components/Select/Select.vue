@@ -50,6 +50,7 @@
     <SbSelectList
       v-if="!useMinibrowser"
       ref="list"
+      v-infinite-scroll="{ handler: handleInfiniteScroll }"
       :value="value"
       :is-loading="isLoading"
       :search-input="searchInput"
@@ -65,6 +66,10 @@
       :show-caption="showCaption"
       :item-caption="itemCaption"
       :show-list-on-top="showListOnTop"
+      :is-loading-more="isLoadingMore"
+      :loading-more-text="loadingMoreText"
+      :all-option-value="firstOptionValue"
+      :first-value-is-all-value="firstValueIsAllValue"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -83,7 +88,7 @@
 
 <script>
 import { debounce } from 'throttle-debounce'
-import { ClickOutside } from '../../directives'
+import { ClickOutside, InfiniteScroll } from '../../directives'
 import { canUseDOM, includes, toLowerCase, isString } from '../../utils'
 import SbSelectInner from './components/SelectInner'
 import SbSelectList from './components/SelectList'
@@ -93,6 +98,7 @@ export default {
 
   directives: {
     ClickOutside,
+    InfiniteScroll,
   },
 
   components: {
@@ -114,6 +120,7 @@ export default {
     },
     required: Boolean,
     multiple: Boolean,
+    firstValueIsAllValue: Boolean,
     disableInternalFilter: Boolean,
     filterDebounce: {
       type: Number,
@@ -187,7 +194,23 @@ export default {
       type: String,
       default: 'caption',
     },
+    infiniteScroll: Boolean,
+    isLoadingMore: Boolean,
+    loadingMoreText: {
+      type: String,
+      default: 'Loading more...',
+    },
   },
+
+  emits: [
+    'filter',
+    'hide',
+    'input',
+    'load-more',
+    'option-created',
+    'search-input',
+    'show',
+  ],
 
   data: () => ({
     isOpen: false,
@@ -222,6 +245,10 @@ export default {
 
     useMinibrowser() {
       return this.$slots.minibrowser && this.innerElement
+    },
+
+    firstOptionValue() {
+      return this.options.length > 0 ? this.options[0].value : null
     },
 
     filteredOptions() {
@@ -381,7 +408,9 @@ export default {
         }
 
         this.searchInput = ''
+        const $value = this.processMultipleValue(value)
 
+        this.$emit('input', this.validateValue($value, this.value))
         return
       }
 
@@ -389,6 +418,24 @@ export default {
       this.$emit('input', value)
       this.$_focusInner()
       this.hideList()
+    },
+
+    validateValue(newVal, oldVal) {
+      if (!this.firstValueIsAllValue) return newVal
+      if (
+        oldVal.length === 1 &&
+        oldVal.includes(this.firstOptionValue) &&
+        newVal.length > 1
+      ) {
+        return newVal.filter((item) => item !== this.firstOptionValue)
+      }
+      if (
+        !oldVal.includes(this.firstOptionValue) &&
+        newVal.includes(this.firstOptionValue)
+      ) {
+        return [this.firstOptionValue]
+      }
+      return newVal
     },
 
     /**
@@ -611,6 +658,15 @@ export default {
 
       this.$_focusInner()
       this.hideList()
+    },
+
+    /**
+     * emit a load-more event when the user scroll till the end of the list of items
+     */
+    handleInfiniteScroll() {
+      if (this.infiniteScroll) {
+        this.$emit('load-more')
+      }
     },
   },
 }

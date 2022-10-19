@@ -28,6 +28,8 @@ export default {
     },
   },
 
+  emits: ['input'],
+
   data: () => ({
     months: [
       'Jan',

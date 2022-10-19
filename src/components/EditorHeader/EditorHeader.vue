@@ -130,6 +130,14 @@ export default {
     },
   },
 
+  emits: [
+    'change-language',
+    'publish',
+    'save',
+    'select-action',
+    'select-options',
+  ],
+
   data: () => ({
     window: {
       width: 0,

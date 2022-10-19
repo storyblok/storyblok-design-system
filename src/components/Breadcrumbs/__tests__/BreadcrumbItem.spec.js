@@ -1,5 +1,5 @@
 import { mount, RouterLinkStub } from '@vue/test-utils'
-import { SbBreadcrumbItem } from '../BreadcrumItem'
+import SbBreadcrumbItem from '../BreadcrumbItem.vue'
 import SbIcon from '../../Icon'
 
 const factory = (propsData = {}, mountOptions = {}) => {

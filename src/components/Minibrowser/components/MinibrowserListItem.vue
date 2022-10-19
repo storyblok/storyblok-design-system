@@ -74,6 +74,8 @@ export default {
     },
   },
 
+  emits: ['select'],
+
   computed: {
     context() {
       return this.browserContext()
