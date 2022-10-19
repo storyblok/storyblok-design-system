@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import SbPortal from '../Portal'
 import { createPopper } from '@popperjs/core/lib/popper-lite'
 import {
   flip,
@@ -51,6 +52,10 @@ export default {
 
   directives: {
     ClickOutside,
+  },
+
+  components: {
+    SbPortal,
   },
 
   props: {

@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils'
 import SbTooltip from '..'
 import SbButton from '../../Button'
 import SbIcon from '../../Icon'
+import SbPopover from '../../Popover'
 
 const factory = (
   template,
@@ -17,8 +18,8 @@ const factory = (
   return mount(WrapperComponent, {
     global: {
       stubs: {
-        SbFragment: true,
-        MountingPortal: true,
+        Teleport: true,
+        SbPopover: SbPopover,
       },
     },
   })
