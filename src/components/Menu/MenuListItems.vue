@@ -16,12 +16,15 @@
 <script>
 import SbMenuItem from './MenuItem'
 import SbMenuSeparator from './MenuSeparator'
+import SbMenuGroup from './MenuGroup'
+
 export default {
   name: 'SbMenuListItems',
 
   components: {
     SbMenuItem,
     SbMenuSeparator,
+    SbMenuGroup,
   },
 
   props: {

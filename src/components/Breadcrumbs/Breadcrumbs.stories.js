@@ -1,9 +1,9 @@
-import { SbBreadcrumbs, SbBreadcrumbItem } from '.'
+import { SbBreadcrumbs, SbBreadcrumbItem, SbBreadcrumbSeparator } from '.'
 
 const Template = (args) => ({
-  components: { SbBreadcrumbs, SbBreadcrumbItem },
+  components: { SbBreadcrumbs, SbBreadcrumbItem, SbBreadcrumbSeparator },
   setup() {
-    return { args }
+    return { ...args }
   },
   computed: {
     lastIndex() {
