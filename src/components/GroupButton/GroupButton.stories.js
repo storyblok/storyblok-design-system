@@ -8,7 +8,7 @@ export default {
   title: 'Design System/Components/SbGroupButton',
   component: SbGroupButton,
   args: {
-    variant: 'ghost',
+    variant: 'tertiary',
     size: null,
     hasSpaces: false,
   },
@@ -60,30 +60,12 @@ export const WithIcons = (args) => ({
   },
   template: `
     <SbGroupButton v-bind="args">
-      <SbButton :label="firstLabel" />
-      <SbButton :label="secondaryLabel" />
+      <SbButton label="First Button" />
+      <SbButton label="Secondary Button" />
       <SbButton has-icon-only icon="close" />
     </SbGroupButton>
   `,
 })
-
-WithIcons.args = {
-  firstLabel: 'First Button',
-  secondaryLabel: 'Secondary Button',
-}
-
-WithIcons.argTypes = {
-  firstLabel: {
-    control: {
-      type: 'text',
-    },
-  },
-  secondaryLabel: {
-    control: {
-      type: 'text',
-    },
-  },
-}
 
 export const JustIcons = (args) => ({
   components: { SbGroupButton, SbButton },
@@ -101,7 +83,9 @@ export const JustIcons = (args) => ({
 
 export const InvertedLink = (args) => ({
   components: { SbGroupButton, SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div style="background-color:#1b243f;height:100px;">
       <SbGroupButton variant="inverted-link">
