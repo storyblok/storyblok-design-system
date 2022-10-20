@@ -61,7 +61,7 @@ describe('SbMenuItem component', () => {
   })
 
   it('should not emit the click event when is disabled', async () => {
-    const itemComponent = wrapper.findAll('[role="menuitemradio"]')[1]
+    const itemComponent = wrapper.findAllComponents('[role="menuitemradio"]')[1]
 
     // check if the element has the isDisabled property marked as true
     expect(itemComponent.props('isDisabled')).toBe(true)
@@ -100,7 +100,7 @@ describe('SbMenuItem component', () => {
   })
 
   it('should emit the click event when press Enter and Space keys', async () => {
-    const itemComponent = wrapper.findAll('[role="menuitemradio"]')[0]
+    const itemComponent = wrapper.findAllComponents('[role="menuitemradio"]')[0]
 
     // check if the element has the isDisabled property marked as false
     expect(itemComponent.props('isDisabled')).toBe(false)

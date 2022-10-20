@@ -169,17 +169,17 @@ export default {
         const nodeAtIndex = this.focusableElements[index]
         this.focusableElements.forEach((node) => {
           if (node !== nodeAtIndex) {
-            node.setAttribute('tabindex', -1)
+            node?.setAttribute('tabindex', -1)
           }
         })
-        nodeAtIndex.setAttribute('tabindex', 0)
+        nodeAtIndex?.setAttribute('tabindex', 0)
       }
     },
 
     resetTabIndex() {
       if (this.focusableElements.length > 0) {
         this.focusableElements.forEach((node) => {
-          node.setAttribute('tabindex', -1)
+          node?.setAttribute('tabindex', -1)
         })
       }
     },
