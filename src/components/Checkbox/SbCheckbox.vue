@@ -3,7 +3,7 @@
     <div class="sb-checkbox__inner">
       <input
         :id="id"
-        v-model="computedValue"
+        v-model="internalValue"
         v-bind="$attrs"
         :indeterminate.prop="indeterminate"
         class="sb-checkbox__native"

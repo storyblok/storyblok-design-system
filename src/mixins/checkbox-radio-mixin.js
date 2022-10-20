@@ -25,14 +25,4 @@ export default {
       this.$emit('update:modelValue', newValue)
     },
   },
-
-  methods: {
-    handleClick() {
-      if (this.disabled) {
-        return
-      }
-
-      this.$emit('update:modelValue', this.nativeValue)
-    },
-  },
 }

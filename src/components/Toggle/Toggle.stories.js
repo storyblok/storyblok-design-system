@@ -40,7 +40,7 @@ export default {
 export const Default = (args) => ({
   components: { SbToggle },
   setup() {
-    return { args }
+    return { ...args }
   },
   template: `
     <div>
@@ -86,7 +86,7 @@ export const Default = (args) => ({
 export const WithIcon = (args) => ({
   components: { SbToggle },
   setup() {
-    return { args }
+    return { ...args }
   },
   template: `
     <div>
@@ -108,7 +108,7 @@ export const WithIcon = (args) => ({
 export const WithVariant = (args) => ({
   components: { SbToggle },
   setup() {
-    return { args }
+    return { ...args }
   },
   template: `
     <div>

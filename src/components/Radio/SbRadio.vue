@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-radio" :class="componentClasses" @click="handleClick">
+  <div class="sb-radio" :class="componentClasses">
     <input
       :id="id"
       v-model="internalValue"

@@ -38,7 +38,7 @@ describe('SbRadio component', () => {
       nativeValue: 'Jon Doe',
     })
 
-    await wrapper.find('input').trigger('click')
+    await wrapper.find('input[type="radio"]').setValue('Jon Doe')
 
     expect(wrapper.emitted('update:modelValue')[0]).toEqual(['Jon Doe'])
   })

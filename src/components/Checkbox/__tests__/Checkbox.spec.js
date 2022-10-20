@@ -38,7 +38,7 @@ describe('SbCheckbox component', () => {
       nativeValue: false,
     })
 
-    await wrapper.find('input').trigger('click')
+    await wrapper.find('input[type="checkbox"]').setValue(true)
 
     expect(wrapper.emitted('update:modelValue')[0]).toEqual([true])
   })

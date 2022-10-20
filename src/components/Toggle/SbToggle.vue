@@ -2,7 +2,7 @@
   <div class="sb-toggle" :class="componentClasses">
     <input
       :id="id"
-      v-model="computedValue"
+      v-model="internalValue"
       v-bind="$attrs"
       :indeterminate.prop="indeterminate"
       class="sb-toggle__native"
