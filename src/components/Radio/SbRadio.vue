@@ -1,8 +1,8 @@
 <template>
-  <div class="sb-radio" :class="componentClasses">
+  <div class="sb-radio" :class="componentClasses" @click="handleClick">
     <input
       :id="id"
-      v-model="computedValue"
+      v-model="internalValue"
       v-bind="$attrs"
       class="sb-radio__input"
       type="radio"
@@ -10,6 +10,7 @@
       :value="nativeValue"
       :required="required"
       :disabled="disabled"
+      @click.stop
     />
 
     <label v-if="label" :for="id" class="sb-radio__label">{{ label }}</label>

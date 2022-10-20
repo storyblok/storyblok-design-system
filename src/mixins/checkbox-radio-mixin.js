@@ -11,28 +11,28 @@ export default {
 
   emits: ['update:modelValue'],
 
-  data() {
+  data(vm) {
     return {
-      internalValue: this.value,
+      internalValue: vm.modelValue,
     }
-  },
-
-  computed: {
-    computedValue: {
-      get() {
-        return this.internalValue
-      },
-
-      set(newValue) {
-        this.internalValue = newValue
-        this.$emit('update:modelValue', newValue)
-      },
-    },
   },
 
   watch: {
     modelValue(newValue) {
       this.internalValue = newValue
+    },
+    internalValue(newValue) {
+      this.$emit('update:modelValue', newValue)
+    },
+  },
+
+  methods: {
+    handleClick() {
+      if (this.disabled) {
+        return
+      }
+
+      this.$emit('update:modelValue', this.nativeValue)
     },
   },
 }

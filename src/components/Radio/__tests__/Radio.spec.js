@@ -17,6 +17,7 @@ describe('SbRadio component', () => {
 
     expect(inputElement.attributes('type')).toBe('radio')
     expect(inputElement.attributes('checked')).toBeUndefined()
+    expect(inputElement.attributes('disabled')).toBeUndefined()
     expect(inputElement.attributes('value')).toBe('default')
     expect(wrapper.text()).toBe('Default')
   })
@@ -27,7 +28,7 @@ describe('SbRadio component', () => {
       disabled: true,
     })
 
-    expect(wrapper.find('input').attributes('disabled')).toBe('disabled')
+    expect(wrapper.find('input').attributes('disabled')).toBeDefined()
     expect(wrapper.text()).toBe('Default - Disabled')
   })
 
