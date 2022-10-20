@@ -17,7 +17,7 @@ const SbDataTable = {
   name: 'SbDataTable',
 
   data: () => ({
-    selectedItems: [],
+    selectedRows: [],
     sortKey: null,
     sortOrder: null,
   }),
@@ -32,11 +32,11 @@ const SbDataTable = {
         (item) => item.selectable !== false
       )
 
-      if (this.selectionMode === 'single' || !this.selectedItems.length)
+      if (this.selectionMode === 'single' || !this.selectedRows.length)
         return false
 
-      return this.selectedItems.length === selectableItems.length &&
-        this.hasselectedItemsInList.length
+      return this.selectedRows.length === selectableItems.length &&
+        this.hasSelectedRowsInList.length
         ? true
         : null
     },
@@ -54,9 +54,9 @@ const SbDataTable = {
       }
     },
 
-    hasselectedItemsInList() {
+    hasSelectedRowsInList() {
       return this.items.filter((item) =>
-        this.selectedItems.some(
+        this.selectedRows.some(
           (row) => JSON.stringify(item) === JSON.stringify(row)
         )
       )
@@ -81,7 +81,7 @@ const SbDataTable = {
       }
     },
 
-    selectedItems(value) {
+    selectedRows(value) {
       this.$emit('selected-rows', value)
     },
   },
@@ -117,16 +117,16 @@ const SbDataTable = {
      */
     selectRow(row) {
       if (this.selectionMode === 'single') {
-        this.selectedItems = [row]
+        this.selectedRows = [row]
         return
       }
 
-      const index = this.selectedItems.indexOf(row)
+      const index = this.selectedRows.indexOf(row)
       if (index === -1) {
-        this.selectedItems.push(row)
+        this.selectedRows.push(row)
 
-        this.selectedItems = this.items.filter((item) => {
-          return this.hasselectedItemsInList.indexOf(item) > -1
+        this.selectedRows = this.items.filter((item) => {
+          return this.hasSelectedRowsInList.indexOf(item) > -1
         })
       }
     },
@@ -136,7 +136,7 @@ const SbDataTable = {
      * @param {Object} row
      */
     deselectRow(row) {
-      this.selectedItems = this.selectedItems.filter((selectedRow) => {
+      this.selectedRows = this.selectedRows.filter((selectedRow) => {
         if (JSON.stringify(selectedRow) !== JSON.stringify(row))
           return selectedRow
       })
@@ -146,16 +146,14 @@ const SbDataTable = {
      * method to select all body row(s)
      */
     selectAll() {
-      this.selectedItems = this.items.filter(
-        (item) => item.selectable !== false
-      )
+      this.selectedRows = this.items.filter((item) => item.selectable !== false)
     },
 
     /**
      * method to deselect all body row(s)
      */
     deselectAll() {
-      this.selectedItems = []
+      this.selectedRows = []
     },
 
     /**
@@ -182,7 +180,7 @@ const SbDataTable = {
         : h(SbDataTableActions, {
             actions: this.actions,
             hideLabelActionsBreakpoint: this.hideLabelActionsBreakpoint,
-            selectedItems: this.hasselectedItemsInList,
+            selectedRows: this.hasSelectedRowsInList,
             sticky: this.stickyMenu,
             onCancel: () => {
               this.$emit('cancel')
@@ -223,7 +221,7 @@ const SbDataTable = {
               allowSelection: this.allowSelection,
               headers: [...headerData],
               row: tableRow,
-              selectedItems: this.hasselectedItemsInList,
+              selectedItems: this.hasSelectedRowsInList,
             },
             columns
           )
@@ -241,7 +239,7 @@ const SbDataTable = {
                 allowSelection: this.allowSelection,
                 allRowsSelected: this.allRowsSelected,
                 headers: this.headers,
-                selectedItems: this.hasselectedItemsInList,
+                selectedItems: this.hasSelectedRowsInList,
                 selectionMode: this.selectionMode,
                 sortedKey: this.sortKey,
               })
@@ -251,7 +249,7 @@ const SbDataTable = {
                 allowSelection: this.allowSelection,
                 headers: this.headers,
                 items: this.sortedData,
-                selectedItems: this.hasselectedItemsInList,
+                selectedItems: this.hasSelectedRowsInList,
               })
             : null,
           this.$slots.default
@@ -261,7 +259,7 @@ const SbDataTable = {
                       allowSelection: this.allowSelection,
                       allRowsSelected: this.allRowsSelected,
                       headers: [...headerData],
-                      selectedItems: this.hasselectedItemsInList,
+                      selectedItems: this.hasSelectedRowsInList,
                       selectionMode: this.selectionMode,
                       sortedKey: this.sortKey,
                     })
@@ -285,7 +283,7 @@ const SbDataTable = {
         ],
       },
       [
-        this.hasselectedItemsInList.length > 0 && renderActions(),
+        this.hasSelectedRowsInList.length > 0 && renderActions(),
         renderTable(),
         this.isLoading,
       ]
