@@ -24,58 +24,111 @@ export default {
 
 export const Default = (args) => ({
   components: { SbNumberField },
-  setup() {
-    return { args }
-  },
+  props: Object.keys(args),
   data: () => ({
     internalValue: 10,
   }),
   template: `
-    <div class="mw-300">
+    <div style="max-width: 300px">
       <SbNumberField
-        class="mb-20"
-        v-bind="args"
+        style="margin-bottom: 20px;"
         v-model="internalValue"
+        :id="id"
+        :name="name"
         label="Number input"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :min="min"
+        :type="type"
+        :max="max"
+        :step="step"
+        :precision="precision"
+        :readonly="readonly"
       />
 
       <SbNumberField
-        class="mb-20"
+        style="margin-bottom: 20px;"
         v-model="internalValue"
-        v-bind="args"
+        :id="id"
+        :name="name"
         label="Max: 10 and Min: -10"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
         :min="-10"
+        :type="type"
         :max="10"
+        :step="step"
+        :precision="precision"
+        :readonly="readonly"
       />
 
       <SbNumberField
         v-model="internalValue"
-        class="mb-20"
-        v-bind="args"
+        style="margin-bottom: 20px;"
+        :id="id"
+        :name="name"
         label="Step: 0.5"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :min="min"
+        :type="type"
+        :max="max"
         :step="0.5"
+        :precision="precision"
+        :readonly="readonly"
       />
 
       <SbNumberField
+        style="margin-bottom: 20px;"
         v-model="internalValue"
-        class="mb-20"
-        v-bind="args"
+        :id="id"
+        :name="name"
         label="Precision of 3 decimals"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :min="min"
+        :type="type"
+        :max="max"
+        :step="step"
         :precision="3"
+        :readonly="readonly"
       />
 
       <SbNumberField
+        style="margin-bottom: 20px;"
         v-model="internalValue"
-        class="mb-20"
-        v-bind="args"
+        :id="id"
+        :name="name"
         label="Disabled input"
+        :required="required"
+        :placeholder="placeholder"
+        :min="min"
+        :type="type"
+        :max="max"
+        :step="step"
+        :precision="3"
+        :readonly="readonly"
         disabled
       />
 
       <SbNumberField
+        style="margin-bottom: 20px;"
         v-model="internalValue"
-        v-bind="args"
+        :id="id"
+        :name="name"
         label="Readonly input"
+        :disabled="true"
+        :required="required"
+        :placeholder="placeholder"
+        :min="min"
+        :type="type"
+        :max="max"
+        :step="step"
+        :precision="3"
         readonly
       />
     </div>
