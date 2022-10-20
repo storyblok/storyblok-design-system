@@ -3,7 +3,8 @@ import { SbSlideover } from '../index'
 import SbButton from '../../Button'
 import { SbModalHeader, SbModalContent, SbModalFooter } from '../../Modal'
 
-import { shallowMount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
+import { waitMs } from '../../../utils/tests-utils'
 
 describe('SbSlideover component', () => {
   const WrapperComponent = {
@@ -14,47 +15,29 @@ describe('SbSlideover component', () => {
       SbModalContent,
       SbModalFooter,
     },
-    template: `
-      <SbSlideover is-open>
-        <SbModalHeader title="Hi man" align="left" />
-
-        <SbModalContent>
-          <p>Storyblok helps your team to tell your story and manage 
-          content for every use-case: corporate websites, e-commerce, 
-          helpdesks, mobile apps, and screen displays.</p>
-        </SbModalContent>
-
-        <SbModalFooter>
-          <SbButton label="Label" variant="primary"/>
-          <SbButton label="Label" variant="tertiary"/>
-        </SbModalFooter>
-      </SbSlideover>
-    `,
   }
 
-  const wrapper = shallowMount(WrapperComponent)
+  const wrapper = mount(SbSlideover, {
+    props: {
+      isOpen: true,
+    },
+    slots: {
+      default: 'Awesome title',
+    },
+  })
 
   it('should render slideover component', () => {
     expect(wrapper.findComponent(SbSlideover).exists()).toBe(true)
   })
 
-  it('should render all components into sb-slideover', () => {
-    expect(wrapper.findComponent(SbModalHeader).exists()).toBe(true)
-
-    expect(wrapper.findComponent(SbModalContent).exists()).toBe(true)
-
-    expect(wrapper.findComponent(SbModalFooter).exists()).toBe(true)
-
-    expect(wrapper.findComponent(SbButton).exists()).toBe(true)
-
-    expect(wrapper.findAllComponents(SbButton).length).toBe(2)
+  it('should render the default slot', async () => {
+    await wrapper.setData({ openSlideover: true })
+    expect(wrapper.html()).toContain('Awesome title')
   })
 
-  it('should call the method handle-close-slide', () => {
-    wrapper.vm.handleCloseSlide = jest.fn()
-
+  it('should call the method handle-close-slide & emit the event', async () => {
     wrapper.vm.handleCloseSlide()
-
-    expect(wrapper.vm.handleCloseSlide).toBeCalled()
+    await wrapper.vm.$nextTick()
+    expect(wrapper.emitted('hide')[0]).toStrictEqual([])
   })
 })
