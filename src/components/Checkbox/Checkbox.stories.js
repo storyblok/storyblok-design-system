@@ -135,7 +135,17 @@ export const Inline = (args) => ({
           style="margin-right: 10px;"
         />
       </div>
+    </div>
+  `,
+})
 
+export const Outline = (args) => ({
+  components: { SbCheckbox },
+  setup() {
+    return { ...args }
+  },
+  template: `
+    <div>
       <div>
         <SbCheckbox
           name="radio-outline"
