@@ -29,6 +29,7 @@ describe('SbMinibrowser component', () => {
     expect(firstElement.text()).toBe('Landing Page')
 
     await firstElement.trigger('click')
+    await wrapper.vm.$nextTick()
 
     // getting the first parameter from first execution
     const result = wrapper.emitted('select-item')[0][0]

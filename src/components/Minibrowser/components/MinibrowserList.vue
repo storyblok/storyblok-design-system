@@ -10,7 +10,10 @@
       <SbMiniBrowserListItem
         v-for="(item, key) in items"
         :key="key"
-        v-bind="item"
+        v-bind="{
+          ...item,
+          modelValue: item.value,
+        }"
       />
     </ul>
   </div>
