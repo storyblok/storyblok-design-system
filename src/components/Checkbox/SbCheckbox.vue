@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-checkbox" :class="componentClasses">
+  <div class="sb-checkbox" :class="componentClasses" @click="$emit('click')">
     <div class="sb-checkbox__inner">
       <input
         :id="id"
@@ -56,6 +56,8 @@ export default {
     inline: Boolean,
     outline: Boolean,
   },
+
+  emits: ['click'],
 
   computed: {
     componentClasses() {

@@ -279,7 +279,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is unchecked
-      rows.wrappers.forEach((wrapper) => {
+      rows.forEach((wrapper) => {
         expect(
           wrapper
             .find('.sb-checkbox__inner')
@@ -288,7 +288,7 @@ describe('SbDataTable component', () => {
       })
 
       // should remove class to selected row
-      rows.wrappers.forEach((wrapper) => {
+      rows.forEach((wrapper) => {
         expect(wrapper.classes('sb-data-table__row--selected')).toBe(false)
       })
 

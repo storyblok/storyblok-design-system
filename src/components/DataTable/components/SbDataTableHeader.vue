@@ -1,9 +1,8 @@
 <template>
   <thead>
     <tr>
-      <th v-if="allowSelection" class="sb-data-table__head-cell">
+      <th v-if="allowSelection && isMultiple" class="sb-data-table__head-cell">
         <SbCheckbox
-          v-if="isMultiple"
           :indeterminate="isIndeterminate"
           :model-value="allRowsSelected"
           @click="handleAllRowsSelected"
@@ -46,7 +45,7 @@ export default {
     allRowsSelected: {
       required: false,
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
 
