@@ -102,8 +102,8 @@ export default {
       }
     },
 
-    handleMoreAvatarsClick(event) {
-      this.$emit('click', event)
+    handleMoreAvatarsClick(event, vm) {
+      this.$emit('click', event, vm)
     },
 
     handleMoreAvatarsKeydown(event) {
