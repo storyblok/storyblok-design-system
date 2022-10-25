@@ -3,9 +3,7 @@
     :is="as"
     class="sb-link"
     :class="computedClasses"
-    :title="title"
-    :href="href"
-    :to="to"
+    v-bind="computedAttributes"
     v-on="$listeners"
   >
     <SbIcon v-if="icon" :name="icon" />
@@ -66,6 +64,18 @@ export default {
         'sb-link--has-icon': this.icon,
         'sb-link--has-icon-right': this.iconRight,
         [`sb-link--${this.variant}`]: this.variant,
+      }
+    },
+    computedAttributes() {
+      if (this.to) {
+        return {
+          to: this.to,
+          title: this.title,
+        }
+      }
+      return {
+        href: this.href,
+        title: this.title,
       }
     },
   },
