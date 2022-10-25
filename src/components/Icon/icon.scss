@@ -77,4 +77,9 @@ $bg-colors: (
       }
     }
   }
+
+  &--no-fill {
+    fill: none;
+    stroke: none;
+  }
 }

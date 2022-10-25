@@ -19,10 +19,16 @@ export const getSvgIcon = (name) => {
     }
   }
 
-  return {
+  const icon = {
     path: iconDeff.path,
     viewBox: iconDeff.viewBox || '0 0 24 24',
   }
+
+  if (iconDeff.fill) {
+    icon.fill = iconDeff.fill
+  }
+
+  return icon
 }
 
 /**
