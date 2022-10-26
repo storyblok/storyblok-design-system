@@ -81,9 +81,14 @@ export default {
       }
     },
 
+    closeAvatarsList() {
+      this.expanded = false
+    },
+
     handleClick(event) {
       this.toggleExpanded()
-      this.$emit('click', event)
+
+      this.$emit('click', event, this)
     },
 
     toggleExpanded() {
