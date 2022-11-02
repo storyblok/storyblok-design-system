@@ -337,7 +337,7 @@ export default {
         return
       }
 
-      this.syncInternalValue(this.value)
+      this.syncInternalValue(this.modelValue)
     },
 
     handleDoneAction() {

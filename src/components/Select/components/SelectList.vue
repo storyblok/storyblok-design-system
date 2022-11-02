@@ -54,6 +54,8 @@
 
 <script>
 import SbSelectListItem from './SelectListItem'
+import SbLoading from '../../Loading'
+
 import { toLowerCase } from '../../../utils'
 
 export default {
@@ -61,6 +63,7 @@ export default {
 
   components: {
     SbSelectListItem,
+    SbLoading,
   },
 
   inject: ['selectContext'],
