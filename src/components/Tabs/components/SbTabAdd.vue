@@ -7,7 +7,6 @@
       }"
       class="sb-tabs__add-button"
       aria-label="New tab"
-      v-bind="$attrs"
     >
       <SbIcon name="plus" size="normal" color="light-gray" />
     </button>

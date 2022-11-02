@@ -94,7 +94,7 @@ describe('Test SbTabs', () => {
       expect(buttonComponent.exists()).toBe(true)
     })
 
-    it.skip('should perform the create a new tab function', async () => {
+    it('should perform the create a new tab function', async () => {
       await buttonComponent.trigger('click')
 
       // like we have three tabs,
@@ -122,7 +122,7 @@ describe('Test SbTabs', () => {
       })
     })
 
-    it.skip('should perform the cancel when try to create tab function', async () => {
+    it('should perform the cancel when try to create tab function', async () => {
       await buttonComponent.trigger('click')
 
       // like we have three tabs,
@@ -375,7 +375,7 @@ describe('Test SbTabs', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(firstTab.emitted('keydown')).toHaveProperty('keydown')
+      expect(firstTab.emitted()).toHaveProperty('keydown')
 
       const tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('name')).toBe('third')

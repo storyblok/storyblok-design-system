@@ -72,7 +72,6 @@ const SbTabs = {
   methods: {
     loadChildren() {
       this.childVNodes = Object.assign({}, this.$el.children)
-      console.log(this.$slots.default())
       this.children = this.$slots.default
         ? this.$slots.default() || this.$slots.default()[0]?.children
         : []
@@ -90,14 +89,12 @@ const SbTabs = {
 
       this.additionalTabs.push(
         h(SbTab, {
-          class: 'sb-tab sb-tab__new-tab',
-          props: {
-            label: 'New tab',
-            name: 'new-tab',
-            showEditInput: true,
-            onEditTab: this.handleEditTabOnCreate,
-            onCancelEditTab: this.handleCancelEditTabOnCreate,
-          },
+          class: 'sb-tab__new-tab',
+          label: 'New tab',
+          name: 'new-tab',
+          showEditInput: true,
+          onEditTab: this.handleEditTabOnCreate,
+          onCancelEditTab: this.handleCancelEditTabOnCreate,
         })
       )
     },
