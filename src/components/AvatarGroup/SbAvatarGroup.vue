@@ -11,7 +11,7 @@
       ref="moreAvatars"
       :avatars="hiddenAvatars"
       :label="moreAvatarsLabel"
-      @click="handleMoreAvatarsClick"
+      @toggle-avatars-dropdown="handleMoreAvatarsClick"
       @keydown="handleMoreAvatarsKeydown"
     />
   </div>
@@ -103,8 +103,11 @@ export default {
       }
     },
 
-    handleMoreAvatarsClick(event) {
-      this.$emit('click', event)
+    handleMoreAvatarsClick() {
+      this.isVisibleDropdown = !this.isVisibleDropdown
+      this.$emit('toggle-visible-dropdown', {
+        isVisibleDropdown: this.isVisibleDropdown,
+      })
     },
 
     handleMoreAvatarsKeydown(event) {

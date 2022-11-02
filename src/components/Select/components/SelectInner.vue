@@ -255,7 +255,7 @@ export default {
     },
 
     placeholderLabel() {
-      if (!this.hasValue) {
+      if (!this.hasValue || (this.multiple && !this.tagLabels.length)) {
         if (this.isLoading && this.loadingLabel) {
           return this.loadingLabel
         }
@@ -303,19 +303,25 @@ export default {
         return []
       }
 
-      return this.value.map(($v) => {
-        if (typeof $v === 'object') {
-          return $v
-        }
+      return this.value
+        .map((value) => {
+          if (typeof value === 'object') {
+            return value
+          }
 
-        const option = this.options.find(($opt) => $opt[this.itemValue] === $v)
+          const selectedOption = this.options.find(
+            (option) => option[this.itemValue] === value
+          )
 
-        if (this.allowCreate && !option) {
-          return this.emitOption ? { [this.itemValue]: $v } : $v
-        }
+          const shouldCreate = this.allowCreate && !selectedOption
 
-        return option
-      })
+          if (shouldCreate) {
+            return this.emitOption ? { [this.itemValue]: value } : value
+          }
+
+          return selectedOption
+        })
+        .filter((option) => option !== null && option !== undefined)
     },
 
     isAvatarVisible() {

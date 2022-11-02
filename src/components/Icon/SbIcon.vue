@@ -1,7 +1,7 @@
 <template>
   <svg
     class="sb-icon"
-    :class="[sizeClass, colorClass, bgClass]"
+    :class="[sizeClass, colorClass, bgClass, fillClass]"
     :role="role ? role : 'presentation'"
     :viewBox="iconDeff.viewBox"
     v-bind="$attrs"
@@ -43,6 +43,9 @@ export default {
   computed: {
     iconDeff() {
       return getSvgIcon(this.name)
+    },
+    fillClass() {
+      return this.iconDeff?.fill ? 'sb-icon--no-fill' : null
     },
     sizeClass() {
       return this.size ? `sb-icon--${this.size}` : null
