@@ -1,7 +1,7 @@
 <template>
   <input
     ref="editInput"
-    :value="value"
+    :value="modelValue"
     placeholder="Type a label to new tab"
     v-bind="$attrs"
   />

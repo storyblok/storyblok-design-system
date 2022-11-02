@@ -46,7 +46,7 @@ const SbTabs = {
 
   computed: {
     childrenCount() {
-      return this.children.length
+      return this.children?.length || 0
     },
     currentIndex() {
       return this.children.findIndex((child) => {
@@ -72,8 +72,9 @@ const SbTabs = {
   methods: {
     loadChildren() {
       this.childVNodes = Object.assign({}, this.$el.children)
+      console.log(this.$slots.default())
       this.children = this.$slots.default
-        ? this.$slots.default()[0]?.children
+        ? this.$slots.default() || this.$slots.default()[0]?.children
         : []
     },
 
