@@ -204,9 +204,9 @@ describe('SbPagination component', () => {
       expect(options.length).toBe(3)
 
       expect(options).toEqual([
-        { modelValue: 5, label: '5', ariaLabel: 'Select per page 5 items' },
-        { modelValue: 15, label: '15', ariaLabel: 'Select per page 15 items' },
-        { modelValue: 30, label: '30', ariaLabel: 'Select per page 30 items' },
+        { value: 5, label: '5', ariaLabel: 'Select per page 5 items' },
+        { value: 15, label: '15', ariaLabel: 'Select per page 15 items' },
+        { value: 30, label: '30', ariaLabel: 'Select per page 30 items' },
       ])
     })
 
