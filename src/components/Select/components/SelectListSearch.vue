@@ -4,7 +4,7 @@
       ref="input"
       type="search"
       :placeholder="placeholder"
-      :value="value"
+      :value="modelValue"
       @input="handleInput"
     />
 
@@ -47,7 +47,7 @@ export default {
 
   computed: {
     hasValue() {
-      return this.value && this.value.length > 0
+      return this.modelValue && this.modelValue.length > 0
     },
   },
 

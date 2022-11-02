@@ -225,15 +225,18 @@ export default {
     },
 
     hasValue() {
-      if (this.multiple || isArray(this.value)) {
-        return this.value?.length > 0
+      if (this.multiple || isArray(this.modelValue)) {
+        return this.modelValue?.length > 0
       }
 
-      return this.value !== null
+      return this.modelValue !== null
     },
 
     hasDefaultSlot() {
-      return !!this.$slots?.default()
+      const slot = this.$slots
+        ?.default()
+        .filter((slot) => slot.key !== '_innerSelect')
+      return this.$slots.default && slot.length > 0
     },
 
     innerLabel() {
@@ -271,7 +274,7 @@ export default {
         this.hasValue &&
         !this.multiple &&
         !this.searchInputText.length &&
-        !this.sAvatarVisible &&
+        !this.isAvatarVisible &&
         !this.showAvatar
       )
     },
@@ -279,7 +282,7 @@ export default {
     currentOptionLabel() {
       return this.currentOptionValue && this.currentOptionValue[this.itemLabel]
         ? this.currentOptionValue[this.itemLabel]
-        : this.value
+        : this.modelValue
     },
 
     currentOptionValue() {
@@ -287,7 +290,7 @@ export default {
         return {}
       }
 
-      return this.options.find((opt) => opt[this.itemValue] === this.value)
+      return this.options.find((opt) => opt[this.itemValue] === this.modelValue)
     },
 
     isTagsVisible() {
@@ -303,7 +306,7 @@ export default {
         return []
       }
 
-      return this.value
+      return this.modelValue
         .map((value) => {
           if (typeof value === 'object') {
             return value
@@ -345,7 +348,7 @@ export default {
 
     avatarData() {
       return this.options.find((option) => {
-        return option[this.itemValue] === this.value
+        return option[this.itemValue] === this.modelValue
       })
     },
 
@@ -379,7 +382,7 @@ export default {
       }
     },
 
-    value(val, oldVal) {
+    modelValue(val, oldVal) {
       const isSameValue = JSON.stringify(val) === JSON.stringify(oldVal)
       if (this.isSearchTextVisible && !isSameValue) {
         if (oldVal.length && val.length) {

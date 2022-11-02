@@ -493,7 +493,6 @@ export const EmitOption = (args) => ({
       <SbSelect
         :label="label"
         :options="options"
-        :multiple="multiple"
         :left-icon="leftIcon"
         :filterable="filterable"
         :use-avatars="useAvatars"
@@ -558,7 +557,6 @@ export const EmitSearch = (args) => ({
           :multiple="multiple"
           :left-icon="leftIcon"
           :filterable="true"
-          :emit-search="true"
           :use-avatars="useAvatars"
           :inline="inline"
           :no-data-text="noDataText"
@@ -567,6 +565,7 @@ export const EmitSearch = (args) => ({
           :is-loading="isLoading"
           :loading-label="loadingLabel"
           :clearable="clearable"
+          emit-search
           emit-option
           :modelValue="searchInput"
           @input="handleSearchValue"

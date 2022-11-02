@@ -81,7 +81,7 @@
       :id="inputId"
       class="sb-select__input--hidden"
       :required="required"
-      :modelValue="value"
+      :model-value="modelValue"
     />
   </div>
 </template>
@@ -239,7 +239,7 @@ export default {
 
     selectedItem() {
       return this.options.find((option) => {
-        return option[this.itemValue] === this.value
+        return option[this.itemValue] === this.modelValue
       })
     },
 
@@ -396,7 +396,10 @@ export default {
         this.searchInput = ''
         const $value = this.processMultipleValue(value)
 
-        this.$emit('update:modelValue', this.validateValue($value, this.value))
+        this.$emit(
+          'update:modelValue',
+          this.validateValue($value, this.modelValue)
+        )
         return
       }
 
@@ -436,9 +439,9 @@ export default {
     },
 
     /**
-     * check if the value exists on this.value
+     * check if the value exists on this.modelValue
      * but, based on this.emitOption, to check more
-     * properly the case when this.value is an array
+     * properly the case when this.modelValue is an array
      * of objects
      * @param  {String|Number|Object} value
      * @return {Boolean}
@@ -447,27 +450,27 @@ export default {
       if (this.emitOption) {
         const itemValue = value[this.itemValue]
 
-        return this.value?.some(($v) => $v[this.itemValue] === itemValue)
+        return this.modelValue?.some(($v) => $v[this.itemValue] === itemValue)
       }
 
-      return includes(this.value, value)
+      return includes(this.modelValue, value)
     },
 
     /**
-     * remove a specific value from this.value, based on this.emitOption,
-     * to check more properly the case when this.value is an array
+     * remove a specific value from this.modelValue, based on this.emitOption,
+     * to check more properly the case when this.modelValue is an array
      * of objects
      * @param  {String|Number|Object} value
      * @return {Array}
      */
     removeValueFromArray(value) {
       if (this.emitOption) {
-        return this.value.filter(
+        return this.modelValue.filter(
           (val) => val[this.itemValue] !== value[this.itemValue]
         )
       }
 
-      return this.value.filter((val) => val !== value)
+      return this.modelValue.filter((val) => val !== value)
     },
 
     /**
@@ -479,7 +482,7 @@ export default {
         return this.removeValueFromArray(value)
       }
 
-      return [...(this.value || []), value]
+      return [...(this.modelValue || []), value]
     },
 
     /**

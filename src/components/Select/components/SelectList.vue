@@ -13,7 +13,7 @@
           :label="option[itemLabel]"
           :model-value="option[itemValue]"
           :item-value="itemValue"
-          :input-value="value"
+          :input-value="modelValue"
           :multiple="multiple"
           :emit-option="emitOption"
           :use-avatars="useAvatars"
@@ -263,8 +263,8 @@ export default {
     shouldBeChecked(index) {
       return (
         this.firstValueIsAllValue &&
-        this.value &&
-        this.value.includes(this.allOptionValue) &&
+        this.modelValue &&
+        this.modelValue.includes(this.allOptionValue) &&
         index > 0
       )
     },
