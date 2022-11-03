@@ -44,7 +44,7 @@ describe('Vtooltip directive', () => {
 
     const tooltipEl = findTooltip()
     expect(tooltipEl.innerText).toBe('Just a label string')
-    expect(tooltipEl).toHaveAttribute('data-popper-placement', 'top')
+    expect(tooltipEl.getAttribute('data-popper-placement')).toBe('top')
     expect(tooltipEl.className.includes('sb-tooltip--text--center')).toBe(true)
 
     await findTarget(wrapper).trigger('mouseleave')
@@ -162,7 +162,7 @@ describe('Vtooltip directive', () => {
     let tooltipEl = findTooltip()
 
     expect(tooltipEl.innerText).toBe('Tooltip label')
-    expect(tooltipEl).toHaveAttribute('data-popper-placement', 'top')
+    expect(tooltipEl.getAttribute('data-popper-placement')).toBe('top')
     expect(tooltipEl.className.includes('sb-tooltip--text--center')).toBe(true)
 
     await targetEl.trigger('blur')
@@ -178,8 +178,9 @@ describe('Vtooltip directive', () => {
     tooltipEl = findTooltip()
 
     expect(tooltipEl.innerText).toBe('Tooltip label changed')
-    expect(tooltipEl).toHaveAttribute('data-popper-placement', 'bottom')
+    expect(tooltipEl.getAttribute('data-popper-placement')).toBe('bottom')
     expect(tooltipEl.className.includes('sb-tooltip--text--left')).toBe(true)
+
 
     await targetEl.trigger('mouseleave')
   })
