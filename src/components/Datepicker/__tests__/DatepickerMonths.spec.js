@@ -11,7 +11,7 @@ describe('SbDatepickerMonths component', () => {
       const value = dayjs().format()
       await wrapper.setProps({ modelValue: value })
       await wrapper.find('.sb-datepicker-months__item').trigger('click')
-      expect(wrapper.emitted().input[0].length).toBe(1)
+      expect(wrapper.emitted('update:modelValue')[0].length).toBe(1)
     })
   })
 })

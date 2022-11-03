@@ -40,7 +40,7 @@ describe('SbDatepickerTime component', () => {
       const value = dayjs().format()
       await wrapper.setProps({ modelValue: value })
       wrapper.vm.$_processInput()
-      expect(wrapper.emitted().input[0].length).toBe(1)
+      expect(wrapper.emitted('update:modelValue')[0].length).toBe(1)
     })
   })
 })

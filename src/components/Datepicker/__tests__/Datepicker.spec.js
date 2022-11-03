@@ -28,7 +28,9 @@ describe('SbDatepicker component', () => {
   describe('test datepicker I/Os', () => {
     it('should transform the date correctly', () => {
       wrapper.vm.handleDoneAction()
-      expect(wrapper.emitted().input[0]).toEqual(['2021-12-02 00:00'])
+      expect(wrapper.emitted('update:modelValue')[0]).toEqual([
+        '2021-12-02 00:00',
+      ])
       expect(wrapper.vm.internalValue).toEqual('2021-12-01 19:00')
     })
   })

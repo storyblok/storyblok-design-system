@@ -52,7 +52,7 @@ export default {
 
   data() {
     return {
-      internalValue: this.value,
+      internalValue: this.modelValue,
       internalType: this.type,
       internalIconRight: this.iconRight,
       isOnInput: false,
@@ -73,7 +73,7 @@ export default {
   },
 
   watch: {
-    value(newValue) {
+    modelValue(newValue) {
       this.internalValue = newValue
     },
   },

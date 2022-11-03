@@ -1,6 +1,5 @@
 <template>
   <div
-    :ref="_uid"
     v-click-outside="$_wrapClose"
     class="sb-datepicker"
     :class="{ 'sb-datepicker--active': isOverlayVisible }"
@@ -8,8 +7,6 @@
     <div class="sb-datepicker__input">
       <SbTextField
         ref="input"
-        v-model="internalValue"
-        :mask="internalMask"
         type="text"
         icon-left="calendar"
         :disabled="disabled"
