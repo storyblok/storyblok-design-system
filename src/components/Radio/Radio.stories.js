@@ -117,6 +117,7 @@ export const Inline = (args) => ({
           disabled
         />
       </div>
+    </div>
   `,
 })
 
