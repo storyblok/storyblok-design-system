@@ -46,7 +46,7 @@ describe('SbMenu component', () => {
   }
 
   const isFocusedCheck = (el) => {
-    expect(el).toHaveFocus()
+    expect(document.activeElement).toBe(el)
   }
 
   const wrapper = factoryMountComponent(Component)
