@@ -2,7 +2,7 @@
   <tbody>
     <SbDataTableBodyRow
       v-for="(row, i) in items"
-      v-bind="{ allowSelection, headers, row, selectedItems }"
+      v-bind="{ allowSelection, headers, row, selectedRows }"
       :key="i"
     />
   </tbody>
@@ -21,7 +21,7 @@ export default {
     allowSelection: sharedProps.allowSelection,
     headers: sharedProps.headers,
     items: sharedProps.items,
-    selectedItems: sharedProps.selectedItems,
+    selectedRows: sharedProps.selectedItems,
   },
 }
 </script>

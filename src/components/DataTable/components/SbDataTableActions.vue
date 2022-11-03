@@ -52,7 +52,7 @@ export default {
   props: {
     actions: sharedProps.actions,
     hideLabelActionsBreakpoint: sharedProps.hideLabelActionsBreakpoint,
-    selectedItems: sharedProps.selectedItems,
+    selectedRows: sharedProps.selectedItems,
     sticky: sharedProps.stickyMenu,
   },
 
@@ -69,7 +69,7 @@ export default {
       return `${this.selectedItemsLength} ${labelItem} selected`
     },
     selectedItemsLength() {
-      return this.selectedItems.length
+      return this.selectedRows.length
     },
   },
 }

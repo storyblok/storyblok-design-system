@@ -53,7 +53,7 @@ export default {
   props: {
     allowSelection: sharedProps.allowSelection,
     headers: sharedProps.headers,
-    selectedItems: sharedProps.selectedItems,
+    selectedRows: sharedProps.selectedItems,
     row: {
       type: [Object, Array],
       default: () => ({}),
@@ -68,7 +68,7 @@ export default {
       return this.headers.findIndex((col) => col.main)
     },
     isSelected() {
-      return this.selectedItems?.some(
+      return this.selectedRows?.some(
         (row) => JSON.stringify(row) === JSON.stringify(this.row)
       )
     },

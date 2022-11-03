@@ -221,7 +221,7 @@ const SbDataTable = {
               allowSelection: this.allowSelection,
               headers: [...headerData],
               row: tableRow,
-              selectedItems: this.hasSelectedRowsInList,
+              selectedRows: this.hasSelectedRowsInList,
             },
             columns
           )
@@ -239,7 +239,7 @@ const SbDataTable = {
                 allowSelection: this.allowSelection,
                 allRowsSelected: this.allRowsSelected,
                 headers: this.headers,
-                selectedItems: this.hasSelectedRowsInList,
+                selectedRows: this.hasSelectedRowsInList,
                 selectionMode: this.selectionMode,
                 sortedKey: this.sortKey,
               })
@@ -249,7 +249,7 @@ const SbDataTable = {
                 allowSelection: this.allowSelection,
                 headers: this.headers,
                 items: this.sortedData,
-                selectedItems: this.hasSelectedRowsInList,
+                selectedRows: this.hasSelectedRowsInList,
               })
             : null,
           this.$slots.default
@@ -259,7 +259,7 @@ const SbDataTable = {
                       allowSelection: this.allowSelection,
                       allRowsSelected: this.allRowsSelected,
                       headers: [...headerData],
-                      selectedItems: this.hasSelectedRowsInList,
+                      selectedRows: this.hasSelectedRowsInList,
                       selectionMode: this.selectionMode,
                       sortedKey: this.sortKey,
                     })

@@ -36,7 +36,7 @@ export default {
   props: {
     allowSelection: sharedProps.allowSelection,
     headers: sharedProps.headers,
-    selectedItems: sharedProps.selectedItems,
+    selectedRows: sharedProps.selectedItems,
     selectionMode: sharedProps.selectionMode,
     sortedKey: {
       type: String,
@@ -59,7 +59,7 @@ export default {
     },
 
     selectedItemsLength() {
-      return this.selectedItems.length
+      return this.selectedRows.length
     },
 
     isMultiple() {
