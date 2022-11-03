@@ -879,6 +879,18 @@ const blockIcons = {
     viewBox: '0 0 24 24',
     path: `<path d="M19 13a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-3a3 3 0 0 1 3-3h3ZM8 13a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-3a3 3 0 0 1 3-3h3Zm11 2h-3a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1ZM8 15H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1ZM19 2a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h14Zm0 2H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z" fill="currentColor" fill-rule="evenodd"/>`,
   },
+  'block-add': {
+    viewBox: '0 0 24 24',
+    path: `
+      <g fill="none" fill-rule="evenodd">
+        <path d="M20.7071 10.2929C21.0676 10.6534 21.0953 11.2206 20.7903 11.6129L20.7071 11.7071L17.7071 14.7071C17.3466 15.0676 16.7794 15.0953 16.3871 14.7903L16.2929 14.7071L13.2929 11.7071C12.9024 11.3166 12.9024 10.6834 13.2929 10.2929C13.6534 9.9324 14.2206 9.9047 14.6129 10.2097L14.7071 10.2929L17 12.585L19.2929 10.2929C19.6534 9.9324 20.2206 9.90469 20.6129 10.2097L20.7071 10.2929Z" fill="currentColor"/>
+        <path d="M5 18L17 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M5 6L11 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M17 14L17 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <rect x="5" y="10" width="6" height="4" rx="1" stroke="currentColor" stroke-width="2"/>
+      </g>
+    `,
+  },
   'block-arrow-pointer': {
     viewBox: '0 0 24 24',
     path: `<g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="m4 4 6.3 15 2.4-6.3 6.3-2.4zM13 13l6 6"/></g>`,
