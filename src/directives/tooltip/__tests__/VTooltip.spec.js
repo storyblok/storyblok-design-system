@@ -17,7 +17,7 @@ const findTarget = (wrapper) => wrapper.find('[data-testid="target"]')
 const findTooltip = () => document.querySelector('[role="tooltip"]')
 
 describe('Vtooltip directive', () => {
-  it('should does not render the tooltip component when mounting the component', () => {
+  it('does not render the tooltip component when mounting the component', () => {
     const wrapper = mountWithTemplate(`
       <span
         data-testid="target"
@@ -31,7 +31,7 @@ describe('Vtooltip directive', () => {
     expect(findTooltip()).toBe(null)
   })
 
-  it('should render the label using just a string', async () => {
+  it('should render the tooltip with a string label', async () => {
     const wrapper = mountWithTemplate(`
       <span
         data-testid="target"
@@ -44,8 +44,8 @@ describe('Vtooltip directive', () => {
 
     const tooltipEl = findTooltip()
     expect(tooltipEl.innerText).toBe('Just a label string')
-    expect(tooltipEl.getAttribute('data-popper-placement')).toBe('top')
-    expect(tooltipEl).toHaveClass('sb-tooltip--text--center')
+    expect(tooltipEl).toHaveAttribute('data-popper-placement', 'top')
+    expect(tooltipEl.className.includes('sb-tooltip--text--center')).toBe(true)
 
     await findTarget(wrapper).trigger('mouseleave')
   })
@@ -64,7 +64,7 @@ describe('Vtooltip directive', () => {
     const tooltipEl = findTooltip()
     expect(tooltipEl.innerText).toBe('Just a label string')
 
-    wrapper.destroy()
+    wrapper.unmount()
 
     expect(findTooltip()).toBe(null)
   })
@@ -162,8 +162,8 @@ describe('Vtooltip directive', () => {
     let tooltipEl = findTooltip()
 
     expect(tooltipEl.innerText).toBe('Tooltip label')
-    expect(tooltipEl.getAttribute('data-popper-placement')).toBe('top')
-    expect(tooltipEl).toHaveClass('sb-tooltip--text--center')
+    expect(tooltipEl).toHaveAttribute('data-popper-placement', 'top')
+    expect(tooltipEl.className.includes('sb-tooltip--text--center')).toBe(true)
 
     await targetEl.trigger('blur')
 
@@ -178,8 +178,8 @@ describe('Vtooltip directive', () => {
     tooltipEl = findTooltip()
 
     expect(tooltipEl.innerText).toBe('Tooltip label changed')
-    expect(tooltipEl.getAttribute('data-popper-placement')).toBe('bottom')
-    expect(tooltipEl).toHaveClass('sb-tooltip--text--left')
+    expect(tooltipEl).toHaveAttribute('data-popper-placement', 'bottom')
+    expect(tooltipEl.className.includes('sb-tooltip--text--left')).toBe(true)
 
     await targetEl.trigger('mouseleave')
   })

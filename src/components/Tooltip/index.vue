@@ -1,7 +1,7 @@
 <template>
   <span
     :tabindex="0"
-    :ariaDescribedby="id"
+    :aria-describedby="id"
     :x-tooltip-anchor="tooltipAnchorId"
     @focus="showTooltip"
     @blur="hideTooltip"
@@ -13,8 +13,8 @@
   </span>
   <SbPopover
     v-if="show"
-    :aria-hidden="!isVisibleTooltip"
     ref="popover"
+    :aria-hidden="!isVisibleTooltip"
     role="tooltip"
     :use-anchor-id="id"
     :class="`sb-tooltip sb-tooltip--${variant} sb-tooltip--text--${textAlign}`"
