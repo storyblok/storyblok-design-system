@@ -9,7 +9,7 @@
  * includes([1, 2, 3, 4], 1) // true
  */
 export const includes = (iterable, value) => {
-  if (typeof iterable.indexOf === 'function') {
+  if (iterable?.indexOf) {
     return iterable?.indexOf(value) !== -1
   }
 

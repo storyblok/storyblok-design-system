@@ -34,7 +34,7 @@
       :item-caption="itemCaption"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
-      @update:modelValue="handleSearchInput"
+      @search="handleSearchInput"
       @emit-value="handleEmitValue"
       @close-list="hideList"
       @clear-all-values="handleClearAllValues"
@@ -305,6 +305,9 @@ export default {
 
     searchInput(newValue) {
       this.$emit('search-input', newValue)
+      debounce(this.filterDebounce, function (newValue) {
+        this.$emit('filter', newValue)
+      })
     },
   },
 
@@ -320,13 +323,6 @@ export default {
     }
 
     this.$_loadListItems()
-
-    this.$watch(
-      'searchInput',
-      debounce(this.filterDebounce, function (newValue) {
-        this.$emit('filter', newValue)
-      })
-    )
 
     this.$nextTick(() => {
       if (this.$refs.inner) {

@@ -39,7 +39,7 @@ const SelectTemplate = (args) => ({
   },
 
   template: `
-    <div style="min-height: 300px">
+    <div style="min-height: 300px;">
       <SbSelect
       :label="label"
       :options="options"
@@ -206,7 +206,7 @@ export default {
   args: {
     label: 'Choose an option',
     options: [...defaultSelectOptionsData],
-    value: null,
+    modelValue: null,
     multiple: false,
     firstValueIsAllValue: false,
     filterable: false,
@@ -250,6 +250,7 @@ export const Filterable = SelectTemplate.bind({})
 
 Filterable.args = {
   filterable: true,
+  disableInternalFilter: false,
 }
 
 export const LazySearch = (args) => ({

@@ -198,7 +198,7 @@ export default {
     'clear-all-values',
     'close-list',
     'emit-value',
-    'update:modelValue',
+    'search',
     'keydown-enter',
     'remove-item-value',
   ],
@@ -213,6 +213,7 @@ export default {
         return this.searchInput
       },
       set(value) {
+        this.$emit('search', value)
         return value
       },
     },
@@ -411,7 +412,7 @@ export default {
      */
     handleEmitSearchInput() {
       if (this.filterable && !this.isDisabled) {
-        this.$emit('update:modelValue', this.searchInputText)
+        this.$emit('search', this.searchInputText)
 
         if (this.isAvatarVisible) {
           this.showAvatar = false
@@ -457,7 +458,7 @@ export default {
         event.preventDefault()
         if (this.allowCreate && this.searchInputText.length) {
           this.handleEmitValue(this.searchInputText)
-          this.$emit('update:modelValue', '')
+          this.$emit('search', '')
         } else {
           this.$emit('keydown-enter')
         }
