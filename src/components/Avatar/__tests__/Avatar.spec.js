@@ -187,7 +187,7 @@ describe('SbAvatar component', () => {
 
       await wrapper.trigger('mouseover')
       const tooltip = document.querySelector('[role="tooltip"]')
-      expect(tooltip).toHaveAttribute('data-popper-placement', 'bottom')
+      expect(tooltip.getAttribute('data-popper-placement')).toBe('bottom')
     })
 
     it('should have the correct label as property', async () => {
