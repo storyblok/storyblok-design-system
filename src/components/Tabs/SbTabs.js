@@ -100,7 +100,7 @@ const SbTabs = {
     },
 
     getTabNameFromNode(vnode) {
-      return vnode.props.name
+      return vnode?.props?.name
     },
 
     triggerActiveTab(identifier) {
@@ -182,7 +182,7 @@ const SbTabs = {
     const processChildren = () => {
       return children?.map((element) => {
         const elementProps = element.props
-        const elementId = elementProps.name
+        const elementId = elementProps?.name
 
         const newElement = {
           ...element,

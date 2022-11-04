@@ -62,7 +62,7 @@ const SbTabPanels = {
     const processChildren = () => {
       return children.map((element) => {
         const elementProps = element.props
-        const elementId = elementProps.name
+        const elementId = elementProps?.name
 
         return {
           ...element,
