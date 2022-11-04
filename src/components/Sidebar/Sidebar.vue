@@ -113,7 +113,7 @@ export default {
 
   mounted() {
     this.toggleSidebar()
-    this.createObserver()
+    this.$nextTick(this.createObserver)
   },
 
   methods: {
