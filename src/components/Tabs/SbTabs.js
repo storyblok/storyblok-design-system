@@ -201,6 +201,7 @@ const SbTabs = {
     return h(
       'div',
       {
+        ...this.$attrs,
         class: [
           'sb-tabs',
           {
@@ -208,7 +209,6 @@ const SbTabs = {
             'sb-tabs--vertical': this.isVertical,
           },
         ],
-        ...this.$attrs,
         role: 'tablist',
       },
       [
