@@ -59,22 +59,15 @@ const SbTabs = {
     isVertical() {
       return this.orientation === 'vertical'
     },
-  },
-
-  updated() {
-    this.$nextTick(this.loadChildren)
-  },
-
-  mounted() {
-    this.$nextTick(this.loadChildren)
+    children() {
+      return this.$slots.default()
+    },
+    childVNodes() {
+      return this.$el.children
+    },
   },
 
   methods: {
-    loadChildren() {
-      this.childVNodes = Object.assign({}, this.$el.children)
-      this.children = this.$slots.default()
-    },
-
     changeActiveTab(index) {
       this.childVNodes[index].focus()
 
