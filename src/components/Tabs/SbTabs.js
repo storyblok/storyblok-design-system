@@ -72,9 +72,7 @@ const SbTabs = {
   methods: {
     loadChildren() {
       this.childVNodes = Object.assign({}, this.$el.children)
-      this.children = this.$slots.default
-        ? this.$slots.default() || this.$slots.default()[0]?.children
-        : []
+      this.children = this.$slots.default()
     },
 
     changeActiveTab(index) {
