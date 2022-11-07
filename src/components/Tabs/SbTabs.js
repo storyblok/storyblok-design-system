@@ -38,8 +38,6 @@ const SbTabs = {
   data() {
     return {
       additionalTabs: [],
-      children: [],
-      childVNodes: [],
       onAddTab: false,
     }
   },
@@ -60,10 +58,14 @@ const SbTabs = {
       return this.orientation === 'vertical'
     },
     children() {
-      return this.$slots.default() || []
+      let children = this.$slots.default && this.$slots.default()
+      const hasFirstNode = children && children.length > 0
+      const isFirstNodeTab = children[0]?.type?.name === 'SbTab'
+      if (!isFirstNodeTab && hasFirstNode) children = children[0].children
+      return children
     },
     childVNodes() {
-      return this.$el.children || []
+      return this.$el ? this.$el.children : []
     },
   },
 
@@ -157,11 +159,6 @@ const SbTabs = {
   },
 
   render() {
-    let children = this.$slots.default && this.$slots.default()
-    const hasFirstNode = children && children.length > 0
-    const isFirstNodeTab = children[0]?.type?.name === 'SbTab'
-    if (!isFirstNodeTab && hasFirstNode) children = children[0].children
-
     const renderAddButton = () => {
       return h(SbTabAdd, {
         newTabLabel: this.newTabLabel,
@@ -170,7 +167,7 @@ const SbTabs = {
     }
 
     const processChildren = () => {
-      return children?.map((element) => {
+      return this.children?.map((element) => {
         const elementProps = element.props
         const elementId = elementProps?.name
 
