@@ -60,10 +60,10 @@ const SbTabs = {
       return this.orientation === 'vertical'
     },
     children() {
-      return this.$slots.default()
+      return this.$slots.default() || []
     },
     childVNodes() {
-      return this.$el.children
+      return this.$el.children || []
     },
   },
 
@@ -157,11 +157,7 @@ const SbTabs = {
   },
 
   render() {
-    const children = this.$slots.default
-      ? this.$slots.default().length === 1
-        ? this.$slots.default()[0]?.children
-        : this.$slots.default()
-      : []
+    const children = this.children
 
     const renderAddButton = () => {
       return h(SbTabAdd, {
