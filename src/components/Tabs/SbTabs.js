@@ -157,7 +157,10 @@ const SbTabs = {
   },
 
   render() {
-    const children = this.children
+    let children = this.$slots.default && this.$slots.default()
+    const hasFirstNode = children && children.length > 0
+    const isFirstNodeTab = children[0]?.type?.name === 'SbTab'
+    if (!isFirstNodeTab && hasFirstNode) children = children[0].children
 
     const renderAddButton = () => {
       return h(SbTabAdd, {
