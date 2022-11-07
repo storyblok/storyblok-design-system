@@ -10,6 +10,8 @@ import { canUseDOM } from '../../utils'
 export default {
   name: 'SbPortal',
 
+  inheritAttrs: false,
+
   props: {
     as: {
       type: String,
