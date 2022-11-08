@@ -47,11 +47,9 @@ export default {
     tooltip: Tooltip,
   },
 
+  inject: ['activeTab'],
+
   props: {
-    activate: {
-      type: Boolean,
-      default: false,
-    },
     editable: {
       type: Boolean,
       default: false,
@@ -96,11 +94,14 @@ export default {
         'sb-tab--disabled': this.isDisabled,
         'sb-tab--has-icon': this.icon,
         'sb-tab--editable': this.editable,
-        'sb-tab--is-active': this.activate,
+        'sb-tab--is-active': this.isActive,
       }
     },
     computedTabIndex() {
-      return this.activate ? null : -1
+      return this.isActive ? null : -1
+    },
+    isActive() {
+      return this.activeTab() === this.name
     },
   },
 

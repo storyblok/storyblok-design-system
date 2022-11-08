@@ -11,6 +11,12 @@ const SbTabs = {
 
   emits: ['update:modelValue', 'new-tab', 'keydown'],
 
+  provide() {
+    return {
+      activeTab: () => this.modelValue,
+    }
+  },
+
   props: {
     orientation: {
       type: String,
@@ -168,14 +174,10 @@ const SbTabs = {
 
     const processChildren = () => {
       return this.children?.map((element) => {
-        const elementProps = element.props
-        const elementId = elementProps?.name
-
         const newElement = {
           ...element,
           props: {
-            ...elementProps,
-            activate: elementId === this.modelValue,
+            ...element.props,
             onKeydown: this.handleKeyDown,
             onActivateTab: this.handleActiveTab,
           },
