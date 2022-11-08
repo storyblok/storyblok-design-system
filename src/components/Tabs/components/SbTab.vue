@@ -3,7 +3,7 @@
     class="sb-tab"
     :class="computedClasses"
     :tabindex="computedTabIndex"
-    :aria-selected="activate + ''"
+    :aria-selected="computedAriaSelected"
     :data-name="name"
     role="tab"
     type="button"
@@ -100,6 +100,9 @@ export default {
     },
     computedTabIndex() {
       return this.isActive ? null : -1
+    },
+    computedAriaSelected() {
+      return `${this.isActive}`
     },
     isActive() {
       return this.activeTab() === this.name

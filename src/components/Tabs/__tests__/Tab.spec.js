@@ -9,6 +9,11 @@ describe('Test SbTab component', () => {
         name: 'editable-tab',
         editable: true,
       },
+      global: {
+        provide: {
+          activeTab: () => 'editable-tab',
+        },
+      },
     })
 
     // select the button to edit the tag

@@ -3,7 +3,7 @@
     <button
       class="sb-accordion__button"
       :aria-expanded="isOpenLocal"
-      :aria-controls="`collapse${_uid}`"
+      :aria-controls="`collapse${title}`"
       @click="toggleAccordion"
     >
       <SbIcon :name="chevronIcon" />
@@ -21,7 +21,7 @@
     <AccordionTransition>
       <div
         v-show="isOpenLocal"
-        :id="`collapse${_uid}`"
+        :id="`collapse${title}`"
         class="sb-accordion__content"
       >
         <slot></slot>

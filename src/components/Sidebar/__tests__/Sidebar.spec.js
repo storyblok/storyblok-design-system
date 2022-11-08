@@ -83,8 +83,7 @@ describe('Test SbSidebar component', () => {
       expect(button.exists()).toBe(true)
 
       await button.trigger('mouseover')
-
-      button.vm.$emit('click')
+      await button.trigger('click')
 
       let tooltip = document.querySelector('[role="tooltip"]')
 
@@ -98,8 +97,7 @@ describe('Test SbSidebar component', () => {
         minimize: false,
       })
 
-      button.vm.$emit('click')
-
+      await button.trigger('click')
       await button.trigger('focus')
 
       tooltip = document.querySelector('[role="tooltip"]')
