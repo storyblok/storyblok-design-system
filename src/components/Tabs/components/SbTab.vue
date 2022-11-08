@@ -4,6 +4,7 @@
     :class="computedClasses"
     :tabindex="computedTabIndex"
     :aria-selected="activate + ''"
+    :data-name="name"
     role="tab"
     type="button"
     v-bind="$attrs"

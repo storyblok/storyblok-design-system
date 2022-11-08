@@ -11,11 +11,9 @@ import { h } from 'vue'
 const SbTabPanel = {
   name: 'SbTabPanel',
 
+  inject: ['activeTab'],
+
   props: {
-    activate: {
-      type: Boolean,
-      default: false,
-    },
     name: {
       type: [String, Number],
       required: true,
@@ -23,7 +21,7 @@ const SbTabPanel = {
   },
 
   render() {
-    const children = this.$slots.default ? this.$slots.default() : null
+    const isActive = this.activeTab() === this.name
 
     return h(
       'div',
@@ -31,10 +29,10 @@ const SbTabPanel = {
         ...this.$attrs,
         class: 'sb-tab-panel',
         role: 'tabpanel',
-        tabindex: this.activate ? 0 : -1,
-        'aria-hidden': !this.activate,
+        tabindex: isActive ? 0 : -1,
+        'aria-hidden': !isActive,
       },
-      children
+      this.$slots.default()
     )
   },
 }
@@ -49,6 +47,12 @@ const SbTabPanel = {
 const SbTabPanels = {
   name: 'SbTabPanels',
 
+  provide() {
+    return {
+      activeTab: () => this.modelValue,
+    }
+  },
+
   props: {
     modelValue: {
       type: [String, Number],
@@ -57,30 +61,13 @@ const SbTabPanels = {
   },
 
   render() {
-    const children = this.$slots.default ? this.$slots.default() : null
-
-    const processChildren = () => {
-      return children.map((element) => {
-        const elementProps = element.props
-        const elementId = elementProps?.name
-
-        return {
-          ...element,
-          props: {
-            ...elementProps,
-            activate: elementId === this.modelValue,
-          },
-        }
-      })
-    }
-
     return h(
       'div',
       {
         ...this.$attrs,
         class: 'sb-tab-panels',
       },
-      processChildren()
+      this.$slots.default()
     )
   },
 }
