@@ -66,10 +66,6 @@
     background-color: $light-50;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-
-    .sb-button:not(:first-child) {
-      margin-left: 20px;
-    }
   }
 
   .sb-button:not(:first-child):not(.sb-group-button:not(.sb-group-button--has-spaces)>.sb-button) {
