@@ -114,6 +114,7 @@ export default {
           'sb-button--has-icon-right': this.iconRight,
           'sb-button--loading': this.isLoading,
         },
+        this.$attrs.class,
       ]
     },
     useTooltipDirective() {
