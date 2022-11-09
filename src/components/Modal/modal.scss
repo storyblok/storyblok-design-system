@@ -68,10 +68,6 @@
     border-bottom-right-radius: 5px;
   }
 
-  .sb-button:not(:first-child):not(.sb-group-button:not(.sb-group-button--has-spaces)>.sb-button) {
-    margin-left: 20px;
-  }
-
   &-header {
     box-sizing: border-box;
     width: 100%;
