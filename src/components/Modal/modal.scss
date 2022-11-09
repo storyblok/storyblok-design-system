@@ -108,6 +108,11 @@
       text-align: center;
     }
 
+    &__subtitle {
+      font-size: $heading-base;
+      line-height: 1.2;
+    }
+
     &__actions {
       display: flex;
       align-items: center;
