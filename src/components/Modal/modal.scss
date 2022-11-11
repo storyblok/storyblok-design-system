@@ -56,6 +56,7 @@
     bottom: 0;
     display: flex;
     flex-direction: row;
+    gap: 10px;
     align-items: center;
     justify-content: flex-end;
     width: 100%;
@@ -66,14 +67,6 @@
     background-color: $light-50;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-
-    .sb-button:not(:first-child) {
-      margin-left: 20px;
-    }
-  }
-
-  .sb-button:not(:first-child):not(.sb-group-button:not(.sb-group-button--has-spaces)>.sb-button) {
-    margin-left: 20px;
   }
 
   &-header {
@@ -103,9 +96,14 @@
 
     &__title {
       color: $sb-dark-blue;
-      font-size: $heading-xl;
+      font-size: $heading-lg;
       font-weight: $font-weight-bold;
       text-align: center;
+    }
+
+    &__subtitle {
+      font-size: $heading-base;
+      line-height: 1.2;
     }
 
     &__actions {
