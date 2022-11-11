@@ -3,7 +3,7 @@
     v-tooltip="useTooltipDirective"
     :class="activeClasses"
     :disabled="isDisabled || isLoading"
-    :ariaDisabled="isDisabled || isLoading"
+    :aria-disabled="isDisabled || isLoading"
     :type="type"
     @click="handleClick"
   >
