@@ -4,15 +4,12 @@ import Accordion from '..'
 import SbTextField from '../../TextField'
 import { h } from 'vue'
 
-const localVue = global.localVue
-
 const factory = (props) => {
   return mount(Accordion, {
     props,
     slots: {
       default: h(SbTextField),
     },
-    localVue,
   })
 }
 
