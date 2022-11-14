@@ -1,19 +1,20 @@
 <template>
   <div class="sb-toggle" :class="componentClasses">
-    <input
-      :id="id"
-      v-model="computedValue"
-      v-bind="$attrs"
-      :indeterminate.prop="indeterminate"
-      class="sb-toggle__native"
-      type="checkbox"
-      :name="name"
-      :value="nativeValue"
-      :required="required"
-      :disabled="disabled"
-      @click.stop
-    />
-    <label :for="id" class="sb-toggle__label">{{ label }}</label>
+    <label>
+      <input
+        v-model="computedValue"
+        v-bind="$attrs"
+        :indeterminate.prop="indeterminate"
+        class="sb-toggle__native"
+        type="checkbox"
+        :name="name"
+        :value="nativeValue"
+        :required="required"
+        :disabled="disabled"
+        @click.stop
+      />
+      <span class="sb-toggle__label">{{ label }}</span>
+    </label>
     <SbIcon
       v-if="icon"
       class="sb-toggle__icon sb-toggle__icon--active"
