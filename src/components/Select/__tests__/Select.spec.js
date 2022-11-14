@@ -206,7 +206,7 @@ describe('SbSelect component', () => {
 
     it('should not show a tag if the value are not included in the list of available options to choose', () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           ...defaultsprops,
           modelValue: [10902],
         },
