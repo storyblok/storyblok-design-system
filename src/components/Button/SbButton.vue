@@ -2,8 +2,8 @@
   <button
     v-tooltip="useTooltipDirective"
     :class="activeClasses"
-    :disabled="isDisabled || isLoading"
-    :aria-disabled="isDisabled || isLoading"
+    :disabled="computedDisabled"
+    :aria-disabled="computedDisabled"
     :type="type"
     @click="handleClick"
   >
@@ -136,6 +136,12 @@ export default {
         'primary-link',
       ]
       return whiteLoading.indexOf(this.variant) < 4 ? 'white' : 'primary-dark'
+    },
+    computedDisabled() {
+      if (this.isDisabled || this.isLoading) {
+        return true
+      }
+      return null
     },
   },
   methods: {
