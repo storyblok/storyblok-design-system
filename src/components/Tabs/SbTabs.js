@@ -67,7 +67,14 @@ const SbTabs = {
       let children = this.$slots.default && this.$slots.default()
       const hasFirstNode = children && children.length > 0
       const isFirstNodeTab = children[0]?.type?.name === 'SbTab'
-      if (!isFirstNodeTab && hasFirstNode) children = children[0].children
+      if (!isFirstNodeTab && hasFirstNode) {
+        const grandChildren = children[0].children?.length
+        const isSecondNodeTab =
+          grandChildren && grandChildren[0]?.type?.name === 'SbTab'
+        if (isSecondNodeTab) {
+          return children[0].children
+        }
+      }
       return children
     },
     childVNodes() {
@@ -173,20 +180,16 @@ const SbTabs = {
     }
 
     const processChildren = () => {
-      return this.children
-        ? this.children.map((element) => {
-            const newElement = {
-              ...element,
-              props: {
-                ...element.props,
-                onKeydown: this.handleKeyDown,
-                onActivateTab: this.handleActiveTab,
-              },
-            }
-
-            return newElement
-          })
-        : this.children
+      return this.children.map((element) => {
+        return {
+          ...element,
+          props: {
+            ...element.props,
+            onKeydown: this.handleKeyDown,
+            onActivateTab: this.handleActiveTab,
+          },
+        }
+      })
     }
 
     return h(
