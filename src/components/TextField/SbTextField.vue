@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-textfield" v-bind="$attrs">
+  <div class="sb-textfield">
     <label v-if="label" :for="id" class="sb-textfield__label">
       {{ label }} <span v-if="required" class="sb-textfield__required">*</span>
     </label>
@@ -7,6 +7,7 @@
       <span v-if="prefix" class="sb-textfield__prefix">{{ prefix }}</span>
       <input
         v-if="!isTextAreaType"
+        v-bind="$attrs"
         :id="id"
         ref="textfield"
         v-model="computedValue"
