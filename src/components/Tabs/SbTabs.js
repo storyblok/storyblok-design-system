@@ -67,13 +67,8 @@ const SbTabs = {
       let children = this.$slots.default && this.$slots.default()
       const hasFirstNode = children && children.length > 0
       const isFirstNodeTab = children[0]?.type?.name === 'SbTab'
-      if (!isFirstNodeTab && hasFirstNode) {
-        const grandChildren = children[0].children?.length
-        const isSecondNodeTab =
-          grandChildren && grandChildren[0]?.type?.name === 'SbTab'
-        if (isSecondNodeTab) {
-          return children[0].children
-        }
+      if (!isFirstNodeTab && hasFirstNode && children[0].children?.length) {
+        return children[0].children
       }
       return children
     },
