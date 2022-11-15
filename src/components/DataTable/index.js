@@ -223,7 +223,7 @@ const SbDataTable = {
               row: tableRow,
               selectedRows: this.hasSelectedRowsInList,
             },
-            columns
+            () => [columns]
           )
         })
       }
