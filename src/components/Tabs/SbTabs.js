@@ -173,18 +173,20 @@ const SbTabs = {
     }
 
     const processChildren = () => {
-      return this.children?.map((element) => {
-        const newElement = {
-          ...element,
-          props: {
-            ...element.props,
-            onKeydown: this.handleKeyDown,
-            onActivateTab: this.handleActiveTab,
-          },
-        }
+      return this.children
+        ? this.children.map((element) => {
+            const newElement = {
+              ...element,
+              props: {
+                ...element.props,
+                onKeydown: this.handleKeyDown,
+                onActivateTab: this.handleActiveTab,
+              },
+            }
 
-        return newElement
-      })
+            return newElement
+          })
+        : this.children
     }
 
     return h(
