@@ -191,7 +191,7 @@
     display: block;
     overflow-y: scroll;
     width: 50%;
-    max-height: 294px;
+    max-height: 295px;
     border-bottom: 1px solid $light;
   }
 
@@ -203,7 +203,12 @@
     height: 42px;
     padding: 10px;
     text-align: center;
+    border-right: 0;
     cursor: pointer;
+
+    &:last-of-type {
+      border-bottom: 0;
+    }
   }
 }
 
