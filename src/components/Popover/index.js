@@ -109,6 +109,12 @@ const SbPopover = {
             offset: this.offset,
           },
         },
+        {
+          name: 'computeStyles',
+          options: {
+            adaptive: false,
+          },
+        },
         arrow,
         hide,
       ]
