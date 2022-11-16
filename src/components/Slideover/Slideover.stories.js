@@ -11,12 +11,9 @@ const SlideoverTemplate = (args) => ({
     SbModalFooter,
   },
   props: Object.keys(args),
-  mounted() {
-    this.handleOpenSlide()
-  },
   methods: {
-    handleOpenSlide() {
-      this.show = true
+    handleToggleSlide() {
+      this.show = !this.show
     },
   },
   data: () => ({
@@ -26,12 +23,12 @@ const SlideoverTemplate = (args) => ({
     <div>
       <SbButton
         label="Open Slideover!"
-        @click="handleOpenSlide"
+        @click="handleToggleSlide"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
       <SbSlideover
         :is-open="show"
-        @hide="show = false"
+        @hide="handleToggleSlide"
         :orientation="orientation">
 
         <SbModalHeader :title="title" align="left" />
@@ -84,12 +81,9 @@ SlideoverOnLeft.args = {
 export const SlideoverWithoutFooter = (args) => ({
   components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
   props: Object.keys(args),
-  mounted() {
-    this.handleOpenSlide()
-  },
   methods: {
-    handleOpenSlide() {
-      this.show = true
+    handleToggleSlide() {
+      this.show = !this.show
     },
   },
   data: () => ({
@@ -99,12 +93,12 @@ export const SlideoverWithoutFooter = (args) => ({
     <div>
       <SbButton
         label="Open Slideover!"
-        @click="handleOpenSlide"
+        @click="handleToggleSlide"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
       <SbSlideover
         :is-open="show"
-        @hide="show = false"
+        @hide="handleToggleSlide"
         :orientation="orientation">
 
         <SbModalHeader title="Hi man" align="left" />
@@ -120,12 +114,9 @@ export const SlideoverWithoutFooter = (args) => ({
 export const SlideoverInMaxSize = (args) => ({
   components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
   props: Object.keys(args),
-  mounted() {
-    this.handleOpenSlide()
-  },
   methods: {
-    handleOpenSlide() {
-      this.show = true
+    handleToggleSlide() {
+      this.show = !this.show
     },
   },
   data: () => ({
@@ -135,12 +126,12 @@ export const SlideoverInMaxSize = (args) => ({
     <div>
       <SbButton
         label="Open Slideover!"
-        @click="handleOpenSlide"
+        @click="handleToggleSlide"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
       <SbSlideover
         :is-open="show"
-        @hide="show = false"
+        @hide="handleToggleSlide"
         :orientation="orientation">
 
         <SbModalHeader title="Hi man" align="left" />
