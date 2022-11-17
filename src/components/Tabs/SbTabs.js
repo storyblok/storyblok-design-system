@@ -68,7 +68,10 @@ const SbTabs = {
       const hasFirstNode = children && children.length > 0
       const isFirstNodeTab = children[0]?.type?.name === 'SbTab'
       if (!isFirstNodeTab && hasFirstNode && children[0].children?.length) {
-        return children[0].children
+        const isSecondNodeTab = children[0].children[0]?.type?.name === 'SbTab'
+        if (isSecondNodeTab) {
+          return children[0].children
+        }
       }
       return children
     },
