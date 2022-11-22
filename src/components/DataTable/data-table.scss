@@ -44,6 +44,13 @@
     }
   }
 
+  &__head-cell,
+  &__body-cell {
+    &--centered {
+      text-align: center;
+    }
+  }
+
   &--loading {
     position: relative;
 

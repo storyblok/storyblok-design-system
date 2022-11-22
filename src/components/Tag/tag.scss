@@ -44,8 +44,16 @@
     @include setColor($blue, $white);
   }
 
-  &--light {
+  &--light-grey {
     @include setColor($light, $primary-text-color);
+  }
+
+  &--dark-grey {
+    @include setColor($neutral-gray, $white);
+  }
+
+  &--dark-ink {
+    @include setColor($color-primary-dark, $white);
   }
 
   &--light-info {

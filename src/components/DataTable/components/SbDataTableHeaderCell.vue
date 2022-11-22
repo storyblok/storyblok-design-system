@@ -1,7 +1,7 @@
 <template>
   <th
     class="sb-data-table__head-cell"
-    :class="{ 'sb-data-table--show-icon': showSortIcon }"
+    :class="computedClasses"
     @click="toggleSort"
   >
     <div v-if="hasHeaderSlot" class="sb-data-table__header-template">
@@ -73,6 +73,17 @@ export default {
 
     hasHeaderSlot() {
       return this.column?.scopedSlots?.header
+    },
+
+    computedClasses() {
+      let classesList = []
+      if (this.showSortIcon) {
+        classesList = [...classesList, 'sb-data-table--show-icon']
+      }
+      if (this.column?.isContentCentered) {
+        classesList = [...classesList, 'sb-data-table__head-cell--centered']
+      }
+      return classesList
     },
   },
 
