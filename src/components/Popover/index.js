@@ -109,6 +109,16 @@ const SbPopover = {
             offset: this.offset,
           },
         },
+        {
+          name: 'computeStyles',
+          options: {
+            adaptive: false,
+            roundOffsets: ({ x, y }) => ({
+              x: Math.round(x),
+              y: Math.round(y - 1),
+            }),
+          },
+        },
         arrow,
         hide,
       ]
