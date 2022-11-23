@@ -51,6 +51,12 @@
     }
   }
 
+  &__head-cell {
+    &--sortable {
+      cursor: pointer;
+    }
+  }
+
   &--loading {
     position: relative;
 

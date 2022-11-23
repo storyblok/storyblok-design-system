@@ -83,6 +83,9 @@ export default {
       if (this.column?.isContentCentered) {
         classesList = [...classesList, 'sb-data-table__head-cell--centered']
       }
+      if (this.column?.sortable) {
+        classesList = [...classesList, 'sb-data-table__head-cell--sortable']
+      }
       return classesList
     },
   },
