@@ -29,6 +29,7 @@ import { tagTypes } from './lib'
 
 export default {
   name: 'SbTag',
+
   directives: {
     tooltip: Tooltip,
   },
@@ -50,6 +51,8 @@ export default {
       validator: (type) => includes(tagTypes, type),
     },
   },
+
+  emits: ['close'],
   computed: {
     staticClass() {
       return `sb-tag sb-tag--${this.type}`

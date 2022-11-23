@@ -65,6 +65,8 @@ export default {
     },
   },
 
+  emits: ['cancel', 'confirm', 'hide'],
+
   data: () => ({
     open: false,
   }),

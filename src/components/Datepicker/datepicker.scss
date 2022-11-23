@@ -9,6 +9,14 @@
     background-color: $sb-dark-blue-25;
   }
 
+  &--current {
+    background-color: $light-50;
+
+    &:hover {
+      background-color: $sb-green-25;
+    }
+  }
+
   &--active {
     font-size: $font-19;
     font-weight: $font-weight-medium;
@@ -16,6 +24,16 @@
 
     &:hover {
       background-color: $sb-green-25;
+    }
+  }
+
+  &--disabled {
+    color: $sb-dark-blue-50;
+    text-decoration: line-through;
+    cursor: no-drop;
+
+    &:hover {
+      background-color: $white;
     }
   }
 }
@@ -29,6 +47,10 @@
 
   &__input {
     position: relative;
+
+    .sb-textfield__icon {
+      cursor: pointer;
+    }
   }
 
   &__timezone {
@@ -51,12 +73,12 @@
 
   &__actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     background-color: $white;
   }
 
   &__action-button {
-    padding: 15px 20px;
+    padding: 15px 37.5px;
     color: $color-primary-dark;
     font-size: $font-14;
     font-weight: $font-weight-medium;
@@ -69,14 +91,15 @@
     }
 
     &--primary {
-      color: $color-primary;
+      color: $white;
+      background-color: $color-primary;
     }
   }
 }
 
 .sb-datepicker-header {
   z-index: 2;
-  background-color: $light;
+  background-color: $light-50;
 
   &__top {
     display: flex;
@@ -121,7 +144,7 @@
 .sb-datepicker-week {
   display: flex;
   padding-bottom: 10px;
-  background-color: $light;
+  background-color: $light-50;
 
   span {
     flex: 1;
@@ -168,7 +191,7 @@
     display: block;
     overflow-y: scroll;
     width: 50%;
-    max-height: 294px;
+    max-height: 295px;
     border-bottom: 1px solid $light;
   }
 
@@ -180,7 +203,12 @@
     height: 42px;
     padding: 10px;
     text-align: center;
+    border-right: 0;
     cursor: pointer;
+
+    &:last-of-type {
+      border-bottom: 0;
+    }
   }
 }
 

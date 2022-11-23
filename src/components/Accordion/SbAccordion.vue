@@ -36,10 +36,13 @@ import AccordionTransition from './AccordionTransition'
 import { computed, watch, ref } from 'vue'
 
 export default {
+  name: 'SbAccordion',
+
   components: {
     AccordionTransition,
     SbIcon,
   },
+
   props: {
     icon: {
       type: String,
@@ -71,7 +74,8 @@ export default {
       required: true,
     },
   },
-  emits: ['toggle-open', 'icon-click'],
+
+  emits: ['icon-click'],
   setup(props, { emit }) {
     const isOpenLocal = ref(props.isOpen)
     const chevronIcon = computed(() =>

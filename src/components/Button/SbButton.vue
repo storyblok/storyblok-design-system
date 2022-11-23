@@ -34,13 +34,17 @@ import SbIcon from '../Icon'
 import SbLoading from '../Loading'
 
 export default {
+  name: 'SbButton',
+
   components: {
     SbIcon,
     SbLoading,
   },
+
   directives: {
     tooltip: Tooltip,
   },
+
   props: {
     hasIconOnly: {
       type: Boolean,

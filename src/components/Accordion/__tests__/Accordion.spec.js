@@ -4,6 +4,8 @@ import Accordion from '..'
 
 import SbTextField from '../../TextField'
 
+const localVue = global.localVue
+
 const factory = (propsData) => {
   return mount(Accordion, {
     propsData,
@@ -13,6 +15,7 @@ const factory = (propsData) => {
     stubs: {
       SbTextField,
     },
+    localVue,
   })
 }
 

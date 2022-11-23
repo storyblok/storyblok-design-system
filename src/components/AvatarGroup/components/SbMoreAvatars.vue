@@ -50,6 +50,8 @@ export default {
     },
   },
 
+  emits: ['click'],
+
   data() {
     return {
       expanded: false,
@@ -79,13 +81,15 @@ export default {
       }
     },
 
-    handleClick(event) {
+    handleClick() {
       this.toggleExpanded()
-      this.$emit('click', event)
     },
 
     toggleExpanded() {
       this.expanded = !this.expanded
+      this.$emit('toggle-avatars-dropdown', {
+        isExpanded: this.expanded,
+      })
     },
 
     handleClickOutside(event) {

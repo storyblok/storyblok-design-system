@@ -36,10 +36,12 @@ import AccordionTransition from './AccordionTransition'
 
 export default {
   name: 'SbAccordion',
+
   components: {
     AccordionTransition,
     SbIcon,
   },
+
   props: {
     icon: {
       type: String,
@@ -71,11 +73,15 @@ export default {
       required: true,
     },
   },
+
+  emits: ['icon-click', 'toggle-open'],
+
   data() {
     return {
       isOpenLocal: false,
     }
   },
+
   computed: {
     chevronIcon() {
       return this.isOpenLocal ? 'chevron-down' : 'chevron-right'

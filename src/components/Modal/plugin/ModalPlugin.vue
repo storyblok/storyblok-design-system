@@ -52,6 +52,8 @@ export default {
     },
   },
 
+  emits: ['hide'],
+
   data: () => ({
     open: false,
   }),

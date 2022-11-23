@@ -36,6 +36,8 @@
   font-size: $font-14;
   font-weight: $font-weight-medium;
   text-align: center;
+  background-color: transparent;
+  border: 0;
   cursor: pointer;
 
   &:hover {
@@ -57,6 +59,10 @@
     height: 3px;
     background-color: $sb-green;
   }
+}
+
+.sb-tab:focus {
+  color: $sb-green;
 }
 
 .sb-tab--editable {

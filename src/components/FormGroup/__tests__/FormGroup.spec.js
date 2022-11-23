@@ -4,6 +4,8 @@ import SbFormGroup from '..'
 
 import SbTextField from '../../TextField'
 
+const localVue = global.localVue
+
 const factory = (propsData) => {
   return mount(SbFormGroup, {
     propsData,
@@ -13,6 +15,7 @@ const factory = (propsData) => {
     stubs: {
       SbTextField,
     },
+    localVue,
   })
 }
 

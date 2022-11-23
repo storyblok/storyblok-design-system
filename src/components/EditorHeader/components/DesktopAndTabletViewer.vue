@@ -121,6 +121,8 @@ export default {
     isOnMobileOrTablet: Boolean,
   },
 
+  emits: ['changes'],
+
   data: () => ({
     selectedLanguage: null,
   }),

@@ -9,6 +9,7 @@ import SbAvatar from '../../Avatar'
 
 import {
   defaultSelectOptionsData,
+  selectOptionsDataWithAllOption,
   defaultAvatarsData,
   defaultOptionsWithCaptionData,
 } from '../Select.stories'
@@ -201,6 +202,57 @@ describe('SbSelect component', () => {
       await buttonComponent.trigger('click')
 
       expect(wrapper.emitted('input')[0][0]).toEqual([])
+    })
+
+    it('should not show a tag if the value are not included in the list of available options to choose', () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          ...defaultsPropsData,
+          value: [10902],
+        },
+      })
+
+      expect(wrapper.findAllComponents(SbTag)).toHaveLength(0)
+    })
+  })
+
+  describe('Multiselect with a "all" option', () => {
+    const defaultsPropsData = {
+      label: 'Choose an option',
+      options: [...selectOptionsDataWithAllOption],
+      firstValueIsAllValue: true,
+      multiple: true,
+    }
+
+    const getFirstValue = (wrapper, event) => wrapper.emitted(event)[0][0]
+
+    it('should uncheck the "all option" when other options are selected', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          ...defaultsPropsData,
+          value: [0],
+        },
+      })
+
+      const innerElement = wrapper.find('.sb-select-inner')
+      await innerElement.trigger('click')
+      await wrapper.findAll('li').at(1).trigger('click')
+      expect(wrapper.find('ul').exists()).toBe(true)
+      expect(getFirstValue(wrapper, 'input')).toEqual([1])
+    })
+
+    it('should uncheck all other option when "all option" is selected', async () => {
+      const wrapper = mountAttachingComponent(SbSelect, {
+        propsData: {
+          ...defaultsPropsData,
+          value: [1, 2],
+        },
+      })
+
+      const innerElement = wrapper.find('.sb-select-inner')
+      await innerElement.trigger('click')
+      await wrapper.findAll('li').at(0).trigger('click')
+      expect(getFirstValue(wrapper, 'input')).toEqual([0])
     })
   })
 
