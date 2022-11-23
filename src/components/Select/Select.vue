@@ -305,9 +305,7 @@ export default {
 
     searchInput(newValue) {
       this.$emit('search-input', newValue)
-      debounce(this.filterDebounce, function (newValue) {
-        this.$emit('filter', newValue)
-      })
+      this.handleDebouncedFilter(newValue)
     },
   },
 
@@ -649,6 +647,12 @@ export default {
       if (this.infiniteScroll) {
         this.$emit('load-more')
       }
+    },
+
+    handleDebouncedFilter(value) {
+      debounce(this.filterDebounce, () => {
+        this.$emit('filter', value)
+      })()
     },
   },
 }
