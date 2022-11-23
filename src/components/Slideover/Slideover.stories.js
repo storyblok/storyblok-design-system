@@ -10,8 +10,11 @@ const SlideoverTemplate = (args) => ({
     SbModalContent,
     SbModalFooter,
   },
-  setup() {
-    return { ...args }
+  props: Object.keys(args),
+  methods: {
+    handleToggleSlide() {
+      this.show = !this.show
+    },
   },
   data: () => ({
     show: false,
@@ -20,12 +23,12 @@ const SlideoverTemplate = (args) => ({
     <div>
       <SbButton
         label="Open Slideover!"
-        @click="show = true"
+        @click="handleToggleSlide"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
       <SbSlideover
         :is-open="show"
-        @hide="show = false"
+        @hide="handleToggleSlide"
         :orientation="orientation">
 
         <SbModalHeader :title="title" align="left" />
@@ -77,8 +80,11 @@ SlideoverOnLeft.args = {
 
 export const SlideoverWithoutFooter = (args) => ({
   components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
-  setup() {
-    return { args }
+  props: Object.keys(args),
+  methods: {
+    handleToggleSlide() {
+      this.show = !this.show
+    },
   },
   data: () => ({
     show: false,
@@ -87,12 +93,12 @@ export const SlideoverWithoutFooter = (args) => ({
     <div>
       <SbButton
         label="Open Slideover!"
-        @click="show = true"
+        @click="handleToggleSlide"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
       <SbSlideover
         :is-open="show"
-        @hide="show = false"
+        @hide="handleToggleSlide"
         :orientation="orientation">
 
         <SbModalHeader title="Hi man" align="left" />
@@ -107,8 +113,11 @@ export const SlideoverWithoutFooter = (args) => ({
 
 export const SlideoverInMaxSize = (args) => ({
   components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
-  setup() {
-    return { ...args }
+  props: Object.keys(args),
+  methods: {
+    handleToggleSlide() {
+      this.show = !this.show
+    },
   },
   data: () => ({
     show: false,
@@ -117,12 +126,12 @@ export const SlideoverInMaxSize = (args) => ({
     <div>
       <SbButton
         label="Open Slideover!"
-        @click="show = true"
+        @click="handleToggleSlide"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
       <SbSlideover
         :is-open="show"
-        @hide="show = false"
+        @hide="handleToggleSlide"
         :orientation="orientation">
 
         <SbModalHeader title="Hi man" align="left" />
