@@ -8,6 +8,7 @@ You can see the Design System live under <https://blok.ink>
 ## Compatibility
 The `storyblok-design-system` is compatible with Vue 2 only. For Vue 3, please use the `@storyblok/design-system` package.
 
+
 ## Project setup
 ```sh
 yarn install # or npm run install
