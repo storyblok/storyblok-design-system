@@ -25,7 +25,6 @@ import BlokInk from '@storyblok/design-system'
 import '@storyblok/design-system/dist/storyblok-design-system.css'
  
 app.use(BlokInk) // vue 3
-
 ```
 
 For more information on the usage of the Design System go to:
