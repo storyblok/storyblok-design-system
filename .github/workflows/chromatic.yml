@@ -1,9 +1,10 @@
 # Workflow name
 name: 'Chromatic Deployment'
 
-# Event for the workflow
-# Only trigger the current job when occurs a push to any branch
-on: push
+on:
+  push:
+    branches:
+      - master
 
 # List of jobs
 jobs:
