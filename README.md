@@ -1,9 +1,12 @@
-# storyblok-design-system
+# Storyblok's Design System
 
-Storyblok's Design System
+This Design System is an open-source collection of components that are used in <https://app.storyblok.com> and is continiously developed to improve Storyblok.
 
-## Compatibility 
-Our current version is compatible with Vue 2. We will be working on a new version that will be Vue 3 compatible.
+# Demo
+You can see the Design System live under <https://blok.ink>
+
+## Compatibility
+The `storyblok-design-system` is compatible with Vue 2 only. For Vue 3, please use the `@storyblok/design-system` package.
 
 ## Project setup
 ```sh
