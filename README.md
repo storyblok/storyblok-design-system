@@ -4,7 +4,7 @@ This Design System is an open-source collection of components that are used in a
 
 ## Demo
 
-You can see the Design System live under <https://next.blok.ink>
+You can see the Design System live under <https://new.blok.ink>
 
 ## Compatibility 
 The `@storyblok/design-system` package is compatible with Vue 3 only. For Vue 2, please use the `storyblok-design-system` package.
