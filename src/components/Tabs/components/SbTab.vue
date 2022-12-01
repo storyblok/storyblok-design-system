@@ -48,7 +48,7 @@ export default {
     tooltip: Tooltip,
   },
 
-  inject: ['activeTab'],
+  inject: ['activeTab', 'onKeyDown', 'onActivateTab'],
 
   props: {
     editable: {
@@ -113,6 +113,7 @@ export default {
     capitalize,
     triggerActivateTab(value) {
       this.$emit('activate-tab', value)
+      this.onActivateTab(value)
     },
 
     handleClick() {
@@ -123,6 +124,7 @@ export default {
 
     handleKeyDown(event) {
       this.$emit('keydown', event)
+      this.onKeyDown(event)
     },
 
     handleClickEditButton() {

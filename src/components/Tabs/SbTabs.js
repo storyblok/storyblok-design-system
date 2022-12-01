@@ -14,6 +14,8 @@ const SbTabs = {
   provide() {
     return {
       activeTab: () => this.modelValue,
+      onKeyDown: this.handleKeyDown,
+      onActivateTab: this.handleActiveTab,
     }
   },
 
@@ -177,19 +179,6 @@ const SbTabs = {
       })
     }
 
-    const processChildren = () => {
-      return this.children.map((element) => {
-        return {
-          ...element,
-          props: {
-            ...element.props,
-            onKeydown: this.handleKeyDown,
-            onActivateTab: this.handleActiveTab,
-          },
-        }
-      })
-    }
-
     return h(
       'div',
       {
@@ -204,7 +193,7 @@ const SbTabs = {
         role: 'tablist',
       },
       [
-        processChildren(),
+        this.children,
         ...this.additionalTabs,
         this.enableAddButton && renderAddButton(),
       ]
