@@ -234,10 +234,8 @@ export default {
     },
 
     hasDefaultSlot() {
-      const slot = this.$slots
-        ?.default()
-        .filter((slot) => slot.key !== '_innerSelect')
-      return this.$slots.default && slot.length > 0
+      const slot = this.$slots?.default()
+      return slot && slot.length > 0
     },
 
     innerLabel() {
