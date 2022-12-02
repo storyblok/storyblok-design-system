@@ -235,7 +235,9 @@ export default {
 
     hasDefaultSlot() {
       const slot = this.$slots?.default()
-      return slot && slot.length > 0
+      const slotIsInner = slot && slot[0]?.key === '_innerSelect'
+      const slotInnerHasChildren = slotIsInner && slot[0]?.children?.length > 0
+      return slotInnerHasChildren || (!slotIsInner && slot?.length > 0)
     },
 
     innerLabel() {
