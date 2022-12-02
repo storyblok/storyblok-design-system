@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-textfield">
+  <div class="sb-textfield" :class="$attrs.class">
     <label v-if="label" :for="id" class="sb-textfield__label">
       {{ label }} <span v-if="required" class="sb-textfield__required">*</span>
     </label>

@@ -62,6 +62,7 @@ export default {
   computed: {
     componentClasses() {
       return [
+        this.$attrs.class,
         this.inline && 'sb-checkbox--inline',
         this.outline && 'sb-checkbox--outline',
       ]
