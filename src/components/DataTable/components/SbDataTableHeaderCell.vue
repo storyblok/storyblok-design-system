@@ -76,17 +76,11 @@ export default {
     },
 
     computedClasses() {
-      let classesList = []
-      if (this.showSortIcon) {
-        classesList = [...classesList, 'sb-data-table--show-icon']
+      return {
+        'sb-data-table--show-icon': this.showSortIcon,
+        'sb-data-table__head-cell--centered': this.column?.isContentCentered,
+        'sb-data-table__head-cell--sortable': this.column?.sortable,
       }
-      if (this.column?.isContentCentered) {
-        classesList = [...classesList, 'sb-data-table__head-cell--centered']
-      }
-      if (this.column?.sortable) {
-        classesList = [...classesList, 'sb-data-table__head-cell--sortable']
-      }
-      return classesList
     },
   },
 
