@@ -8,6 +8,16 @@
 
     <span class="sb-sidebar-link__label">
       {{ label }}
+      <SbIcon
+        v-if="iconTooltip"
+        v-tooltip="{
+          label: iconTooltipLabel,
+          position: 'top',
+          variant: 'light',
+        }"
+        :size="iconTooltipSize"
+        :name="iconTooltip"
+      />
     </span>
 
     <SbIcon
@@ -50,6 +60,18 @@ export default {
     iconRightSize: {
       type: String,
       default: 'normal',
+    },
+    iconTooltip: {
+      type: String,
+      default: null,
+    },
+    iconTooltipSize: {
+      type: String,
+      default: 'normal',
+    },
+    iconTooltipLabel: {
+      type: String,
+      default: null,
     },
     hasSeparator: {
       type: Boolean,
