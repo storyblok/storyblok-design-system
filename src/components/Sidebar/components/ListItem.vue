@@ -19,6 +19,9 @@
         :icon="icon"
         :icon-right="iconRight"
         :icon-right-size="iconRightSize"
+        :icon-tooltip="iconTooltip"
+        :icon-tooltip-size="iconTooltipSize"
+        :icon-tooltip-label="iconTooltipLabel"
         :has-separator="hasSeparator"
         :label="label"
       />
