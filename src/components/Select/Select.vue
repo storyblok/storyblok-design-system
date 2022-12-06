@@ -405,7 +405,7 @@ export default {
 
         this.$emit(
           'update:modelValue',
-          this.validateValue($value, this.modelValue)
+          this.validateValue(value, this.modelValue)
         )
         return
       }
