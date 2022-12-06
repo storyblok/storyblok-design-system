@@ -24,6 +24,7 @@
       v-if="editable && !isDisabled"
       @click="handleClickEditButton"
     />
+    <slot />
   </button>
 </template>
 

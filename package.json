@@ -1,6 +1,10 @@
 {
   "name": "@storyblok/design-system",
   "version": "3.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/storyblok/storyblok-design-system.git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib ./src/main.js",

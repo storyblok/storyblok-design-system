@@ -385,10 +385,23 @@ export default {
      * @param {Array<String>|String} value
      */
     handleEmitValue(value) {
-      // doesn't close the list
       if (this.multiple) {
+        const valueExists = this.options.find(
+          (option) =>
+            option === value ||
+            option[this.itemValue] === value ||
+            option[this.itemLabel] === value
+        )
+
+        if (valueExists) {
+          const parsedValue = this.emitOption ? valueExists : value
+          const inputValue = this.processMultipleValue(parsedValue)
+          this.$emit('input', this.validateValue(inputValue, this.value))
+        } else if (this.allowCreate) {
+          this.handleOptionCreated(value)
+        }
+
         this.searchInput = ''
-        const $value = this.processMultipleValue(value)
 
         this.$emit(
           'update:modelValue',
@@ -428,6 +441,7 @@ export default {
     handleOptionCreated(value) {
       this.searchInput = ''
       this.$emit('option-created', value)
+      if (this.multiple) return
       this.$_focusInner()
       this.hideList()
     },
