@@ -392,24 +392,19 @@ export default {
             option[this.itemValue] === value ||
             option[this.itemLabel] === value
         )
-
         if (valueExists) {
           const parsedValue = this.emitOption ? valueExists : value
           const inputValue = this.processMultipleValue(parsedValue)
-          this.$emit('input', this.validateValue(inputValue, this.value))
+          this.$emit(
+            'update:modelValue',
+            this.validateValue(inputValue, this.modelValue)
+          )
         } else if (this.allowCreate) {
           this.handleOptionCreated(value)
         }
-
         this.searchInput = ''
-
-        this.$emit(
-          'update:modelValue',
-          this.validateValue(value, this.modelValue)
-        )
         return
       }
-
       this.searchInput = ''
       this.$emit('update:modelValue', value)
       this.$_focusInner()
