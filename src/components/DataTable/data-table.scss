@@ -44,6 +44,20 @@
     }
   }
 
+  &__head-cell,
+  &__body-cell {
+    &--centered {
+      text-align: center;
+    }
+  }
+
+  &__head-cell {
+    &--sortable {
+      cursor: pointer;
+      white-space: nowrap;
+    }
+  }
+
   &--loading {
     position: relative;
 
@@ -113,7 +127,6 @@
   }
 
   &__sort-icon {
-    margin-left: 10px;
     opacity: 0;
 
     .sb-data-table--show-icon & {
