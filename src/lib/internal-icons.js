@@ -459,8 +459,8 @@ const icons = {
     viewBox: '0 0 24 24',
     path: `
       <g fill="none" fill-rule="evenodd">
-        <rect width="16" height="16" x="4" y="4" fill="#FFAC00" rx="3"/>
-        <path fill="#FFF" d="M12.894 7.789l3.382 6.764A1 1 0 0 1 15.382 16H8.618a1 1 0 0 1-.894-1.447l3.382-6.764a1 1 0 0 1 1.788 0z"/>
+        <rect width="16" height="16" x="4" y="4" fill="#FFAC00" rx="3"/>      
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1056 7.78887C11.4741 7.05182 12.5259 7.05182 12.8944 7.78887L16.2764 14.5528C16.6088 15.2177 16.1253 16 15.382 16H8.61804C7.87465 16 7.39116 15.2177 7.72361 14.5528L11.1056 7.78887ZM11.5 10H12.5V13H11.5V10ZM12.5 14H11.5V15H12.5V14Z" fill="white"/>
       </g>
     `,
   },
