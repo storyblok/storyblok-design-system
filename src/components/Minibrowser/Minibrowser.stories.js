@@ -412,3 +412,17 @@ Inline.args = {
     },
   ],
 }
+
+export const WithLoadingBlocking = MinibrowserTemplate.bind({})
+WithLoadingBlocking.args = {
+  isLoading: true,
+}
+
+WithLoadingBlocking.parameters = {
+  docs: {
+    description: {
+      story:
+        'When the `isLoading` prop is set to `true`, the minibrowser will be blocked for navigation and selection.',
+    },
+  },
+}
