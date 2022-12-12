@@ -40,6 +40,7 @@ export default {
   computed: {
     componentClasses() {
       return [
+        this.$attrs.class,
         this.inline && 'sb-radio--inline',
         this.outline && 'sb-radio--outline',
       ]
