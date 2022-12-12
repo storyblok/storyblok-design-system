@@ -81,7 +81,7 @@
       :id="inputId"
       class="sb-select__input--hidden"
       :required="required"
-      :model-value="modelValue"
+      :value="modelValue"
     />
   </div>
 </template>
