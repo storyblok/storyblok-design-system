@@ -15,6 +15,14 @@ export const listItemsData = [
     ariaLabel: 'Go to content',
   },
   {
+    href: '#tooltip',
+    icon: 'content',
+    label: 'Content tooltip',
+    iconTooltip: 'square-warning',
+    iconTooltipLabel: 'Label content tooltip',
+    ariaLabel: 'Go to content',
+  },
+  {
     href: '#apps',
     icon: 'apps',
     label: 'Apps Directory',

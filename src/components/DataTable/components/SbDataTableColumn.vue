@@ -1,5 +1,5 @@
 <template>
-  <td class="sb-data-table__body-cell" :width="width">
+  <td class="sb-data-table__body-cell" :class="computedClasses" :width="width">
     <slot :row="row" />
   </td>
 </template>
@@ -26,6 +26,15 @@ export default {
     width: {
       type: String,
       default: null,
+    },
+    isContentCentered: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    computedClasses() {
+      return this.isContentCentered ? 'sb-data-table__body-cell--centered' : ''
     },
   },
 }

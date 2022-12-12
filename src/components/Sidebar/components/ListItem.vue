@@ -18,6 +18,9 @@
         :icon="icon"
         :icon-right="iconRight"
         :icon-right-size="iconRightSize"
+        :icon-tooltip="iconTooltip"
+        :icon-tooltip-size="iconTooltipSize"
+        :icon-tooltip-label="iconTooltipLabel"
         :has-separator="hasSeparator"
         :label="label"
       />
@@ -36,6 +39,9 @@
         :icon="icon"
         :icon-right="iconRight"
         :icon-right-size="iconRightSize"
+        :icon-tooltip="iconTooltip"
+        :icon-tooltip-size="iconTooltipSize"
+        :icon-tooltip-label="iconTooltipLabel"
         :has-separator="hasSeparator"
         :label="label"
       />
@@ -96,6 +102,18 @@ export default {
     iconRightSize: {
       type: String,
       default: 'normal',
+    },
+    iconTooltip: {
+      type: String,
+      default: null,
+    },
+    iconTooltipSize: {
+      type: String,
+      default: 'normal',
+    },
+    iconTooltipLabel: {
+      type: String,
+      default: null,
     },
     to: {
       type: [String, Object],

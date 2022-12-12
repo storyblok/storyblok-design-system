@@ -43,7 +43,7 @@ export default {
     },
     type: {
       type: String,
-      default: 'light',
+      default: 'light-grey',
       validator: (type) => includes(tagTypes, type),
     },
   },
