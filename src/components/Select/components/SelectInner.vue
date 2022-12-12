@@ -337,10 +337,11 @@ export default {
     },
 
     isInnerSearchVisible() {
-      return Boolean(
-        !this.isTagsVisible &&
-          (this.filterable || this.placeholderLabel?.length)
-      )
+      const noTags = !this.isTagsVisible
+      const noSlot = !this.hasDefaultSlot
+      const filterOrPlaceholder =
+        this.filterable || this.placeholderLabel?.length
+      return Boolean(noTags && noSlot && filterOrPlaceholder)
     },
 
     isSearchTextVisible() {
