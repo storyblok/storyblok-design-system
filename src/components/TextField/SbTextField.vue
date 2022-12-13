@@ -7,12 +7,11 @@
       <span v-if="prefix" class="sb-textfield__prefix">{{ prefix }}</span>
       <input
         v-if="!isTextAreaType"
-        v-bind="$attrs"
+        v-bind="inputAttrs"
         :id="id"
         ref="textfield"
         v-model="computedValue"
         v-maska="mask"
-        class="sb-textfield__input"
         :type="internalType"
         :placeholder="placeholder"
         :name="name"
@@ -223,7 +222,12 @@ export default {
     },
 
     componentClasses() {
-      return [...this.hasTextOnSide, ...this.hasIcon, ...this.hasSpecialClass]
+      return [
+        'sb-textfield__input',
+        ...this.hasTextOnSide,
+        ...this.hasIcon,
+        ...this.hasSpecialClass,
+      ]
     },
 
     isTextAreaType() {
@@ -279,6 +283,12 @@ export default {
         (this.iconRight || (this.error && this.iconRight)) &&
         this.type !== 'password'
       )
+    },
+    inputAttrs() {
+      return {
+        ...this.$attrs,
+        class: '',
+      }
     },
   },
 
