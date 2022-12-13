@@ -1,6 +1,6 @@
 <template>
   <div class="sb-form-item" :class="{ 'sb-form-item--grouped': grouped }">
-    <div v-if="label" class="sb-form-item__top-container">
+    <div v-if="label && !hideLabel" class="sb-form-item__top-container">
       <SbIcon v-if="icon" class="sb-form-item__icon" :name="icon" />
 
       <label v-if="label" class="sb-form-item__label" :for="labelFor">
@@ -62,16 +62,17 @@ export default {
       type: String,
       default: null,
     },
-    grouped: Boolean,
     labelFor: {
       type: String,
       default: null,
     },
-    isRequired: Boolean,
     icon: {
       type: String,
       default: null,
     },
+    grouped: Boolean,
+    isRequired: Boolean,
+    hideLabel: Boolean,
   },
 
   computed: {
