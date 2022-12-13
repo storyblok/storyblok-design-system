@@ -871,6 +871,14 @@ const pictogramIcons = {
       </g>
     `,
   },
+  'space-pictogram': {
+    viewBox: '0 0 48 48',
+    path: `
+    <circle cx="24" cy="24" r="24" fill="#CCF0EF"/>
+    <path opacity="0.57" d="M29 29V30C29 31.1046 28.1046 32 27 32H21C19.8954 32 19 31.1046 19 30V29L29 29Z" fill="#00B3B0"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M32 18C32 16.8954 31.1046 16 30 16L18 16C16.8954 16 16 16.8954 16 18V25C16 26.1046 16.8954 27 18 27H30C31.1046 27 32 26.1046 32 25V18Z" fill="#00B3B0"/>
+    `,
+  },
 }
 
 const blockIcons = {
