@@ -2,6 +2,7 @@
   <li>
     <component
       :is="as"
+      :to="to"
       :tabindex="isFocusable"
       class="sb-minibrowser__list-item"
       :class="{
@@ -72,6 +73,10 @@ export default {
     },
     value: {
       type: [String, Number],
+      default: null,
+    },
+    to: {
+      type: Object,
       default: null,
     },
   },
