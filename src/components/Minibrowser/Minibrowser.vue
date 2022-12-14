@@ -17,6 +17,7 @@
     />
 
     <div class="sb-minibrowser__list-container">
+      <SbBlockUi v-if="isLoading" in-element />
       <SbMinibrowserBreadcrumbs
         v-if="hasBreadcrumbs"
         :items="internalBreadcrumbs"
@@ -55,7 +56,7 @@ import { flatten } from '../../utils'
 import SbMinibrowserSearch from './components/MinibrowserSearch'
 import SbMinibrowserList from './components/MinibrowserList'
 import SbMinibrowserBreadcrumbs from './components/MinibrowserBreadcrumbs'
-
+import SbBlockUi from '../BlockUI'
 /**
  * SbMinibrowser is a visualization of a structure ‘hierarchy’. User can view and search content pages, folders etc.
  */
@@ -66,6 +67,7 @@ export default {
     SbMinibrowserSearch,
     SbMinibrowserList,
     SbMinibrowserBreadcrumbs,
+    SbBlockUi,
   },
 
   provide() {
@@ -263,6 +265,7 @@ export default {
      * @param {Number} index
      */
     navigateTo(index = 0) {
+      if (this.isLoading) return
       this.$emit('navigate', index)
     },
 

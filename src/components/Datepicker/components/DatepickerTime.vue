@@ -92,10 +92,10 @@ export default {
 
     handleMinuteClick(minute) {
       this.internalMinutes = minute
-      this.$_processInput()
+      this.$_processInput(true)
     },
 
-    $_processInput() {
+    $_processInput(isMinutes = false) {
       const hours = this.internalHour || 0
       const minutes = this.internalMinutes || 0
       const value = dayjs(this.internalDate)
@@ -104,6 +104,7 @@ export default {
         .format()
 
       this.$emit('update:modelValue', value)
+      if (isMinutes) this.$emit('input-minutes')
     },
 
     $_syncValue(value) {
