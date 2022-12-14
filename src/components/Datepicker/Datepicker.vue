@@ -65,6 +65,7 @@
         :max-date="maxDate"
         :disabled-past="disabledPast"
         @input="handleComponentsInput"
+        @input-minutes="handleMinutesInput"
       />
 
       <div class="sb-datepicker__actions">
@@ -430,6 +431,10 @@ export default {
       if (this.isYearView) {
         this.internalVisualization = INTERNAL_VIEWS.MONTH
       }
+    },
+
+    handleMinutesInput() {
+      this.$nextTick(this.handleDoneAction)
     },
 
     handleInputClick() {
