@@ -1,5 +1,10 @@
 <template>
-  <td class="sb-data-table__body-cell" :class="computedClasses" :width="width">
+  <td
+    class="sb-data-table__body-cell"
+    :class="computedClasses"
+    :width="width"
+    :is-sort-icon-always-visible="isSortIconAlwaysVisible"
+  >
     <slot :row="row" />
   </td>
 </template>
@@ -28,6 +33,10 @@ export default {
       default: null,
     },
     isContentCentered: {
+      type: Boolean,
+      default: false,
+    },
+    isSortIconAlwaysVisible: {
       type: Boolean,
       default: false,
     },
