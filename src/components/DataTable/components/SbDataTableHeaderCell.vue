@@ -68,7 +68,10 @@ export default {
     },
 
     showSortIcon() {
-      return (this.isSortable && this.order && this.isSortedKey) || this.isSortIconAlwaysVisible
+      return (
+        (this.isSortable && this.order && this.isSortedKey) ||
+        (this.isSortable && this.isSortIconAlwaysVisible)
+      )
     },
 
     sortKey() {
