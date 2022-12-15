@@ -14,6 +14,7 @@
         :key="index"
         :column="elem"
         :sorted-key="sortedKey"
+        :is-sort-icon-always-visible="isSortIconAlwaysVisible"
       />
     </tr>
   </thead>
@@ -45,6 +46,10 @@ export default {
     },
     allRowsSelected: {
       required: false,
+      type: Boolean,
+      default: false,
+    },
+    isSortIconAlwaysVisible: {
       type: Boolean,
       default: false,
     },
