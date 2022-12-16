@@ -29,7 +29,7 @@
   }
 
   &--primary {
-    @include setColor($color-primary, $white);
+    @include setColor(#000, $white);
   }
 
   &--negative {
