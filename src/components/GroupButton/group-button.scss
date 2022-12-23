@@ -13,6 +13,7 @@
 
   &:not(&--has-spaces) {
     .sb-button {
+      margin: -1px;
       border-radius: 0;
     }
 
