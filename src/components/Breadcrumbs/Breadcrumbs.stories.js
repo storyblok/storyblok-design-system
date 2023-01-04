@@ -48,11 +48,12 @@ export default {
   argTypes: {
     items: {
       name: 'items',
-      description: 'Breadcrumb items',
+      description: 'List with the breadcrumb items',
     },
     isLargeSection: {
       name: 'isLargeSection',
-      description: 'Enable show the username on the right',
+      description:
+        'Prop to change the style of the last item, making the item have bigger font-size and in bold, and the item will be rendered on the next line.',
       control: {
         type: 'boolean',
       },
@@ -121,53 +122,53 @@ WithLargeSection.parameters = {
   docs: {
     description: {
       story:
-        'When you set the attribute `isLargeSection`, the last item will be show in a new line',
+        'When you set the attribute `isLargeSection`, the last item will be show in a new line, and the font size of this item will be changed to `$heading-xl` with the `2.6rem` size.',
     },
   },
 }
 
-export const LongBreadcrums = (args) => ({
-  components: { SbBreadcrumbs, SbBreadcrumbItem },
+export const LongBreadcrumbs = (args) => ({
+  components: { SbBreadcrumbs },
   props: Object.keys(args),
-  computed: {
-    lastIndex() {
-      return this.items.length - 1
-    },
-  },
   template: `
     <div style="max-width: 400px">
-      <SbBreadcrumbs v-bind="{ isLargeSection, items }" />
+      <SbBreadcrumbs v-bind="{ items }" />
     </div>
   `,
 })
 
-LongBreadcrums.args = {
+LongBreadcrumbs.args = {
   items: [
-    ...defaultBreadcrumbItemsData.slice(0, -1),
+    ...defaultBreadcrumbItemsData,
     {
       label: 'Button CTA',
       href: '#Button-CTA',
       title: 'Button CTA',
     },
     {
-      label: 'CTA Section',
+      label: 'Button CTA2',
+      href: '#Button-CTA2',
+      title: 'Button CTA2',
+    },
+    {
+      label: 'CTA2 Section',
       isActive: true,
     },
   ],
 }
 
-LongBreadcrums.parameters = {
+LongBreadcrumbs.parameters = {
   docs: {
     description: {
       story:
-        'When a path contains more than five levels of entities, it should have a `SbDropdown` with the rest of the items',
+        'When a path contains more than six levels of entities, it will have a `SbDropdown` with the rest of the items, this happens automatically, you can click on the arrow to the right of the 3 dots to expand the `SbDropdown`.',
     },
   },
 }
 
-export const LongBreadcrumsInTwoLines = Template.bind({})
+export const LongBreadcrumbsInTwoLines = Template.bind({})
 
-LongBreadcrumsInTwoLines.args = {
+LongBreadcrumbsInTwoLines.args = {
   items: [
     ...defaultBreadcrumbItemsData.slice(0, -1),
     {
@@ -177,10 +178,11 @@ LongBreadcrumsInTwoLines.args = {
   ],
 }
 
-LongBreadcrumsInTwoLines.parameters = {
+LongBreadcrumbsInTwoLines.parameters = {
   docs: {
     description: {
-      story: 'The SbBreadcrumbs can be split in two lines',
+      story:
+        "The SbBreadcrumbs will automatically wrap the line if the container doesn't have enough space to render the list in a single line, below you can see this, as the container is only `400px`, causing the list to break line and render on the next line.",
     },
   },
 }
@@ -204,7 +206,8 @@ ItemsTruncated.args = {
 ItemsTruncated.parameters = {
   docs: {
     description: {
-      story: 'When have long label texts, it should truncate them',
+      story:
+        'When the label is long it will be automatically truncated, the truncate function is activated when the label has more than 13 characters.',
     },
   },
 }
