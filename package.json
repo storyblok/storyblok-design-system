@@ -7,7 +7,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib ./src/main.js",
+    "build": "vue-cli-service build --target lib ./src/main.js --name storyblok-design-system",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint src/ tests/ .storybook/",
     "lint:style": "stylelint 'src/**/*.{vue,scss}' --config ./.stylelintrc.json --fix",
