@@ -38,6 +38,10 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     }
   }
 
+  &__list-container {
+    position: relative;
+  }
+
   &__list ul {
     margin: 0;
     padding: 0;

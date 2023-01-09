@@ -2,12 +2,15 @@
   <li>
     <component
       :is="as"
+      :to="to"
+      :tabindex="isFocusable"
       class="sb-minibrowser__list-item"
       :class="{
         'sb-minibrowser__list-item--active': isActive,
         'sb-minibrowser__list-item--disabled': isDisabled,
       }"
       @click="handleClick"
+      @keyup.enter="handleClick"
     >
       <span class="sb-minibrowser__list-item-icon">
         <SbIcon v-if="isIconVisible" v-bind="iconProps" />
@@ -72,6 +75,10 @@ export default {
       type: [String, Number],
       default: null,
     },
+    to: {
+      type: Object,
+      default: null,
+    },
   },
 
   emits: ['select'],
@@ -94,6 +101,10 @@ export default {
 
     isIconVisible() {
       return !this.isList && !this.$slots.icon
+    },
+
+    isFocusable() {
+      return this.as === 'a' ? 0 : -1
     },
   },
 

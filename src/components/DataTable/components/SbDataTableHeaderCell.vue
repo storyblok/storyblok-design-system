@@ -1,7 +1,7 @@
 <template>
   <th
     class="sb-data-table__head-cell"
-    :class="{ 'sb-data-table--show-icon': showSortIcon }"
+    :class="computedClasses"
     @click="toggleSort"
   >
     <div v-if="hasHeaderSlot" class="sb-data-table__header-template">
@@ -44,6 +44,10 @@ export default {
       type: String,
       default: null,
     },
+    isSortIconAlwaysVisible: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({
@@ -64,7 +68,10 @@ export default {
     },
 
     showSortIcon() {
-      return this.isSortable && this.order && this.isSortedKey
+      return (
+        (this.isSortable && this.order && this.isSortedKey) ||
+        (this.isSortable && this.isSortIconAlwaysVisible)
+      )
     },
 
     sortKey() {
@@ -73,6 +80,14 @@ export default {
 
     hasHeaderSlot() {
       return this.column?.scopedSlots?.header
+    },
+
+    computedClasses() {
+      return {
+        'sb-data-table--show-icon': this.showSortIcon,
+        'sb-data-table__head-cell--centered': this.column?.isContentCentered,
+        'sb-data-table__head-cell--sortable': this.column?.sortable,
+      }
     },
   },
 

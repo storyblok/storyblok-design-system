@@ -264,6 +264,7 @@ const SbDataTable = {
                   selectedRows: this.hasSelectedRowsInList,
                   selectionMode: this.selectionMode,
                   sortedKey: this.sortKey,
+                  isSortIconAlwaysVisible: this.isSortIconAlwaysVisible,
                 },
               })
             : null,
@@ -288,6 +289,7 @@ const SbDataTable = {
                         selectedRows: this.hasSelectedRowsInList,
                         selectionMode: this.selectionMode,
                         sortedKey: this.sortKey,
+                        isSortIconAlwaysVisible: this.isSortIconAlwaysVisible,
                       },
                     })
                   : null,

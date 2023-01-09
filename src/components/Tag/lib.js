@@ -6,9 +6,11 @@ export const tagTypes = [
   'negative',
   'warning',
   'info',
-  'light',
+  'light-grey',
+  'dark-grey',
   'light-info',
   'success',
+  'dark-ink',
 ]
 
 /**
@@ -17,8 +19,10 @@ export const tagTypes = [
  * 'negative': string,
  * 'warning': string,
  * 'info': string,
- * 'light': string,
+ * 'light-grey': string,
+ * 'dark-grey': string,
  * 'light-info': string,
+ * 'dark-ink': string,
  * 'success': string,
  * }}
  */
