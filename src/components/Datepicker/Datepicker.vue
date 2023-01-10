@@ -17,7 +17,7 @@
         @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
-        @blur="handleDoneAction"
+        @blur="handleComponentsInput"
       />
 
       <template v-if="isShowTzOffset">
@@ -337,6 +337,8 @@ export default {
 
       this.syncInternalValue(this.modelValue)
     },
+
+    handleBlur(newValue) {},
 
     handleDoneAction() {
       let utcTime
