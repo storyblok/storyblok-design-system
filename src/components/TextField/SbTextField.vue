@@ -332,7 +332,7 @@ export default {
 
     handleBlurInput(e) {
       this.isOnInput = false
-      this.$emit('blur', e)
+      this.$emit('blur', this.modelValue)
     },
 
     handleKeyDownInput(e) {
