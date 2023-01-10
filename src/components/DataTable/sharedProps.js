@@ -57,4 +57,8 @@ export default {
     type: Boolean,
     default: false,
   },
+  isSortIconAlwaysVisible: {
+    type: Boolean,
+    default: false,
+  },
 }

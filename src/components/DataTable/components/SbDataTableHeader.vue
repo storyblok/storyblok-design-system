@@ -13,6 +13,7 @@
         :key="index"
         :column="elem"
         :sorted-key="sortedKey"
+        :is-sort-icon-always-visible="isSortIconAlwaysVisible"
       />
     </tr>
   </thead>
@@ -46,6 +47,10 @@ export default {
       required: false,
       type: Boolean,
       default: true,
+    },
+    isSortIconAlwaysVisible: {
+      type: Boolean,
+      default: false,
     },
   },
 

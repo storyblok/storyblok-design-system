@@ -42,6 +42,10 @@ export default {
       type: String,
       default: null,
     },
+    isSortIconAlwaysVisible: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({
@@ -62,7 +66,10 @@ export default {
     },
 
     showSortIcon() {
-      return this.isSortable && this.order && this.isSortedKey
+      return (
+        (this.isSortable && this.order && this.isSortedKey) ||
+        (this.isSortable && this.isSortIconAlwaysVisible)
+      )
     },
 
     sortKey() {

@@ -242,6 +242,7 @@ const SbDataTable = {
                 selectedRows: this.hasSelectedRowsInList,
                 selectionMode: this.selectionMode,
                 sortedKey: this.sortKey,
+                isSortIconAlwaysVisible: this.isSortIconAlwaysVisible,
               })
             : null,
           this.sortedData.length && !this.$slots.default
@@ -262,6 +263,7 @@ const SbDataTable = {
                       selectedRows: this.hasSelectedRowsInList,
                       selectionMode: this.selectionMode,
                       sortedKey: this.sortKey,
+                      isSortIconAlwaysVisible: this.isSortIconAlwaysVisible,
                     })
                   : null,
                 h('tbody', bodyData),
