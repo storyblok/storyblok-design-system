@@ -17,7 +17,7 @@
         @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
-        @blur="handleComponentsInput"
+        @blur="handleBlur"
       />
 
       <template v-if="isShowTzOffset">
@@ -61,7 +61,7 @@
         :min-date="minDate"
         :max-date="maxDate"
         :disabled-past="disabledPast"
-        @update:modelValue="handleComponentsInput"
+        @update:model-value="handleComponentsInput"
         @input-minutes="handleMinutesInput"
       />
 
@@ -338,7 +338,12 @@ export default {
       this.syncInternalValue(this.modelValue)
     },
 
-    handleBlur(newValue) {},
+    async handleBlur(newValue) {
+      if (newValue.length) {
+        this.handleComponentsInput(newValue)
+      }
+      this.handleDoneAction()
+    },
 
     handleDoneAction() {
       let utcTime
@@ -389,6 +394,8 @@ export default {
       this.$nextTick(() => {
         this.closeOverlay()
       })
+
+      return utcTime
     },
 
     handlePreviousMonth() {
