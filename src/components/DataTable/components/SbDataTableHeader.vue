@@ -1,11 +1,14 @@
 <template>
   <thead>
     <tr>
-      <th v-if="allowSelection && isMultiple" class="sb-data-table__head-cell">
+      <th
+        v-if="allowSelection && isMultiple"
+        class="sb-data-table__head-cell"
+        @click="handleAllRowsSelected"
+      >
         <SbCheckbox
           :indeterminate="isIndeterminate"
           :model-value="allRowsSelected"
-          @click="handleAllRowsSelected"
         />
       </th>
       <SbDataTableHeaderCell

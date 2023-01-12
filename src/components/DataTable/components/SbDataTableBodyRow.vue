@@ -8,8 +8,9 @@
     <td
       v-if="allowSelection && row.selectable !== false"
       class="sb-data-table__body-cell sb-data-table__col-selection"
+      @click="handleRowSelected"
     >
-      <SbCheckbox :model-value="isSelected" @click="handleRowSelected" />
+      <SbCheckbox :model-value="isSelected" />
     </td>
 
     <td
