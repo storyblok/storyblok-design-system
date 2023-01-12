@@ -338,10 +338,9 @@ export default {
 
     isInnerSearchVisible() {
       const noTags = !this.isTagsVisible
-      const noSlot = !this.hasDefaultSlot
       const filterOrPlaceholder =
-        this.filterable || this.placeholderLabel?.length
-      return Boolean(noTags && noSlot && filterOrPlaceholder)
+        this.filterable || this.placeholderLabel?.length > 0
+      return Boolean(noTags && filterOrPlaceholder)
     },
 
     isSearchTextVisible() {
