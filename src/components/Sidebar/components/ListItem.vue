@@ -24,6 +24,7 @@
         :icon-tooltip-label="iconTooltipLabel"
         :has-separator="hasSeparator"
         :label="label"
+        :image="image"
       />
     </router-link>
     <component
@@ -46,6 +47,7 @@
         :icon-tooltip-label="iconTooltipLabel"
         :has-separator="hasSeparator"
         :label="label"
+        :image="image"
       />
     </component>
     <slot />
@@ -132,6 +134,10 @@ export default {
     isChild: {
       type: Boolean,
       default: false,
+    },
+    image: {
+      type: String,
+      default: null,
     },
   },
 
