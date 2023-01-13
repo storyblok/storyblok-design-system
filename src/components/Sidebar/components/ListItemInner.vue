@@ -1,8 +1,7 @@
 <template>
   <div class="sb-sidebar-link-inner">
     <SbAvatar v-if="hasAvatar" v-bind="avatar" />
-    
-     <img
+    <img
       v-else-if="hasImage"
       :src="image"
       width="22"
@@ -99,11 +98,10 @@ export default {
     hasIcon() {
       return this.icon
     },
-    
+
     hasImage() {
       return this.image !== null
     },
-
   },
 }
 </script>
