@@ -12,6 +12,7 @@
       :required="required"
       :disabled="disabled"
       @click.stop
+      @input="handleInput"
     />
     <label :for="id" class="sb-toggle__label">{{ label }}</label>
     <SbIcon
@@ -58,6 +59,11 @@ export default {
   computed: {
     componentClasses() {
       return [this.variant ? `sb-toggle--${this.variant}` : '']
+    },
+  },
+  methods: {
+    handleInput(e) {
+      this.$emit('update:modelValue', e.target.checked)
     },
   },
 }

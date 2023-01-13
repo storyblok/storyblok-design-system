@@ -21,8 +21,5 @@ export default {
     modelValue(newValue) {
       this.internalValue = newValue
     },
-    internalValue(newValue) {
-      this.$emit('update:modelValue', newValue)
-    },
   },
 }

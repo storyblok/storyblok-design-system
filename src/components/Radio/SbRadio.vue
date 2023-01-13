@@ -11,6 +11,7 @@
       :required="required"
       :disabled="disabled"
       @click.stop
+      @input="handleInput"
     />
 
     <label v-if="label" :for="id" class="sb-radio__label">{{ label }}</label>
@@ -44,6 +45,12 @@ export default {
         this.inline && 'sb-radio--inline',
         this.outline && 'sb-radio--outline',
       ]
+    },
+  },
+
+  methods: {
+    handleInput(e) {
+      this.$emit('update:modelValue', e.target.checked)
     },
   },
 }
