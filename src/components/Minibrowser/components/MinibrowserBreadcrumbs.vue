@@ -11,9 +11,8 @@
 
       <SbBreadcrumbSeparator />
 
-      <template v-for="(item, index) in items">
+      <template v-for="(item, index) in items" :key="index">
         <SbBreadcrumbItem
-          :key="index"
           :is-active="index === lastIndex"
           v-bind="item"
           @click="navigateTo($event, index)"

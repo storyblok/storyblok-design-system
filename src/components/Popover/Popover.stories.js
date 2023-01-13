@@ -55,7 +55,9 @@ export const Default = (args) => ({
     SbButton,
     SbPopover,
   },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     isOpen: false,
   }),
@@ -80,6 +82,48 @@ export const Default = (args) => ({
           <li>Item 3</li>
         </ul>
       </SbPopover>
+    </div>
+  `,
+})
+
+export const UsingPortalTarget = (args) => ({
+  components: {
+    SbButton,
+    SbPopover,
+  },
+  setup() {
+    return { args }
+  },
+  data: () => ({
+    isOpen: false,
+  }),
+  methods: {
+    handleClick() {
+      this.isOpen = !this.isOpen
+    },
+  },
+  template: `
+    <div>
+      <SbButton id="buttontest" label="Click me" @click="handleClick" />
+
+      <SbPopover
+        ref="popover"
+        :reference="reference"
+        :placement="placement"
+        :is-open="isOpen"
+        use-portal
+        use-portal-target="#custom-target-el"
+      >
+        <ul style="background-color: #BBBBBB;">
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+      </SbPopover>
+
+      <div id="custom-target-el">
+        <p>Portal Target</p>
+      </div>
     </div>
   `,
 })

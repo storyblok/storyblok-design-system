@@ -31,7 +31,7 @@ const isServer = (vNode) => {
 }
 
 const ClickOutside = {
-  inserted(el, binding, vNode) {
+  mounted(el, binding, vNode) {
     if (!validateBinding(binding)) return
 
     const handler = (e) => {
@@ -48,13 +48,13 @@ const ClickOutside = {
     }
   },
 
-  update(el, binding) {
+  updated(el, binding) {
     if (validateBinding(binding)) {
       el.__clickOutside.callback = binding.value
     }
   },
 
-  unbind(el, _, vNode) {
+  unmounted(el, _, vNode) {
     if (!el.__clickOutside) return
 
     if (!isServer(vNode)) {

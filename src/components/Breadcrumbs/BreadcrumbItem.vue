@@ -12,7 +12,6 @@
       :to="to"
       :as="as"
       :label="labelFormatted"
-      v-on="$listeners"
     >
       <slot></slot>
     </SbBreadcrumbLink>

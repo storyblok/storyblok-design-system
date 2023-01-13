@@ -3,9 +3,9 @@ import { mount } from '@vue/test-utils'
 import SbTag from '..'
 import SbIcon from '../../Icon'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbTag, {
-    propsData,
+    props,
   })
 }
 
@@ -36,7 +36,7 @@ describe('SbTag component', () => {
     it('should have a text with the correct label', () => {
       const label = 'Tag label'
       const wrapper = mount(SbTag, {
-        propsData: {
+        props: {
           type: 'primary',
           label,
         },

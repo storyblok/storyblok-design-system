@@ -6,9 +6,9 @@ import SbIcon from '../../Icon'
 import SbLoading from '../../Loading'
 import SbBlockUi from '../../BlockUI'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbUploadDialog, {
-    propsData,
+    props,
   })
 }
 
@@ -28,7 +28,7 @@ describe('Tests for UploadDialog', () => {
 
     expect(wrapper.findComponent(SbLoading).exists()).toBe(true)
 
-    expect(wrapper.findComponent(SbLoading).props('value')).toBe(
+    expect(wrapper.findComponent(SbLoading).props('modelValue')).toBe(
       fakeProps.percentageValue
     )
 

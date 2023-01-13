@@ -3,9 +3,9 @@ import { mount } from '@vue/test-utils'
 import SbButton from '..'
 import SbIcon from '../../Icon'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbButton, {
-    propsData,
+    props,
   })
 }
 
@@ -144,14 +144,16 @@ describe('Test SbButton Component', () => {
     const iconDescription = 'Icon description'
 
     const wrapper = mount(SbButton, {
-      propsData: {
+      props: {
         icon: 'close',
         hasIconOnly: true,
         iconDescription,
       },
-      stubs: {
-        SbFragment: true,
-        MountingPortal: true,
+      global: {
+        stubs: {
+          SbFragment: true,
+          MountingPortal: true,
+        },
       },
     })
 
@@ -166,7 +168,7 @@ describe('Test SbButton Component', () => {
   describe('when the user add a type for the button', () => {
     const renderButton = (type) => {
       return mount(SbButton, {
-        propsData: {
+        props: {
           variant: 'tertiary',
           type: type,
         },

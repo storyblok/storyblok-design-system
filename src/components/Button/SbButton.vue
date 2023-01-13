@@ -2,10 +2,9 @@
   <button
     v-tooltip="useTooltipDirective"
     :class="activeClasses"
-    :disabled="isDisabled || isLoading"
-    :ariaDisabled="isDisabled || isLoading"
+    :disabled="computedDisabled"
+    :aria-disabled="computedDisabled"
     :type="type"
-    v-on="localListeners"
     @click="handleClick"
   >
     <SbIcon v-if="icon" :size="iconSize" :name="icon" :color="iconColor" />
@@ -100,10 +99,6 @@ export default {
   emits: ['click'],
 
   computed: {
-    localListeners() {
-      const { click, ...listeners } = this.$listeners
-      return listeners
-    },
     activeClasses() {
       return [
         'sb-button',
@@ -119,6 +114,7 @@ export default {
           'sb-button--has-icon-right': this.iconRight,
           'sb-button--loading': this.isLoading,
         },
+        this.$attrs.class,
       ]
     },
     useTooltipDirective() {
@@ -140,6 +136,12 @@ export default {
         'primary-link',
       ]
       return whiteLoading.indexOf(this.variant) < 4 ? 'white' : 'primary-dark'
+    },
+    computedDisabled() {
+      if (this.isDisabled || this.isLoading) {
+        return true
+      }
+      return null
     },
   },
   methods: {

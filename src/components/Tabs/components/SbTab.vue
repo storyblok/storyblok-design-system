@@ -3,17 +3,18 @@
     class="sb-tab"
     :class="computedClasses"
     :tabindex="computedTabIndex"
-    :aria-selected="activate + ''"
+    :aria-selected="computedAriaSelected"
+    :data-name="name"
     role="tab"
     type="button"
     v-bind="$attrs"
     @click="handleClick"
-    v-on="$listeners"
+    @keydown="handleKeyDown"
   >
     <SbIcon v-if="icon" :name="icon" size="normal" />
     <SbEditableInput
       v-if="allowShowEditInput"
-      :value="label"
+      :model-value="label"
       @keydown="handleKeyDownEditInput"
     />
     <span v-else-if="label" class="sb-tab__label">
@@ -48,11 +49,9 @@ export default {
     tooltip: Tooltip,
   },
 
+  inject: ['activeTab', 'onKeyDown', 'onActivateTab'],
+
   props: {
-    activate: {
-      type: Boolean,
-      default: false,
-    },
     editable: {
       type: Boolean,
       default: false,
@@ -97,11 +96,17 @@ export default {
         'sb-tab--disabled': this.isDisabled,
         'sb-tab--has-icon': this.icon,
         'sb-tab--editable': this.editable,
-        'sb-tab--is-active': this.activate,
+        'sb-tab--is-active': this.isActive,
       }
     },
     computedTabIndex() {
-      return this.activate ? null : -1
+      return this.isActive ? null : -1
+    },
+    computedAriaSelected() {
+      return `${this.isActive}`
+    },
+    isActive() {
+      return this.activeTab() === this.name
     },
   },
 
@@ -109,6 +114,7 @@ export default {
     capitalize,
     triggerActivateTab(value) {
       this.$emit('activate-tab', value)
+      this.onActivateTab(value)
     },
 
     handleClick() {
@@ -119,6 +125,7 @@ export default {
 
     handleKeyDown(event) {
       this.$emit('keydown', event)
+      this.onKeyDown(event)
     },
 
     handleClickEditButton() {

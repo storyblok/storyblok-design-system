@@ -4,7 +4,7 @@
     :class="[sizeClass, colorClass, bgClass, fillClass]"
     :role="role ? role : 'presentation'"
     :viewBox="iconDeff.viewBox"
-    v-on="$listeners"
+    v-bind="$attrs"
     v-html="iconDeff.path"
   ></svg>
 </template>

@@ -37,9 +37,9 @@ const fakeProps = {
   size: 320,
 }
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(MobileViewer, {
-    propsData,
+    props,
   })
 }
 

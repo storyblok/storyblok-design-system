@@ -1,4 +1,5 @@
-import { mount } from '@vue/test-utils'
+import { mount, RouterLinkStub } from '@vue/test-utils'
+
 import { SbSidebar, SbSidebarListItem } from '..'
 import SbButton from '../../Button'
 import { listItemsData } from '../Sidebar.stories'
@@ -6,7 +7,7 @@ import { listItemsData } from '../Sidebar.stories'
 describe('Test SbSidebar component', () => {
   describe('when in default behavior', () => {
     const wrapper = mount(SbSidebar, {
-      propsData: {
+      props: {
         listItems: [...listItemsData],
       },
       slots: {
@@ -14,14 +15,17 @@ describe('Test SbSidebar component', () => {
           <SbSidebarListItem
             data-testid="bottom-link"
             href="#"
-            icon="sidebar-report"
+            icon="help"
             label="Report a problem"
           />
         `,
       },
-      stubs: {
-        SbSidebarListItem: SbSidebarListItem,
-        SbButton: true,
+      global: {
+        stubs: {
+          SbSidebarListItem: SbSidebarListItem,
+          SbButton: true,
+          RouterLink: RouterLinkStub,
+        },
       },
     })
 
@@ -44,7 +48,7 @@ describe('Test SbSidebar component', () => {
 
   describe('when in minimized state', () => {
     const wrapper = mount(SbSidebar, {
-      propsData: {
+      props: {
         listItems: [...listItemsData],
         minimize: true,
       },
@@ -53,16 +57,19 @@ describe('Test SbSidebar component', () => {
           <SbSidebarListItem
             data-testid="bottom-link"
             href="#"
-            icon="sidebar-report"
+            icon="help"
             label="Report a problem"
           />
         `,
       },
-      stubs: {
-        SbSidebarListItem: SbSidebarListItem,
-        SbButton: SbButton,
-        SbFragment: true,
-        MountingPortal: true,
+      global: {
+        stubs: {
+          SbSidebarListItem: SbSidebarListItem,
+          SbButton: SbButton,
+          SbFragment: true,
+          MountingPortal: true,
+          RouterLink: RouterLinkStub,
+        },
       },
     })
 
@@ -76,8 +83,7 @@ describe('Test SbSidebar component', () => {
       expect(button.exists()).toBe(true)
 
       await button.trigger('mouseover')
-
-      button.vm.$emit('click')
+      await button.trigger('click')
 
       let tooltip = document.querySelector('[role="tooltip"]')
 
@@ -91,8 +97,7 @@ describe('Test SbSidebar component', () => {
         minimize: false,
       })
 
-      button.vm.$emit('click')
-
+      await button.trigger('click')
       await button.trigger('focus')
 
       tooltip = document.querySelector('[role="tooltip"]')

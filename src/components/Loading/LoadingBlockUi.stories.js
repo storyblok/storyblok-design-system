@@ -4,17 +4,12 @@ import { loadingTypes, loadingSizes } from './utils'
 
 const LoadingBlockTemplate = (args) => ({
   components: { SbLoading },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbLoading
-      v-bind="{
-        type,
-        size,
-        value,
-        showPercentage,
-        color,
-        uiBlock
-      }"
+      v-bind="args"
     />
   `,
 })
@@ -35,7 +30,7 @@ export default {
   args: {
     type: 'spinner',
     size: 'normal',
-    value: 0,
+    modelValue: 0,
     showPercentage: false,
     color: 'primary',
     uiBlock: false,
@@ -59,7 +54,7 @@ export default {
         options: [...loadingSizes],
       },
     },
-    value: {
+    modelValue: {
       name: 'value',
       description:
         'The prop `value` must be entered to change the loading status, it ranges from 0 to 100.',
@@ -117,5 +112,5 @@ export const BlockingUiLoadingProgressBar = LoadingBlockTemplate.bind({})
 BlockingUiLoadingProgressBar.args = {
   uiBlock: true,
   type: 'bar',
-  value: 30,
+  modelValue: 30,
 }

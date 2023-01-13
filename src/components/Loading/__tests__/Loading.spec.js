@@ -3,14 +3,16 @@ import SbBlockUI from '../../BlockUI'
 import { mount } from '@vue/test-utils'
 import { loadingSizes } from '../utils'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbLoading, {
-    propsData,
+    props,
     slots: {
       default: '<SbLoadingPlaceholder width="20px" height="10px" />',
     },
-    stubs: {
-      SbLoadingPlaceholder,
+    global: {
+      stubs: {
+        SbLoadingPlaceholder,
+      },
     },
   })
 }
@@ -29,7 +31,7 @@ describe('Testing loading component', () => {
   it('test if progress bar render correctly with label', async () => {
     const wrapper = factory({
       type: 'bar',
-      value: 50,
+      modelValue: 50,
       showPercentage: true,
     })
 
@@ -41,7 +43,7 @@ describe('Testing loading component', () => {
     const wrapper = factory({
       type: 'spinner',
       size: 'normal',
-      value: 35,
+      modelValue: 35,
       showPercentage: true,
     })
 
@@ -58,7 +60,7 @@ describe('Testing loading component', () => {
     const wrapper = factory({
       type: 'spinner',
       size: 'normal',
-      value: 35,
+      modelValue: 35,
       uiBlock: true,
     })
 

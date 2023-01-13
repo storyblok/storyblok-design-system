@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import SbAvatarGroup, { SbMoreAvatars } from '..'
 import SbAvatar from '../../Avatar'
 
-const factory = (template, propsData = {}) => {
+const factory = (template, props = {}) => {
   const Wrapper = {
     props: {
       size: String,
@@ -16,7 +16,7 @@ const factory = (template, propsData = {}) => {
   }
 
   return mount(Wrapper, {
-    propsData,
+    props,
   })
 }
 
@@ -44,7 +44,7 @@ describe('SbAvatarGroup component', () => {
     `
     const wrappers = factory(template)
 
-    wrappers.findAllComponents(SbAvatar).wrappers.forEach((wrapper) => {
+    wrappers.findAllComponents(SbAvatar).forEach((wrapper) => {
       expect(wrapper.props('size')).toBe('large')
     })
   })

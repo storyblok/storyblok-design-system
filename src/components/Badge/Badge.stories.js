@@ -3,17 +3,12 @@ import { badgeTypes } from './lib'
 
 const BadgeTemplate = (args) => ({
   components: { SbBadge },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbBadge
-      v-bind="{
-        contract,
-        inlineLabel,
-        label,
-        number,
-        onlyIcon,
-        type
-      }"
+      v-bind="args"
     />
   `,
 })
@@ -91,39 +86,25 @@ export const Default = BadgeTemplate.bind({})
 
 export const Types = (args) => ({
   components: { SbBadge },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div>
     <SbBadge
-      v-bind="{
-        label,
-        inlineLabel,
-        number,
-        type:'positive'
-      }"
+      v-bind="args"
+      type="positive"
     />
     <SbBadge
-      v-bind="{
-        label,
-        inlineLabel,
-        number,
-        type:'info'
-      }"
+      v-bind="args"
+      type="info"
     />
     <SbBadge
-      v-bind="{
-        label,
-        inlineLabel,
-        number,
-        type:'warning'
-      }"
+      v-bind="args"
+      type="warning"
     />
     <SbBadge
-      v-bind="{
-        label,
-        inlineLabel,
-        number,
-        type:'negative'
-      }"
+      v-bind="args"
+      type="negative"
     />
   </div>`,
 })

@@ -1,21 +1,41 @@
 # Storyblok's Design System
 
-This Design System is an open-source collection of components that are used in <https://app.storyblok.com> and is continiously developed to improve Storyblok.
+This Design System is an open-source collection of components that are used in app.storyblok.com and is continiously developed to improve Storyblok.
 
-# Demo
-You can see the Design System live under <https://blok.ink>
+## Demo
 
-## Compatibility
-The `storyblok-design-system` is compatible with Vue 2 only. For Vue 3, please use the `@storyblok/design-system` package.
+You can see the Design System live under <https://next.blok.ink>
 
+## Compatibility 
+The `@storyblok/design-system` package is compatible with Vue 3 only. For Vue 2, please use the `storyblok-design-system` package.
 
-## Project setup
+## Getting started
+
+To install the Design System in your project you need to install the package first
+
 ```sh
-yarn install # or npm run install
+npm install @storyblok/design-system --save
+yarn add @storyblok/design-system
 ```
 
-### Execute Storybook
+Then you need to install and use the Design System in your Vue project:
+
+```js
+import BlokInk from '@storyblok/design-system'
+import '@storyblok/design-system/dist/storyblok-design-system.css'
+ 
+app.use(BlokInk) // vue 3
+```
+
+For more information on the usage of the Design System go to:
+[https://www.storyblok.com/docs/guide/in-depth/design-system](https://www.storyblok.com/docs/guide/in-depth/design-system)
+
+## Development
+
+To develop within the Design System you can use Storybook that has all components setup:
+### Start & Execute Storybook
 ```sh
+yarn # or npm install
 yarn storybook
 ```
 
@@ -33,15 +53,7 @@ yarn test:unit
 ```sh
 yarn lint
 ```
-## Usage
-To learn how to use the Storyblok's Design System in your project go to:
-[https://www.storyblok.com/docs/guide/in-depth/design-system](https://www.storyblok.com/docs/guide/in-depth/design-system)
 
-## Thanks to
-
-<a href="https://www.chromatic.com/"><img src="https://user-images.githubusercontent.com/321738/84662277-e3db4f80-af1b-11ea-88f5-91d67a5e59f6.png" width="153" height="30" alt="Chromatic" /></a>
-
-Thanks to [Chromatic](https://www.chromatic.com/) for providing the visual testing platform that helps us review UI changes and catch visual regressions.
 
 ---
 

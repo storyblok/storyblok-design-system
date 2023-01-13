@@ -1,6 +1,7 @@
 // import SbModal from './index'
 import ModalPlugin from './ModalPlugin'
 import SbModalType from '../SbModalType'
+import { h } from 'vue'
 
 /**
   * @type {
@@ -37,7 +38,7 @@ const createModalPlugin = (VueInstance) => (props, type) => {
       this.$refs.modal.show()
     },
 
-    render(h) {
+    render() {
       if (type && (type === 'confirmation' || type === 'delete')) {
         props.type = type
         return h(SbModalType, {

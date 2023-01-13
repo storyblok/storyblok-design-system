@@ -1,12 +1,14 @@
 <template>
   <thead>
     <tr>
-      <th v-if="allowSelection" class="sb-data-table__head-cell">
+      <th
+        v-if="allowSelection && isMultiple"
+        class="sb-data-table__head-cell"
+        @click="handleAllRowsSelected"
+      >
         <SbCheckbox
-          v-if="isMultiple"
           :indeterminate="isIndeterminate"
-          :value="allRowsSelected"
-          @click.native="handleAllRowsSelected"
+          :model-value="allRowsSelected"
         />
       </th>
       <SbDataTableHeaderCell
@@ -38,7 +40,7 @@ export default {
   props: {
     allowSelection: sharedProps.allowSelection,
     headers: sharedProps.headers,
-    selectedRows: sharedProps.selectedRows,
+    selectedRows: sharedProps.selectedItems,
     selectionMode: sharedProps.selectionMode,
     sortedKey: {
       type: String,
@@ -47,7 +49,7 @@ export default {
     allRowsSelected: {
       required: false,
       type: Boolean,
-      default: false,
+      default: true,
     },
     isSortIconAlwaysVisible: {
       type: Boolean,
@@ -61,10 +63,10 @@ export default {
     },
 
     isIndeterminate() {
-      return !this.allRowsSelected && !!this.selectedRowsLength
+      return !this.allRowsSelected && !!this.selectedItemsLength
     },
 
-    selectedRowsLength() {
+    selectedItemsLength() {
       return this.selectedRows.length
     },
 

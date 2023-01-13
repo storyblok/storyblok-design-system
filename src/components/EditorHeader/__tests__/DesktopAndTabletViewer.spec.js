@@ -6,9 +6,9 @@ import SbTooltip from '../../Tooltip'
 
 import { mount } from '@vue/test-utils'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbDesktopAndTabletViewer, {
-    propsData,
+    props,
   })
 }
 

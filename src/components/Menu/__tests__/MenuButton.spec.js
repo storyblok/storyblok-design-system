@@ -41,7 +41,7 @@ describe('SbMenuButton component', () => {
 
     expect(onClick).toHaveBeenCalled()
 
-    await buttonComponent.vm.$nextTick()
+    await wrapper.vm.$nextTick()
 
     // states related when the to menu is opened
     expect(wrapper.vm.isOpen).toBeTruthy()
@@ -50,7 +50,7 @@ describe('SbMenuButton component', () => {
     // when the button triggers again
     await buttonComponent.trigger('click')
 
-    await buttonComponent.vm.$nextTick()
+    await wrapper.vm.$nextTick()
 
     // should return to previous state
     expect(wrapper.vm.isOpen).toBeFalsy()
@@ -92,7 +92,7 @@ describe('SbMenuButton component', () => {
 
     expect(onClick).toHaveBeenCalled()
 
-    await buttonComponent.vm.$nextTick()
+    await wrapper.vm.$nextTick()
 
     // states related when the to menu is opened
     expect(buttonComponent.attributes('aria-expanded')).toBe('true')
@@ -100,7 +100,7 @@ describe('SbMenuButton component', () => {
     // when the button triggers again
     await buttonComponent.trigger('click')
 
-    await buttonComponent.vm.$nextTick()
+    await wrapper.vm.$nextTick()
 
     // should return to previous state
     expect(buttonComponent.attributes('aria-expanded')).toBeUndefined()

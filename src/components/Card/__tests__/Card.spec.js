@@ -11,6 +11,7 @@ import SbLink from '../../Link'
 import { mount } from '@vue/test-utils'
 import { SbMenu, SbMenuButton, SbMenuItem, SbMenuSeparator } from '../../Menu'
 import SbLoading from '../../Loading'
+import { h } from 'vue'
 
 const cardOptionsMock = [
   {
@@ -49,10 +50,10 @@ const cardOptionsMock = [
 ]
 
 describe('SbCardHeader component', () => {
-  const factory = (propsData) => {
+  const factory = (props) => {
     return mount(SbCardHeader, {
-      propsData: {
-        ...propsData,
+      props: {
+        ...props,
       },
     })
   }
@@ -98,7 +99,7 @@ describe('SbCardHeader component', () => {
   describe('when use the options property', () => {
     it('should render the SbCardOptions component', () => {
       const wrapper = mount(SbCardHeader, {
-        propsData: {
+        props: {
           title: 'Awesome title',
           options: [...cardOptionsMock],
         },
@@ -115,7 +116,7 @@ describe('SbCardHeader component', () => {
 
 describe('SbCardOptions component', () => {
   const wrapper = mount(SbCardOptions, {
-    propsData: {
+    props: {
       options: [...cardOptionsMock],
     },
   })
@@ -132,7 +133,7 @@ describe('SbCardOptions component', () => {
   })
 
   it('should render the SbMenuItem with the expected properties', () => {
-    const firstItem = wrapper.findAllComponents(SbMenuItem).at(0)
+    const firstItem = wrapper.findAllComponents(SbMenuItem)[0]
 
     expect(firstItem.exists()).toBe(true)
 
@@ -150,9 +151,9 @@ describe('SbCardOptions component', () => {
 
     expect(groupItems.length).toBe(5)
 
-    expect(groupItems.at(3).props('label')).toBe('Group Item 1')
+    expect(groupItems[3].props('label')).toBe('Group Item 1')
 
-    expect(groupItems.at(4).props('label')).toBe('Group Item 2')
+    expect(groupItems[4].props('label')).toBe('Group Item 2')
   })
 })
 
@@ -180,12 +181,10 @@ describe('SbCardFooter component', () => {
   const wrapper = mount(SbCardFooter, {
     components: { SbLink },
     slots: {
-      default: `
-        <SbLink
-          label="Awesome link name"
-          href="https://storyblok.com"
-        />
-      `,
+      default: h(SbLink, {
+        href: 'https://storyblok.com',
+        label: 'Awesome link',
+      }),
     },
   })
 
@@ -194,7 +193,7 @@ describe('SbCardFooter component', () => {
 
     expect(wrapper.classes('sb-card__footer')).toBe(true)
 
-    expect(LinkComponent.props('label')).toBe('Awesome link name')
+    expect(LinkComponent.props('label')).toBe('Awesome link')
 
     expect(LinkComponent.props('href')).toBe('https://storyblok.com')
   })

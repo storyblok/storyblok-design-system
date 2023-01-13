@@ -1,12 +1,22 @@
 import { SbTab, SbTabAdd } from './components'
 import { Tooltip } from '../../directives'
-import { cleanChildren } from '../../utils'
+import { h } from 'vue'
 
 const SbTabs = {
   name: 'SbTabs',
 
   directives: {
     tooltip: Tooltip,
+  },
+
+  emits: ['update:modelValue', 'new-tab', 'keydown'],
+
+  provide() {
+    return {
+      activeTab: () => this.modelValue,
+      onKeyDown: this.handleKeyDown,
+      onActivateTab: this.handleActiveTab,
+    }
   },
 
   props: {
@@ -23,7 +33,7 @@ const SbTabs = {
       type: String,
       default: null,
     },
-    value: {
+    modelValue: {
       type: [String, Number],
       default: '',
     },
@@ -36,19 +46,17 @@ const SbTabs = {
   data() {
     return {
       additionalTabs: [],
-      children: [],
-      childVNodes: [],
       onAddTab: false,
     }
   },
 
   computed: {
     childrenCount() {
-      return this.children.length
+      return this.children?.length || 0
     },
     currentIndex() {
       return this.children.findIndex((child) => {
-        return this.getTabNameFromNode(child) === this.value
+        return this.getTabNameFromNode(child) === this.modelValue
       })
     },
     enableAddButton() {
@@ -57,22 +65,24 @@ const SbTabs = {
     isVertical() {
       return this.orientation === 'vertical'
     },
-  },
-
-  updated() {
-    this.$nextTick(this.loadChildren)
-  },
-
-  mounted() {
-    this.$nextTick(this.loadChildren)
+    children() {
+      let children = this.$slots.default && this.$slots.default()
+      const hasFirstNode = children && children.length > 0
+      const isFirstNodeTab = children[0]?.type?.name === 'SbTab'
+      if (!isFirstNodeTab && hasFirstNode && children[0].children?.length) {
+        const isSecondNodeTab = children[0].children[0]?.type?.name === 'SbTab'
+        if (isSecondNodeTab) {
+          return children[0].children
+        }
+      }
+      return children
+    },
+    childVNodes() {
+      return this.$el ? this.$el.children : []
+    },
   },
 
   methods: {
-    loadChildren() {
-      this.childVNodes = Object.assign({}, this.$el.children)
-      this.children = cleanChildren(this.$slots.default)
-    },
-
     changeActiveTab(index) {
       this.childVNodes[index].focus()
 
@@ -85,28 +95,22 @@ const SbTabs = {
 
       this.additionalTabs.push(
         h(SbTab, {
-          attrs: {
-            class: 'sb-tab sb-tab__new-tab',
-          },
-          props: {
-            label: 'New tab',
-            name: 'new-tab',
-            showEditInput: true,
-          },
-          on: {
-            'edit-tab': this.handleEditTabOnCreate,
-            'cancel-edit-tab': this.handleCancelEditOnCreate,
-          },
+          class: 'sb-tab__new-tab',
+          label: 'New tab',
+          name: 'new-tab',
+          showEditInput: true,
+          onEditTab: this.handleEditTabOnCreate,
+          onCancelEditTab: this.handleCancelEditTabOnCreate,
         })
       )
     },
 
     getTabNameFromNode(vnode) {
-      return vnode.componentOptions.propsData.name
+      return vnode?.props?.name
     },
 
     triggerActiveTab(identifier) {
-      this.$emit('input', identifier)
+      this.$emit('update:modelValue', identifier)
     },
 
     handleEditTabOnCreate(content) {
@@ -167,55 +171,29 @@ const SbTabs = {
     },
   },
 
-  render(h) {
-    const children = this.$slots.default.filter((e) => e.tag) || []
-
+  render() {
     const renderAddButton = () => {
       return h(SbTabAdd, {
-        props: {
-          newTabLabel: this.newTabLabel,
-        },
-        on: {
-          click: () => this.createNewTab(h),
-        },
-      })
-    }
-
-    const processChildren = () => {
-      return children.map((element) => {
-        const elementProps = element.componentOptions.propsData
-        const elementId = elementProps.name
-
-        element.componentOptions.propsData = {
-          ...element.componentOptions.propsData,
-          activate: elementId === this.value,
-        }
-
-        element.componentOptions.listeners = {
-          ...element.componentOptions.listeners,
-          'activate-tab': this.handleActiveTab,
-          keydown: this.handleKeyDown,
-        }
-
-        return element
+        newTabLabel: this.newTabLabel,
+        onClick: () => this.createNewTab(h),
       })
     }
 
     return h(
       'div',
       {
-        staticClass: 'sb-tabs',
-        class: {
-          'sb-tabs--container': !this.isVertical && this.type === 'container',
-          'sb-tabs--vertical': this.isVertical,
-        },
-        attrs: {
-          ...this.$attrs,
-          role: 'tablist',
-        },
+        ...this.$attrs,
+        class: [
+          'sb-tabs',
+          {
+            'sb-tabs--container': !this.isVertical && this.type === 'container',
+            'sb-tabs--vertical': this.isVertical,
+          },
+        ],
+        role: 'tablist',
       },
       [
-        processChildren(),
+        this.children,
         ...this.additionalTabs,
         this.enableAddButton && renderAddButton(),
       ]

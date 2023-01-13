@@ -1,9 +1,5 @@
 <template>
-  <div
-    :class="[staticClass, { 'sb-tag--closable': this.closable }]"
-    v-bind="$attrs"
-    v-on="$listeners"
-  >
+  <div :class="computedClass" v-bind="$attrs">
     <span class="sb-tag__label">
       <slot>
         {{ label }}
@@ -54,8 +50,11 @@ export default {
 
   emits: ['close'],
   computed: {
-    staticClass() {
-      return `sb-tag sb-tag--${this.type}`
+    computedClass() {
+      return [
+        `sb-tag sb-tag--${this.type}`,
+        { 'sb-tag--closable': this.closable },
+      ]
     },
   },
   methods: {

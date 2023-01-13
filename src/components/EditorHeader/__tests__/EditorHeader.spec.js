@@ -13,9 +13,9 @@ import { SbMenu, SbMenuButton, SbMenuList, SbMenuItem } from '../../Menu'
 
 import { mount } from '@vue/test-utils'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbEditorHeader, {
-    propsData,
+    props,
   })
 }
 

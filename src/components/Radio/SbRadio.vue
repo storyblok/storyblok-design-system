@@ -2,7 +2,7 @@
   <div class="sb-radio" :class="componentClasses">
     <input
       :id="id"
-      v-model="computedValue"
+      v-model="internalValue"
       v-bind="$attrs"
       class="sb-radio__input"
       type="radio"
@@ -10,6 +10,7 @@
       :value="nativeValue"
       :required="required"
       :disabled="disabled"
+      @click.stop
     />
 
     <label v-if="label" :for="id" class="sb-radio__label">{{ label }}</label>
@@ -39,6 +40,7 @@ export default {
   computed: {
     componentClasses() {
       return [
+        this.$attrs.class,
         this.inline && 'sb-radio--inline',
         this.outline && 'sb-radio--outline',
       ]

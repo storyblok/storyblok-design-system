@@ -4,7 +4,7 @@
     v-bind="{
       type,
       size,
-      value,
+      modelValue,
       showPercentage,
       color,
       uiBlock,
@@ -17,7 +17,7 @@
       v-bind="{
         type,
         size,
-        value,
+        modelValue,
         showPercentage,
         color,
         uiBlock,

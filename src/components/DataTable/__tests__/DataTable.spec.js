@@ -15,9 +15,9 @@ import {
   defaultTableItemsData,
 } from '../DataTable.stories'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbDataTable, {
-    propsData,
+    props,
   })
 }
 
@@ -78,8 +78,8 @@ describe('SbDataTable component', () => {
     })
 
     it('should toggle the color of the checkbox and toggle the background color of the row itself', async () => {
-      const row = wrapperSbDataTableBody.findAll('.sb-data-table__row').at(2)
-      const checkbox = wrapperSbDataTableBody.findAll('.sb-checkbox').at(2)
+      const row = wrapperSbDataTableBody.findAll('.sb-data-table__row')[2]
+      const checkbox = wrapperSbDataTableBody.findAll('.sb-checkbox')[2]
 
       // should actions menu is not visible
       expect(wrapper.findComponent(SbDataTableActions).exists()).toBe(false)
@@ -89,7 +89,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is checked
-      expect(row.findComponent(SbCheckbox).props('value')).toBe(true)
+      expect(row.findComponent(SbCheckbox).props('modelValue')).toBe(true)
 
       // should add class to selected row
       expect(row.classes('sb-data-table__row--selected')).toBe(true)
@@ -150,10 +150,10 @@ describe('SbDataTable component', () => {
     })
 
     it('should toggle the color of each checkbox and toggle the background color of each row itself', async () => {
-      const row = wrapperSbDataTableBody.findAll('.sb-data-table__row').at(2)
-      const row2 = wrapperSbDataTableBody.findAll('.sb-data-table__row').at(3)
-      const checkbox = wrapperSbDataTableBody.findAll('.sb-checkbox').at(2)
-      const checkbox2 = wrapperSbDataTableBody.findAll('.sb-checkbox').at(3)
+      const row = wrapperSbDataTableBody.findAll('.sb-data-table__row')[2]
+      const row2 = wrapperSbDataTableBody.findAll('.sb-data-table__row')[3]
+      const checkbox = wrapperSbDataTableBody.findAll('.sb-checkbox')[2]
+      const checkbox2 = wrapperSbDataTableBody.findAll('.sb-checkbox')[3]
 
       // should actions menu is not visible
       expect(wrapper.findComponent(SbDataTableActions).exists()).toBe(false)
@@ -164,8 +164,8 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkboxes status are checked
-      expect(row.findComponent(SbCheckbox).props('value')).toBe(true)
-      expect(row2.findComponent(SbCheckbox).props('value')).toBe(true)
+      expect(row.findComponent(SbCheckbox).props('modelValue')).toBe(true)
+      expect(row2.findComponent(SbCheckbox).props('modelValue')).toBe(true)
 
       // should add class to selected rows
       expect(row.classes('sb-data-table__row--selected')).toBe(true)
@@ -187,7 +187,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is unchecked
-      expect(row.findComponent(SbCheckbox).props('value')).toBe(false)
+      expect(row.findComponent(SbCheckbox).props('modelValue')).toBe(false)
 
       // should remove class to selected row
       expect(row.classes('sb-data-table__row--selected')).toBe(false)
@@ -205,7 +205,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is unchecked
-      expect(row2.findComponent(SbCheckbox).props('value')).toBe(false)
+      expect(row2.findComponent(SbCheckbox).props('modelValue')).toBe(false)
 
       // should remove class to selected row
       expect(row2.classes('sb-data-table__row--selected')).toBe(false)
@@ -254,12 +254,12 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should all checkboxes status are checked
-      rows.wrappers.forEach((wrapper) => {
-        expect(wrapper.findComponent(SbCheckbox).props('value')).toBe(true)
+      rows.forEach((wrapper) => {
+        expect(wrapper.findComponent(SbCheckbox).props('modelValue')).toBe(true)
       })
 
       // should add class to all rows
-      rows.wrappers.forEach((wrapper) => {
+      rows.forEach((wrapper) => {
         expect(wrapper.classes('sb-data-table__row--selected')).toBe(true)
       })
 
@@ -279,7 +279,7 @@ describe('SbDataTable component', () => {
       await wrapper.vm.$nextTick()
 
       // should checkbox status is unchecked
-      rows.wrappers.forEach((wrapper) => {
+      rows.forEach((wrapper) => {
         expect(
           wrapper
             .find('.sb-checkbox__inner')
@@ -288,7 +288,7 @@ describe('SbDataTable component', () => {
       })
 
       // should remove class to selected row
-      rows.wrappers.forEach((wrapper) => {
+      rows.forEach((wrapper) => {
         expect(wrapper.classes('sb-data-table__row--selected')).toBe(false)
       })
 
@@ -343,14 +343,12 @@ describe('SbDataTable component', () => {
     const wrapperSbDataTableBody = wrapper.findComponent(SbDataTableBody)
 
     it('should change the rows order', async () => {
-      const cell = wrapperSbDataTableHeader
-        .findAll('.sb-data-table__head-cell')
-        .at(0)
+      const cell = wrapperSbDataTableHeader.findAll(
+        '.sb-data-table__head-cell'
+      )[0]
       const row = wrapperSbDataTableBody
-        .findAll('.sb-data-table__row')
-        .at(0)
-        .findAll('.sb-data-table__body-cell')
-        .at(0)
+        .findAll('.sb-data-table__row')[0]
+        .findAll('.sb-data-table__body-cell')[0]
 
       // should have text 'Frozen Yogurt'
       expect(row.text()).toBe('Frozen Yogurt')

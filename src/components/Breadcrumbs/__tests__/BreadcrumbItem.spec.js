@@ -1,15 +1,18 @@
 import { mount, RouterLinkStub } from '@vue/test-utils'
 import SbBreadcrumbItem from '../BreadcrumbItem.vue'
 import SbIcon from '../../Icon'
+import { h } from 'vue'
 
-const factory = (propsData = {}, mountOptions = {}) => {
+const factory = (props = {}, mountOptions = {}) => {
   return mount(SbBreadcrumbItem, {
-    stubs: {
-      RouterLink: RouterLinkStub,
-      NuxtLink: RouterLinkStub,
-      SbIcon,
+    globals: {
+      stubs: {
+        RouterLink: RouterLinkStub,
+        NuxtLink: RouterLinkStub,
+        SbIcon,
+      },
     },
-    propsData,
+    props,
     ...mountOptions,
   })
 }
@@ -33,12 +36,12 @@ describe('SbBreadcrumbItem component', () => {
   describe('when render a long label', () => {
     const title = 'A long title that should be render correctly'
     const label = 'A long label to test'
-    const getWrapper = (propsData = {}) => {
+    const getWrapper = (props = {}) => {
       return factory({
         href: '/test-link',
         label,
         title,
-        ...propsData,
+        ...props,
       })
     }
 
@@ -100,7 +103,7 @@ describe('SbBreadcrumbItem component', () => {
         as: 'router-link',
       })
 
-      expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
+      expect(wrapper.findComponent('router-link').props('to')).toStrictEqual({
         name: 'TestView',
       })
       expect(wrapper.text()).toBe('Just router-l...')
@@ -115,7 +118,7 @@ describe('SbBreadcrumbItem component', () => {
         as: 'nuxt-link',
       })
 
-      expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
+      expect(wrapper.findComponent('nuxt-link').props('to')).toStrictEqual({
         name: 'TestNuxtView',
       })
       expect(wrapper.text()).toBe('Just nuxt-lin...')
@@ -128,7 +131,7 @@ describe('SbBreadcrumbItem component', () => {
         {},
         {
           slots: {
-            default: ['In default slot'],
+            default: 'In default slot',
           },
         }
       )
@@ -142,7 +145,7 @@ describe('SbBreadcrumbItem component', () => {
         {},
         {
           slots: {
-            default: ['<SbIcon name="home" />'],
+            default: h(SbIcon, { name: 'home' }),
           },
         }
       )
@@ -160,8 +163,8 @@ describe('SbBreadcrumbItem component', () => {
         {
           slots: {
             default: [
-              '<SbIcon name="calendar" />',
-              '<p>Link using default slot</p>',
+              h(SbIcon, { name: 'calendar' }),
+              h('p', {}, 'Link using default slot'),
             ],
           },
         }
@@ -180,7 +183,7 @@ describe('SbBreadcrumbItem component', () => {
 
     it('should allow to render a component and a text inside default slot using a router tag', () => {
       const mountOptions = {
-        propsData: {
+        props: {
           to: {
             name: 'TestNuxtView',
           },
@@ -188,14 +191,14 @@ describe('SbBreadcrumbItem component', () => {
         },
         slots: {
           default: [
-            '<SbIcon name="calendar" />',
-            '<p>Link using default slot</p>',
+            h(SbIcon, { name: 'calendar' }),
+            h('p', {}, 'Link using default slot'),
           ],
         },
       }
       const wrapper = factory({}, mountOptions)
 
-      expect(wrapper.findComponent(RouterLinkStub).props().to).toStrictEqual({
+      expect(wrapper.findComponent('nuxt-link').props('to')).toStrictEqual({
         name: 'TestNuxtView',
       })
 

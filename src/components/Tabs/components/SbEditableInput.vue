@@ -1,9 +1,9 @@
 <template>
   <input
     ref="editInput"
-    :value="value"
+    :value="modelValue"
     placeholder="Type a label to new tab"
-    v-on="$listeners"
+    v-bind="$attrs"
   />
 </template>
 
@@ -12,7 +12,7 @@ export default {
   name: 'SbEditableInput',
 
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: '',
     },

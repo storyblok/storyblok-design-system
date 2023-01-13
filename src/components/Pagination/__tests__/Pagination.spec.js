@@ -3,16 +3,16 @@ import { mount } from '@vue/test-utils'
 import SbPagination from '..'
 import { SbSelect } from '../../index'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbPagination, {
-    propsData,
+    props,
   })
 }
 
 describe('SbPagination component', () => {
   describe('when use the SbPagination with intial data', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
     })
@@ -22,7 +22,7 @@ describe('SbPagination component', () => {
     })
 
     it('should have a page select information with correct state', () => {
-      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('1')
+      expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('1')
     })
 
     it('should have the previous button disabled', () => {
@@ -47,13 +47,13 @@ describe('SbPagination component', () => {
 
   describe('when pass a specific page property', () => {
     const wrapper = factory({
-      value: 3,
+      modelValue: 3,
       total: 100,
       perPage: 25,
     })
 
     it('should have the page select with this specific page', () => {
-      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('3')
+      expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('3')
     })
 
     it('should not have the previous and next buttons disabled', () => {
@@ -76,13 +76,13 @@ describe('SbPagination component', () => {
 
   describe('when it is the last page', () => {
     const wrapper = factory({
-      value: 4,
+      modelValue: 4,
       total: 100,
       perPage: 30,
     })
 
     it('should have the page select with this specific page', () => {
-      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('4')
+      expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('4')
     })
 
     it('should have the next button disabled', () => {
@@ -100,7 +100,7 @@ describe('SbPagination component', () => {
 
   describe('when pass a specific perPage property', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 50,
     })
@@ -118,16 +118,16 @@ describe('SbPagination component', () => {
 
   describe('when changes the perPage by using the select', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
     })
 
     it('should emit the per-page-change event with the value select', async () => {
-      await wrapper.setProps({ value: 50 })
+      await wrapper.setProps({ modelValue: 50 })
       await wrapper.vm.$nextTick()
 
-      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('50')
+      expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('50')
     })
 
     it('should update the text with how many pages information', async () => {
@@ -142,22 +142,22 @@ describe('SbPagination component', () => {
 
   describe('when changes the page by using the select', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
     })
 
     it('should emit the input event with the value selected', async () => {
-      await wrapper.setProps({ value: 4 })
+      await wrapper.setProps({ modelValue: 4 })
       await wrapper.vm.$nextTick()
 
-      expect(wrapper.findAllComponents(SbSelect).at(1).props().label).toBe('4')
+      expect(wrapper.findAllComponents(SbSelect)[1].props().label).toBe('4')
     })
   })
 
   describe('when changes the page by using the buttons', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
     })
@@ -170,13 +170,13 @@ describe('SbPagination component', () => {
       await wrapper.vm.$nextTick()
 
       // get the input event result (the result is: [[2]])
-      expect(wrapper.emitted('input')[0][0]).toBe(2)
+      expect(wrapper.emitted('update:modelValue')[0][0]).toBe(2)
     })
 
     it('should emit the input event when previous button is clicked', async () => {
       // setting the value manually to the previous button is not disable
       await wrapper.setProps({
-        value: 5,
+        modelValue: 5,
       })
 
       await wrapper
@@ -186,13 +186,13 @@ describe('SbPagination component', () => {
       await wrapper.vm.$nextTick()
 
       // get the input event result (the result is: [[2]])
-      expect(wrapper.emitted('input')[0][0]).toBe(2)
+      expect(wrapper.emitted('update:modelValue')[0][0]).toBe(2)
     })
   })
 
   describe('when pass the customPerPageOptions property', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 60,
       perPage: 5,
       customPerPageOptions: [5, 15, 30],
@@ -219,7 +219,7 @@ describe('SbPagination component', () => {
 
   describe('with isFullWidth property', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
       isFullWidth: true,
@@ -232,7 +232,7 @@ describe('SbPagination component', () => {
 
   describe('with compact property', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
       compact: true,
@@ -251,7 +251,7 @@ describe('SbPagination component', () => {
 
   describe('with carousel property', () => {
     const wrapper = factory({
-      value: 1,
+      modelValue: 1,
       total: 100,
       perPage: 25,
       carousel: true,
@@ -271,11 +271,11 @@ describe('SbPagination component', () => {
 
     it('should emit the page when click a dot button', async () => {
       const dotButtons = wrapper.findAll('nav button')
-      const thirdPageDot = dotButtons.at(2)
+      const thirdPageDot = dotButtons[2]
 
       await thirdPageDot.trigger('click')
 
-      expect(wrapper.emitted('input')[0][0]).toBe(3)
+      expect(wrapper.emitted('update:modelValue')[0][0]).toBe(3)
     })
   })
 })

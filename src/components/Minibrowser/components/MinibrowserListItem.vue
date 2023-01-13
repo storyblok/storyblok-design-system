@@ -41,11 +41,16 @@
 
 <script>
 import SbIcon from '../../Icon'
+import { Tooltip } from '../../../directives'
 
 export default {
   name: 'SbMinibrowserListItem',
 
   components: { SbIcon },
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   inject: ['browserContext'],
 
@@ -71,7 +76,7 @@ export default {
       type: String,
       default: null,
     },
-    value: {
+    modelValue: {
       type: [String, Number],
       default: null,
     },
@@ -111,7 +116,10 @@ export default {
   methods: {
     handleClick() {
       const payload = {
-        ...this.$props,
+        label: this.label,
+        subtitle: this.subtitle,
+        isParent: this.isParent,
+        value: this.modelValue,
       }
 
       this.$emit('select', payload)

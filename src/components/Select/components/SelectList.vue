@@ -11,9 +11,9 @@
           :key="index"
           :option="option"
           :label="option[itemLabel]"
-          :value="option[itemValue]"
+          :model-value="option[itemValue]"
           :item-value="itemValue"
-          :input-value="value"
+          :input-value="modelValue"
           :multiple="multiple"
           :emit-option="emitOption"
           :use-avatars="useAvatars"
@@ -22,7 +22,7 @@
           :path="option[itemCaption]"
           :selected="shouldBeChecked(index)"
           @emit-value="handleEmitValue"
-          @mouseenter.native="handleFocusItem(index)"
+          @mouseenter="handleFocusItem(index)"
         />
       </template>
       <li
@@ -54,6 +54,8 @@
 
 <script>
 import SbSelectListItem from './SelectListItem'
+import SbLoading from '../../Loading'
+
 import { toLowerCase } from '../../../utils'
 
 export default {
@@ -61,13 +63,14 @@ export default {
 
   components: {
     SbSelectListItem,
+    SbLoading,
   },
 
   inject: ['selectContext'],
 
   props: {
     // input itself value
-    value: {
+    modelValue: {
       type: [String, Number, Array],
       default: null,
     },
@@ -263,8 +266,8 @@ export default {
     shouldBeChecked(index) {
       return (
         this.firstValueIsAllValue &&
-        this.value &&
-        this.value.includes(this.allOptionValue) &&
+        this.modelValue &&
+        this.modelValue.includes(this.allOptionValue) &&
         index > 0
       )
     },

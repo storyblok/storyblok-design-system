@@ -18,7 +18,7 @@
       :multiple="multiple"
       :inline="inline"
       :label="label"
-      :value="value"
+      :model-value="modelValue"
       :search-input="searchInput"
       :filterable="filterable"
       :item-label="itemLabel"
@@ -34,7 +34,7 @@
       :item-caption="itemCaption"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
-      @input="handleSearchInput"
+      @search="handleSearchInput"
       @emit-value="handleEmitValue"
       @close-list="hideList"
       @clear-all-values="handleClearAllValues"
@@ -51,7 +51,7 @@
       v-if="!useMinibrowser"
       ref="list"
       v-infinite-scroll="{ handler: handleInfiniteScroll }"
-      :value="value"
+      :model-value="modelValue"
       :is-loading="isLoading"
       :search-input="searchInput"
       :item-label="itemLabel"
@@ -81,7 +81,7 @@
       :id="inputId"
       class="sb-select__input--hidden"
       :required="required"
-      :value="value"
+      :value="modelValue"
     />
   </div>
 </template>
@@ -114,7 +114,7 @@ export default {
 
   props: {
     // component props
-    value: {
+    modelValue: {
       type: [String, Number, Array],
       default: null,
     },
@@ -205,7 +205,7 @@ export default {
   emits: [
     'filter',
     'hide',
-    'input',
+    'update:modelValue',
     'load-more',
     'option-created',
     'search-input',
@@ -239,7 +239,7 @@ export default {
 
     selectedItem() {
       return this.options.find((option) => {
-        return option[this.itemValue] === this.value
+        return option[this.itemValue] === this.modelValue
       })
     },
 
@@ -305,6 +305,7 @@ export default {
 
     searchInput(newValue) {
       this.$emit('search-input', newValue)
+      this.handleDebouncedFilter(newValue)
     },
   },
 
@@ -320,13 +321,6 @@ export default {
     }
 
     this.$_loadListItems()
-
-    this.$watch(
-      'searchInput',
-      debounce(this.filterDebounce, function (newValue) {
-        this.$emit('filter', newValue)
-      })
-    )
 
     this.$nextTick(() => {
       if (this.$refs.inner) {
@@ -398,22 +392,21 @@ export default {
             option[this.itemValue] === value ||
             option[this.itemLabel] === value
         )
-
         if (valueExists) {
           const parsedValue = this.emitOption ? valueExists : value
           const inputValue = this.processMultipleValue(parsedValue)
-          this.$emit('input', this.validateValue(inputValue, this.value))
+          this.$emit(
+            'update:modelValue',
+            this.validateValue(inputValue, this.modelValue)
+          )
         } else if (this.allowCreate) {
           this.handleOptionCreated(value)
         }
-
         this.searchInput = ''
-
         return
       }
-
       this.searchInput = ''
-      this.$emit('input', value)
+      this.$emit('update:modelValue', value)
       this.$_focusInner()
       this.hideList()
     },
@@ -449,9 +442,9 @@ export default {
     },
 
     /**
-     * check if the value exists on this.value
+     * check if the value exists on this.modelValue
      * but, based on this.emitOption, to check more
-     * properly the case when this.value is an array
+     * properly the case when this.modelValue is an array
      * of objects
      * @param  {String|Number|Object} value
      * @return {Boolean}
@@ -460,27 +453,27 @@ export default {
       if (this.emitOption) {
         const itemValue = value[this.itemValue]
 
-        return this.value.some(($v) => $v[this.itemValue] === itemValue)
+        return this.modelValue?.some(($v) => $v[this.itemValue] === itemValue)
       }
 
-      return includes(this.value, value)
+      return includes(this.modelValue, value)
     },
 
     /**
-     * remove a specific value from this.value, based on this.emitOption,
-     * to check more properly the case when this.value is an array
+     * remove a specific value from this.modelValue, based on this.emitOption,
+     * to check more properly the case when this.modelValue is an array
      * of objects
      * @param  {String|Number|Object} value
      * @return {Array}
      */
     removeValueFromArray(value) {
       if (this.emitOption) {
-        return this.value.filter(
+        return this.modelValue.filter(
           (val) => val[this.itemValue] !== value[this.itemValue]
         )
       }
 
-      return this.value.filter((val) => val !== value)
+      return this.modelValue.filter((val) => val !== value)
     },
 
     /**
@@ -492,7 +485,7 @@ export default {
         return this.removeValueFromArray(value)
       }
 
-      return [...(this.value || []), value]
+      return [...(this.modelValue || []), value]
     },
 
     /**
@@ -502,7 +495,7 @@ export default {
     handleRemoveItemValue(itemValue) {
       if (this.multiple) {
         const $value = this.processMultipleValue(itemValue)
-        this.$emit('input', $value)
+        this.$emit('update:modelValue', $value)
         this.$_focusInner()
       }
     },
@@ -513,14 +506,14 @@ export default {
      */
     handleClearAllValues() {
       if (this.multiple) {
-        this.$emit('input', [])
+        this.$emit('update:modelValue', [])
         this.hideList()
         this.$_focusInner()
         return
       }
 
       this.searchInput = ''
-      this.$emit('input', null)
+      this.$emit('update:modelValue', null)
       this.hideList()
       this.$_focusInner()
     },
@@ -531,7 +524,7 @@ export default {
     handleSearchInput(event) {
       this.searchInput = !isString(event) ? event.target.value : event
       if (this.emitSearch) {
-        this.$emit('input', this.searchInput)
+        this.$emit('update:modelValue', this.searchInput)
       }
     },
 
@@ -663,6 +656,12 @@ export default {
       if (this.infiniteScroll) {
         this.$emit('load-more')
       }
+    },
+
+    handleDebouncedFilter(value) {
+      debounce(this.filterDebounce, () => {
+        this.$emit('filter', value)
+      })()
     },
   },
 }

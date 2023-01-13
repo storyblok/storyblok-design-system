@@ -3,7 +3,7 @@
     <div class="sb-checkbox__inner">
       <input
         :id="id"
-        v-model="computedValue"
+        v-model="internalValue"
         v-bind="$attrs"
         :indeterminate.prop="indeterminate"
         class="sb-checkbox__native"
@@ -60,6 +60,7 @@ export default {
   computed: {
     componentClasses() {
       return [
+        this.$attrs.class,
         this.inline && 'sb-checkbox--inline',
         this.outline && 'sb-checkbox--outline',
       ]

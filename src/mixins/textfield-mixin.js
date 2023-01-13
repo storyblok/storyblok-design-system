@@ -52,7 +52,7 @@ export default {
 
   data() {
     return {
-      internalValue: this.value,
+      internalValue: this.modelValue,
       internalType: this.type,
       internalIconRight: this.iconRight,
       isOnInput: false,
@@ -67,13 +67,13 @@ export default {
       set(newValue) {
         this.internalValue = newValue
         this.isOnInput = true
-        this.$emit('input', newValue)
+        this.$emit('update:modelValue', newValue)
       },
     },
   },
 
   watch: {
-    value(newValue) {
+    modelValue(newValue) {
       this.internalValue = newValue
     },
   },

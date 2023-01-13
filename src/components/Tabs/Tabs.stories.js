@@ -31,7 +31,7 @@ const TabsTemplate = (template) => (args) => ({
     }
   },
   watch: {
-    value(newValue) {
+    modelValue(newValue) {
       this.currentTab = newValue
     },
   },
@@ -79,7 +79,7 @@ export default {
     orientation: 'horizontal',
     showAddButton: false,
     type: null,
-    value: 'first',
+    modelValue: 'first',
   },
   parameters: {
     docs: {
@@ -114,10 +114,10 @@ export default {
         options: ['container'],
       },
     },
-    value: {
-      name: 'value',
+    modelValue: {
+      name: 'modelValue',
       description:
-        'Current tab. The value property has to be used for `v-model` directive',
+        'Current tab. The modelValue property has to be used for `v-model` directive',
       control: {
         type: 'text',
       },

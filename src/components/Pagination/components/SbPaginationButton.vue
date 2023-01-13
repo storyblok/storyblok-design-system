@@ -10,7 +10,6 @@
     }"
     :disabled="disabled"
     :aria-label="tooltipLabel"
-    v-on="$listeners"
   >
     <SbIcon :name="icon" size="normal" />
   </button>

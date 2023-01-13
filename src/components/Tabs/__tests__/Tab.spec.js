@@ -4,10 +4,17 @@ import { SbTab } from '..'
 describe('Test SbTab component', () => {
   describe('when use the editable property in SbTab', () => {
     const wrapper = mount(SbTab, {
-      propsData: {
+      props: {
         label: 'Tab Editable',
         name: 'editable-tab',
         editable: true,
+      },
+      global: {
+        provide: {
+          activeTab: () => 'editable-tab',
+          onKeyDown: jest.fn(),
+          onActivateTab: jest.fn(),
+        },
       },
     })
 

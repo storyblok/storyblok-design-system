@@ -11,7 +11,7 @@ export default {
     required: false,
     placeholder: 'Placeholder text',
     readonly: false,
-    value: 'Boris Spassky',
+    modelValue: 'Boris Spassky',
     nativeValue: 'Boris Spassky',
     errorMessage: 'Some error message',
 
@@ -29,7 +29,9 @@ export default {
 
 export const Default = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   data: () => ({
     internalValue: 'Boris Spassky',
     internalType: 'password',
@@ -46,7 +48,7 @@ export const Default = (args) => ({
         :required="required"
         :placeholder="placeholder"
         :readonly="readonly"
-        :native-value="nativeValue"
+        :native-valueargs.="nativeValue"
         v-model="internalValue"
       />
       <SbTextField
@@ -59,7 +61,7 @@ export const Default = (args) => ({
         :placeholder="placeholder"
         :readonly="readonly"
         :maxlength="maxlength"
-        :native-value="nativeValue"
+        :native-valueargs.="nativeValue"
         v-model="internalValue"
       />
       <SbTextField
@@ -69,7 +71,7 @@ export const Default = (args) => ({
         label="Disabled text input"
         :required="required"
         :placeholder="placeholder"
-        :native-value="nativeValue"
+        :native-valueargs.="nativeValue"
         v-model="internalValue"
         disabled
       />
@@ -81,7 +83,7 @@ export const Default = (args) => ({
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
-        :native-value="nativeValue"
+        :native-valueargs.="nativeValue"
         v-model="internalValue"
         readonly
       />
@@ -139,6 +141,7 @@ export const Default = (args) => ({
         v-model="internalValue"
       />
       <SbTextField
+        style="margin-bottom: 20px;"
         :id="id"
         :name="name"
         :label="label"
@@ -149,13 +152,26 @@ export const Default = (args) => ({
         :maxlength="maxlength"
         v-model="internalValue"
       />
+      <SbTextField
+        :id="id"
+        :name="name"
+        label="With max length"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        maxlength="200"
+        v-model="internalValue"
+      />
     </div>
   `,
 })
 
 export const withIcon = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   data: () => ({
     internalValue: 'Boris Spassky',
   }),
@@ -247,7 +263,9 @@ export const withIcon = (args) => ({
 
 export const Ghost = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   data: () => ({
     internalValue: 'Boris Spassky',
     internalType: 'text',
@@ -301,7 +319,9 @@ export const Ghost = (args) => ({
 
 export const withText = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   data: () => ({
     internalValue: 'Boris Spassky',
   }),
@@ -339,7 +359,9 @@ export const withText = (args) => ({
 
 export const TextArea = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   data: () => ({
     internalValue: 'Boris Spassky',
   }),
@@ -364,7 +386,9 @@ export const TextArea = (args) => ({
 
 export const withMask = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   data: () => ({
     internalValue: '',
   }),

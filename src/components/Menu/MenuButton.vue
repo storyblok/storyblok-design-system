@@ -15,10 +15,7 @@
       iconSize,
       hasIconOnly,
     }"
-    :class="{
-      'sb-menu-button-borderless': isBorderless,
-      'sb-menu-button': hasIconOnly,
-    }"
+    :class="computedClasses"
     @click="handleClick"
     @keydown="handleKeyDown"
   >
@@ -90,6 +87,15 @@ export default {
     },
     activeIconName() {
       return this.icon || this.iconName
+    },
+    computedClasses() {
+      return [
+        {
+          'sb-menu-button-borderless': this.isBorderless,
+          'sb-menu-button': this.hasIconOnly,
+        },
+        this.$attrs.class,
+      ]
     },
   },
 

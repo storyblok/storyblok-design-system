@@ -1,6 +1,5 @@
 <template>
   <div
-    :ref="_uid"
     v-click-outside="$_wrapClose"
     class="sb-datepicker"
     :class="{ 'sb-datepicker--active': isOverlayVisible }"
@@ -8,19 +7,17 @@
     <div class="sb-datepicker__input">
       <SbTextField
         ref="input"
-        v-model="internalValue"
-        :mask="internalMask"
         type="text"
         icon-left="calendar"
         :disabled="disabled"
         :placeholder="placeholder"
-        :value="internalValueFormatted"
+        :model-value="internalValueFormatted"
         :error="invalidDate"
         clearable
         @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
-        @blur="handleDoneAction"
+        @blur="handleBlur"
       />
 
       <template v-if="isShowTzOffset">
@@ -49,7 +46,7 @@
           isYearView,
           isMonthView,
           isTimeView,
-          value: internalDate,
+          modelValue: internalDate,
         }"
         @previous-month="handlePreviousMonth"
         @next-month="handleNextMonth"
@@ -59,12 +56,12 @@
 
       <component
         :is="isComponentView"
-        :value="internalValue"
+        :model-value="internalValue"
         :internal-date="internalDate"
         :min-date="minDate"
         :max-date="maxDate"
         :disabled-past="disabledPast"
-        @input="handleComponentsInput"
+        @update:model-value="handleComponentsInput"
         @input-minutes="handleMinutesInput"
       />
 
@@ -162,7 +159,7 @@ export default {
       default: null,
     },
 
-    value: {
+    modelValue: {
       type: String,
       default: '',
     },
@@ -183,7 +180,7 @@ export default {
     },
   },
 
-  emits: ['clear', 'input'],
+  emits: ['clear', 'update:modelValue'],
 
   data: () => ({
     internalDate: dayjs().format(),
@@ -306,7 +303,7 @@ export default {
   },
 
   watch: {
-    value: {
+    modelValue: {
       handler: 'syncInternalValue',
       immediate: true,
     },
@@ -338,7 +335,14 @@ export default {
         return
       }
 
-      this.syncInternalValue(this.value)
+      this.syncInternalValue(this.modelValue)
+    },
+
+    async handleBlur(newValue) {
+      if (newValue.length) {
+        this.handleComponentsInput(newValue)
+      }
+      this.handleDoneAction()
     },
 
     handleDoneAction() {
@@ -382,14 +386,16 @@ export default {
 
       if (this.isoDate) {
         this.isoString = dayjs.utc(utcTime).toISOString()
-        this.$emit('input', this.isoString)
+        this.$emit('update:modelValue', this.isoString)
       } else {
-        this.$emit('input', utcTime)
+        this.$emit('update:modelValue', utcTime)
       }
 
       this.$nextTick(() => {
         this.closeOverlay()
       })
+
+      return utcTime
     },
 
     handlePreviousMonth() {
@@ -449,7 +455,7 @@ export default {
     handleClear(previousValue) {
       this.internalValue = ''
       this.hitClear = true
-      this.$emit('input', '')
+      this.$emit('update:modelValue', '')
       this.$emit('clear', previousValue)
     },
 

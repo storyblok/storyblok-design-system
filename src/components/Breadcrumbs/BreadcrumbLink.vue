@@ -1,5 +1,5 @@
 <template>
-  <component :is="as" v-bind="computedAttrs" v-on="$listeners">
+  <component :is="as" v-bind="computedAttrs">
     <span v-if="label" class="sb-breadcrumbs__item-label">{{ label }}</span>
     <slot></slot>
   </component>
@@ -39,7 +39,7 @@ export default {
         }
       }
 
-      return this._props
+      return this.$props
     },
   },
 }

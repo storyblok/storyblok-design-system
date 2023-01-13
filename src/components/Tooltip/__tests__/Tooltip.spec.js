@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils'
 import SbTooltip from '..'
 import SbButton from '../../Button'
 import SbIcon from '../../Icon'
+import SbPopover from '../../Popover'
 
 const factory = (
   template,
@@ -9,18 +10,15 @@ const factory = (
   additionalInformation = {}
 ) => {
   const WrapperComponent = {
-    components: { SbTooltip, ...additionalComponents },
+    components: { SbTooltip, SbPopover, ...additionalComponents },
     template,
     ...additionalInformation,
   }
 
-  return mount(WrapperComponent, {
-    stubs: {
-      SbFragment: true,
-      MountingPortal: true,
-    },
-  })
+  return mount(WrapperComponent)
 }
+
+const findTooltip = () => document.querySelector('[role="tooltip"]')
 
 describe('test SbTooltip component', () => {
   describe('when using along with a SbButton component', () => {
@@ -46,9 +44,10 @@ describe('test SbTooltip component', () => {
     const wrapper = factory(template, { SbButton }, additionalInfo)
     const ButtonComponent = wrapper.findComponent(SbButton)
     const IconComponent = wrapper.findComponent(SbIcon)
+    const PopoverComponent = wrapper.findComponent(SbPopover)
 
     it('should render the tooltip label with correct text', async () => {
-      expect(wrapper.find('.sb-tooltip').text()).toBe(label)
+      expect(PopoverComponent.vm.$slots.default()[0].children).toBe(label + ' ')
     })
 
     it('should render the SbButton component', () => {
@@ -70,8 +69,10 @@ describe('test SbTooltip component', () => {
     })
 
     it('should have the same id and aria-describedby in the SbButton', () => {
-      const id = ButtonComponent.attributes('aria-describedby')
-      expect(wrapper.find(`#${id}`).exists()).toBe(true)
+      const span = wrapper.find('span')
+      const id = span.attributes('aria-describedby')
+      const popover = wrapper.findComponent(SbPopover)
+      expect(popover.props('useAnchorId')).toBe(id)
     })
 
     it('should exists the SbIcon component', () => {
@@ -93,13 +94,16 @@ describe('test SbTooltip component', () => {
 
     const wrapper = factory(template, { SbButton })
 
-    it('should render the tooltip label with correct text', () => {
-      expect(wrapper.find('.sb-tooltip').text()).toBe(label)
+    it('should render the tooltip label with correct text', async () => {
+      const popover = wrapper.findComponent(SbPopover)
+      expect(popover.vm.$slots.default()[0].children).toBe(label + ' ')
     })
 
     it('should have the same id and aria-describedby in the container', () => {
-      const id = wrapper.find('span').attributes('aria-describedby')
-      expect(wrapper.find(`#${id}`).exists()).toBe(true)
+      const span = wrapper.find('span')
+      const id = span.attributes('aria-describedby')
+      const popover = wrapper.findComponent(SbPopover)
+      expect(popover.props('useAnchorId')).toBe(id)
     })
   })
 
@@ -155,33 +159,33 @@ describe('test SbTooltip component', () => {
     }
 
     const wrapper = factory(template, {}, additionalInfo)
-    const ButtonComponent = wrapper.find('button')
-    const TooltipComponent = wrapper.find('[role="tooltip"]')
+    const ButtonComponent = wrapper.find('span')
+    const PopoverComponent = wrapper.findComponent(SbPopover)
 
     it('should perform the show on focus hide on blur', async () => {
-      expect(TooltipComponent.attributes('aria-hidden')).toBe('true')
+      expect(PopoverComponent.props().isOpen).toBe(false)
 
-      ButtonComponent.element.focus()
-
-      await wrapper.vm.$nextTick()
-
-      expect(TooltipComponent.attributes('aria-hidden')).toBe('false')
-
-      ButtonComponent.element.blur()
+      ButtonComponent.trigger('focus')
 
       await wrapper.vm.$nextTick()
 
-      expect(TooltipComponent.attributes('aria-hidden')).toBe('true')
+      expect(PopoverComponent.props().isOpen).toBe(true)
+
+      ButtonComponent.trigger('blur')
+
+      await wrapper.vm.$nextTick()
+
+      expect(PopoverComponent.props().isOpen).toBe(false)
     })
 
     it('should perform the show on focus hide on escape key is pressed', async () => {
-      expect(TooltipComponent.attributes('aria-hidden')).toBe('true')
+      expect(PopoverComponent.props().isOpen).toBe(false)
 
-      ButtonComponent.element.focus()
+      ButtonComponent.trigger('focus')
 
       await wrapper.vm.$nextTick()
 
-      expect(TooltipComponent.attributes('aria-hidden')).toBe('false')
+      expect(PopoverComponent.props().isOpen).toBe(true)
 
       await ButtonComponent.trigger('keydown', {
         key: 'Escape',
@@ -189,7 +193,7 @@ describe('test SbTooltip component', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(TooltipComponent.attributes('aria-hidden')).toBe('true')
+      expect(PopoverComponent.props().isOpen).toBe(false)
     })
   })
 })
