@@ -61,7 +61,7 @@
         :min-date="minDate"
         :max-date="maxDate"
         :disabled-past="disabledPast"
-        @update:modelValue="handleComponentsInput"
+        @update:model-value="handleComponentsInput"
         @input-minutes="handleMinutesInput"
       />
 

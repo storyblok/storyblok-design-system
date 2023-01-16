@@ -80,7 +80,7 @@ export default {
     },
   },
 
-  emits: ['icon-click'],
+  emits: ['icon-click', 'toggle-open'],
   setup(props, { emit }) {
     const isOpenLocal = ref(props.isOpen)
     const chevronIcon = computed(() =>

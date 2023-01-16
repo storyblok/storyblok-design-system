@@ -17,15 +17,30 @@ export default {
       type: String,
       default: null,
     },
-    title: String,
-    target: String,
+    title: {
+      type: String,
+      default: '',
+    },
+    target: {
+      type: String,
+      default: '',
+    },
     append: Boolean,
     disabled: Boolean,
     exact: Boolean,
-    exactActiveClass: String,
+    exactActiveClass: {
+      type: String,
+      default: '',
+    },
     link: Boolean,
-    href: String,
-    to: [String, Object],
+    href: {
+      type: String,
+      default: '',
+    },
+    to: {
+      type: [String, Object],
+      default: null,
+    },
     replace: Boolean,
   },
 
