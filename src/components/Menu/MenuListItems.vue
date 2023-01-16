@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul v-if="items.length">
     <li v-for="item in items" :key="item.label">
       <SbMenuSeparator v-if="item.separator" />
       <SbMenuGroup
