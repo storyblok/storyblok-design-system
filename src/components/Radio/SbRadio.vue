@@ -50,7 +50,8 @@ export default {
 
   methods: {
     handleInput(e) {
-      this.$emit('update:modelValue', e.target.checked)
+      const valueToEmit = e.target.value ? e.target.value : e.target.checked
+      this.$emit('update:modelValue', valueToEmit)
     },
   },
 }
