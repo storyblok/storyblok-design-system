@@ -50,7 +50,7 @@ export default {
     },
   },
 
-  emits: ['click'],
+  emits: ['click', 'toggle-avatars-dropdown'],
 
   data() {
     return {
