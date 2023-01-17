@@ -2,14 +2,14 @@
   <div class="sb-sidebar-link-inner">
     <SbAvatar v-if="hasAvatar" v-bind="avatar" />
     <img
-      v-else-if="hasImage"
+      v-else-if="image"
       :src="image"
       width="22"
       height="22"
       class="sb-sidebar-sidebar-icon"
     />
 
-    <SbIcon v-else-if="hasIcon" :size="iconSize" :name="icon" />
+    <SbIcon v-else-if="icon" :size="iconSize" :name="icon" />
 
     <div v-if="hasSeparator" class="sb-separator"></div>
 
@@ -93,14 +93,6 @@ export default {
   computed: {
     hasAvatar() {
       return this.avatar !== null
-    },
-
-    hasIcon() {
-      return this.icon
-    },
-
-    hasImage() {
-      return this.image !== null
     },
   },
 }
