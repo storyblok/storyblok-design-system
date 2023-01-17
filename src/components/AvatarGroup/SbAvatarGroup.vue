@@ -46,7 +46,7 @@ export default {
     },
   },
 
-  emits: ['click'],
+  emits: ['click', 'toggle-visible-dropdown'],
 
   data() {
     return {

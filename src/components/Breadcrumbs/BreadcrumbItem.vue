@@ -58,7 +58,10 @@ export default {
       type: String,
       default: null,
     },
-    to: [String, Object],
+    to: {
+      type: [String, Object],
+      default: null,
+    },
     replace: Boolean,
   },
 

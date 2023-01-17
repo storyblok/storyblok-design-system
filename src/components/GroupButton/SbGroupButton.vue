@@ -1,6 +1,6 @@
 <template>
   <div class="sb-group-button" :class="activeClasses" v-bind="$attrs">
-    <VNodes :vnodes="activeSlots" />
+    <VNodes :vnodes="activeSlots()" />
   </div>
 </template>
 
@@ -25,9 +25,11 @@ export default {
         'sb-group-button--has-spaces': this.hasSpaces,
       }
     },
+  },
+  methods: {
     activeSlots() {
       const children = this.$slots.default && this.$slots.default()
-      const chilrenWithProps = children
+      return children
         .filter((b) => b.__v_isVNode)
         .map((button) => {
           button.props = {
@@ -36,8 +38,6 @@ export default {
           }
           return button
         })
-
-      return chilrenWithProps
     },
   },
 }
