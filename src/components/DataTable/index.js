@@ -199,6 +199,7 @@ const SbDataTable = {
         headerData = children.map((element) => {
           return {
             ...element.props,
+            isContentCentered: element.props['is-content-centered'] || false,
             scopedSlots: element.children,
           }
         })
