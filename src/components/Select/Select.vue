@@ -604,7 +604,7 @@ export default {
      */
     $_loadListItems() {
       if (!this.useMinibrowser) {
-        const menuNode = canUseDOM && this.$refs.list.$el
+        const menuNode = canUseDOM && this.$refs?.list?.$el
 
         if (menuNode) {
           this.listItems = menuNode.querySelectorAll('li')
