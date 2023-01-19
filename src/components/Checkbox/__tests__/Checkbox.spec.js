@@ -1,5 +1,6 @@
 import SbCheckbox from '..'
 import { mount } from '@vue/test-utils'
+import { waitMs } from '../../../utils/tests-utils'
 
 const factory = (props) => {
   return mount(SbCheckbox, {
@@ -32,15 +33,21 @@ describe('SbCheckbox component', () => {
     expect(wrapper.text()).toBe('Default - Disabled')
   })
 
-  it('should emit the nativeValue property when clicks on input', async () => {
+  it('should change the internal value to true or false when clicks on input', async () => {
     const wrapper = factory({
       label: 'Default',
-      nativeValue: false,
+      modelValue: false,
+      nativeValue: 'test',
     })
 
-    await wrapper.find('input[type="checkbox"]').setValue(true)
+    const input = wrapper.get('input[type="checkbox"]')
+    await input.setValue(true)
 
-    expect(wrapper.emitted('update:modelValue')[0]).toEqual([true])
+    expect(wrapper.vm.internalValue).toBe(true)
+
+    await input.setValue(false)
+
+    expect(wrapper.vm.internalValue).toBe(false)
   })
 
   it('should have the outline and inline classes', async () => {

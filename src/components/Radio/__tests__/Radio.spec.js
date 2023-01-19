@@ -32,15 +32,20 @@ describe('SbRadio component', () => {
     expect(wrapper.text()).toBe('Default - Disabled')
   })
 
-  it('should emit the nativeValue property when clicks on input', async () => {
+  it('should keep the nativeValue property when having a input event', async () => {
     const wrapper = factory({
       label: 'Default - Disabled',
+      modelValue: 'Jon Doe',
       nativeValue: 'Jon Doe',
     })
 
-    await wrapper.find('input[type="radio"]').setValue('Jon Doe')
+    const input = wrapper.get('input[type="radio"]')
+    await input.setValue('Jon Doe')
 
-    expect(wrapper.emitted('update:modelValue')[0]).toEqual(['Jon Doe'])
+    expect(wrapper.vm.internalValue).toBe('Jon Doe')
+    await input.setValue('Jane Doe')
+
+    expect(wrapper.vm.internalValue).toBe('Jon Doe')
   })
 
   it('should have the outline and inline classes', async () => {

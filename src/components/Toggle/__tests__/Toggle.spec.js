@@ -40,7 +40,7 @@ describe('SbToggle component', () => {
 
     await wrapper.find('input[type="checkbox"]').setValue(true)
 
-    expect(wrapper.emitted('update:modelValue')[0]).toEqual([true])
+    expect(wrapper.vm.internalValue).toEqual(true)
   })
 
   it('should have the primary class', async () => {
