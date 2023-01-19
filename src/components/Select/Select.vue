@@ -48,7 +48,7 @@
     </span>
 
     <SbSelectList
-      v-if="!useMinibrowser"
+      v-if="isListRendered"
       ref="list"
       v-infinite-scroll="{ handler: handleInfiniteScroll }"
       :model-value="modelValue"
@@ -196,6 +196,7 @@ export default {
     },
     infiniteScroll: Boolean,
     isLoadingMore: Boolean,
+    renderOnOpen: Boolean,
     loadingMoreText: {
       type: String,
       default: 'Loading more...',
@@ -249,6 +250,11 @@ export default {
 
     firstOptionValue() {
       return this.options.length > 0 ? this.options[0].value : null
+    },
+
+    isListRendered() {
+      const shouldRender = this.renderOnOpen ? this.isOpen : true
+      return !this.useMinibrowser && shouldRender
     },
 
     filteredOptions() {

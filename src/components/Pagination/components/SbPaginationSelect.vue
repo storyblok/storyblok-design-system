@@ -4,6 +4,7 @@
     :label="activeLabel"
     inline
     show-list-on-top
+    render-on-open
     @update:modelValue="onSelectInput"
   />
 </template>
