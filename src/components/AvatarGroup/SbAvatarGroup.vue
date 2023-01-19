@@ -57,9 +57,11 @@ export default {
   computed: {
     avatars() {
       const children = this.$slots.default && this.$slots.default()
+      console.log(children[0].children)
       const useGrandchildren =
         children &&
         children.length === 1 &&
+        children[0].children &&
         children[0].children[0].type.name === 'SbAvatar'
       const avatarChildren = useGrandchildren ? children[0].children : children
       return avatarChildren.filter(({ type }) => type.name === 'SbAvatar')
