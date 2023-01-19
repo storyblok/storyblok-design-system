@@ -197,9 +197,13 @@ const SbDataTable = {
       if (this.$slots.default && this.$slots.default()) {
         const children = this.$slots.default().filter((e) => e.type.name)
         headerData = children.map((element) => {
+          const hasCenteredProp =
+            element.props && 'is-content-centered' in element.props
+              ? element.props['is-content-centered']
+              : false
           return {
             ...element.props,
-            isContentCentered: element.props['is-content-centered'] || false,
+            isContentCentered: hasCenteredProp,
             scopedSlots: element.children,
           }
         })
