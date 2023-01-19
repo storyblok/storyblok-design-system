@@ -57,7 +57,6 @@ export default {
   computed: {
     avatars() {
       const children = this.$slots.default && this.$slots.default()
-      console.log(children[0].children)
       const useGrandchildren =
         children &&
         children.length === 1 &&
