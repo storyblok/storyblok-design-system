@@ -349,6 +349,7 @@ export const WithAvatars = SelectTemplate.bind({})
 
 WithAvatars.args = {
   useAvatars: true,
+  filterable: true,
   options: [...defaultAvatarsData],
 }
 
@@ -357,6 +358,7 @@ export const MutipleAndAvatars = SelectTemplate.bind({})
 MutipleAndAvatars.args = {
   multiple: true,
   useAvatars: true,
+  filterable: true,
   options: [...defaultAvatarsData],
 }
 

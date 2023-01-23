@@ -413,10 +413,6 @@ export default {
     handleEmitSearchInput() {
       if (this.filterable && !this.isDisabled) {
         this.$emit('search', this.searchInputText)
-
-        if (this.isAvatarVisible) {
-          this.showAvatar = false
-        }
       }
     },
 
