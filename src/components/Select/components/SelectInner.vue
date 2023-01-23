@@ -396,6 +396,10 @@ export default {
         this.showAvatar = true
       }
     },
+
+    isAvatarVisible(val) {
+      this.showAvatar = val
+    },
   },
 
   methods: {
