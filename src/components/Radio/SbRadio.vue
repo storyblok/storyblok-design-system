@@ -50,7 +50,10 @@ export default {
 
   methods: {
     handleInput(e) {
-      const valueToEmit = e.target.value ? e.target.value : e.target.checked
+      const valueToEmit =
+        typeof this.nativeValue !== 'undefined'
+          ? this.nativeValue
+          : e.target.checked
       this.$emit('update:modelValue', valueToEmit)
     },
   },
