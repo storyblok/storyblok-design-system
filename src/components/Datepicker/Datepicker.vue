@@ -1,5 +1,6 @@
 <template>
   <div
+    :ref="_uid"
     v-click-outside="$_wrapClose"
     class="sb-datepicker"
     :class="{ 'sb-datepicker--active': isOverlayVisible }"
@@ -7,6 +8,8 @@
     <div class="sb-datepicker__input">
       <SbTextField
         ref="input"
+        v-model="internalValue"
+        :mask="internalMask"
         type="text"
         icon-left="calendar"
         :disabled="disabled"
@@ -17,7 +20,7 @@
         @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
-        @blur="handleBlur"
+        @blur="handleDoneAction"
       />
 
       <template v-if="isShowTzOffset">
@@ -338,13 +341,6 @@ export default {
       this.syncInternalValue(this.modelValue)
     },
 
-    async handleBlur(newValue) {
-      if (newValue.length) {
-        this.handleComponentsInput(newValue)
-      }
-      this.handleDoneAction()
-    },
-
     handleDoneAction() {
       let utcTime
 
@@ -394,8 +390,6 @@ export default {
       this.$nextTick(() => {
         this.closeOverlay()
       })
-
-      return utcTime
     },
 
     handlePreviousMonth() {
