@@ -42,7 +42,7 @@ export default {
     },
   },
 
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'input-minutes'],
 
   data: () => ({
     internalHour: null,
