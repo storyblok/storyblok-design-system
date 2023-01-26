@@ -3,7 +3,7 @@
     <div class="sb-checkbox__inner">
       <input
         :id="id"
-        v-model="computedValue"
+        v-model="internalValue"
         v-bind="$attrs"
         :indeterminate.prop="indeterminate"
         class="sb-checkbox__native"
@@ -13,6 +13,7 @@
         :required="required"
         :disabled="disabled"
         @click.stop
+        @input="handleInput"
       />
 
       <div class="sb-checkbox__input">
@@ -57,12 +58,20 @@ export default {
     outline: Boolean,
   },
 
+  emits: ['click'],
+
   computed: {
     componentClasses() {
       return [
+        this.$attrs.class,
         this.inline && 'sb-checkbox--inline',
         this.outline && 'sb-checkbox--outline',
       ]
+    },
+  },
+  methods: {
+    handleInput(e) {
+      this.$emit('update:modelValue', e.target.checked)
     },
   },
 }

@@ -2,7 +2,7 @@
   <div class="sb-toggle" :class="componentClasses">
     <input
       :id="id"
-      v-model="computedValue"
+      v-model="internalValue"
       v-bind="$attrs"
       :indeterminate.prop="indeterminate"
       class="sb-toggle__native"
@@ -12,6 +12,7 @@
       :required="required"
       :disabled="disabled"
       @click.stop
+      @input="handleInput"
     />
     <label :for="id" class="sb-toggle__label">{{ label }}</label>
     <SbIcon
@@ -58,6 +59,11 @@ export default {
   computed: {
     componentClasses() {
       return [this.variant ? `sb-toggle--${this.variant}` : '']
+    },
+  },
+  methods: {
+    handleInput(e) {
+      this.$emit('update:modelValue', e.target.checked)
     },
   },
 }

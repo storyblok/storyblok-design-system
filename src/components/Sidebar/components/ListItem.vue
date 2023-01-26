@@ -11,7 +11,6 @@
       :class="computedLinkClasses"
       v-bind="$attrs"
       :to="to"
-      v-on="$listeners"
     >
       <ListItemInner
         :avatar="avatar"
@@ -24,6 +23,7 @@
         :icon-tooltip-label="iconTooltipLabel"
         :has-separator="hasSeparator"
         :label="label"
+        :image="image"
       />
     </router-link>
     <component
@@ -33,7 +33,6 @@
       :class="computedLinkClasses"
       v-bind="$attrs"
       :href="href"
-      v-on="$listeners"
     >
       <ListItemInner
         :avatar="avatar"
@@ -46,6 +45,7 @@
         :icon-tooltip-label="iconTooltipLabel"
         :has-separator="hasSeparator"
         :label="label"
+        :image="image"
       />
     </component>
     <slot />
@@ -133,6 +133,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    image: {
+      type: String,
+      default: null,
+    },
   },
 
   computed: {
@@ -146,7 +150,6 @@ export default {
     computedLinkClasses() {
       return {
         'sb-sidebar-link--active': this.active,
-        'sb-sidebar-link--use-avatar': this.hasAvatar,
       }
     },
     isRouterLink() {

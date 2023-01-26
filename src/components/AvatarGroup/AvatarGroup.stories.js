@@ -45,7 +45,9 @@ export default {
 
 export const Default = (args) => ({
   components: { SbAvatarGroup, SbAvatar },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
   <div>
     <p class="font-size-lg"> With white Background </p>
@@ -151,11 +153,13 @@ WithSizes.parameters = {
 
 export const WithMoreAvatars = (args) => ({
   components: { SbAvatarGroup, SbAvatar },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
   <div>
     <div>
-      <SbAvatarGroup v-bind="{ size, maxElements }">
+      <SbAvatarGroup v-bind="args">
         <SbAvatar
           src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
         />

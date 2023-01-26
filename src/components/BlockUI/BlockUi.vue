@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="sb-block-ui"
-    v-bind="$attrs"
-    :class="computedClass"
-    v-on="$listeners"
-  >
+  <div class="sb-block-ui" v-bind="$attrs" :class="computedClass">
     <slot />
   </div>
 </template>

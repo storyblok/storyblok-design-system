@@ -47,7 +47,9 @@ export default {
 
 const getComponentOptions = (args) => ({
   components: { SbTag },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbTag
       :closable="closable"

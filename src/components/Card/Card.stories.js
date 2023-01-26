@@ -53,10 +53,12 @@ export const Default = (args) => ({
     SbCardContent,
     SbCardFooter,
   },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbCard :isLoading="isLoading">
-      <SbCardHeader :as="as" :title="title" />
+      <SbCardHeader v-bind="args" />
 
       <SbCardContent>
         <div
@@ -90,7 +92,9 @@ export const WithoutHeaderAndFooter = (args) => ({
     SbCardContent,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
 
   template: `
     <SbCard :isLoading="isLoading">
@@ -130,11 +134,13 @@ export const Loading = (args) => ({
     SbCardFooter,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
 
   template: `
     <SbCard :isLoading="isLoading">
-      <SbCardHeader :title="title" />
+      <SbCardHeader v-bind="args" />
 
       <SbCardContent>
         <div
@@ -226,11 +232,13 @@ export const WithMenuComponent = (args) => ({
     ],
   }),
 
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
 
   template: `
     <SbCard :isLoading="isLoading">
-      <SbCardHeader :title="title" :options="options" />
+      <SbCardHeader v-bind="args" :options="options" />
 
       <SbCardContent>
         <div

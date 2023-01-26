@@ -2,17 +2,21 @@ module.exports = {
   root: true,
   env: {
     node: true,
+    jest: true,
   },
   extends: [
-    'plugin:vue/strongly-recommended',
-    'eslint:recommended',
-    '@vue/standard',
+    'plugin:vue/vue3-essential',
+    'plugin:vue/vue3-recommended',
+    'plugin:vue/vue3-strongly-recommended',
     'prettier',
     'plugin:prettier/recommended',
-    'prettier/vue',
+    'plugin:jest-dom/recommended',
   ],
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: {
+      js: '@babel/eslint-parser',
+    },
   },
   rules: {
     'no-console': [

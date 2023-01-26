@@ -10,6 +10,11 @@ describe('Test SbTabPanels component', () => {
     data: () => ({
       currentTab: 'first',
     }),
+    global: {
+      provide: {
+        activeTab: () => 'first',
+      },
+    },
     template: `
       <SbTabPanels v-model="currentTab">
         <SbTabPanel name="first">

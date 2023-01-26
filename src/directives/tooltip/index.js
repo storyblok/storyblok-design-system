@@ -172,7 +172,7 @@ export default {
    * @param  {HTMLElement} el node element that the directive is bind to
    * @param  {Object} binding
    */
-  bind(el, binding) {
+  beforeMount(el, binding) {
     if (!validateBinding(binding)) {
       return
     }
@@ -270,7 +270,7 @@ export default {
    * @param  {HTMLElement} el node element that the directive is bind to
    * @param  {Object} binding
    */
-  update(el, binding) {
+  updated(el, binding) {
     if (!validateBinding(binding)) {
       return
     }
@@ -287,7 +287,7 @@ export default {
    * @param  {HTMLElement} el node element that the directive is bind to
    * @param  {Object} binding
    */
-  unbind(el, _) {
+  unmounted(el, _) {
     if (el.__tooltip.popperInstance) {
       cleanup(el)
 

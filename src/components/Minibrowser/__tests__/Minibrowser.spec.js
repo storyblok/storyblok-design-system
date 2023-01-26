@@ -12,21 +12,24 @@ describe('SbMinibrowser component', () => {
 
   it('should perform the correct navigation', async () => {
     const wrapper = mount(SbMinibrowser, {
-      propsData: {
+      props: {
         breadcrumbs: [],
         options: [...MOCK_DATA.FIRST_LEVEL],
       },
-      stubs: {
-        SbIcon,
+      global: {
+        stubs: {
+          SbIcon,
+        },
       },
     })
 
     // PROCESS FOR FIRST LEVEL
-    const firstElement = wrapper.findAll(itemClass).at(0)
+    const firstElement = wrapper.findAll(itemClass)[0]
 
     expect(firstElement.text()).toBe('Landing Page')
 
     await firstElement.trigger('click')
+    await wrapper.vm.$nextTick()
 
     // getting the first parameter from first execution
     const result = wrapper.emitted('select-item')[0][0]
@@ -39,7 +42,7 @@ describe('SbMinibrowser component', () => {
     })
 
     // PROCESS FOR SECOND LEVEL
-    const newFirstElement = wrapper.findAll(itemClass).at(0)
+    const newFirstElement = wrapper.findAll(itemClass)[0]
     expect(newFirstElement.text()).toBe('PPC')
 
     await newFirstElement.trigger('click')
@@ -56,12 +59,12 @@ describe('SbMinibrowser component', () => {
 
     // PROCESS FOR THIRD LEVEL
     // checking if, in the third level, we have the correct item in the first position
-    const thirdElement = wrapper.findAll(itemClass).at(0)
+    const thirdElement = wrapper.findAll(itemClass)[0]
     expect(thirdElement.text()).toBe('e-commerce')
 
     // checking the breadcrumbs
     const breadcrumbsWrapper = wrapper.findAll(breadcrumbClass)
-    const globalBreadcrumb = breadcrumbsWrapper.at(0)
+    const globalBreadcrumb = breadcrumbsWrapper[0]
     const globalBreadcrumbIcon = globalBreadcrumb.findComponent(SbIcon)
 
     expect(globalBreadcrumbIcon.exists()).toBe(true)
@@ -70,7 +73,7 @@ describe('SbMinibrowser component', () => {
     await globalBreadcrumb.find('a').trigger('click')
     expect(wrapper.emitted('clear-navigation')).toBeTruthy()
 
-    const landingPageBreadcrumb = breadcrumbsWrapper.at(1)
+    const landingPageBreadcrumb = breadcrumbsWrapper[1]
     expect(landingPageBreadcrumb.text()).toBe('Landing Page')
 
     // when clicking in the Landing Page breadcrumbs,
@@ -78,7 +81,7 @@ describe('SbMinibrowser component', () => {
     await landingPageBreadcrumb.find('a').trigger('click')
     expect(wrapper.emitted('navigate')[0]).toEqual([0])
 
-    const ppcBreadcrumb = breadcrumbsWrapper.at(2)
+    const ppcBreadcrumb = breadcrumbsWrapper[2]
     expect(ppcBreadcrumb.text()).toBe('PPC')
 
     expect(breadcrumbsWrapper.length).toBe(3)
@@ -86,7 +89,7 @@ describe('SbMinibrowser component', () => {
 
   it('should filter the items by using the search input', async () => {
     const wrapper = mount(SbMinibrowser, {
-      propsData: {
+      props: {
         options: [...MOCK_DATA.FIRST_LEVEL],
       },
     })
@@ -106,7 +109,7 @@ describe('SbMinibrowser component', () => {
 
   it('should clear the search input when an item is clicked', async () => {
     const wrapper = mount(SbMinibrowser, {
-      propsData: {
+      props: {
         options: [...MOCK_DATA.FIRST_LEVEL],
         clearOnSelect: true,
       },
@@ -115,7 +118,7 @@ describe('SbMinibrowser component', () => {
     const searchInput = await wrapper.find('input[type="search"]')
     searchInput.setValue('case')
 
-    const firstElement = wrapper.findAll(itemClass).at(3)
+    const firstElement = wrapper.findAll(itemClass)[3]
     await firstElement.trigger('click')
 
     wrapper.vm.selectItem(MOCK_DATA.FIRST_LEVEL[0])
@@ -124,7 +127,7 @@ describe('SbMinibrowser component', () => {
 
   it('should keep the value of the search input when an item is clicked', async () => {
     const wrapper = mount(SbMinibrowser, {
-      propsData: {
+      props: {
         options: [...MOCK_DATA.SECOND_LEVEL],
         clearOnSelect: false,
       },
@@ -133,7 +136,7 @@ describe('SbMinibrowser component', () => {
     const searchInput = await wrapper.find('input[type="search"]')
     searchInput.setValue('case')
 
-    const firstElement = wrapper.findAll(itemClass).at(3)
+    const firstElement = wrapper.findAll(itemClass)[3]
     await firstElement.trigger('click')
 
     wrapper.vm.selectItem(MOCK_DATA.SECOND_LEVEL[1])
@@ -142,7 +145,7 @@ describe('SbMinibrowser component', () => {
 
   it('should clear the search input when the item clicked is a folder', async () => {
     const wrapper = mount(SbMinibrowser, {
-      propsData: {
+      props: {
         options: [...MOCK_DATA.SECOND_LEVEL],
         clearOnSelect: false,
       },
@@ -151,7 +154,7 @@ describe('SbMinibrowser component', () => {
     const searchInput = await wrapper.find('input[type="search"]')
     searchInput.setValue('case')
 
-    const firstElement = wrapper.findAll(itemClass).at(1)
+    const firstElement = wrapper.findAll(itemClass)[1]
     await firstElement.trigger('click')
 
     wrapper.vm.selectItem(MOCK_DATA.SECOND_LEVEL[0])
@@ -160,7 +163,7 @@ describe('SbMinibrowser component', () => {
 
   it('should show a not found message', async () => {
     const wrapper = mount(SbMinibrowser, {
-      propsData: {
+      props: {
         options: [],
       },
     })
@@ -176,7 +179,7 @@ describe('SbMinibrowser component', () => {
 
   it('should clear the input element when clicks on Escape key', async () => {
     const wrapper = mount(SbMinibrowser, {
-      propsData: {
+      props: {
         options: [...MOCK_DATA.FIRST_LEVEL],
       },
     })
@@ -185,7 +188,7 @@ describe('SbMinibrowser component', () => {
 
     searchInput.setValue('foobar')
 
-    searchInput.element.focus()
+    searchInput.trigger('focus')
 
     await wrapper.vm.$nextTick()
 
@@ -246,17 +249,14 @@ describe('SbMinibrowser component', () => {
     })
 
     it('should execute the onClick from the button inside the slot', async () => {
-      await wrapper
-        .findAll('[data-testid="test-button"]')
-        .at(0)
-        .trigger('click')
+      await wrapper.findAll('[data-testid="test-button"]')[0].trigger('click')
 
       expect(onClick).toHaveBeenCalled()
     })
 
     it('should execute the onSelectItem from a list item', async () => {
       // get the item with name "Case Studies" (the first os the second group)
-      const firstElement = wrapper.findAll(itemClass).at(3)
+      const firstElement = wrapper.findAll(itemClass)[3]
 
       await firstElement.trigger('click')
 

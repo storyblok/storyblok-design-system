@@ -29,7 +29,7 @@ export default {
     },
   },
 
-  emits: ['input'],
+  emits: ['update:modelValue'],
 
   computed: {
     yearsList() {
@@ -64,7 +64,7 @@ export default {
       $event.stopPropagation()
       const value = dayjs(this.internalDate).year(year).format()
 
-      this.$emit('input', value)
+      this.$emit('update:modelValue', value)
     },
   },
 }

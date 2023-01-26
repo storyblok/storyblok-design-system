@@ -3,8 +3,8 @@
     :is="as"
     class="sb-link"
     :class="computedClasses"
+    :to="to"
     v-bind="computedAttributes"
-    v-on="$listeners"
   >
     <SbIcon v-if="icon" :name="icon" />
     <span v-if="label" class="sb-link__label">

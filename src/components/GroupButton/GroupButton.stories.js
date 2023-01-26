@@ -8,7 +8,7 @@ export default {
   title: 'Design System/Components/SbGroupButton',
   component: SbGroupButton,
   args: {
-    variant: 'ghost',
+    variant: 'tertiary',
     size: null,
     hasSpaces: false,
   },
@@ -41,9 +41,11 @@ export default {
 
 export const Default = (args) => ({
   components: { SbGroupButton, SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
-    <SbGroupButton v-bind="{ size, variant, hasSpaces }">
+    <SbGroupButton v-bind="args">
       <SbButton label="First Button" />
       <SbButton label="Secondary Button" />
       <SbButton label="Third Button" />
@@ -53,39 +55,25 @@ export const Default = (args) => ({
 
 export const WithIcons = (args) => ({
   components: { SbGroupButton, SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
-    <SbGroupButton v-bind="{ size, variant, hasSpaces }">
-      <SbButton :label="firstLabel" />
-      <SbButton :label="secondaryLabel" />
+    <SbGroupButton v-bind="args">
+      <SbButton label="First Button" />
+      <SbButton label="Secondary Button" />
       <SbButton has-icon-only icon="close" />
     </SbGroupButton>
   `,
 })
 
-WithIcons.args = {
-  firstLabel: 'First Button',
-  secondaryLabel: 'Secondary Button',
-}
-
-WithIcons.argTypes = {
-  firstLabel: {
-    control: {
-      type: 'text',
-    },
-  },
-  secondaryLabel: {
-    control: {
-      type: 'text',
-    },
-  },
-}
-
 export const JustIcons = (args) => ({
   components: { SbGroupButton, SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
-    <SbGroupButton v-bind="{ size, variant, hasSpaces }">
+    <SbGroupButton v-bind="args">
       <SbButton has-icon-only icon="calendar" iconDescription="Calendar Icon" />
       <SbButton has-icon-only icon="plus" iconDescription="Plus Icon" />
       <SbButton has-icon-only icon="menu-vertical" iconDescription="Overflow Icon" />
@@ -95,7 +83,9 @@ export const JustIcons = (args) => ({
 
 export const InvertedLink = (args) => ({
   components: { SbGroupButton, SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div style="background-color:#1b243f;height:100px;">
       <SbGroupButton variant="inverted-link">

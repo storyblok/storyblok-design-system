@@ -152,3 +152,17 @@
     padding: 10px 5px;
   }
 }
+
+@media only screen and (max-width: 480px) {
+  .sb-pagination {
+    flex-wrap: wrap;
+
+    &__pages-container {
+      margin-top: 10px;
+    }
+
+    &__per-page-container {
+      margin-right: 0;
+    }
+  }
+}

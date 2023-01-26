@@ -31,7 +31,7 @@ describe('Test SbTabs', () => {
     })
 
     it('should have a SbTab component active', () => {
-      const tabActive = wrapper.find('[aria-selected="true"]')
+      const tabActive = wrapper.findComponent('[aria-selected="true"]')
 
       expect(tabActive.exists()).toBe(true)
       expect(tabActive.props('label')).toBe('First')
@@ -39,15 +39,15 @@ describe('Test SbTabs', () => {
     })
 
     it('should emit an input event and change the select tab', async () => {
-      const secondTab = wrapper.findAllComponents(SbTab).at(1)
+      const secondTab = wrapper.findAllComponents(SbTab)[1]
 
       secondTab.trigger('click')
 
       await wrapper.vm.$nextTick()
 
-      expect(Wrapper.methods.onInput.mock.calls).toEqual([['second']])
+      expect(secondTab.emitted('activate-tab')).toEqual([['second']])
 
-      const tabActive = wrapper.find('[aria-selected="true"]')
+      const tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('label')).toBe('Second')
       expect(tabActive.props('name')).toBe('second')
     })
@@ -94,17 +94,17 @@ describe('Test SbTabs', () => {
       expect(buttonComponent.exists()).toBe(true)
     })
 
-    it.skip('should perform the create a new tab function', async () => {
+    it('should perform the create a new tab function', async () => {
       await buttonComponent.trigger('click')
 
       // like we have three tabs,
       // when we click the add button
       // we should have a fourth tab with 'New tab' inside a input
-      const newTab = wrapper.findAllComponents(SbTab).at(2)
+      const newTab = wrapper.findAllComponents(SbTab)[2]
 
       expect(newTab.exists()).toBe(true)
 
-      const inputElement = newTab.find('input')
+      const inputElement = wrapper.find('input')
       expect(inputElement.element.value).toBe('New tab')
 
       // defining a new value for this input
@@ -128,10 +128,9 @@ describe('Test SbTabs', () => {
       // like we have three tabs,
       // when we click the add button
       // we should have a fourth tab with 'New tab' inside a input
-      const newTab = wrapper.findAllComponents(SbTab).at(3)
+      const newTab = wrapper.findAllComponents(SbTab)[3]
 
-      const inputElement = newTab.find('input')
-
+      const inputElement = wrapper.find('input')
       expect(newTab.props('label')).toBe('New tab')
 
       // defining a new value for this input
@@ -185,7 +184,7 @@ describe('Test SbTabs', () => {
       await wrapper.setData({
         currentTab: 'first',
       })
-      const firstTab = wrapper.find('[aria-selected="true"]')
+      const firstTab = wrapper.findComponent('[aria-selected="true"]')
 
       // it should move to second tab
       await firstTab.trigger('keydown', {
@@ -194,9 +193,9 @@ describe('Test SbTabs', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['second'])
+      expect(firstTab.emitted()).toHaveProperty('keydown')
 
-      tabActive = wrapper.find('[aria-selected="true"]')
+      tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('name')).toBe('second')
 
       // it should move to first tab
@@ -206,9 +205,9 @@ describe('Test SbTabs', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(ComponentWrapper.methods.onInput.mock.calls[1]).toEqual(['first'])
+      expect(firstTab.emitted()).toHaveProperty('keydown')
 
-      tabActive = wrapper.find('[aria-selected="true"]')
+      tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('name')).toBe('first')
     })
 
@@ -217,7 +216,7 @@ describe('Test SbTabs', () => {
       await wrapper.setData({
         currentTab: 'first',
       })
-      const firstTab = wrapper.find('[aria-selected="true"]')
+      const firstTab = wrapper.findComponent('[aria-selected="true"]')
 
       // it should move to second tab
       await firstTab.trigger('keydown', {
@@ -226,9 +225,9 @@ describe('Test SbTabs', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['second'])
+      expect(firstTab.emitted()).toHaveProperty('keydown')
 
-      tabActive = wrapper.find('[aria-selected="true"]')
+      tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('name')).toBe('second')
 
       // it should move to first tab
@@ -238,9 +237,9 @@ describe('Test SbTabs', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(ComponentWrapper.methods.onInput.mock.calls[1]).toEqual(['first'])
+      expect(firstTab.emitted()).toHaveProperty('keydown')
 
-      tabActive = wrapper.find('[aria-selected="true"]')
+      tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('name')).toBe('first')
     })
 
@@ -250,7 +249,7 @@ describe('Test SbTabs', () => {
         currentTab: 'first',
         orientation: 'vertical',
       })
-      const firstTab = wrapper.find('[aria-selected="true"]')
+      const firstTab = wrapper.findComponent('[aria-selected="true"]')
 
       // it should move to second tab
       await firstTab.trigger('keydown', {
@@ -259,9 +258,9 @@ describe('Test SbTabs', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['second'])
+      expect(firstTab.emitted()).toHaveProperty('keydown')
 
-      tabActive = wrapper.find('[aria-selected="true"]')
+      tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('name')).toBe('second')
 
       // it should move to first tab
@@ -271,9 +270,9 @@ describe('Test SbTabs', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(ComponentWrapper.methods.onInput.mock.calls[1]).toEqual(['first'])
+      expect(tabActive.emitted()).toHaveProperty('keydown')
 
-      tabActive = wrapper.find('[aria-selected="true"]')
+      tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('name')).toBe('first')
     })
 
@@ -283,7 +282,7 @@ describe('Test SbTabs', () => {
         currentTab: 'first',
         orientation: 'vertical',
       })
-      const firstTab = wrapper.find('[aria-selected="true"]')
+      const firstTab = wrapper.findComponent('[aria-selected="true"]')
 
       // it should move to second tab
       await firstTab.trigger('keydown', {
@@ -292,9 +291,9 @@ describe('Test SbTabs', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['second'])
+      expect(firstTab.emitted()).toHaveProperty('keydown')
 
-      tabActive = wrapper.find('[aria-selected="true"]')
+      tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('name')).toBe('second')
 
       // it should move to first tab
@@ -304,9 +303,9 @@ describe('Test SbTabs', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(ComponentWrapper.methods.onInput.mock.calls[1]).toEqual(['first'])
+      expect(tabActive.emitted()).toHaveProperty('keydown')
 
-      tabActive = wrapper.find('[aria-selected="true"]')
+      tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('name')).toBe('first')
     })
   })
@@ -348,7 +347,7 @@ describe('Test SbTabs', () => {
       await wrapper.setData({
         currentTab: 'third',
       })
-      const thirdTab = wrapper.find('[aria-selected="true"]')
+      const thirdTab = wrapper.findComponent('[aria-selected="true"]')
 
       // it should move to first tab
       await thirdTab.trigger('keydown', {
@@ -357,9 +356,9 @@ describe('Test SbTabs', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['first'])
+      expect(thirdTab.emitted()).toHaveProperty('keydown')
 
-      const tabActive = wrapper.find('[aria-selected="true"]')
+      const tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('name')).toBe('first')
     })
 
@@ -367,7 +366,7 @@ describe('Test SbTabs', () => {
       await wrapper.setData({
         currentTab: 'first',
       })
-      const firstTab = wrapper.find('[aria-selected="true"]')
+      const firstTab = wrapper.findComponent('[aria-selected="true"]')
 
       // it should move to first tab
       await firstTab.trigger('keydown', {
@@ -376,9 +375,9 @@ describe('Test SbTabs', () => {
 
       await wrapper.vm.$nextTick()
 
-      expect(ComponentWrapper.methods.onInput.mock.calls[0]).toEqual(['third'])
+      expect(firstTab.emitted()).toHaveProperty('keydown')
 
-      const tabActive = wrapper.find('[aria-selected="true"]')
+      const tabActive = wrapper.findComponent('[aria-selected="true"]')
       expect(tabActive.props('name')).toBe('third')
     })
   })

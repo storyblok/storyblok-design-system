@@ -75,7 +75,7 @@ const WindowResizeObserverMixin = (options = {}) => {
       this.$_registerHandleResizeFn()
     },
 
-    destroyed() {
+    unmounted() {
       window.removeEventListener('resize', this.$_handleResizeFn)
     },
 

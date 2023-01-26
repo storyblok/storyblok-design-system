@@ -17,7 +17,7 @@
     />
 
     <template v-else>
-      <SbCheckbox v-if="multiple" :value="isSelected" />
+      <SbCheckbox v-if="multiple" :model-value="isSelected" />
 
       <span class="sb-select-list__item-icon">
         <SbIcon v-if="option.icon" :name="option.icon" />
@@ -41,6 +41,7 @@
 import { includes, isArray } from '../../../utils'
 import SbAvatar from '../../Avatar'
 import SbCheckbox from '../../Checkbox'
+import SbIcon from '../../Icon'
 
 export default {
   name: 'SbSelectListItem',
@@ -48,6 +49,7 @@ export default {
   components: {
     SbAvatar,
     SbCheckbox,
+    SbIcon,
   },
 
   props: {
@@ -60,7 +62,7 @@ export default {
       default: '',
     },
     multiple: Boolean,
-    value: {
+    modelValue: {
       type: [String, Number],
       default: '',
     },
@@ -97,7 +99,7 @@ export default {
     isSelected() {
       return isArray(this.inputValue)
         ? this.isValueAlreadyExists()
-        : this.value === this.inputValue
+        : this.modelValue === this.inputValue
     },
 
     computedClasses() {
@@ -114,7 +116,7 @@ export default {
         return this.$emit('emit-value', this.option)
       }
 
-      this.$emit('emit-value', this.value)
+      this.$emit('emit-value', this.modelValue)
     },
 
     /**
@@ -136,12 +138,12 @@ export default {
 
     isValueAlreadyExists() {
       if (this.emitOption) {
-        const itemValue = this.value
+        const itemValue = this.modelValue
 
         return this.inputValue.some(($v) => $v[this.itemValue] === itemValue)
       }
 
-      return this.selected || includes(this.inputValue, this.value)
+      return this.selected || includes(this.inputValue, this.modelValue)
     },
   },
 }

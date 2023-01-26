@@ -2,17 +2,17 @@
   <div
     class="sb-minibrowser"
     :class="{
-      'sb-minibrowser--expanded': this.isExpanded,
-      'sb-minibrowser--full-height': this.isFullHeight,
-      'sb-minibrowser--borderless': this.isBorderless,
+      'sb-minibrowser--expanded': isExpanded,
+      'sb-minibrowser--full-height': isFullHeight,
+      'sb-minibrowser--borderless': isBorderless,
     }"
   >
     <SbMinibrowserSearch
       v-if="!hideSearch"
       :clear-search-label="clearSearchLabel"
-      :value="searchInput"
+      :model-value="searchInput"
       :placeholder="placeholder"
-      @input="handleSearchInput"
+      @update:modelValue="handleSearchInput"
       @keydown="handleSearchKeydown"
     />
 
@@ -26,7 +26,7 @@
       <template v-if="hasGroupedItems">
         <template v-for="(groupItem, index) in groupedItems">
           <SbMinibrowserList
-            v-if="!$scopedSlots.list"
+            v-if="!$slots.list"
             :key="index"
             v-bind="groupItem"
           />
@@ -36,7 +36,7 @@
       </template>
 
       <template v-if="hasOtherItems">
-        <SbMinibrowserList v-if="!$scopedSlots.list" :items="otherItems" />
+        <SbMinibrowserList v-if="!$slots.list" :items="otherItems" />
 
         <slot name="list" :items="otherItems" />
       </template>
@@ -197,7 +197,9 @@ export default {
      * @param {String} value
      */
     handleSearchInput(value) {
-      this.searchInput = value
+      const isEvent = typeof value === 'object'
+      const inputValue = isEvent ? String(value?.target?.value) : value
+      this.searchInput = inputValue
 
       this.filterHandler()
     },

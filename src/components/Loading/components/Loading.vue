@@ -5,7 +5,7 @@
         v-if="type === 'bar'"
         id="progress-bar-loading"
         class="sb-loading__bar"
-        :value="value"
+        :value="modelValue"
         min="0"
         max="100"
       />
@@ -31,7 +31,7 @@ import SbIcon from '../../Icon'
 import { sharedProps } from '../utils'
 
 export default {
-  name: 'Loading',
+  name: 'LoadingElement',
 
   components: {
     SbIcon,
@@ -61,7 +61,7 @@ export default {
     },
 
     valueLabel() {
-      return `${parseInt(this.value)}%`
+      return `${parseInt(this.modelValue)}%`
     },
 
     returnLabelFor() {

@@ -3,10 +3,12 @@ import { availablePositions } from './lib'
 
 const TooltipTemplate = (args) => ({
   components: { SbTooltip },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div style="padding: 100px; text-align: center;">
-      <SbTooltip v-bind="{ label, position, id, variant, textAlign }">
+      <SbTooltip v-bind="args">
         <span style="font-size: 1.8rem;">Hover me!</span>
       </SbTooltip>
     </div>

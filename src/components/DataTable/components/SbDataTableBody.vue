@@ -21,7 +21,7 @@ export default {
     allowSelection: sharedProps.allowSelection,
     headers: sharedProps.headers,
     items: sharedProps.items,
-    selectedRows: sharedProps.selectedRows,
+    selectedRows: sharedProps.selectedItems,
   },
 }
 </script>

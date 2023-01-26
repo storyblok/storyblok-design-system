@@ -1,19 +1,17 @@
 <template>
   <div class="sb-group-button" :class="activeClasses" v-bind="$attrs">
-    <VNodes :vnodes="activeSlots" />
+    <VNodes :vnodes="activeSlots()" />
   </div>
 </template>
 
 <script>
 import { sharedProps } from '../Button/lib'
+import VNodes from '../../utils/VNodes'
 
 export default {
   name: 'SbGroupButton',
   components: {
-    VNodes: {
-      functional: true,
-      render: (h, ctx) => ctx.props.vnodes,
-    },
+    VNodes,
   },
   props: {
     hasSpaces: {
@@ -27,13 +25,16 @@ export default {
         'sb-group-button--has-spaces': this.hasSpaces,
       }
     },
+  },
+  methods: {
     activeSlots() {
-      return this.$slots.default
-        .filter((b) => b.tag)
+      const children = this.$slots.default && this.$slots.default()
+      return children
+        .filter((b) => b.__v_isVNode)
         .map((button) => {
-          button.componentOptions.propsData = {
-            ...button.componentOptions.propsData,
-            ...this._props,
+          button.props = {
+            ...button.props,
+            ...this.$props,
           }
           return button
         })

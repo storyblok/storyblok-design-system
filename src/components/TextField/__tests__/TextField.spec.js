@@ -1,11 +1,9 @@
 import SbTextField from '..'
 import { mount } from '@vue/test-utils'
-const localVue = global.localVue
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbTextField, {
-    propsData,
-    localVue,
+    props,
   })
 }
 
@@ -18,7 +16,7 @@ describe('SbTextField component', () => {
     const inputElement = wrapper.find('input')
     inputElement.setValue('Boris Spassky')
 
-    expect(inputElement.attributes('disabled')).toBe('disabled')
+    expect(inputElement.attributes('disabled')).toBeDefined()
     expect(inputElement.element.value).toBe('Boris Spassky')
   })
 
@@ -28,7 +26,7 @@ describe('SbTextField component', () => {
       type: 'password',
     })
     const inputElement = wrapper.find('input')
-
+    expect(inputElement.attributes('disabled')).toBeUndefined()
     expect(inputElement.attributes('type')).toBe('password')
   })
 
@@ -52,7 +50,7 @@ describe('SbTextField component', () => {
     const wrapper = factory({
       label: 'Text input',
       nativeValue: 'Boris Spassky',
-      value: 'Boris Spassky',
+      modelValue: 'Boris Spassky',
       ghost: true,
     })
     const inputElement = wrapper.find('input')
@@ -66,7 +64,7 @@ describe('SbTextField component', () => {
     const wrapper = factory({
       label: 'Clearable',
       nativeValue: 'Boris Spassky',
-      value: 'Boris Spassky',
+      modelValue: 'Boris Spassky',
       clearable: true,
     })
     const iconElement = wrapper.find('svg')
@@ -78,7 +76,7 @@ describe('SbTextField component', () => {
   it('should perform v-model', async () => {
     const wrapper = factory({
       label: 'Clearable',
-      value: 'Boris Spassky',
+      modelValue: 'Boris Spassky',
       clearable: true,
     })
 
@@ -88,26 +86,26 @@ describe('SbTextField component', () => {
 
     await inputElement.trigger('input')
 
-    expect(wrapper.emitted('input')[0]).toEqual(['New Value'])
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual(['New Value'])
     expect(wrapper.vm.internalValue).toBe('New Value')
   })
 
   it('should perform focus/blur events', async () => {
     const wrapper = factory({
       label: 'Clearable',
-      value: 'Boris Spassky',
+      modelValue: 'Boris Spassky',
       clearable: true,
     })
 
     const inputElement = wrapper.find('input')
 
-    inputElement.element.focus()
+    inputElement.trigger('focus')
 
     await wrapper.vm.$nextTick()
 
     expect(wrapper.emitted('focus')).toBeTruthy()
 
-    inputElement.element.blur()
+    inputElement.trigger('blur')
 
     await wrapper.vm.$nextTick()
 
@@ -117,38 +115,36 @@ describe('SbTextField component', () => {
   it('should perform the remaining characters logic', async () => {
     const wrapper = factory({
       label: 'Clearable',
-      value: 'Luke',
+      modelValue: 'Luke',
       maxlength: 15,
     })
 
     const inputElement = wrapper.find('input')
 
-    await inputElement.trigger('input')
+    await inputElement.setValue('Lukee')
+
+    await wrapper.vm.$nextTick()
 
     const remaining = wrapper.find('.sb-textfield__counter')
 
-    expect(remaining.text()).toBe('11 characters remaining')
+    expect(remaining.text()).toBe('10 characters remaining')
 
-    await wrapper.setProps({
-      value: 'Luke Skywalker',
-    })
+    await inputElement.setValue('Luke Skywalker')
 
     expect(remaining.classes('sb-textfield__counter--warning')).toBe(true)
     expect(remaining.text()).toBe('1/15 characters remaining')
 
-    await wrapper.setProps({
-      value: '',
-    })
+    await inputElement.setValue('')
 
     expect(wrapper.find('.sb-textfield__counter').exists()).toBe(false)
   })
 })
 
 describe('SbTextField as textarea', () => {
-  const factory = (propsData) => {
+  const factory = (props) => {
     return mount(SbTextField, {
-      propsData: {
-        ...propsData,
+      props: {
+        ...props,
         type: 'textarea',
       },
     })
@@ -157,7 +153,7 @@ describe('SbTextField as textarea', () => {
   it('should perform v-model', async () => {
     const wrapper = factory({
       label: 'Clearable',
-      value: 'Boris Spassky',
+      modelValue: 'Boris Spassky',
     })
 
     const textareaElement = wrapper.find('textarea')
@@ -166,14 +162,14 @@ describe('SbTextField as textarea', () => {
 
     await textareaElement.trigger('input')
 
-    expect(wrapper.emitted('input')[0]).toEqual(['New Value'])
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual(['New Value'])
     expect(wrapper.vm.internalValue).toBe('New Value')
   })
 
   it('should have the correct rows, cols and wrap properties', async () => {
     const wrapper = factory({
       label: 'Clearable',
-      value: 'Boris Spassky',
+      modelValue: 'Boris Spassky',
       rows: 4,
       cols: 30,
       wrap: 'hard',
@@ -193,19 +189,19 @@ describe('SbTextField as textarea', () => {
   it('should perform focus/blur events', async () => {
     const wrapper = factory({
       label: 'Clearable',
-      value: 'Boris Spassky',
+      modelValue: 'Boris Spassky',
       clearable: true,
     })
 
     const textareaElement = wrapper.find('textarea')
 
-    textareaElement.element.focus()
+    textareaElement.trigger('focus')
 
     await wrapper.vm.$nextTick()
 
     expect(wrapper.emitted('focus')).toBeTruthy()
 
-    textareaElement.element.blur()
+    textareaElement.trigger('blur')
 
     await wrapper.vm.$nextTick()
 

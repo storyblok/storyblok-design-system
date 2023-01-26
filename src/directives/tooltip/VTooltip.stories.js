@@ -16,7 +16,9 @@ export const Default = (args) => ({
     tooltip: Tooltip,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
 
   template: `
     <div style="padding: 100px; text-align: center;">

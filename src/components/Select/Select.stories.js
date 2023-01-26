@@ -16,7 +16,7 @@ const SelectTemplate = (args) => ({
   }),
 
   watch: {
-    value: {
+    modelValue: {
       handler(newValue) {
         this.internalValue = newValue
       },
@@ -39,7 +39,7 @@ const SelectTemplate = (args) => ({
   },
 
   template: `
-    <div style="min-height: 300px">
+    <div style="min-height: 300px;">
       <SbSelect
       :label="label"
       :options="options"
@@ -206,7 +206,7 @@ export default {
   args: {
     label: 'Choose an option',
     options: [...defaultSelectOptionsData],
-    value: null,
+    modelValue: null,
     multiple: false,
     firstValueIsAllValue: false,
     filterable: false,
@@ -250,6 +250,7 @@ export const Filterable = SelectTemplate.bind({})
 
 Filterable.args = {
   filterable: true,
+  disableInternalFilter: false,
 }
 
 export const LazySearch = (args) => ({
@@ -348,6 +349,7 @@ export const WithAvatars = SelectTemplate.bind({})
 
 WithAvatars.args = {
   useAvatars: true,
+  filterable: true,
   options: [...defaultAvatarsData],
 }
 
@@ -356,6 +358,7 @@ export const MutipleAndAvatars = SelectTemplate.bind({})
 MutipleAndAvatars.args = {
   multiple: true,
   useAvatars: true,
+  filterable: true,
   options: [...defaultAvatarsData],
 }
 
@@ -379,7 +382,7 @@ export const WithMinibrowser = (args) => ({
   }),
 
   watch: {
-    value: {
+    modelValue: {
       handler(newValue) {
         this.internalValue = newValue
       },
@@ -440,7 +443,7 @@ export const EmitOption = (args) => ({
   }),
 
   watch: {
-    value: {
+    modelValue: {
       handler(newValue) {
         this.internalValue = newValue
       },
@@ -475,8 +478,8 @@ export const EmitOption = (args) => ({
           :loading-label="loadingLabel"
           :clearable="clearable"
           emit-option
-          :value="singleSelectValue"
-          @input="handleSingleSelect"
+          :modelValue="singleSelectValue"
+          @update:modelValue="handleSingleSelect"
           style="max-width: 300px"
         />
 
@@ -493,7 +496,6 @@ export const EmitOption = (args) => ({
       <SbSelect
         :label="label"
         :options="options"
-        :multiple="multiple"
         :left-icon="leftIcon"
         :filterable="filterable"
         :use-avatars="useAvatars"
@@ -558,7 +560,6 @@ export const EmitSearch = (args) => ({
           :multiple="multiple"
           :left-icon="leftIcon"
           :filterable="true"
-          :emit-search="true"
           :use-avatars="useAvatars"
           :inline="inline"
           :no-data-text="noDataText"
@@ -567,8 +568,9 @@ export const EmitSearch = (args) => ({
           :is-loading="isLoading"
           :loading-label="loadingLabel"
           :clearable="clearable"
+          emit-search
           emit-option
-          :value="searchInput"
+          :modelValue="searchInput"
           @input="handleSearchValue"
           style="max-width: 300px"
         />

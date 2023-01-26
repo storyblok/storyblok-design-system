@@ -9,52 +9,54 @@ const availableIcons = Object.keys(LIB_ICONS)
 
 const ButtonTemplate = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <SbButton
-        :variant="variant"
-        :label="label"
-        :size="size"
-        :type="type"
+        :variant="args.variant"
+        :label="args.label"
+        :size="args.size"
+        :type="args.type"
       />
 
       <SbButton
-        :variant="variant"
-        :is-disabled="isDisabled"
-        :icon="icon"
-        :icon-color="iconColor"
-        :label="label"
-        :size="size"
-        :type="type"
+        :variant="args.variant"
+        :is-disabled="args.isDisabled"
+        :icon="args.icon"
+        :icon-color="args.iconColor"
+        :label="args.label"
+        :size="args.size"
+        :type="args.type"
       />
 
       <SbButton
-        :variant="variant"
-        :is-disabled="isDisabled"
-        :icon-right="iconRight"
-        :icon-color="iconColor"
-        :label="label"
-        :size="size"
-        :type="type"
+        :variant="args.variant"
+        :is-disabled="args.isDisabled"
+        :icon-right="args.iconRight"
+        :icon-color="args.iconColor"
+        :label="args.label"
+        :size="args.size"
+        :type="args.type"
       />
 
       <SbButton
-        :variant="variant"
-        :label="label"
-        :is-loading="isLoading"
+        :variant="args.variant"
+        :label="args.label"
+        :is-loading="args.isLoading"
         isDisabled
-        :size="size"
-        :type="type"
+        :size="args.size"
+        :type="args.type"
       />
 
       <SbButton
-        :variant="variant"
+        :variant="args.variant"
         is-loading
-        :icon-color="iconColor"
-        :is-disabled="isDisabled"
-        :size="size"
-        :type="type"
+        :icon-color="args.iconColor"
+        :is-disabled="args.isDisabled"
+        :size="args.size"
+        :type="args.type"
       />
     </div>
   `,
@@ -200,23 +202,12 @@ export default {
 
 export const Default = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbButton
-      :is-rounded="isRounded"
-      :is-full-width="isFullWidth"
-      :is-loading="isLoading"
-      :is-disabled="isDisabled"
-      :icon="icon"
-      :icon-color="iconColor"
-      :icon-right="iconRight"
-      :has-icon-only="hasIconOnly"
-      :label="label"
-      :size="size"
-      :variant="variant"
-      :tooltip-position="tooltipPosition"
-      :type="type"
-  
+      v-bind="args"
     />
   `,
 })
@@ -310,7 +301,9 @@ Caution.parameters = {
 
 export const Sizes = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div>
     <SbButton label="Small" size="small" :variant="variant" :icon="icon" />
     <SbButton label="Default" :variant="variant" :icon="icon" />
@@ -329,16 +322,13 @@ Sizes.parameters = {
 
 export const FullWidth = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div style="max-width: 500px;">
     <SbButton
-      :variant="variant"
-      :is-loading="isLoading"
-      :is-disabled="isDisabled"
-      :size="size"
-      :is-full-width="isFullWidth"
-      :label="label"
-      :type="type"
+      is-full-width
+      label="Full width"
     />
   </div>`,
 })
@@ -359,42 +349,44 @@ FullWidth.parameters = {
 
 export const JustIcons = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div style="max-width: 500px;">
     <SbButton
       variant="primary"
-      :size="size"
-      :icon="icon"
-      :icon-color="iconColor"
-      :is-loading="isLoading"
-      :is-disabled="isDisabled"
-      :type="type"
+      :size="args.size"
+      :icon="args.icon"
+      :icon-color="args.iconColor"
+      :is-loading="args.isLoading"
+      :is-disabled="args.isDisabled"
+      :type="args.type"
       has-icon-only
     />
 
     <SbButton
       variant="secondary"
-      :size="size"
-      :icon="icon"
-      :icon-color="iconColor"
-      :is-loading="isLoading"
-      :is-disabled="isDisabled"
+      :size="args.size"
+      :icon="args.icon"
+      :icon-color="args.iconColor"
+      :is-loading="args.isLoading"
+      :is-disabled="args.isDisabled"
       :type="type"
       has-icon-only
     />
 
     <SbButton
       variant="tertiary"
-      :size="size"
-      :icon="icon"
-      :icon-color="iconColor"
-      :is-loading="isLoading"
-      :is-disabled="isDisabled"
-      :icon-description="iconDescription"
+      :size="args.size"
+      :icon="args.icon"
+      :icon-color="args.iconColor"
+      :is-loading="args.isLoading"
+      :is-disabled="args.isDisabled"
+      :icon-description="args.iconDescription"
       is-rounded
-      :type="type"
+      :type="args.type"
       has-icon-only
-      :tooltip-position="tooltipPosition"
+      :tooltip-position="args.tooltipPosition"
     />
   </div>`,
 })
@@ -416,17 +408,19 @@ JustIcons.parameters = {
 
 export const InlineLabel = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `<div style="max-width: 500px;">
     <SbButton
-      :variant="variant"
-      :is-loading="isLoading"
-      :is-disabled="isDisabled"
-      :size="size"
-      :is-full-width="isFullWidth"
-      :type="type"
+      :variant="args.variant"
+      :is-loading="args.isLoading"
+      :is-disabled="args.isDisabled"
+      :size="args.size"
+      :is-full-width="args.isFullWidth"
+      :type="args.type"
     >
-      {{ label }}
+      {{ args.label }}
     </SbButton>
   </div>`,
 })
@@ -445,52 +439,25 @@ InlineLabel.parameters = {
 
 export const LoadingButton = (args) => ({
   components: { SbButton },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
-    <SbButton
-      :is-rounded="isRounded"
-      :is-full-width="isFullWidth"
-      :is-loading="isLoading"
-      :is-disabled="isDisabled"
-      :size="size"
-      :variant="variant"
-      :type="type"
-      :icon-color="iconColor"
-    />`,
+    <SbButton v-bind="args" />
+    `,
 })
 
-LoadingButton.args = ButtonTemplate.bind({})
-
 LoadingButton.args = {
-  variant: 'primary',
   isLoading: true,
+  label: 'Default',
+  variant: 'primary',
+  size: 'small',
 }
 
 LoadingButton.parameters = {
   docs: {
     description: {
       story: 'Types of buttons with loading',
-    },
-  },
-}
-
-LoadingButton.argTypes = {
-  icon: {
-    control: {
-      type: 'select',
-      options: [],
-    },
-  },
-  iconRight: {
-    control: {
-      type: 'select',
-      options: [],
-    },
-  },
-  iconColor: {
-    control: {
-      type: 'select',
-      options: [],
     },
   },
 }

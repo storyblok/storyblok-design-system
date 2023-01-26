@@ -11,14 +11,14 @@
       <SbPaginationCarousel
         v-if="carousel"
         :pages="pages"
-        :current-page="value"
+        :current-page="modelValue"
         :locale="locale"
         @change-page="onPageChange"
       />
       <SbPaginationPagesText
         v-else-if="compact"
         :pages="pages"
-        :current-page="value"
+        :current-page="modelValue"
         show-current-page
         :locale="locale"
       />
@@ -35,7 +35,7 @@
       <SbPerPageContainer
         :total="total"
         :per-page="perPage"
-        :current-page="value"
+        :current-page="modelValue"
         :pages="pages"
         :per-page-available="perPageAvailable"
         :locale="locale"
@@ -43,7 +43,7 @@
       />
       <SbPagesContainer
         :pages="pages"
-        :current-page="value"
+        :current-page="modelValue"
         :locale="locale"
         @page-change="onPageChange"
       />
@@ -120,7 +120,7 @@ export default {
       type: Number,
       default: 100,
     },
-    value: {
+    modelValue: {
       type: Number,
       required: true,
     },
@@ -132,7 +132,7 @@ export default {
   },
 
   emits: [
-    'input',
+    'update:modelValue',
     'on-next-page',
     'on-previous-page',
     'page-change',
@@ -144,10 +144,10 @@ export default {
       return Math.ceil(this.total / this.perPage)
     },
     isFirstDisabled() {
-      return this.value <= 1
+      return this.modelValue <= 1
     },
     isLastDisabled() {
-      return this.value >= this.pages
+      return this.modelValue >= this.pages
     },
     perPageAvailable() {
       const shouldShowCustomPage = this.customPerPageOptions?.length > 0
@@ -169,14 +169,14 @@ export default {
     i18n,
     handlePreviousPage() {
       if (!this.isFirstDisabled) {
-        this.updateValue(this.value - 1)
-        this.$emit('on-previous-page', this.value - 1)
+        this.updateValue(this.modelValue - 1)
+        this.$emit('on-previous-page', this.modelValue - 1)
       }
     },
     handleNextPage() {
       if (!this.isLastDisabled) {
-        this.updateValue(this.value + 1)
-        this.$emit('on-next-page', this.value + 1)
+        this.updateValue(this.modelValue + 1)
+        this.$emit('on-next-page', this.modelValue + 1)
       }
     },
     onPageChange(page) {
@@ -188,7 +188,7 @@ export default {
       this.updateValue(1)
     },
     updateValue(value) {
-      this.$emit('input', value)
+      this.$emit('update:modelValue', value)
     },
   },
 }

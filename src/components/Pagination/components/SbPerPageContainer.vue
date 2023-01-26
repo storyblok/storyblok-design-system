@@ -4,7 +4,7 @@
     <SbPaginationSelect
       data-testid="per-page-select"
       :options="perPageOptions"
-      :value="perPage"
+      :model-value="perPage"
       @change="onSelectChange"
     />
     <SbPaginationItemsText

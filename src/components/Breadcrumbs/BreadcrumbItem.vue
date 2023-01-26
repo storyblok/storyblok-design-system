@@ -12,7 +12,6 @@
       :to="to"
       :as="as"
       :label="labelFormatted"
-      v-on="$listeners"
     >
       <slot></slot>
     </SbBreadcrumbLink>
@@ -59,7 +58,10 @@ export default {
       type: String,
       default: null,
     },
-    to: [String, Object],
+    to: {
+      type: [String, Object],
+      default: null,
+    },
     replace: Boolean,
   },
 

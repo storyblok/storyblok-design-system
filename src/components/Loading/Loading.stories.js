@@ -4,17 +4,12 @@ import { loadingTypes, loadingSizes } from './utils'
 
 const LoadingTemplate = (args) => ({
   components: { SbLoading },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbLoading
-      v-bind="{
-        type,
-        size,
-        value,
-        showPercentage,
-        color,
-        uiBlock
-      }"
+      v-bind="args"
     />
   `,
 })
@@ -34,7 +29,7 @@ export default {
   args: {
     type: 'spinner',
     size: 'normal',
-    value: 0,
+    modelValue: 0,
     showPercentage: false,
     color: 'primary',
     uiBlock: false,
@@ -58,10 +53,10 @@ export default {
         options: [...loadingSizes],
       },
     },
-    value: {
-      name: 'value',
+    modelValue: {
+      name: 'modelValue',
       description:
-        'The prop `value` must be entered to change the loading status, it ranges from 0 to 100.',
+        'The prop `modelValue` must be entered to change the loading status, it ranges from 0 to 100.',
       control: {
         type: 'range',
         options: [0, 100, 1], // [min, max, step]
@@ -99,22 +94,19 @@ export const Default = LoadingTemplate.bind({})
 
 export const ProgressBar = (args) => ({
   components: { SbLoading },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
       <SbLoading
-        v-bind="{
-          type,
-          size,
-          value,
-          showPercentage
-        }"
+        v-bind="args"
       />
   `,
 })
 
 ProgressBar.args = {
   type: 'bar',
-  value: 25,
+  modelValue: 25,
   showPercentage: true,
 }
 
@@ -129,44 +121,30 @@ ProgressBar.parameters = {
 
 export const SpinnerWithSizes = (args) => ({
   components: { SbLoading },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <SbLoading
-        v-bind="{
-          type: 'spinner',
-          size: 'small',
-          value,
-          showPercentage,
-          color
-        }"
+        v-bind="args"
+        type="spinner"
+        size="small"
       />
       <SbLoading
-        v-bind="{
-          type: 'spinner',
-          size: 'normal',
-          value,
-          showPercentage,
-          color
-        }"
+        v-bind="args"
+        type="spinner"
+        size="normal"
       />
       <SbLoading
-        v-bind="{
-          type: 'spinner',
-          size: 'large',
-          value,
-          showPercentage,
-          color
-        }"
+        v-bind="args"
+        type="spinner"
+        size="large"
       />
       <SbLoading
-        v-bind="{
-          type: 'spinner',
-          size: 'x-large',
-          value,
-          showPercentage,
-          color
-        }"
+        v-bind="args"
+        type="spinner"
+        size="x-large"
       />
     </div>
   `,
@@ -184,51 +162,45 @@ SpinnerWithSizes.parameters = {
 
 export const SpinnerWithPercentage = (args) => ({
   components: { SbLoading },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <div>
       <div style="margin-bottom: 15px">
         <SbLoading
-          v-bind="{
-            type: 'spinner',
-            size: 'small',
-            value: 25,
-            showPercentage: true,
-            color
-          }"
+          v-bind="args"
+          type='spinner'
+          size='small'
+          modelValue="25"
+          showPercentage="true"
         />
       </div>
       <div style="margin-bottom: 15px">
         <SbLoading
-          v-bind="{
-            type: 'spinner',
-            size: 'normal',
-            value: 25,
-            showPercentage: true,
-            color
-          }"
+          v-bind="args"
+          type='spinner'
+          size='normal'
+          modelValue="25"
+          showPercentage="true"
         />
       </div>
       <div style="margin-bottom: 15px">
         <SbLoading
-          v-bind="{
-            type: 'spinner',
-            size: 'large',
-            value: 25,
-            showPercentage: true,
-            color
-          }"
+          v-bind="args"
+          type='spinner'
+          size='large'
+          modelValue="25"
+          showPercentage="true"
         />
       </div>
       <div style="margin-bottom: 15px">
         <SbLoading
-          v-bind="{
-            type: 'spinner',
-            size: 'x-large',
-            value: 25,
-            showPercentage: true,
-            color
-          }"
+          v-bind="args"
+          type='spinner'
+          size='x-large'
+          modelValue="25"
+          showPercentage="true"
         />
       </div>
     </div>
@@ -247,7 +219,9 @@ SpinnerWithPercentage.parameters = {
 
 export const LoadingWithPlaceholder = (args) => ({
   components: { SbLoading, SbLoadingPlaceholder },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbLoading :type="type">
       <SbLoadingPlaceholder :width="width" :height="height" style="margin-bottom: 10px"/>

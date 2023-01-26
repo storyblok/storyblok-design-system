@@ -4,7 +4,7 @@
       ref="input"
       type="search"
       :placeholder="placeholder"
-      :value="value"
+      :value="modelValue"
       @input="handleInput"
     />
 
@@ -33,7 +33,7 @@ export default {
   components: { SbIcon },
 
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: '',
     },
@@ -43,11 +43,11 @@ export default {
     },
   },
 
-  emits: ['input'],
+  emits: ['update:modelValue'],
 
   computed: {
     hasValue() {
-      return this.value && this.value.length > 0
+      return this.modelValue && this.modelValue.length > 0
     },
   },
 
@@ -57,7 +57,7 @@ export default {
      * @param {Event} event
      */
     handleInput(event) {
-      this.$emit('input', event.target.value)
+      this.$emit('update:modelValue', event.target.value)
     },
 
     /**
@@ -66,7 +66,7 @@ export default {
      */
     handleClear(event) {
       event.stopPropagation()
-      this.$emit('input', '')
+      this.$emit('update:modelValue', '')
     },
   },
 }

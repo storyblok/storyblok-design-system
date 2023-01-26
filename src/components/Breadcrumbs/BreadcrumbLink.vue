@@ -1,5 +1,5 @@
 <template>
-  <component :is="as" v-bind="computedAttrs" v-on="$listeners">
+  <component :is="as" v-bind="computedAttrs">
     <span v-if="label" class="sb-breadcrumbs__item-label">{{ label }}</span>
     <slot></slot>
   </component>
@@ -17,15 +17,30 @@ export default {
       type: String,
       default: null,
     },
-    title: String,
-    target: String,
+    title: {
+      type: String,
+      default: '',
+    },
+    target: {
+      type: String,
+      default: '',
+    },
     append: Boolean,
     disabled: Boolean,
     exact: Boolean,
-    exactActiveClass: String,
+    exactActiveClass: {
+      type: String,
+      default: '',
+    },
     link: Boolean,
-    href: String,
-    to: [String, Object],
+    href: {
+      type: String,
+      default: '',
+    },
+    to: {
+      type: [String, Object],
+      default: null,
+    },
     replace: Boolean,
   },
 
@@ -39,7 +54,7 @@ export default {
         }
       }
 
-      return this._props
+      return this.$props
     },
   },
 }

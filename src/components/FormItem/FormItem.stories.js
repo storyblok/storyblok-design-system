@@ -17,7 +17,9 @@ export default {
 
 export const Default = (args) => ({
   components: { SbButton, SbFormItem, SbRadio, SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 'Selected',
     placeholder: 'Placeholder',
@@ -25,18 +27,14 @@ export const Default = (args) => ({
   template: `
     <div>
       <SbFormItem
-        :label="label"
-        :helper-icon-text="helperIconText"
-        :helper-text="helperText"
-        style="margin-bottom: 20px"
-        :is-required="isRequired"
+        v-bind="args"
       >
         <SbTextField
           :placeholder="placeholder"
         />
       </SbFormItem>
 
-      <SbFormItem :label="label">
+      <SbFormItem :label="args.label" :is-required="args.isRequired">
         <SbRadio
           name="example"
           id="inactive"
@@ -57,7 +55,7 @@ export const Default = (args) => ({
         />
       </SbFormItem>
 
-      <SbFormItem :label="label" :is-required="isRequired" grouped>
+      <SbFormItem :label="args.label" :is-required="args.isRequired" grouped>
         <SbTextField
           name="example"
           id="textfield"
@@ -72,14 +70,16 @@ export const Default = (args) => ({
 
 export const WithIcon = (args) => ({
   components: { SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     internalValue: 'Selected',
     placeholder: 'Placeholder',
   }),
   template: `
     <div>
-      <SbFormItem :icon="icon" :label="label">
+      <SbFormItem v-bind="args">
         <SbTextField
           name="example"
           id="textfield"

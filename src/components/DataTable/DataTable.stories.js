@@ -712,9 +712,6 @@ export const CustomHeaderSlots = (args) => ({
         }"
       >
         <SbDataTableColumn label="Spaces" :sortable="true" value="title" width="50%">
-          <template slot="header">
-            <SbIcon name="content-story" /> With icon
-          </template>
           <template #header>
             <SbIcon name="content-story" /> With icon
           </template>
@@ -726,11 +723,6 @@ export const CustomHeaderSlots = (args) => ({
         </SbDataTableColumn>
 
         <SbDataTableColumn label="Authors">
-          <template slot="header">
-            Custom component
-            <SbSelect :options="[{ label: 'Option 1', value: 'option1' }, { label: 'Option 2', value: 'option2' }]" label="Select an option" />
-          </template>
-
           <template #header>
             Custom component
             <SbSelect :options="[{ label: 'Option 1', value: 'option1' }, { label: 'Option 2', value: 'option2' }]" label="Select an option" />
@@ -743,9 +735,6 @@ export const CustomHeaderSlots = (args) => ({
         </SbDataTableColumn>
 
         <SbDataTableColumn label="Static">
-          <template slot="header">
-            <b>Custom text header</b>
-          </template>
           <template #header>
             <b>Custom text header</b>
           </template>

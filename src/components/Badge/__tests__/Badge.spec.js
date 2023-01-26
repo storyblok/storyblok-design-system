@@ -3,9 +3,9 @@ import { mount } from '@vue/test-utils'
 import SbIcon from '../../Icon'
 import SbBadge from '..'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbBadge, {
-    propsData,
+    props,
   })
 }
 
@@ -35,7 +35,7 @@ describe('SbBadge component', () => {
     it('should have the correct label', () => {
       const label = 'Badge from slot'
       const wrapper = mount(SbBadge, {
-        propsData: {
+        props: {
           type: 'positive',
         },
         slots: {

@@ -1,4 +1,5 @@
 // styles
+import { h } from 'vue'
 import './data-table.scss'
 
 import {
@@ -12,11 +13,6 @@ import {
 import { getPropertyValue, isNumeric } from '../../utils'
 import sharedProps from './sharedProps'
 
-/**
- * SbDataTable
- *
- * The data table element
- */
 const SbDataTable = {
   name: 'SbDataTable',
 
@@ -177,24 +173,20 @@ const SbDataTable = {
     }
   },
 
-  render(h) {
+  render() {
     const renderActions = () => {
       return this.hideActionsMenu
         ? null
         : h(SbDataTableActions, {
-            props: {
-              actions: this.actions,
-              hideLabelActionsBreakpoint: this.hideLabelActionsBreakpoint,
-              selectedRows: this.hasSelectedRowsInList,
-              sticky: this.stickyMenu,
+            actions: this.actions,
+            hideLabelActionsBreakpoint: this.hideLabelActionsBreakpoint,
+            selectedRows: this.hasSelectedRowsInList,
+            sticky: this.stickyMenu,
+            onCancel: () => {
+              this.$emit('cancel')
+              this.deselectAll()
             },
-            on: {
-              click: (value) => this.$emit('emit-action', value),
-              cancel: () => {
-                this.$emit('cancel')
-                this.deselectAll()
-              },
-            },
+            onClick: (value) => this.$emit('emit-action', value),
           })
     }
 
@@ -202,49 +194,41 @@ const SbDataTable = {
       let headerData = []
       let bodyData = []
 
-      if (this.$slots.default) {
-        const children = this.$slots.default.filter((e) => e.tag)
-
+      if (this.$slots.default && this.$slots.default()) {
+        const children = this.$slots.default().filter((e) => e.type.name)
         headerData = children.map((element) => {
+          const hasCenteredProp =
+            element.props && 'is-content-centered' in element.props
+              ? element.props['is-content-centered']
+              : false
           return {
-            ...element.componentOptions.propsData,
-            scopedSlots: element.data.scopedSlots,
+            ...element.props,
+            isContentCentered: hasCenteredProp,
+            scopedSlots: element.children,
           }
         })
 
         bodyData = this.sortedData.map((tableRow) => {
           const columns = children.map((tableData) => {
             return h(
-              tableData.componentOptions.Ctor,
+              SbDataTableColumn,
               {
-                ...tableData.data,
-                ...(tableData.componentOptions.listeners || {}),
-                props: {
-                  ...(tableData.data.props || {}),
-                  ...tableData.componentOptions.propsData,
-                  // passing the row property
-                  row: { ...tableRow },
-                },
-                attrs: {
-                  ...tableData.data.attrs,
-                },
-                on: tableData.componentOptions.listeners,
+                ...tableData.props,
+                row: tableRow,
               },
-              tableData.componentOptions.children
+              tableData.children
             )
           })
 
           return h(
             SbDataTableBodyRow,
             {
-              props: {
-                allowSelection: this.allowSelection,
-                headers: [...headerData],
-                row: tableRow,
-                selectedRows: this.hasSelectedRowsInList,
-              },
+              allowSelection: this.allowSelection,
+              headers: [...headerData],
+              row: tableRow,
+              selectedRows: this.hasSelectedRowsInList,
             },
-            columns
+            () => [columns]
           )
         })
       }
@@ -252,45 +236,39 @@ const SbDataTable = {
       return h(
         'table',
         {
-          staticClass: 'sb-data-table__container',
+          class: 'sb-data-table__container',
         },
         [
           this.showHeader
             ? h(SbDataTableHeader, {
-                props: {
-                  allowSelection: this.allowSelection,
-                  allRowsSelected: this.allRowsSelected,
-                  headers: this.headers,
-                  selectedRows: this.hasSelectedRowsInList,
-                  selectionMode: this.selectionMode,
-                  sortedKey: this.sortKey,
-                  isSortIconAlwaysVisible: this.isSortIconAlwaysVisible,
-                },
+                allowSelection: this.allowSelection,
+                allRowsSelected: this.allRowsSelected,
+                headers: this.headers,
+                selectedRows: this.hasSelectedRowsInList,
+                selectionMode: this.selectionMode,
+                sortedKey: this.sortKey,
+                isSortIconAlwaysVisible: this.isSortIconAlwaysVisible,
               })
             : null,
           this.sortedData.length && !this.$slots.default
             ? h(SbDataTableBody, {
-                props: {
-                  allowSelection: this.allowSelection,
-                  headers: this.headers,
-                  items: this.sortedData,
-                  selectedRows: this.hasSelectedRowsInList,
-                },
+                allowSelection: this.allowSelection,
+                headers: this.headers,
+                items: this.sortedData,
+                selectedRows: this.hasSelectedRowsInList,
               })
             : null,
           this.$slots.default
             ? [
                 !this.hideHeader
                   ? h(SbDataTableHeader, {
-                      props: {
-                        allowSelection: this.allowSelection,
-                        allRowsSelected: this.allRowsSelected,
-                        headers: [...headerData],
-                        selectedRows: this.hasSelectedRowsInList,
-                        selectionMode: this.selectionMode,
-                        sortedKey: this.sortKey,
-                        isSortIconAlwaysVisible: this.isSortIconAlwaysVisible,
-                      },
+                      allowSelection: this.allowSelection,
+                      allRowsSelected: this.allRowsSelected,
+                      headers: [...headerData],
+                      selectedRows: this.hasSelectedRowsInList,
+                      selectionMode: this.selectionMode,
+                      sortedKey: this.sortKey,
+                      isSortIconAlwaysVisible: this.isSortIconAlwaysVisible,
                     })
                   : null,
                 h('tbody', bodyData),
@@ -303,11 +281,13 @@ const SbDataTable = {
     return h(
       'div',
       {
-        staticClass: 'sb-data-table',
-        class: {
-          'sb-data-table--loading': this.isLoading,
-          'sb-data-table--striped': this.striped,
-        },
+        class: [
+          'sb-data-table',
+          {
+            'sb-data-table--loading': this.isLoading,
+            'sb-data-table--striped': this.striped,
+          },
+        ],
       },
       [
         this.hasSelectedRowsInList.length > 0 && renderActions(),

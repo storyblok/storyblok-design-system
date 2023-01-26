@@ -42,7 +42,7 @@ export default {
     },
   },
 
-  emits: ['input'],
+  emits: ['update:modelValue', 'input-minutes'],
 
   data: () => ({
     internalHour: null,
@@ -103,7 +103,7 @@ export default {
         .minute(minutes)
         .format()
 
-      this.$emit('input', value)
+      this.$emit('update:modelValue', value)
       if (isMinutes) this.$emit('input-minutes')
     },
 

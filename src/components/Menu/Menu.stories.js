@@ -25,13 +25,13 @@ export default {
     },
   },
   args: {
-    value: true,
+    modelValue: true,
     iconRight: 'chevron-down',
     icon: null,
   },
   argTypes: {
-    value: {
-      name: 'value',
+    modelValue: {
+      name: 'modelValue',
       description:
         'Controls the open menu state. The value property has to be used for `v-model` directive',
       control: {
@@ -68,7 +68,9 @@ export default {
 }
 
 export const Default = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -79,7 +81,7 @@ export const Default = (args) => ({
   },
   template: `
     <div style="min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
@@ -100,7 +102,9 @@ export const Default = (args) => ({
 })
 
 export const WithSeparators = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -111,7 +115,7 @@ export const WithSeparators = (args) => ({
   },
   template: `
     <div style="min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
@@ -133,7 +137,9 @@ export const WithSeparators = (args) => ({
 })
 
 export const WithIcons = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -144,7 +150,7 @@ export const WithIcons = (args) => ({
   },
   template: `
     <div style="min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
@@ -162,7 +168,9 @@ export const WithIcons = (args) => ({
 })
 
 export const ButtonWithJustIcon = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -173,7 +181,7 @@ export const ButtonWithJustIcon = (args) => ({
   },
   template: `
     <div style="min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbMenuButton has-icon-only is-rounded :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
@@ -191,7 +199,9 @@ export const ButtonWithJustIcon = (args) => ({
 })
 
 export const AlongWithGroup = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -204,7 +214,7 @@ export const AlongWithGroup = (args) => ({
   },
   template: `
     <div style="display: flex; justify-content: center; min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbGroupButton variant="tertiary">
           <SbButton label="Define Schema" />
           <SbMenuButton has-icon-only />
@@ -225,7 +235,9 @@ export const AlongWithGroup = (args) => ({
 })
 
 export const WithLinksOnMenuItem = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -236,7 +248,7 @@ export const WithLinksOnMenuItem = (args) => ({
   },
   template: `
     <div style="min-height: 300px;">
-      <SbMenu :value="value">
+      <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
 
         <SbMenuList placement="bottom-start">
@@ -258,7 +270,9 @@ export const WithLinksOnMenuItem = (args) => ({
 })
 
 export const WithoutIconRight = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -269,7 +283,7 @@ export const WithoutIconRight = (args) => ({
   },
   template: `
   <div style="min-height: 300px;">
-  <SbMenu :value="value">
+  <SbMenu :modelValue="modelValue">
     <SbMenuButton label="Combo button" ref="contentButton" :icon-right="iconRight" :icon="icon" />
 
     <SbMenuList placement="bottom-start" :reference="$refs.contentButton">
@@ -286,7 +300,9 @@ WithoutIconRight.args = {
 }
 
 export const WithIconLeft = (args) => ({
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   components: {
     SbMenu,
     SbMenuButton,
@@ -297,7 +313,7 @@ export const WithIconLeft = (args) => ({
   },
   template: `
   <div style="min-height: 300px;">
-  <SbMenu :value="value">
+  <SbMenu :modelValue="modelValue">
   <SbMenuButton
     ref="contentButton"
     :icon="icon"

@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-numberfield">
+  <div class="sb-numberfield" v-bind="$attrs">
     <label v-if="label" :for="id" class="sb-numberfield__label">
       {{ label }}
     </label>
@@ -22,7 +22,6 @@
         :id="id"
         :key="componentKey"
         :value="computedValue"
-        v-bind="$attrs"
         class="sb-numberfield__input"
         data-testid="sb-numberfield__input"
         :autocomplete="autocomplete"
@@ -68,15 +67,15 @@ export default {
 
   inheritAttrs: false,
 
-  emits: ['blur', 'change', 'focus', 'input', 'keydown'],
+  emits: ['blur', 'change', 'focus', 'update:modelValue', 'keydown'],
 
   computed: {
     isMinArrowDisabled() {
-      return this.calculateDecreasement(this.value, this.step) < this.min
+      return this.calculateDecreasement(this.modelValue, this.step) < this.min
     },
 
     isMaxArrowDisabled() {
-      return this.calculateIncreasement(this.value, this.step) > this.max
+      return this.calculateIncreasement(this.modelValue, this.step) > this.max
     },
 
     precisionNumber() {
@@ -89,7 +88,7 @@ export default {
 
         return this.precision
       } else {
-        return Math.max(this.getPrecision(this.value), stepPrecision)
+        return Math.max(this.getPrecision(this.modelValue), stepPrecision)
       }
     },
 
@@ -134,7 +133,7 @@ export default {
   },
 
   watch: {
-    value: {
+    modelValue: {
       handler(value) {
         let newValue = value === undefined ? value : Number(value)
 
@@ -158,7 +157,7 @@ export default {
 
         this.internalValue = newValue
         this.userInput = null
-        this.$emit('input', newValue)
+        this.$emit('update:modelValue', newValue)
       },
       immediate: true,
     },
@@ -220,7 +219,7 @@ export default {
         return
       }
 
-      const value = this.value || 0
+      const value = this.modelValue || 0
       const newValue = this.calculateIncreasement(value, this.step)
       this.setInternalValue(newValue)
     },
@@ -230,7 +229,7 @@ export default {
         return
       }
 
-      const value = this.value || 0
+      const value = this.modelValue || 0
       const newValue = this.calculateDecreasement(value, this.step)
       this.setInternalValue(newValue)
     },
@@ -251,7 +250,7 @@ export default {
       }
 
       this.userInput = null
-      this.$emit('input', newValue)
+      this.$emit('update:modelValue', newValue)
       this.$emit('change', newValue, this.internalValue)
       this.internalValue = newValue
     },

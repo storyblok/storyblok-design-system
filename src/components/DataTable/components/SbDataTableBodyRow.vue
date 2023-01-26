@@ -10,7 +10,7 @@
       class="sb-data-table__body-cell sb-data-table__col-selection"
       @click="handleRowSelected"
     >
-      <SbCheckbox :value="isSelected" @click="handleRowSelected" />
+      <SbCheckbox :model-value="isSelected" />
     </td>
 
     <td
@@ -54,7 +54,7 @@ export default {
   props: {
     allowSelection: sharedProps.allowSelection,
     headers: sharedProps.headers,
-    selectedRows: sharedProps.selectedRows,
+    selectedRows: sharedProps.selectedItems,
     row: {
       type: [Object, Array],
       default: () => ({}),
@@ -69,7 +69,7 @@ export default {
       return this.headers.findIndex((col) => col.main)
     },
     isSelected() {
-      return this.selectedRows.some(
+      return this.selectedRows?.some(
         (row) => JSON.stringify(row) === JSON.stringify(this.row)
       )
     },

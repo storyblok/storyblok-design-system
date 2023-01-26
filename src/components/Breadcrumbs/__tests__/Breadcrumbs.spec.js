@@ -8,9 +8,9 @@ import {
 } from '..'
 import { defaultBreadcrumbItemsData } from '../Breadcrumbs.stories'
 
-const factory = (propsData = {}) => {
+const factory = (props = {}) => {
   return mount(SbBreadcrumbs, {
-    propsData,
+    props,
   })
 }
 

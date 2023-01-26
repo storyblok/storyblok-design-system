@@ -1,8 +1,10 @@
-import { SbBreadcrumbs, SbBreadcrumbItem } from '.'
+import { SbBreadcrumbs, SbBreadcrumbItem, SbBreadcrumbSeparator } from '.'
 
 const Template = (args) => ({
-  components: { SbBreadcrumbs, SbBreadcrumbItem },
-  props: Object.keys(args),
+  components: { SbBreadcrumbs, SbBreadcrumbItem, SbBreadcrumbSeparator },
+  setup() {
+    return { ...args }
+  },
   computed: {
     lastIndex() {
       return this.items.length - 1
@@ -10,7 +12,7 @@ const Template = (args) => ({
   },
   template: `
     <div style="max-width: 400px">
-      <SbBreadcrumbs v-bind="{ isLargeSection }">
+      <SbBreadcrumbs v-bind="args">
         <template v-for="(item, index) in items">
           <SbBreadcrumbItem
             :key="item.label"

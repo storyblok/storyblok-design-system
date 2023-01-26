@@ -14,13 +14,14 @@
   height: 100px;
   margin: -1px;
   padding: 0;
+}
 
-  &--container {
-    display: inline-grid;
-    width: 250px;
-    height: 150px;
-    margin-bottom: 10px;
-    color: $light-gray;
-    font-size: $font-14;
-  }
+
+.sb-colors--container {
+  display: inline-grid;
+  width: 250px;
+  height: 150px;
+  margin-bottom: 10px;
+  color: $light-gray;
+  font-size: $font-14;
 }

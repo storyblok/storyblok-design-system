@@ -4,7 +4,6 @@
     class="sb-sidebar-link"
     :class="computedClasses"
     v-bind="computedAttrs"
-    v-on="$listeners"
   >
     <SbIcon v-if="icon" :name="icon" size="small" />
     <span v-if="label" class="sb-sidebar-link__label">

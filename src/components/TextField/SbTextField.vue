@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-textfield">
+  <div class="sb-textfield" :class="$attrs.class">
     <label v-if="label" :for="id" class="sb-textfield__label">
       {{ label }} <span v-if="required" class="sb-textfield__required">*</span>
     </label>
@@ -7,12 +7,11 @@
       <span v-if="prefix" class="sb-textfield__prefix">{{ prefix }}</span>
       <input
         v-if="!isTextAreaType"
+        v-bind="inputAttrs"
         :id="id"
         ref="textfield"
         v-model="computedValue"
         v-maska="mask"
-        v-bind="$attrs"
-        class="sb-textfield__input"
         :type="internalType"
         :placeholder="placeholder"
         :name="name"
@@ -131,6 +130,7 @@
 
 <script>
 import SbIcon from '../Icon'
+import SbTooltip from '../Tooltip'
 import { maska } from 'maska'
 
 import TextFieldMixin from '../../mixins/textfield-mixin'
@@ -144,7 +144,7 @@ export default {
     maska,
   },
 
-  components: { SbIcon },
+  components: { SbIcon, SbTooltip },
 
   mixins: [TextFieldMixin],
 
@@ -163,7 +163,7 @@ export default {
       type: String,
       default: null,
     },
-    value: {
+    modelValue: {
       type: [String, Number, Boolean],
       default: '',
     },
@@ -181,6 +181,7 @@ export default {
     'keydown',
     'keypress',
     'keyup',
+    'update:modelValue',
   ],
 
   computed: {
@@ -221,7 +222,12 @@ export default {
     },
 
     componentClasses() {
-      return [...this.hasTextOnSide, ...this.hasIcon, ...this.hasSpecialClass]
+      return [
+        'sb-textfield__input',
+        ...this.hasTextOnSide,
+        ...this.hasIcon,
+        ...this.hasSpecialClass,
+      ]
     },
 
     isTextAreaType() {
@@ -278,6 +284,12 @@ export default {
         this.type !== 'password'
       )
     },
+    inputAttrs() {
+      return {
+        ...this.$attrs,
+        class: '',
+      }
+    },
   },
 
   watch: {
@@ -314,12 +326,13 @@ export default {
     },
 
     handleFocusInput(e) {
+      this.isOnInput = true
       this.$emit('focus', e)
     },
 
     handleBlurInput(e) {
       this.isOnInput = false
-      this.$emit('blur', e)
+      this.$emit('blur', e.target.value)
     },
 
     handleKeyDownInput(e) {

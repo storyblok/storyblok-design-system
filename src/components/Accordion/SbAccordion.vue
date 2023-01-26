@@ -3,7 +3,7 @@
     <button
       class="sb-accordion__button"
       :aria-expanded="isOpenLocal"
-      :aria-controls="`collapse${_uid}`"
+      :aria-controls="`collapse${title}`"
       @click="toggleAccordion"
     >
       <SbIcon :name="chevronIcon" />
@@ -21,7 +21,7 @@
     <AccordionTransition>
       <div
         v-show="isOpenLocal"
-        :id="`collapse${_uid}`"
+        :id="`collapse${title}`"
         class="sb-accordion__content"
       >
         <slot></slot>
@@ -34,6 +34,7 @@
 import SbIcon from '../Icon'
 import AccordionTransition from './AccordionTransition'
 import { computed, watch, ref } from 'vue'
+import { Tooltip } from '../../directives'
 
 export default {
   name: 'SbAccordion',
@@ -41,6 +42,10 @@ export default {
   components: {
     AccordionTransition,
     SbIcon,
+  },
+
+  directives: {
+    tooltip: Tooltip,
   },
 
   props: {
@@ -75,7 +80,7 @@ export default {
     },
   },
 
-  emits: ['icon-click'],
+  emits: ['icon-click', 'toggle-open'],
   setup(props, { emit }) {
     const isOpenLocal = ref(props.isOpen)
     const chevronIcon = computed(() =>

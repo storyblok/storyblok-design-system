@@ -7,7 +7,6 @@
     :page="page"
     :aria-label="ariaLabel"
     :aria-current="isCurrent"
-    v-on="$listeners"
   />
 </template>
 

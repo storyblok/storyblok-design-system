@@ -1,7 +1,7 @@
 <template>
   <div class="sb-actions-menu" :class="activeClasses">
     <span class="sb-actions-menu__rows-selected">{{
-      labelSelectedRowsLength
+      labelselectedItemsLength
     }}</span>
     <SbButton
       variant="secondary"
@@ -52,7 +52,7 @@ export default {
   props: {
     actions: sharedProps.actions,
     hideLabelActionsBreakpoint: sharedProps.hideLabelActionsBreakpoint,
-    selectedRows: sharedProps.selectedRows,
+    selectedRows: sharedProps.selectedItems,
     sticky: sharedProps.stickyMenu,
   },
 
@@ -64,11 +64,11 @@ export default {
         'sb-actions-menu--sticky': this.sticky,
       }
     },
-    labelSelectedRowsLength() {
-      const labelItem = this.selectedRowsLength > 1 ? 'items' : 'item'
-      return `${this.selectedRowsLength} ${labelItem} selected`
+    labelselectedItemsLength() {
+      const labelItem = this.selectedItemsLength > 1 ? 'items' : 'item'
+      return `${this.selectedItemsLength} ${labelItem} selected`
     },
-    selectedRowsLength() {
+    selectedItemsLength() {
       return this.selectedRows.length
     },
   },

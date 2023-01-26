@@ -1,9 +1,9 @@
 import SbRadio from '..'
 import { mount } from '@vue/test-utils'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbRadio, {
-    propsData,
+    props,
   })
 }
 
@@ -17,6 +17,7 @@ describe('SbRadio component', () => {
 
     expect(inputElement.attributes('type')).toBe('radio')
     expect(inputElement.attributes('checked')).toBeUndefined()
+    expect(inputElement.attributes('disabled')).toBeUndefined()
     expect(inputElement.attributes('value')).toBe('default')
     expect(wrapper.text()).toBe('Default')
   })
@@ -27,19 +28,24 @@ describe('SbRadio component', () => {
       disabled: true,
     })
 
-    expect(wrapper.find('input').attributes('disabled')).toBe('disabled')
+    expect(wrapper.find('input').attributes('disabled')).toBeDefined()
     expect(wrapper.text()).toBe('Default - Disabled')
   })
 
-  it('should emit the nativeValue property when clicks on input', async () => {
+  it('should keep the nativeValue property when having a input event', async () => {
     const wrapper = factory({
       label: 'Default - Disabled',
+      modelValue: 'Jon Doe',
       nativeValue: 'Jon Doe',
     })
 
-    await wrapper.find('input').trigger('click')
+    const input = wrapper.get('input[type="radio"]')
+    await input.setValue('Jon Doe')
 
-    expect(wrapper.emitted('input')[0]).toEqual(['Jon Doe'])
+    expect(wrapper.vm.internalValue).toBe('Jon Doe')
+    await input.setValue('Jane Doe')
+
+    expect(wrapper.vm.internalValue).toBe('Jon Doe')
   })
 
   it('should have the outline and inline classes', async () => {

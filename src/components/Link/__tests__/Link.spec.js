@@ -2,11 +2,13 @@ import SbLink from '..'
 import SbIcon from '../../Icon'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 
-const factory = (propsData) => {
+const factory = (props) => {
   return mount(SbLink, {
-    propsData,
-    stubs: {
-      RouterLink: RouterLinkStub,
+    props,
+    global: {
+      stubs: {
+        RouterLink: RouterLinkStub,
+      },
     },
   })
 }
@@ -75,7 +77,7 @@ describe('Test SbLink component', () => {
     const label = 'Auth data'
 
     const wrapper = mount(SbLink, {
-      propsData: {
+      props: {
         to: '/auth',
         title: 'Link with icon',
       },
@@ -93,7 +95,7 @@ describe('Test SbLink component', () => {
     const label = 'Auth data'
 
     const wrapper = mount(SbLink, {
-      propsData: {
+      props: {
         label,
         title: 'Link with icon',
         to: '/auth',

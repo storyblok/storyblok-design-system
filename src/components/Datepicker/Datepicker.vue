@@ -1,6 +1,5 @@
 <template>
   <div
-    :ref="_uid"
     v-click-outside="$_wrapClose"
     class="sb-datepicker"
     :class="{ 'sb-datepicker--active': isOverlayVisible }"
@@ -14,7 +13,7 @@
         icon-left="calendar"
         :disabled="disabled"
         :placeholder="placeholder"
-        :value="internalValueFormatted"
+        :model-value="internalValueFormatted"
         :error="invalidDate"
         clearable
         @icon-click="handleInputClick"
@@ -49,7 +48,7 @@
           isYearView,
           isMonthView,
           isTimeView,
-          value: internalDate,
+          modelValue: internalDate,
         }"
         @previous-month="handlePreviousMonth"
         @next-month="handleNextMonth"
@@ -59,12 +58,12 @@
 
       <component
         :is="isComponentView"
-        :value="internalValue"
+        :model-value="internalValue"
         :internal-date="internalDate"
         :min-date="minDate"
         :max-date="maxDate"
         :disabled-past="disabledPast"
-        @input="handleComponentsInput"
+        @update:model-value="handleComponentsInput"
         @input-minutes="handleMinutesInput"
       />
 
@@ -162,7 +161,7 @@ export default {
       default: null,
     },
 
-    value: {
+    modelValue: {
       type: String,
       default: '',
     },
@@ -183,7 +182,7 @@ export default {
     },
   },
 
-  emits: ['clear', 'input'],
+  emits: ['clear', 'update:modelValue'],
 
   data: () => ({
     internalDate: dayjs().format(),
@@ -306,7 +305,7 @@ export default {
   },
 
   watch: {
-    value: {
+    modelValue: {
       handler: 'syncInternalValue',
       immediate: true,
     },
@@ -338,7 +337,7 @@ export default {
         return
       }
 
-      this.syncInternalValue(this.value)
+      this.syncInternalValue(this.modelValue)
     },
 
     handleDoneAction() {
@@ -382,9 +381,9 @@ export default {
 
       if (this.isoDate) {
         this.isoString = dayjs.utc(utcTime).toISOString()
-        this.$emit('input', this.isoString)
+        this.$emit('update:modelValue', this.isoString)
       } else {
-        this.$emit('input', utcTime)
+        this.$emit('update:modelValue', utcTime)
       }
 
       this.$nextTick(() => {
@@ -449,7 +448,7 @@ export default {
     handleClear(previousValue) {
       this.internalValue = ''
       this.hitClear = true
-      this.$emit('input', '')
+      this.$emit('update:modelValue', '')
       this.$emit('clear', previousValue)
     },
 

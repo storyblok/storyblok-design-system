@@ -4,7 +4,8 @@
     :label="activeLabel"
     inline
     show-list-on-top
-    @input="onSelectInput"
+    render-on-open
+    @update:modelValue="onSelectInput"
   />
 </template>
 
@@ -23,7 +24,7 @@ export default {
       type: Array,
       default: () => [],
     },
-    value: {
+    modelValue: {
       type: Number,
       default: 1,
     },
@@ -39,7 +40,7 @@ export default {
       }))
     },
     activeLabel() {
-      return String(this.value)
+      return String(this.modelValue)
     },
   },
 

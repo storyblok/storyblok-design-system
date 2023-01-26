@@ -61,8 +61,10 @@ export default {
 
 export const Default = (args) => ({
   components: { SbIcon },
-  props: Object.keys(args),
-  template: '<SbIcon v-bind="{ name, color, backgroundColor, size, role }" />',
+  setup() {
+    return { args }
+  },
+  template: '<SbIcon v-bind="args" />',
 })
 
 Default.args = {
@@ -102,7 +104,9 @@ export const IconSizes = () => ({
 
 export const AllIcons = (args) => ({
   components: { SbIcon },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     icons: [...availableIcons],
   }),
@@ -115,7 +119,7 @@ export const AllIcons = (args) => ({
         :key="index"
         style="text-align: center; padding: 2rem"
       >
-        <SbIcon v-bind="{ size, color, name }"/>
+        <SbIcon v-bind="args" :name="name" />
 
         <p class="font-size-md"> {{ name }} </p>
       </div>

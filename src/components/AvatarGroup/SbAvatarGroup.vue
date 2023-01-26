@@ -1,7 +1,7 @@
 <template>
   <div :class="avatarGroupClass">
     <component
-      :is="element.componentOptions.tag"
+      :is="element.type.name"
       v-for="(element, index) of visibleAvatars"
       :key="element.name"
       v-bind="getAvatarAttrs(element, index)"
@@ -46,7 +46,7 @@ export default {
     },
   },
 
-  emits: ['click'],
+  emits: ['click', 'toggle-visible-dropdown'],
 
   data() {
     return {
@@ -56,7 +56,14 @@ export default {
 
   computed: {
     avatars() {
-      return this.$slots.default.filter(({ tag }) => tag)
+      const children = this.$slots.default && this.$slots.default()
+      const useGrandchildren =
+        children &&
+        children.length === 1 &&
+        children[0].children &&
+        children[0].children[0].type.name === 'SbAvatar'
+      const avatarChildren = useGrandchildren ? children[0].children : children
+      return avatarChildren.filter(({ type }) => type.name === 'SbAvatar')
     },
 
     totalAvatars() {
@@ -95,7 +102,7 @@ export default {
   methods: {
     getAvatarAttrs(element, index) {
       return {
-        ...element.componentOptions.propsData,
+        ...element.props,
         useTooltip: true,
         size: this.size,
         bgColor: availableColors[index],

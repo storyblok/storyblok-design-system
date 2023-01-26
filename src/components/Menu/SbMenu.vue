@@ -2,9 +2,9 @@
   <div class="sb-menu" v-bind="$attrs">
     <slot
       name="button"
-      :isOpen="isOpen"
-      :menuListId="menuListId"
-      :menuButtonId="menuButtonId"
+      :is-open="isOpen"
+      :menu-list-id="menuListId"
+      :menu-button-id="menuButtonId"
     />
     <slot />
   </div>
@@ -28,7 +28,7 @@ export default {
       default: false,
     },
 
-    value: {
+    modelValue: {
       type: Boolean,
       default: false,
     },
@@ -44,7 +44,7 @@ export default {
     },
   },
 
-  emits: ['close', 'input', 'open'],
+  emits: ['close', 'update:modelValue', 'open'],
 
   data: () => ({
     activeIndex: -1,
@@ -102,10 +102,10 @@ export default {
     },
 
     isOpen(state) {
-      this.$emit('input', state)
+      this.$emit('update:modelValue', state)
     },
 
-    value(state) {
+    modelValue(state) {
       if (state) {
         this.focusOnFirstItem()
       } else {
@@ -115,7 +115,7 @@ export default {
   },
 
   mounted() {
-    this.isOpen = this.value || false
+    this.isOpen = this.modelValue || false
 
     this.loadListItems()
   },
@@ -169,17 +169,17 @@ export default {
         const nodeAtIndex = this.focusableElements[index]
         this.focusableElements.forEach((node) => {
           if (node !== nodeAtIndex) {
-            node.setAttribute('tabindex', -1)
+            node?.setAttribute('tabindex', -1)
           }
         })
-        nodeAtIndex.setAttribute('tabindex', 0)
+        nodeAtIndex?.setAttribute('tabindex', 0)
       }
     },
 
     resetTabIndex() {
       if (this.focusableElements.length > 0) {
         this.focusableElements.forEach((node) => {
-          node.setAttribute('tabindex', -1)
+          node?.setAttribute('tabindex', -1)
         })
       }
     },

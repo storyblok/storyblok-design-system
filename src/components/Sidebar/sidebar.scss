@@ -158,6 +158,10 @@
 .sb-sidebar-item--child {
   margin: 1px 0 0;
 
+  &:first-of-type {
+    padding-left: 37px;
+  }
+
   &.sb-sidebar-item--active {
     .sb-sidebar-link {
       background-color: #373f57;
@@ -165,7 +169,6 @@
   }
 
   .sb-sidebar-link {
-    padding-left: 32px;
 
     &:hover {
       background-color: #373f57;
@@ -193,7 +196,8 @@
     @include activeItemState();
   }
 
-  .sb-icon {
+  .sb-icon,
+  .sb-sidebar-sidebar-icon {
     margin-right: 12px;
   }
 

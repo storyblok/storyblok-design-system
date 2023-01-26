@@ -113,7 +113,7 @@ export default {
 
   mounted() {
     this.toggleSidebar()
-    this.createObserver()
+    this.$nextTick(this.createObserver)
   },
 
   methods: {
@@ -140,14 +140,15 @@ export default {
     },
 
     createObserver() {
-      if (window.ResizeObserver) {
+      const elementToObserve = document.querySelector(
+        '.sb-sidebar-list__container'
+      )
+      if (window.ResizeObserver && elementToObserve) {
         this.sizeObserver = new ResizeObserver(() => {
           this.checkScrollbar()
         })
 
-        this.sizeObserver.observe(
-          document.getElementsByClassName('sb-sidebar-list__container')[0]
-        )
+        this.sizeObserver.observe(elementToObserve)
       }
 
       // Used onresize here because if we observe a certain element with Resize Observer when manually expanding/collapsing the sidebar, it has no effect

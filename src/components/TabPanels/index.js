@@ -1,4 +1,5 @@
 import './tab-panels.scss'
+import { h } from 'vue'
 
 /**
  * @vue/component
@@ -10,30 +11,28 @@ import './tab-panels.scss'
 const SbTabPanel = {
   name: 'SbTabPanel',
 
+  inject: ['activeTab'],
+
   props: {
-    activate: {
-      type: Boolean,
-      default: false,
-    },
     name: {
       type: [String, Number],
       required: true,
     },
   },
 
-  render(h) {
+  render() {
+    const isActive = this.activeTab() === this.name
+
     return h(
       'div',
       {
-        staticClass: 'sb-tab-panel',
-        attrs: {
-          ...this.$attrs,
-          role: 'tabpanel',
-          tabindex: this.activate ? 0 : -1,
-          'aria-hidden': !this.activate + '',
-        },
+        ...this.$attrs,
+        class: 'sb-tab-panel',
+        role: 'tabpanel',
+        tabindex: isActive ? 0 : -1,
+        'aria-hidden': !isActive,
       },
-      this.$slots.default
+      this.$slots.default()
     )
   },
 }
@@ -48,41 +47,27 @@ const SbTabPanel = {
 const SbTabPanels = {
   name: 'SbTabPanels',
 
-  functional: true,
+  provide() {
+    return {
+      activeTab: () => this.modelValue,
+    }
+  },
 
   props: {
-    value: {
+    modelValue: {
       type: [String, Number],
       required: true,
     },
   },
 
-  render(h, { slots, props, data }) {
-    const children = slots().default.filter((e) => e.tag) || []
-
-    const processChildren = () => {
-      return children.map((element) => {
-        const elementProps = element.componentOptions.propsData
-        const elementId = elementProps.name
-
-        element.componentOptions.propsData = {
-          ...element.componentOptions.propsData,
-          activate: elementId === props.value,
-        }
-
-        return element
-      })
-    }
-
+  render() {
     return h(
       'div',
       {
-        staticClass: 'sb-tab-panels',
-        attrs: {
-          ...data.$attrs,
-        },
+        ...this.$attrs,
+        class: 'sb-tab-panels',
       },
-      processChildren()
+      this.$slots.default()
     )
   },
 }

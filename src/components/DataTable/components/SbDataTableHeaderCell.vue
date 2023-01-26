@@ -19,16 +19,14 @@
 
 <script>
 import SbIcon from '../../Icon'
+import VNodes from '../../../utils/VNodes'
 
 export default {
   name: 'SbDataTableHeaderCell',
 
   components: {
     SbIcon,
-    VNodes: {
-      functional: true,
-      render: (h, ctx) => ctx.props.vnodes,
-    },
+    VNodes,
   },
 
   iconsSort: ['chevron-down', 'chevron-double', 'chevron-up'],

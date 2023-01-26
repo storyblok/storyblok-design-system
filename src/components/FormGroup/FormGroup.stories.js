@@ -30,7 +30,9 @@ export const defaultSelectOptionsData = [
 
 export const Default = (args) => ({
   components: { SbFormGroup, SbSelect, SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     options: [...defaultSelectOptionsData],
     label: 'Label',
@@ -39,11 +41,7 @@ export const Default = (args) => ({
   template: `
     <div>
       <SbFormGroup
-        v-bind="{
-          legend,
-          inline,
-          description
-        }"
+        v-bind="args"
         style="margin-bottom: 20px; max-width: 300px"
       >
         <SbTextField
@@ -57,11 +55,7 @@ export const Default = (args) => ({
       </SbFormGroup>
 
       <SbFormGroup
-        v-bind="{
-          legend,
-          inline,
-          description
-        }"
+        v-bind="args"
         style="margin-bottom: 20px; max-width: 300px"
       >
         <SbTextField
@@ -75,11 +69,7 @@ export const Default = (args) => ({
       </SbFormGroup>
 
       <SbFormGroup
-        v-bind="{
-          legend,
-          inline,
-          description
-        }"
+        v-bind="args"
         style="margin-bottom: 20px; max-width: 300px"
       >
         <SbSelect
@@ -100,7 +90,9 @@ export const Default = (args) => ({
 
 export const Inline = (args) => ({
   components: { SbFormGroup, SbSelect, SbTextField },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   data: () => ({
     options: [...defaultSelectOptionsData],
     label: 'Label',
@@ -109,11 +101,7 @@ export const Inline = (args) => ({
   template: `
     <div>
       <SbFormGroup
-        v-bind="{
-          legend,
-          inline,
-          description
-        }"
+        v-bind="args"
         style="margin-bottom: 20px;"
       >
         <SbTextField
@@ -127,11 +115,7 @@ export const Inline = (args) => ({
       </SbFormGroup>
 
       <SbFormGroup
-        v-bind="{
-          legend,
-          inline,
-          description
-        }"
+        v-bind="args"
         style="margin-bottom: 20px;"
       >
         <SbTextField

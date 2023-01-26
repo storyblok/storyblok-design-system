@@ -8,22 +8,24 @@ const Template = (args) => ({
   props: Object.keys(args),
 
   data: () => ({
-    internalDatetimeValue: dayjs().format('YYYY-MM-DD HH:mm'),
+    internalDatetimeValue: dayjs(args.modelValue).format('YYYY-MM-DD HH:mm'),
   }),
 
   template: `
-    <SbDatepicker
-      :disabled="disabled"
-      :placeholder="placeholder"
-      :time-zone="timeZone"
-      :tz-tooltip="tzTooltip"
-      :type="type"
-      v-model="internalDatetimeValue"
-      style="width: 29.4rem"
-      :min-date="minDate"
-      :max-date="maxDate"
-      :disabled-past="disabledPast"
-    />
+    <div class="large">
+      <SbDatepicker
+        v-model="internalDatetimeValue"
+        :disabled="disabled"
+        :placeholder="placeholder"
+        :time-zone="timeZone"
+        :tz-tooltip="tzTooltip"
+        :type="type"
+        style="width: 29.4rem"
+        :min-date="minDate"
+        :max-date="maxDate"
+        :disabled-past="disabledPast"
+      />
+    </div>
   `,
 })
 
@@ -32,7 +34,7 @@ export default {
   components: { SbDatepicker },
   args: {
     placeholder: 'Select date and time',
-    value: '2021-12-02 00:00',
+    modelValue: '2021-12-02 00:00',
     type: 'datetime',
     disabled: false,
     isoDate: false,

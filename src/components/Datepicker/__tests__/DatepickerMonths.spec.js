@@ -9,9 +9,9 @@ describe('SbDatepickerMonths component', () => {
   describe('Test component method to handle the MONTHS', () => {
     it('Should emit date for input on click', async () => {
       const value = dayjs().format()
-      await wrapper.setProps({ value })
+      await wrapper.setProps({ modelValue: value })
       await wrapper.find('.sb-datepicker-months__item').trigger('click')
-      expect(wrapper.emitted().input[0].length).toBe(1)
+      expect(wrapper.emitted('update:modelValue')[0].length).toBe(1)
     })
   })
 })

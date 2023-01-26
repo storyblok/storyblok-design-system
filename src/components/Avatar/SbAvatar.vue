@@ -1,6 +1,6 @@
 <template>
-  <div v-tooltip="avatarTooltipAttrs" :class="avatarClass" v-on="$listeners">
-    <template v-if="showImage" v-bind="avatarImageAttrs">
+  <div v-tooltip="avatarTooltipAttrs" :class="avatarClass" v-bind="$attrs">
+    <template v-if="showImage">
       <slot>
         <div class="sb-avatar__image">
           <img
@@ -180,7 +180,7 @@ export default {
     },
 
     showImage() {
-      return this.src || this.$slots.default
+      return this.src || (this.$slots?.default && this.$slots.default())
     },
 
     showDescription() {

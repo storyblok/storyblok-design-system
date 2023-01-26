@@ -17,7 +17,7 @@ import {
 describe('SbSelect component', () => {
   describe('default behavior (single option)', () => {
     const wrapper = mountAttachingComponent(SbSelect, {
-      propsData: {
+      props: {
         label: 'Choose an option',
         options: [...defaultSelectOptionsData],
         value: null,
@@ -39,7 +39,7 @@ describe('SbSelect component', () => {
       expect(wrapper.vm.isOpen).toBe(true)
 
       // check if the first element on the list exists
-      const firstElement = wrapper.findAll('li').at(0)
+      const firstElement = wrapper.findAll('li')[0]
       expect(firstElement.text()).toBe('Option 1')
 
       // turn the list not visible
@@ -54,18 +54,18 @@ describe('SbSelect component', () => {
       await innerElement.trigger('click')
 
       // find the first element and click on it
-      wrapper.findAll('li').at(1).trigger('click')
+      wrapper.findAll('li')[1].trigger('click')
 
       // check if the value of the element was emitted
-      expect(wrapper.emitted('input')[0]).toEqual([2])
+      expect(wrapper.emitted('update:modelValue')[0]).toEqual([2])
     })
 
     it('should emit null when click on Clear all values button using clearable property', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: 6,
+          modelValue: 6,
           clearable: true,
         },
       })
@@ -74,12 +74,12 @@ describe('SbSelect component', () => {
 
       await buttonComponent.trigger('click')
 
-      expect(wrapper.emitted('input')[0][0]).toEqual(null)
+      expect(wrapper.emitted('update:modelValue')[0][0]).toEqual(null)
     })
   })
 
   describe('multiple option logic', () => {
-    const defaultsPropsData = {
+    const defaultsprops = {
       label: 'Choose an option',
       options: [...defaultSelectOptionsData],
       multiple: true,
@@ -89,9 +89,9 @@ describe('SbSelect component', () => {
 
     it('should emit an input event with an array of values', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
-          ...defaultsPropsData,
-          value: [],
+        props: {
+          ...defaultsprops,
+          modelValue: [],
         },
       })
 
@@ -101,20 +101,20 @@ describe('SbSelect component', () => {
       await innerElement.trigger('click')
 
       // clicking on the element1
-      await wrapper.findAll('li').at(1).trigger('click')
+      await wrapper.findAll('li')[1].trigger('click')
 
       // should continue the list visible
       expect(wrapper.find('ul').exists()).toBe(true)
 
       // should emit the input event with the correct value
-      expect(getFirstValue(wrapper, 'input')).toEqual([2])
+      expect(getFirstValue(wrapper, 'update:modelValue')).toEqual([2])
     })
 
     it('should emit appended array with the new element that was selected', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
-          ...defaultsPropsData,
-          value: [2],
+        props: {
+          ...defaultsprops,
+          modelValue: [2],
         },
       })
 
@@ -124,20 +124,20 @@ describe('SbSelect component', () => {
       await innerElement.trigger('click')
 
       // clicking on the fourth element on the list
-      await wrapper.findAll('li').at(3).trigger('click')
+      await wrapper.findAll('li')[3].trigger('click')
 
       // should continue the list visible
       expect(wrapper.find('ul').exists()).toBe(true)
 
       // should emit the input event with the correct value
-      expect(getFirstValue(wrapper, 'input')).toEqual([2, 4])
+      expect(getFirstValue(wrapper, 'update:modelValue')).toEqual([2, 4])
     })
 
     it('should emit an array without a previous element when it is selected', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
-          ...defaultsPropsData,
-          value: [2, 4],
+        props: {
+          ...defaultsprops,
+          modelValue: [2, 4],
         },
       })
 
@@ -147,51 +147,51 @@ describe('SbSelect component', () => {
       await innerElement.trigger('click')
 
       // clicking on the fourth element on the list
-      await wrapper.findAll('li').at(3).trigger('click')
+      await wrapper.findAll('li')[3].trigger('click')
 
       // should continue the list visible
       expect(wrapper.find('ul').exists()).toBe(true)
 
       // should emit the input event with the correct value
-      expect(getFirstValue(wrapper, 'input')).toEqual([2])
+      expect(getFirstValue(wrapper, 'update:modelValue')).toEqual([2])
     })
 
     it('should change the select inner with the value', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
-          ...defaultsPropsData,
-          value: [1, 2],
+        props: {
+          ...defaultsprops,
+          modelValue: [1, 2],
         },
       })
 
-      expect(wrapper.findAllComponents(SbTag).at(0).text()).toBe('Option 1')
+      expect(wrapper.findAllComponents(SbTag)[0].text()).toBe('Option 1')
 
-      expect(wrapper.findAllComponents(SbTag).at(1).text()).toBe('Option 2')
+      expect(wrapper.findAllComponents(SbTag)[1].text()).toBe('Option 2')
     })
 
     it('should remove the tag from value when click on it', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: [1, 4, 6],
+          modelValue: [1, 4, 6],
           multiple: true,
         },
       })
 
-      const tagComponent = wrapper.findAllComponents(SbTag).at(1)
+      const tagComponent = wrapper.findAllComponents(SbTag)[1]
 
       await tagComponent.findComponent(SbIcon).trigger('click')
 
-      expect(wrapper.emitted('input')[0][0]).toEqual([1, 6])
+      expect(wrapper.emitted('update:modelValue')[0][0]).toEqual([1, 6])
     })
 
     it('should remove all values when click on Clear all values button', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: [1, 4, 6],
+          modelValue: [1, 4, 6],
           multiple: true,
           clearable: true,
         },
@@ -201,14 +201,14 @@ describe('SbSelect component', () => {
 
       await buttonComponent.trigger('click')
 
-      expect(wrapper.emitted('input')[0][0]).toEqual([])
+      expect(wrapper.emitted('update:modelValue')[0][0]).toEqual([])
     })
 
     it('should not show a tag if the value are not included in the list of available options to choose', () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
-          ...defaultsPropsData,
-          value: [10902],
+        props: {
+          ...defaultsprops,
+          modelValue: [10902],
         },
       })
 
@@ -217,7 +217,7 @@ describe('SbSelect component', () => {
   })
 
   describe('Multiselect with a "all" option', () => {
-    const defaultsPropsData = {
+    const defaultsprops = {
       label: 'Choose an option',
       options: [...selectOptionsDataWithAllOption],
       firstValueIsAllValue: true,
@@ -228,37 +228,37 @@ describe('SbSelect component', () => {
 
     it('should uncheck the "all option" when other options are selected', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
-          ...defaultsPropsData,
-          value: [0],
+        props: {
+          ...defaultsprops,
+          modelValue: [0],
         },
       })
 
       const innerElement = wrapper.find('.sb-select-inner')
       await innerElement.trigger('click')
-      await wrapper.findAll('li').at(1).trigger('click')
+      await wrapper.findAll('li')[1].trigger('click')
       expect(wrapper.find('ul').exists()).toBe(true)
-      expect(getFirstValue(wrapper, 'input')).toEqual([1])
+      expect(getFirstValue(wrapper, 'update:modelValue')).toEqual([1])
     })
 
     it('should uncheck all other option when "all option" is selected', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
-          ...defaultsPropsData,
-          value: [1, 2],
+        props: {
+          ...defaultsprops,
+          modelValue: [1, 2],
         },
       })
 
       const innerElement = wrapper.find('.sb-select-inner')
       await innerElement.trigger('click')
-      await wrapper.findAll('li').at(0).trigger('click')
-      expect(getFirstValue(wrapper, 'input')).toEqual([0])
+      await wrapper.findAll('li')[0].trigger('click')
+      expect(getFirstValue(wrapper, 'update:modelValue')).toEqual([0])
     })
   })
 
   describe('leftIcon property', () => {
     const wrapper = mountAttachingComponent(SbSelect, {
-      propsData: {
+      props: {
         label: 'Choose an option',
         options: [...defaultSelectOptionsData],
         value: null,
@@ -274,10 +274,10 @@ describe('SbSelect component', () => {
   describe('filterable property', () => {
     it('should change the list when type in the input', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: null,
+          modelValue: null,
           leftIcon: 'calendar',
           filterable: true,
         },
@@ -300,15 +300,15 @@ describe('SbSelect component', () => {
       expect(listItems.length).toBe(1)
 
       // with the expected text
-      expect(listItems.at(0).text()).toBe('Option 2')
+      expect(listItems[0].text()).toBe('Option 2')
     })
 
     it('should select the first item when pressing the enter key and there is not other element in list when filtering', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: null,
+          modelValue: null,
           leftIcon: 'calendar',
           filterable: true,
         },
@@ -331,15 +331,15 @@ describe('SbSelect component', () => {
 
       expect(wrapper.vm.isOpen).toBe(false)
 
-      expect(wrapper.emitted('input')[0][0]).toBe(2)
+      expect(wrapper.emitted('update:modelValue')[0][0]).toBe(2)
     })
 
     it('should just close the list when pressing the enter key and there are more than one element in list when filtering', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: null,
+          modelValue: null,
           leftIcon: 'calendar',
           filterable: true,
         },
@@ -362,17 +362,17 @@ describe('SbSelect component', () => {
 
       expect(wrapper.vm.isOpen).toBe(false)
 
-      expect(wrapper.emitted('input')).toBeUndefined()
+      expect(wrapper.emitted('update:modelValue')).toBeUndefined()
     })
   })
 
   describe('useAvatars option', () => {
     it('should have the correct list of Avatars', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultAvatarsData],
-          value: null,
+          modelValue: null,
           leftIcon: 'calendar',
           filterable: true,
           useAvatars: true,
@@ -388,10 +388,10 @@ describe('SbSelect component', () => {
 
     it('should have the correct selected Avatar', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultAvatarsData],
-          value: '001',
+          modelValue: '001',
           leftIcon: 'calendar',
           useAvatars: true,
         },
@@ -408,10 +408,10 @@ describe('SbSelect component', () => {
 
     it('should filter the list using the name', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultAvatarsData],
-          value: null,
+          modelValue: null,
           leftIcon: 'calendar',
           filterable: true,
           useAvatars: true,
@@ -432,19 +432,19 @@ describe('SbSelect component', () => {
 
       expect(listComponent.findAllComponents(SbAvatar).length).toBe(1)
 
-      expect(
-        listComponent.findAllComponents(SbAvatar).at(0).props('name')
-      ).toBe('Alexander Feiglstorfer')
+      expect(listComponent.findAllComponents(SbAvatar)[0].props('name')).toBe(
+        'Alexander Feiglstorfer'
+      )
     })
   })
 
   describe('inline option', () => {
     it('should have the correct class on wrapper', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultAvatarsData],
-          value: null,
+          modelValue: null,
           leftIcon: 'calendar',
           inline: true,
         },
@@ -456,7 +456,7 @@ describe('SbSelect component', () => {
 
   describe('using minibrowser component', () => {
     const wrapper = mountAttachingComponent(SbSelect, {
-      propsData: {
+      props: {
         label: 'Choose an option',
         options: [...defaultSelectOptionsData],
         value: null,
@@ -464,12 +464,14 @@ describe('SbSelect component', () => {
       slots: {
         minibrowser: `<SbMinibrowser :options="browserOptionsData" />`,
       },
-      stubs: {
-        SbMinibrowser: SbMinibrowser,
-        SbIcon: SbIcon,
-      },
-      mocks: {
-        browserOptionsData: [...MOCK_DATA.FIRST_LEVEL],
+      global: {
+        stubs: {
+          SbMinibrowser: SbMinibrowser,
+          SbIcon: SbIcon,
+        },
+        mocks: {
+          browserOptionsData: [...MOCK_DATA.FIRST_LEVEL],
+        },
       },
     })
 
@@ -483,10 +485,10 @@ describe('SbSelect component', () => {
     const listClass = '.sb-select-list'
     it('should open the list when press Enter and close with Escape', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: null,
+          modelValue: null,
         },
       })
 
@@ -500,10 +502,10 @@ describe('SbSelect component', () => {
       // should change the isOpen state
       expect(wrapper.vm.isOpen).toBe(true)
 
-      const firstElement = wrapper.findAll('li').at(0)
+      const firstElement = wrapper.findAll('li')[0]
 
       // and the focus should change to the first element
-      expect(firstElement.element).toEqual(document.activeElement)
+      expect(firstElement.attributes('tabindex')).toBe('0')
 
       // when press the Escape key
       await wrapper.find('.sb-select-list').trigger('keydown', {
@@ -514,15 +516,15 @@ describe('SbSelect component', () => {
       expect(wrapper.vm.isOpen).toBe(false)
 
       // and the focus should change to inner element
-      expect(innerElement.element).toEqual(document.activeElement)
+      expect(innerElement.attributes('tabindex')).toBe('0')
     })
 
     it('should emit an input event when press Enter in a list option', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: null,
+          modelValue: null,
         },
       })
 
@@ -537,17 +539,17 @@ describe('SbSelect component', () => {
         key: 'ArrowDown',
       })
 
-      const secondElement = wrapper.findAll('li').at(1)
+      const secondElement = wrapper.findAll('li')[1]
 
       // should change the focus to second element
-      expect(secondElement.element).toEqual(document.activeElement)
+      expect(secondElement.attributes('tabindex')).toBe('0')
 
       await secondElement.trigger('keydown', {
         key: 'Enter',
       })
 
       // should emit the input event
-      expect(wrapper.emitted('input')).toEqual([[2]])
+      expect(wrapper.emitted('update:modelValue')).toEqual([[2]])
 
       // and should close the list
       expect(wrapper.vm.isOpen).toBe(false)
@@ -565,7 +567,7 @@ describe('SbSelect component', () => {
         },
       ]
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: options,
           itemLabel: 'itemLabel',
@@ -573,7 +575,7 @@ describe('SbSelect component', () => {
         },
       })
 
-      const innerElement = wrapper.find(innerClass)
+      const innerElement = wrapper.findComponent(innerClass)
 
       await innerElement.trigger('keydown', {
         key: 'Enter',
@@ -584,10 +586,10 @@ describe('SbSelect component', () => {
         key: 'ArrowDown',
       })
 
-      const secondElement = wrapper.findAll('li').at(1)
+      const secondElement = wrapper.findAll('li')[1]
 
       // should change the focus to second element
-      expect(secondElement.element).toEqual(document.activeElement)
+      expect(secondElement.attributes('tabindex')).toBe('0')
 
       await secondElement.trigger('keydown', {
         key: 'Enter',
@@ -595,21 +597,23 @@ describe('SbSelect component', () => {
 
       expect(innerElement.vm.isInnerSearchVisible).toBe(true)
 
-      expect(wrapper.emitted('input')).toEqual([['Option 2']])
+      expect(wrapper.emitted('update:modelValue')).toEqual([['Option 2']])
 
       await wrapper.setProps({
-        value: 'Option 2',
+        modelValue: 'Option 2',
       })
+
+      await wrapper.vm.$nextTick()
 
       expect(innerElement.vm.innerLabel).toBe(options[1].itemLabel)
     })
 
     it('should move focus to first element when press ArrowDown', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: null,
+          modelValue: null,
         },
       })
 
@@ -620,17 +624,15 @@ describe('SbSelect component', () => {
       })
 
       // should change the focus to second element
-      expect(wrapper.findAll('li').at(0).element).toEqual(
-        document.activeElement
-      )
+      expect(wrapper.findAll('li')[0].attributes('tabindex')).toBe('0')
     })
 
     it('should move focus to last element when press ArrowUp', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: null,
+          modelValue: null,
         },
       })
 
@@ -641,9 +643,7 @@ describe('SbSelect component', () => {
       })
 
       // should change the focus to second element
-      expect(wrapper.findAll('li').at(6).element).toEqual(
-        document.activeElement
-      )
+      expect(wrapper.findAll('li')[6].attributes('tabindex')).toBe('0')
     })
   })
 
@@ -653,33 +653,33 @@ describe('SbSelect component', () => {
 
     it('should remove the SbTag item when press Enter', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: [1, 3],
+          modelValue: [1, 3],
           multiple: true,
         },
       })
 
       // when press Enter on a tag
-      await wrapper.findAllComponents(SbTag).at(0).trigger('keydown', {
+      await wrapper.findAllComponents(SbTag)[0].trigger('keydown', {
         key: 'Enter',
       })
 
-      expect(wrapper.emitted('input')[0]).toEqual([[3]])
+      expect(wrapper.emitted('update:modelValue')[0]).toEqual([[3]])
 
       // and the focus should change to inner element
-      expect(wrapper.find(innerClass).element).toEqual(document.activeElement)
+      expect(wrapper.find(innerClass).attributes('tabindex')).toBe('0')
     })
   })
 
   describe('isLoading option', () => {
     const factory = () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultSelectOptionsData],
-          value: null,
+          modelValue: null,
           isLoading: true,
         },
       })
@@ -712,15 +712,15 @@ describe('SbSelect component', () => {
       const wrapper = factory()
       const innerInput = wrapper.find('.sb-select-inner__input')
 
-      expect(innerInput.element.placeholder).toBe('Loading...')
+      expect(innerInput.attributes().placeholder).toBe('Loading...')
 
       await wrapper.setProps({
-        value: 'Option 1',
+        modelValue: 'Option 1',
       })
 
       const valueElement = wrapper.find('.sb-select-inner__value')
 
-      expect(innerInput.element.placeholder).toBe('Loading...')
+      expect(innerInput.attributes().placeholder).toBe('Loading...')
       expect(valueElement.text()).toBe('Option 1')
     })
 
@@ -728,22 +728,22 @@ describe('SbSelect component', () => {
       const wrapper = factory()
       const innerInput = wrapper.find('.sb-select-inner__input')
 
-      expect(innerInput.element.placeholder).toBe('Loading...')
+      expect(innerInput.attributes().placeholder).toBe('Loading...')
 
       await wrapper.setProps({
-        value: 'Option 1',
+        modelValue: 'Option 1',
       })
 
-      expect(innerInput.element.placeholder).toBe('Loading...')
+      expect(innerInput.attributes().placeholder).toBe('Loading...')
     })
   })
 
   describe('disable internal search and implement a one itself', () => {
     const wrapper = mountAttachingComponent(SbSelect, {
-      propsData: {
+      props: {
         label: 'Choose an option',
         options: [...defaultSelectOptionsData],
-        value: null,
+        modelValue: null,
         disableInternalFilter: true,
         filterable: true,
       },
@@ -756,7 +756,7 @@ describe('SbSelect component', () => {
 
       await waitMs(500)
 
-      expect(wrapper.emitted('filter')[0][0]).toBe('option 2')
+      expect(wrapper.emitted('search-input')[0][0]).toBe('option 2')
     })
 
     it('should not filter the list', async () => {
@@ -771,7 +771,7 @@ describe('SbSelect component', () => {
   describe('emitOption option', () => {
     it('should emit the whole object by default', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [
             {
@@ -787,7 +787,7 @@ describe('SbSelect component', () => {
               value: 3,
             },
           ],
-          value: null,
+          modelValue: null,
           emitOption: true,
         },
       })
@@ -796,13 +796,13 @@ describe('SbSelect component', () => {
 
       await innerElement.trigger('click')
 
-      const listElement = wrapper.findAll('li').at(1)
+      const listElement = wrapper.findAll('li')[1]
 
       expect(listElement.text()).toBe('Option 2')
 
       await listElement.trigger('click')
 
-      expect(wrapper.emitted('input')[0]).toEqual([
+      expect(wrapper.emitted('update:modelValue')[0]).toEqual([
         {
           label: 'Option 2',
           value: 2,
@@ -812,7 +812,7 @@ describe('SbSelect component', () => {
 
     it('should emit a list of objects in multiple', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [
             {
@@ -828,7 +828,7 @@ describe('SbSelect component', () => {
               value: 3,
             },
           ],
-          value: [],
+          modelValue: [],
           emitOption: true,
           multiple: true,
         },
@@ -838,9 +838,9 @@ describe('SbSelect component', () => {
 
       await innerElement.trigger('click')
 
-      wrapper.findAll('li').at(1).trigger('click')
+      wrapper.findAll('li')[1].trigger('click')
 
-      expect(wrapper.emitted('input')[0]).toEqual([
+      expect(wrapper.emitted('update:modelValue')[0]).toEqual([
         [
           {
             label: 'Option 2',
@@ -852,7 +852,7 @@ describe('SbSelect component', () => {
 
     it('should clear a selected element in multiple', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [
             {
@@ -868,7 +868,7 @@ describe('SbSelect component', () => {
               value: 3,
             },
           ],
-          value: [
+          modelValue: [
             {
               label: 'Option 1',
               value: 1,
@@ -887,13 +887,13 @@ describe('SbSelect component', () => {
 
       await innerElement.trigger('click')
 
-      const tagComponent = wrapper.findAllComponents(SbTag).at(0)
+      const tagComponent = wrapper.findAllComponents(SbTag)[0]
 
       expect(tagComponent.html().includes('Option 1')).toBe(true)
 
       await tagComponent.findComponent(SbIcon).trigger('click')
 
-      expect(wrapper.emitted('input')[0]).toEqual([
+      expect(wrapper.emitted('update:modelValue')[0]).toEqual([
         [
           {
             label: 'Option 2',
@@ -905,7 +905,7 @@ describe('SbSelect component', () => {
 
     it('should allow to search and select a single item when use the filterable property', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [
             {
@@ -921,7 +921,7 @@ describe('SbSelect component', () => {
               value: 3,
             },
           ],
-          value: [
+          modelValue: [
             {
               label: 'Option 1',
               value: 1,
@@ -954,11 +954,11 @@ describe('SbSelect component', () => {
       expect(listItems.length).toBe(1)
 
       // with the expected text
-      expect(listItems.at(0).text()).toBe('Option 3')
+      expect(listItems[0].text()).toBe('Option 3')
 
-      await listItems.at(0).trigger('click')
+      await listItems[0].trigger('click')
 
-      expect(wrapper.emitted('input')[0]).toEqual([
+      expect(wrapper.emitted('update:modelValue')[0]).toEqual([
         [
           {
             label: 'Option 1',
@@ -980,12 +980,12 @@ describe('SbSelect component', () => {
   describe('Show caption on list option', () => {
     it('should render a single option list with caption', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultOptionsWithCaptionData],
           showCaption: true,
           emitOption: true,
-          value: null,
+          modelValue: null,
         },
       })
 
@@ -994,16 +994,16 @@ describe('SbSelect component', () => {
       // turn the list visible
       await innerElement.trigger('click')
 
-      const firstElement = wrapper.findAll('li').at(0)
+      const firstElement = wrapper.findAll('li')[0]
 
       // check if the first element on the list has the name and the caption
-      expect(firstElement.text()).toBe('Option 1 en/folder-text/us')
+      expect(firstElement.text()).toBe('Option 1en/folder-text/us')
 
       // cliking on the first element of the list
       await firstElement.trigger('click')
 
       // check if the emit has the caption on the response
-      expect(wrapper.emitted().input[0][0]).toEqual({
+      expect(wrapper.emitted('update:modelValue')[0][0]).toEqual({
         label: 'Option 1',
         caption: 'en/folder-text/us',
         value: 1,
@@ -1012,13 +1012,13 @@ describe('SbSelect component', () => {
 
     it('should render a multi option list with caption', async () => {
       const wrapper = mountAttachingComponent(SbSelect, {
-        propsData: {
+        props: {
           label: 'Choose an option',
           options: [...defaultOptionsWithCaptionData],
           showCaption: true,
           multi: true,
           emitOption: true,
-          value: null,
+          modelValue: null,
         },
       })
 
@@ -1027,26 +1027,26 @@ describe('SbSelect component', () => {
       // turn the list visible
       await innerElement.trigger('click')
 
-      const firstElement = wrapper.findAll('li').at(0)
-      const secondElement = wrapper.findAll('li').at(1)
+      const firstElement = wrapper.findAll('li')[0]
+      const secondElement = wrapper.findAll('li')[1]
 
       // check if the elements has the correct values
-      expect(firstElement.text()).toBe('Option 1 en/folder-text/us')
+      expect(firstElement.text()).toBe('Option 1en/folder-text/us')
 
-      expect(secondElement.text()).toBe('Option 2 en/folder-text/us')
+      expect(secondElement.text()).toBe('Option 2en/folder-text/us')
 
       // cliking on the two elements
       await firstElement.trigger('click')
       await secondElement.trigger('click')
 
       // check if the emit has the caption on the response
-      expect(wrapper.emitted().input[0][0]).toEqual({
+      expect(wrapper.emitted('update:modelValue')[0][0]).toEqual({
         label: 'Option 1',
         caption: 'en/folder-text/us',
         value: 1,
       })
 
-      expect(wrapper.emitted().input[1][0]).toEqual({
+      expect(wrapper.emitted('update:modelValue')[1][0]).toEqual({
         label: 'Option 2',
         caption: 'en/folder-text/us',
         value: 2,

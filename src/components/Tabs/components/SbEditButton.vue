@@ -6,7 +6,7 @@
     }"
     class="sb-tab-edit-button"
     aria-label="Edit tab"
-    v-on="$listeners"
+    v-bind="$attrs"
   >
     <SbIcon name="edit" size="normal" color="light-gray" />
   </button>

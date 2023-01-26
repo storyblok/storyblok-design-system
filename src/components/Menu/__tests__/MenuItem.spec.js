@@ -51,19 +51,17 @@ describe('SbMenuItem component', () => {
 
   it('should have a SbIcon when use the icon property', async () => {
     // get the third element
-    const itemComponent = wrapper.findAll('[role="menuitemradio"]').at(2)
+    const itemComponent = wrapper.findAll('[role="menuitemradio"]')[2]
 
     expect(itemComponent.findComponent(SbIcon).exists()).toBe(true)
   })
 
   it('should have the correct text', async () => {
-    expect(wrapper.findAll('[role="menuitemradio"]').at(0).text()).toBe(
-      'Option 1'
-    )
+    expect(wrapper.findAll('[role="menuitemradio"]')[0].text()).toBe('Option 1')
   })
 
   it('should not emit the click event when is disabled', async () => {
-    const itemComponent = wrapper.findAll('[role="menuitemradio"]').at(1)
+    const itemComponent = wrapper.findAllComponents('[role="menuitemradio"]')[1]
 
     // check if the element has the isDisabled property marked as true
     expect(itemComponent.props('isDisabled')).toBe(true)
@@ -102,7 +100,7 @@ describe('SbMenuItem component', () => {
   })
 
   it('should emit the click event when press Enter and Space keys', async () => {
-    const itemComponent = wrapper.findAll('[role="menuitemradio"]').at(0)
+    const itemComponent = wrapper.findAllComponents('[role="menuitemradio"]')[0]
 
     // check if the element has the isDisabled property marked as false
     expect(itemComponent.props('isDisabled')).toBe(false)

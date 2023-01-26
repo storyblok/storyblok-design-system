@@ -1,7 +1,7 @@
 export default {
   props: {
     // component itself properties
-    value: {},
+    modelValue: {},
     error: Boolean,
     errorMessage: String,
     label: {

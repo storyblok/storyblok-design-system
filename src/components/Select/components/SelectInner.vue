@@ -3,7 +3,7 @@
     class="sb-select-inner"
     :class="hasSpecialClass"
     tabindex="0"
-    v-on="$listeners"
+    v-bind="$attrs"
     @keydown="handleKeyDown"
   >
     <SbIcon
@@ -162,7 +162,7 @@ export default {
       default: 'Loading...',
     },
 
-    value: {
+    modelValue: {
       type: [String, Number, Array],
       default: null,
     },
@@ -198,7 +198,7 @@ export default {
     'clear-all-values',
     'close-list',
     'emit-value',
-    'input',
+    'search',
     'keydown-enter',
     'remove-item-value',
   ],
@@ -213,6 +213,7 @@ export default {
         return this.searchInput
       },
       set(value) {
+        this.$emit('search', value)
         return value
       },
     },
@@ -225,15 +226,18 @@ export default {
     },
 
     hasValue() {
-      if (this.multiple || isArray(this.value)) {
-        return this.value?.length > 0
+      if (this.multiple || isArray(this.modelValue)) {
+        return this.modelValue?.length > 0
       }
 
-      return this.value !== null
+      return this.modelValue !== null
     },
 
     hasDefaultSlot() {
-      return !!this.$slots.default
+      const slot = this.$slots?.default()
+      const slotIsInner = slot && slot[0]?.key === '_innerSelect'
+      const slotInnerHasChildren = slotIsInner && slot[0]?.children?.length > 0
+      return slotInnerHasChildren || (!slotIsInner && slot?.length > 0)
     },
 
     innerLabel() {
@@ -271,7 +275,7 @@ export default {
         this.hasValue &&
         !this.multiple &&
         !this.searchInputText.length &&
-        !this.sAvatarVisible &&
+        !this.isAvatarVisible &&
         !this.showAvatar
       )
     },
@@ -279,7 +283,7 @@ export default {
     currentOptionLabel() {
       return this.currentOptionValue && this.currentOptionValue[this.itemLabel]
         ? this.currentOptionValue[this.itemLabel]
-        : this.value
+        : this.modelValue
     },
 
     currentOptionValue() {
@@ -287,7 +291,7 @@ export default {
         return {}
       }
 
-      return this.options.find((opt) => opt[this.itemValue] === this.value)
+      return this.options.find((opt) => opt[this.itemValue] === this.modelValue)
     },
 
     isTagsVisible() {
@@ -303,7 +307,7 @@ export default {
         return []
       }
 
-      return this.value
+      return this.modelValue
         .map((value) => {
           if (typeof value === 'object') {
             return value
@@ -333,10 +337,10 @@ export default {
     },
 
     isInnerSearchVisible() {
-      return Boolean(
-        !this.isTagsVisible &&
-          (this.filterable || this.placeholderLabel?.length)
-      )
+      const noTags = !this.isTagsVisible
+      const filterOrPlaceholder =
+        this.filterable || this.placeholderLabel?.length > 0
+      return Boolean(noTags && filterOrPlaceholder)
     },
 
     isSearchTextVisible() {
@@ -345,7 +349,7 @@ export default {
 
     avatarData() {
       return this.options.find((option) => {
-        return option[this.itemValue] === this.value
+        return option[this.itemValue] === this.modelValue
       })
     },
 
@@ -379,7 +383,7 @@ export default {
       }
     },
 
-    value(val, oldVal) {
+    modelValue(val, oldVal) {
       const isSameValue = JSON.stringify(val) === JSON.stringify(oldVal)
       if (this.isSearchTextVisible && !isSameValue) {
         if (oldVal.length && val.length) {
@@ -391,6 +395,10 @@ export default {
       if (this.isAvatarVisible) {
         this.showAvatar = true
       }
+    },
+
+    isAvatarVisible(val) {
+      this.showAvatar = val
     },
   },
 
@@ -408,11 +416,7 @@ export default {
      */
     handleEmitSearchInput() {
       if (this.filterable && !this.isDisabled) {
-        this.$emit('input', this.searchInputText)
-
-        if (this.isAvatarVisible) {
-          this.showAvatar = false
-        }
+        this.$emit('search', this.searchInputText)
       }
     },
 
@@ -454,7 +458,7 @@ export default {
         event.preventDefault()
         if (this.allowCreate && this.searchInputText.length) {
           this.handleEmitValue(this.searchInputText)
-          this.$emit('input', '')
+          this.$emit('search', '')
         } else {
           this.$emit('keydown-enter')
         }

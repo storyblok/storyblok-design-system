@@ -75,100 +75,44 @@ export default {
 
 export const Default = (args) => ({
   components: { SbLink },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
     <SbLink
-      v-bind="{
-        as,
-        label,
-        href,
-        title,
-        type
-      }"
+      v-bind="args"
     />
   `,
 })
 
 export const InlineLabel = (args) => ({
   components: { SbLink },
-  props: Object.keys(args),
+  setup() {
+    return { args }
+  },
   template: `
-    <SbLink
-      v-bind="{
-        as,
-        href,
-        title,
-        type
-      }"
-    >
+    <SbLink>
       {{ label }}
     </SbLink>
   `,
 })
 
-// export const Secondary = args => ({
-//   props: Object.keys(args),
-//   components: { SbLink },
-//   template: `<div>
-//     <SbLink
-//       v-bind="{
-//         label,
-//         type
-//       }"
-//     />
-//   </div>`
-// })
-
-// Secondary.args = {
-//   label: 'Secondary link button',
-//   type: 'secondary'
-// }
-
-export const WithIcon = (args) => ({
+export const WithIconLeft = () => ({
   components: { SbLink },
-  props: Object.keys(args),
-  template: `<div>
-      <div>
+  template: `
         <SbLink
-          v-bind="{
-            label: primaryLabel,
-            href,
-            title,
-            icon
-          }"
+          icon="check-mark"
+          primary-label="With icon left"
         />
-      </div>
-
-      <div style="margin-top: 20px">
-        <SbLink
-          v-bind="{
-            label: secondaryLabel,
-            href,
-            title,
-            iconRight,
-            type: 'secondary'
-          }"
-        />
-      </div>
-  </div>`,
+    `,
 })
 
-WithIcon.args = {
-  icon: 'check-mark',
-  iconRight: 'calendar',
-  primaryLabel: 'Icon before',
-  secondaryLabel: 'Icon after',
-}
-
-WithIcon.argTypes = {
-  primaryLabel: {
-    control: {
-      type: 'text',
-    },
-  },
-  secondaryLabel: {
-    control: {
-      type: 'text',
-    },
-  },
-}
+export const WithIconRight = () => ({
+  components: { SbLink },
+  template: `
+        <SbLink
+          icon-right="check-mark"
+          secondary-label="With icon left"
+        />
+    `,
+})

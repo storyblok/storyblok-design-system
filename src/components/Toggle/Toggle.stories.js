@@ -9,7 +9,7 @@ export default {
   args: {
     id: 'example',
     name: 'example',
-    value: false,
+    modelValue: false,
     nativeValue: false,
     indeterminate: false,
     disabled: false,
@@ -39,14 +39,16 @@ export default {
 
 export const Default = (args) => ({
   components: { SbToggle },
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   template: `
     <div>
       <SbToggle
         :name="name"
         id="inactive"
         label="Inactive"
-        :value="value"
+        :modelValue="modelValue"
         :disabled="disabled"
         :required="required"
         :icon="icon"
@@ -58,7 +60,7 @@ export const Default = (args) => ({
         :name="name"
         id="active"
         label="Active"
-        :value="true"
+        :modelValue="true"
         :disabled="disabled"
         :required="required"
         :icon="icon"
@@ -70,7 +72,7 @@ export const Default = (args) => ({
         :name="name"
         id="inactive-disabled"
         label="Inactive - Disabled"
-        :value="value"
+        :modelValue="modelValue"
         :required="required"
         :icon="icon"
         :variant="variant"
@@ -83,7 +85,9 @@ export const Default = (args) => ({
 
 export const WithIcon = (args) => ({
   components: { SbToggle },
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   template: `
     <div>
       <div style="margin-bottom: 20px">
@@ -91,7 +95,7 @@ export const WithIcon = (args) => ({
           id="selected"
           label="With Icon Inactive"
           :name="name"
-          :value="false"
+          :modelValue="false"
           :icon="'world'"
           :variant="variant"
           native-value="With Icon Inactive"
@@ -103,14 +107,16 @@ export const WithIcon = (args) => ({
 })
 export const WithVariant = (args) => ({
   components: { SbToggle },
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
   template: `
     <div>
       <SbToggle
         id="default-variant"
         label="Default Variant"
         :name="name"
-        :value="true"
+        :modelValue="true"
         :icon="icon"
         :variant="'primary'"
         native-value="Default Variant"
@@ -121,7 +127,7 @@ export const WithVariant = (args) => ({
         id="secondary-variant"
         label="Secondary Variant"
         :name="name"
-        :value="true"
+        :modelValue="true"
         :icon="icon"
         :variant="'secondary'"
         native-value="Secondary Variant"
@@ -132,7 +138,7 @@ export const WithVariant = (args) => ({
         id="ghost-variant"
         label="Ghost Variant"
         :name="name"
-        :value="true"
+        :modelValue="true"
         :icon="icon"
         :variant="'ghost'"
         native-value="Ghost Variant"
@@ -143,7 +149,7 @@ export const WithVariant = (args) => ({
         id="danger-variant"
         label="Danger Variant"
         :name="name"
-        :value="true"
+        :modelValue="true"
         :icon="icon"
         :variant="'danger'"
         native-value="Danger Variant"
