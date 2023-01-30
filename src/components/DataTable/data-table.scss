@@ -180,17 +180,22 @@
   }
 }
 
+.sb-data-table__body-cell-label {
+  display: none;
+}
+
 @media only screen and (max-width: $mq-sm) {
   .sb-data-table {
     max-width: 100%;
   }
 
+  .sb-data-table__body-cell-label {
+    display: inline-flex;
+    padding-right: $small-size;
+  }
+
   .sb-data-table thead {
-    tr {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-    }
+    display: none;
   }
 
   .sb-data-table__row {
@@ -206,7 +211,12 @@
 
   .sb-data-table__body-cell {
     display: inline-flex;
-    flex-grow: 1;
+    align-items: center;
     overflow: hidden;
+    padding: 4px 8px;
+  }
+
+  .sb-data-table--loading .sb-data-table__body-cell {
+    flex-grow: 1;
   }
 }
