@@ -179,3 +179,34 @@
     z-index: 1;
   }
 }
+
+@media only screen and (max-width: $mq-sm) {
+  .sb-data-table {
+    max-width: 100%;
+  }
+
+  .sb-data-table thead {
+    tr {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  }
+
+  .sb-data-table__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+
+    td {
+      width: auto;
+    }
+  }
+
+  .sb-data-table__body-cell {
+    display: inline-flex;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+}
