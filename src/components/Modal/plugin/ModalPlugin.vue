@@ -25,6 +25,11 @@ export default {
       default: null,
     },
 
+    disabledTargetDefault: {
+      type: Boolean,
+      default: null,
+    },
+
     // modal-header
     align: {
       type: String,
