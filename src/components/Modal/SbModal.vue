@@ -6,6 +6,7 @@
     unmount-on-destroy
     target-slim
     :target="modalTarget"
+    :disabled="disabledTargetDefault"
   >
     <SbBlokUi v-if="open" :style="computedBlokUiStyle" @mousedown="wrapClose">
       <div
@@ -66,6 +67,7 @@ export default {
       type: String,
       default: () => `#sb-modal-target-${randomString(4)}`,
     },
+    disabledTargetDefault: Boolean,
     overlayPosition: {
       type: String,
       default: 'fixed',
