@@ -1,6 +1,6 @@
 import { SbTab, SbTabAdd } from './components'
 import { Tooltip } from '../../directives'
-import { h } from 'vue'
+import { h, computed } from 'vue'
 
 const SbTabs = {
   name: 'SbTabs',
@@ -13,7 +13,7 @@ const SbTabs = {
 
   provide() {
     return {
-      activeTab: () => this.modelValue,
+      activeTab: computed(() => this.modelValue),
       onKeyDown: this.handleKeyDown,
       onActivateTab: this.handleActiveTab,
     }
