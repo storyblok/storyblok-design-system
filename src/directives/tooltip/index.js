@@ -98,7 +98,7 @@ function createPopperInstance(el, popover, options = {}) {
  * @param {TooltipOptions} options
  * @returns {HTMLElement}
  */
-function createTooltip(label, options) {
+function createTooltip(label, options, wrapper) {
   const tooltipEl = document.createElement('div')
   tooltipEl.innerText = label
   tooltipEl.style.display = 'unset'
@@ -113,7 +113,11 @@ function createTooltip(label, options) {
 
   tooltipEl.appendChild(arrowElement)
 
-  document.body.appendChild(tooltipEl)
+  if (wrapper) {
+    wrapper.appendChild(tooltipEl)
+  } else {
+    document.body.appendChild(tooltipEl)
+  }
 
   return tooltipEl
 }
@@ -180,6 +184,7 @@ export default {
     const options = getOptions(binding)
     const label = getLabel(binding)
     let checkdelay
+    const wrapper = document.querySelector('#tooltip-wrapper')
 
     function showHandler(e) {
       if (
@@ -187,7 +192,11 @@ export default {
         el.__tooltip.label.length &&
         el.__tooltip.options.show
       ) {
-        const tooltip = createTooltip(el.__tooltip.label, el.__tooltip.options)
+        const tooltip = createTooltip(
+          el.__tooltip.label,
+          el.__tooltip.options,
+          wrapper
+        )
         const tooltipId =
           el.__tooltip.tooltipId || `sb-tooltip-${randomString(5)}`
         const tooltipTargetId =

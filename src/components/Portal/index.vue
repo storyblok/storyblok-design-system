@@ -18,6 +18,10 @@ export default {
       default: 'div',
     },
     disabled: Boolean,
+    unmountOnDestroy: {
+      type: Boolean,
+      default: true,
+    },
     name: String,
     target: {
       type: String,
@@ -38,7 +42,12 @@ export default {
   },
 
   beforeUnmount() {
+    // console.log("unmounting portal", this.target)
     this.unmountTarget()
+  },
+
+  unounted() {
+    // console.log("unmounted portal", this.target)
   },
 
   methods: {
@@ -53,13 +62,16 @@ export default {
       if (existingPortalElement) {
         return existingPortalElement
       }
+      const wrapper = document.querySelector('#portal-wrapper')
+      const parentEl = wrapper || document.body
 
       const el = document.createElement(tag)
       if (target.startsWith('#')) {
         el.id = target.slice(target.indexOf('#') + 1)
       }
-      if (document.body != null) {
-        document.body.appendChild(el)
+
+      if (parentEl) {
+        parentEl.appendChild(el)
       }
       return el
     },
@@ -72,10 +84,16 @@ export default {
     },
 
     unmountTarget() {
-      if (!this.disabled && this.unmountOnDestroy && !this.target.length) {
+      if (
+        !this.disabled &&
+        this.unmountOnDestroy &&
+        this.target.length > 0 &&
         canUseDOM &&
-          this.portalTarget.isConnected &&
-          document.body.removeChild(this.portalTarget)
+        this.portalTarget
+      ) {
+        const wrapper = document.querySelector('#portal-wrapper')
+        const parentEl = wrapper || document.body
+        parentEl.removeChild(this.portalTarget)
       }
     },
   },
