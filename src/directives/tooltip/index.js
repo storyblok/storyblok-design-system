@@ -264,10 +264,8 @@ export default {
 
     el.addEventListener('mouseover', showHandler)
     el.addEventListener('mouseleave', hideHandler)
-
     el.addEventListener('focus', showHandler)
     el.addEventListener('blur', hideHandler)
-
     el.addEventListener('keydown', handleKeydown)
   },
 
@@ -297,16 +295,14 @@ export default {
    * @param  {Object} binding
    */
   unmounted(el, _) {
-    if (el.__tooltip.popperInstance) {
+    if (el.__tooltip) {
       cleanup(el)
-
       el.removeEventListener('mouseover', el.__tooltip.showHandler)
       el.removeEventListener('mouseleave', el.__tooltip.hideHandler)
-
       el.removeEventListener('focus', el.__tooltip.showHandler)
       el.removeEventListener('blur', el.__tooltip.hideHandler)
-
       el.removeEventListener('keydown', el.__tooltip.handleKeydown)
+      delete el.__tooltip
     }
   },
 }
