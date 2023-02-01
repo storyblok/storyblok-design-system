@@ -15,10 +15,9 @@
 
       <div class="sb-sidebar__mobile-logo" @click="closeSidebar">
         <SbLink
+          v-if="logoDestinationUrl"
           as="router-link"
-          :to="{
-            name: 'ListSpacesRoute',
-          }"
+          :to="logoDestinationUrl"
         >
           <img
             v-if="logo"
@@ -28,6 +27,15 @@
           />
           <SbSidebarLogo v-else variant="dark" />
         </SbLink>
+        <template v-else>
+          <img
+            v-if="logo"
+            class="sb-custom-logo"
+            :src="logo"
+            alt="Custom Sidebar Logo"
+          />
+          <SbSidebarLogo v-else variant="dark" />
+        </template>
       </div>
     </div>
 
@@ -107,6 +115,12 @@ export default {
       type: String,
       default: '1000px',
       required: false,
+    },
+    logoDestinationUrl: {
+      type: Object,
+      validator(value) {
+        return value.hasOwnProperty('name')
+      },
     },
   },
 
