@@ -33,11 +33,8 @@ const focusableElSelector = focusableElList.join()
  * @returns {NodeList} List of all focusable DOM nodes
  */
 export function getFocusableElements(element) {
-  const focusableEls = Array.from(element.querySelectorAll(focusableElSelector))
-
   // filter out elements with display: none
-
-  return focusableEls.filter(
+  return Array.from(element.querySelectorAll(focusableElSelector)).filter(
     (focusableEl) => window.getComputedStyle(focusableEl).display !== 'none'
   )
 }
