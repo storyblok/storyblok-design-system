@@ -127,9 +127,11 @@ function createTooltip(label, options, wrapper) {
  * @param {HTMLElement} el the binded element
  */
 function cleanup(el) {
-  el.__tooltip.tooltipEl.remove()
-  el.__tooltip.popperInstance.destroy()
-  el.__tooltip.popperInstance = null
+  if (el?.__tooltip?.tooltipEl) el.__tooltip.tooltipEl.remove()
+  if (el?.__tooltip?.popperInstance) {
+    el.__tooltip.popperInstance.destroy()
+    el.__tooltip.popperInstance = null
+  }
 }
 
 /**
@@ -188,9 +190,9 @@ export default {
 
     function showHandler(e) {
       if (
-        el.__tooltip.popperInstance === null &&
-        el.__tooltip.label.length &&
-        el.__tooltip.options.show
+        el.__tooltip?.popperInstance === null &&
+        el.__tooltip?.label.length &&
+        el.__tooltip?.options.show
       ) {
         const tooltip = createTooltip(
           el.__tooltip.label,
@@ -225,11 +227,11 @@ export default {
           el.offsetHeight ||
           el.getClientRects().length
         )
-        if (!isVisible && el.__tooltip.popperInstance && tooltip) {
+        if (!isVisible && el.__tooltip?.popperInstance && tooltip) {
           cleanup(el)
         }
 
-        if (!el.__tooltip.popperInstance) {
+        if (!el.__tooltip?.popperInstance) {
           clearInterval(checkdelay)
         }
       }, interval)
