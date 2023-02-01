@@ -299,8 +299,7 @@ export default {
   unmounted(el, _) {
     if (el.__tooltip) {
       cleanup(el)
-      if (el?.__tooltip?.tooltipEl)
-        el.__tooltip.tooltipEl.parentNode.removeChild(el.__tooltip.tooltipEl)
+      if (el?.__tooltip?.tooltipEl) el.__tooltip.tooltipEl.remove()
       el.removeEventListener('mouseover', el.__tooltip.showHandler)
       el.removeEventListener('mouseleave', el.__tooltip.hideHandler)
       el.removeEventListener('focus', el.__tooltip.showHandler)

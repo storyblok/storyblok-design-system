@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { randomString, getFocusableElements, canUseDOM } from '../../utils'
+import { randomString, canUseDOM } from '../../utils'
 
 export default {
   name: 'SbMenu',
@@ -198,10 +198,13 @@ export default {
 
     loadListItems() {
       if (canUseDOM && this.$el) {
-        this.focusableElements = getFocusableElements(this.$el).filter((node) =>
-          ['menuitemradio'].includes(node.getAttribute('role'))
+        const list = [...this.$el.querySelectorAll('.sb-menu-item')]
+        this.focusableElements = list.filter(
+          (node) =>
+            ['menuitemradio'].includes(node.getAttribute('role')) &&
+            node.style.display !== 'none'
         )
-        this.focusableCount = this.focusableElements.length
+        this.focusableCount = +this.focusableElements?.length
       }
     },
   },
