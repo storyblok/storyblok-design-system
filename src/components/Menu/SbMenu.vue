@@ -49,6 +49,7 @@ export default {
   data: () => ({
     activeIndex: -1,
     focusableElements: [],
+    focusableCount: 0,
     isOpen: false,
     menuListId: `sb-menu-list-${randomString(4)}`,
     menuButtonId: `sb-menu-button-${randomString(4)}`,
@@ -67,7 +68,7 @@ export default {
 
         // controls elements
         activeIndex: this.activeIndex,
-        focusableCount: this.focusableElements.length,
+        focusableCount: this.focusableCount,
 
         // methods to control the menu state
         closeMenu: this.closeMenu,
@@ -121,7 +122,8 @@ export default {
   },
 
   unmounted() {
-    this.focusableElements = []
+    this.focusableElements = null
+    this.focusableCount = 0
   },
 
   methods: {
@@ -195,13 +197,11 @@ export default {
     },
 
     loadListItems() {
-      const menuNode =
-        canUseDOM && document.querySelector(`#${this.menuListId}`)
-
-      if (this.menuListId && menuNode) {
-        this.focusableElements = getFocusableElements(menuNode).filter((node) =>
+      if (canUseDOM && this.$el) {
+        this.focusableElements = getFocusableElements(this.$el).filter((node) =>
           ['menuitemradio'].includes(node.getAttribute('role'))
         )
+        this.focusableCount = this.focusableElements.length
       }
     },
   },
