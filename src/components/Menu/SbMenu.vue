@@ -120,6 +120,10 @@ export default {
     this.loadListItems()
   },
 
+  beforeUnmount() {
+    this.focusableElements = []
+  },
+
   methods: {
     closeMenu() {
       if (!this.isOpen) return
