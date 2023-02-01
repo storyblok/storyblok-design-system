@@ -67,7 +67,7 @@ export default {
 
         // controls elements
         activeIndex: this.activeIndex,
-        focusableElements: this.focusableElements,
+        focusableCount: this.focusableElements.length,
 
         // methods to control the menu state
         closeMenu: this.closeMenu,

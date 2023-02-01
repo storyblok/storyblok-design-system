@@ -95,9 +95,9 @@ export default {
         focusOnFirstItem,
         focusOnLastItem,
         closeMenu,
-        focusableElements,
+        focusableCount,
       } = this.context
-      const count = focusableElements.length
+      const count = focusableCount
 
       switch (event.key) {
         case 'ArrowDown':
