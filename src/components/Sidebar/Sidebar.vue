@@ -14,13 +14,20 @@
       </div>
 
       <div class="sb-sidebar__mobile-logo" @click="closeSidebar">
-        <img
-          v-if="logo"
-          class="sb-custom-logo"
-          :src="logo"
-          alt="Custom Sidebar Logo"
-        />
-        <SbSidebarLogo v-else variant="dark" />
+        <SbLink
+          as="router-link"
+          :to="{
+            name: 'ListSpacesRoute',
+          }"
+        >
+          <img
+            v-if="logo"
+            class="sb-custom-logo"
+            :src="logo"
+            alt="Custom Sidebar Logo"
+          />
+          <SbSidebarLogo v-else variant="dark" />
+        </SbLink>
       </div>
     </div>
 
