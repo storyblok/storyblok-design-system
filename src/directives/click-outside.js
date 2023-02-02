@@ -60,6 +60,8 @@ const ClickOutside = {
     if (!isServer(vNode)) {
       document.removeEventListener('click', el.__clickOutside.handler)
     }
+    el.__clickOutside.handler = null
+    el.__clickOutside.callback = null
 
     delete el.__clickOutside
   },
