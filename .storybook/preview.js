@@ -5,3 +5,5 @@ import BlokInkPlugin from '../src/main'
 import { app } from '@storybook/vue3'
 
 app.use(BlokInkPlugin)
+
+app.config.unwrapInjectedRef = true
