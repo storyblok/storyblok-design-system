@@ -1,18 +1,32 @@
 .sb-pagination {
   display: inline-flex;
+  flex-flow: row wrap;
   align-items: center;
   height: 53px;
+  max-width: 100%;
   color: $color-primary-dark;
   font-size: $font-14;
 
   // elements
   &__per-page-container {
-    margin-right: 120px;
+    margin-right: 30px;
     padding-left: 10px;
+
+    @media (max-width: $mq-lg) {
+      flex-flow: row nowrap;
+    }
+
+    @media (min-width: $mq-lg) {
+      margin-right: 120px;
+    }
   }
 
   &__pages-container {
     margin-right: 30px;
+
+    @media (max-width: $mq-lg) {
+      flex-flow: row nowrap;
+    }
   }
 
   &__select {
@@ -24,6 +38,7 @@
     color: $sb-dark-blue-50;
     font-size: $font-13;
     font-weight: $font-weight-regular;
+    white-space: nowrap;
   }
 
   &__button {
@@ -157,12 +172,12 @@
   .sb-pagination {
     flex-wrap: wrap;
 
-    &__pages-container {
-      margin-top: 10px;
-    }
-
     &__per-page-container {
       margin-right: 0;
+    }
+
+    &__per-page-label {
+      white-space: nowrap;
     }
   }
 }

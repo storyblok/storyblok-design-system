@@ -1,6 +1,8 @@
 <template>
   <div class="sb-pagination__per-page-container">
-    <span>{{ selectPerPageTranslated }}</span>
+    <span class="sb-pagination__per-page-label">{{
+      selectPerPageTranslated
+    }}</span>
     <SbPaginationSelect
       data-testid="per-page-select"
       :options="perPageOptions"
