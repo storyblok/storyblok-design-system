@@ -16,7 +16,7 @@
   background-color: $white;
   border-radius: 5px;
 
-  @media (min-width: $desktops-large) {
+  @media (min-width: $mq-lg) {
     max-width: 624px;
     min-width: 400px;
   }
