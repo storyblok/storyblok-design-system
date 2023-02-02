@@ -1,5 +1,5 @@
 import './tab-panels.scss'
-import { h } from 'vue'
+import { h, computed } from 'vue'
 
 /**
  * @vue/component
@@ -21,7 +21,7 @@ const SbTabPanel = {
   },
 
   render() {
-    const isActive = this.activeTab() === this.name
+    const isActive = this.activeTab === this.name
 
     return h(
       'div',
@@ -49,7 +49,7 @@ const SbTabPanels = {
 
   provide() {
     return {
-      activeTab: () => this.modelValue,
+      activeTab: computed(() => this.modelValue),
     }
   },
 
