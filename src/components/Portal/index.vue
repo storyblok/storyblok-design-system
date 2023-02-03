@@ -42,12 +42,7 @@ export default {
   },
 
   beforeUnmount() {
-    // console.log("unmounting portal", this.target)
     this.unmountTarget()
-  },
-
-  unounted() {
-    // console.log("unmounted portal", this.target)
   },
 
   methods: {
