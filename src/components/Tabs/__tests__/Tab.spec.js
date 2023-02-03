@@ -11,7 +11,7 @@ describe('Test SbTab component', () => {
       },
       global: {
         provide: {
-          activeTab: 'editable-tab',
+          activeTab: () => 'editable-tab',
           onKeyDown: jest.fn(),
           onActivateTab: jest.fn(),
         },
