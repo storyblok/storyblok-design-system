@@ -180,6 +180,10 @@ export default {
     },
   },
 
+  unmounted() {
+    this.filterHandler = null
+  },
+
   created() {
     this.$_registerFilter()
   },
@@ -284,9 +288,7 @@ export default {
      * init the filterHandler with a triggerFilter debounced
      */
     $_registerFilter() {
-      this.filterHandler = debounce(this.filterDebounce, () => {
-        this.$_triggerFilter()
-      })
+      this.filterHandler = debounce(this.filterDebounce, this.$_triggerFilter)
     },
 
     /**
