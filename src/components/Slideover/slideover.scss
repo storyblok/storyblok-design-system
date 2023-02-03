@@ -11,12 +11,15 @@
   box-sizing: border-box;
   height: 100%;
   max-height: calc(100vh - 40px);
-  max-width: 624px;
-  min-width: 400px;
   margin-left: auto;
   padding: 20px;
   background-color: $white;
   border-radius: 5px;
+
+  @media (min-width: $mq-lg) {
+    max-width: 624px;
+    min-width: 400px;
+  }
 
   &--left {
     left: 20px;
