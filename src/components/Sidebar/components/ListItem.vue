@@ -5,7 +5,7 @@
     :aria-label="ariaLabelText"
     :aria-current="active && active + ''"
   >
-    <router-link
+    <SbLink
       v-if="isRouterLink"
       class="sb-sidebar-link"
       :class="computedLinkClasses"
@@ -25,7 +25,7 @@
         :label="label"
         :image="image"
       />
-    </router-link>
+    </SbLink>
     <component
       :is="as"
       v-else
@@ -54,11 +54,13 @@
 
 <script>
 import ListItemInner from './ListItemInner.vue'
+import SbLink from '../../Link/SbLink'
 
 export default {
   name: 'SbSidebarListItem',
 
   components: {
+    SbLink,
     ListItemInner,
   },
 
