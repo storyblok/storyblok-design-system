@@ -469,3 +469,41 @@ ModalCloseOnHeader.args = {
   title: 'Main Title',
   align: 'left',
 }
+export const ModalTarget = (args, storyContext) => ({
+  mixins: [StoriesModalMixin(args, storyContext)],
+
+  components: {
+    SbModal,
+    SbModalHeader,
+    SbModalContent,
+  },
+
+  template: `
+  <div id="boxModal" style="width: 500px; height: 400px">
+    <SbButton
+      label="Open Modal!"
+      variant="primary"
+      @click="handleShowModal"
+      v-if="!showModal"
+      style="margin: 0 auto; display: flex; margin-top: 30%;"
+    />
+    <SbModal :is-open="showModal" v-on:hide="showModal = false" disabled-target-default="true" target="#boxModal" overlay-position="relative" >
+      <SbModalContent>
+        <div style="width: 100%;"><p style="text-align: left; margin: 0;">This modal opens inside the div with id "boxModal"</p></div>
+      </SbModalContent>
+    </SbModal>
+  </div>`,
+})
+
+ModalTarget.parameters = {
+  docs: {
+    description: {
+      story: `This storie is to show that we can also render the modal inside any div, and not necessarily in the body of the document. 
+      For that we need to pass the 'target' and 'disabled-target-default' props.`,
+    },
+  },
+}
+
+ModalTarget.args = {
+  disabledTargetDefault: true,
+}

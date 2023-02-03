@@ -25,6 +25,7 @@ describe('Tests for ModalPlugin', () => {
   it('Test if ModalPlugin renderer correctly', async () => {
     const propsReference = {
       modalTarget: null,
+      disabledTargetDefault: null,
       title: 'Delete This Project',
       icon: null,
       align: null,
