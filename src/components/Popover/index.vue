@@ -102,6 +102,9 @@ export default {
 
   data: () => ({
     popoverInstance: null,
+    vcoConfig: {
+      detectIFrame: false,
+    },
   }),
 
   computed: {

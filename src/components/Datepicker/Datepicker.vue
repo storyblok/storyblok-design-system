@@ -200,6 +200,9 @@ export default {
     },
     hitClear: false,
     invalidDate: false,
+    vcoConfig: {
+      detectIFrame: false,
+    },
   }),
 
   computed: {

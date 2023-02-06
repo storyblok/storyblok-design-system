@@ -106,7 +106,7 @@ export default {
       return `${this.isActive}`
     },
     isActive() {
-      return this.activeTab === this.name
+      return this.activeTab() === this.name
     },
   },
 

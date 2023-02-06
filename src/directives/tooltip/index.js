@@ -98,7 +98,7 @@ function createPopperInstance(el, popover, options = {}) {
  * @param {TooltipOptions} options
  * @returns {HTMLElement}
  */
-function createTooltip(label, options) {
+function createTooltip(label, options, wrapper) {
   const tooltipEl = document.createElement('div')
   tooltipEl.innerText = label
   tooltipEl.style.display = 'unset'
@@ -113,7 +113,11 @@ function createTooltip(label, options) {
 
   tooltipEl.appendChild(arrowElement)
 
-  document.body.appendChild(tooltipEl)
+  if (wrapper) {
+    wrapper.appendChild(tooltipEl)
+  } else {
+    document.body.appendChild(tooltipEl)
+  }
 
   return tooltipEl
 }
@@ -123,9 +127,11 @@ function createTooltip(label, options) {
  * @param {HTMLElement} el the binded element
  */
 function cleanup(el) {
-  el.__tooltip.tooltipEl.remove()
-  el.__tooltip.popperInstance.destroy()
-  el.__tooltip.popperInstance = null
+  if (el?.__tooltip?.tooltipEl) el.__tooltip.tooltipEl.remove()
+  if (el?.__tooltip?.popperInstance) {
+    el.__tooltip.popperInstance.destroy()
+    el.__tooltip.popperInstance = null
+  }
 }
 
 /**
@@ -180,14 +186,19 @@ export default {
     const options = getOptions(binding)
     const label = getLabel(binding)
     let checkdelay
+    const wrapper = document.querySelector('#tooltip-wrapper')
 
     function showHandler(e) {
       if (
-        el.__tooltip.popperInstance === null &&
-        el.__tooltip.label.length &&
-        el.__tooltip.options.show
+        el.__tooltip?.popperInstance === null &&
+        el.__tooltip?.label.length &&
+        el.__tooltip?.options.show
       ) {
-        const tooltip = createTooltip(el.__tooltip.label, el.__tooltip.options)
+        const tooltip = createTooltip(
+          el.__tooltip.label,
+          el.__tooltip.options,
+          wrapper
+        )
         const tooltipId =
           el.__tooltip.tooltipId || `sb-tooltip-${randomString(5)}`
         const tooltipTargetId =
@@ -216,11 +227,11 @@ export default {
           el.offsetHeight ||
           el.getClientRects().length
         )
-        if (!isVisible && el.__tooltip.popperInstance && tooltip) {
+        if (!isVisible && el.__tooltip?.popperInstance && tooltip) {
           cleanup(el)
         }
 
-        if (!el.__tooltip.popperInstance) {
+        if (!el.__tooltip?.popperInstance) {
           clearInterval(checkdelay)
         }
       }, interval)
@@ -255,10 +266,8 @@ export default {
 
     el.addEventListener('mouseover', showHandler)
     el.addEventListener('mouseleave', hideHandler)
-
     el.addEventListener('focus', showHandler)
     el.addEventListener('blur', hideHandler)
-
     el.addEventListener('keydown', handleKeydown)
   },
 
@@ -288,16 +297,15 @@ export default {
    * @param  {Object} binding
    */
   unmounted(el, _) {
-    if (el.__tooltip.popperInstance) {
+    if (el.__tooltip) {
       cleanup(el)
-
+      if (el?.__tooltip?.tooltipEl) el.__tooltip.tooltipEl.remove()
       el.removeEventListener('mouseover', el.__tooltip.showHandler)
       el.removeEventListener('mouseleave', el.__tooltip.hideHandler)
-
       el.removeEventListener('focus', el.__tooltip.showHandler)
       el.removeEventListener('blur', el.__tooltip.hideHandler)
-
       el.removeEventListener('keydown', el.__tooltip.handleKeydown)
+      delete el.__tooltip
     }
   },
 }

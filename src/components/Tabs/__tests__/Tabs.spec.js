@@ -26,18 +26,19 @@ describe('Test SbTabs', () => {
 
     const wrapper = mount(Wrapper)
 
-    it.skip('should have three SbTab components', () => {
+    it('should have three SbTab components', () => {
       expect(wrapper.findAllComponents(SbTab).length).toBe(3)
     })
 
-    it.skip('should have a SbTab component active', () => {
+    it('should have a SbTab component active', () => {
       const tabActive = wrapper.findComponent('[aria-selected="true"]')
+
       expect(tabActive.exists()).toBe(true)
       expect(tabActive.props('label')).toBe('First')
       expect(tabActive.props('name')).toBe('first')
     })
 
-    it.skip('should emit an input event and change the select tab', async () => {
+    it('should emit an input event and change the select tab', async () => {
       const secondTab = wrapper.findAllComponents(SbTab)[1]
 
       secondTab.trigger('click')
@@ -178,7 +179,7 @@ describe('Test SbTabs', () => {
 
     const wrapper = mount(ComponentWrapper)
 
-    it.skip('should move to right', async () => {
+    it('should move to right', async () => {
       let tabActive
       await wrapper.setData({
         currentTab: 'first',
@@ -210,7 +211,7 @@ describe('Test SbTabs', () => {
       expect(tabActive.props('name')).toBe('first')
     })
 
-    it.skip('should move to left', async () => {
+    it('should move to left', async () => {
       let tabActive
       await wrapper.setData({
         currentTab: 'first',
@@ -242,7 +243,7 @@ describe('Test SbTabs', () => {
       expect(tabActive.props('name')).toBe('first')
     })
 
-    it.skip('should move to up', async () => {
+    it('should move to up', async () => {
       let tabActive
       await wrapper.setData({
         currentTab: 'first',
@@ -275,7 +276,7 @@ describe('Test SbTabs', () => {
       expect(tabActive.props('name')).toBe('first')
     })
 
-    it.skip('should move to down', async () => {
+    it('should move to down', async () => {
       let tabActive
       await wrapper.setData({
         currentTab: 'first',
@@ -342,7 +343,7 @@ describe('Test SbTabs', () => {
 
     const wrapper = mount(ComponentWrapper)
 
-    it.skip('should move to first tab when it clicks in Home key', async () => {
+    it('should move to first tab when it clicks in Home key', async () => {
       await wrapper.setData({
         currentTab: 'third',
       })
@@ -361,7 +362,7 @@ describe('Test SbTabs', () => {
       expect(tabActive.props('name')).toBe('first')
     })
 
-    it.skip('should move to last tab when it clicks in End key', async () => {
+    it('should move to last tab when it clicks in End key', async () => {
       await wrapper.setData({
         currentTab: 'first',
       })

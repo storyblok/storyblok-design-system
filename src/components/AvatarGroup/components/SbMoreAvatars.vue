@@ -55,6 +55,9 @@ export default {
   data() {
     return {
       expanded: false,
+      vcoConfig: {
+        detectIFrame: false,
+      },
     }
   },
 

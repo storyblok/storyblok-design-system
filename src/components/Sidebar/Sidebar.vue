@@ -132,6 +132,9 @@ export default {
     isMobileOpen: false,
     hasScrollbar: false,
     sizeObserver: null,
+    vcoConfig: {
+      detectIFrame: false,
+    },
   }),
 
   mounted() {

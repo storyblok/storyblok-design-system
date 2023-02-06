@@ -18,6 +18,7 @@
   "main": "dist/storyblok-design-system.common.js",
   "dependencies": {
     "@popperjs/core": "^2.11.6",
+    "click-outside-vue3": "^4.0.1",
     "dayjs": "^1.11.5",
     "maska": "^1.5.0",
     "portal-vue": "^2.1.7",

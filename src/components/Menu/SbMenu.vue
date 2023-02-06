@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { randomString, getFocusableElements, canUseDOM } from '../../utils'
+import { randomString, canUseDOM } from '../../utils'
 
 export default {
   name: 'SbMenu',
@@ -49,6 +49,7 @@ export default {
   data: () => ({
     activeIndex: -1,
     focusableElements: [],
+    focusableCount: 0,
     isOpen: false,
     menuListId: `sb-menu-list-${randomString(4)}`,
     menuButtonId: `sb-menu-button-${randomString(4)}`,
@@ -67,7 +68,7 @@ export default {
 
         // controls elements
         activeIndex: this.activeIndex,
-        focusableElements: this.focusableElements,
+        focusableCount: this.focusableCount,
 
         // methods to control the menu state
         closeMenu: this.closeMenu,
@@ -118,6 +119,11 @@ export default {
     this.isOpen = this.modelValue || false
 
     this.loadListItems()
+  },
+
+  unmounted() {
+    this.focusableElements = null
+    this.focusableCount = 0
   },
 
   methods: {
@@ -191,13 +197,14 @@ export default {
     },
 
     loadListItems() {
-      const menuNode =
-        canUseDOM && document.querySelector(`#${this.menuListId}`)
-
-      if (this.menuListId && menuNode) {
-        this.focusableElements = getFocusableElements(menuNode).filter((node) =>
-          ['menuitemradio'].includes(node.getAttribute('role'))
+      if (canUseDOM && this.$el) {
+        const list = [...this.$el.querySelectorAll('.sb-menu-item')]
+        this.focusableElements = list.filter(
+          (node) =>
+            ['menuitemradio'].includes(node.getAttribute('role')) &&
+            node.style.display !== 'none'
         )
+        this.focusableCount = +this.focusableElements?.length
       }
     },
   },

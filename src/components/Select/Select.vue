@@ -219,6 +219,9 @@ export default {
     listItems: [],
     innerElement: null,
     searchInput: '',
+    vcoConfig: {
+      detectIFrame: false,
+    },
   }),
 
   computed: {
