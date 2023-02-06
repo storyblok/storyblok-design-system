@@ -13,7 +13,6 @@
         icon-left="calendar"
         :disabled="disabled"
         :placeholder="placeholder"
-        :model-value="internalValueFormatted"
         :error="invalidDate"
         clearable
         @icon-click="handleInputClick"
@@ -182,7 +181,7 @@ export default {
     },
   },
 
-  emits: ['clear', 'update:modelValue'],
+  emits: ['clear', 'update:modelValue', 'invalid'],
 
   data: () => ({
     internalDate: dayjs().format(),
@@ -311,6 +310,9 @@ export default {
     modelValue: {
       handler: 'syncInternalValue',
       immediate: true,
+    },
+    invalidDate(value) {
+      this.$emit('invalid', value)
     },
     internalValueFormatted() {
       if (
@@ -478,7 +480,7 @@ export default {
     },
 
     $_wrapClose(e) {
-      if (!this.$el.contains(e.target)) {
+      if (this.isOverlayVisible && !this.$el.contains(e.target)) {
         this.handleCancelAction()
       }
     },
