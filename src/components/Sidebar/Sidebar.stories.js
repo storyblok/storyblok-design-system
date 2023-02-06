@@ -46,7 +46,7 @@ const SidebarTemplate = (args) => ({
   },
 
   setup() {
-    return { ...args }
+    return { args }
   },
 
   data: () => ({
@@ -73,7 +73,6 @@ const SidebarTemplate = (args) => ({
     <SbSidebar
       v-bind="{ listItems }"
       :logo="logo"
-      :logo-destination-url="logoDestinationUrl"
       :minimize.sync="internalMinimize"
       :max-width="maxWidth"
     >
@@ -143,7 +142,6 @@ export default {
     listItems: [...listItemsData],
     minimize: false,
     logo: '',
-    logoDestinationUrl: null,
     maxWidth: null,
   },
   argTypes: {
@@ -160,13 +158,6 @@ export default {
       description: 'Adds a custom logo (with a url to an image) to the sidebar',
       control: {
         type: 'string',
-      },
-    },
-    logoDestinationUrl: {
-      name: 'logoDestinationUrl',
-      description: 'Optional redirection URL on click on the custom logo',
-      control: {
-        type: 'object',
       },
     },
   },
@@ -206,23 +197,6 @@ MaxWidth.parameters = {
     description: {
       story:
         'When setting the `maxWidth` value, the sidebar will automatically collapse/expand when the window width is equal or lower than and greater than.',
-    },
-  },
-}
-
-export const LogoDestinationUrl = SidebarTemplate.bind({})
-
-LogoDestinationUrl.args = {
-  logoDestinationUrl: {
-    name: 'https://www.storyblok.com/',
-  },
-}
-
-LogoDestinationUrl.parameters = {
-  docs: {
-    description: {
-      story:
-        'When setting the `logoDestinationUrl` value, the sidebar logo will automatically be wrapped in a `<SbLink/>` component.',
     },
   },
 }

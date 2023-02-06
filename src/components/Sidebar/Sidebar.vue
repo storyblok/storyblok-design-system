@@ -82,7 +82,6 @@ import {
   SbSidebarListItem,
   SbSidebarToggle,
 } from './components'
-import SbLink from '../Link/SbLink'
 
 export default {
   name: 'SbSidebar',
@@ -93,7 +92,6 @@ export default {
     SbSidebarLogo,
     SbSidebarListItem,
     SbSidebarToggle,
-    SbLink,
   },
 
   directives: {
