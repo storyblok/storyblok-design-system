@@ -49,16 +49,14 @@ export default {
   inheritAttrs: false,
 
   props: {
-    label: {
-      type: String,
-      default: null,
-    },
     indeterminate: Boolean,
-    inline: Boolean,
-    outline: Boolean,
   },
 
-  emits: ['click'],
+  data() {
+    return {
+      checkboxElement: null,
+    }
+  },
 
   computed: {
     componentClasses() {
@@ -69,9 +67,19 @@ export default {
       ]
     },
   },
+
+  watch: {
+    internalValue(newValue) {
+      const typeOfValue = typeof this.nativeValue
+      const valueToEmit = typeOfValue.includes('string', 'number', 'boolean')
+        ? newValue
+        : this.checkboxElement.target.checked
+      this.$emit('update:modelValue', valueToEmit)
+    },
+  },
   methods: {
     handleInput(e) {
-      this.$emit('update:modelValue', e.target.checked)
+      this.checkboxElement = e
     },
   },
 }

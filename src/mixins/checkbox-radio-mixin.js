@@ -7,6 +7,12 @@ export default {
     disabled: Boolean,
     required: Boolean,
     name: String,
+    inline: Boolean,
+    outline: Boolean,
+    label: {
+      type: String,
+      default: null,
+    },
   },
 
   emits: ['update:modelValue'],

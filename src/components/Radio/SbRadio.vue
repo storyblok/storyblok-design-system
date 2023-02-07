@@ -28,16 +28,6 @@ export default {
 
   inheritAttrs: false,
 
-  props: {
-    inline: Boolean,
-    outline: Boolean,
-
-    label: {
-      type: String,
-      default: null,
-    },
-  },
-
   computed: {
     componentClasses() {
       return [

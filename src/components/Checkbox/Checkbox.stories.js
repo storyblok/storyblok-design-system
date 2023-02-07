@@ -148,7 +148,7 @@ export const Outline = (args) => ({
     <div>
       <div>
         <SbCheckbox
-          name="radio-outline"
+          name="checkbox-outline"
           id="outline"
           label="Inactive"
           native-value="Inactive"
@@ -158,7 +158,7 @@ export const Outline = (args) => ({
         />
 
         <SbCheckbox
-          name="radio-outline"
+          name="checkbox-outline"
           id="outline-selected"
           label="Selected"
           native-value="Selected"
@@ -169,7 +169,7 @@ export const Outline = (args) => ({
         />
 
         <SbCheckbox
-          name="radio-outline"
+          name="checkbox-outline"
           id="outline-disabled"
           native-value="Disabled"
           label="Disabled"
