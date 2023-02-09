@@ -1,6 +1,6 @@
 // import SbModal from './index'
-import ModalPlugin from './ModalPlugin'
-import SbModalType from '../SbModalType'
+import ModalPlugin from './ModalPlugin.vue'
+import SbModalType from '../SbModalType.vue'
 import { h } from 'vue'
 
 /**
