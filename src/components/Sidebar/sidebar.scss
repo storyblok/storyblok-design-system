@@ -115,9 +115,7 @@
   width: 100%;
   height: 40%;
   max-height: 200px;
-  background:
-    linear-gradient(transparent 0%,
-    rgba($sb-dark-blue, 1) 100%);
+  background: linear-gradient(transparent 0%, rgba($sb-dark-blue, 1) 100%);
   pointer-events: none;
   transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -169,7 +167,6 @@
   }
 
   .sb-sidebar-link {
-
     &:hover {
       background-color: #373f57;
     }
@@ -350,5 +347,9 @@
     .sb-button {
       margin: -1px 0 0 -1px;
     }
+  }
+
+  .sb-link:hover:not([disabled])::after {
+    opacity: 0;
   }
 }
