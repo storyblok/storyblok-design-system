@@ -12,6 +12,7 @@ import SbFormItem from './FormItem'
 import SbGroupButton from './GroupButton'
 import SbIcon from './Icon'
 import SbLink from './Link'
+import SbLogo from './Logo'
 import SbNotification from './Notification'
 import SbPagination from './Pagination'
 import SbPortal from './Portal/index.vue'
@@ -59,6 +60,7 @@ export {
   SbGroupButton,
   SbIcon,
   SbLink,
+  SbLogo,
   SbNotification,
   SbPagination,
   SbPortal,
