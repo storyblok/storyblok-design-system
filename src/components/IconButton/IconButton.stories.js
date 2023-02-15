@@ -52,14 +52,14 @@ export const Default = (args) => ({
   `,
 })
 
-export const WhiteText = (args) => ({
+export const WhiteColor = (args) => ({
   components: { SbIconButton },
   setup() {
     return { args }
   },
   template: `
     <div style="background-color:#1b243f;padding:20px;">
-      <SbIconButton text-variant="white" />
+      <SbIconButton icon-color="white" icon-name="schema" />
     </div>
   `,
 })
