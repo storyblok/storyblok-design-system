@@ -11,6 +11,7 @@ import SbFormGroup from './FormGroup'
 import SbFormItem from './FormItem'
 import SbGroupButton from './GroupButton'
 import SbIcon from './Icon'
+import SbIconButton from './IconButton'
 import SbLink from './Link'
 import SbLogo from './Logo'
 import SbNotification from './Notification'
@@ -59,6 +60,7 @@ export {
   SbFormItem,
   SbGroupButton,
   SbIcon,
+  SbIconButton,
   SbLink,
   SbLogo,
   SbNotification,
