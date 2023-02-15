@@ -19,6 +19,7 @@ import SbPagination from './Pagination'
 import SbPortal from './Portal/index.vue'
 import SbRadio from './Radio'
 import SbSelect from './Select'
+import SbSeparator from './Separator'
 import SbTag from './Tag'
 import SbTextField from './TextField'
 import SbToggle from './Toggle'
@@ -68,6 +69,7 @@ export {
   SbPortal,
   SbRadio,
   SbSelect,
+  SbSeparator,
   SbTag,
   SbTextField,
   SbToggle,
