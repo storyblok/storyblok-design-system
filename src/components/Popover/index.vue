@@ -237,10 +237,11 @@ export default {
     },
 
     wrapClose(e) {
+      const referenceIsString = typeof this.referenceEl === 'string'
       if (
         this.popoverInstance &&
-        this.referenceEl &&
-        !this.referenceEl.contains(e.target)
+        !referenceIsString &&
+        !this.referenceEl?.contains(e?.target)
       ) {
         this.hidePopover()
       }

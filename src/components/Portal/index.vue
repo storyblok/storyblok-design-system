@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       portalTarget: undefined,
+      hasWrapperParent: false,
     }
   },
 
@@ -59,6 +60,7 @@ export default {
       }
       const wrapper = document.querySelector('#portal-wrapper')
       const parentEl = wrapper || document.body
+      if (wrapper) this.hasWrapperParent = true
 
       const el = document.createElement(tag)
       if (target.startsWith('#')) {
@@ -87,8 +89,10 @@ export default {
         this.portalTarget
       ) {
         const wrapper = document.querySelector('#portal-wrapper')
-        const parentEl = wrapper || document.body
-        parentEl.removeChild(this.portalTarget)
+        const parentEl = this.hasWrapperParent ? wrapper : document.body
+        if (parentEl) {
+          parentEl.removeChild(this.portalTarget)
+        }
       }
     },
   },
