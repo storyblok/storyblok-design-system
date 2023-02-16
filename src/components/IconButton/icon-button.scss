@@ -1,0 +1,17 @@
+.sb-icon-button {
+  padding: 6px;
+  background-color: transparent;
+  border: transparent;
+  border-radius: $base-border-radius;
+  cursor: pointer;
+  transition: $base-transition;
+
+  &:hover,
+  &:focus {
+    background-color: $light-50;
+  }
+
+  .sb-icon {
+    margin: 0;
+  }
+}

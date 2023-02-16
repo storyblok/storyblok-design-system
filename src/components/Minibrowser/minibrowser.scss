@@ -73,7 +73,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
       margin-right: 10px;
     }
 
-    .base-icon-button {
+    .sb-icon-button {
       @include base--icon-hover;
 
       margin-right: -6px;

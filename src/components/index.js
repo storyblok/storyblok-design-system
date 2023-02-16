@@ -11,12 +11,15 @@ import SbFormGroup from './FormGroup'
 import SbFormItem from './FormItem'
 import SbGroupButton from './GroupButton'
 import SbIcon from './Icon'
+import SbIconButton from './IconButton'
 import SbLink from './Link'
+import SbLogo from './Logo'
 import SbNotification from './Notification'
 import SbPagination from './Pagination'
 import SbPortal from './Portal/index.vue'
 import SbRadio from './Radio'
 import SbSelect from './Select'
+import SbSeparator from './Separator'
 import SbTag from './Tag'
 import SbTextField from './TextField'
 import SbToggle from './Toggle'
@@ -58,12 +61,15 @@ export {
   SbFormItem,
   SbGroupButton,
   SbIcon,
+  SbIconButton,
   SbLink,
+  SbLogo,
   SbNotification,
   SbPagination,
   SbPortal,
   SbRadio,
   SbSelect,
+  SbSeparator,
   SbTag,
   SbTextField,
   SbToggle,
