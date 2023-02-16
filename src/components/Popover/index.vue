@@ -135,8 +135,13 @@ export default {
     },
 
     referenceEl() {
-      if (typeof this.reference === 'string') {
-        return canUseDOM && document.querySelector(this.reference)
+      if (
+        this.reference &&
+        typeof this.reference === 'string' &&
+        this.reference.length > 0 &&
+        canUseDOM
+      ) {
+        return document.querySelector(this.reference)
       }
 
       return this.reference
