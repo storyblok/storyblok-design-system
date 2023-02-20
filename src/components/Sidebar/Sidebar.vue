@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div v-click-outside="$_sidebarClose" class="sb-sidebar__content">
+    <div v-click-outside="sidebarClose" class="sb-sidebar__content">
       <div class="sb-sidebar__top">
         <img
           v-if="logo"
@@ -174,8 +174,10 @@ export default {
       }
     },
 
-    $_sidebarClose(e) {
-      if (!this.$el.contains(e.target) && this.isMobileOpen) {
+    sidebarClose(e) {
+      const hasTarget = e && e?.target && this.$el
+      const hasContains = hasTarget && typeof this.$el?.contains === 'function'
+      if (hasContains && !this.$el.contains(e.target) && this.isMobileOpen) {
         this.closeSidebar()
       }
     },

@@ -478,7 +478,9 @@ export default {
     },
 
     wrapClose(e) {
-      if (this.$el && e && !this.$el.contains(e?.target)) {
+      const hasTarget = e && e?.target && this.$el
+      const hasContains = hasTarget && typeof this.$el?.contains === 'function'
+      if (hasContains && !this.$el.contains(e.target)) {
         this.handleCancelAction()
       }
     },

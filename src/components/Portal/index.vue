@@ -88,10 +88,9 @@ export default {
         canUseDOM &&
         this.portalTarget
       ) {
-        const wrapper = document.querySelector('#portal-wrapper')
-        const parentEl = this.hasWrapperParent ? wrapper : document.body
-        if (parentEl) {
-          parentEl.removeChild(this.portalTarget)
+        const parent = this.portalTarget.parentNode
+        if (parent) {
+          parent.removeChild(this.portalTarget)
         }
       }
     },
