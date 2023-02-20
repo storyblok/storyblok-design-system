@@ -103,7 +103,7 @@ export default {
     },
     minWidth: {
       type: String,
-      default: '360px',
+      default: '640px',
       required: false,
     },
   },
