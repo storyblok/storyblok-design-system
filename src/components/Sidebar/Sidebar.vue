@@ -101,6 +101,11 @@ export default {
       default: '1000px',
       required: false,
     },
+    minWidth: {
+      type: String,
+      default: '640px',
+      required: false,
+    },
   },
 
   emits: ['mobile-close', 'mobile-open', 'update:minimize'],
@@ -169,8 +174,11 @@ export default {
 
     toggleSidebar() {
       if (window.matchMedia) {
-        const maxWidth = `(max-width: ${this.maxWidth})`
-        this.$emit('update:minimize', window.matchMedia(maxWidth).matches)
+        const betweenMaxAndMin = `(max-width: ${this.maxWidth}) and (min-width: ${this.minWidth})`
+        this.$emit(
+          'update:minimize',
+          window.matchMedia(betweenMaxAndMin).matches
+        )
       }
     },
 
