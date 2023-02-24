@@ -1,0 +1,17 @@
+
+// Media breakpoints
+$mq-xs: 480px;
+$mq-sm: 640px;
+$mq-md: 768px;
+$mq-lg: 1024px;
+$mq-xl: 1280px;
+$mq-2xl: 1536px;
+
+$breakpoints: (
+  'xs': $mq-xs,
+  'sm': $mq-sm,
+  'md': $mq-md,
+  'lg': $mq-lg,
+  'xl': $mq-xl,
+  '2xl': $mq-2xl,
+);
