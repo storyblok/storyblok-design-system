@@ -72,6 +72,20 @@ const SbDataTable = {
       }
       return this.items
     },
+
+    paginatedItemsList() {
+      if (this.pagination === null) {
+        return undefined
+      }
+      let paginatedItems = []
+      const items = [...this.sortedData]
+      const pageChunkIndex = this.pagination.currentPage - 1
+      while (items.length > 0) {
+        const pageChunk = items.splice(0, this.pagination.pageSize)
+        paginatedItems = [...paginatedItems, pageChunk]
+      }
+      return paginatedItems[pageChunkIndex]
+    },
   },
 
   watch: {
@@ -193,6 +207,9 @@ const SbDataTable = {
     const renderTable = () => {
       let headerData = []
       let bodyData = []
+      const items = this.paginatedItemsList
+        ? [...this.paginatedItemsList]
+        : [...this.sortedData]
 
       if (this.$slots.default && this.$slots.default()) {
         const children = this.$slots.default().filter((e) => e.type.name)
@@ -208,7 +225,7 @@ const SbDataTable = {
           }
         })
 
-        bodyData = this.sortedData.map((tableRow) => {
+        bodyData = items.map((tableRow) => {
           const columns = children.map((tableData) => {
             return h(
               SbDataTableColumn,
