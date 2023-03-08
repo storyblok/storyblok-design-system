@@ -51,8 +51,10 @@
     border-radius: $base-border-radius;
     cursor: pointer;
 
-    &:not(:disabled):hover {
-      color: $color-primary;
+    &:not(:disabled):not(&--withLabel):not(&--outlined) {
+      &:hover {
+        color: $color-primary;
+      }
     }
 
     &--disabled {
@@ -67,6 +69,30 @@
     .sb-icon {
       margin-left: -4px;
     }
+
+    &--withLabel {
+      width: auto;
+      height: unset;
+      padding: 13.5px 24px;
+      color: $color-white;
+      font-size: $font-14;
+      background: $blue;
+
+      &:not(:disabled):hover {
+        background: $sb-dark-blue;
+      }
+    }
+
+    &--outlined {
+      color: $sb-dark-blue;
+      background: transparent;
+      border: $light-border;
+
+      &:not(:disabled):hover {
+        color: $sb-dark-blue;
+        background: $light;
+      }
+    }
   }
 
   &-carousel-container {
@@ -76,31 +102,23 @@
 
   &-dot {
     position: relative;
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
     padding: 0;
     background-color: $light;
     border: 0;
-    border-radius: 100%;
+    border-radius: 40px;
     cursor: pointer;
+    transition: width 0.1s ease-in-out;
 
     &:not(:first-child) {
-      margin-left: 15px;
+      margin-left: 3px;
     }
 
     &--active {
-      background-color: $sb-dark-blue;
-
-      &::after {
-        content: '';
-        position: absolute;
-        left: -4px;
-        top: -4px;
-        width: 14px;
-        height: 14px;
-        border: solid 2px $sb-dark-blue-25;
-        border-radius: 100%;
-      }
+      width: 16px;
+      background-color: $blue;
+      transition: width 0.1s ease-in-out;
     }
   }
 
@@ -132,7 +150,7 @@
     box-shadow: none;
   }
 
-  &--carousel &__button {
+  &--carousel &__button:not(&__button--outlined) {
     border: 0;
   }
 }

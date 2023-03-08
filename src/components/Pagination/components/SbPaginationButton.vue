@@ -1,5 +1,18 @@
 <template>
   <button
+    v-if="buttonLabel"
+    class="sb-pagination__button sb-pagination__button--withLabel"
+    :class="{
+      'sb-pagination__button--disabled': disabled,
+      'sb-pagination__button--outlined': isOutlined,
+    }"
+    :disabled="disabled"
+    :aria-label="tooltipLabel"
+  >
+    {{ buttonLabel }}
+  </button>
+  <button
+    v-else
     v-tooltip="{
       label: tooltipLabel,
       position: 'bottom',
@@ -36,11 +49,19 @@ export default {
     },
     icon: {
       type: String,
-      required: true,
+      required: false,
     },
     tooltipLabel: {
       type: String,
-      required: true,
+      required: false,
+    },
+    buttonLabel: {
+      type: String,
+      default: '',
+    },
+    isOutlined: {
+      type: Boolean,
+      default: false,
     },
   },
 }
