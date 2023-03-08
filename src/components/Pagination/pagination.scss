@@ -47,11 +47,14 @@
     height: 32px;
     color: $color-primary-dark;
     background-color: transparent;
-    border: 0;
     border-radius: $base-border-radius;
     cursor: pointer;
 
-    &:not(:disabled):not(&--withLabel):not(&--outlined) {
+    &:not(&--withLabel) {
+      border: 0;
+    }
+
+    &:not(:disabled):not(&--withLabel) {
       &:hover {
         color: $color-primary;
       }
@@ -62,36 +65,25 @@
       cursor: not-allowed;
     }
 
-    &:hover {
-      background-color: $light-50;
-    }
-
-    .sb-icon {
-      margin-left: -4px;
-    }
-
     &--withLabel {
       width: auto;
       height: unset;
       padding: 13.5px 24px;
-      color: $color-white;
       font-size: $font-14;
-      background: $blue;
 
-      &:not(:disabled):hover {
-        background: $sb-dark-blue;
+      &:not(:disabled):focus:not(.sb-button--tertiary),
+      &:not(:disabled):hover:not(.sb-button--tertiary) {
+        background-color: darken($blue, 15);
       }
     }
 
-    &--outlined {
-      color: $sb-dark-blue;
-      background: transparent;
-      border: $light-border;
+    &:not(.sb-button--tertiary) {
+      color: $color-white;
+      background: $blue;
+    }
 
-      &:not(:disabled):hover {
-        color: $sb-dark-blue;
-        background: $light;
-      }
+    .sb-icon {
+      margin-left: -4px;
     }
   }
 
@@ -150,8 +142,10 @@
     box-shadow: none;
   }
 
-  &--carousel &__button:not(&__button--outlined) {
-    border: 0;
+  &--carousel &__button {
+    &:not(&--withLabel) {
+      border: 0;
+    }
   }
 }
 

@@ -1,16 +1,16 @@
 <template>
-  <button
+  <SbButton
     v-if="buttonLabel"
     class="sb-pagination__button sb-pagination__button--withLabel"
     :class="{
       'sb-pagination__button--disabled': disabled,
-      'sb-pagination__button--outlined': isOutlined,
     }"
     :disabled="disabled"
     :aria-label="tooltipLabel"
+    :variant="isOutlined ? 'tertiary' : ''"
   >
     {{ buttonLabel }}
-  </button>
+  </SbButton>
   <button
     v-else
     v-tooltip="{
@@ -31,10 +31,12 @@
 <script>
 import SbIcon from '../../Icon'
 import { Tooltip } from '../../../directives'
+import SbButton from '../../Button/SbButton'
 export default {
   name: 'SbPaginationButton',
 
   components: {
+    SbButton,
     SbIcon,
   },
 
