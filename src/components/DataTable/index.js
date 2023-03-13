@@ -26,7 +26,7 @@ const SbDataTable = {
     ...sharedProps,
     rowIdPrefix: {
       type: String,
-      default: '',
+      default: 'sb',
     },
   },
 
