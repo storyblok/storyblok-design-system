@@ -39,6 +39,7 @@
       @close-list="hideList"
       @clear-all-values="handleClearAllValues"
       @remove-item-value="handleRemoveItemValue"
+
     >
       <template #selection="scope">
         <slot name="selection" v-bind="scope" />
@@ -74,6 +75,7 @@
       :loading-more-text="loadingMoreText"
       :all-option-value="firstOptionValue"
       :first-value-is-all-value="firstValueIsAllValue"
+      :is-option-disabled="isOptionDisabled"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -209,6 +211,10 @@ export default {
       type: String,
       default: 'Loading more...',
     },
+    isOptionDisabled: {
+      type: Function,
+      default: () => false
+    }
   },
 
   emits: [

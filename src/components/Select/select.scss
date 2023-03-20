@@ -291,6 +291,15 @@
     &--selected span {
       @include selectedItem;
     }
+
+    &--disabled {
+      pointer-events: none;
+      outline: none;
+
+      .sb-select-list__item-icon, .sb-select-list__item-name, .sb-select-list__item-path {
+        color: $neutral-gray;
+      }
+    }
   }
 
   &__item-name,
