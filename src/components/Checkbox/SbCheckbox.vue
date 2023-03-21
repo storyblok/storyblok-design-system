@@ -76,6 +76,3 @@ export default {
   },
 }
 </script>
-<style lang="scss">
-@import 'src/components/ContentManager/Tour/introjs'; // @TODO - move vendor CSS file elsewhere
-</style>
