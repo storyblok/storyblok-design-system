@@ -16,6 +16,10 @@
         class="sb-accordion__icon"
         @click.stop="$emit('icon-click')"
       />
+
+      <div class="sb-accordion__content-info">
+        <slot name="content-info"></slot>
+      </div>
     </button>
 
     <AccordionTransition>
