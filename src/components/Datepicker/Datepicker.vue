@@ -1,6 +1,6 @@
 <template>
   <div
-    v-click-outside="$_wrapClose"
+    v-click-outside="wrapClose"
     class="sb-datepicker"
     :class="{ 'sb-datepicker--active': isOverlayVisible }"
   >
@@ -477,8 +477,10 @@ export default {
       if (this.internalValue === 'Invalid Date') this.internalValue = ''
     },
 
-    $_wrapClose(e) {
-      if (!this.$el.contains(e.target)) {
+    wrapClose(e) {
+      const hasTarget = e && e?.target && this.$el
+      const hasContains = hasTarget && typeof this.$el?.contains === 'function'
+      if (hasContains && !this.$el.contains(e.target)) {
         this.handleCancelAction()
       }
     },

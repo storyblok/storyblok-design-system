@@ -238,7 +238,7 @@ export default {
     }
 
     function hideHandler() {
-      if (el.__tooltip.popperInstance !== null) {
+      if (el?.__tooltip?.popperInstance) {
         cleanup(el)
       }
     }

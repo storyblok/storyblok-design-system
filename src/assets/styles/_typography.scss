@@ -1,0 +1,49 @@
+// Typography
+$primary-font-family: 'Roboto', sans-serif;
+$primary-text-color: $sb-dark-blue;
+$font-size-default: 1.6rem;
+$line-height-default: 1;
+
+// heading sizes
+$heading-2xl: 3.2rem;
+$heading-xl: 2.6rem;
+$heading-lg: 2rem;
+$heading-md: 1.8rem;
+$heading-base: 1.4rem;
+$heading-s: 1.2rem;
+$heading-xs: 1rem;
+
+// text sizes
+$font-12: 1.2rem;
+$font-13: 1.3rem;
+$font-14: 1.4rem;
+$font-15: 1.5rem;
+$font-16: 1.6rem;
+$font-19: 1.9rem;
+$font-21: 2.1rem;
+$font-25: 2.5rem;
+$font-36: 3.6rem;
+
+// Font weight
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Font size
+$font-size: (
+  'xs':                                          $font-12,
+  'sm':                                          $font-13,
+  'md':                                          $font-14,
+  'lg':                                          $font-16,
+);
+
+// Font weight
+$font-weight: (
+  'thin':                                        $font-weight-thin,
+  'light':                                       $font-weight-light,
+  'regular':                                     $font-weight-regular,
+  'medium':                                      $font-weight-medium,
+  'bold':                                        $font-weight-bold,
+);

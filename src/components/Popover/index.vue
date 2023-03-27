@@ -135,8 +135,13 @@ export default {
     },
 
     referenceEl() {
-      if (typeof this.reference === 'string') {
-        return canUseDOM && document.querySelector(this.reference)
+      if (
+        this.reference &&
+        typeof this.reference === 'string' &&
+        this.reference.length > 0 &&
+        canUseDOM
+      ) {
+        return document.querySelector(this.reference)
       }
 
       return this.reference
@@ -237,10 +242,13 @@ export default {
     },
 
     wrapClose(e) {
+      const referenceIsString = typeof this.referenceEl === 'string'
+      const hasContains = typeof this.referenceEl?.contains === 'function'
       if (
         this.popoverInstance &&
-        this.referenceEl &&
-        !this.referenceEl.contains(e.target)
+        !referenceIsString &&
+        hasContains &&
+        !this.referenceEl.contains(e?.target)
       ) {
         this.hidePopover()
       }

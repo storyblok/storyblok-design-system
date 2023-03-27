@@ -14,17 +14,32 @@
       </div>
 
       <div class="sb-sidebar__mobile-logo" @click="closeSidebar">
-        <img
-          v-if="logo"
-          class="sb-custom-logo"
-          :src="logo"
-          alt="Custom Sidebar Logo"
-        />
-        <SbSidebarLogo v-else variant="dark" />
+        <SbLink
+          v-if="logoDestinationUrl"
+          as="router-link"
+          :to="logoDestinationUrl"
+        >
+          <img
+            v-if="logo"
+            class="sb-custom-logo"
+            :src="logo"
+            alt="Custom Sidebar Logo"
+          />
+          <SbSidebarLogo v-else variant="dark" />
+        </SbLink>
+        <template v-else>
+          <img
+            v-if="logo"
+            class="sb-custom-logo"
+            :src="logo"
+            alt="Custom Sidebar Logo"
+          />
+          <SbSidebarLogo v-else variant="dark" />
+        </template>
       </div>
     </div>
 
-    <div v-click-outside="$_sidebarClose" class="sb-sidebar__content">
+    <div v-click-outside="sidebarClose" class="sb-sidebar__content">
       <div class="sb-sidebar__top">
         <img
           v-if="logo"
@@ -101,6 +116,17 @@ export default {
       default: '1000px',
       required: false,
     },
+    minWidth: {
+      type: String,
+      default: '640px',
+      required: false,
+    },
+    logoDestinationUrl: {
+      type: Object,
+      validator(value) {
+        return value.hasOwnProperty('name')
+      },
+    },
   },
 
   emits: ['mobile-close', 'mobile-open', 'update:minimize'],
@@ -169,13 +195,18 @@ export default {
 
     toggleSidebar() {
       if (window.matchMedia) {
-        const maxWidth = `(max-width: ${this.maxWidth})`
-        this.$emit('update:minimize', window.matchMedia(maxWidth).matches)
+        const betweenMaxAndMin = `(max-width: ${this.maxWidth}) and (min-width: ${this.minWidth})`
+        this.$emit(
+          'update:minimize',
+          window.matchMedia(betweenMaxAndMin).matches
+        )
       }
     },
 
-    $_sidebarClose(e) {
-      if (!this.$el.contains(e.target) && this.isMobileOpen) {
+    sidebarClose(e) {
+      const hasTarget = e && e?.target && this.$el
+      const hasContains = hasTarget && typeof this.$el?.contains === 'function'
+      if (hasContains && !this.$el.contains(e.target) && this.isMobileOpen) {
         this.closeSidebar()
       }
     },
