@@ -1,6 +1,11 @@
 @import 'animations';
 
 .sb-slideover {
+  @include mq($from: lg) {
+    max-width: 624px;
+    min-width: 400px;
+  }
+
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -15,11 +20,6 @@
   padding: 20px;
   background-color: $white;
   border-radius: 5px;
-
-  @media (min-width: $mq-lg) {
-    max-width: 624px;
-    min-width: 400px;
-  }
 
   &--left {
     left: 20px;
@@ -52,7 +52,7 @@
   }
 }
 
-@media only screen and (max-width: $mq-sm) {
+@include mq($until: sm) {
   .sb-slideover {
     bottom: 0;
     left: 0;

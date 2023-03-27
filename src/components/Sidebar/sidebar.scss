@@ -324,7 +324,7 @@
   flex: 1;
 }
 
-@media screen and (max-width: $mq-xs) {
+@include mq($until: xs) {
   .sb-sidebar__mobile-header {
     display: flex;
   }

@@ -9,24 +9,24 @@
 
   // elements
   &__per-page-container {
-    margin-right: 30px;
-    padding-left: 10px;
-
-    @media (max-width: $mq-lg) {
+    @include mq($until: lg) {
       flex-flow: row nowrap;
     }
 
-    @media (min-width: $mq-lg) {
+    @include mq($from: lg) {
       margin-right: 120px;
     }
+
+    margin-right: 30px;
+    padding-left: 10px;
   }
 
   &__pages-container {
-    margin-right: 30px;
-
-    @media (max-width: $mq-lg) {
+    @include mq($until: lg) {
       flex-flow: row nowrap;
     }
+
+    margin-right: 30px;
   }
 
   &__select {
@@ -168,7 +168,7 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
+@include mq($until: xs) {
   .sb-pagination {
     flex-wrap: wrap;
 
