@@ -9,7 +9,9 @@ const SelectTemplate = (args) => ({
     SbSelect,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
 
   data: () => ({
     internalValue: null,

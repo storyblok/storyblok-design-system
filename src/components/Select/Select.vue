@@ -40,6 +40,10 @@
       @clear-all-values="handleClearAllValues"
       @remove-item-value="handleRemoveItemValue"
     >
+      <template #selection="scope">
+        <slot name="selection" v-bind="scope" />
+      </template>
+
       <slot name="innerSelect" />
     </SbSelectInner>
 
@@ -73,7 +77,11 @@
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
-    />
+    >
+      <template #list-item="scope">
+        <slot name="list-item" v-bind="scope" />
+      </template>
+    </SbSelectList>
 
     <slot name="minibrowser" />
 
