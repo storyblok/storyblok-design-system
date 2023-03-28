@@ -24,16 +24,19 @@ export default defineConfig({
     },
   },
   build: {
+    sourcemap: true,
     lib: {
-      // Could also be a dictionary or array of multiple entry points
       entry: resolve(__dirname, 'src/main.js'),
-      name: 'BlokInk',
-      // the proper extensions will be added
+      name: 'BlokInkPlugin',
+      formats: ['es', 'umd', 'cjs'],
       fileName: 'storyblok-design-system',
     },
     rollupOptions: {
-      output: {
-        exports: 'named'
+      output:  {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'style.css') return 'storyblok-design-system.css';
+          return assetInfo.name;
+        },
       },
     }
   }
