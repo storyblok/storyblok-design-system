@@ -5,9 +5,16 @@
   "compilerOptions": {
     "composite": true,
     "allowJs": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "strict": true,
     "paths": {
       "@/*": ["./src/*"],
       "src/*": ["./src/*"],
     },
+    "types": ["node", "jest"],
   }
 }
