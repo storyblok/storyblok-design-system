@@ -20,8 +20,9 @@
     "pre-commit": "lint-staged"
   },
   "main": "dist/storyblok-design-system.js",
+  "module": "dist/storyblok-design-system.mjs",
   "files": [
-    "dist"
+    "dist", "src"
   ],
   "dependencies": {
     "@popperjs/core": "^2.11.6",

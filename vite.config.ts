@@ -28,6 +28,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/main.js'),
       name: 'BlokInkPlugin',
+      formats: ['es', 'cjs', 'umd'],
       fileName: 'storyblok-design-system',
     },
     rollupOptions: {
