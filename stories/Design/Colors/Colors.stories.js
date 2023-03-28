@@ -1,7 +1,7 @@
 import SbColors from './Colors.vue'
 
 export default {
-  title: 'Design System/Base/Colors',
+  title: 'Design/Colors',
   component: SbColors,
 }
 

@@ -1,7 +1,7 @@
 import SbTypography from '.'
 
 export default {
-  title: 'Design System/Base/Typography',
+  title: 'Design/Typography',
   component: SbTypography
 }
 

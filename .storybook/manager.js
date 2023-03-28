@@ -3,5 +3,6 @@ import storyblokTheme from './theme'
 
 addons.setConfig({
   theme: storyblokTheme,
-  addons: ['@storybook/addon-viewport', '@storybook/addon-a11y']
+  panelPosition: 'right',
+  addons: ['@storybook/addon-a11y']
 })

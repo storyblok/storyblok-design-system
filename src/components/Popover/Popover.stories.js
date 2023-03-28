@@ -2,7 +2,7 @@ import { SbPopover, placementOptions } from '.'
 import SbButton from '../Button'
 
 export default {
-  title: 'Design System/Components/SbPopover',
+  title: 'Interface/SbPopover',
   component: SbPopover,
   args: {
     offset: [0, 10],

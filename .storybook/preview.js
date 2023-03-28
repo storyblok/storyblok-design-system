@@ -7,3 +7,14 @@ import { setup } from '@storybook/vue3';
 setup((app) => {
   app.use(BlokInkPlugin)
 })
+
+export const parameters = {
+  layout: 'centered',
+  options: {
+    storySort: {
+      method: '',
+      order: ['Introduction', 'Design', 'Basic', 'Forms', 'Navigation', 'Data', 'Interface'],
+      locales: '',
+    },
+  },
+};

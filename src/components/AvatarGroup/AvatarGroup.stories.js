@@ -3,7 +3,7 @@ import SbAvatar from '../Avatar'
 
 // default export defines configurations to all stories
 export default {
-  title: 'Design System/Components/SbAvatarGroup',
+  title: 'Data/SbAvatarGroup',
   component: SbAvatarGroup,
   parameters: {
     docs: {

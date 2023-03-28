@@ -1,7 +1,7 @@
 import SbLogo from './index'
 
 export default {
-  title: 'Design System/Components/SbLogo',
+  title: 'Basic/SbLogo',
   component: SbLogo,
   argTypes: {
     textVariant: {

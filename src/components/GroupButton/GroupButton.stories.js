@@ -5,7 +5,7 @@ import { availableVariants } from '../Button/lib'
 import { availableSizes } from '../../utils'
 
 export default {
-  title: 'Design System/Components/SbGroupButton',
+  title: 'Basic/SbGroupButton',
   component: SbGroupButton,
   args: {
     variant: 'tertiary',

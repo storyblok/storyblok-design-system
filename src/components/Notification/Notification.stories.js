@@ -12,7 +12,7 @@ const NotificationTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbNotification',
+  title: 'Data/SbNotification',
   component: SbNotification,
   parameters: {
     docs: {

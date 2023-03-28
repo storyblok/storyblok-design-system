@@ -16,7 +16,7 @@ const TooltipTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbTooltip',
+  title: 'Interface/SbTooltip',
   component: SbTooltip,
   parameters: {
     docs: {

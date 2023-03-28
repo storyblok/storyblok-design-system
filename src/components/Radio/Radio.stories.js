@@ -1,7 +1,7 @@
 import SbRadio from './index'
 
 export default {
-  title: 'Design System/Components/Form/SbRadio',
+  title: 'Forms/SbRadio',
   component: SbRadio,
   args: {
     label: 'Simple radio input',

@@ -200,7 +200,7 @@ export const defaultOptionsWithIconData = [
 ]
 
 export default {
-  title: 'Design System/Components/Form/SbSelect',
+  title: 'Forms/SbSelect',
   component: SbSelect,
   excludeStories: /.*Data$/,
   args: {
