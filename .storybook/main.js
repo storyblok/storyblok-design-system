@@ -5,7 +5,7 @@ const config = {
   },
   staticDirs: ['../public'],
   stories: ['../stories/**/*.stories.@(ts|js|mdx)', '../src/**/*.stories.@(ts|js|mdx)'],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-viewport', '@storybook/addon-a11y', '@storybook/addon-storysource'],
+  addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', '@storybook/addon-storysource'],
   docs: {
     autodocs: true,
     defaultName: 'Documentation',
