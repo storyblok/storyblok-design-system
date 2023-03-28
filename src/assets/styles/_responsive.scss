@@ -15,9 +15,3 @@ $breakpoints: (
   'xl': $mq-xl,
   '2xl': $mq-2xl,
 );
-
-$mq-breakpoints: $breakpoints;
-
-/* stylelint-disable */
-@import 'sass-mq/_mq.import';
-/* stylelint-enable */
