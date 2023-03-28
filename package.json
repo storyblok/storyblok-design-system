@@ -5,6 +5,9 @@
     "type": "git",
     "url": "https://github.com/storyblok/storyblok-design-system.git"
   },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "dev": "yarn storybook",
     "build": "vite build",
