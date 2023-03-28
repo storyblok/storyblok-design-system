@@ -27,6 +27,30 @@ import '@storyblok/design-system/dist/storyblok-design-system.css'
 app.use(BlokInk) // vue 3
 ```
 
+Then you can use all Blok.Ink components everywhere in your app.
+
+```vue
+<template>
+  <SbIcon name="search" />
+</template>
+```
+
+### Only install specific components
+
+You can also only install a few components, by specifying the option `withComponents`.
+```js
+import BlokInk from '@storyblok/design-system'
+import '@storyblok/design-system/dist/storyblok-design-system.css'
+ 
+app.use(BlokInk, {
+  withComponents: [
+    'SbButton',
+    'SbIcon',
+  ]
+})
+```
+
+
 For more information on the usage of the Design System go to:
 [https://www.storyblok.com/docs/guide/in-depth/design-system](https://www.storyblok.com/docs/guide/in-depth/design-system)
 

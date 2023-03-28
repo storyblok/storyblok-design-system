@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 
@@ -28,16 +28,16 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/main.js'),
       name: 'BlokInkPlugin',
-      formats: ['es', 'umd', 'cjs'],
       fileName: 'storyblok-design-system',
     },
     rollupOptions: {
-      output:  {
+      output: {
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'storyblok-design-system.css';
-          return assetInfo.name;
+          if (assetInfo.name === 'style.css')
+            return 'storyblok-design-system.css'
+          return assetInfo.name
         },
       },
-    }
-  }
-});
+    },
+  },
+})
