@@ -17,8 +17,8 @@
         @click.stop="$emit('icon-click')"
       />
 
-      <div class="sb-accordion__content-info">
-        <slot name="content-info"></slot>
+      <div v-if="$slots.contentInfo" class="sb-accordion__content-info">
+        <slot name="contentInfo"></slot>
       </div>
     </button>
 
@@ -85,6 +85,7 @@ export default {
   },
 
   emits: ['icon-click', 'toggle-open'],
+
   setup(props, { emit }) {
     const isOpenLocal = ref(props.isOpen)
     const chevronIcon = computed(() =>

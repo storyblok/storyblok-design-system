@@ -27,6 +27,10 @@ const Template = (args) => ({
       >
         <h2>Some text</h2>
         <p>Some more text</p>
+
+        <template #contentInfo>
+          <span v-html="args.contentInfoSlot" />
+        </template>
       </Accordion>
 
       <Accordion
@@ -35,6 +39,10 @@ const Template = (args) => ({
       >
         <h2>Some text</h2>
         <p>Some more text</p>
+
+        <template #contentInfo>
+          <span v-html="args.contentInfoSlot" />
+        </template>
       </Accordion>
 
       <Accordion
@@ -43,6 +51,10 @@ const Template = (args) => ({
       >
         <h2>Some text</h2>
         <p>Some more text</p>
+
+        <template #contentInfo>
+          <span v-html="args.contentInfoSlot" />
+        </template>
       </Accordion>
     </div>
   `,
@@ -76,4 +88,9 @@ noBorder.args = {
 export const noPadding = Template.bind({})
 noPadding.args = {
   noPadding: true,
+}
+
+export const withContentInfo = Template.bind({})
+withContentInfo.args = {
+  contentInfoSlot: '4 items',
 }

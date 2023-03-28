@@ -4,10 +4,11 @@ import Accordion from '..'
 import SbTextField from '../../TextField'
 import { h } from 'vue'
 
-const factory = (props) => {
+const factory = (props, slots = {}) => {
   return mount(Accordion, {
     props,
     slots: {
+      ...slots,
       default: h(SbTextField),
     },
   })
@@ -60,5 +61,31 @@ describe('Accordion component', () => {
     it('should render the SbTextField component in default slot', () => {
       expect(wrapper.findComponent(SbTextField).exists()).toBe(true)
     })
+  })
+})
+
+describe('with content info', () => {
+  it('should render the "4 items" html element in the  content info slot', () => {
+    const wrapper = factory(
+      { title: 'Group Name 2' },
+      { contentInfo: '<i>4 items</i>' }
+    )
+
+    const info = wrapper
+      .findComponent(Accordion)
+      .find('.sb-accordion__content-info')
+    expect(info.exists()).toBe(true)
+    expect(info.text()).toBe('4 items')
+  })
+
+  it('should not render the content info wrapper', () => {
+    const wrapper = factory({
+      title: 'Group Name 2',
+    })
+
+    const info = wrapper
+      .findComponent(Accordion)
+      .find('.sb-accordion__content-info')
+    expect(info.exists()).toBe(false)
   })
 })
