@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-checkbox" :class="componentClasses" :data-intro-js-hint="id">
+  <div class="sb-checkbox" :class="componentClasses">
     <div class="sb-checkbox__inner">
       <input
         :id="id"
