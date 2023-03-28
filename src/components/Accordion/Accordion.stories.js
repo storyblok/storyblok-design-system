@@ -5,12 +5,13 @@ export default {
   component: Accordion,
   args: {
     title: 'Group 1',
-    icon: '',
+    icon: 'settings',
     iconDescription: '',
     isOpen: false,
     noHighlight: false,
     noBorder: false,
     noPadding: false,
+    contentInfoSlot: '<i>4 items</i>',
   },
 }
 
@@ -90,7 +91,7 @@ noPadding.args = {
   noPadding: true,
 }
 
-export const withContentInfo = Template.bind({})
-withContentInfo.args = {
-  contentInfoSlot: '4 items',
+export const contentInfo = Template.bind({})
+contentInfo.args = {
+  contentInfoSlot: '',
 }
