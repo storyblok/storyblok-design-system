@@ -37,6 +37,11 @@
   }
 }
 
+.sb-accordion__content-info {
+  flex: 0 0 auto;
+  margin-inline: auto 0;
+}
+
 .sb-accordion__content {
   box-sizing: border-box;
   width: 100%;
