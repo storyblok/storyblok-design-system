@@ -22,6 +22,10 @@ const TabsTemplate = (template) => (args) => ({
           name: 'third',
         },
         {
+          label: 'Fourth',
+          name: 'fourth',
+        },
+        {
           label: 'Disabled',
           name: 'disabled',
           disabled: true,
