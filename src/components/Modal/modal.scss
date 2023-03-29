@@ -41,6 +41,10 @@
     cursor: pointer;
 
     @include base--icon-hover;
+
+    svg {
+      margin: 0;
+    }
   }
 
   &-content {
@@ -118,13 +122,9 @@
       :first-child {
         margin-left: 0;
       }
-    }
 
-    .sb-modal__close-button {
-      width: 36px;
-
-      svg {
-        margin: 0;
+      .sb-modal__close-button {
+        width: 36px;
       }
     }
   }
