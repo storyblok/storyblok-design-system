@@ -27,9 +27,9 @@ export default {
     placement: {
       name: 'placement',
       description: 'Title for notification',
+      options: placementOptions,
       control: {
         type: 'select',
-        options: placementOptions,
       },
     },
     parentElementTag: {

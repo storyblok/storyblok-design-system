@@ -21,17 +21,17 @@ export default {
     variant: {
       name: 'variant',
       description: '`SbToggle` variant',
+      options: ['primary', 'secondary', 'ghost', 'danger'],
       control: {
         type: 'select',
-        options: ['primary', 'secondary', 'ghost', 'danger'],
       },
     },
     icon: {
       name: 'icon',
       description: '`SbToggle` icon',
+      options: [...availableIcons],
       control: {
         type: 'select',
-        options: [...availableIcons],
       },
     },
   },

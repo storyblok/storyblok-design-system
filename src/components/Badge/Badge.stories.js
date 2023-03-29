@@ -71,9 +71,9 @@ export default {
     type: {
       name: 'type',
       description: 'Type of the `SbBadge`',
+      options: badgeTypes,
       control: {
         type: 'select',
-        options: badgeTypes,
       },
       type: {
         required: true,

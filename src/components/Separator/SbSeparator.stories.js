@@ -7,17 +7,17 @@ export default {
     small: {
       name: 'small',
       description: 'small',
+      options: [true, false],
       control: {
         type: 'select',
-        options: [true, false],
       },
     },
     isFlat: {
       name: 'isFlat',
       description: 'isFlat',
+      options: [true, false],
       control: {
         type: 'select',
-        options: [true, false],
       },
     },
   },

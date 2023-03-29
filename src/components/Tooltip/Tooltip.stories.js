@@ -51,25 +51,25 @@ export default {
     position: {
       name: 'position',
       description: '`SbTooltip` position',
+      options: availablePositions,
       control: {
         type: 'select',
-        options: availablePositions,
       },
     },
     variant: {
       name: 'variant',
       description: '`SbTooltip` variant color',
+      options: ['dark', 'light'],
       control: {
         type: 'select',
-        options: ['dark', 'light'],
       },
     },
     textAlign: {
       name: 'textAlign',
       description: '`SbTooltip` text alignment',
+      options: ['initial', 'center', 'end'],
       control: {
         type: 'select',
-        options: ['initial', 'center', 'end'],
       },
     },
   },

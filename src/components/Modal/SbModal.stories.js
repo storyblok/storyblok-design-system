@@ -180,9 +180,9 @@ export default {
       name: 'align',
       description:
         'Prop `align` works to change the type of header alignment, center alignment is the default.',
+      options: ['center', 'left'],
       control: {
         type: 'select',
-        options: ['center', 'left'],
       },
     },
     isOpen: {

@@ -16,17 +16,17 @@ export default {
     size: {
       name: 'size',
       description: 'Size to each `SbButton` inside the `SbGroupButton`',
+      options: [...availableSizes],
       control: {
         type: 'select',
-        options: [...availableSizes],
       },
     },
     variant: {
       name: 'variant',
       description: '`SbButton` variant',
+      options: [...availableVariants],
       control: {
         type: 'select',
-        options: [...availableVariants],
       },
     },
     hasSpaces: {

@@ -49,18 +49,18 @@ export default {
     iconRight: {
       name: 'IconRight',
       description: `When the arrow down icon located at the right side of SbMenuButton is not needed for SbMenuButton, set this parameter to false.`,
+      options: availableIcons,
       control: {
         type: 'select',
-        options: availableIcons,
       },
       default: true,
     },
     icon: {
       name: 'Icon',
       description: `When the arrow down icon located at the left side of SbMenuButton is not needed for SbMenuButton, set this parameter to false.`,
+      options: availableIcons,
       control: {
         type: 'select',
-        options: availableIcons,
       },
       default: true,
     },

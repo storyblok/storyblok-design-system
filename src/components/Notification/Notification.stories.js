@@ -35,9 +35,9 @@ export default {
     status: {
       name: 'status',
       description: 'Status color',
+      options: ['general', 'positive', 'warning', 'info', 'negative'],
       control: {
         type: 'select',
-        options: ['general', 'positive', 'warning', 'info', 'negative'],
       },
     },
     title: {

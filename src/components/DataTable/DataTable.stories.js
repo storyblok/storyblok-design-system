@@ -128,9 +128,9 @@ export default {
     selectionMode: {
       name: 'selectionMode',
       description: description.selectionMode,
+      options: ['single', 'multiple'],
       control: {
         type: 'select',
-        options: ['single', 'multiple'],
       },
     },
     striped: {

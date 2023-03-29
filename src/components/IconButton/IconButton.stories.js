@@ -18,25 +18,25 @@ export default {
     iconName: {
       name: 'name',
       description: 'name',
+      options: availableIcons,
       control: {
         type: 'select',
-        options: availableIcons,
       },
     },
     iconSize: {
       name: 'size',
       description: 'size',
+      options: iconSizes,
       control: {
         type: 'select',
-        options: iconSizes,
       },
     },
     iconColor: {
       name: 'color',
       description: 'color',
+      options: availableColors,
       control: {
         type: 'select',
-        options: availableColors,
       },
     },
   },

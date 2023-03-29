@@ -35,9 +35,9 @@ export default {
     size: {
       name: 'size',
       description: 'Size of the `SbAvatar`',
+      options: ['small', 'normal', 'large'],
       control: {
         type: 'select',
-        options: ['small', 'normal', 'large'],
       },
     },
   },

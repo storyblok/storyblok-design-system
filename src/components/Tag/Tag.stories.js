@@ -34,9 +34,9 @@ export default {
     type: {
       name: 'type',
       description: 'Type of the `SbTag`',
+      options: tagTypes,
       control: {
         type: 'select',
-        options: tagTypes,
       },
     },
     onClick: {
