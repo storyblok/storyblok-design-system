@@ -1,7 +1,8 @@
 .sb-notification {
   position: relative;
   box-sizing: border-box;
-  width: 430px;
+  width: 100%;
+  max-width: 430px;
   padding: 16px;
   border-radius: $base-border-radius;
 
@@ -72,10 +73,10 @@
   }
 
   &--general {
-    @include generalBoxShadow();
-
     background-color: $white;
     border-radius: 10px;
+
+    @include generalBoxShadow();
   }
 
   // Content style for notification
