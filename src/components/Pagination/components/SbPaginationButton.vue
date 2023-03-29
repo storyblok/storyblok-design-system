@@ -1,7 +1,7 @@
 <template>
   <SbButton
     v-if="buttonLabel"
-    class="sb-pagination__button sb-pagination__button--with-label"
+    class="sb-pagination__button"
     :class="{
       'sb-pagination__button--disabled': disabled,
     }"

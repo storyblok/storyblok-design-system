@@ -65,23 +65,6 @@
       cursor: not-allowed;
     }
 
-    &--with-label {
-      width: auto;
-      height: unset;
-      padding: 13.5px 24px;
-      font-size: $font-14;
-
-      &:not(:disabled):focus:not(.sb-button--tertiary),
-      &:not(:disabled):hover:not(.sb-button--tertiary) {
-        background-color: darken($blue, 15);
-      }
-    }
-
-    &:not(.sb-button--tertiary) {
-      color: $color-white;
-      background: $blue;
-    }
-
     .sb-icon {
       margin-left: -4px;
     }
@@ -94,23 +77,31 @@
 
   &-dot {
     position: relative;
-    width: 7px;
-    height: 7px;
+    width: 10px;
+    height: 10px;
     padding: 0;
     background-color: $light;
     border: 0;
-    border-radius: 40px;
+    border-radius: 100%;
     cursor: pointer;
-    transition: width 0.1s ease-in-out;
 
     &:not(:first-child) {
-      margin-left: 3px;
+      margin-left: 15px;
     }
 
     &--active {
-      width: 16px;
-      background-color: $blue;
-      transition: width 0.1s ease-in-out;
+      background-color: $sb-dark-blue;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: -4px;
+        top: -4px;
+        width: 14px;
+        height: 14px;
+        border: solid 2px $sb-dark-blue-25;
+        border-radius: 100%;
+      }
     }
   }
 
@@ -145,6 +136,48 @@
   &--carousel &__button {
     &:not(&--with-label) {
       border: 0;
+    }
+  }
+}
+
+.sb-pagination--with-label {
+  .sb-pagination__button {
+    width: auto;
+    height: unset;
+    padding: 13.5px 24px;
+    font-size: $font-14;
+
+    &:not(.sb-button--tertiary) {
+      color: $color-white;
+      background: $blue;
+    }
+
+    &:not(:disabled):focus,
+    &:not(:disabled):hover {
+      color: $blue;
+    }
+
+    &:not(:disabled):focus:not(.sb-button--tertiary),
+    &:not(:disabled):hover:not(.sb-button--tertiary) {
+      color: $white;
+      background-color: darken($blue, 15);
+    }
+  }
+
+  .sb-pagination-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 40px;
+    transition: width 0.1s ease-in-out;
+
+    &:not(:first-child) {
+      margin-left: 3px;
+    }
+
+    &--active {
+      width: 16px;
+      background-color: $blue;
+      transition: width 0.1s ease-in-out;
     }
   }
 }

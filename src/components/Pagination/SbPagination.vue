@@ -4,7 +4,7 @@
       <SbPaginationButton
         v-if="hasNextPrevBtn"
         data-testid="pagination-previous-button"
-        is-outlined="true"
+        :is-outlined="isLabelledButtons"
         :button-label="$t('Back')"
         :disabled="isFirstDisabled"
         @click="handlePreviousPage"
@@ -149,7 +149,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    isOutlined: {
+    isLabelledButtons: {
       type: Boolean,
       default: false,
     },
@@ -185,6 +185,7 @@ export default {
         'sb-pagination--full-width': this.isFullWidth,
         'sb-pagination--carousel': this.carousel,
         'sb-pagination--compact': this.compact,
+        'sb-pagination--with-label': this.isLabelledButtons,
       }
     },
   },
