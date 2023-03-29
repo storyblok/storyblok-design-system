@@ -32,8 +32,6 @@
   }
 
   &__close-button {
-    @include base--icon-hover;
-
     position: absolute;
     right: 14px;
     top: 14px;
@@ -41,6 +39,8 @@
     background-color: $white;
     border: 0;
     cursor: pointer;
+
+    @include base--icon-hover;
   }
 
   &-content {
@@ -118,13 +118,13 @@
       :first-child {
         margin-left: 0;
       }
+    }
 
-      .sb-modal__close-button {
-        width: 36px;
+    .sb-modal__close-button {
+      width: 36px;
 
-        svg {
-          margin: 0;
-        }
+      svg {
+        margin: 0;
       }
     }
   }
@@ -132,6 +132,10 @@
   &__full-width {
     max-width: 100%;
     min-width: 620px;
+
+    @include mq($until: sm) {
+      min-width: initial;
+    }
   }
 
   &__large {
