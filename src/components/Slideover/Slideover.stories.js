@@ -47,7 +47,7 @@ const SlideoverTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbSlideover',
+  title: 'Interface/SbSlideover',
   component: SbSlideover,
   parameters: {
     docs: { inlineStories: false, iframeHeight: 500 },

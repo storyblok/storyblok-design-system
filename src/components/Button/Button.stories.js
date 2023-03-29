@@ -63,7 +63,7 @@ const ButtonTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbButton',
+  title: 'Basic/SbButton',
   component: SbButton,
   parameters: {
     docs: {

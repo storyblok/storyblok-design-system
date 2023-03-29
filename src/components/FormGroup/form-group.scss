@@ -1,7 +1,5 @@
 .sb-form-group {
-  margin-top: 16px;
-
-  @media only screen and (max-width: 413px) {
+  @include mq($until: xs) {
     &--inline {
       display: block;
     }
@@ -12,6 +10,8 @@
       border-bottom: 1px solid $light;
     }
   }
+
+  margin-top: 16px;
 
   &--inline {
     display: flex;

@@ -6,9 +6,7 @@
 
 <script>
 export default {
-  setup () {
-    return {}
-  }
+  name: 'SbTypography',
 }
 </script>
 

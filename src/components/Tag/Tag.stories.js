@@ -2,7 +2,7 @@ import SbTag from './index'
 import { tagTypes } from './lib'
 
 export default {
-  title: 'Design System/Components/SbTag',
+  title: 'Basic/SbTag',
   components: SbTag,
   parameters: {
     docs: {

@@ -7,7 +7,7 @@ import LIB_ICONS from '../../lib/internal-icons'
 const availableIcons = Object.keys(LIB_ICONS)
 
 export default {
-  title: 'Design System/Components/SbIcon',
+  title: 'Basic/SbIcon',
   component: SbIcon,
   args: {
     size: 'normal',

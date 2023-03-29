@@ -1,7 +1,7 @@
 import SbUploadDialog from '.'
 
 export default {
-  title: 'Design System/Components/SbUploadDialog',
+  title: 'Interface/SbUploadDialog',
   component: SbUploadDialog,
   parameters: {
     docs: { inlineStories: false, iframeHeight: 300 },

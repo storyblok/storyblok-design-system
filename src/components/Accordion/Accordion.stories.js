@@ -1,7 +1,7 @@
 import Accordion from './index'
 
 export default {
-  title: 'Design System/Components/SbAccordion',
+  title: 'Basic/SbAccordion',
   component: Accordion,
   args: {
     title: 'Group 1',

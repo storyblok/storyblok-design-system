@@ -21,3 +21,7 @@ body {
 .mr-20 {
   margin-right: 20px;
 }
+
+.sb-show-main.sb-main-centered #storybook-root, .sb-story {
+  min-width: 360px;
+}

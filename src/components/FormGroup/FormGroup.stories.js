@@ -3,7 +3,7 @@ import { SbSelect } from '../Select'
 import SbTextField from '../TextField'
 
 export default {
-  title: 'Design System/Components/Form/SbFormGroup',
+  title: 'Forms/SbFormGroup',
   component: SbFormGroup,
   excludeStories: /.*Data$/,
   args: {

@@ -1,7 +1,7 @@
 import SbSeparator from './index'
 
 export default {
-  title: 'Design System/Components/SbSeparator',
+  title: 'Basic/SbSeparator',
   component: SbSeparator,
   argTypes: {
     small: {

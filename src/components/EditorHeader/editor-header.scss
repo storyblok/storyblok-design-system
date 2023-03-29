@@ -137,7 +137,7 @@
 }
 
 // for small mobiles
-@media only screen and (max-width: 413px) {
+@include mq($until: xs) {
   .sb-editor-header__mobile {
     .sb-editor-header__item {
       margin-left: 2px;

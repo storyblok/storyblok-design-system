@@ -1,7 +1,7 @@
 import SbTextField from './index'
 
 export default {
-  title: 'Design System/Components/Form/SbTextField',
+  title: 'Forms/SbTextField',
   component: SbTextField,
   args: {
     id: 'example',

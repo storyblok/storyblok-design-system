@@ -5,12 +5,14 @@ module.exports = {
     jest: true,
   },
   extends: [
+    '@vue/eslint-config-prettier',
+    '@vue/eslint-config-typescript',
+    'eslint:recommended',
+    'plugin:jest-dom/recommended',
+    'plugin:prettier/recommended',
     'plugin:vue/vue3-essential',
     'plugin:vue/vue3-recommended',
     'plugin:vue/vue3-strongly-recommended',
-    'prettier',
-    'plugin:prettier/recommended',
-    'plugin:jest-dom/recommended',
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {

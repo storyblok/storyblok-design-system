@@ -99,7 +99,7 @@ export const MOCK_DATA = {
 }
 
 export default {
-  title: 'Design System/Components/SbMinibrowser',
+  title: 'Navigation/SbMinibrowser',
   component: SbMinibrowser,
   excludeStories: /.*Data$/i,
   args: {

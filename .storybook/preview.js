@@ -2,8 +2,19 @@
 import '../src/assets/styles/global.scss'
 import './preview.css'
 import BlokInkPlugin from '../src/main'
-import { app } from '@storybook/vue3'
+import { setup } from '@storybook/vue3';
 
-app.use(BlokInkPlugin)
+setup((app) => {
+  app.use(BlokInkPlugin)
+})
 
-app.config.unwrapInjectedRef = true
+export const parameters = {
+  layout: 'centered',
+  options: {
+    storySort: {
+      method: '',
+      order: ['Introduction', 'Design', 'Basic', 'Forms', 'Navigation', 'Data', 'Interface'],
+      locales: '',
+    },
+  },
+};
