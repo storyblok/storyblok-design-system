@@ -60,7 +60,6 @@ setup((app) => {
 })
 
 export const parameters = {
-  layout: 'centered',
   options: {
     storySort: {
       method: '',

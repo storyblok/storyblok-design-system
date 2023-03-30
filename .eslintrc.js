@@ -9,7 +9,6 @@ module.exports = {
     '@vue/eslint-config-typescript',
     'eslint:recommended',
     'plugin:jest-dom/recommended',
-    'plugin:prettier/recommended',
     'plugin:vue/vue3-essential',
     'plugin:vue/vue3-recommended',
     'plugin:vue/vue3-strongly-recommended',

@@ -40,7 +40,8 @@
   border: 0;
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: $primary-text-color;
   }
 }
@@ -88,10 +89,13 @@
 .sb-tabs {
   position: relative;
   display: flex;
+  overflow: auto;
   width: 100%;
   margin: 0;
   padding: 0;
   list-style-type: none;
+
+  @include scrollbar($white, $sb-dark-blue-25, 4px);
 
   &::after {
     content: '';
@@ -105,8 +109,6 @@
 }
 
 .sb-tabs__add-button {
-  @include base--icon-hover;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,6 +117,8 @@
   background-color: transparent;
   border: 0;
   cursor: pointer;
+
+  @include base--icon-hover;
 }
 
 .sb-tabs--container {

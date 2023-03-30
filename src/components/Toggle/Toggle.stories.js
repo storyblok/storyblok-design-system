@@ -54,7 +54,7 @@ export const Default = (args) => ({
         :icon="icon"
         :variant="variant"
         style="margin-bottom: 10px;"
-      />
+      /><br>
 
       <SbToggle
         :name="name"
@@ -66,7 +66,7 @@ export const Default = (args) => ({
         :icon="icon"
         :variant="variant"
         style="margin-bottom: 10px;"
-      />
+      /><br>
 
       <SbToggle
         :name="name"
@@ -77,7 +77,7 @@ export const Default = (args) => ({
         :icon="icon"
         :variant="variant"
         disabled
-      />
+      /><br>
 
     </div>
   `,
@@ -100,7 +100,7 @@ export const WithIcon = (args) => ({
           :variant="variant"
           native-value="With Icon Inactive"
           style="margin-bottom: 10px;"
-        />
+        /><br>
       </div>
     </div>
   `,
@@ -121,7 +121,7 @@ export const WithVariant = (args) => ({
         :variant="'primary'"
         native-value="Default Variant"
         style="margin-bottom: 10px;"
-      />
+      /><br>
 
       <SbToggle
         id="secondary-variant"
@@ -132,7 +132,7 @@ export const WithVariant = (args) => ({
         :variant="'secondary'"
         native-value="Secondary Variant"
         style="margin-bottom: 10px;"
-      />
+      /><br>
 
       <SbToggle
         id="ghost-variant"
@@ -143,7 +143,7 @@ export const WithVariant = (args) => ({
         :variant="'ghost'"
         native-value="Ghost Variant"
         style="margin-bottom: 10px;"
-      />
+      /><br>
 
       <SbToggle
         id="danger-variant"
@@ -154,7 +154,7 @@ export const WithVariant = (args) => ({
         :variant="'danger'"
         native-value="Danger Variant"
         style="margin-bottom: 10px;"
-      />
+      /><br>
     </div>
   `,
 })

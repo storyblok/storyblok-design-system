@@ -1,10 +1,11 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines"],
 
-  "plugins": ["stylelint-order"],
+  "plugins": ["stylelint-order", "stylelint-a11y"],
 
   "rules": {
-    "max-nesting-depth": 4,
+    "max-nesting-depth": 3,
+    "a11y/selector-pseudo-class-focus": true,
     "selector-max-id": 1,
     "selector-max-compound-selectors": 4,
     "selector-class-pattern": null,
@@ -38,6 +39,10 @@
         {
           "type": "at-rule",
           "name": "media"
+        },
+        {
+          "type": "at-rule",
+          "name": "include"
         },
         "rules"
       ],
