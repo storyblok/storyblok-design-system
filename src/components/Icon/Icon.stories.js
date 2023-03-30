@@ -7,7 +7,7 @@ import LIB_ICONS from '../../lib/internal-icons'
 const availableIcons = Object.keys(LIB_ICONS)
 
 export default {
-  title: 'Design System/Components/SbIcon',
+  title: 'Basic/SbIcon',
   component: SbIcon,
   args: {
     size: 'normal',
@@ -20,25 +20,25 @@ export default {
     color: {
       name: 'color',
       description: 'Color for SbIcon',
+      options: availableColors,
       control: {
         type: 'select',
-        options: availableColors,
       },
     },
     backgroundColor: {
       name: 'background color',
       description: 'Background color for SbIcon',
+      options: availableColors,
       control: {
         type: 'select',
-        options: availableColors,
       },
     },
     name: {
       name: 'name',
       description: 'Icon name',
+      options: availableIcons,
       control: {
         type: 'select',
-        options: availableIcons,
       },
     },
     role: {
@@ -51,9 +51,9 @@ export default {
     size: {
       name: 'size',
       description: 'Size for SbIcon',
+      options: iconSizes,
       control: {
         type: 'select',
-        options: iconSizes,
       },
     },
   },

@@ -23,7 +23,11 @@
           :selected="shouldBeChecked(index)"
           @emit-value="handleEmitValue"
           @mouseenter="handleFocusItem(index)"
-        />
+        >
+          <template #list-item="scope">
+            <slot name="list-item" v-bind="scope" />
+          </template>
+        </SbSelectListItem>
       </template>
       <li
         v-if="showTagCreation"

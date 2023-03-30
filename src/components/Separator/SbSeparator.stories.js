@@ -1,23 +1,23 @@
 import SbSeparator from './index'
 
 export default {
-  title: 'Design System/Components/SbSeparator',
+  title: 'Basic/SbSeparator',
   component: SbSeparator,
   argTypes: {
     small: {
       name: 'small',
       description: 'small',
+      options: [true, false],
       control: {
         type: 'select',
-        options: [true, false],
       },
     },
     isFlat: {
       name: 'isFlat',
       description: 'isFlat',
+      options: [true, false],
       control: {
         type: 'select',
-        options: [true, false],
       },
     },
   },

@@ -5,7 +5,7 @@ import { badgeTypes } from '../Badge/lib'
 
 // default export defines configurations to all stories
 export default {
-  title: 'Design System/Components/SbAvatar',
+  title: 'Data/SbAvatar',
   component: SbAvatar,
   parameters: {
     docs: {
@@ -32,9 +32,9 @@ export default {
       name: 'bgColor',
       description:
         'Add a background color when the `SbAvatar` has the initials or the fallback icon',
+      options: availableColors,
       control: {
         type: 'select',
-        options: availableColors,
       },
     },
     description: {
@@ -47,9 +47,9 @@ export default {
     descriptionPosition: {
       name: 'descriptionPosition',
       description: 'Define the position to description',
+      options: ['top', 'bottom'],
       control: {
         type: 'select',
-        options: ['top', 'bottom'],
       },
     },
     name: {
@@ -62,9 +62,9 @@ export default {
     size: {
       name: 'size',
       description: 'Size of the SbAvatar',
+      options: ['small', 'normal', 'large'],
       control: {
         type: 'select',
-        options: ['small', 'normal', 'large'],
       },
     },
     showName: {
@@ -84,9 +84,9 @@ export default {
     status: {
       name: 'status',
       description: 'Render a `SbBadge` to show a status to `SbAvatar`',
+      options: badgeTypes,
       control: {
         type: 'select',
-        options: badgeTypes,
       },
     },
     useTooltip: {
@@ -99,9 +99,9 @@ export default {
     tooltipVariant: {
       name: 'tooltipVariant',
       description: 'it changes the default color for the Avatars tooltip',
+      options: ['dark', 'light'],
       control: {
         type: 'select',
-        options: ['dark', 'light'],
       },
     },
   },

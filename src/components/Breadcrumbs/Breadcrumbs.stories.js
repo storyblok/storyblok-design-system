@@ -32,7 +32,7 @@ const Template = (args) => ({
 
 // default export defines configurations to all stories
 export default {
-  title: 'Design System/Components/SbBreadcrumbs',
+  title: 'Navigation/SbBreadcrumbs',
   component: SbBreadcrumbs,
   excludeStories: /.*Data$/,
   parameters: {

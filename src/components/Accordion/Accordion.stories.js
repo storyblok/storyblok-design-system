@@ -1,16 +1,17 @@
 import Accordion from './index'
 
 export default {
-  title: 'Design System/Components/SbAccordion',
+  title: 'Basic/SbAccordion',
   component: Accordion,
   args: {
     title: 'Group 1',
-    icon: '',
+    icon: 'settings',
     iconDescription: '',
     isOpen: false,
     noHighlight: false,
     noBorder: false,
     noPadding: false,
+    contentInfoSlot: '<i>4 items</i>',
   },
 }
 
@@ -27,6 +28,10 @@ const Template = (args) => ({
       >
         <h2>Some text</h2>
         <p>Some more text</p>
+
+        <template #contentInfo>
+          <span v-html="args.contentInfoSlot" />
+        </template>
       </Accordion>
 
       <Accordion
@@ -35,6 +40,10 @@ const Template = (args) => ({
       >
         <h2>Some text</h2>
         <p>Some more text</p>
+
+        <template #contentInfo>
+          <span v-html="args.contentInfoSlot" />
+        </template>
       </Accordion>
 
       <Accordion
@@ -43,6 +52,10 @@ const Template = (args) => ({
       >
         <h2>Some text</h2>
         <p>Some more text</p>
+
+        <template #contentInfo>
+          <span v-html="args.contentInfoSlot" />
+        </template>
       </Accordion>
     </div>
   `,
@@ -76,4 +89,9 @@ noBorder.args = {
 export const noPadding = Template.bind({})
 noPadding.args = {
   noPadding: true,
+}
+
+export const contentInfo = Template.bind({})
+contentInfo.args = {
+  contentInfoSlot: '',
 }

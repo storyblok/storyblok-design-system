@@ -2,7 +2,7 @@ import SbTag from './index'
 import { tagTypes } from './lib'
 
 export default {
-  title: 'Design System/Components/SbTag',
+  title: 'Basic/SbTag',
   components: SbTag,
   parameters: {
     docs: {
@@ -34,9 +34,9 @@ export default {
     type: {
       name: 'type',
       description: 'Type of the `SbTag`',
+      options: tagTypes,
       control: {
         type: 'select',
-        options: tagTypes,
       },
     },
     onClick: {

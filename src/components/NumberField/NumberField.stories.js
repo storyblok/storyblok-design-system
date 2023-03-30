@@ -1,7 +1,7 @@
 import SbNumberField from './index'
 
 export default {
-  title: 'Design System/Components/Form/SbNumberField',
+  title: 'Forms/SbNumberField',
   component: SbNumberField,
   args: {
     id: 'example',

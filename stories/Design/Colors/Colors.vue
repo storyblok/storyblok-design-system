@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'SbColors',
   props: {
     colorName: {
       type: String,

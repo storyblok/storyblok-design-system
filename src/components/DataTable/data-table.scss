@@ -184,7 +184,7 @@
   display: none;
 }
 
-@media only screen and (max-width: $mq-sm) {
+@include mq($until: sm) {
   .sb-data-table {
     max-width: 100%;
   }

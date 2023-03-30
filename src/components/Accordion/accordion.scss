@@ -14,6 +14,7 @@
 }
 
 .sb-accordion__title {
+  flex: 1;
   overflow: hidden;
   max-width: 80%;
   margin-left: 2px;
@@ -35,6 +36,11 @@
   .sb-accordion__button {
     border-bottom-color: transparent;
   }
+}
+
+.sb-accordion__content-info {
+  flex: 0 0 auto;
+  margin-inline: auto 0;
 }
 
 .sb-accordion__content {

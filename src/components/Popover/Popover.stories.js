@@ -2,7 +2,7 @@ import { SbPopover, placementOptions } from '.'
 import SbButton from '../Button'
 
 export default {
-  title: 'Design System/Components/SbPopover',
+  title: 'Interface/SbPopover',
   component: SbPopover,
   args: {
     offset: [0, 10],
@@ -27,9 +27,9 @@ export default {
     placement: {
       name: 'placement',
       description: 'Title for notification',
+      options: placementOptions,
       control: {
         type: 'select',
-        options: placementOptions,
       },
     },
     parentElementTag: {

@@ -17,8 +17,14 @@ const BlokInkPlugin = {
     if (this.installed) return
 
     this.installed = true
+    const hasComponentsOption = options && options.withComponents?.length > 0
+
     for (const key in components) {
-      app.component(key, components[key])
+      if (hasComponentsOption && options.withComponents.includes(key)) {
+        app.component(key, components[key])
+      } else if (!hasComponentsOption) {
+        app.component(key, components[key])
+      }
     }
 
     app.directive('tooltip', Tooltip)

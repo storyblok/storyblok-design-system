@@ -1,6 +1,11 @@
 .sb-group-button {
   display: inline-flex;
 
+  @include mq($until: xs) {
+    flex-direction: column;
+    row-gap: $small-size;
+  }
+
   .sb-link {
     margin: 0 15px;
   }
@@ -12,22 +17,24 @@
   }
 
   &:not(&--has-spaces) {
-    .sb-button {
-      border-radius: 0;
-    }
+    @include mq($from: xs) {
+      .sb-button {
+        border-radius: 0;
+      }
 
-    .sb-button:first-child {
-      border-bottom-left-radius: 5px;
-      border-top-left-radius: 5px;
-    }
+      .sb-button:first-child {
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+      }
 
-    .sb-button:last-child {
-      border-bottom-right-radius: 5px;
-      border-top-right-radius: 5px;
-    }
+      .sb-button:last-child {
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+      }
 
-    .sb-button:not(:first-child) {
-      border-left: 0;
+      .sb-button:not(:first-child) {
+        border-left: 0;
+      }
     }
   }
 

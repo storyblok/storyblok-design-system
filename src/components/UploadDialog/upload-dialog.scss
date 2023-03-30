@@ -2,7 +2,6 @@
   position: relative;
   display: inline-block;
   width: 100%;
-  height: 48px;
   max-width: 602px;
   margin: 0 auto;
   background-color: $white;
@@ -10,22 +9,26 @@
   box-shadow: 0 3px 44px 13px rgba(0, 0, 0, 0.08);
 
   svg {
-    float: left;
-    padding-left: 20px;
-    padding-right: 14px;
-    padding-top: 14px;
+    padding-right: $medium-size;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    padding: $medium-size;
+    line-height: 1.2;
   }
 
   &__label {
     display: block;
-    padding-top: 14px;
+    padding-right: $small-size;
     font-size: $font-14;
     text-align: left;
   }
 
   .sb-loading__bar {
-    position: relative;
-    bottom: -8px;
+    position: absolute;
+    bottom: 0;
     overflow: auto;
     border-radius: 0 0 5px 5px;
   }
@@ -43,9 +46,7 @@
   }
 
   &__time-left {
-    float: right;
-    margin-top: -14px;
-    padding-right: 19px;
+    margin-left: auto;
     color: $sb-dark-blue-50;
     font-size: $font-14;
     font-weight: $font-weight-regular;

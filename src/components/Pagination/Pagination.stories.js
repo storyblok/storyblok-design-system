@@ -42,7 +42,7 @@ const PaginationTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbPagination',
+  title: 'Navigation/SbPagination',
   component: SbPagination,
   parameters: {
     docs: {
@@ -87,22 +87,22 @@ export default {
     locale: {
       name: 'locale',
       description: 'Allow to use the component in a different language',
+      options: [
+        'en',
+        'de',
+        'pt-br',
+        'es',
+        'fr',
+        'it',
+        'ja',
+        'pl',
+        'ru',
+        'sk',
+        'sv',
+        'zh',
+      ],
       control: {
         type: 'select',
-        options: [
-          'en',
-          'de',
-          'pt-br',
-          'es',
-          'fr',
-          'it',
-          'ja',
-          'pl',
-          'ru',
-          'sk',
-          'sv',
-          'zh',
-        ],
       },
     },
     isFullWidth: {
@@ -137,17 +137,17 @@ export default {
     onPerPageChange: {
       action: 'perPageChange',
       description: 'Event triggered when Select per page amount is changed',
+      options: [25, 50, 75, 100],
       control: {
         type: 'select',
-        options: [25, 50, 75, 100],
       },
     },
     onPageChange: {
       action: 'pageChange',
       description: `Event triggered when one selects a specific page from page's list`,
+      options: Array.from({ length: 10 }, (_, i) => i + 1),
       control: {
         type: 'select',
-        options: Array.from({ length: 10 }, (_, i) => i + 1),
       },
     },
     onPreviousPage: {
