@@ -16,5 +16,7 @@
     "files": "arquivos",
     "uploading": "Enviando",
     "minAnd": "min e",
-    "secLeft": "seg restante"
+    "secLeft": "seg restante",
+    "back": "Voltar",
+    "next": "Próximo"
   }

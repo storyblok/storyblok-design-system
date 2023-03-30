@@ -1,12 +1,13 @@
 <template>
-  <div class="sb-pagination"
-:class="computedClasses">
+  <div
+class="sb-pagination" :class="computedClasses"
+>
     <template v-if="carousel || compact || hasNextPrevBtn">
       <SbPaginationButton
         v-if="hasNextPrevBtn"
         data-testid="pagination-previous-button"
         :is-outlined="isLabelledButtons"
-        :button-label="$t('Back')"
+        :button-label="i18n(locale, 'Back')"
         :disabled="isFirstDisabled"
         @click="handlePreviousPage"
       />
@@ -35,7 +36,7 @@
       <SbPaginationButton
         v-if="hasNextPrevBtn"
         data-testid="pagination-next-button"
-        :button-label="$t('Next')"
+        :button-label="i18n(locale, 'next')"
         :disabled="isFirstDisabled"
         @click="handleNextPage"
       />
