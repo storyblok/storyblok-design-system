@@ -61,7 +61,7 @@ const EditorTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbEditorHeader',
+  title: 'Interface/SbEditorHeader',
   component: SbEditorHeader,
   parameters: {
     docs: {
@@ -114,9 +114,9 @@ export default {
       name: 'spaceStatus',
       description:
         'Change the icon to inform whether the space is published or not',
+      options: ['unpublished', 'published', 'published-and-changes'],
       control: {
         type: 'select',
-        options: ['unpublished', 'published', 'published-and-changes'],
       },
     },
     hasSaveButton: {

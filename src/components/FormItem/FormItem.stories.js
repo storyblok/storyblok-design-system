@@ -4,7 +4,7 @@ import SbTextField from '../TextField'
 import SbButton from '../Button'
 
 export default {
-  title: 'Design System/Components/Form/SbFormItem',
+  title: 'Forms/SbFormItem',
   component: SbFormItem,
   args: {
     label: 'Label',

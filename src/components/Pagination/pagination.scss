@@ -2,6 +2,7 @@
   display: inline-flex;
   flex-flow: row wrap;
   align-items: center;
+  width: 100%;
   height: 53px;
   max-width: 100%;
   color: $color-primary-dark;
@@ -12,11 +13,11 @@
     margin-right: 30px;
     padding-left: 10px;
 
-    @media (max-width: $mq-lg) {
+    @include mq($until: lg) {
       flex-flow: row nowrap;
     }
 
-    @media (min-width: $mq-lg) {
+    @include mq($from: lg) {
       margin-right: 120px;
     }
   }
@@ -24,7 +25,7 @@
   &__pages-container {
     margin-right: 30px;
 
-    @media (max-width: $mq-lg) {
+    @include mq($until: lg) {
       flex-flow: row nowrap;
     }
   }
@@ -41,6 +42,10 @@
     white-space: nowrap;
   }
 
+  &__buttons {
+    display: flex;
+  }
+
   &__button {
     display: block;
     width: 32px;
@@ -55,7 +60,8 @@
     }
 
     &:not(:disabled):not(&--with-label) {
-      &:hover {
+      &:hover,
+      &:focus {
         color: $color-primary;
       }
     }
@@ -213,16 +219,20 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
+@include mq($until: sm) {
   .sb-pagination {
     flex-wrap: wrap;
 
     &__per-page-container {
-      margin-right: 0;
+      display: none;
     }
 
     &__per-page-label {
       white-space: nowrap;
+    }
+
+    &__buttons {
+      margin-left: auto;
     }
   }
 }

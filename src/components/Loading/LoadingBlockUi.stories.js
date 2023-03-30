@@ -15,7 +15,7 @@ const LoadingBlockTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbLoading',
+  title: 'Interface/SbLoading',
   component: SbLoading,
   parameters: {
     docs: {
@@ -40,18 +40,18 @@ export default {
       name: 'type',
       description:
         'With the prop `type` you can choose which type of loading will be rendered.',
+      options: [...loadingTypes],
       control: {
         type: 'select',
-        options: [...loadingTypes],
       },
     },
     size: {
       name: 'size',
       description:
         'With the prop `size` you can define the sizes of the component loading.',
+      options: [...loadingSizes],
       control: {
         type: 'select',
-        options: [...loadingSizes],
       },
     },
     modelValue: {
@@ -75,9 +75,9 @@ export default {
       name: 'color',
       description:
         'Select the color of the loading spinner with the colors available in our Desing system.',
+      options: availableColors,
       control: {
         type: 'select',
-        options: availableColors,
       },
     },
     uiBlock: {

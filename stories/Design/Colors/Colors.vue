@@ -1,13 +1,15 @@
 <template>
   <div class="sb-colors--container">
-    <div class="sb-colors" :style="{ backgroundColor: colorName}"></div>
-    <span>{{name}}</span>
-    <span>{{colorName}}</span>
+    <div
+class="sb-colors" :style="{ backgroundColor: colorName }" />
+    <span>{{ name }}</span>
+    <span>{{ colorName }}</span>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'SbColors',
   props: {
     colorName: {
       type: String,
@@ -17,10 +19,10 @@ export default {
       type: String,
       default: null,
     },
-  }
+  },
 }
 </script>
 
 <style lang="scss">
-@import './colors.scss';
+@import './colors';
 </style>

@@ -44,7 +44,8 @@
   background-color: $color-primary-dark;
   transition: max-width 0.2s ease;
 
-  &:hover .sb-button {
+  &:hover .sb-button,
+  &:focus .sb-button {
     opacity: 1;
   }
 }
@@ -147,7 +148,8 @@
   }
 }
 
-.sb-sidebar-item--parent:hover {
+.sb-sidebar-item--parent:hover,
+.sb-sidebar-item--parent:focus {
   > .sb-sidebar-link {
     background-color: transparent;
   }
@@ -167,7 +169,8 @@
   }
 
   .sb-sidebar-link {
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: #373f57;
     }
   }
@@ -324,7 +327,7 @@
   flex: 1;
 }
 
-@media screen and (max-width: $mq-xs) {
+@include mq($until: xs) {
   .sb-sidebar__mobile-header {
     display: flex;
   }
@@ -349,7 +352,8 @@
     }
   }
 
-  .sb-link:hover:not([disabled])::after {
+  .sb-link:hover:not([disabled])::after,
+  .sb-link:focus:not([disabled])::after {
     opacity: 0;
   }
 }

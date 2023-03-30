@@ -132,7 +132,7 @@ const SidebarTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbSidebar',
+  title: 'Interface/SbSidebar',
   component: SbSidebar,
   excludeStories: /.*Data$/,
   parameters: {

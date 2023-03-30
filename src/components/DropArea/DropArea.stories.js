@@ -2,7 +2,7 @@ import SbDropArea from './index'
 import SbUploadDialog from '../UploadDialog'
 
 export default {
-  title: 'Design System/Components/SbDropArea',
+  title: 'Interface/SbDropArea',
   parameters: {
     docs: {
       inlineStories: false,

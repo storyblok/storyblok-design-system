@@ -1,7 +1,7 @@
 import Tooltip from '.'
 
 export default {
-  title: 'Design System/Directives/Vtooltip',
+  title: 'Directives/Vtooltip',
   args: {
     id: null,
     label: 'Default tooltip label',

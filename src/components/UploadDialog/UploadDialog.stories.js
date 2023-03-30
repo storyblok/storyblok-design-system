@@ -1,7 +1,7 @@
 import SbUploadDialog from '.'
 
 export default {
-  title: 'Design System/Components/SbUploadDialog',
+  title: 'Interface/SbUploadDialog',
   component: SbUploadDialog,
   parameters: {
     docs: { inlineStories: false, iframeHeight: 300 },
@@ -34,22 +34,22 @@ export default {
     locale: {
       name: 'locale',
       description: 'Allow to use the component in a different language',
+      options: [
+        'en',
+        'de',
+        'pt-br',
+        'es',
+        'fr',
+        'it',
+        'ja',
+        'pl',
+        'ru',
+        'sk',
+        'sv',
+        'zh',
+      ],
       control: {
         type: 'select',
-        options: [
-          'en',
-          'de',
-          'pt-br',
-          'es',
-          'fr',
-          'it',
-          'ja',
-          'pl',
-          'ru',
-          'sk',
-          'sv',
-          'zh',
-        ],
       },
     },
     percentageValue: {

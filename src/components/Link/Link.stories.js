@@ -1,7 +1,7 @@
 import SbLink from './index'
 
 export default {
-  title: 'Design System/Components/SbLink',
+  title: 'Basic/SbLink',
   component: SbLink,
   args: {
     type: 'primary',
@@ -15,9 +15,9 @@ export default {
     size: {
       name: 'size',
       description: 'Size',
+      options: ['small', 'normal', 'large'],
       control: {
         type: 'select',
-        options: ['small', 'normal', 'large'],
       },
     },
     label: {
@@ -51,9 +51,9 @@ export default {
     type: {
       name: 'type',
       description: '`SbLink` type',
+      options: ['primary', 'secondary'],
       control: {
         type: 'select',
-        options: ['primary', 'secondary'],
       },
     },
     icon: {

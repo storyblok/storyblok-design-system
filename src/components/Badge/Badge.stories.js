@@ -14,7 +14,7 @@ const BadgeTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbBadge',
+  title: 'Data/SbBadge',
   component: SbBadge,
   parameters: {
     docs: {
@@ -71,9 +71,9 @@ export default {
     type: {
       name: 'type',
       description: 'Type of the `SbBadge`',
+      options: badgeTypes,
       control: {
         type: 'select',
-        options: badgeTypes,
       },
       type: {
         required: true,

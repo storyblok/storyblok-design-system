@@ -23,7 +23,12 @@
           :selected="shouldBeChecked(index)"
           @emit-value="handleEmitValue"
           @mouseenter="handleFocusItem(index)"
-        />
+        >
+          <template #list-item="scope">
+            <slot name="list-item"
+v-bind="scope" />
+          </template>
+        </SbSelectListItem>
       </template>
       <li
         v-if="showTagCreation"
@@ -32,13 +37,15 @@
         @click="handleOptionCreated(searchInput)"
       >
         <span class="sb-select-list__create-label">Create tag</span>
-        <span class="sb-select-list__create-value" :title="searchInput">
+        <span class="sb-select-list__create-value"
+:title="searchInput">
           "{{ searchInput }}"
         </span>
       </li>
       <li v-else-if="isLoadingMore">
         <span class="sb-select-list__empty">
-          <SbLoading color="primary" size="small" />
+          <SbLoading color="primary"
+size="small" />
           {{ loadingMoreText }}
         </span>
       </li>

@@ -12,7 +12,7 @@ const NotificationTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbNotification',
+  title: 'Data/SbNotification',
   component: SbNotification,
   parameters: {
     docs: {
@@ -35,9 +35,9 @@ export default {
     status: {
       name: 'status',
       description: 'Status color',
+      options: ['general', 'positive', 'warning', 'info', 'negative'],
       control: {
         type: 'select',
-        options: ['general', 'positive', 'warning', 'info', 'negative'],
       },
     },
     title: {

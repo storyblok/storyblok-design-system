@@ -1,5 +1,6 @@
 <template>
-  <div class="sb-pagination" :class="computedClasses">
+  <div class="sb-pagination"
+:class="computedClasses">
     <template v-if="carousel || compact || hasNextPrevBtn">
       <SbPaginationButton
         v-if="hasNextPrevBtn"
@@ -63,20 +64,22 @@
         :locale="locale"
         @page-change="onPageChange"
       />
-      <SbPaginationButton
-        data-testid="pagination-previous-button"
-        icon="chevron-left"
-        :tooltip-label="i18n(locale, 'previousPage')"
-        :disabled="isFirstDisabled"
-        @click="handlePreviousPage"
-      />
-      <SbPaginationButton
-        data-testid="pagination-next-button"
-        icon="chevron-right"
-        :tooltip-label="i18n(locale, 'nextPage')"
-        :disabled="isLastDisabled"
-        @click="handleNextPage"
-      />
+      <div class="sb-pagination__buttons">
+        <SbPaginationButton
+          data-testid="pagination-previous-button"
+          icon="chevron-left"
+          :tooltip-label="i18n(locale, 'previousPage')"
+          :disabled="isFirstDisabled"
+          @click="handlePreviousPage"
+        />
+        <SbPaginationButton
+          data-testid="pagination-next-button"
+          icon="chevron-right"
+          :tooltip-label="i18n(locale, 'nextPage')"
+          :disabled="isLastDisabled"
+          @click="handleNextPage"
+        />
+      </div>
     </template>
   </div>
 </template>

@@ -1,8 +1,8 @@
 import SbTypography from '.'
 
 export default {
-  title: 'Design System/Base/Typography',
-  component: SbTypography
+  title: 'Design/Typography',
+  component: SbTypography,
 }
 
 export const AllTexts = () => ({
@@ -43,5 +43,5 @@ export const AllTexts = () => ({
       <h6>Heading 6</h6>
     </div>
   </section>
-  `
+  `,
 })

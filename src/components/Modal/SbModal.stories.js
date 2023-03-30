@@ -139,7 +139,7 @@ const ModalTypeTemplate = (args, storyContext) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbModal',
+  title: 'Interface/SbModal',
   component: SbModal,
   parameters: {
     docs: {
@@ -180,9 +180,9 @@ export default {
       name: 'align',
       description:
         'Prop `align` works to change the type of header alignment, center alignment is the default.',
+      options: ['center', 'left'],
       control: {
         type: 'select',
-        options: ['center', 'left'],
       },
     },
     isOpen: {
@@ -498,7 +498,7 @@ export const ModalTarget = (args, storyContext) => ({
 ModalTarget.parameters = {
   docs: {
     description: {
-      story: `This storie is to show that we can also render the modal inside any div, and not necessarily in the body of the document. 
+      story: `This storie is to show that we can also render the modal inside any div, and not necessarily in the body of the document.
       For that we need to pass the 'target' and 'disabled-target-default' props.`,
     },
   },

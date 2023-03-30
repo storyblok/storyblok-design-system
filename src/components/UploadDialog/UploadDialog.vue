@@ -1,12 +1,21 @@
 <template>
   <SbBlockUi>
     <div class="sb-upload-dialog">
-      <SbIcon name="refreshing" size="small" color="primary" />
-      <span class="sb-upload-dialog__label"> {{ labelToUpload }} </span>
-      <span v-if="timeLeft" class="sb-upload-dialog__time-left">
-        {{ timeLeftLabel }}
-      </span>
-      <SbLoading type="bar" :model-value="percentageValue" />
+      <div class="sb-upload-dialog__content">
+        <SbIcon
+name="refreshing" size="small"
+color="primary"
+/>
+        <span class="sb-upload-dialog__label"> {{ labelToUpload }} </span>
+        <span
+v-if="timeLeft" class="sb-upload-dialog__time-left"
+>
+          {{ timeLeftLabel }}
+        </span>
+      </div>
+      <SbLoading
+type="bar" :model-value="percentageValue"
+/>
     </div>
   </SbBlockUi>
 </template>

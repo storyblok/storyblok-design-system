@@ -64,7 +64,8 @@
   border-radius: $base-border-radius;
   transition: $base-transition;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $light-50;
 
     .sb-icon {
@@ -122,4 +123,20 @@
   border-color: $sb-green;
   box-shadow: 0 0 0 3px $sb-green-25;
   outline: none;
+}
+
+@mixin scrollbar($background-color, $thumb-color, $width: 8px) {
+  scrollbar-color: $thumb-color $background-color;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+    background-color: $background-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb-color;
+    border-radius: 4px;
+  }
 }

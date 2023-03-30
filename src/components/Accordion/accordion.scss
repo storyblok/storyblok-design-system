@@ -14,6 +14,7 @@
 }
 
 .sb-accordion__title {
+  flex: 1;
   overflow: hidden;
   max-width: 80%;
   margin-left: 2px;
@@ -23,11 +24,13 @@
 }
 
 .sb-accordion--open {
-  &:hover {
+  &:hover,
+  &:focus {
     background: $light-25;
   }
 
-  &:hover .sb-accordion__button {
+  &:hover .sb-accordion__button,
+  &:focus .sb-accordion__button {
     color: $sb-dark-blue;
     background: $light-25;
   }
@@ -35,6 +38,11 @@
   .sb-accordion__button {
     border-bottom-color: transparent;
   }
+}
+
+.sb-accordion__content-info {
+  flex: 0 0 auto;
+  margin-inline: auto 0;
 }
 
 .sb-accordion__content {
@@ -61,7 +69,8 @@
   border-top: 1px solid $light;
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: $sb-green;
   }
 
@@ -75,7 +84,8 @@
   margin-left: auto;
 }
 
-.sb-accordion:hover .sb-accordion__icon {
+.sb-accordion:hover .sb-accordion__icon,
+.sb-accordion:focus .sb-accordion__icon {
   display: block;
 }
 
@@ -83,7 +93,8 @@
   &.sb-accordion--open {
     background: transparent;
 
-    &:hover .sb-accordion__button {
+    &:hover .sb-accordion__button,
+    &:focus .sb-accordion__button {
       color: $sb-dark-blue;
       background: transparent;
     }

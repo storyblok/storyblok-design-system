@@ -9,7 +9,9 @@ const SelectTemplate = (args) => ({
     SbSelect,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
 
   data: () => ({
     internalValue: null,
@@ -200,7 +202,7 @@ export const defaultOptionsWithIconData = [
 ]
 
 export default {
-  title: 'Design System/Components/Form/SbSelect',
+  title: 'Forms/SbSelect',
   component: SbSelect,
   excludeStories: /.*Data$/,
   args: {

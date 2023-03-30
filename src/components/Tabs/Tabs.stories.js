@@ -22,6 +22,10 @@ const TabsTemplate = (template) => (args) => ({
           name: 'third',
         },
         {
+          label: 'Fourth',
+          name: 'fourth',
+        },
+        {
           label: 'Disabled',
           name: 'disabled',
           disabled: true,
@@ -73,7 +77,7 @@ const TabsTemplate = (template) => (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbTabs',
+  title: 'Navigation/SbTabs',
   component: SbTabs,
   args: {
     orientation: 'horizontal',
@@ -94,9 +98,9 @@ export default {
       name: 'orientation',
       description:
         'Define how the tabs should be views, as horizontal or vertical.',
+      options: ['horizontal', 'vertical'],
       control: {
         type: 'select',
-        options: ['horizontal', 'vertical'],
       },
     },
     showAddButton: {
@@ -109,9 +113,9 @@ export default {
     type: {
       name: 'type',
       description: 'With prop `type` you can change the type of tab view',
+      options: ['container'],
       control: {
         type: 'select',
-        options: ['container'],
       },
     },
     modelValue: {

@@ -1,4 +1,4 @@
-import Typography from './Typography.vue';
+import Typography from './Typography.vue'
 
 const SbTypography = {
   name: 'SbTypography',

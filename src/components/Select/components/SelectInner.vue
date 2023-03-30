@@ -13,31 +13,43 @@
       color="primary-dark"
     />
 
-    <div v-if="isTagsVisible" class="sb-select-inner__tags">
-      <SbTag
-        v-for="(tagLabel, key) in tagLabels"
-        :key="key"
-        tabindex="0"
-        :closable="!isDisabled"
-        @keydown="handleTagKeydown($event, tagLabel)"
-        @close="removeItem($event, tagLabel)"
-      >
-        <template v-if="tagLabel">
-          <SbAvatar
-            v-if="isTagAvatarVisible"
-            :key="tagLabel[itemLabel]"
-            :src="getSource(tagLabel)"
-            size="small"
-            :name="tagLabel[itemLabel]"
-          />
-          <span class="sb-select-inner__tag" :title="getTagTitle(tagLabel)">
-            <template v-if="showCaption">
-              {{ tagLabel[itemLabel] }} ({{ tagLabel[itemCaption] }})
+    <div v-if="isTagsVisible"
+class="sb-select-inner__tags">
+      <div v-for="(tagLabel, key) in tagLabels"
+:key="key">
+        <slot
+          name="selection"
+          :item="tagLabel"
+          :remove="(e) => removeItem(e, tagLabel)"
+        >
+          <SbTag
+            tabindex="0"
+            :closable="!isDisabled"
+            @keydown="handleTagKeydown($event, tagLabel)"
+            @close="removeItem($event, tagLabel)"
+          >
+            <template v-if="tagLabel">
+              <SbAvatar
+                v-if="isTagAvatarVisible"
+                :key="tagLabel[itemLabel]"
+                :src="getSource(tagLabel)"
+                size="small"
+                :name="tagLabel[itemLabel]"
+              />
+              <span class="sb-select-inner__tag"
+:title="getTagTitle(tagLabel)">
+                <template v-if="showCaption">
+                  {{ tagLabel[itemLabel] }} ({{ tagLabel[itemCaption] }})
+                </template>
+                <template v-else>{{
+                  tagLabel[itemLabel] || tagLabel
+                }}</template>
+              </span>
             </template>
-            <template v-else>{{ tagLabel[itemLabel] || tagLabel }}</template>
-          </span>
-        </template>
-      </SbTag>
+          </SbTag>
+        </slot>
+      </div>
+
       <input
         v-if="filterable"
         :id="inputId"
@@ -53,7 +65,8 @@
       />
     </div>
 
-    <div v-if="isAvatarVisible && showAvatar" class="sb-select-inner__avatar">
+    <div v-if="isAvatarVisible && showAvatar"
+class="sb-select-inner__avatar">
       <SbAvatar
         :src="avatarData.src"
         size="small"
@@ -101,7 +114,8 @@
         <SbIcon name="x-clear" />
       </button>
 
-      <SbIcon class="sb-select-inner__chevron" :name="rightIconName" />
+      <SbIcon class="sb-select-inner__chevron"
+:name="rightIconName" />
     </div>
   </div>
 </template>

@@ -42,14 +42,14 @@
 }
 
 .sb-breadcrumbs__dropdown {
-  @include generalBoxShadow();
-
   position: absolute;
   left: 0;
   top: calc(100% + 10px);
   display: block;
   margin: 0;
   padding: 9px 0;
+
+  @include generalBoxShadow();
 
   .sb-breadcrumbs__item {
     display: block;
@@ -62,7 +62,8 @@
     padding: 6px 15px;
     text-decoration: none;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $light-50;
     }
   }
@@ -76,6 +77,7 @@
   display: inline-flex;
   color: $primary-text-color;
   font-size: $font-13;
+  line-height: 2;
 
   &--active {
     color: $color-primary-dark;
@@ -87,7 +89,8 @@
     cursor: pointer;
   }
 
-  a:hover {
+  a:hover,
+  a:focus {
     text-decoration: underline;
   }
 }

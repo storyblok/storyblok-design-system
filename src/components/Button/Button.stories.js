@@ -63,7 +63,7 @@ const ButtonTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbButton',
+  title: 'Basic/SbButton',
   component: SbButton,
   parameters: {
     docs: {
@@ -108,25 +108,25 @@ export default {
     iconRight: {
       name: 'iconRight',
       description: 'Icon on the right',
+      options: availableIcons,
       control: {
         type: 'select',
-        options: availableIcons,
       },
     },
     iconColor: {
       name: 'iconColor',
       description: 'Icon color',
+      options: availableColors,
       control: {
         type: 'select',
-        options: availableColors,
       },
     },
     icon: {
       name: 'icon',
       description: 'Icon before label (default on the left)',
+      options: availableIcons,
       control: {
         type: 'select',
-        options: availableIcons,
       },
     },
     isFullWidth: {
@@ -167,34 +167,34 @@ export default {
     size: {
       name: 'size',
       description: 'Size',
+      options: ['small', 'normal', 'large'],
       control: {
         type: 'select',
-        options: ['small', 'normal', 'large'],
       },
     },
     variant: {
       name: 'variant',
       description: '`SbButton` variant',
+      options: ['primary', 'secondary', 'tertiary', 'danger', 'caution'],
       control: {
         type: 'select',
-        options: ['primary', 'secondary', 'tertiary', 'danger', 'caution'],
       },
     },
     tooltipPosition: {
       name: 'tooltipPosition',
       description: 'Position for `v-tooltip` directive',
+      options: [...availableTooltipPositions],
       control: {
         type: 'select',
-        options: [...availableTooltipPositions],
       },
     },
     type: {
       name: 'type',
       description:
         'The `type` attribute specifies the `type` of button, the available options are **button**, **submit**, **reset**, the default value is null.',
+      options: [...availableButtonsTypes],
       control: {
         type: 'select',
-        options: [...availableButtonsTypes],
       },
     },
   },

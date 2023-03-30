@@ -53,7 +53,7 @@ const DataTableTemplate = (args) => ({
 })
 
 export default {
-  title: 'Design System/Components/SbDataTable',
+  title: 'Data/SbDataTable',
   components: SbDataTable,
   excludeStories: /.*Data$/,
   parameters: {
@@ -128,9 +128,9 @@ export default {
     selectionMode: {
       name: 'selectionMode',
       description: description.selectionMode,
+      options: ['single', 'multiple'],
       control: {
         type: 'select',
-        options: ['single', 'multiple'],
       },
     },
     striped: {

@@ -1053,4 +1053,69 @@ describe('SbSelect component', () => {
       })
     })
   })
+
+  describe('Show custom selection', () => {
+    const wrapper = mountAttachingComponent(SbSelect, {
+      props: {
+        label: 'Choose an option',
+        options: [...defaultSelectOptionsData],
+        modelValue: [1, 2, 3],
+        multiple: true,
+      },
+      slots: {
+        selection: `
+          <template #selection="{ item, remove }">
+            <span class="custom-selection" @click="remove">
+              label: {{ item.label }}, value: {{ item.value }}
+            </span>
+          </template>
+        `,
+      },
+    })
+
+    it('should render the selection slot for selected items', () => {
+      const customSelectionItems = wrapper.findAll('.custom-selection')
+      expect(customSelectionItems.length).toBe(3)
+    })
+
+    it('should pass the item in the scope', () => {
+      const customSelection = wrapper.find('.custom-selection')
+      expect(customSelection.text()).toBe('label: Option 1, value: 1')
+    })
+
+    it('should pass the remove function in the scope', async () => {
+      const customSelection = wrapper.find('.custom-selection')
+      await customSelection.trigger('click')
+      expect(wrapper.emitted('update:modelValue')[0]).toEqual([[2, 3]])
+    })
+  })
+
+  describe('Show custom list item', () => {
+    const wrapper = mountAttachingComponent(SbSelect, {
+      props: {
+        label: 'Choose an option',
+        options: [...defaultSelectOptionsData],
+        modelValue: null,
+      },
+      slots: {
+        'list-item': `
+          <template #list-item="{ item }">
+            <span class="custom-item">
+              Custom: {{ item.label }}
+            </span>
+          </template>
+        `,
+      },
+    })
+
+    it('should render the list-item slot for each item', () => {
+      const customItems = wrapper.findAll('.custom-item')
+      expect(customItems.length).toBe(7)
+    })
+
+    it('should pass the item in the scope', () => {
+      const customItem = wrapper.find('.custom-item')
+      expect(customItem.text()).toBe('Custom: Option 1')
+    })
+  })
 })
