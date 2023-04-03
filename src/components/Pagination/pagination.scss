@@ -184,6 +184,10 @@
       width: 16px;
       background-color: $blue;
       transition: width 0.1s ease-in-out;
+
+      &:after {
+        content: unset;
+      }
     }
   }
 }
