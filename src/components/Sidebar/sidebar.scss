@@ -44,13 +44,6 @@
   background-color: $color-primary-dark;
   transition: max-width 0.2s ease;
 
-  @include mq($until: sm) {
-    height: 100vh;
-    height: fill-available;
-    max-height: initial;
-    min-height: initial;
-  }
-
   &:hover .sb-button,
   &:focus .sb-button {
     opacity: 1;
@@ -334,7 +327,7 @@
   flex: 1;
 }
 
-@include mq($until: xs) {
+@include mq($until: sm) {
   .sb-sidebar__mobile-header {
     display: flex;
   }
@@ -345,6 +338,12 @@
     top: 0;
     z-index: 4;
     transform: translateX(-110%);
+    height: 100vh;
+    /* stylelint-disable */
+    height: -webkit-fill-available;
+    /* stylelint-enable */
+    max-height: initial;
+    min-height: initial;
   }
 
   .sb-sidebar--active .sb-sidebar__content {
