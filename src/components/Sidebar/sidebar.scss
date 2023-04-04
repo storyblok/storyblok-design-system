@@ -336,14 +336,15 @@
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 4;
-    transform: translateX(-110%);
+    overflow: auto;
     height: 100vh;
     /* stylelint-disable */
     height: -webkit-fill-available;
     /* stylelint-enable */
     max-height: initial;
-    min-height: initial;
+    max-width: initial;
+    z-index: 4;
+    transform: translateX(-110%);
   }
 
   .sb-sidebar--active .sb-sidebar__content {
