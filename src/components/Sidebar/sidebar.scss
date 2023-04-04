@@ -44,7 +44,15 @@
   background-color: $color-primary-dark;
   transition: max-width 0.2s ease;
 
-  &:hover .sb-button {
+  @include mq($until: sm) {
+    height: 100vh;
+    height: fill-available;
+    max-height: initial;
+    min-height: initial;
+  }
+
+  &:hover .sb-button,
+  &:focus .sb-button {
     opacity: 1;
   }
 }
@@ -147,7 +155,8 @@
   }
 }
 
-.sb-sidebar-item--parent:hover {
+.sb-sidebar-item--parent:hover,
+.sb-sidebar-item--parent:focus {
   > .sb-sidebar-link {
     background-color: transparent;
   }
@@ -167,7 +176,8 @@
   }
 
   .sb-sidebar-link {
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: #373f57;
     }
   }
@@ -349,7 +359,8 @@
     }
   }
 
-  .sb-link:hover:not([disabled])::after {
+  .sb-link:hover:not([disabled])::after,
+  .sb-link:focus:not([disabled])::after {
     opacity: 0;
   }
 }
