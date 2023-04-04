@@ -18,6 +18,7 @@
 .sb-sidebar__bottom {
   position: relative;
   margin-bottom: 15px;
+  margin-top: auto;
 
   .sb-button {
     position: absolute;
@@ -38,9 +39,8 @@
   flex-direction: column;
   box-sizing: border-box;
   width: 280px;
-  max-height: 100vh;
+  height: 100vh;
   max-width: 280px;
-  min-height: 100vh;
   background-color: $color-primary-dark;
   transition: max-width 0.2s ease;
 
@@ -86,7 +86,6 @@
 .sb-sidebar-list {
   position: relative;
   display: flex;
-  flex: 1;
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
@@ -286,6 +285,12 @@
   }
 }
 
+.sb-sidebar-toggle {
+  position: absolute;
+  bottom: 100px;
+  right: 0;
+}
+
 .sb-sidebar--minimize .sb-sidebar__top {
   flex-direction: column;
 
@@ -325,42 +330,4 @@
 
 .sb-sidebar__mobile-logo {
   flex: 1;
-}
-
-@include mq($until: sm) {
-  .sb-sidebar__mobile-header {
-    display: flex;
-  }
-
-  .sb-sidebar__content {
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow: auto;
-    height: 100vh;
-    /* stylelint-disable */
-    height: -webkit-fill-available;
-    /* stylelint-enable */
-    max-height: initial;
-    max-width: initial;
-    z-index: 4;
-    transform: translateX(-110%);
-  }
-
-  .sb-sidebar--active .sb-sidebar__content {
-    transform: translateX(0);
-  }
-
-  .sb-sidebar-toggle {
-    display: none;
-
-    .sb-button {
-      margin: -1px 0 0 -1px;
-    }
-  }
-
-  .sb-link:hover:not([disabled])::after,
-  .sb-link:focus:not([disabled])::after {
-    opacity: 0;
-  }
 }

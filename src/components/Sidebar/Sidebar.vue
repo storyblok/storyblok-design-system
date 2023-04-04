@@ -13,7 +13,8 @@
         </button>
       </div>
 
-      <div class="sb-sidebar__mobile-logo" @click="closeSidebar">
+      <div class="sb-sidebar__mobile-logo"
+@click="closeSidebar">
         <SbLink
           v-if="logoDestinationUrl"
           as="router-link"
@@ -25,7 +26,8 @@
             :src="logo"
             alt="Custom Sidebar Logo"
           />
-          <SbSidebarLogo v-else variant="dark" />
+          <SbSidebarLogo v-else
+variant="dark" />
         </SbLink>
         <template v-else>
           <img
@@ -34,12 +36,14 @@
             :src="logo"
             alt="Custom Sidebar Logo"
           />
-          <SbSidebarLogo v-else variant="dark" />
+          <SbSidebarLogo v-else
+variant="dark" />
         </template>
       </div>
     </div>
 
-    <div v-click-outside="sidebarClose" class="sb-sidebar__content">
+    <div v-click-outside="sidebarClose"
+class="sb-sidebar__content">
       <div class="sb-sidebar__top">
         <img
           v-if="logo"
@@ -47,7 +51,8 @@
           :src="logo"
           alt="Custom Sidebar Logo"
         />
-        <SbSidebarLogo v-else :minimize="minimize" />
+        <SbSidebarLogo v-else
+:minimize="minimize" />
       </div>
 
       <SbSidebarList>
@@ -59,16 +64,21 @@
           />
 
           <slot />
-          <span v-if="hasScrollbar" class="sb-sidebar-list__fade"></span>
+          <span
+v-if="hasScrollbar" class="sb-sidebar-list__fade" />
         </div>
       </SbSidebarList>
 
       <div class="sb-sidebar__bottom">
         <slot name="bottom" />
 
-        <SbSidebarToggle :minimize="minimize" @click="toggleMinimizedState" />
+        <SbSidebarToggle :minimize="minimize"
+@click="toggleMinimizedState" />
       </div>
     </div>
+
+    <div
+class="sb-sidebar__background" @click="closeSidebar" />
   </aside>
 </template>
 
@@ -124,7 +134,7 @@ export default {
     logoDestinationUrl: {
       type: Object,
       validator(value) {
-        return value.hasOwnProperty('name')
+        return Object.prototype.hasOwnProperty.call(value, 'name')
       },
     },
   },

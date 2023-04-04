@@ -418,12 +418,13 @@ export const WithMinibrowser = (args) => ({
         v-model="internalValue"
         style="max-width: 300px"
       >
+        <template #minibrowser>
         <SbMinibrowser
-          slot="minibrowser"
           :options="minibrowserOptions"
           @select-item="onSelectItem"
           @close="handleCloseBrowser"
         />
+        </template>
       </SbSelect>
     </div>
   `,
