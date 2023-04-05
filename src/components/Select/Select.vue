@@ -39,7 +39,6 @@
       @close-list="hideList"
       @clear-all-values="handleClearAllValues"
       @remove-item-value="handleRemoveItemValue"
-
     >
       <template #selection="scope">
         <slot name="selection" v-bind="scope" />
@@ -213,8 +212,8 @@ export default {
     },
     isOptionDisabled: {
       type: Function,
-      default: () => false
-    }
+      default: () => false,
+    },
   },
 
   emits: [

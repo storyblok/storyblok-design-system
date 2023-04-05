@@ -130,8 +130,8 @@ export default {
     firstValueIsAllValue: Boolean,
     isOptionDisabled: {
       type: Function,
-      default: () => false
-    }
+      default: () => false,
+    },
   },
 
   emits: ['emit-value', 'focus-item', 'keydown', 'option-created'],
