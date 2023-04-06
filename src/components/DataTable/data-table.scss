@@ -224,4 +224,8 @@
   .sb-data-table--loading .sb-data-table__body-cell {
     flex-grow: 1;
   }
+
+  .sb-data-table__body-cell--mobile-hidden {
+    display: none;
+  }
 }

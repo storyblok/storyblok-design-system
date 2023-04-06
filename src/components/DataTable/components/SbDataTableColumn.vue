@@ -5,7 +5,8 @@
     :width="width"
     :is-sort-icon-always-visible="isSortIconAlwaysVisible"
   >
-    <span v-if="showLabel" class="sb-data-table__body-cell-label"
+    <span
+v-if="showLabel" class="sb-data-table__body-cell-label"
       >{{ label }}:</span
     >
     <slot :row="row" />
@@ -47,10 +48,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    hideMobile: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     computedClasses() {
-      return this.isContentCentered ? 'sb-data-table__body-cell--centered' : ''
+      return {
+        'sb-data-table__body-cell--centered': this.isContentCentered,
+        'sb-data-table__body-cell--mobile-hidden': this.hideMobile,
+      }
     },
     showLabel() {
       return this.label && !this.hideMobileLabel
