@@ -621,9 +621,7 @@ WithCaption.parameters = {
 export const WithOptionDisabled = SelectTemplate.bind({})
 
 WithOptionDisabled.args = {
-  isOptionDisabled: (item) => {
-    return !!defaultSelectOptionsData.find(({ value }) => value === 2 && value === item.value)
-  }
+  isOptionDisabled: (item) => item.value === 2
 }
 
 WithOptionDisabled.parameters = {
