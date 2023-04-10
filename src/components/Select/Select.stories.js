@@ -97,7 +97,7 @@ export const defaultSelectOptionsData = [
   },
 ]
 
-export const selectOptionsDataWithAllOption = [
+export const selectOptionsDataWithAllOptionData = [
   {
     label: 'All options',
     value: 0,
@@ -223,6 +223,7 @@ export default {
     loadingLabel: 'Loading...',
     disableInternalSearch: false,
     showCaption: false,
+    isOptionDisabled: () => false,
   },
 }
 
@@ -238,7 +239,7 @@ export const MultipleWithAllOption = SelectTemplate.bind({})
 
 MultipleWithAllOption.args = {
   multiple: true,
-  options: selectOptionsDataWithAllOption,
+  options: selectOptionsDataWithAllOptionData,
   firstValueIsAllValue: true,
 }
 
@@ -260,7 +261,9 @@ export const LazySearch = (args) => ({
     SbSelect,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
 
   data: () => ({
     internalSearch: true,
@@ -306,6 +309,7 @@ export const LazySearch = (args) => ({
       :loading-label="loadingLabel"
       :clearable="clearable"
       :disable-internal-filter="internalSearch"
+      :is-option-disabled="isOptionDisabled"
       v-model="internalValue"
       style="max-width: 300px"
       @filter="handleFilter"
@@ -376,7 +380,9 @@ export const WithMinibrowser = (args) => ({
     SbMinibrowser,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
 
   data: () => ({
     internalValue: null,
@@ -415,6 +421,7 @@ export const WithMinibrowser = (args) => ({
         :filterable="filterable"
         :use-avatars="useAvatars"
         :inline="inline"
+        :is-option-disabled="isOptionDisabled"
         v-model="internalValue"
         style="max-width: 300px"
       >
@@ -436,7 +443,9 @@ export const EmitOption = (args) => ({
     SbMinibrowser,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
 
   data: () => ({
     singleSelectValue: null,
@@ -536,7 +545,9 @@ export const EmitSearch = (args) => ({
     SbSelect,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
 
   data: () => ({
     searchInput: '',
@@ -574,6 +585,7 @@ export const EmitSearch = (args) => ({
           emit-search
           emit-option
           :modelValue="searchInput"
+          :is-option-disabled="isOptionDisabled"
           @input="handleSearchValue"
           style="max-width: 300px"
         />
@@ -605,4 +617,24 @@ WithCaption.parameters = {
         'When we pass the `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
     },
   },
+}
+
+
+const getOptionsDisabled = (item) => {
+  return !!defaultSelectOptionsData.find(({ value }) => value === 2 && value === item.value)
+}
+
+export const WithOptionDisabled = SelectTemplate.bind({})
+
+WithOptionDisabled.args = {
+  isOptionDisabled: getOptionsDisabled
+}
+
+WithOptionDisabled.parameters = {
+  docs: {
+    description: {
+      story:
+        'When we pass the `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
+    },
+  }
 }
