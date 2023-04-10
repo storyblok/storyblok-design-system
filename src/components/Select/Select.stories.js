@@ -57,6 +57,7 @@ const SelectTemplate = (args) => ({
       :loading-label="loadingLabel"
       :clearable="clearable"
       :show-caption="showCaption"
+      :is-option-disabled="isOptionDisabled"
       v-model="internalValue"
       :first-value-is-all-value="firstValueIsAllValue"
       style="max-width: 300px"
@@ -309,7 +310,6 @@ export const LazySearch = (args) => ({
       :loading-label="loadingLabel"
       :clearable="clearable"
       :disable-internal-filter="internalSearch"
-      :is-option-disabled="isOptionDisabled"
       v-model="internalValue"
       style="max-width: 300px"
       @filter="handleFilter"
@@ -421,7 +421,6 @@ export const WithMinibrowser = (args) => ({
         :filterable="filterable"
         :use-avatars="useAvatars"
         :inline="inline"
-        :is-option-disabled="isOptionDisabled"
         v-model="internalValue"
         style="max-width: 300px"
       >
@@ -585,7 +584,6 @@ export const EmitSearch = (args) => ({
           emit-search
           emit-option
           :modelValue="searchInput"
-          :is-option-disabled="isOptionDisabled"
           @input="handleSearchValue"
           style="max-width: 300px"
         />
@@ -620,21 +618,19 @@ WithCaption.parameters = {
 }
 
 
-const getOptionsDisabled = (item) => {
-  return !!defaultSelectOptionsData.find(({ value }) => value === 2 && value === item.value)
-}
-
 export const WithOptionDisabled = SelectTemplate.bind({})
 
 WithOptionDisabled.args = {
-  isOptionDisabled: getOptionsDisabled
+  isOptionDisabled: (item) => {
+    return !!defaultSelectOptionsData.find(({ value }) => value === 2 && value === item.value)
+  }
 }
 
 WithOptionDisabled.parameters = {
   docs: {
     description: {
       story:
-        'When we pass the `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
+        'When we pass the `isOptionDisabled` prop, it will be possible to render a option disabled',
     },
   }
 }
