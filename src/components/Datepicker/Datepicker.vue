@@ -324,6 +324,8 @@ export default {
   },
 
   mounted() {
+    if (this.internalValue) this.internalDate = this.internalValue
+
     this.$nextTick(() => {
       this.inputElement = this.$refs.input && this.$refs.input.$el
     })
