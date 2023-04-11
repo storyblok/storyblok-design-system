@@ -21,6 +21,7 @@
           :show-caption="showCaption"
           :path="option[itemCaption]"
           :selected="shouldBeChecked(index)"
+          :is-disabled="isOptionDisabled(option)"
           @emit-value="handleEmitValue"
           @mouseenter="handleFocusItem(index)"
         >
@@ -127,6 +128,10 @@ export default {
       value: '',
     },
     firstValueIsAllValue: Boolean,
+    isOptionDisabled: {
+      type: Function,
+      default: () => false,
+    },
   },
 
   emits: ['emit-value', 'focus-item', 'keydown', 'option-created'],
