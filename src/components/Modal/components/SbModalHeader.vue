@@ -11,9 +11,12 @@
       :color="iconColor"
       :background-color="iconBackground"
     />
-    <h1 class="sb-modal-header__title">
-      {{ title }}
-    </h1>
+    <div class="sb-modal-header__heading">
+      <h1 class="sb-modal-header__title">
+        {{ title }}
+      </h1>
+      <slot name="heading" />
+    </div>
 
     <div v-if="$slots.actions" class="sb-modal-header__actions">
       <slot name="actions" />
