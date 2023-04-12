@@ -36,7 +36,7 @@
               />
               <span class="sb-select-inner__tag" :title="getTagTitle(tagLabel)">
                 <template v-if="showCaption">
-                  {{ tagLabel[itemLabel] }} ({{ tagLabel[itemCaption] }})
+                  {{ tagLabel[itemLabel] }} <span v-if="tagLabel[itemCaption]">({{ tagLabel[itemCaption] }})</span>
                 </template>
                 <template v-else>{{
                   tagLabel[itemLabel] || tagLabel
@@ -395,7 +395,7 @@ export default {
     modelValue(val, oldVal) {
       const isSameValue = JSON.stringify(val) === JSON.stringify(oldVal)
       if (this.isSearchTextVisible && !isSameValue) {
-        if (oldVal?.length && val?.length) {
+        if (oldVal.length && val.length) {
           this.$nextTick(() => this.$refs.search.focus())
         }
         return
