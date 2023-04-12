@@ -395,7 +395,7 @@ export default {
     modelValue(val, oldVal) {
       const isSameValue = JSON.stringify(val) === JSON.stringify(oldVal)
       if (this.isSearchTextVisible && !isSameValue) {
-        if (oldVal.length && val.length) {
+        if (oldVal?.length && val?.length) {
           this.$nextTick(() => this.$refs.search.focus())
         }
         return

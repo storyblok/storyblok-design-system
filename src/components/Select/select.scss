@@ -251,6 +251,9 @@
 }
 
 .sb-select-list {
+  @include popoverComponent();
+  @include listPosition();
+  
   display: none;
   flex: 1;
   overflow: auto;
@@ -260,9 +263,6 @@
   min-width: 176px;
   padding: 13px 0;
   background-color: $white;
-
-  @include popoverComponent();
-  @include listPosition();
 
   ul {
     margin: 0;
