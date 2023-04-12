@@ -130,7 +130,7 @@ export const defaultOptionsWithCaptionData = [
   },
   {
     label: 'Option 3',
-    caption: 'uk/folder-text/uk',
+    caption: '',
     value: 3,
   },
   {
@@ -613,6 +613,23 @@ WithCaption.parameters = {
     description: {
       story:
         'When we pass the `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
+    },
+  },
+}
+
+export const WithCaptionTag = SelectTemplate.bind({})
+
+WithCaptionTag.args = {
+  showCaption: true,
+  multiple: true,
+  options: [...defaultOptionsWithCaptionData],
+}
+
+WithCaptionTag.parameters = {
+  docs: {
+    description: {
+      story:
+        'When we pass the `multiple` and `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
     },
   },
 }
