@@ -36,7 +36,7 @@
               />
               <span class="sb-select-inner__tag" :title="getTagTitle(tagLabel)">
                 <template v-if="showCaption">
-                  {{ tagLabel[itemLabel] }} ({{ tagLabel[itemCaption] }})
+                  {{ tagLabel[itemLabel] }} <span v-if="tagLabel[itemCaption]">({{ tagLabel[itemCaption] }})</span>
                 </template>
                 <template v-else>{{
                   tagLabel[itemLabel] || tagLabel
@@ -255,9 +255,9 @@ export default {
       }
 
       if (this.showCaption && this.currentOptionValue) {
-        return `${this.currentOptionLabel} (${
-          this.currentOptionValue[this.itemCaption]
-        })`
+        return this.currentOptionValue[this.itemCaption] ? `${this.currentOptionLabel} (${
+          this.currentOptionValue[this.itemCaption]})` : 
+          `${this.currentOptionLabel}`
       }
 
       if (this.inline) {
@@ -529,7 +529,7 @@ export default {
 
       if (this.showCaption) {
         const caption = tagLabel[this.itemCaption]
-        return `${label} (${caption})`
+        return caption ? `${label} (${caption})` : `${label}`
       }
 
       return label
