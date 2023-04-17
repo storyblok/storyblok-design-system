@@ -24,14 +24,7 @@ const PaginationTemplate = (args) => ({
   template: `
     <div style="padding: 20px; margin-top: 250px">
       <SbPagination
-        v-bind="{
-          carousel,
-          compact,
-          customPerPageOptions,
-          isFullWidth,
-          locale,
-          total: total || 100
-        }"
+        v-bind="$props"
         :per-page="perPageData"
         v-model="currentPage"
         @page-change="onPageChange"
@@ -61,6 +54,8 @@ export default {
     perPage: 10,
     total: 100,
     modelValue: 1,
+    hasNextPrevBtn: false,
+    isLabelledButtons: false,
   },
   argTypes: {
     carousel: {
@@ -117,6 +112,20 @@ export default {
       description: 'Number of items per page',
       control: {
         type: 'number',
+      },
+    },
+    hasNextPrevBtn: {
+      name: 'hasNextPrevBtn',
+      description: 'next button',
+      control: {
+        type: 'boolean',
+      },
+    },
+    isLabelledButtons: {
+      name: 'isLabelledButtons',
+      description: 'labelled buttons',
+      control: {
+        type: 'boolean',
       },
     },
     total: {

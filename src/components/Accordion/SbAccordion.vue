@@ -1,5 +1,6 @@
 <template>
-  <div class="sb-accordion" :class="activeClasses">
+  <div class="sb-accordion"
+:class="activeClasses">
     <button
       class="sb-accordion__button"
       type="button"
@@ -8,7 +9,9 @@
       @click="toggleAccordion"
     >
       <SbIcon :name="chevronIcon" />
-      <p class="sb-accordion__title">{{ title }}</p>
+      <p class="sb-accordion__title">
+        {{ title }}
+      </p>
 
       <SbIcon
         v-if="icon"
@@ -18,8 +21,9 @@
         @click.stop="$emit('icon-click')"
       />
 
-      <div v-if="$slots.contentInfo" class="sb-accordion__content-info">
-        <slot name="contentInfo"></slot>
+      <div v-if="$slots.contentInfo"
+class="sb-accordion__content-info">
+        <slot name="contentInfo" />
       </div>
     </button>
 
@@ -29,7 +33,7 @@
         :id="`collapse${title}`"
         class="sb-accordion__content"
       >
-        <slot></slot>
+        <slot />
       </div>
     </AccordionTransition>
   </div>

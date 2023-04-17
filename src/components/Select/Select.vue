@@ -41,13 +41,15 @@
       @remove-item-value="handleRemoveItemValue"
     >
       <template #selection="scope">
-        <slot name="selection" v-bind="scope" />
+        <slot name="selection"
+v-bind="scope" />
       </template>
 
       <slot name="innerSelect" />
     </SbSelectInner>
 
-    <span v-if="showError" class="sb-select__message sb-select__message--error">
+    <span v-if="showError"
+class="sb-select__message sb-select__message--error">
       {{ errorMessage }}
     </span>
 
@@ -80,7 +82,8 @@
       @focus-item="focusAtIndex($event)"
     >
       <template #list-item="scope">
-        <slot name="list-item" v-bind="scope" />
+        <slot name="list-item"
+v-bind="scope" />
       </template>
     </SbSelectList>
 

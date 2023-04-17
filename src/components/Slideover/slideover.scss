@@ -1,11 +1,6 @@
 @import 'animations';
 
 .sb-slideover {
-  @include mq($from: lg) {
-    max-width: 624px;
-    min-width: 400px;
-  }
-
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -21,6 +16,11 @@
   background-color: $white;
   border-radius: 5px;
 
+  @include mq($from: lg) {
+    max-width: 624px;
+    min-width: 400px;
+  }
+
   &--left {
     left: 20px;
     right: auto;
@@ -29,8 +29,6 @@
   }
 
   &__close-button {
-    @include base--icon-hover;
-
     position: absolute;
     right: 20px;
     top: 20px;
@@ -39,6 +37,8 @@
     border: 0;
     cursor: pointer;
     appearance: none;
+
+    @include base--icon-hover;
   }
 
   .sb-modal-footer {

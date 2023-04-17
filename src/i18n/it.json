@@ -16,5 +16,7 @@
   "files": "file",
   "uploading": "caricamento",
   "minAnd": "min e",
-  "secLeft": "sec rimasti"
+  "secLeft": "sec rimasti",
+  "back": "indietro",
+  "next": "successivo"
 }

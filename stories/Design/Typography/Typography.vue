@@ -1,6 +1,8 @@
 <template>
   <div class="sb-typography--container">
-    <div class="sb-typography'"><slot /></div>
+    <div class="sb-typography'">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -11,5 +13,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import './typography.scss';
+@import './typography';
 </style>

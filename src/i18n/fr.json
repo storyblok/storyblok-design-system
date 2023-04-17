@@ -16,5 +16,7 @@
   "files": "fichiers",
   "uploading": "Téléchargement",
   "minAnd": "min et",
-  "secLeft": "sec left"
+  "secLeft": "sec left",
+  "back": "Retour",
+  "next": "Suivant"
 }

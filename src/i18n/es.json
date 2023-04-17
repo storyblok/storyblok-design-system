@@ -16,5 +16,7 @@
   "files": "archivos",
   "uploading": "Carga",
   "minAnd": "min y",
-  "secLeft": "sec left"
+  "secLeft": "sec left",
+  "back": "Atrás",
+  "next": "Siguiente"
 }

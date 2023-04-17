@@ -16,5 +16,7 @@
   "files": "文件",
   "uploading": "上传",
   "minAnd": "最小和",
-  "secLeft": "剩余秒数"
+  "secLeft": "剩余秒数",
+  "back": "背部",
+  "next": "下一个"
 }
