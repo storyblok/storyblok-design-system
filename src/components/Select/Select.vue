@@ -76,6 +76,7 @@ class="sb-select__message sb-select__message--error">
       :loading-more-text="loadingMoreText"
       :all-option-value="firstOptionValue"
       :first-value-is-all-value="firstValueIsAllValue"
+      :is-option-disabled="isOptionDisabled"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -211,6 +212,10 @@ export default {
     loadingMoreText: {
       type: String,
       default: 'Loading more...',
+    },
+    isOptionDisabled: {
+      type: Function,
+      default: () => false,
     },
   },
 

@@ -17,8 +17,11 @@
     />
 
     <template v-else>
-      <SbCheckbox v-if="multiple"
-:model-value="isSelected" />
+      <SbCheckbox
+        v-if="multiple"
+        :model-value="isSelected"
+        :disabled="isDisabled"
+      />
 
       <slot name="list-item"
 :item="option">
@@ -99,6 +102,8 @@ export default {
       type: String,
       default: null,
     },
+
+    isDisabled: Boolean,
   },
 
   emits: ['emit-value'],
@@ -114,6 +119,7 @@ export default {
       return [
         (this.isSelected || this.selected) && 'sb-select-list__item--selected',
         this.isFocused && 'sb-select-list__item--focused',
+        this.isDisabled && 'sb-select-list__item--disabled',
       ]
     },
   },
@@ -131,6 +137,8 @@ export default {
      * emits the 'emit-value' event
      */
     handleClick() {
+      if (this.isDisabled) return
+
       this.handleEmitValue()
     },
 
@@ -139,6 +147,8 @@ export default {
      * @param {Event} event
      */
     handleKeyDown(event) {
+      if (this.isDisabled) return
+
       if (event.key === 'Enter' || event.key === ' ') {
         this.handleEmitValue()
       }

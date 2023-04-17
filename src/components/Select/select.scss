@@ -65,9 +65,9 @@
   }
 
   .sb-minibrowser {
-    @include listPosition();
-
     display: none;
+
+    @include listPosition();
   }
 
   &--loading .sb-select-inner__chevron {
@@ -140,6 +140,7 @@
   }
 
   &__icons {
+    display: flex;
     margin-left: auto;
   }
 
@@ -206,8 +207,8 @@
     margin: -1px 10px -1px 0;
   }
 
-  &__chevron,
-  &:hover &__chevron {
+  &:hover &__chevron,
+  &:focus &__chevron {
     color: $sb-dark-blue;
   }
 
@@ -229,8 +230,8 @@
   }
 }
 
-.sb-select-inner--error,
-.sb-select-inner--error:hover {
+.sb-select-inner--error:hover,
+.sb-select-inner--error:focus {
   border: 1px solid $red;
 }
 
@@ -252,7 +253,7 @@
 .sb-select-list {
   @include popoverComponent();
   @include listPosition();
-
+  
   display: none;
   flex: 1;
   overflow: auto;
@@ -290,6 +291,17 @@
 
     &--selected span {
       @include selectedItem;
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+      outline: none;
+
+      .sb-select-list__item-icon,
+      .sb-select-list__item-name,
+      .sb-select-list__item-path {
+        color: $neutral-gray;
+      }
     }
   }
 

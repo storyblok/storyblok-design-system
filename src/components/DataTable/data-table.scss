@@ -207,6 +207,7 @@
     flex-wrap: wrap;
     align-items: center;
     width: 100%;
+    padding: 6px 0;
 
     td {
       width: auto;
@@ -217,10 +218,14 @@
     display: inline-flex;
     align-items: center;
     overflow: hidden;
-    padding: 4px 8px;
+    padding: 8px;
   }
 
   .sb-data-table--loading .sb-data-table__body-cell {
     flex-grow: 1;
+  }
+
+  .sb-data-table__body-cell--mobile-hidden {
+    display: none;
   }
 }

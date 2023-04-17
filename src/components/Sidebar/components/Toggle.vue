@@ -13,8 +13,13 @@
 </template>
 
 <script>
+import SbButton from '../../Button'
 export default {
   name: 'SbSidebarToggle',
+
+  components: {
+    SbButton,
+  },
 
   props: {
     minimize: Boolean,

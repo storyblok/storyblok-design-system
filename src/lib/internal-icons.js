@@ -96,6 +96,14 @@ const icons = {
       <path fill="currentColor" fill-rule="evenodd" d="M15 4a1 1 0 0 1 1 1v1h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2V5a1 1 0 1 1 2 0v1h4V5a1 1 0 0 1 1-1zm3 9H6v5h12v-5zM8 8H6v3h12V8h-2v1a1 1 0 0 1-2 0V8h-4v1a1 1 0 1 1-2 0V8z"/>
     `,
   },
+  'caret-right': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M10 16V8L16 12L10 16Z" fill="currentColor"/>`
+  },
+  'caret-down': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M8 9L16 9L12 15L8 9Z" fill="currentColor"/>`
+  },
   'check-mark': {
     viewBox: '0 0 24 24',
     path: `
@@ -435,6 +443,27 @@ const icons = {
     path: `
       <path fill="currentColor" fill-rule="evenodd" d="M18 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h13zm-8 2H5v14h5V5zm8 0h-6v14h6V5zm-3.71 4.157l.076.063 2.4 2.25c.288.27.31.695.066.99l-.066.07-2.4 2.25a.838.838 0 0 1-1.132 0 .716.716 0 0 1-.066-.99l.066-.07L15.068 12l-1.834-1.72a.716.716 0 0 1-.066-.99l.066-.07a.84.84 0 0 1 1.056-.063z"/>
     `,
+  },
+  'expand': {
+    viewBox: '0 0 24 24',
+    path: `
+      <g  fill="none">
+        <rect x="4" y="5" width="16" height="14" rx="3" stroke="currentColor" stroke-width="2" />
+        <rect x="16.071" y="10.5858" width="2" height="5.29288" rx="1" transform="rotate(45 16.071 10.5858)" fill="currentColor" />
+        <rect x="17.4854" y="12" width="2" height="5.38133" rx="1" transform="rotate(135 17.4854 12)" fill="currentColor" />
+        <rect x="9" y="5" width="2" height="14" fill="currentColor" />
+      </g>
+    `
+  },
+  'collapse': {
+    viewBox: '0 0 24 24',
+    path: `
+      <g  fill="none">
+      <rect x="4" y="5" width="16" height="14" rx="3" stroke="currentColor" stroke-width="2" />
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9731 11.2303C12.5825 11.6208 12.5825 12.254 12.9731 12.6445L15.364 15.0355C15.7546 15.426 16.3877 15.426 16.7782 15.0355C17.1688 14.645 17.1688 14.0118 16.7782 13.6213L15.0944 11.9374L16.7158 10.3161C17.1063 9.92554 17.1063 9.29238 16.7158 8.90185C16.3253 8.51133 15.6921 8.51133 15.3016 8.90185L12.9799 11.2236C12.9776 11.2258 12.9753 11.228 12.9731 11.2303Z" fill="currentColor" />
+      <rect x="9" y="5" width="2" height="14" fill="currentColor" />
+      </g>
+    `
   },
   'square-error': {
     viewBox: '0 0 24 24',

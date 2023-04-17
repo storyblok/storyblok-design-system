@@ -57,6 +57,7 @@ const SelectTemplate = (args) => ({
       :loading-label="loadingLabel"
       :clearable="clearable"
       :show-caption="showCaption"
+      :is-option-disabled="isOptionDisabled"
       v-model="internalValue"
       :first-value-is-all-value="firstValueIsAllValue"
       style="max-width: 300px"
@@ -97,7 +98,7 @@ export const defaultSelectOptionsData = [
   },
 ]
 
-export const selectOptionsDataWithAllOption = [
+export const selectOptionsDataWithAllOptionData = [
   {
     label: 'All options',
     value: 0,
@@ -129,7 +130,7 @@ export const defaultOptionsWithCaptionData = [
   },
   {
     label: 'Option 3',
-    caption: 'uk/folder-text/uk',
+    caption: '',
     value: 3,
   },
   {
@@ -223,6 +224,7 @@ export default {
     loadingLabel: 'Loading...',
     disableInternalSearch: false,
     showCaption: false,
+    isOptionDisabled: () => false,
   },
 }
 
@@ -238,7 +240,7 @@ export const MultipleWithAllOption = SelectTemplate.bind({})
 
 MultipleWithAllOption.args = {
   multiple: true,
-  options: selectOptionsDataWithAllOption,
+  options: selectOptionsDataWithAllOptionData,
   firstValueIsAllValue: true,
 }
 
@@ -260,7 +262,9 @@ export const LazySearch = (args) => ({
     SbSelect,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
 
   data: () => ({
     internalSearch: true,
@@ -376,7 +380,9 @@ export const WithMinibrowser = (args) => ({
     SbMinibrowser,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
 
   data: () => ({
     internalValue: null,
@@ -418,12 +424,13 @@ export const WithMinibrowser = (args) => ({
         v-model="internalValue"
         style="max-width: 300px"
       >
+        <template #minibrowser>
         <SbMinibrowser
-          slot="minibrowser"
           :options="minibrowserOptions"
           @select-item="onSelectItem"
           @close="handleCloseBrowser"
         />
+        </template>
       </SbSelect>
     </div>
   `,
@@ -435,7 +442,9 @@ export const EmitOption = (args) => ({
     SbMinibrowser,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
 
   data: () => ({
     singleSelectValue: null,
@@ -535,7 +544,9 @@ export const EmitSearch = (args) => ({
     SbSelect,
   },
 
-  props: Object.keys(args),
+  setup() {
+    return { ...args }
+  },
 
   data: () => ({
     searchInput: '',
@@ -604,4 +615,37 @@ WithCaption.parameters = {
         'When we pass the `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
     },
   },
+}
+
+export const WithCaptionTag = SelectTemplate.bind({})
+
+WithCaptionTag.args = {
+  showCaption: true,
+  multiple: true,
+  options: [...defaultOptionsWithCaptionData],
+}
+
+WithCaptionTag.parameters = {
+  docs: {
+    description: {
+      story:
+        'When we pass the `multiple` and `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
+    },
+  },
+}
+
+
+export const WithOptionDisabled = SelectTemplate.bind({})
+
+WithOptionDisabled.args = {
+  isOptionDisabled: (item) => item.value === 2
+}
+
+WithOptionDisabled.parameters = {
+  docs: {
+    description: {
+      story:
+        'When we pass the `isOptionDisabled` prop, it will be possible to render a option disabled',
+    },
+  }
 }

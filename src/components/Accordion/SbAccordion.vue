@@ -3,6 +3,7 @@
 :class="activeClasses">
     <button
       class="sb-accordion__button"
+      type="button"
       :aria-expanded="isOpenLocal"
       :aria-controls="`collapse${title}`"
       @click="toggleAccordion"
