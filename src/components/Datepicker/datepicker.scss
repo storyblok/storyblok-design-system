@@ -5,14 +5,16 @@
   border-right: $light-border;
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $sb-dark-blue-25;
   }
 
   &--current {
     background-color: $light-50;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $sb-green-25;
     }
   }
@@ -22,7 +24,8 @@
     font-weight: $font-weight-medium;
     background-color: $sb-green-25;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $sb-green-25;
     }
   }
@@ -32,7 +35,8 @@
     text-decoration: line-through;
     cursor: no-drop;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $white;
     }
   }
@@ -63,12 +67,15 @@
   }
 
   &__overlay {
-    @include popoverComponent();
-
     z-index: 1;
     box-sizing: border-box;
     width: 100%;
-    max-width: 294px;
+
+    @include popoverComponent();
+
+    &.sb-popover {
+      max-width: 294px;
+    }
   }
 
   &__actions {
@@ -86,7 +93,8 @@
     border: 0;
     appearance: none;
 
-    &:hover {
+    &:hover,
+    &:focus {
       cursor: pointer;
     }
 
@@ -163,14 +171,14 @@
   background-color: $white;
 
   &__item {
-    @include flexCentering();
-    @include datepickerItem();
-
     flex: 1;
     box-sizing: border-box;
     width: 42px;
     height: 42px;
     padding: 13px 17px;
+
+    @include flexCentering();
+    @include datepickerItem();
 
     &--inactive {
       color: $sb-dark-blue-50;
@@ -196,15 +204,15 @@
   }
 
   &__number {
-    @include flexCentering();
-    @include datepickerItem();
-
     box-sizing: border-box;
     height: 42px;
     padding: 10px;
     text-align: center;
     border-right: 0;
     cursor: pointer;
+
+    @include flexCentering();
+    @include datepickerItem();
 
     &:last-of-type {
       border-bottom: 0;
@@ -220,13 +228,13 @@
   background: $white;
 
   &__item {
-    @include flexCentering();
-    @include datepickerItem();
-
     box-sizing: border-box;
     width: 25%;
     padding: 13px 25px;
     text-align: center;
+
+    @include flexCentering();
+    @include datepickerItem();
   }
 }
 
@@ -240,12 +248,12 @@
   background: $white;
 
   &__item {
-    @include flexCentering();
-    @include datepickerItem();
-
     box-sizing: border-box;
     width: 100%;
     height: 42px;
     text-align: center;
+
+    @include flexCentering();
+    @include datepickerItem();
   }
 }
