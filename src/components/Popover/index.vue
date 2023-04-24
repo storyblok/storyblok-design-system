@@ -1,5 +1,6 @@
 <template>
-  <SbPortal ref="portalRef" :target="portalTarget" :disabled="!usePortal">
+  <SbPortal ref="portalRef"
+:target="portalTarget" :disabled="!usePortal">
     <component
       :is="parentElementTag"
       :id="anchorId"
@@ -9,7 +10,7 @@
       v-bind="$attrs"
       :style="computedStyle"
     >
-      <slot></slot>
+      <slot />
     </component>
   </SbPortal>
 </template>
@@ -244,10 +245,12 @@ export default {
     wrapClose(e) {
       const referenceIsString = typeof this.referenceEl === 'string'
       const hasContains = typeof this.referenceEl?.contains === 'function'
+      const targetIsNode = e?.target instanceof Node
       if (
         this.popoverInstance &&
         !referenceIsString &&
         hasContains &&
+        targetIsNode &&
         !this.referenceEl.contains(e?.target)
       ) {
         this.hidePopover()

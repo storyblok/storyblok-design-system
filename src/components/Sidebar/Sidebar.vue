@@ -6,9 +6,7 @@
       'sb-sidebar--active': isMobileOpen,
     }"
   >
-    <div
-class="sb-sidebar__background" @click="closeSidebar"
-/>
+    <div class="sb-sidebar__background" @click="closeSidebar" />
     <div class="sb-sidebar__mobile-header">
       <div class="sb-sidebar__mobile-header-menu-icon">
         <button @click="openSidebar">
@@ -16,9 +14,7 @@ class="sb-sidebar__background" @click="closeSidebar"
         </button>
       </div>
 
-      <div
-class="sb-sidebar__mobile-logo" @click="closeSidebar"
->
+      <div class="sb-sidebar__mobile-logo" @click="closeSidebar">
         <SbLink
           v-if="logoDestinationUrl"
           as="router-link"
@@ -30,9 +26,7 @@ class="sb-sidebar__mobile-logo" @click="closeSidebar"
             :src="logo"
             alt="Custom Sidebar Logo"
           />
-          <SbSidebarLogo
-v-else variant="dark"
-/>
+          <SbSidebarLogo v-else variant="dark" />
         </SbLink>
         <template v-else>
           <img
@@ -41,16 +35,12 @@ v-else variant="dark"
             :src="logo"
             alt="Custom Sidebar Logo"
           />
-          <SbSidebarLogo
-v-else variant="dark"
-/>
+          <SbSidebarLogo v-else variant="dark" />
         </template>
       </div>
     </div>
 
-    <div
-v-click-outside="sidebarClose" class="sb-sidebar__content"
->
+    <div v-click-outside="sidebarClose" class="sb-sidebar__content">
       <div class="sb-sidebar__top">
         <img
           v-if="logo"
@@ -58,9 +48,7 @@ v-click-outside="sidebarClose" class="sb-sidebar__content"
           :src="logo"
           alt="Custom Sidebar Logo"
         />
-        <SbSidebarLogo
-v-else :minimize="minimize"
-/>
+        <SbSidebarLogo v-else :minimize="minimize" />
       </div>
 
       <SbSidebarList>
@@ -80,9 +68,7 @@ v-if="hasScrollbar" class="sb-sidebar-list__fade" />
       <div class="sb-sidebar__bottom">
         <slot name="bottom" />
 
-        <SbSidebarToggle
-:minimize="minimize" @click="toggleMinimizedState"
-/>
+        <SbSidebarToggle :minimize="minimize" @click="toggleMinimizedState" />
       </div>
     </div>
   </aside>
@@ -222,7 +208,14 @@ export default {
     sidebarClose(e) {
       const hasTarget = e && e?.target && this.$el
       const hasContains = hasTarget && typeof this.$el?.contains === 'function'
-      if (hasContains && !this.$el.contains(e.target) && this.isMobileOpen) {
+      const targetIsNode = e?.target instanceof Node
+
+      if (
+        hasContains &&
+        targetIsNode &&
+        !this.$el.contains(e.target) &&
+        this.isMobileOpen
+      ) {
         this.closeSidebar()
       }
     },
