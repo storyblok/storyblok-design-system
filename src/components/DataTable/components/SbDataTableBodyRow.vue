@@ -8,9 +8,9 @@
     <td
       v-if="allowSelection && row.selectable !== false"
       class="sb-data-table__body-cell sb-data-table__col-selection"
-      @click="handleRowSelected"
     >
-      <SbCheckbox :id="rowId" :model-value="isSelected" />
+      <SbCheckbox :id="rowId"
+v-model="isSelected" />
     </td>
 
     <td
@@ -72,10 +72,15 @@ export default {
     mainColumnIndex() {
       return this.headers.findIndex((col) => col.main)
     },
-    isSelected() {
-      return this.selectedRows?.some(
-        (row) => JSON.stringify(row) === JSON.stringify(this.row)
-      )
+    isSelected: {
+      get() {
+        return this.selectedRows?.some(
+          (row) => JSON.stringify(row) === JSON.stringify(this.row)
+        )
+      },
+      set() {
+        this.handleRowSelected()
+      },
     },
   },
 
