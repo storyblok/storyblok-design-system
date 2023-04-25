@@ -96,6 +96,14 @@ const icons = {
       <path fill="currentColor" fill-rule="evenodd" d="M15 4a1 1 0 0 1 1 1v1h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2V5a1 1 0 1 1 2 0v1h4V5a1 1 0 0 1 1-1zm3 9H6v5h12v-5zM8 8H6v3h12V8h-2v1a1 1 0 0 1-2 0V8h-4v1a1 1 0 1 1-2 0V8z"/>
     `,
   },
+  'caret-right': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M10 16V8L16 12L10 16Z" fill="currentColor"/>`
+  },
+  'caret-down': {
+    viewBox: '0 0 24 24',
+    path: `<path d="M8 9L16 9L12 15L8 9Z" fill="currentColor"/>`
+  },
   'check-mark': {
     viewBox: '0 0 24 24',
     path: `
@@ -436,6 +444,27 @@ const icons = {
       <path fill="currentColor" fill-rule="evenodd" d="M18 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h13zm-8 2H5v14h5V5zm8 0h-6v14h6V5zm-3.71 4.157l.076.063 2.4 2.25c.288.27.31.695.066.99l-.066.07-2.4 2.25a.838.838 0 0 1-1.132 0 .716.716 0 0 1-.066-.99l.066-.07L15.068 12l-1.834-1.72a.716.716 0 0 1-.066-.99l.066-.07a.84.84 0 0 1 1.056-.063z"/>
     `,
   },
+  'expand': {
+    viewBox: '0 0 24 24',
+    path: `
+      <g  fill="none">
+        <rect x="4" y="5" width="16" height="14" rx="3" stroke="currentColor" stroke-width="2" />
+        <rect x="16.071" y="10.5858" width="2" height="5.29288" rx="1" transform="rotate(45 16.071 10.5858)" fill="currentColor" />
+        <rect x="17.4854" y="12" width="2" height="5.38133" rx="1" transform="rotate(135 17.4854 12)" fill="currentColor" />
+        <rect x="9" y="5" width="2" height="14" fill="currentColor" />
+      </g>
+    `
+  },
+  'collapse': {
+    viewBox: '0 0 24 24',
+    path: `
+      <g  fill="none">
+      <rect x="4" y="5" width="16" height="14" rx="3" stroke="currentColor" stroke-width="2" />
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9731 11.2303C12.5825 11.6208 12.5825 12.254 12.9731 12.6445L15.364 15.0355C15.7546 15.426 16.3877 15.426 16.7782 15.0355C17.1688 14.645 17.1688 14.0118 16.7782 13.6213L15.0944 11.9374L16.7158 10.3161C17.1063 9.92554 17.1063 9.29238 16.7158 8.90185C16.3253 8.51133 15.6921 8.51133 15.3016 8.90185L12.9799 11.2236C12.9776 11.2258 12.9753 11.228 12.9731 11.2303Z" fill="currentColor" />
+      <rect x="9" y="5" width="2" height="14" fill="currentColor" />
+      </g>
+    `
+  },
   'square-error': {
     viewBox: '0 0 24 24',
     path: `
@@ -467,7 +496,7 @@ const icons = {
     viewBox: '0 0 24 24',
     path: `
       <g fill="none" fill-rule="evenodd">
-        <rect width="16" height="16" x="4" y="4" fill="#FFAC00" rx="3"/>      
+        <rect width="16" height="16" x="4" y="4" fill="#FFAC00" rx="3"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1056 7.78887C11.4741 7.05182 12.5259 7.05182 12.8944 7.78887L16.2764 14.5528C16.6088 15.2177 16.1253 16 15.382 16H8.61804C7.87465 16 7.39116 15.2177 7.72361 14.5528L11.1056 7.78887ZM11.5 10H12.5V13H11.5V10ZM12.5 14H11.5V15H12.5V14Z" fill="white"/>
       </g>
     `,
@@ -1053,6 +1082,14 @@ const blockIcons = {
   'block-wallet': {
     viewBox: '0 0 24 24',
     path: `<path d="M5 2h12a3 3 0 0 1 2.995 2.824L20 5v3.171c1.166.412 2 1.523 2 2.829v2a3.001 3.001 0 0 1-2 2.829V19a3 3 0 0 1-2.824 2.995L17 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2h12H5Zm12 2H5a1 1 0 0 0-.993.883L4 5v14a1 1 0 0 0 .883.993L5 20h12a1 1 0 0 0 .993-.883L18 19v-3h-1a3 3 0 0 1-3-3v-2a3 3 0 0 1 3-3h1V5a1 1 0 0 0-.883-.993L17 4Zm2 6h-2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1Z" fill="currentColor" fill-rule="evenodd"/>`,
+  },
+  user: {
+    viewBox: '0 0 24 24',
+    path: `<circle cx="12" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M18 18.538C18 15.48 15.314 13 12 13s-6 2.48-6 5.538"/>`,
+  },
+  'onboarding-star': {
+    viewBox: '0 0 24 24',
+    path: `<path d="m12.226 16.084-.92 3.253a.908.908 0 0 1-1.156.618l-1.328-.434a.911.911 0 0 1-.562-1.205l1.28-3.194a.91.91 0 0 0-.895-1.248l-3.684.212A.91.91 0 0 1 4 13.178v-1.494c0-.523.439-.938.96-.908l3.803.215a.91.91 0 0 0 .893-1.252L8.422 6.691a.911.911 0 0 1 .562-1.209l1.354-.438a.91.91 0 0 1 1.155.623l.93 3.35a.908.908 0 0 0 1.438.471l2.81-2.222a.909.909 0 0 1 1.305.187l.856 1.206a.911.911 0 0 1-.26 1.3l-3.045 1.901a.911.911 0 0 0-.01 1.54l2.91 1.86c.433.276.55.854.263 1.279l-.805 1.188a.907.907 0 0 1-1.317.201l-2.904-2.31a.908.908 0 0 0-1.44.465l.002.001Z" fill="currentColor"/>`,
   },
 }
 

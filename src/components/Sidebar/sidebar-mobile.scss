@@ -1,0 +1,51 @@
+@include mq($until: sm) {
+  .sb-sidebar {
+    height: 100vh;
+  }
+
+  .sb-sidebar__mobile-header {
+    display: flex;
+  }
+
+  .sb-sidebar__content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    transform: translateX(-110%);
+  }
+
+  .sb-sidebar--active {
+    .sb-sidebar__background {
+      display: block;
+    }
+
+    .sb-sidebar__content {
+      transform: translateX(0);
+    }
+  }
+
+  .sb-sidebar-toggle {
+    display: none;
+
+    .sb-button {
+      margin: -1px 0 0 -1px;
+    }
+  }
+
+  .sb-link:hover:not([disabled])::after,
+  .sb-link:focus:not([disabled])::after {
+    opacity: 0;
+  }
+
+  .sb-sidebar__background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: $black-trasparent;
+  }
+}

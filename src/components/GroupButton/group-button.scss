@@ -1,7 +1,7 @@
 .sb-group-button {
   display: inline-flex;
 
-  @include mq($until: xs) {
+  @include mq($until: sm) {
     flex-direction: column;
     row-gap: $small-size;
   }
@@ -17,7 +17,7 @@
   }
 
   &:not(&--has-spaces) {
-    @include mq($from: xs) {
+    @include mq($from: sm) {
       .sb-button {
         border-radius: 0;
       }

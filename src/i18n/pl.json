@@ -16,5 +16,7 @@
   "files": "files",
   "uploading": "Przesyłanie strony",
   "minAnd": "min i",
-  "secLeft": "sek. w lewo"
+  "secLeft": "sek. w lewo",
+  "back": "Wstecz",
+  "next": "Następny"
 }

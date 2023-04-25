@@ -16,5 +16,7 @@
   "files": "filer",
   "uploading": "Uppladdning",
   "minAnd": "min och",
-  "secLeft": "sek vänster"
+  "secLeft": "sek vänster",
+  "back": "Tillbaka",
+  "next": "Nästa"
 }

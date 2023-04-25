@@ -16,5 +16,7 @@
   "files": "ファイル",
   "uploading": "アップロード",
   "minAnd": "分と",
-  "secLeft": "残り時間"
+  "secLeft": "残り時間",
+  "back": "戻る",
+  "next": "次へ"
 }

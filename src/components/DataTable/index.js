@@ -24,6 +24,10 @@ const SbDataTable = {
 
   props: {
     ...sharedProps,
+    rowIdPrefix: {
+      type: String,
+      default: 'sb',
+    },
   },
 
   computed: {
@@ -225,7 +229,7 @@ const SbDataTable = {
           }
         })
 
-        bodyData = items.map((tableRow) => {
+        bodyData = items.map((tableRow, index) => {
           const columns = children.map((tableData) => {
             return h(
               SbDataTableColumn,
@@ -244,6 +248,7 @@ const SbDataTable = {
               headers: [...headerData],
               row: tableRow,
               selectedRows: this.hasSelectedRowsInList,
+              rowId: `${this.rowIdPrefix}-${index}`,
             },
             () => [columns]
           )

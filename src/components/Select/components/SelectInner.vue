@@ -13,8 +13,10 @@
       color="primary-dark"
     />
 
-    <div v-if="isTagsVisible" class="sb-select-inner__tags">
-      <div v-for="(tagLabel, key) in tagLabels" :key="key">
+    <div v-if="isTagsVisible"
+class="sb-select-inner__tags">
+      <div v-for="(tagLabel, key) in tagLabels"
+:key="key">
         <slot
           name="selection"
           :item="tagLabel"
@@ -34,9 +36,10 @@
                 size="small"
                 :name="tagLabel[itemLabel]"
               />
-              <span class="sb-select-inner__tag" :title="getTagTitle(tagLabel)">
+              <span class="sb-select-inner__tag"
+:title="getTagTitle(tagLabel)">
                 <template v-if="showCaption">
-                  {{ tagLabel[itemLabel] }} ({{ tagLabel[itemCaption] }})
+                  {{ tagLabel[itemLabel] }} <span v-if="tagLabel[itemCaption]">({{ tagLabel[itemCaption] }})</span>
                 </template>
                 <template v-else>{{
                   tagLabel[itemLabel] || tagLabel
@@ -62,7 +65,8 @@
       />
     </div>
 
-    <div v-if="isAvatarVisible && showAvatar" class="sb-select-inner__avatar">
+    <div v-if="isAvatarVisible && showAvatar"
+class="sb-select-inner__avatar">
       <SbAvatar
         :src="avatarData.src"
         size="small"
@@ -110,7 +114,8 @@
         <SbIcon name="x-clear" />
       </button>
 
-      <SbIcon class="sb-select-inner__chevron" :name="rightIconName" />
+      <SbIcon class="sb-select-inner__chevron"
+:name="rightIconName" />
     </div>
   </div>
 </template>
@@ -255,9 +260,9 @@ export default {
       }
 
       if (this.showCaption && this.currentOptionValue) {
-        return `${this.currentOptionLabel} (${
-          this.currentOptionValue[this.itemCaption]
-        })`
+        return this.currentOptionValue[this.itemCaption] ? `${this.currentOptionLabel} (${
+          this.currentOptionValue[this.itemCaption]})` : 
+          `${this.currentOptionLabel}`
       }
 
       if (this.inline) {
@@ -395,7 +400,7 @@ export default {
     modelValue(val, oldVal) {
       const isSameValue = JSON.stringify(val) === JSON.stringify(oldVal)
       if (this.isSearchTextVisible && !isSameValue) {
-        if (oldVal.length && val.length) {
+        if (oldVal?.length && val?.length) {
           this.$nextTick(() => this.$refs.search.focus())
         }
         return
@@ -529,7 +534,7 @@ export default {
 
       if (this.showCaption) {
         const caption = tagLabel[this.itemCaption]
-        return `${label} (${caption})`
+        return caption ? `${label} (${caption})` : `${label}`
       }
 
       return label

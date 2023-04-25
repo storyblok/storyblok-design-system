@@ -24,11 +24,13 @@
 }
 
 .sb-accordion--open {
-  &:hover {
+  &:hover,
+  &:focus {
     background: $light-25;
   }
 
-  &:hover .sb-accordion__button {
+  &:hover .sb-accordion__button,
+  &:focus .sb-accordion__button {
     color: $sb-dark-blue;
     background: $light-25;
   }
@@ -67,7 +69,8 @@
   border-top: 1px solid $light;
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: $sb-green;
   }
 
@@ -81,7 +84,8 @@
   margin-left: auto;
 }
 
-.sb-accordion:hover .sb-accordion__icon {
+.sb-accordion:hover .sb-accordion__icon,
+.sb-accordion:focus .sb-accordion__icon {
   display: block;
 }
 
@@ -89,7 +93,8 @@
   &.sb-accordion--open {
     background: transparent;
 
-    &:hover .sb-accordion__button {
+    &:hover .sb-accordion__button,
+    &:focus .sb-accordion__button {
       color: $sb-dark-blue;
       background: transparent;
     }

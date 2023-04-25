@@ -17,20 +17,29 @@
     />
 
     <template v-else>
-      <SbCheckbox v-if="multiple" :model-value="isSelected" />
+      <SbCheckbox
+        v-if="multiple"
+        :model-value="isSelected"
+        :disabled="isDisabled"
+      />
 
-      <slot name="list-item" :item="option">
+      <slot name="list-item"
+:item="option">
         <span class="sb-select-list__item-icon">
-          <SbIcon v-if="option.icon" :name="option.icon" />
+          <SbIcon v-if="option.icon"
+:name="option.icon" />
         </span>
 
-        <span v-if="!showCaption" class="sb-select-list__item-name">{{
+        <span v-if="!showCaption"
+class="sb-select-list__item-name">{{
           label
         }}</span>
 
-        <div v-else class="sb-select-list__item--with-path">
+        <div v-else
+class="sb-select-list__item--with-path">
           <span class="sb-select-list__item-name">{{ label }}</span>
-          <span v-if="showCaption" class="sb-select-list__item-caption">{{
+          <span v-if="showCaption"
+class="sb-select-list__item-caption">{{
             path
           }}</span>
         </div>
@@ -93,6 +102,8 @@ export default {
       type: String,
       default: null,
     },
+
+    isDisabled: Boolean,
   },
 
   emits: ['emit-value'],
@@ -108,6 +119,7 @@ export default {
       return [
         (this.isSelected || this.selected) && 'sb-select-list__item--selected',
         this.isFocused && 'sb-select-list__item--focused',
+        this.isDisabled && 'sb-select-list__item--disabled',
       ]
     },
   },
@@ -125,6 +137,8 @@ export default {
      * emits the 'emit-value' event
      */
     handleClick() {
+      if (this.isDisabled) return
+
       this.handleEmitValue()
     },
 
@@ -133,6 +147,8 @@ export default {
      * @param {Event} event
      */
     handleKeyDown(event) {
+      if (this.isDisabled) return
+
       if (event.key === 'Enter' || event.key === ' ') {
         this.handleEmitValue()
       }

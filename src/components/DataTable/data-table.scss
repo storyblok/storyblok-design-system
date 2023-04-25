@@ -1,7 +1,8 @@
 .sb-data-table {
   &__col-selection,
   &__head-cell {
-    .sb-checkbox__inner:hover {
+    .sb-checkbox__inner:hover,
+    .sb-checkbox__inner:focus {
       .sb-checkbox__input {
         box-shadow: 0 0 0 2px rgba(217, 244, 243, 1);
       }
@@ -54,7 +55,8 @@
       cursor: pointer;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       .sb-data-table__sort-icon {
         opacity: 1;
       }
@@ -65,9 +67,9 @@
     position: relative;
 
     .sb-loading {
-      @include middleXY();
-
       position: absolute;
+
+      @include middleXY();
     }
 
     .sb-data-table__body-cell {
@@ -100,7 +102,8 @@
   &__row {
     border-bottom: 1px solid $light-50;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: #f9f9f9 !important;
     }
 
@@ -118,7 +121,8 @@
       background-color: #f9f9f9;
       border-bottom: 1px solid $light;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: $light-75 !important;
       }
     }
@@ -203,6 +207,7 @@
     flex-wrap: wrap;
     align-items: center;
     width: 100%;
+    padding: 6px 0;
 
     td {
       width: auto;
@@ -213,10 +218,14 @@
     display: inline-flex;
     align-items: center;
     overflow: hidden;
-    padding: 4px 8px;
+    padding: 8px;
   }
 
   .sb-data-table--loading .sb-data-table__body-cell {
     flex-grow: 1;
+  }
+
+  .sb-data-table__body-cell--mobile-hidden {
+    display: none;
   }
 }

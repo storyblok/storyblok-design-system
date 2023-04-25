@@ -10,7 +10,7 @@
       class="sb-data-table__body-cell sb-data-table__col-selection"
       @click="handleRowSelected"
     >
-      <SbCheckbox :model-value="isSelected" />
+      <SbCheckbox :id="rowId" :model-value="isSelected" />
     </td>
 
     <td
@@ -58,6 +58,10 @@ export default {
     row: {
       type: [Object, Array],
       default: () => ({}),
+    },
+    rowId: {
+      type: String,
+      default: '',
     },
   },
 

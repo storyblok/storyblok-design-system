@@ -6,6 +6,7 @@
       'sb-sidebar--active': isMobileOpen,
     }"
   >
+    <div class="sb-sidebar__background" @click="closeSidebar" />
     <div class="sb-sidebar__mobile-header">
       <div class="sb-sidebar__mobile-header-menu-icon">
         <button @click="openSidebar">
@@ -59,7 +60,8 @@
           />
 
           <slot />
-          <span v-if="hasScrollbar" class="sb-sidebar-list__fade"></span>
+          <span
+v-if="hasScrollbar" class="sb-sidebar-list__fade" />
         </div>
       </SbSidebarList>
 
@@ -124,7 +126,7 @@ export default {
     logoDestinationUrl: {
       type: Object,
       validator(value) {
-        return value.hasOwnProperty('name')
+        return Object.prototype.hasOwnProperty.call(value, 'name')
       },
     },
   },
@@ -206,7 +208,14 @@ export default {
     sidebarClose(e) {
       const hasTarget = e && e?.target && this.$el
       const hasContains = hasTarget && typeof this.$el?.contains === 'function'
-      if (hasContains && !this.$el.contains(e.target) && this.isMobileOpen) {
+      const targetIsNode = e?.target instanceof Node
+
+      if (
+        hasContains &&
+        targetIsNode &&
+        !this.$el.contains(e.target) &&
+        this.isMobileOpen
+      ) {
         this.closeSidebar()
       }
     },

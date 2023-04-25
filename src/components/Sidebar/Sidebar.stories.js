@@ -88,7 +88,7 @@ const SidebarTemplate = (args) => ({
           is-child
         />
       </SbSidebarListItem>
-      <template slot="bottom">
+      <template #bottom>
         <SbSidebarListItem
           href="#"
           icon="settings"
@@ -109,7 +109,7 @@ const SidebarTemplate = (args) => ({
               :placement="listPlacement"
               :reference="$refs.userDropdown"
             >
-              <div slot="top" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #dfe3e8; padding: 15px 20px; margin-bottom: 10px;">
+              <div #top style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #dfe3e8; padding: 15px 20px; margin-bottom: 10px;">
                 <div>
                   <p style="font-size: 14px; font-weight: 500; color: #1b243f; margin: 0; margin-bottom: 5px;"> John Doe </p>
                   <p style="font-size: 12px; color: #b1b5be; margin: 0;"> jondoe@lipsum.com </p>

@@ -5,3 +5,8 @@
   pointer-events: none;
   visibility: hidden;
 }
+
+.sb-popover {
+  box-sizing: border-box;
+  max-width: 100vw;
+}

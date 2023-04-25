@@ -16,5 +16,7 @@
   "files": "súbory",
   "uploading": "Nahrávanie",
   "minAnd": "min a",
-  "secLeft": "sec left"
+  "secLeft": "sec left",
+  "back": "Späť", 
+  "next": "Ďalej"
 }

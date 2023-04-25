@@ -137,7 +137,7 @@
 }
 
 // for small mobiles
-@include mq($until: xs) {
+@include mq($until: sm) {
   .sb-editor-header__mobile {
     .sb-editor-header__item {
       margin-left: 2px;

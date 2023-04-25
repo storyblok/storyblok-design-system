@@ -9,7 +9,7 @@ import SbAvatar from '../../Avatar'
 
 import {
   defaultSelectOptionsData,
-  selectOptionsDataWithAllOption,
+  selectOptionsDataWithAllOptionData,
   defaultAvatarsData,
   defaultOptionsWithCaptionData,
 } from '../Select.stories'
@@ -219,7 +219,7 @@ describe('SbSelect component', () => {
   describe('Multiselect with a "all" option', () => {
     const defaultsprops = {
       label: 'Choose an option',
-      options: [...selectOptionsDataWithAllOption],
+      options: [...selectOptionsDataWithAllOptionData],
       firstValueIsAllValue: true,
       multiple: true,
     }
@@ -1117,5 +1117,25 @@ describe('SbSelect component', () => {
       const customItem = wrapper.find('.custom-item')
       expect(customItem.text()).toBe('Custom: Option 1')
     })
+  })
+
+  describe('Disabled list item', () => {
+    const wrapper = mountAttachingComponent(SbSelect, {
+      props: {
+        label: 'Choose an option disabled',
+        options: [...defaultSelectOptionsData],
+        isOptionDisabled: (item) => item.value === 2
+      },
+    })
+
+    it('Should disabled option when user pass a function prop "isOptionDisabled"', () => {
+      expect(wrapper.find('.sb-select-list__item--disabled').exists()).toBeTruthy()
+    })
+
+    it('Should not be possible to select an disabled option', async () => {
+      await wrapper.find('.sb-select-list__item--disabled').trigger('click')
+      expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+    })
+
   })
 })

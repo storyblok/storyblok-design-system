@@ -1,8 +1,18 @@
 <template>
-  <div class="sb-pagination"
-:class="computedClasses">
-    <template v-if="carousel || compact">
+  <div
+class="sb-pagination" :class="computedClasses"
+>
+    <template v-if="carousel || compact || hasNextPrevBtn">
       <SbPaginationButton
+        v-if="hasNextPrevBtn"
+        data-testid="pagination-previous-button"
+        :is-outlined="isLabelledButtons"
+        :button-label="i18n(locale, 'Back')"
+        :disabled="isFirstDisabled"
+        @click="handlePreviousPage"
+      />
+      <SbPaginationButton
+        v-else
         data-testid="pagination-previous-button"
         icon="chevron-left"
         :tooltip-label="i18n(locale, 'previousPage')"
@@ -23,8 +33,15 @@
         show-current-page
         :locale="locale"
       />
-
       <SbPaginationButton
+        v-if="hasNextPrevBtn"
+        data-testid="pagination-next-button"
+        :button-label="i18n(locale, 'next')"
+        :disabled="isFirstDisabled"
+        @click="handleNextPage"
+      />
+      <SbPaginationButton
+        v-else
         data-testid="pagination-next-button"
         icon="chevron-right"
         :tooltip-label="i18n(locale, 'nextPage')"
@@ -132,6 +149,14 @@ export default {
       required: false,
       default: 'en',
     },
+    hasNextPrevBtn: {
+      type: Boolean,
+      default: false,
+    },
+    isLabelledButtons: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   emits: [
@@ -164,6 +189,7 @@ export default {
         'sb-pagination--full-width': this.isFullWidth,
         'sb-pagination--carousel': this.carousel,
         'sb-pagination--compact': this.compact,
+        'sb-pagination--with-label': this.isLabelledButtons,
       }
     },
   },

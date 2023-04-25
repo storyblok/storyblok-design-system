@@ -52,23 +52,23 @@
     height: 32px;
     color: $color-primary-dark;
     background-color: transparent;
-    border: 0;
     border-radius: $base-border-radius;
     cursor: pointer;
 
-    &:not(:disabled):hover,
-    &:not(:disabled):focus {
-      color: $color-primary;
+    &:not(&--with-label) {
+      border: 0;
+    }
+
+    &:not(:disabled):not(&--with-label) {
+      &:hover,
+      &:focus {
+        color: $color-primary;
+      }
     }
 
     &--disabled {
       color: $sb-dark-blue-25;
       cursor: not-allowed;
-    }
-
-    &:hover,
-    &:focus {
-      background-color: $light-50;
     }
 
     .sb-icon {
@@ -140,7 +140,55 @@
   }
 
   &--carousel &__button {
-    border: 0;
+    &:not(&--with-label) {
+      border: 0;
+    }
+  }
+}
+
+.sb-pagination--with-label {
+  .sb-pagination__button {
+    width: auto;
+    height: unset;
+    padding: 13.5px 24px;
+    font-size: $font-14;
+
+    &:not(.sb-button--tertiary) {
+      color: $color-white;
+      background: $blue;
+    }
+
+    &:not(:disabled):focus,
+    &:not(:disabled):hover {
+      color: $blue;
+    }
+
+    &:not(:disabled):focus:not(.sb-button--tertiary),
+    &:not(:disabled):hover:not(.sb-button--tertiary) {
+      color: $white;
+      background-color: darken($blue, 15);
+    }
+  }
+
+  .sb-pagination-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 40px;
+    transition: width 0.1s ease-in-out;
+
+    &:not(:first-child) {
+      margin-left: 3px;
+    }
+
+    &--active {
+      width: 16px;
+      background-color: $blue;
+      transition: width 0.1s ease-in-out;
+
+      &:after {
+        content: unset;
+      }
+    }
   }
 }
 
