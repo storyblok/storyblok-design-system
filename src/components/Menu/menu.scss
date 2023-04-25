@@ -1,10 +1,10 @@
 .sb-menu-list {
-  @include popoverComponent();
-
   z-index: 2;
   min-width: 180px;
   padding: 11px 0;
   background-color: $white;
+
+  @include popoverComponent();
 
   ul {
     margin: 0;
@@ -87,7 +87,7 @@
       padding-left: 20px;
       color: $sb-dark-blue;
       font-size: $font-14;
-      font-weight: $font-weight-medium;
+      font-weight: $font-medium;
     }
   }
 }

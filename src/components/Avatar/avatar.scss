@@ -4,10 +4,10 @@
   // types of avatar
   &__image,
   &__initials {
-    @include avatarComponent();
-
     width: $sb-avatar-normal;
     height: $sb-avatar-normal;
+
+    @include avatarComponent();
   }
 
   // image
@@ -26,7 +26,7 @@
   &__initials {
     color: $white;
     font-size: $font-12;
-    font-weight: $font-weight-medium;
+    font-weight: $font-medium;
     line-height: normal;
     text-align: center;
     text-transform: uppercase;
@@ -43,14 +43,14 @@
     display: block;
     color: $primary-text-color;
     font-size: $font-13;
-    font-weight: $font-weight-medium;
+    font-weight: $font-medium;
   }
 
   &__description {
     display: block;
     color: $light-gray;
     font-size: $font-12;
-    font-weight: $font-weight-regular;
+    font-weight: $font-regular;
   }
 
   // sizes

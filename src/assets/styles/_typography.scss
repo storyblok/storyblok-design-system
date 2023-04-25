@@ -4,46 +4,76 @@ $primary-text-color: $sb-dark-blue;
 $font-size-default: 1.6rem;
 $line-height-default: 1;
 
-// heading sizes
-$heading-2xl: 3.2rem;
-$heading-xl: 2.6rem;
-$heading-lg: 2rem;
-$heading-md: 1.8rem;
-$heading-base: 1.4rem;
-$heading-s: 1.2rem;
-$heading-xs: 1rem;
-
 // text sizes
+$font-10: 1rem;
 $font-12: 1.2rem;
 $font-13: 1.3rem;
 $font-14: 1.4rem;
-$font-15: 1.5rem;
 $font-16: 1.6rem;
-$font-19: 1.9rem;
-$font-21: 2.1rem;
-$font-25: 2.5rem;
-$font-36: 3.6rem;
+$font-18: 1.8rem;
+$font-20: 2rem;
+$font-24: 2.4rem;
+$font-26: 2.6rem;
+$font-32: 3.2rem;
 
 // Font weight
-$font-weight-thin: 100;
-$font-weight-light: 300;
-$font-weight-regular: 400;
-$font-weight-medium: 500;
-$font-weight-bold: 700;
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-bold: 700;
 
-// Font size
+// ----- Global Helper Classes -----
+// -- Font size helper classes
+// E.g. .font-10, font-12, ..
 $font-size: (
-  'xs':                                          $font-12,
-  'sm':                                          $font-13,
-  'md':                                          $font-14,
-  'lg':                                          $font-16,
+  '10': $font-10,
+  '12': $font-12,
+  '13': $font-13,
+  '14': $font-14,
+  '16': $font-16,
+  '18': $font-18,
+  '20': $font-20,
+  '24': $font-24,
+  '26': $font-26,
+  '32': $font-32,
 );
 
-// Font weight
+@each $name, $pair in $font-size {
+  .font-#{$name} {
+    font-size: $pair !important;
+  }
+}
+
+// -- Font weight helper classes
+// E.g. .font-thin, .font-light, ..
 $font-weight: (
-  'thin':                                        $font-weight-thin,
-  'light':                                       $font-weight-light,
-  'regular':                                     $font-weight-regular,
-  'medium':                                      $font-weight-medium,
-  'bold':                                        $font-weight-bold,
+  'light':    $font-light,
+  'regular':  $font-regular,
+  'medium':   $font-medium,
+  'bold':     $font-bold,
 );
+
+@each $name, $pair in $font-weight {
+  .font-#{$name} {
+    font-weight: $pair !important;
+  }
+}
+
+// WILL BE REMOVED SOON
+$heading-2xl: 3.2rem; // will be removed, use font-32
+$heading-xl: 2.6rem; // will be removed, use font-26
+$heading-lg: 2rem; // will be removed, use $font-20
+$heading-md: 1.8rem; // will be removed, use $font-18
+$heading-base: 1.4rem; // will be removed, use font-14
+$heading-s: 1.2rem; // will be removed, use font-12
+$heading-xs: 1rem; // will be removed, use font-10
+$font-15: 1.4rem; // will be removed, use font-14
+$font-19: 1.8rem; // will be removed use font-18
+$font-21: 2rem; // will be removed, use font-20
+$font-25: 2.4rem; // will be removed, use font-24
+$font-36: 3.2rem; // will be removed, use font-32
+$font-weight-thin: 300; // use font-light
+$font-weight-light: 300; // use font-light
+$font-weight-regular: 400; // use font-regular
+$font-weight-medium: 500; // use font-medium
+$font-weight-bold: 700; // use font-bold

@@ -39,7 +39,8 @@
     outline: 3px solid $sb-green-25;
   }
 
-  &:hover:not([disabled]) {
+  &:hover:not([disabled]),
+  &:focus:not([disabled]) {
     background-color: darken($sb-green, 4%);
   }
 }
@@ -51,7 +52,8 @@
     outline: 3px solid $sb-dark-blue-25;
   }
 
-  &:hover:not([disabled]) {
+  &:hover:not([disabled]),
+  &:focus:not([disabled]) {
     background-color: $sb-dark-blue-75;
   }
 }
@@ -65,7 +67,8 @@
     outline: 3px solid $light-25;
   }
 
-  &:hover:not([disabled]) {
+  &:hover:not([disabled]),
+  &:focus:not([disabled]) {
     background-color: $light-50;
   }
 
@@ -215,7 +218,7 @@
 
 .sb-button__label {
   vertical-align: middle;
-  font-weight: $font-weight-medium;
+  font-weight: $font-medium;
 }
 
 .sb-button--inverted-link {

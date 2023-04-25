@@ -41,16 +41,16 @@ h6 {
   margin: 0;
   padding: 0;
   color: $sb-dark-blue;
-  font-weight: $font-weight-medium;
+  font-weight: $font-medium;
   letter-spacing: 0;
 }
 
-h1 { font-size: $heading-xl; }
-h2 { font-size: $heading-lg; }
-h3 { font-size: $heading-md; }
-h4 { font-size: $heading-base; }
-h5 { font-size: $heading-s; }
-h6 { font-size: $heading-xs; }
+h1 { font-size: $font-26; }
+h2 { font-size: $font-20; }
+h3 { font-size: $font-18; }
+h4 { font-size: $font-14; }
+h5 { font-size: $font-12; }
+h6 { font-size: $font-10; }
 
 input,
 textarea,
@@ -59,25 +59,14 @@ button {
   font-family: $primary-font-family;
 }
 
-@each $name, $pair in $font-weight {
-  .font-weight-#{$name} {
-    font-weight: $pair !important;
-  }
-}
-
-@each $name, $pair in $font-size {
-  .font-size-#{$name} {
-    font-size: $pair !important;
-  }
-}
-
 // scrollbar
 
 // for firefox
 .transparent-scroll {
   scrollbar-color: #c1c1c1 transparent;
 
-  &:hover {
+  &:hover,
+  &:focus {
     scrollbar-color: #7d7d7d transparent;
   }
 }
@@ -94,7 +83,8 @@ button {
   border-left: 3px solid transparent;
   border-right: 3px solid transparent;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: #7d7d7d;
   }
 }

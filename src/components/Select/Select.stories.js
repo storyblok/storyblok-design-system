@@ -494,10 +494,10 @@ export const EmitOption = (args) => ({
           style="max-width: 300px"
         />
 
-        <p class="font-weight-medium text-ink font-size-lg">
+        <p class="font-medium text-ink font-size-lg">
           Selected value {{ singleSelectValue }}
         </p>
-        <p class="font-weight-medium text-ink font-size-lg">
+        <p class="font-medium text-ink font-size-lg">
           Selected option {{ singleSelectOption }}
         </p>
       </div>
@@ -523,7 +523,7 @@ export const EmitOption = (args) => ({
         style="max-width: 300px"
       />
 
-      <p class="font-weight-medium text-ink font-size-lg">
+      <p class="font-medium text-ink font-size-lg">
         Selected value {{ multipleSelectValue }}
       </p>
     </div>
@@ -634,11 +634,10 @@ WithCaptionTag.parameters = {
   },
 }
 
-
 export const WithOptionDisabled = SelectTemplate.bind({})
 
 WithOptionDisabled.args = {
-  isOptionDisabled: (item) => item.value === 2
+  isOptionDisabled: (item) => item.value === 2,
 }
 
 WithOptionDisabled.parameters = {
@@ -647,5 +646,5 @@ WithOptionDisabled.parameters = {
       story:
         'When we pass the `isOptionDisabled` prop, it will be possible to render a option disabled',
     },
-  }
+  },
 }
