@@ -9,8 +9,7 @@
       v-if="allowSelection && row.selectable !== false"
       class="sb-data-table__body-cell sb-data-table__col-selection"
     >
-      <SbCheckbox :id="rowId"
-v-model="isSelected" />
+      <SbCheckbox :id="rowId" v-model="isSelected" />
     </td>
 
     <td
