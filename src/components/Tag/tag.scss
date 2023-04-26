@@ -2,7 +2,8 @@
   color: $textColor;
   background-color: $color;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: darken($color, 5%);
   }
 }
@@ -15,7 +16,7 @@
   vertical-align: middle;
   padding: 3px 10px;
   font-size: $font-13;
-  font-weight: $font-weight-medium;
+  font-weight: $font-medium;
   border-radius: 5px;
 
   &__label {

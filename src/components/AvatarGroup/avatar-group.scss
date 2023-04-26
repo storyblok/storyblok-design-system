@@ -14,41 +14,43 @@
     margin-left: -10px;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:focus {
       position: relative;
       z-index: 3;
     }
 
     .sb-avatar__image,
     .sb-avatar__initials {
-      @include avatarGroupItem;
-
       overflow: hidden;
       transform: translate(0, 0);
       transition: 0.1s ease-in-out;
+
+      @include avatarGroupItem;
     }
   }
 
   &__more {
-    @include avatarGroupItem;
-    @include avatarComponent();
-    @include avatarComponentSize(36px);
-
     position: relative;
     z-index: 1;
     margin-left: -10px;
     color: $color-primary-dark;
     font-size: $font-12;
-    font-weight: $font-weight-regular;
+    font-weight: $font-regular;
     background-color: $light-75;
     cursor: pointer;
+
+    @include avatarGroupItem;
+    @include avatarComponent();
+    @include avatarComponentSize(36px);
   }
 
   >.sb-avatar:first-child {
     margin-left: 0;
   }
 
-  >.sb-avatar:hover {
+  >.sb-avatar:hover,
+  >.sb-avatar:focus {
     .sb-avatar__image,
     .sb-avatar__initials {
       z-index: 99999;

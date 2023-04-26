@@ -20,8 +20,8 @@
   }
 
   &--active {
-    font-size: $font-19;
-    font-weight: $font-weight-medium;
+    font-size: $font-18;
+    font-weight: $font-medium;
     background-color: $sb-green-25;
 
     &:hover,
@@ -88,7 +88,7 @@
     padding: 15px 37.5px;
     color: $color-primary-dark;
     font-size: $font-14;
-    font-weight: $font-weight-medium;
+    font-weight: $font-medium;
     background-color: $white;
     border: 0;
     appearance: none;
@@ -120,7 +120,7 @@
     padding: 15px 0;
     color: $color-primary-dark;
     font-size: $font-14;
-    font-weight: $font-weight-medium;
+    font-weight: $font-medium;
     text-align: center;
 
     span {
