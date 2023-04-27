@@ -157,12 +157,21 @@
   color: $white;
   background-color: $sb-dark-blue;
   border-radius: 5px;
+  flex-wrap: wrap;
+
+  @include mq($until: sm) {
+    padding: 0 11px 0 2px;
+  }
 
   &__rows-selected {
     margin-left: 0;
     color: $white;
     font-family: $primary-font-family;
     font-size: 14px;
+
+    @include mq($until: sm) {
+      display: none;
+    }
   }
 
   &__btn:focus {
@@ -170,7 +179,11 @@
   }
 
   &__btn {
-    margin-left: 10px;
+    margin-left: 2px;
+
+    @include mq($from: sm) {
+      margin-left: 10px;
+    }
   }
 
   &__btn-cancel {
