@@ -124,7 +124,7 @@ WithLargeSection.parameters = {
   docs: {
     description: {
       story:
-        'When you set the attribute `isLargeSection`, the last item will be show in a new line, and the font size of this item will be changed to `$heading-xl` with the `2.6rem` size.',
+        'When you set the attribute `isLargeSection`, the last item will be show in a new line, and the font size of this item will be changed to `$font-26` with the `2.6rem` size.',
     },
   },
 }

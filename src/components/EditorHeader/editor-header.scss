@@ -13,7 +13,7 @@
     height: 52px;
     color: $white;
     font-size: $font-14;
-    font-weight: $font-weight-medium;
+    font-weight: $font-medium;
     background-color: $sb-dark-blue;
 
     .sb-button--small {
@@ -44,13 +44,13 @@
       .desktop__title {
         color: $sb-dark-blue;
         font-size: $font-14;
-        font-weight: $font-weight-medium;
+        font-weight: $font-medium;
       }
 
       .desktop__sub-title {
         color: $light-gray;
         font-size: $font-12;
-        font-weight: $font-weight-regular;
+        font-weight: $font-regular;
       }
     }
 
@@ -81,7 +81,7 @@
     padding-top: 10px;
     color: $black;
     font-size: $font-14;
-    font-weight: $font-weight-medium;
+    font-weight: $font-medium;
     text-align: center;
   }
 
@@ -103,7 +103,7 @@
     margin-top: 10px;
     color: $sb-green;
     font-size: $font-14;
-    font-weight: $font-weight-medium;
+    font-weight: $font-medium;
     background-color: $white;
     border: 0;
     cursor: pointer;
@@ -137,7 +137,7 @@
 }
 
 // for small mobiles
-@include mq($until: xs) {
+@include mq($until: sm) {
   .sb-editor-header__mobile {
     .sb-editor-header__item {
       margin-left: 2px;

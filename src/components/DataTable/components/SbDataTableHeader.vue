@@ -1,15 +1,8 @@
 <template>
   <thead>
     <tr>
-      <th
-        v-if="allowSelection && isMultiple"
-        class="sb-data-table__head-cell"
-        @click="handleAllRowsSelected"
-      >
-        <SbCheckbox
-          :indeterminate="isIndeterminate"
-          :model-value="allRowsSelected"
-        />
+      <th v-if="allowSelection && isMultiple" class="sb-data-table__head-cell">
+        <SbCheckbox v-model="isActive" :indeterminate="isIndeterminate" />
       </th>
       <SbDataTableHeaderCell
         v-for="(elem, index) in headers"
@@ -72,6 +65,15 @@ export default {
 
     isMultiple() {
       return this.selectionMode === 'multiple'
+    },
+
+    isActive: {
+      get() {
+        return this.allRowsSelected
+      },
+      set() {
+        this.handleAllRowsSelected()
+      },
     },
   },
 

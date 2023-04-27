@@ -34,7 +34,7 @@
   color: $sb-dark-blue-50;
   font-family: $primary-font-family;
   font-size: $font-14;
-  font-weight: $font-weight-medium;
+  font-weight: $font-medium;
   text-align: center;
   background-color: transparent;
   border: 0;
@@ -49,7 +49,7 @@
 .sb-tab--is-active {
   z-index: 3;
   color: $primary-text-color;
-  font-weight: $font-weight-medium;
+  font-weight: $font-medium;
 
   &::after {
     content: '';

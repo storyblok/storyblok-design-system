@@ -92,7 +92,7 @@
     width: 75%;
     color: $sb-dark-blue;
     font-size: $font-16;
-    font-weight: $font-weight-medium;
+    font-weight: $font-medium;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -104,7 +104,7 @@
     margin-top: 12px;
     color: $sb-dark-blue;
     font-size: $font-14;
-    font-weight: $font-weight-regular;
+    font-weight: $font-regular;
     line-height: 1.2;
     text-overflow: ellipsis;
   }
@@ -119,7 +119,7 @@
     a {
       color: $primary-text-color;
       font-size: $font-14;
-      font-weight: $font-weight-regular;
+      font-weight: $font-regular;
       text-decoration: none;
       text-decoration: underline;
       text-decoration-color: $primary-text-color;

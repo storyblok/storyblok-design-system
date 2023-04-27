@@ -6,7 +6,7 @@
     margin-bottom: 10px;
     color: $sb-dark-blue;
     font-size: $font-14;
-    font-weight: $font-weight-medium;
+    font-weight: $font-medium;
     letter-spacing: 0;
   }
 
@@ -15,7 +15,8 @@
     top: 50%;
     transform: translateY(-50%);
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: $sb-dark-blue-50;
     }
 
@@ -187,7 +188,7 @@
     margin-top: 5px;
     color: $sb-dark-blue-50;
     font-size: $font-14;
-    font-weight: $font-weight-regular;
+    font-weight: $font-regular;
     letter-spacing: 0;
 
     &--warning {

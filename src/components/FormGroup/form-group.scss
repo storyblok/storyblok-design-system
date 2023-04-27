@@ -2,7 +2,7 @@
   width: 100%;
   margin-top: $medium-size;
 
-  @include mq($until: xs) {
+  @include mq($until: sm) {
     &--inline {
       display: block;
     }
@@ -35,7 +35,7 @@
   &__legend {
     color: $sb-dark-blue;
     font-size: $font-size-default;
-    font-weight: $font-weight-medium;
+    font-weight: $font-medium;
   }
 
   &__description {

@@ -51,8 +51,8 @@
   &__title {
     margin: 20px 0 10px;
     color: $primary-text-color;
-    font-size: $heading-lg;
-    font-weight: $font-weight-medium;
+    font-size: $font-20;
+    font-weight: $font-medium;
     text-align: center;
   }
 
@@ -61,14 +61,15 @@
     margin: 0 auto;
     color: $light-gray;
     font-size: $font-size-default;
-    font-weight: $font-weight-regular;
+    font-weight: $font-regular;
     text-align: center;
 
     span {
       color: $sb-green;
       cursor: pointer;
 
-      &:hover {
+      &:hover,
+      &:focus {
         text-decoration: underline;
       }
     }

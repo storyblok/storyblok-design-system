@@ -31,7 +31,8 @@
           {{ tzOffsetLabel }}
         </span>
 
-        <span v-else class="sb-datepicker__timezone">
+        <span v-else
+class="sb-datepicker__timezone">
           {{ tzOffsetLabel }}
         </span>
       </template>
@@ -482,7 +483,9 @@ export default {
     wrapClose(e) {
       const hasTarget = e && e?.target && this.$el
       const hasContains = hasTarget && typeof this.$el?.contains === 'function'
-      if (hasContains && !this.$el.contains(e.target)) {
+      const targetIsNode = e?.target instanceof Node
+
+      if (hasContains && targetIsNode && !this.$el.contains(e.target)) {
         this.handleCancelAction()
       }
     },

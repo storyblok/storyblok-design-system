@@ -115,7 +115,7 @@
 
 @mixin selectedItem {
   color: $sb-green;
-  font-weight: $font-weight-medium;
+  font-weight: $font-medium;
 }
 
 @mixin focusedTextField {
