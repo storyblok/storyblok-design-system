@@ -1,20 +1,18 @@
 <template>
-  <svg
-    class="sb-icon"
-    :class="[sizeClass, colorClass, bgClass, fillClass]"
-    :role="role ? role : 'presentation'"
-    :viewBox="iconDeff.viewBox"
-    v-bind="$attrs"
-    v-html="iconDeff.path"
-  ></svg>
+  <Icon :icon="iconName" :class="classes" />
 </template>
 
 <script>
-import { getSvgIcon, iconSizes } from './utils'
+import { iconSizes, getHeroIcon } from './utils'
 import { availableColors } from '../../utils'
+import { computed } from 'vue'
+import { Icon } from '@iconify/vue'
 
 export default {
   name: 'SbIcon',
+  components: {
+    Icon,
+  },
   props: {
     color: {
       type: String,
@@ -40,22 +38,19 @@ export default {
       validator: (size) => iconSizes.indexOf(size) !== -1,
     },
   },
-  computed: {
-    iconDeff() {
-      return getSvgIcon(this.name)
-    },
-    fillClass() {
-      return this.iconDeff?.fill ? 'sb-icon--no-fill' : null
-    },
-    sizeClass() {
-      return this.size ? `sb-icon--${this.size}` : null
-    },
-    colorClass() {
-      return this.color ? `sb-icon--color-${this.color}` : null
-    },
-    bgClass() {
-      return this.backgroundColor ? `sb-icon--bg-${this.backgroundColor}` : null
-    },
+  setup(props) {
+    const classes = {
+      'sb-icon': true,
+      'sb-icon--no-fill': !props.iconDeff?.fill,
+      [`sb-icon--${props.size}`]: props.size,
+      [`sb-icon--color-${props.color}`]: props.color,
+      [`sb-icon--bg-${props.backgroundColor}`]: props.backgroundColor,
+    }
+
+    const iconName = computed(() => {
+      return getHeroIcon(props.name) + '-20-solid'
+    })
+    return { classes, iconName }
   },
 }
 </script>

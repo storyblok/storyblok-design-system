@@ -1,4 +1,5 @@
 import iconPaths from '../../lib/internal-icons'
+import heroPaths from '../../lib/hero-icons'
 
 /**
  * @typedef {{path: string, viewBox: string}} IconDeff
@@ -29,6 +30,10 @@ export const getSvgIcon = (name) => {
   }
 
   return icon
+}
+
+export const getHeroIcon = (name) => {
+  return heroPaths[name]
 }
 
 /**
