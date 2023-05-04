@@ -1,0 +1,45 @@
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: $white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: $sb-green;
+  border-radius: $base-border-radius;
+}
+
+.outer-margin {
+  display: inline-block;
+  background-image: linear-gradient(135deg, $sb-dark-blue 10%, #0000 0, #0000 50%, $sb-dark-blue 0, $sb-dark-blue 60%, #0000 0, #0000);
+  background-size: 7.07px 7.07px;
+}
+
+.outer-padding {
+  display: inline-block;
+  background-image: linear-gradient(135deg, $sb-green 10%, #0000 0, #0000 50%, $sb-green 0, $sb-green 60%, #0000 0, #0000);
+  background-size: 7.07px 7.07px;
+}
+
+.wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: start;
+}
+
+pre {
+  display: inline-block;
+  padding: 8px;
+  color: #dcdcdc;
+  font-size: 1.2rem;
+  background: $sb-dark-blue;
+  border-radius: $base-border-radius;
+}
+
+code {
+  display: inline-block;
+  margin: 0;
+  line-height: 1.45;
+}

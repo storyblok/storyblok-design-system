@@ -9,8 +9,90 @@ $sb-avatar-small: 26px;
 $sb-avatar-normal: 32px;
 $sb-avatar-large: 46px;
 
-// margin variables
-$small-size: 8px;
-$medium-size: 16px;
-$large-size: 32px;
-$x-large-size: 48px;
+$s-1: 4px;
+$s-2: 8px;
+$s-3: 12px;
+$s-4: 16px;
+$s-5: 24px;
+$s-6: 32px;
+$s-7: 40px;
+$s-8: 48px;
+
+$sizes: (
+  '1': $s-1,
+  '2': $s-2,
+  '3': $s-3,
+  '4': $s-4,
+  '5': $s-5,
+  '6': $s-6,
+  '7': $s-7,
+  '8': $s-8
+);
+
+@each $name, $value in $sizes {
+  .m-#{$name} {
+    margin: $value !important;
+  }
+
+  .mt-#{$name} {
+    margin-top: $value !important;
+  }
+
+  .mr-#{$name} {
+    margin-right: $value !important;
+  }
+
+  .mb-#{$name} {
+    margin-bottom: $value !important;
+  }
+
+  .ml-#{$name} {
+    margin-left: $value !important;
+  }
+
+  .mx-#{$name} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+
+  .my-#{$name} {
+    margin-bottom: $value !important;
+    margin-top: $value !important;
+  }
+
+  .p-#{$name} {
+    margin: $value !important;
+  }
+
+  .pt-#{$name} {
+    margin-top: $value !important;
+  }
+
+  .pr-#{$name} {
+    margin-right: $value !important;
+  }
+
+  .pb-#{$name} {
+    margin-bottom: $value !important;
+  }
+
+  .pl-#{$name} {
+    margin-left: $value !important;
+  }
+
+  .px-#{$name} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+
+  .py-#{$name} {
+    margin-bottom: $value !important;
+    margin-top: $value !important;
+  }
+}
+
+// will be removed
+$small-size: 8px; // use $s-2
+$medium-size: 16px; // use $s-4
+$large-size: 32px; // use $s-6
+$x-large-size: 48px; // use $s-8
