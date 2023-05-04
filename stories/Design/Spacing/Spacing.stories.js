@@ -11,14 +11,14 @@ export const AllSpacing = () => ({
     <div>
       <h1 class="my-5">Variables</h1>
       <pre><code>
-  \$s-1: 4px;
-  \$s-2: 8px;
-  \$s-3: 12px;
-  \$s-4: 16px;
-  \$s-5: 24px;
-  \$s-6: 32px;
-  \$s-7: 40px;
-  \$s-8: 48px;
+  s-1: 4px
+  s-2: 8px
+  s-3: 12px
+  s-4: 16px
+  s-5: 24px
+  s-6: 32px
+  s-7: 40px
+  s-8: 48px
       </code></pre>
 
       <h1 class="my-5">Margin</h1>
