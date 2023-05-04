@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import './spacing.scss'
 
 export default {
@@ -9,6 +8,18 @@ export const AllSpacing = () => ({
   template: `
   <section>
     <div>
+      <h1 class="my-5">Variables</h1>
+      <pre><code>
+  $s-1: 4px;
+  $s-2: 8px;
+  $s-3: 12px;
+  $s-4: 16px;
+  $s-5: 24px;
+  $s-6: 32px;
+  $s-7: 40px;
+  $s-8: 48px;
+      </code></pre>
+
       <h1 class="my-5">Margin</h1>
       <div class="wrapper">
         <div class="outer-margin"><div class="square m-1">m-1</div></div>
@@ -21,7 +32,6 @@ export const AllSpacing = () => ({
         <div class="outer-margin"><div class="square m-8">m-8</div></div>
       </div>
 
-    <div>
       <h1 class="my-5">Padding</h1>
 
       <div class="wrapper">
