@@ -10,8 +10,9 @@
   },
   "scripts": {
     "dev": "yarn storybook",
-    "build": "vite build",
+    "build": "vite build && yarn generate:types",
     "test:unit": "jest",
+    "generate:types": "vue-tsc --declaration --emitDeclarationOnly --outdir ./dist",
     "lint": "eslint src src/ tests/ .storybook/",
     "lint:style": "stylelint 'src/**/*.{vue,scss}' --config ./.stylelintrc.json --fix",
     "build-storybook": "storybook build",
@@ -45,7 +46,7 @@
     "@storybook/vue3": "^7.0.0-rc.8",
     "@storybook/vue3-vite": "^7.0.0-rc.8",
     "@testing-library/vue": "^7.0.0",
-    "@vitejs/plugin-vue": "^4",
+    "@vitejs/plugin-vue": "^4.2.1",
     "@vue/compiler-sfc": "^3.2.47",
     "@vue/eslint-config-standard": "^8.0.1",
     "@vue/test-utils": "^2.2.1",
@@ -57,6 +58,7 @@
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
     "eslint-plugin-jest-dom": "^4.0.3",
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-node": "^11.1.0",
@@ -84,11 +86,11 @@
     "stylelint-order": "^4.1.0",
     "ts-jest": "^29.0.5",
     "typescript": "^4.9.5",
-    "vite": "^4",
+    "vite": "^4.3.4",
     "vite-svg-loader": "^4.0.0",
-    "vue": "^3.2.47",
     "vue-eslint-parser": "^9.1.0",
-    "vue-tsc": "^1.2.0"
+    "vue-tsc": "^1.6.4",
+    "vue": "^3.2.45"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [

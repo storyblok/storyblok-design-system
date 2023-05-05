@@ -1,15 +1,17 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
+import { resolve } from 'node:path'
+import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-      '@components': resolve(__dirname, 'src/components'),
-      '@styles': resolve(__dirname, 'src/assets/styles'),
-      vue$: resolve(__dirname, 'node_modules/vue'),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@components': fileURLToPath(
+        new URL('./src/components', import.meta.url)
+      ),
+      '@styles': fileURLToPath(new URL('src/assets/styles', import.meta.url)),
     },
     extensions: ['.mjs', '.js', '.json', '.vue', '.ts'],
   },
@@ -33,11 +35,15 @@ export default defineConfig({
       fileName: 'storyblok-design-system',
     },
     rollupOptions: {
+      external: ['vue'],
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css')
             return 'storyblok-design-system.css'
           return assetInfo.name
+        },
+        globals: {
+          vue: 'Vue',
         },
       },
     },
