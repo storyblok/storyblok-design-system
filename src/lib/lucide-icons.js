@@ -23,7 +23,7 @@ const icons = {
   'at-sign': 'lucide:at-sign',
   'avatar-fallback': 'lucide:user',
   'block-@': 'lucide:at-sign',
-  'block-1-2block': '',
+  'block-1-2block': 'lucid:layout-template',
   'block-add': 'lucide:plus',
   'block-arrow-pointer': 'lucide:mouse-pointer',
   'block-block': 'lucide:square',
