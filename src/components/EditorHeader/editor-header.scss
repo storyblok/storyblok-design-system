@@ -14,7 +14,7 @@
     color: $white;
     font-size: $font-14;
     font-weight: $font-medium;
-    background-color: $sb-dark-blue;
+    background-color: $ink;
 
     .sb-button--small {
       padding: 5px 16px;
@@ -42,7 +42,7 @@
       padding-top: 5px;
 
       .desktop__title {
-        color: $sb-dark-blue;
+        color: $ink;
         font-size: $font-14;
         font-weight: $font-medium;
       }
@@ -101,7 +101,7 @@
 
   &__save-button {
     margin-top: 10px;
-    color: $sb-green;
+    color: $teal;
     font-size: $font-14;
     font-weight: $font-medium;
     background-color: $white;

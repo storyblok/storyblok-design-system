@@ -54,7 +54,7 @@ $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
     display: inline-block;
     min-height: 16px;
     padding-left: 28px;
-    color: $sb-dark-blue;
+    color: $ink;
     font-size: $font-14;
     line-height: normal;
   }
@@ -72,8 +72,8 @@ $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
 
   &:checked {
     + .sb-checkbox__input {
-      background-color: $sb-green;
-      border: 1px solid $sb-green;
+      background-color: $teal;
+      border: 1px solid $teal;
 
       .sb-checkbox__truthy {
         fill: $white;
@@ -96,8 +96,8 @@ $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
 
   &:indeterminate {
     + .sb-checkbox__input {
-      background-color: $sb-green;
-      border: 1px solid $sb-green;
+      background-color: $teal;
+      border: 1px solid $teal;
 
       .sb-checkbox__indeterminate {
         transform: rotate(0) scale(1);

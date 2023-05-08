@@ -35,7 +35,7 @@
     position: relative;
     display: inline-block;
     padding-left: 28px;
-    color: $sb-dark-blue;
+    color: $ink;
     font-size: $font-14;
     font-stretch: normal;
     font-style: normal;
@@ -70,8 +70,8 @@
     top: 0;
     width: 16px;
     height: 16px;
-    background-color: $sb-green;
-    border: 1px solid $sb-green;
+    background-color: $teal;
+    border: 1px solid $teal;
   }
 
   &::after {
@@ -117,5 +117,5 @@
 }
 
 .sb-radio__input[disabled] + label {
-  color: $sb-dark-blue-50;
+  color: $ink-50;
 }

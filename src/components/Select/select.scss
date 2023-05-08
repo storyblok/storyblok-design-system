@@ -24,7 +24,7 @@
 
       &__label {
         margin-right: 5px;
-        color: $sb-dark-blue-50;
+        color: $ink-50;
       }
 
       &__chevron {
@@ -44,7 +44,7 @@
     &:hover,
     &:focus {
       .sb-select-inner__input::placeholder {
-        color: $sb-dark-blue;
+        color: $ink;
         opacity: 1;
       }
     }
@@ -71,7 +71,7 @@
   }
 
   &--loading .sb-select-inner__chevron {
-    color: $sb-green;
+    color: $teal;
   }
 }
 
@@ -93,7 +93,7 @@
   align-items: center;
   overflow-x: hidden;
   padding: 10px 10px 9px 17px;
-  color: $sb-dark-blue;
+  color: $ink;
   font-size: $font-14;
   background-color: $white;
   border: 1px solid $light;
@@ -101,7 +101,7 @@
   cursor: pointer;
 
   &:hover {
-    border-color: $sb-green;
+    border-color: $teal;
   }
 
   &:focus {
@@ -170,7 +170,7 @@
     flex: 1;
     width: 100%;
     padding: 0;
-    color: $sb-dark-blue;
+    color: $ink;
     font-size: inherit;
     background-color: transparent;
     border: 0;
@@ -181,7 +181,7 @@
     }
 
     &::placeholder {
-      color: $sb-dark-blue-50;
+      color: $ink-50;
     }
   }
 
@@ -209,7 +209,7 @@
 
   &:hover &__chevron,
   &:focus &__chevron {
-    color: $sb-dark-blue;
+    color: $ink;
   }
 
   &__disabled {
@@ -251,9 +251,6 @@
 }
 
 .sb-select-list {
-  @include popoverComponent();
-  @include listPosition();
-  
   display: none;
   flex: 1;
   overflow: auto;
@@ -263,6 +260,9 @@
   min-width: 176px;
   padding: 13px 0;
   background-color: $white;
+
+  @include popoverComponent();
+  @include listPosition();
 
   ul {
     margin: 0;
@@ -310,7 +310,7 @@
     gap: 5px;
     overflow: hidden;
     min-height: 17px;
-    color: $sb-dark-blue;
+    color: $ink;
   }
 
   &__item-name {
@@ -320,7 +320,7 @@
   }
 
   &__create-label {
-    color: $sb-green;
+    color: $teal;
   }
 
   &__create-value {
@@ -332,7 +332,7 @@
 
   &__empty {
     display: block;
-    color: $sb-dark-blue-50;
+    color: $ink-50;
     font-size: 1.3rem;
     text-align: center;
 

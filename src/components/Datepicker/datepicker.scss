@@ -7,7 +7,7 @@
 
   &:hover,
   &:focus {
-    background-color: $sb-dark-blue-25;
+    background-color: $ink-25;
   }
 
   &--current {
@@ -15,23 +15,23 @@
 
     &:hover,
     &:focus {
-      background-color: $sb-green-25;
+      background-color: $teal-25;
     }
   }
 
   &--active {
     font-size: $font-18;
     font-weight: $font-medium;
-    background-color: $sb-green-25;
+    background-color: $teal-25;
 
     &:hover,
     &:focus {
-      background-color: $sb-green-25;
+      background-color: $teal-25;
     }
   }
 
   &--disabled {
-    color: $sb-dark-blue-50;
+    color: $ink-50;
     text-decoration: line-through;
     cursor: no-drop;
 
@@ -143,7 +143,7 @@
     display: block;
     margin: 0;
     padding-bottom: 10px;
-    color: $sb-dark-blue-50;
+    color: $ink-50;
     font-size: $font-14;
     text-align: center;
   }
@@ -156,7 +156,7 @@
 
   span {
     flex: 1;
-    color: $sb-dark-blue-50;
+    color: $ink-50;
     font-size: $font-14;
     text-align: center;
   }
@@ -181,7 +181,7 @@
     @include datepickerItem();
 
     &--inactive {
-      color: $sb-dark-blue-50;
+      color: $ink-50;
     }
   }
 }

@@ -12,7 +12,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   // components
   &__input-container {
     position: relative;
-    color: $sb-dark-blue-50;
+    color: $ink-50;
 
     &-icon {
       position: absolute;
@@ -34,7 +34,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     padding: 10px $general-padding 13px;
 
     .sb-breadcrumbs__item--active {
-      color: $sb-dark-blue-50;
+      color: $ink-50;
     }
   }
 
@@ -66,7 +66,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
       flex: 1;
       margin: 0;
       padding: 0;
-      color: $sb-dark-blue-50;
+      color: $ink-50;
     }
 
     &-icon {
@@ -147,7 +147,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   &__not-found {
     margin: 0;
     padding-bottom: 27px;
-    color: $sb-dark-blue-50;
+    color: $ink-50;
     font-size: $font-13;
     text-align: center;
   }
@@ -184,7 +184,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
 
   &__input-container-clear .sb-icon:hover,
   &__input-container-clear .sb-icon:focus {
-    color: $sb-dark-blue-50;
+    color: $ink-50;
   }
 
   &--full-height &__breadcrumbs {

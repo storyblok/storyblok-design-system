@@ -1,7 +1,7 @@
 .sb-accordion {
   position: relative;
   width: 100%;
-  color: $sb-dark-blue;
+  color: $ink;
   background: $white;
 
   &:last-child {
@@ -31,7 +31,7 @@
 
   &:hover .sb-accordion__button,
   &:focus .sb-accordion__button {
-    color: $sb-dark-blue;
+    color: $ink;
     background: $light-25;
   }
 
@@ -71,7 +71,7 @@
 
   &:hover,
   &:focus {
-    color: $sb-green;
+    color: $teal;
   }
 
   .sb-icon {
@@ -95,7 +95,7 @@
 
     &:hover .sb-accordion__button,
     &:focus .sb-accordion__button {
-      color: $sb-dark-blue;
+      color: $ink;
       background: transparent;
     }
   }

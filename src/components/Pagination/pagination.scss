@@ -36,7 +36,7 @@
   }
 
   &__placeholder {
-    color: $sb-dark-blue-50;
+    color: $ink-50;
     font-size: $font-13;
     font-weight: $font-regular;
     white-space: nowrap;
@@ -67,7 +67,7 @@
     }
 
     &--disabled {
-      color: $sb-dark-blue-25;
+      color: $ink-25;
       cursor: not-allowed;
     }
 
@@ -96,7 +96,7 @@
     }
 
     &--active {
-      background-color: $sb-dark-blue;
+      background-color: $ink;
 
       &::after {
         content: '';
@@ -105,7 +105,7 @@
         top: -4px;
         width: 14px;
         height: 14px;
-        border: solid 2px $sb-dark-blue-25;
+        border: solid 2px $ink-25;
         border-radius: 100%;
       }
     }

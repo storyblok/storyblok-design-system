@@ -69,7 +69,7 @@
     background-color: $light-50;
 
     .sb-icon {
-      color: $sb-dark-blue;
+      color: $ink;
     }
   }
 }
@@ -114,14 +114,14 @@
 }
 
 @mixin selectedItem {
-  color: $sb-green;
+  color: $teal;
   font-weight: $font-medium;
 }
 
 @mixin focusedTextField {
   border-radius: 5px;
-  border-color: $sb-green;
-  box-shadow: 0 0 0 3px $sb-green-25;
+  border-color: $teal;
+  box-shadow: 0 0 0 3px $teal-25;
   outline: none;
 }
 

@@ -4,7 +4,7 @@
   &__label {
     display: block;
     margin-bottom: 10px;
-    color: $sb-dark-blue;
+    color: $ink;
     font-size: $font-14;
     font-weight: $font-medium;
     letter-spacing: 0;
@@ -17,7 +17,7 @@
 
     &:hover,
     &:focus {
-      color: $sb-dark-blue-50;
+      color: $ink-50;
     }
 
     &--left {
@@ -54,7 +54,7 @@
   &__input,
   &__textarea {
     width: 100%;
-    color: $sb-dark-blue;
+    color: $ink;
     font-size: $font-14;
     border-radius: 5px;
     transition: $base-transition;
@@ -66,7 +66,7 @@
     }
 
     &::placeholder {
-      color: $sb-dark-blue-50;
+      color: $ink-50;
       font-size: $font-14;
       font-weight: normal;
       letter-spacing: 0;
@@ -76,7 +76,7 @@
       border: 1px solid $light;
 
       &:hover {
-        border-color: $sb-green;
+        border-color: $teal;
       }
 
       &:focus {
@@ -124,13 +124,13 @@
       border-radius: $base-border-radius;
 
       &:hover {
-        border-color: $sb-green;
+        border-color: $teal;
       }
 
       &:focus {
         border-radius: 5px;
-        border-color: $sb-green;
-        box-shadow: 0 0 0 3px $sb-green-25;
+        border-color: $teal;
+        box-shadow: 0 0 0 3px $teal-25;
         outline: none;
       }
     }
@@ -150,7 +150,7 @@
     min-width: stretch;
     min-width: fit-content;
     padding: 15px 17px;
-    color: $sb-dark-blue;
+    color: $ink;
     font-size: $font-14;
     font-weight: normal;
     letter-spacing: 0;
@@ -186,7 +186,7 @@
   &__counter {
     display: block;
     margin-top: 5px;
-    color: $sb-dark-blue-50;
+    color: $ink-50;
     font-size: $font-14;
     font-weight: $font-regular;
     letter-spacing: 0;

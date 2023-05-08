@@ -58,12 +58,6 @@ $white: #fff;
 $black-trasparent: rgba($sb-dark-blue, 0.2);
 
 $colors: (
-  'primary':                                     $teal,
-  'primary-dark':                                $ink,
-  'secondary':                                   $green,
-  'positive':                                    $green,
-  'negative':                                    $red,
-  'warning':                                     $orange,
   'white':                                       $white,
   'teal':                                        $teal,
   'ink':                                         $ink,
@@ -75,6 +69,17 @@ $colors: (
   'light':                                       $light,
   'light-gray':                                  $light-gray
 );
+
+// color helpers
+@each $name, $pair in $colors {
+  .bg-#{$name} {
+    background-color: $pair !important;
+  }
+
+  .text-#{$name} {
+    color: $pair !important;
+  }
+}
 
 // will be removed
 $sb-green: #00b3b0; // use $teal
@@ -99,8 +104,8 @@ $neutral-gray: #8d919c; // use $gray
 $blue-grey: #415467; // use $blue-gray
 
 // will be removed
-$color-primary: $sb-green;
-$color-primary-dark: $sb-dark-blue;
+$color-primary: $teal;
+$color-primary-dark: $ink;
 $color-secondary: $green;
 $color-positive: $green;
 $color-negative: $red;

@@ -4,7 +4,7 @@
   &__label {
     display: block;
     margin-bottom: 10px;
-    color: $sb-dark-blue;
+    color: $ink;
     font-size: $font-14;
     font-weight: $font-medium;
     letter-spacing: 0;
@@ -59,7 +59,7 @@
   &__input {
     width: 100%;
     padding: 13.5px 17px;
-    color: $sb-dark-blue;
+    color: $ink;
     font-size: $font-14;
     border-radius: 5px;
     appearance: textfield;
@@ -77,7 +77,7 @@
     }
 
     &::placeholder {
-      color: $sb-dark-blue-50;
+      color: $ink-50;
       font-size: $font-14;
       font-weight: normal;
       letter-spacing: 0;
@@ -87,13 +87,13 @@
       border: 1px solid $light;
 
       &:hover {
-        border-color: $sb-green;
+        border-color: $teal;
       }
 
       &:focus {
         border-radius: 5px;
-        border-color: $sb-green;
-        box-shadow: 0 0 0 3px $sb-green-25;
+        border-color: $teal;
+        box-shadow: 0 0 0 3px $teal-25;
         outline: none;
       }
     }
@@ -116,7 +116,7 @@
     letter-spacing: 0;
 
     &--error {
-      color: $sb-dark-blue-50;
+      color: $ink-50;
     }
   }
 }
