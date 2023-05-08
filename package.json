@@ -31,14 +31,14 @@
     "dayjs": "^1.11.7",
     "eslint-plugin-jest": "^27.2.1",
     "maska": "^1.5.0",
-    "throttle-debounce": "^4.0.1"
+    "throttle-debounce": "^4.0.1",
+    "@iconify/vue": "^4.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@babel/eslint-parser": "^7.21.3",
     "@babel/plugin-proposal-decorators": "^7.21.0",
     "@babel/plugin-proposal-export-default-from": "^7.18.10",
-    "@iconify/vue": "^4.1.1",
     "@storybook/addon-a11y": "^7.0.0-rc.8",
     "@storybook/addon-essentials": "^7.0.0-rc.8",
     "@storybook/addon-storysource": "^7.0.0-rc.8",
