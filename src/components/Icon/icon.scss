@@ -41,12 +41,16 @@ $bg-colors: (
 );
 
 .sb-icon {
-  @include setIconSize($icon-default-size);
-  @include setIconColor(currentColor);
-
   display: inline-block;
   vertical-align: middle;
   stroke-width: 2px;
+
+  @include setIconSize($icon-default-size);
+  @include setIconColor(currentColor);
+
+  &.iconify {
+    @include setIconSize(20px);
+  }
 
   &--small {
     @include setIconSize($icon-small-size);
