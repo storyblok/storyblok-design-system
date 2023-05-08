@@ -8,7 +8,7 @@ export const AllSpacing = () => ({
   template: `
   <section>
     <div>
-      <h1 class="my-5">Variables</h1>
+      <h1 class="sb-my-5">Variables</h1>
       <pre><code>
   $s-1: 4px;
   $s-2: 8px;
@@ -20,7 +20,7 @@ export const AllSpacing = () => ({
   $s-8: 48px;
       </code></pre>
 
-      <h1 class="my-5">Margin</h1>
+      <h1 class="sb-my-5">Margin</h1>
       <div class="wrapper">
         <div class="outer-margin"><div class="square sb-m-1">sb-m-1</div></div>
         <div class="outer-margin"><div class="square sb-mt-2">sb-mt-2</div></div>
@@ -32,7 +32,7 @@ export const AllSpacing = () => ({
         <div class="outer-margin"><div class="square sb-m-8">sb-m-8</div></div>
       </div>
 
-      <h1 class="my-5">sb-Padding</h1>
+      <h1 class="sb-my-5">Padding</h1>
 
       <div class="wrapper">
         <div class="outer-padding"><div class="square sb-p-1">sb-p-1</div></div>
