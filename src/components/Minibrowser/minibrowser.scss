@@ -3,11 +3,11 @@ $general-padding: 20px;
 $full-height-padding: $general-padding - $padding-full-height-difference;
 
 .sb-minibrowser {
-  @include popoverComponent();
-
   width: 100%;
   max-width: 300px;
   padding: 10px;
+
+  @include popoverComponent();
 
   // components
   &__input-container {
@@ -22,11 +22,11 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     }
 
     &-clear {
-      @include resetButtonStyle();
-
       position: absolute;
       right: $general-padding;
       top: 10px;
+
+      @include resetButtonStyle();
     }
   }
 
@@ -74,9 +74,9 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     }
 
     .sb-icon-button {
-      @include base--icon-hover;
-
       margin-right: -6px;
+
+      @include base--icon-hover;
     }
   }
 
@@ -95,7 +95,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
 
     &-name {
       display: block;
-      color: $color-primary-dark;
+      color: $ink;
       font-size: $font-14;
     }
 
@@ -137,7 +137,8 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
       opacity: 0.5;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $light-50;
       cursor: pointer;
     }
@@ -181,7 +182,8 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     right: $full-height-padding;
   }
 
-  &__input-container-clear .sb-icon:hover {
+  &__input-container-clear .sb-icon:hover,
+  &__input-container-clear .sb-icon:focus {
     color: $sb-dark-blue-50;
   }
 

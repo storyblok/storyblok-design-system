@@ -41,7 +41,7 @@
   width: 280px;
   height: 100vh;
   max-width: 280px;
-  background-color: $color-primary-dark;
+  background-color: $ink;
   transition: max-width 0.2s ease;
 
   &:hover .sb-button,
@@ -79,7 +79,7 @@
   }
 
   &--dark {
-    color: $color-primary-dark;
+    color: $ink;
   }
 }
 
@@ -262,7 +262,7 @@
   }
 
   .sb-sidebar-toggle .sb-button {
-    color: $color-primary-dark;
+    color: $ink;
     background-color: $light-75;
     opacity: 1;
 

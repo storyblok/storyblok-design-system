@@ -24,7 +24,7 @@ $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
     top: 50%;
     width: 14px;
     height: 14px;
-    background-color: $color-white;
+    background-color: $white;
     border: 1px solid $light;
     border-radius: 3px;
     cursor: pointer;
@@ -40,13 +40,13 @@ $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
     top: 0;
     width: 100%;
     height: 100%;
-    color: $color-white;
+    color: $white;
   }
 
   &__indeterminate {
     transform: rotate(-280deg) scale(0);
     transform-origin: 50% 50%;
-    fill: $color-white;
+    fill: $white;
   }
 
   &__label {
@@ -76,7 +76,7 @@ $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
       border: 1px solid $sb-green;
 
       .sb-checkbox__truthy {
-        fill: $color-white;
+        fill: $white;
       }
     }
 

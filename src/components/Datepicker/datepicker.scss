@@ -1,5 +1,5 @@
 @mixin datepickerItem {
-  color: $color-primary-dark;
+  color: $ink;
   font-size: $font-14;
   border-bottom: $light-border;
   border-right: $light-border;
@@ -86,7 +86,7 @@
 
   &__action-button {
     padding: 15px 37.5px;
-    color: $color-primary-dark;
+    color: $ink;
     font-size: $font-14;
     font-weight: $font-medium;
     background-color: $white;
@@ -100,7 +100,7 @@
 
     &--primary {
       color: $white;
-      background-color: $color-primary;
+      background-color: $teal;
     }
   }
 }
@@ -118,7 +118,7 @@
     flex: 1;
     margin: 0;
     padding: 15px 0;
-    color: $color-primary-dark;
+    color: $ink;
     font-size: $font-14;
     font-weight: $font-medium;
     text-align: center;

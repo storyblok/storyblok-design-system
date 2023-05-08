@@ -11,11 +11,11 @@
 $icon-colors: (
   'primary': $color-primary,
   'primary-dark': $color-primary-dark,
-  'secondary': $color-secondary,
-  'positive': $color-positive,
-  'negative': $color-negative,
-  'warning': $color-warning,
-  'white': $color-white,
+  'secondary': $green,
+  'positive': $green,
+  'negative': $red,
+  'warning': $orange,
+  'white': $white,
   'green': $green,
   'yellow': $yellow,
   'blue': $blue,
@@ -31,7 +31,7 @@ $bg-colors: (
   'positive': $green-25,
   'negative': $red-25,
   'warning': $orange-25,
-  'white': $color-white,
+  'white': $white,
   'green': $green-25,
   'yellow': $yellow-25,
   'blue': $blue-25,
@@ -41,12 +41,12 @@ $bg-colors: (
 );
 
 .sb-icon {
-  @include setIconSize($icon-default-size);
-  @include setIconColor(currentColor);
-
   display: inline-block;
   vertical-align: middle;
   stroke-width: 2px;
+
+  @include setIconSize($icon-default-size);
+  @include setIconColor(currentColor);
 
   &--small {
     @include setIconSize($icon-small-size);

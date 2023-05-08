@@ -34,7 +34,7 @@
     position: relative;
     z-index: 1;
     margin-left: -10px;
-    color: $color-primary-dark;
+    color: $ink;
     font-size: $font-12;
     font-weight: $font-regular;
     background-color: $light-75;
@@ -80,7 +80,7 @@
     >.sb-avatar .sb-avatar__image,
     >.sb-avatar .sb-avatar__initials,
     >.sb-avatar-group__more {
-      border: 3px solid $color-primary-dark;
+      border: 3px solid $ink;
     }
   }
 

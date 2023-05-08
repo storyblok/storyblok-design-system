@@ -2,7 +2,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  color: $color-primary;
+  color: $teal;
   font-size: $font-16;
   font-weight: $font-medium;
   line-height: 20px;
@@ -19,7 +19,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: $color-primary;
+    background-color: $teal;
     opacity: 0;
   }
 

@@ -1,16 +1,16 @@
 // Color pallete
-// teal
-$sb-green: #00b3b0;
-$sb-green-100: #40bebb;
-$sb-green-75: #40c6c4;
-$sb-green-50: #7fd9d7;
-$sb-green-25: #d9f4f3;
+// primary storyblok
+$teal: #00b3b0;
+$teal-100: #40bebb;
+$teal-75: #40c6c4;
+$teal-50: #7fd9d7;
+$teal-25: #d9f4f3;
 
 // Ink
-$sb-dark-blue: #1b243f;
-$sb-dark-blue-75: #545b6f;
-$sb-dark-blue-50: #8d919f;
-$sb-dark-blue-25: #c6c8cf;
+$ink: #1b243f;
+$ink-75: #545b6f;
+$ink-50: #8d919f;
+$ink-25: #c6c8cf;
 
 // green
 $green: #2db47d;
@@ -18,6 +18,7 @@ $green-75: #62c79e;
 $green-50: #96d9be;
 $green-25: #caecde;
 $green-disabled: #004e4c;
+
 // yellow
 $yellow: #fbce41;
 $yellow-75: #fcdb71;
@@ -42,39 +43,30 @@ $red-75: #ff8983;
 $red-50: #ffb0ac;
 $red-25: #ffd7d5;
 
-// light
-$light: #dfe3e8;
-$light-75: #e7eaee;
-$light-50: #eff1f3;
-$light-25: #f7f8f9;
-$light-gray: #b1b5be;
-$neutral-gray: #8d919c;
+// gray
+$gray: #8d919c;
+$gray-75: #b1b5be;
+$gray-60: #dfe3e8;
+$gray-50: #e7eaee;
+$gray-30: #eff1f3;
+$gray-25: #f7f8f9;
+$blue-gray: #415467;
 
 // general
 $black: #101525;
 $white: #fff;
 $black-trasparent: rgba($sb-dark-blue, 0.2);
-$blue-grey: #415467;
-
-// Colors
-$color-primary: $sb-green;
-$color-primary-dark: $sb-dark-blue;
-$color-secondary: $green;
-$color-positive: $green;
-$color-negative: $red;
-$color-warning: $orange;
-$color-white: $white;
 
 $colors: (
-  'primary':                                     $color-primary,
-  'primary-dark':                                $color-primary-dark,
-  'secondary':                                   $color-secondary,
-  'positive':                                    $color-positive,
-  'negative':                                    $color-negative,
-  'warning':                                     $color-warning,
-  'white':                                       $color-white,
-  'teal':                                        $sb-green,
-  'ink':                                         $sb-dark-blue,
+  'primary':                                     $teal,
+  'primary-dark':                                $ink,
+  'secondary':                                   $green,
+  'positive':                                    $green,
+  'negative':                                    $red,
+  'warning':                                     $orange,
+  'white':                                       $white,
+  'teal':                                        $teal,
+  'ink':                                         $ink,
   'green':                                       $green,
   'yellow':                                      $yellow,
   'blue':                                        $blue,
@@ -83,3 +75,34 @@ $colors: (
   'light':                                       $light,
   'light-gray':                                  $light-gray
 );
+
+// will be removed
+$sb-green: #00b3b0; // use $teal
+$sb-green-100: #40bebb; // use $teal-100
+$sb-green-75: #40c6c4; // use $teal-75
+$sb-green-50: #7fd9d7; // use $teal-50
+$sb-green-25: #d9f4f3;  // use $teal-25
+
+// will be removed
+$sb-dark-blue: #1b243f; // use $ink
+$sb-dark-blue-75: #545b6f; // use $ink-75
+$sb-dark-blue-50: #8d919f; // use $ink-50
+$sb-dark-blue-25: #c6c8cf; // use $ink-25
+
+// will be removed
+$light: #dfe3e8; // use $gray-60
+$light-75: #e7eaee; // use $gray-50
+$light-50: #eff1f3; // use $gray-30
+$light-25: #f7f8f9; // use $gray-25
+$light-gray: #b1b5be; // use $gray-75
+$neutral-gray: #8d919c; // use $gray
+$blue-grey: #415467; // use $blue-gray
+
+// will be removed
+$color-primary: $sb-green;
+$color-primary-dark: $sb-dark-blue;
+$color-secondary: $green;
+$color-positive: $green;
+$color-negative: $red;
+$color-warning: $orange;
+$color-white: $white;

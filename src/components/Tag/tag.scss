@@ -34,11 +34,11 @@
   }
 
   &--negative {
-    @include setColor($color-negative, $white);
+    @include setColor($red, $white);
   }
 
   &--warning {
-    @include setColor($color-warning, $white);
+    @include setColor($orange, $white);
   }
 
   &--info {
