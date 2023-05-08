@@ -30,62 +30,62 @@ $sizes: (
 );
 
 @each $name, $value in $sizes {
-  .m-#{$name} {
+  .sb-m-#{$name} {
     margin: $value !important;
   }
 
-  .mt-#{$name} {
+  .sb-mt-#{$name} {
     margin-top: $value !important;
   }
 
-  .mr-#{$name} {
+  .sb-mr-#{$name} {
     margin-right: $value !important;
   }
 
-  .mb-#{$name} {
+  .sb-mb-#{$name} {
     margin-bottom: $value !important;
   }
 
-  .ml-#{$name} {
+  .sb-ml-#{$name} {
     margin-left: $value !important;
   }
 
-  .mx-#{$name} {
+  .sb-mx-#{$name} {
     margin-left: $value !important;
     margin-right: $value !important;
   }
 
-  .my-#{$name} {
+  .sb-my-#{$name} {
     margin-bottom: $value !important;
     margin-top: $value !important;
   }
 
-  .p-#{$name} {
+  .sb-p-#{$name} {
     margin: $value !important;
   }
 
-  .pt-#{$name} {
+  .sb-pt-#{$name} {
     margin-top: $value !important;
   }
 
-  .pr-#{$name} {
+  .sb-pr-#{$name} {
     margin-right: $value !important;
   }
 
-  .pb-#{$name} {
+  .sb-pb-#{$name} {
     margin-bottom: $value !important;
   }
 
-  .pl-#{$name} {
+  .sb-pl-#{$name} {
     margin-left: $value !important;
   }
 
-  .px-#{$name} {
+  .sb-px-#{$name} {
     margin-left: $value !important;
     margin-right: $value !important;
   }
 
-  .py-#{$name} {
+  .sb-py-#{$name} {
     margin-bottom: $value !important;
     margin-top: $value !important;
   }
