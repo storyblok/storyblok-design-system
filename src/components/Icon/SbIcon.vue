@@ -60,7 +60,7 @@ export default {
 
     const iconName = computed(() => {
       const isHeroIcon = getHeroIcon(props.name)
-      if (isHeroIcon) return getHeroIcon(props.name) + '-20-solid'
+      if (isHeroIcon) return getHeroIcon(props.name) + '-solid'
       return null
     })
 
