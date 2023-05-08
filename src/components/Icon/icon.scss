@@ -49,6 +49,8 @@ $bg-colors: (
   @include setIconColor(currentColor);
 
   &.iconify {
+    padding: 2px;
+
     @include setIconSize(20px);
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <Icon v-if="iconName" :icon="iconName" :class="classes" />
+  <Icon v-if="iconName" class="sb-icon" :class="classes" :icon="iconName" />
   <svg
     v-else
     class="sb-icon"
@@ -48,8 +48,8 @@ export default {
     },
   },
   setup(props) {
-    const currentIconSet = localStorage.getItem('icon-collection')
-    const availableIcons = localStorage.getItem('available-icons')
+    // const currentIconSet = localStorage.getItem('icon-collection')
+    // const availableIcons = localStorage.getItem('available-icons')
     const classes = computed(() => {
       return {
         'sb-icon': true,
@@ -61,9 +61,8 @@ export default {
     })
 
     const iconName = computed(() => {
-      const isAvailableIcon =
-        availableIcons && availableIcons?.includes(props.name)
-      if (isAvailableIcon) return currentIconSet + ':' + props.name
+      const isAvailableIcon = getHeroIcon(props.name)
+      if (isAvailableIcon) return isAvailableIcon
       return null
     })
 

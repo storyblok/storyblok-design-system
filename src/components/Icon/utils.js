@@ -1,5 +1,5 @@
 import iconPaths from '../../lib/internal-icons'
-import heroPaths from '../../lib/hero-icons'
+import heroPaths from '../../lib/lucide-icons'
 
 /**
  * @typedef {{path: string, viewBox: string}} IconDeff
