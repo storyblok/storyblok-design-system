@@ -48,6 +48,8 @@ export default {
     },
   },
   setup(props) {
+    const currentIconSet = localStorage.getItem('icon-collection')
+    const availableIcons = localStorage.getItem('available-icons')
     const classes = computed(() => {
       return {
         'sb-icon': true,
@@ -59,8 +61,9 @@ export default {
     })
 
     const iconName = computed(() => {
-      const isHeroIcon = getHeroIcon(props.name)
-      if (isHeroIcon) return getHeroIcon(props.name) + '-20-solid'
+      const isAvailableIcon =
+        availableIcons && availableIcons?.includes(props.name)
+      if (isAvailableIcon) return currentIconSet + ':' + props.name
       return null
     })
 
