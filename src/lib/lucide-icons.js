@@ -217,7 +217,7 @@ const icons = {
   'sidebar-activity': 'lucide:activity',
   'sidebar-apps': 'lucide:puzzle',
   'sidebar-asset': 'lucide:image',
-  'sidebar-components': 'layout-grid',
+  'sidebar-components': 'lucide:layout-template',
   'sidebar-content': 'lucide:file-text',
   'sidebar-dashboard': 'lucide:home',
   'sidebar-datasource': 'lucide:database',
