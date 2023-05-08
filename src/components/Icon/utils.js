@@ -33,7 +33,10 @@ export const getSvgIcon = (name) => {
 }
 
 export const getHeroIcon = (name) => {
-  return heroPaths[name]
+  const hasKey = name in heroPaths
+  const hasValue = hasKey && heroPaths[name] !== ''
+  const showHeroIcon = hasKey && hasValue
+  return showHeroIcon ? heroPaths[name] : null
 }
 
 /**
