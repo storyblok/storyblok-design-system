@@ -1,7 +1,6 @@
 <template>
   <div class="sb-colors--container">
-    <div
-class="sb-colors" :style="{ backgroundColor: colorName }" />
+    <div class="sb-colors" :style="{ backgroundColor: colorName }" />
     <span>{{ name }}</span>
     <span>{{ colorName }}</span>
   </div>

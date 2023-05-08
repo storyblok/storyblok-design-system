@@ -10,7 +10,7 @@
 
 .sb-colors {
   display: inline-block;
-  width: 250px;
+  width: 150px;
   height: 100px;
   margin: -1px;
   padding: 0;
@@ -18,9 +18,9 @@
 
 .sb-colors--container {
   display: inline-grid;
-  width: 250px;
+  width: 150px;
   height: 150px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: $light-gray;
   font-size: $font-14;
 }
