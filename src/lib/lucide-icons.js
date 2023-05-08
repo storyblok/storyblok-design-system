@@ -166,7 +166,7 @@ const icons = {
   'partner-fieldtype': 'lucide:puzzle',
   'partner-finances': 'lucide:coins',
   'partner-leads': 'lucide:contact-2',
-  'partner-learning': 'luide:book',
+  'partner-learning': 'lucide:book',
   'partner-perks': 'lucide:gift',
   'partner-settings': 'lucide:settings',
   'partner-spaces': 'lucide:table-2',
