@@ -41,7 +41,7 @@
 
   &:hover:not([disabled]),
   &:focus:not([disabled]) {
-    background-color: darken($sb-green, 4%);
+    background-color: darken($teal, 4%);
   }
 }
 

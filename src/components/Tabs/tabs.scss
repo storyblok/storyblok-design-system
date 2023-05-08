@@ -95,7 +95,7 @@
   padding: 0;
   list-style-type: none;
 
-  @include scrollbar($white, $sb-dark-blue-25, 4px);
+  @include scrollbar($white, $ink-25, 4px);
 
   &::after {
     content: '';
