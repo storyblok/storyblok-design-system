@@ -97,6 +97,10 @@
 
   @include scrollbar($white, $sb-dark-blue-25, 4px);
 
+  @include mq($until: sm) {
+    border-bottom: solid 1px $light;
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -105,6 +109,10 @@
     width: 100%;
     height: 1px;
     background-color: $light;
+
+    @include mq($until: sm) {
+      display: none;
+    }
   }
 }
 
@@ -136,6 +144,10 @@
 
 .sb-tabs--vertical {
   flex-direction: column;
+
+  @include mq($until: sm) {
+    border-bottom: solid 1px transparent;
+  }
 
   &::after {
     display: none;
