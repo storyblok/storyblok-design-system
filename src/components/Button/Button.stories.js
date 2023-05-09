@@ -216,7 +216,7 @@ export const Primary = ButtonTemplate.bind({})
 
 Primary.args = {
   label: 'Primary',
-  icon: 'check-mark',
+  icon: 'check',
   iconRight: 'calendar',
 }
 
@@ -234,7 +234,7 @@ export const Secondary = ButtonTemplate.bind({})
 Secondary.args = {
   variant: 'secondary',
   label: 'Secondary',
-  icon: 'check-mark',
+  icon: 'check',
   iconRight: 'calendar',
 }
 
@@ -252,7 +252,7 @@ export const Tertiary = ButtonTemplate.bind({})
 Tertiary.args = {
   label: 'Tertiary',
   variant: 'tertiary',
-  icon: 'check-mark',
+  icon: 'check',
   iconRight: 'calendar',
 }
 
