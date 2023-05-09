@@ -3,8 +3,11 @@ import { iconSizes } from './utils'
 import { availableColors } from '../../utils'
 
 import LIB_ICONS from '../../lib/internal-icons'
+import * as lucideIcons from 'lucide-vue-next'
 
 const availableIcons = Object.keys(LIB_ICONS)
+const lucideIconsKeys = Object.keys(lucideIcons)
+const allIcons = [...availableIcons, ...lucideIconsKeys]
 
 export default {
   title: 'Basic/SbIcon',
@@ -35,8 +38,8 @@ export default {
     },
     name: {
       name: 'name',
-      description: 'Icon name',
-      options: availableIcons,
+      description: 'Icon name (https://lucide.dev/icons)',
+      options: allIcons,
       control: {
         type: 'select',
       },
@@ -82,6 +85,17 @@ export const FallbackIcon = () => ({
   template: '<SbIcon name="avatar-fallback" size="x-large" color="green" />',
 })
 
+export const LucideIcon = () => ({
+  components: { SbIcon },
+  template: '<div><SbIcon name="cat" size="large" color="green" /></div>',
+})
+
+LucideIcon.args = {
+  name: 'cat',
+  size: 'large',
+  color: 'green',
+}
+
 export const IconSizes = () => ({
   components: { SbIcon },
   template: `
@@ -102,7 +116,7 @@ export const IconSizes = () => ({
   `,
 })
 
-export const AllIcons = (args) => ({
+export const StoryblokIcons = (args) => ({
   components: { SbIcon },
   setup() {
     return { args }

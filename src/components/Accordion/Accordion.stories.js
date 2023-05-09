@@ -67,7 +67,7 @@ Default.args = { title: 'Hello World' }
 export const WithIcon = Template.bind({})
 WithIcon.args = {
   title: 'Hello World with Icon',
-  icon: 'delete',
+  icon: 'trash-2',
   iconDescription: 'Delete',
 }
 

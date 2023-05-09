@@ -188,7 +188,7 @@ export const defaultTableActionsData = [
   {
     label: 'Delete',
     value: 'delete',
-    icon: 'delete',
+    icon: 'trash-2',
   },
 ]
 

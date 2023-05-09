@@ -7501,6 +7501,11 @@ lru-cache@^8.0.3:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-8.0.5.tgz#983fe337f3e176667f8e567cfcce7cb064ea214e"
   integrity sha512-MhWWlVnuab1RG5/zMRRcVGXZLCXrZTgfwMikgzCegsPnG62yDQo5JnqKkrK4jO5iKqDAZGItAqN5CtKBCBWRUA==
 
+lucide-vue-next@^0.214.0:
+  version "0.214.0"
+  resolved "https://registry.yarnpkg.com/lucide-vue-next/-/lucide-vue-next-0.214.0.tgz#436f1ec6b796130d816bccfb9322cfc1d9f56310"
+  integrity sha512-Pd3Jf+Mgpv7UM7w+AIFJf/IB/71+z8bYIhGRg1xvLJadaIKSmGJTgqLqQZ4a2fEqX3wWwiuAlC+iar2jR07Bng==
+
 lz-string@^1.4.4, lz-string@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.5.0.tgz#c1ab50f77887b712621201ba9fd4e3a6ed099941"
