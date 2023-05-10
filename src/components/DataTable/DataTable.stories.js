@@ -177,7 +177,7 @@ export const defaultTableActionsData = [
   {
     label: 'Publish',
     value: 'publish',
-    icon: 'publish',
+    icon: 'upload-cloud',
   },
   {
     label: 'Unpublish',
