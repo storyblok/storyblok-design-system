@@ -311,9 +311,9 @@ export default {
       this.internalType === 'password'
         ? (this.internalType = 'text')
         : (this.internalType = 'password')
-      this.internalIconRight === 'view'
-        ? (this.internalIconRight = 'view-off')
-        : (this.internalIconRight = 'view')
+      this.internalIconRight === 'eye'
+        ? (this.internalIconRight = 'eye-off')
+        : (this.internalIconRight = 'eye')
     },
 
     handleClearableClick(e) {
