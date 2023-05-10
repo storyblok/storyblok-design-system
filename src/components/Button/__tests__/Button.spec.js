@@ -145,7 +145,7 @@ describe('Test SbButton Component', () => {
 
     const wrapper = mount(SbButton, {
       props: {
-        icon: 'close',
+        icon: 'x',
         hasIconOnly: true,
         iconDescription,
       },

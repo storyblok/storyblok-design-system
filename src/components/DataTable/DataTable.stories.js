@@ -161,7 +161,7 @@ export const defaultTableActionsData = [
   {
     label: 'Settings',
     value: 'settings',
-    icon: 'configuration',
+    icon: 'settings-2',
   },
   {
     label: 'Move',

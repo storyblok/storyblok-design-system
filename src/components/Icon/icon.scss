@@ -46,24 +46,6 @@ $bg-colors: (
   @include setIconSize($icon-default-size);
   @include setIconColor(currentColor);
 
-  &--color {
-    @each $name, $colorVariable in $icon-colors {
-      &-#{$name} {
-        @include setIconColor($colorVariable);
-      }
-    }
-  }
-
-  &--bg {
-    @each $name, $colorVariable in $bg-colors {
-      &-#{$name} {
-        padding: 12px;
-        background-color: $colorVariable;
-        border-radius: 100%;
-      }
-    }
-  }
-
   &--no-fill {
     fill: none;
     stroke: none;
@@ -107,6 +89,24 @@ $bg-colors: (
 
     &.sb-icon--x-large {
       @include setIconSize($icon-extra-large-size);
+    }
+  }
+
+  &--color {
+    @each $name, $colorVariable in $icon-colors {
+      &-#{$name} {
+        @include setIconColor($colorVariable);
+      }
+    }
+  }
+
+  &--bg {
+    @each $name, $colorVariable in $bg-colors {
+      &-#{$name} {
+        padding: 12px;
+        background-color: $colorVariable;
+        border-radius: 100%;
+      }
     }
   }
 }

@@ -11,7 +11,7 @@
         label: 'Remove',
         position: 'bottom',
       }"
-      name="close"
+      name="x"
       size="small"
       @click="onClose"
     />

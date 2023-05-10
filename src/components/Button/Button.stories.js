@@ -270,8 +270,8 @@ export const Danger = ButtonTemplate.bind({})
 Danger.args = {
   label: 'Danger',
   variant: 'danger',
-  icon: 'close',
-  iconRight: 'close',
+  icon: 'x',
+  iconRight: 'x',
 }
 
 Danger.parameters = {
@@ -287,8 +287,8 @@ export const Caution = ButtonTemplate.bind({})
 Caution.args = {
   label: 'Caution',
   variant: 'caution',
-  icon: 'close',
-  iconRight: 'close',
+  icon: 'x',
+  iconRight: 'x',
 }
 
 Caution.parameters = {

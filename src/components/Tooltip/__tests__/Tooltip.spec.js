@@ -18,7 +18,7 @@ const factory = (
   return mount(WrapperComponent)
 }
 
-const findTooltip = () => document.querySelector('[role="tooltip"]')
+// const findTooltip = () => document.querySelector('[role="tooltip"]')
 
 describe('test SbTooltip component', () => {
   describe('when using along with a SbButton component', () => {
@@ -26,7 +26,7 @@ describe('test SbTooltip component', () => {
     const buttonText = 'Hover Me!'
     const template = `
       <SbTooltip label="${label}">
-        <SbButton is-full-width icon="close" @click="onClick">
+        <SbButton is-full-width icon="x" @click="onClick">
           ${buttonText}
         </SbButton>
       </SbTooltip>
