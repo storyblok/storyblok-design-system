@@ -10,13 +10,13 @@ export const listItemsData = [
   },
   {
     href: '#content',
-    icon: 'content',
+    icon: 'layers',
     label: 'Content',
     ariaLabel: 'Go to content',
   },
   {
     href: '#tooltip',
-    icon: 'content',
+    icon: 'layers',
     label: 'Content tooltip',
     iconTooltip: 'square-warning',
     iconTooltipLabel: 'Label content tooltip',
