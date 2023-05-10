@@ -77,7 +77,7 @@ Default.args = {
 export const IconWithBackground = () => ({
   components: { SbIcon },
   template:
-    '<SbIcon name="schema" color="primary" background-color="primary" />',
+    '<SbIcon name="toy-brick" color="primary" background-color="primary" />',
 })
 
 export const FallbackIcon = () => ({

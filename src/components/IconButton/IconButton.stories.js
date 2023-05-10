@@ -59,7 +59,7 @@ export const WhiteColor = (args) => ({
   },
   template: `
     <div style="background-color:#1b243f;padding:20px;">
-      <SbIconButton icon-color="white" icon-name="schema" />
+      <SbIconButton icon-color="white" icon-name="toy-brick" />
     </div>
   `,
 })
