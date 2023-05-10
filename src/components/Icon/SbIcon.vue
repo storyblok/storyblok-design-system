@@ -57,7 +57,6 @@ export default {
   },
   computed: {
     iconDeff() {
-      if (isLucideIcon) return null
       return getSvgIcon(this.name)
     },
     classes() {
