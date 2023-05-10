@@ -100,18 +100,19 @@ $toggle-padding: 4px;
   position: absolute;
   top: 50%;
   z-index: 0;
-  width: $toggle-circle * 1.2;
-  height: $toggle-circle * 1.2;
+  width: $toggle-circle;
+  height: $toggle-circle;
+  padding: 0;
   pointer-events: none;
   transform: translateY(-50%);
 
   &--active {
-    left: 2px;
+    left: 3px;
     color: $white;
   }
 
   &--inactive {
-    right: 2px;
+    right: 3px;
     color: $light-gray;
   }
 }
