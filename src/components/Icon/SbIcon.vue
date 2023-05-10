@@ -8,7 +8,7 @@
     :fill="computedFill"
   />
   <svg
-    v-else
+    v-else-if="iconDeff"
     :class="classes"
     :role="role ? role : 'presentation'"
     :viewBox="iconDeff.viewBox"
@@ -57,6 +57,7 @@ export default {
   },
   computed: {
     iconDeff() {
+      if (isLucideIcon) return null
       return getSvgIcon(this.name)
     },
     classes() {
@@ -86,11 +87,6 @@ export default {
     lucideIcon() {
       return this.isLucideIcon ? lucideIcons[this.lucideIconName] : null
     },
-  },
-  mounted() {
-    if (this.iconDeff?.path?.length && this.isLucideIcon) {
-      console.log(`New icon: ${this.name}`)
-    }
   },
 }
 </script>
