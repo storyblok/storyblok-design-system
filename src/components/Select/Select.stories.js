@@ -198,7 +198,7 @@ export const defaultOptionsWithIconData = [
   {
     label: 'Option 7',
     value: 7,
-    icon: 'refresh',
+    icon: 'refresh-cw',
   },
 ]
 

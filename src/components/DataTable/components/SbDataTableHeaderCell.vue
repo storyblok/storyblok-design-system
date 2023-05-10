@@ -29,7 +29,7 @@ export default {
     VNodes,
   },
 
-  iconsSort: ['chevron-down', 'chevron-double', 'chevron-up'],
+  iconsSort: ['chevron-down', 'chevrons-up-down', 'chevron-up'],
 
   inject: ['dataTableContext'],
 

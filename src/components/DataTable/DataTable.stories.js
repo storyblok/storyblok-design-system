@@ -182,7 +182,7 @@ export const defaultTableActionsData = [
   {
     label: 'Unpublish',
     value: 'unpublish',
-    icon: 'unpublish',
+    icon: 'cloud-off',
     tooltip: 'This option unpublishes the item',
   },
   {

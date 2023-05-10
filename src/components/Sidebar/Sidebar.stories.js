@@ -24,7 +24,7 @@ export const listItemsData = [
   },
   {
     href: '#apps',
-    icon: 'apps',
+    icon: 'puzzle',
     label: 'Apps Directory',
   },
   {
