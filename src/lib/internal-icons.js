@@ -297,7 +297,7 @@ const icons = {
           d="M64.5049,56.4924l13.1098-9.1473c.8724-.6087,1.0862-1.8094.4775-2.6818L68.9448,31.5534c-.6087-.8723-1.8093-1.0861-2.6817-.4774L53.1532,40.2233c-.8724.6087-1.0861,1.8094-.4774,2.6818L61.8231,56.015c.6087.8724,1.8094,1.0861,2.6818.4774Z"
           fill="#ffb900"
         />
-        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 64 43" to="360 64 43" dur="1s" additive="sum" repeatCount="indefinite" />
+        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 65 43" to="360 65 43" dur="1s" additive="sum" repeatCount="indefinite" />
       </g>
       <g>
         <path
