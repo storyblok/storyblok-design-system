@@ -1360,15 +1360,6 @@ const emptyStateIcons = {
       </g>
     `,
   },
-  'empty-comment': {
-    viewBox: '0 0 24 24',
-    path: `
-      <g fill="none" fill-rule="evenodd">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.5 4a3 3 0 0 1 3 3h0v7.5a3 3 0 0 1-3 3h0-2.2l-3 3.5-3.1-3.5H7a3 3 0 0 1-3-3h0V7a3 3 0 0 1 3-3h0Z"/>
-        <path fill="currentColor" d="M10.8 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM13.8 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM16.8 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/>
-      </g>
-    `,
-  },
   'empty-datasource': {
     viewBox: '0 0 142 110',
     path: `
