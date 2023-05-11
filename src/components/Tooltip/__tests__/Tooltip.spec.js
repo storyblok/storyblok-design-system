@@ -60,7 +60,7 @@ describe('test SbTooltip component', () => {
     })
 
     it('should render with icon close', () => {
-      expect(ButtonComponent.props('icon')).toBe('close')
+      expect(ButtonComponent.props('icon')).toBe('x')
     })
 
     it('should allow clicks', async () => {
@@ -80,7 +80,7 @@ describe('test SbTooltip component', () => {
     })
 
     it('should render the SbIcon with close name', () => {
-      expect(IconComponent.props('name')).toBe('close')
+      expect(IconComponent.props('name')).toBe('x')
     })
   })
 

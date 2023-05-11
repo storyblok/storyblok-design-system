@@ -51,7 +51,7 @@ describe('Testing loading component', () => {
       'sb-loading sb-loading__spinner sb-loading__spinner--normal'
     )
     expect(wrapper.find('svg').attributes('class')).toBe(
-      'sb-icon sb-icon--normal'
+      'sb-icon sb-icon--custom sb-icon--normal'
     )
     expect(wrapper.find('label').text()).toBe('35%')
   })
