@@ -20,7 +20,7 @@
     <SbLoading
       v-if="isLoading"
       type="spinner"
-      size="small"
+      size="normal"
       :color="loadingColor"
     />
   </button>

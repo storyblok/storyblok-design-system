@@ -135,13 +135,14 @@
   font-size: $font-14;
 
   .sb-loading {
-    width: 14px;
-    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .sb-loading svg {
-    margin-left: -6px;
-    margin-top: -6px;
+    width: 2rem;
+    height: 2rem;
   }
 }
 
