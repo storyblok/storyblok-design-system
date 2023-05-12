@@ -101,7 +101,7 @@ export const WithIconLeft = () => ({
   components: { SbLink },
   template: `
         <SbLink
-          icon="check-mark"
+          icon="check"
           primary-label="With icon left"
         />
     `,
@@ -111,7 +111,7 @@ export const WithIconRight = () => ({
   components: { SbLink },
   template: `
         <SbLink
-          icon-right="check-mark"
+          icon-right="check"
           secondary-label="With icon left"
         />
     `,

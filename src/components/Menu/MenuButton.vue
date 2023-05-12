@@ -5,7 +5,7 @@
     aria-haspopup="true"
     :aria-expanded="isOpen ? 'true' : null"
     v-bind="{
-      icon: hasIconOnly ? activeIconName || 'menu-vertical' : activeIconName,
+      icon: hasIconOnly ? activeIconName || 'more-vertical' : activeIconName,
       iconColor,
       iconRight: hasIconOnly ? '' : iconRight,
       label,

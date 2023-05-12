@@ -27,7 +27,7 @@ const cardOptionsMock = [
     separator: true,
   },
   {
-    icon: 'close',
+    icon: 'x',
     label: 'Delete',
     type: 'negative',
   },
@@ -36,11 +36,11 @@ const cardOptionsMock = [
       title: 'Group title',
       items: [
         {
-          icon: 'close',
+          icon: 'x',
           label: 'Group Item 1',
         },
         {
-          icon: 'close',
+          icon: 'x',
           label: 'Group Item 2',
           type: 'negative',
         },

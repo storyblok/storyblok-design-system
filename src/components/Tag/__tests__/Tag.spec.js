@@ -65,7 +65,7 @@ describe('SbTag component', () => {
 
     it('should have an icon with close name', () => {
       expect(IconComponent.exists()).toBe(true)
-      expect(IconComponent.props('name')).toBe('close')
+      expect(IconComponent.props('name')).toBe('x')
     })
 
     it('should trigger a close custom event when the icon was clicked', async () => {

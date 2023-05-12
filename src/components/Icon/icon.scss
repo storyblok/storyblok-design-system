@@ -5,7 +5,6 @@
 
 @mixin setIconColor ($color) {
   color: $color;
-  fill: $color;
 }
 
 $icon-colors: (
@@ -41,23 +40,56 @@ $bg-colors: (
 );
 
 .sb-icon {
+  display: inline-block;
+  vertical-align: middle;
+
   @include setIconSize($icon-default-size);
   @include setIconColor(currentColor);
 
-  display: inline-block;
-  vertical-align: middle;
-  stroke-width: 2px;
-
-  &--small {
-    @include setIconSize($icon-small-size);
+  &--no-fill {
+    fill: none;
+    stroke: none;
   }
 
-  &--large {
-    @include setIconSize($icon-large-size);
+  &--fill {
+    fill: currentColor;
+    stroke: currentColor;
   }
 
-  &--x-large {
-    @include setIconSize($icon-extra-large-size);
+  &--lucide {
+    padding: 3px;
+    stroke: currentColor;
+
+    @include setIconSize(1.8rem);
+
+    &.sb-icon--small {
+      @include setIconSize(1.2rem);
+    }
+
+    &.sb-icon--large {
+      @include setIconSize(3rem);
+    }
+
+    &.sb-icon--x-large {
+      @include setIconSize(4.4rem);
+    }
+  }
+
+  &--custom {
+    fill: currentColor;
+    stroke-width: 2px;
+
+    &.sb-icon--small {
+      @include setIconSize($icon-small-size);
+    }
+
+    &.sb-icon--large {
+      @include setIconSize($icon-large-size);
+    }
+
+    &.sb-icon--x-large {
+      @include setIconSize($icon-extra-large-size);
+    }
   }
 
   &--color {
@@ -76,10 +108,5 @@ $bg-colors: (
         border-radius: 100%;
       }
     }
-  }
-
-  &--no-fill {
-    fill: none;
-    stroke: none;
   }
 }

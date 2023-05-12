@@ -62,7 +62,7 @@ export const WithIcons = (args) => ({
     <SbGroupButton v-bind="args">
       <SbButton label="First Button" />
       <SbButton label="Secondary Button" />
-      <SbButton has-icon-only icon="close" />
+      <SbButton has-icon-only icon="x" />
     </SbGroupButton>
   `,
 })
@@ -76,7 +76,7 @@ export const JustIcons = (args) => ({
     <SbGroupButton v-bind="args">
       <SbButton has-icon-only icon="calendar" iconDescription="Calendar Icon" />
       <SbButton has-icon-only icon="plus" iconDescription="Plus Icon" />
-      <SbButton has-icon-only icon="menu-vertical" iconDescription="Overflow Icon" />
+      <SbButton has-icon-only icon="more-vertical" iconDescription="Overflow Icon" />
     </SbGroupButton>
   `,
 })

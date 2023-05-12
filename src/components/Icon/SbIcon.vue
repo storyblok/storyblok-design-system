@@ -1,7 +1,15 @@
 <template>
+  <component
+    :is="lucideIcon"
+    v-if="lucideIcon"
+    :color="color"
+    :stroke-width="strokeWidth"
+    :class="classes"
+    :fill="computedFill"
+  />
   <svg
-    class="sb-icon"
-    :class="[sizeClass, colorClass, bgClass, fillClass]"
+    v-else-if="iconDeff"
+    :class="classes"
     :role="role ? role : 'presentation'"
     :viewBox="iconDeff.viewBox"
     v-bind="$attrs"
@@ -10,8 +18,9 @@
 </template>
 
 <script>
-import { getSvgIcon, iconSizes } from './utils'
+import { getSvgIcon } from './utils'
 import { availableColors } from '../../utils'
+import * as lucideIcons from 'lucide-vue-next'
 
 export default {
   name: 'SbIcon',
@@ -19,7 +28,6 @@ export default {
     color: {
       type: String,
       default: null,
-      validator: (color) => availableColors.indexOf(color) !== -1,
     },
     backgroundColor: {
       type: String,
@@ -35,26 +43,48 @@ export default {
       default: 'presentation',
     },
     size: {
-      type: String,
+      type: [Number, String],
       default: null,
-      validator: (size) => iconSizes.indexOf(size) !== -1,
+    },
+    strokeWidth: {
+      type: Number,
+      default: 2,
+    },
+    isFilled: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
     iconDeff() {
       return getSvgIcon(this.name)
     },
-    fillClass() {
-      return this.iconDeff?.fill ? 'sb-icon--no-fill' : null
+    classes() {
+      return {
+        'sb-icon': true,
+        'sb-icon--custom': !this.isLucideIcon,
+        'sb-icon--lucide': this.isLucideIcon,
+        'sb-icon--fill': this.isFilled,
+        'sb-icon--no-fill': !this.isLucideIcon && this.iconDeff?.fill,
+        [`sb-icon--${this.size}`]: this.size,
+        [`sb-icon--color-${this.color}`]: this.color,
+        [`sb-icon--bg-${this.backgroundColor}`]: this.backgroundColor,
+      }
     },
-    sizeClass() {
-      return this.size ? `sb-icon--${this.size}` : null
+    computedFill() {
+      return this.isFilled ? 'currentColor' : 'none'
     },
-    colorClass() {
-      return this.color ? `sb-icon--color-${this.color}` : null
+    isLucideIcon() {
+      return Object.keys(lucideIcons).includes(this.lucideIconName)
     },
-    bgClass() {
-      return this.backgroundColor ? `sb-icon--bg-${this.backgroundColor}` : null
+    lucideIconName() {
+      const pascalIcon = this.name.replace(/-(.)/g, (_, char) =>
+        char.toUpperCase()
+      )
+      return pascalIcon.charAt(0).toUpperCase() + pascalIcon.slice(1)
+    },
+    lucideIcon() {
+      return this.isLucideIcon ? lucideIcons[this.lucideIconName] : null
     },
   },
 }
