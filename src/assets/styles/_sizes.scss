@@ -9,8 +9,90 @@ $sb-avatar-small: 26px;
 $sb-avatar-normal: 32px;
 $sb-avatar-large: 46px;
 
-// margin variables
-$small-size: 8px;
-$medium-size: 16px;
-$large-size: 32px;
-$x-large-size: 48px;
+$s-1: 4px;
+$s-2: 8px;
+$s-3: 12px;
+$s-4: 16px;
+$s-5: 24px;
+$s-6: 32px;
+$s-7: 40px;
+$s-8: 48px;
+
+$sizes: (
+  '1': $s-1,
+  '2': $s-2,
+  '3': $s-3,
+  '4': $s-4,
+  '5': $s-5,
+  '6': $s-6,
+  '7': $s-7,
+  '8': $s-8
+);
+
+@each $name, $value in $sizes {
+  .sb-m-#{$name} {
+    margin: $value !important;
+  }
+
+  .sb-mt-#{$name} {
+    margin-top: $value !important;
+  }
+
+  .sb-mr-#{$name} {
+    margin-right: $value !important;
+  }
+
+  .sb-mb-#{$name} {
+    margin-bottom: $value !important;
+  }
+
+  .sb-ml-#{$name} {
+    margin-left: $value !important;
+  }
+
+  .sb-mx-#{$name} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+
+  .sb-my-#{$name} {
+    margin-bottom: $value !important;
+    margin-top: $value !important;
+  }
+
+  .sb-p-#{$name} {
+    margin: $value !important;
+  }
+
+  .sb-pt-#{$name} {
+    margin-top: $value !important;
+  }
+
+  .sb-pr-#{$name} {
+    margin-right: $value !important;
+  }
+
+  .sb-pb-#{$name} {
+    margin-bottom: $value !important;
+  }
+
+  .sb-pl-#{$name} {
+    margin-left: $value !important;
+  }
+
+  .sb-px-#{$name} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+
+  .sb-py-#{$name} {
+    margin-bottom: $value !important;
+    margin-top: $value !important;
+  }
+}
+
+// will be removed
+$small-size: 8px; // use $s-2
+$medium-size: 16px; // use $s-4
+$large-size: 32px; // use $s-6
+$x-large-size: 48px; // use $s-8

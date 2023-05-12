@@ -4,7 +4,7 @@
     aria-label="Close Modal"
     @click="handleCloseModal"
   >
-    <SbIcon name="close" color="primary-dark" />
+    <SbIcon name="x" color="primary-dark" />
   </button>
 </template>
 

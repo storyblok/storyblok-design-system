@@ -10,13 +10,13 @@ export const listItemsData = [
   },
   {
     href: '#content',
-    icon: 'content',
+    icon: 'layers',
     label: 'Content',
     ariaLabel: 'Go to content',
   },
   {
     href: '#tooltip',
-    icon: 'content',
+    icon: 'layers',
     label: 'Content tooltip',
     iconTooltip: 'square-warning',
     iconTooltipLabel: 'Label content tooltip',
@@ -24,12 +24,12 @@ export const listItemsData = [
   },
   {
     href: '#apps',
-    icon: 'apps',
+    icon: 'puzzle',
     label: 'Apps Directory',
   },
   {
     href: '#block',
-    icon: 'block-block',
+    icon: 'book',
     label: 'A really long entry that goes over a few lines',
     ariaLabel: 'Go to entry',
   },
@@ -85,6 +85,7 @@ const SidebarTemplate = (args) => ({
         <SbSidebarListItem
           v-if="!internalMinimize"
           label="Other activities"
+          icon="puzzle"
           is-child
         />
       </SbSidebarListItem>

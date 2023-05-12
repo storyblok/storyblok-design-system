@@ -56,7 +56,7 @@ describe('SbToggle component', () => {
     const wrapper = factory({
       label: 'Default',
       nativeValue: false,
-      icon: 'world',
+      icon: 'globe',
     })
 
     expect(wrapper.findAll('.sb-toggle__icon').length).toBe(2)

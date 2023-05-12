@@ -209,7 +209,7 @@ export const WithMenuComponent = (args) => ({
         separator: true,
       },
       {
-        icon: 'close',
+        icon: 'x',
         label: 'Delete',
         type: 'negative',
       },
@@ -218,11 +218,11 @@ export const WithMenuComponent = (args) => ({
           title: 'Group title',
           items: [
             {
-              icon: 'close',
+              icon: 'x',
               label: 'Group Item 1',
             },
             {
-              icon: 'close',
+              icon: 'x',
               label: 'Group Item 2',
               type: 'negative',
             },

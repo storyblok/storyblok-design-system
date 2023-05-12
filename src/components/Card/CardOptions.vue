@@ -2,7 +2,7 @@
   <div class="sb-card__options">
     <SbMenu>
       <SbMenuButton
-        icon-name="menu-horizontal"
+        icon-name="more-horizontal"
         has-icon-only
         variant="tertiary"
       />

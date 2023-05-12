@@ -96,7 +96,7 @@ export const WithIcon = (args) => ({
           label="With Icon Inactive"
           :name="name"
           :modelValue="false"
-          :icon="'world'"
+          icon="globe"
           :variant="variant"
           native-value="With Icon Inactive"
           style="margin-bottom: 10px;"

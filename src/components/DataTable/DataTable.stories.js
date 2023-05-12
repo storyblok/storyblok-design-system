@@ -161,7 +161,7 @@ export const defaultTableActionsData = [
   {
     label: 'Settings',
     value: 'settings',
-    icon: 'configuration',
+    icon: 'settings-2',
   },
   {
     label: 'Move',
@@ -177,18 +177,18 @@ export const defaultTableActionsData = [
   {
     label: 'Publish',
     value: 'publish',
-    icon: 'publish',
+    icon: 'upload-cloud',
   },
   {
     label: 'Unpublish',
     value: 'unpublish',
-    icon: 'unpublish',
+    icon: 'cloud-off',
     tooltip: 'This option unpublishes the item',
   },
   {
     label: 'Delete',
     value: 'delete',
-    icon: 'delete',
+    icon: 'trash-2',
   },
 ]
 

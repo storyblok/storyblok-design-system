@@ -1,6 +1,6 @@
 <template>
-  <div class="sb-checkbox" :class="componentClasses">
-    <div class="sb-checkbox__inner">
+  <div class="sb-checkbox" :class="componentClasses" :data-intro-js-hint="id">
+    <label class="sb-checkbox__inner">
       <input
         :id="id"
         v-model="internalValue"
@@ -17,7 +17,8 @@
       />
 
       <div class="sb-checkbox__input">
-        <svg class="sb-checkbox__svg" focusable="false" viewBox="0 0 16 16">
+        <svg class="sb-checkbox__svg"
+focusable="false" viewBox="0 0 16 16">
           <path
             class="sb-checkbox__truthy"
             fill="none"
@@ -32,9 +33,8 @@
           />
         </svg>
       </div>
-
-      <label :for="id" class="sb-checkbox__label">{{ label }}</label>
-    </div>
+      <span class="sb-checkbox__label">{{ label }}</span>
+    </label>
   </div>
 </template>
 

@@ -120,6 +120,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    preventEnterOnSearch: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   emits: ['clear-navigation', 'close', 'filter', 'navigate', 'select-item'],
@@ -215,7 +219,7 @@ export default {
     handleSearchKeydown(event) {
       if (event.key === 'Escape') {
         this.$emit('close')
-      } else if (event.key === 'Enter') {
+      } else if (event.key === 'Enter' && !this.preventEnterOnSearch) {
         this.selectFilteredItem()
       }
     },

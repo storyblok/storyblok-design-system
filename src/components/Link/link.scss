@@ -4,7 +4,7 @@
   align-items: center;
   color: $color-primary;
   font-size: $font-16;
-  font-weight: $font-weight-medium;
+  font-weight: $font-medium;
   line-height: 20px;
   text-align: center;
   text-decoration: none;
@@ -23,7 +23,8 @@
     opacity: 0;
   }
 
-  &:hover:not([disabled])::after {
+  &:hover:not([disabled])::after,
+  &:focus:not([disabled])::after {
     opacity: 1;
   }
 
@@ -35,7 +36,8 @@
       background-color: $white;
     }
 
-    &:hover:not([disabled])::after {
+    &:hover:not([disabled])::after,
+    &:focus:not([disabled])::after {
       opacity: 1;
     }
   }

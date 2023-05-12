@@ -107,6 +107,71 @@ describe('SbMinibrowser component', () => {
     ])
   })
 
+  it('should emit the single selected element when press enter in the search input', async () => {
+    const wrapper = mount(SbMinibrowser, {
+      props: {
+        options: [...MOCK_DATA.FIRST_LEVEL],
+      },
+    })
+
+    const jobsItem = {
+      label: 'Jobs',
+      subtitle: 'jobs',
+      value: '1.2',
+    }
+
+    const searchInput = wrapper.find('input[type="search"]')
+
+    await searchInput.setValue('Jobs')
+
+    await wrapper.vm.$nextTick()
+
+    await waitMs(300)
+
+    await wrapper.setProps({
+      options: [jobsItem],
+    })
+
+    await searchInput.trigger('keydown', {
+      key: 'Enter',
+    })
+
+    expect(wrapper.emitted('select-item')[0]).toEqual([jobsItem])
+  })
+
+  it('should do not emit the single selected element when press enter in the search input if the preventEnterOnSearch is true', async () => {
+    const wrapper = mount(SbMinibrowser, {
+      props: {
+        options: [...MOCK_DATA.FIRST_LEVEL],
+        preventEnterOnSearch: true,
+      },
+    })
+
+    const jobsItem = {
+      label: 'Jobs',
+      subtitle: 'jobs',
+      value: '1.2',
+    }
+
+    const searchInput = wrapper.find('input[type="search"]')
+
+    await searchInput.setValue('Jobs')
+
+    await wrapper.vm.$nextTick()
+
+    await waitMs(300)
+
+    await wrapper.setProps({
+      options: [jobsItem],
+    })
+
+    await searchInput.trigger('keydown', {
+      key: 'Enter',
+    })
+
+    expect(wrapper.emitted('select-item')).toBeUndefined()
+  })
+
   it('should clear the search input when an item is clicked', async () => {
     const wrapper = mount(SbMinibrowser, {
       props: {

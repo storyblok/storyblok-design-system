@@ -36,7 +36,7 @@ describe('Test SbLink component', () => {
       label,
       href: 'http://storyblok.com/',
       title: 'Link with icon',
-      icon: 'check-mark',
+      icon: 'check',
     })
 
     const Icon = wrapper.findComponent(SbIcon)
@@ -46,7 +46,7 @@ describe('Test SbLink component', () => {
     })
 
     it('should the SbIcon with name that it was passed', () => {
-      expect(Icon.props('name')).toBe('check-mark')
+      expect(Icon.props('name')).toBe('check')
     })
   })
 

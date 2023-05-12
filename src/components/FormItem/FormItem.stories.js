@@ -11,7 +11,7 @@ export default {
     helperIconText: 'Helper icon text',
     helperText: 'Helper text',
     isRequired: false,
-    icon: 'form',
+    icon: 'rows',
   },
 }
 
