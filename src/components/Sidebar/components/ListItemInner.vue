@@ -6,6 +6,7 @@
       :src="image"
       width="22"
       height="22"
+      alt="sidebar-icon"
       class="sb-sidebar-sidebar-icon"
     />
 
@@ -39,9 +40,14 @@
 <script>
 import SbAvatar from '../../Avatar'
 import SbIcon from '../../Icon'
+import { Tooltip } from '../../../directives'
 
 export default {
   components: { SbAvatar, SbIcon },
+
+  directives: {
+    tooltip: Tooltip,
+  },
 
   props: {
     avatar: {

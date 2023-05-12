@@ -8,7 +8,7 @@
     :fill="computedFill"
   />
   <svg
-    v-else-if="iconDeff"
+    v-else-if="hasViewBox"
     :class="classes"
     :role="role ? role : 'presentation'"
     :viewBox="iconDeff.viewBox"
@@ -58,6 +58,9 @@ export default {
   computed: {
     iconDeff() {
       return getSvgIcon(this.name)
+    },
+    hasViewBox() {
+      return this.iconDeff && this.iconDeff?.viewBox?.length > 0
     },
     classes() {
       return {

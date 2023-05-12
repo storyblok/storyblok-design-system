@@ -29,7 +29,7 @@ export const listItemsData = [
   },
   {
     href: '#block',
-    icon: 'block-block',
+    icon: 'book',
     label: 'A really long entry that goes over a few lines',
     ariaLabel: 'Go to entry',
   },
@@ -85,6 +85,7 @@ const SidebarTemplate = (args) => ({
         <SbSidebarListItem
           v-if="!internalMinimize"
           label="Other activities"
+          icon="puzzle"
           is-child
         />
       </SbSidebarListItem>
