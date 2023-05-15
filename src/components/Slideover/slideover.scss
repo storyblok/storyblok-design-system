@@ -46,9 +46,13 @@
   }
 
   .sb-modal-header__title {
-    width: calc(100% - 36px);
+    width: 100%;
     line-height: 30px;
     word-break: break-word;
+  }
+
+  .sb-modal-header__heading {
+    width: calc(100% - 36px);
   }
 }
 
