@@ -1,9 +1,9 @@
-name: Release Next
+name: Release Main
 
 on:
   push:
     branches:
-      - next
+      - main
 
 jobs:
   release:

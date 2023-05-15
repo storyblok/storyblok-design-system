@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { getSvgIcon } from './utils'
+import { getSvgIcon, customIconNames } from './utils'
 import { availableColors } from '../../utils'
 import * as lucideIcons from 'lucide-vue-next'
 
@@ -57,7 +57,10 @@ export default {
   },
   computed: {
     iconDeff() {
-      return getSvgIcon(this.name)
+      if (customIconNames.includes(this.name)) {
+        return getSvgIcon(this.name)
+      }
+      return null
     },
     hasViewBox() {
       return this.iconDeff && this.iconDeff?.viewBox?.length > 0

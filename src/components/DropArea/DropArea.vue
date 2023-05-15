@@ -99,7 +99,7 @@ export default {
      * @param {Event} e
      */
     handleDragLeave(e) {
-      if (!this.$el.contains(e.target) || e.target === this.$el) {
+      if ((e.target && !this.$el.contains(e.target)) || e.target === this.$el) {
         this.isOver = false
         this.$emit('close-drop-area')
       }
