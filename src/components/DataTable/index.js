@@ -85,7 +85,8 @@ const SbDataTable = {
       const items = [...this.sortedData]
       const pageChunkIndex = this.pagination.currentPage - 1
       while (items.length > 0) {
-        const pageChunk = items.splice(0, this.pagination.perPage)
+        const pageParam = Object.keys(this.pagination).includes('pageSize') ? 'pageSize' : 'perPage'
+        const pageChunk = items.splice(0, this.pagination[pageParam])
         paginatedItems = [...paginatedItems, pageChunk]
       }
       return paginatedItems[pageChunkIndex]
