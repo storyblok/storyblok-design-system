@@ -60,8 +60,7 @@
           />
 
           <slot />
-          <span
-v-if="hasScrollbar" class="sb-sidebar-list__fade" />
+          <span v-if="hasScrollbar" class="sb-sidebar-list__fade" />
         </div>
       </SbSidebarList>
 
