@@ -56,7 +56,7 @@
     width: 100%;
     color: $sb-dark-blue;
     font-size: $font-14;
-    border-radius: 5px;
+    border-radius: $base-border-radius;
     transition: $base-transition;
 
     &:disabled {
@@ -117,7 +117,7 @@
     &--ghost-light {
       position: relative;
       display: block;
-      padding: 13px 0 13px 32px;
+      padding: 13px 0 13px $s-6;
       font-size: $font-13;
       background-color: $light-25;
       border: 1px solid transparent;
@@ -128,7 +128,7 @@
       }
 
       &:focus {
-        border-radius: 5px;
+        border-radius: $base-border-radius;
         border-color: $sb-green;
         box-shadow: 0 0 0 3px $sb-green-25;
         outline: none;
@@ -156,7 +156,7 @@
     letter-spacing: 0;
     background-color: $white;
     border: 1px solid $light;
-    border-radius: 5px;
+    border-radius: $base-border-radius;
   }
 
   &__suffix {

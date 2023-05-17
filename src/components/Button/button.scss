@@ -4,11 +4,11 @@
   align-items: center;
   justify-content: center;
   vertical-align: middle;
-  padding: 12px 28px;
+  padding: $s-3 28px;
   font-family: $primary-font-family;
   font-size: $font-16;
   border: 1px solid transparent;
-  border-radius: 5px;
+  border-radius: $base-border-radius;
   cursor: pointer;
   transition: $base-transition;
 
@@ -28,7 +28,7 @@
 .sb-button--tertiary,
 .sb-button--danger,
 .sb-button--caution {
-  padding: 12px 28px;
+  padding: $s-3 28px;
   color: $white;
 }
 
@@ -131,7 +131,7 @@
 
 .sb-button--small {
   min-height: 36px;
-  padding: 8px 16px;
+  padding: $s-2 $s-4;
   font-size: $font-14;
 
   .sb-loading {
@@ -151,11 +151,11 @@
 }
 
 .sb-button--small.sb-button--has-icon {
-  padding: 5px 16px 5px 9px;
+  padding: 5px $s-4 5px 9px;
 }
 
 .sb-button--small.sb-button--has-icon-right {
-  padding: 5px 9px 5px 16px;
+  padding: 5px 9px 5px $s-4;
 }
 
 .sb-button--small.sb-button--has-icon-only {
@@ -207,8 +207,8 @@
 }
 
 .sb-button--has-icon-only {
-  min-height: 48px;
-  padding: 0 12px;
+  min-height: $s-8;
+  padding: 0 $s-3;
 
   .sb-icon {
     margin: 0;

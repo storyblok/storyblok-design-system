@@ -14,7 +14,7 @@
   margin-left: auto;
   padding: 20px;
   background-color: $white;
-  border-radius: 5px;
+  border-radius: $base-border-radius;
 
   @include mq($from: lg) {
     max-width: 624px;

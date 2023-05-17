@@ -17,7 +17,7 @@
   padding: 3px 10px;
   font-size: $font-13;
   font-weight: $font-medium;
-  border-radius: 5px;
+  border-radius: $base-border-radius;
 
   &__label {
     display: flex;

@@ -62,8 +62,8 @@
   }
 
   &__spinner--normal {
-    width: 32px;
-    height: 32px;
+    width: $s-6;
+    height: $s-6;
 
     .sb-loading__spinner-label {
       top: -70%;
@@ -71,8 +71,8 @@
     }
 
     svg {
-      width: 32px;
-      height: 32px;
+      width: $s-6;
+      height: $s-6;
     }
   }
 

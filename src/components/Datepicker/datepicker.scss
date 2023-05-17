@@ -59,7 +59,7 @@
 
   &__timezone {
     position: absolute;
-    right: 40px;
+    right: $s-7;
     top: 50%;
     color: $light-gray;
     font-size: $font-12;
@@ -129,7 +129,7 @@
   }
 
   &__button {
-    padding: 8px 14px;
+    padding: $s-2 14px;
     background-color: transparent;
     border: 0;
     cursor: pointer;

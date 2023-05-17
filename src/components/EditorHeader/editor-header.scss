@@ -17,7 +17,7 @@
     background-color: $sb-dark-blue;
 
     .sb-button--small {
-      padding: 5px 16px;
+      padding: 5px $s-4;
     }
   }
 }
@@ -34,7 +34,7 @@
     justify-content: flex-end;
     box-sizing: border-box;
     width: 100%;
-    padding: 17px 0 16px 26px;
+    padding: 17px 0 $s-4 26px;
 
     .header__desktop {
       display: grid;
@@ -122,7 +122,7 @@
   &__content {
     display: flex;
     box-sizing: border-box;
-    padding: 17px 19px 16px 0;
+    padding: 17px 19px $s-4 0;
 
     &--mobile {
       padding: 0;
@@ -131,7 +131,7 @@
 
   &__status {
     svg {
-      padding-top: 4px;
+      padding-top: $s-1;
     }
   }
 }

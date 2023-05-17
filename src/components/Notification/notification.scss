@@ -3,7 +3,7 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 430px;
-  padding: 16px;
+  padding: $s-4;
   border-radius: $base-border-radius;
 
   // Notification modifiers
@@ -42,16 +42,16 @@
 
     svg {
       vertical-align: top;
-      width: 24px;
-      height: 24px;
+      width: $s-5;
+      height: $s-5;
     }
   }
 
   // Status of notication
   &--icon-container.sb-icon--custom {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: $s-5;
+    height: $s-5;
     margin-right: 5px;
     margin-top: -1px;
     background-color: transparent;
@@ -100,8 +100,8 @@
   &--description {
     display: block;
     overflow: hidden;
-    margin-left: 32px;
-    margin-top: 12px;
+    margin-left: $s-6;
+    margin-top: $s-3;
     color: $sb-dark-blue;
     font-size: $font-14;
     font-weight: $font-regular;
@@ -112,8 +112,8 @@
   &--link {
     display: block;
     overflow: hidden;
-    margin-left: 32px;
-    margin-top: 12px;
+    margin-left: $s-6;
+    margin-top: $s-3;
     text-overflow: ellipsis;
 
     a {

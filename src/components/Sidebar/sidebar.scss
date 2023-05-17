@@ -23,7 +23,7 @@
   .sb-button {
     position: absolute;
     right: -13px;
-    top: 32px;
+    top: $s-6;
     min-height: auto;
     padding: 0;
     opacity: 0;
@@ -123,12 +123,12 @@
 .sb-sidebar-item {
   position: relative;
   margin-bottom: 1px;
-  padding: 0 16px;
+  padding: 0 $s-4;
   white-space: nowrap;
   list-style: none;
 
   svg {
-    min-width: 24px;
+    min-width: $s-5;
   }
 
   .sb-icon__right {
@@ -137,13 +137,13 @@
 }
 
 .sb-sidebar-item--parent {
-  margin: 0 16px 1px;
+  margin: 0 $s-4 1px;
   padding: 0;
   background-color: #262e48;
-  border-radius: 8px;
+  border-radius: $s-2;
 
   > :last-child {
-    padding-bottom: 12px;
+    padding-bottom: $s-3;
   }
 }
 
@@ -180,14 +180,14 @@
   display: flex;
   align-items: center;
   vertical-align: middle;
-  padding: 12px;
+  padding: $s-3;
   color: $light-gray;
   font-size: $font-14;
   font-weight: $font-medium;
   letter-spacing: 0;
   line-height: inherit;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: $s-2;
   cursor: pointer;
 
   &:hover,
@@ -197,7 +197,7 @@
 
   .sb-icon,
   .sb-sidebar-sidebar-icon {
-    margin-right: 12px;
+    margin-right: $s-3;
   }
 
   .sb-icon__right {
@@ -209,7 +209,7 @@
 
   .sb-separator {
     width: 1px;
-    height: 24px;
+    height: $s-5;
     margin: 0 7px 0 -8px;
     background-color: rgba(#c9c9c9, 0.2);
   }
@@ -277,7 +277,7 @@
 
   .sb-menu-list {
     min-width: 200px;
-    margin: 0 16px;
+    margin: 0 $s-4;
   }
 
   .sb-icon__right {

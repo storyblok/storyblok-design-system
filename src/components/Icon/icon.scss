@@ -103,7 +103,7 @@ $bg-colors: (
   &--bg {
     @each $name, $colorVariable in $bg-colors {
       &-#{$name} {
-        padding: 12px;
+        padding: $s-3;
         background-color: $colorVariable;
         border-radius: 100%;
       }

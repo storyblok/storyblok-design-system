@@ -17,7 +17,7 @@
   margin: auto;
   padding: 35px;
   background-color: $white;
-  border-radius: 5px;
+  border-radius: $base-border-radius;
   box-shadow: $box-shadow-default;
   animation: fadein 0.3s;
 
@@ -113,7 +113,7 @@
     &__actions {
       display: flex;
       align-items: center;
-      padding-right: 40px;
+      padding-right: $s-7;
 
       > * {
         margin-left: 10px;
