@@ -110,7 +110,7 @@
   },
   "release": {
     "branches": [
-      "next"
+      "main"
     ]
   }
 }
