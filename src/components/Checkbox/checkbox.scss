@@ -14,6 +14,10 @@ $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
     border-radius: $base-border-radius;
   }
 
+  &--no-update {
+    pointer-events: none;
+  }
+
   &__inner {
     position: relative;
   }
