@@ -48,7 +48,7 @@
 .sb-accordion__content {
   box-sizing: border-box;
   width: 100%;
-  padding: $small-size $medium-size $medium-size $large-size;
+  padding: $s-2 $s-4 $s-4 $s-6;
   will-change: height;
 }
 
@@ -58,7 +58,7 @@
   box-sizing: border-box;
   width: 100%;
   height: auto;
-  max-height: 48px;
+  max-height: $s-8;
   margin: 0;
   padding: 7px 6px;
   font-size: $font-14;
@@ -103,7 +103,7 @@
 
 .sb-accordion--no-padding {
   .sb-accordion__content {
-    padding-left: $small-size;
+    padding-left: $s-2;
     padding-right: 0;
   }
 }

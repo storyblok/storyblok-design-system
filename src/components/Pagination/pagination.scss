@@ -48,8 +48,8 @@
 
   &__button {
     display: block;
-    width: 32px;
-    height: 32px;
+    width: $s-6;
+    height: $s-6;
     color: $color-primary-dark;
     background-color: transparent;
     border-radius: $base-border-radius;
@@ -150,7 +150,7 @@
   .sb-pagination__button {
     width: auto;
     height: unset;
-    padding: 13.5px 24px;
+    padding: 13.5px $s-5;
     font-size: $font-14;
 
     &:not(.sb-button--tertiary) {
@@ -173,7 +173,7 @@
   .sb-pagination-dot {
     width: 7px;
     height: 7px;
-    border-radius: 40px;
+    border-radius: $s-7;
     transition: width 0.1s ease-in-out;
 
     &:not(:first-child) {
@@ -181,7 +181,7 @@
     }
 
     &--active {
-      width: 16px;
+      width: $s-4;
       background-color: $blue;
       transition: width 0.1s ease-in-out;
 

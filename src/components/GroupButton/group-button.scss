@@ -3,7 +3,7 @@
 
   @include mq($until: sm) {
     flex-direction: column;
-    row-gap: $small-size;
+    row-gap: $s-2;
   }
 
   .sb-link {

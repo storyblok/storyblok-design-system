@@ -5,23 +5,23 @@
   max-width: 602px;
   margin: 0 auto;
   background-color: $white;
-  border-radius: 5px;
+  border-radius: $base-border-radius;
   box-shadow: 0 3px 44px 13px rgba(0, 0, 0, 0.08);
 
   svg {
-    padding-right: $medium-size;
+    padding-right: $s-4;
   }
 
   &__content {
     display: flex;
     align-items: center;
-    padding: $medium-size;
+    padding: $s-4;
     line-height: 1.2;
   }
 
   &__label {
     display: block;
-    padding-right: $small-size;
+    padding-right: $s-2;
     font-size: $font-14;
     text-align: left;
   }

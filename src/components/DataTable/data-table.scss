@@ -148,6 +148,7 @@
 
 .sb-actions-menu {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
   box-sizing: border-box;
@@ -156,8 +157,7 @@
   padding: 0 20px;
   color: $white;
   background-color: $sb-dark-blue;
-  border-radius: 5px;
-  flex-wrap: wrap;
+  border-radius: $base-border-radius;
 
   @include mq($until: sm) {
     padding: 0 11px 0 2px;
@@ -208,7 +208,7 @@
 
   .sb-data-table__body-cell-label {
     display: inline-flex;
-    padding-right: $small-size;
+    padding-right: $s-2;
   }
 
   .sb-data-table thead {
@@ -231,7 +231,7 @@
     display: inline-flex;
     align-items: center;
     overflow: hidden;
-    padding: 8px;
+    padding: $s-2;
   }
 
   .sb-data-table--loading .sb-data-table__body-cell {
