@@ -140,6 +140,12 @@ export default {
     this.$_createPortalInstance()
   },
 
+  beforeUnmount() {
+    if (document.querySelector) {
+      document.querySelector('body').style.overflow = 'auto'
+    }
+  },
+
   methods: {
     escapeEventListener(e) {
       if (e.key === 'Escape') {
