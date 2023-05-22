@@ -17,8 +17,7 @@
       />
 
       <div class="sb-checkbox__input">
-        <svg class="sb-checkbox__svg"
-focusable="false" viewBox="0 0 16 16">
+        <svg class="sb-checkbox__svg" focusable="false" viewBox="0 0 16 16">
           <path
             class="sb-checkbox__truthy"
             fill="none"
@@ -56,6 +55,7 @@ export default {
     indeterminate: Boolean,
     inline: Boolean,
     outline: Boolean,
+    nonReactive: Boolean,
   },
 
   emits: ['click'],
@@ -66,6 +66,7 @@ export default {
         this.$attrs.class,
         this.inline && 'sb-checkbox--inline',
         this.outline && 'sb-checkbox--outline',
+        this.nonReactive && 'sb-checkbox--no-update',
       ]
     },
   },

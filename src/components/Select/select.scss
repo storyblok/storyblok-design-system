@@ -97,7 +97,7 @@
   font-size: $font-14;
   background-color: $white;
   border: 1px solid $light;
-  border-radius: 5px;
+  border-radius: $base-border-radius;
   cursor: pointer;
 
   &:hover {
@@ -110,7 +110,7 @@
 
   .sb-tag {
     overflow: hidden;
-    margin: 4px;
+    margin: $s-1;
 
     .sb-avatar,
     .sb-avatar__image,
@@ -121,7 +121,7 @@
     }
 
     .sb-avatar {
-      margin-right: 8px;
+      margin-right: $s-2;
     }
 
     .sb-avatar__initials {
@@ -153,7 +153,7 @@
   }
 
   &__tags &__input {
-    margin-left: 4px;
+    margin-left: $s-1;
   }
 
   &__clear {
@@ -244,16 +244,13 @@
 
 .sb-select__input--hidden {
   position: absolute;
-  top: 48px;
+  top: $s-8;
   height: 0;
   border: 0;
   opacity: 0;
 }
 
 .sb-select-list {
-  @include popoverComponent();
-  @include listPosition();
-  
   display: none;
   flex: 1;
   overflow: auto;
@@ -263,6 +260,9 @@
   min-width: 176px;
   padding: 13px 0;
   background-color: $white;
+
+  @include popoverComponent();
+  @include listPosition();
 
   ul {
     margin: 0;

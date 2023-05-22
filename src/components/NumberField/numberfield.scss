@@ -61,7 +61,7 @@
     padding: 13.5px 17px;
     color: $sb-dark-blue;
     font-size: $font-14;
-    border-radius: 5px;
+    border-radius: $base-border-radius;
     appearance: textfield;
 
     &::-webkit-outer-spin-button,
@@ -91,7 +91,7 @@
       }
 
       &:focus {
-        border-radius: 5px;
+        border-radius: $base-border-radius;
         border-color: $sb-green;
         box-shadow: 0 0 0 3px $sb-green-25;
         outline: none;

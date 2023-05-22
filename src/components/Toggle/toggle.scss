@@ -1,5 +1,5 @@
 $toggle-easing: cubic-bezier(0.33, 1, 0.68, 1);
-$toggle-width: 40px;
+$toggle-width: $s-7;
 $toggle-height: $toggle-width * 0.6;
 $toggle-circle: $toggle-width * 0.4;
 $toggle-padding: 4px;
@@ -107,12 +107,12 @@ $toggle-padding: 4px;
   transform: translateY(-50%);
 
   &--active {
-    left: 4px;
+    left: $s-1;
     color: $white;
   }
 
   &--inactive {
-    right: 4px;
+    right: $s-1;
     color: $light-gray;
   }
 }

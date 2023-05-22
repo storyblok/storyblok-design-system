@@ -21,25 +21,21 @@
         v-if="multiple"
         :model-value="isSelected"
         :disabled="isDisabled"
+        non-reactive
       />
 
-      <slot name="list-item"
-:item="option">
+      <slot name="list-item" :item="option">
         <span class="sb-select-list__item-icon">
-          <SbIcon v-if="option.icon"
-:name="option.icon" />
+          <SbIcon v-if="option.icon" :name="option.icon" />
         </span>
 
-        <span v-if="!showCaption"
-class="sb-select-list__item-name">{{
+        <span v-if="!showCaption" class="sb-select-list__item-name">{{
           label
         }}</span>
 
-        <div v-else
-class="sb-select-list__item--with-path">
+        <div v-else class="sb-select-list__item--with-path">
           <span class="sb-select-list__item-name">{{ label }}</span>
-          <span v-if="showCaption"
-class="sb-select-list__item-caption">{{
+          <span v-if="showCaption" class="sb-select-list__item-caption">{{
             path
           }}</span>
         </div>
