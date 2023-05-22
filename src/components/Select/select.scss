@@ -53,6 +53,7 @@
   &[aria-expanded='true'] {
     .sb-select-list {
       display: block;
+      overflow-y: auto;
     }
 
     .sb-minibrowser {
