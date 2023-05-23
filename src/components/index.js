@@ -12,6 +12,7 @@ import SbFormItem from './FormItem'
 import SbGroupButton from './GroupButton'
 import SbIcon from './Icon'
 import SbIconButton from './IconButton'
+import SbIllustration from './Illustration/index.ts'
 import SbLink from './Link'
 import SbLogo from './Logo'
 import SbNotification from './Notification'
@@ -62,6 +63,7 @@ export {
   SbGroupButton,
   SbIcon,
   SbIconButton,
+  SbIllustration,
   SbLink,
   SbLogo,
   SbNotification,
