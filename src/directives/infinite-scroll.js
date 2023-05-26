@@ -66,7 +66,11 @@ const getElementTop = function (element) {
  * @param  {Element} el
  * @return {Function}
  */
-const getListener = (el) => (_) => {
+const getListener = (el) => () => {
+  if (!el || !el.__infiniteScroll) {
+    return
+  }
+
   const scrollEventTarget = el.__infiniteScroll.scrollEventTarget
   const distance = el.__infiniteScroll.distance
 
