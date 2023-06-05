@@ -79,6 +79,8 @@ const InfiniteScroll: ObjectDirective<CustomHTMLElement, Callback> = {
   },
 
   unmounted(el) {
+    if (typeof el === 'undefined' || !el[PREFIX]) return
+
     const { onScroll } = el && el[PREFIX]
     el.removeEventListener('scroll', onScroll)
   },
