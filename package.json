@@ -27,6 +27,7 @@
     "src"
   ],
   "dependencies": {
+    "@kurtliao/vue-infinite-scroll": "^0.0.6",
     "@popperjs/core": "^2.11.6",
     "click-outside-vue3": "^4.0.1",
     "dayjs": "^1.11.7",

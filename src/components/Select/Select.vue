@@ -41,22 +41,20 @@
       @remove-item-value="handleRemoveItemValue"
     >
       <template #selection="scope">
-        <slot name="selection"
-v-bind="scope" />
+        <slot name="selection" v-bind="scope" />
       </template>
 
       <slot name="innerSelect" />
     </SbSelectInner>
 
-    <span v-if="showError"
-class="sb-select__message sb-select__message--error">
+    <span v-if="showError" class="sb-select__message sb-select__message--error">
       {{ errorMessage }}
     </span>
 
     <SbSelectList
       v-if="isListRendered"
       ref="list"
-      v-infinite-scroll="{ handler: handleInfiniteScroll }"
+      v-infinite-scroll="handleInfiniteScroll"
       :model-value="modelValue"
       :is-loading="isLoading"
       :search-input="searchInput"
@@ -82,8 +80,7 @@ class="sb-select__message sb-select__message--error">
       @focus-item="focusAtIndex($event)"
     >
       <template #list-item="scope">
-        <slot name="list-item"
-v-bind="scope" />
+        <slot name="list-item" v-bind="scope" />
       </template>
     </SbSelectList>
 
@@ -100,7 +97,8 @@ v-bind="scope" />
 
 <script>
 import { debounce } from 'throttle-debounce'
-import { ClickOutside, InfiniteScroll } from '../../directives'
+import { ClickOutside } from '../../directives'
+import InfiniteScroll from '@kurtliao/vue-infinite-scroll'
 import { canUseDOM, includes, toLowerCase, isString } from '../../utils'
 import SbSelectInner from './components/SelectInner'
 import SbSelectList from './components/SelectList'
