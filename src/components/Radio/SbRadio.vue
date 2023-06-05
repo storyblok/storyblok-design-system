@@ -14,7 +14,9 @@
       @input="handleInput"
     />
 
-    <label v-if="label" :for="id" class="sb-radio__label">{{ label }}</label>
+    <label v-if="label || label == ''" :for="id" class="sb-radio__label">{{
+      label
+    }}</label>
   </div>
 </template>
 
