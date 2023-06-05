@@ -102,9 +102,14 @@ export default {
       type: String,
       default: '',
     },
+    noImage: {
+      type: Boolean,
+      default: false,
+    },
     illustrationLink: {
       type: String,
-      default: 'https://a.storyblok.com/f/95975/x/1745462eb1/workspace.svg',
+      default:
+        'https://a.storyblok.com/f/95975/x/f6ea3e1d2c/workspace-empty.svg',
     },
     illustrationWidth: {
       type: String,
@@ -178,6 +183,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    fullHeight: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['button-click', 'link-click'],
 
@@ -185,11 +194,14 @@ export default {
     computedClass() {
       return {
         'sb-empty-state--small': this.small,
+        'sb-empty-state--full': this.fullHeight,
       }
     },
 
     hasIconOrImage() {
-      return this.illustrationLink.length || this.iconName.length
+      return (
+        (!this.noImage && this.illustrationLink.length) || this.iconName.length
+      )
     },
 
     computedIconName() {

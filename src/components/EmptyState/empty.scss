@@ -6,6 +6,7 @@
   min-height: calc(100vh - 245px);
   margin: auto;
   padding: 0 $s-7;
+  font-size: $font-14;
   line-height: 1.2;
   text-align: center;
 }
@@ -82,10 +83,6 @@
   color: $sb-dark-blue-50;
   font-size: $font-14;
   line-height: 22px;
-
-  .sb-empty-state__text-link {
-    color: $sb-green;
-  }
 }
 
 .sb-empty-state__text-wide {
@@ -93,8 +90,12 @@
 }
 
 .sb-empty-state__link {
-  margin-top: 10px;
+  margin-top: $s-2;
   font-size: $font-14;
+
+  .sb-link {
+    color: $sb-dark-blue;
+  }
 }
 
 .sb-empty-state__router {
@@ -139,6 +140,10 @@
   min-height: initial;
   padding-bottom: 50px;
   padding-top: 50px;
+}
+
+.sb-empty-state--full {
+  min-height: 100%;
 }
 
 .sb-empty-state__buttons {
