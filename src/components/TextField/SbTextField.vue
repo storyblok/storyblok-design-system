@@ -200,6 +200,7 @@ export default {
 
     hasSpecialClass() {
       return [
+        this.disabled && 'sb-textfield__input--disabled',
         this.error && 'sb-textfield__input--error',
         this.ghost && 'sb-textfield__input--ghost',
         !this.error && !this.ghost && 'sb-textfield__input--default',

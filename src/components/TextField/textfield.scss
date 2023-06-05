@@ -59,7 +59,7 @@
     border-radius: $base-border-radius;
     transition: $base-transition;
 
-    &:disabled {
+    &--disabled {
       background: $light-25;
       border: 1px solid $light !important;
       cursor: not-allowed;
@@ -136,7 +136,7 @@
     }
 
     &--error {
-      border: 1px solid $red;
+      border: 1px solid $red !important;
 
       &:focus {
         box-shadow: 0 0 0 3px rgb(255, 179, 176, 0.3);
