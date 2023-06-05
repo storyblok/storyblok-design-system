@@ -97,8 +97,8 @@
 
 <script>
 import { debounce } from 'throttle-debounce'
-import { ClickOutside } from '../../directives'
-import InfiniteScroll from '@kurtliao/vue-infinite-scroll'
+import { ClickOutside, InfiniteScroll } from '../../directives'
+
 import { canUseDOM, includes, toLowerCase, isString } from '../../utils'
 import SbSelectInner from './components/SelectInner'
 import SbSelectList from './components/SelectList'
