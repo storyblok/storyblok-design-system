@@ -13,6 +13,7 @@ import SbGroupButton from './GroupButton'
 import SbIcon from './Icon'
 import SbIconButton from './IconButton'
 import SbIllustration from './Illustration/index.ts'
+import SbEmptyState from './EmptyState/index.ts'
 import SbLink from './Link'
 import SbLogo from './Logo'
 import SbNotification from './Notification'
@@ -49,15 +50,16 @@ export {
 export { SbPopover, SbPopoverArrow } from './Popover'
 
 export {
+  SbAccordion,
   SbAvatar,
   SbAvatarGroup,
-  SbAccordion,
   SbBadge,
   SbBlockUi,
   SbButton,
   SbCheckbox,
   SbDatepicker,
   SbDropArea,
+  SbEmptyState,
   SbFormGroup,
   SbFormItem,
   SbGroupButton,
@@ -67,6 +69,7 @@ export {
   SbLink,
   SbLogo,
   SbNotification,
+  SbNumberField,
   SbPagination,
   SbPortal,
   SbRadio,
@@ -77,5 +80,4 @@ export {
   SbToggle,
   SbTooltip,
   SbUploadDialog,
-  SbNumberField,
 }
