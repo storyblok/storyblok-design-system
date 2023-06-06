@@ -1,0 +1,14 @@
+.sb-illustration {
+  width: 100%;
+  margin: auto;
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &--full {
+    max-width: 100%;
+  }
+}
