@@ -4,7 +4,7 @@ import { SbMenu, SbMenuButton } from '..'
 
 describe('SbMenuButton component', () => {
   it('should perform toggle menu open state', async () => {
-    const onClick = jest.fn()
+    const onClick = vi.fn()
     // @vue/component
     const wrapperComponent = {
       components: {
@@ -58,7 +58,7 @@ describe('SbMenuButton component', () => {
   })
 
   it('should render one buttons with hasIconOnly property', async () => {
-    const onClick = jest.fn()
+    const onClick = vi.fn()
     // @vue/component
     const wrapperComponent = {
       components: {

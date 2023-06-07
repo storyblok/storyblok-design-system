@@ -22,4 +22,4 @@ jobs:
         node-version: 16
         cache: 'yarn'
     - run: yarn
-    - run: yarn test:unit --verbose
+    - run: yarn test:unit

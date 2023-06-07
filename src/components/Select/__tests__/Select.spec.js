@@ -1,6 +1,5 @@
 import { SbMinibrowser } from '../../Minibrowser'
 import { mountAttachingComponent, waitMs } from '../../../utils/tests-utils'
-import { MOCK_DATA } from '../../Minibrowser/Minibrowser.stories'
 
 import { SbSelect } from '..'
 import SbIcon from '../../Icon'
@@ -74,7 +73,7 @@ describe('SbSelect component', () => {
 
       await buttonComponent.trigger('click')
 
-      expect(wrapper.emitted('update:modelValue')[0][0]).toEqual(null)
+      expect(wrapper.emitted('update:modelValue')[0][0]).toBeNull()
     })
   })
 
@@ -462,15 +461,12 @@ describe('SbSelect component', () => {
         value: null,
       },
       slots: {
-        minibrowser: `<SbMinibrowser :options="browserOptionsData" />`,
+        minibrowser: SbMinibrowser,
       },
       global: {
         stubs: {
           SbMinibrowser: SbMinibrowser,
           SbIcon: SbIcon,
-        },
-        mocks: {
-          browserOptionsData: [...MOCK_DATA.FIRST_LEVEL],
         },
       },
     })
@@ -1124,18 +1120,19 @@ describe('SbSelect component', () => {
       props: {
         label: 'Choose an option disabled',
         options: [...defaultSelectOptionsData],
-        isOptionDisabled: (item) => item.value === 2
+        isOptionDisabled: (item) => item.value === 2,
       },
     })
 
     it('Should disabled option when user pass a function prop "isOptionDisabled"', () => {
-      expect(wrapper.find('.sb-select-list__item--disabled').exists()).toBeTruthy()
+      expect(
+        wrapper.find('.sb-select-list__item--disabled').exists()
+      ).toBeTruthy()
     })
 
     it('Should not be possible to select an disabled option', async () => {
       await wrapper.find('.sb-select-list__item--disabled').trigger('click')
       expect(wrapper.emitted('update:modelValue')).toBeUndefined()
     })
-
   })
 })

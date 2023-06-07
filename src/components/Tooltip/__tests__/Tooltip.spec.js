@@ -32,8 +32,8 @@ describe('test SbTooltip component', () => {
       </SbTooltip>
     `
 
-    const onClick = jest.fn()
-    const onFocus = jest.fn()
+    const onClick = vi.fn()
+    const onFocus = vi.fn()
     const additionalInfo = {
       methods: {
         onClick,
@@ -118,7 +118,7 @@ describe('test SbTooltip component', () => {
       </SbTooltip>
     `
 
-    const onClick = jest.fn()
+    const onClick = vi.fn()
     const additionalInfo = {
       methods: {
         onClick,
@@ -151,7 +151,7 @@ describe('test SbTooltip component', () => {
       </SbTooltip>
     `
 
-    const onClick = jest.fn()
+    const onClick = vi.fn()
     const additionalInfo = {
       methods: {
         onClick,

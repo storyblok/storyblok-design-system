@@ -46,7 +46,7 @@ describe('Test if SbDropArea renderer correctly', () => {
   it('Test handleDropFile function is called', () => {
     const wrapper = factory(fakeProps)
 
-    wrapper.vm.handleDropFile = jest.fn()
+    wrapper.vm.handleDropFile = vi.fn()
 
     wrapper.vm.handleDropFile(fakeEvent)
 

@@ -24,7 +24,7 @@ describe('Tests for SbModalType', () => {
       actionButtonLabel: 'Ok, delete it!',
     })
 
-    wrapper.vm.show = jest.fn()
+    wrapper.vm.show = vi.fn()
 
     wrapper.vm.show()
 

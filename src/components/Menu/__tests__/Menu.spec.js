@@ -2,7 +2,7 @@ import { factoryMountComponent } from '../utils'
 import * as MenuComponents from '..'
 
 describe('SbMenu component', () => {
-  const onSelectOption = jest.fn()
+  const onSelectOption = vi.fn()
 
   // @vue/component
   const Component = {
