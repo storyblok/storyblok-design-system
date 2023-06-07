@@ -2,7 +2,6 @@ module.exports = {
   root: true,
   env: {
     node: true,
-    jest: true,
     'vue/setup-compiler-macros': true,
   },
   globals: {
