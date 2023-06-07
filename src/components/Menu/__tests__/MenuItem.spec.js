@@ -1,15 +1,16 @@
 import { factoryMountComponent } from '../utils'
+import { waitMs } from '@utils/tests-utils'
 
 import * as MenuComponents from '..'
 import SbIcon from '../../Icon'
 
 describe('SbMenuItem component', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
-  const onSelectOptionFirst = jest.fn()
-  const onSelectOptionSecond = jest.fn()
+  const onSelectOptionFirst = vi.fn()
+  const onSelectOptionSecond = vi.fn()
 
   // @vue/component
   const Component = {
@@ -73,9 +74,8 @@ describe('SbMenuItem component', () => {
     expect(onSelectOptionFirst).not.toHaveBeenCalled()
 
     // and should not close the menu
-    setTimeout(() => {
-      expect(wrapper.vm.isOpen).toBe(true)
-    }, 0)
+    await waitMs()
+    expect(wrapper.vm.isOpen).toBe(true)
 
     // when try to press the Enter key in a disabled button
     await itemComponent.trigger('keydown', {
@@ -94,9 +94,8 @@ describe('SbMenuItem component', () => {
     expect(onSelectOptionFirst).not.toHaveBeenCalled()
 
     // and should not close the menu
-    setTimeout(() => {
-      expect(wrapper.vm.isOpen).toBe(true)
-    }, 0)
+    await waitMs()
+    expect(wrapper.vm.isOpen).toBe(true)
   })
 
   it('should emit the click event when press Enter and Space keys', async () => {

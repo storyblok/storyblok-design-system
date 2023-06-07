@@ -11,7 +11,7 @@ describe('Tests for ModalPlugin', () => {
   const wrapper = shallowMount(ModalPlugin)
 
   it('Test if the show function is called', async () => {
-    wrapper.vm.show = jest.fn()
+    wrapper.vm.show = vi.fn()
 
     wrapper.vm.show()
 

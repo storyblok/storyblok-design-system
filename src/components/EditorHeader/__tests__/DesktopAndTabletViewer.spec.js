@@ -73,9 +73,9 @@ describe.skip('SbDesktopAndTabletViewer component', () => {
   it('should trigger all functions', () => {
     const wrapper = factory(fakeProps)
 
-    wrapper.vm.handleSetNewLanguage = jest.fn()
+    wrapper.vm.handleSetNewLanguage = vi.fn()
 
-    wrapper.vm.handleSelectNewAction = jest.fn()
+    wrapper.vm.handleSelectNewAction = vi.fn()
 
     wrapper.vm.handleSetNewLanguage()
 
