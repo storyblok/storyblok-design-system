@@ -74,6 +74,7 @@
     "eslint-plugin-vuejs-accessibility": "^2.1.0",
     "husky": "^8.0.3",
     "is-ci": "^3.0.1",
+    "jest-transform-stub": "^2.0.0",
     "jsdom": "^22.1.0",
     "lint-staged": "^10.5.4",
     "prettier": "^2.8.8",
