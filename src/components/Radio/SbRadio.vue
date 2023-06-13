@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-radio" :class="componentClasses">
+  <label class="sb-radio" :class="componentClasses">
     <input
       :id="id"
       v-model="internalValue"
@@ -13,11 +13,8 @@
       @click.stop
       @input="handleInput"
     />
-
-    <label v-if="label || label == ''" :for="id" class="sb-radio__label">{{
-      label
-    }}</label>
-  </div>
+    <span v-if="label || label == ''" class="sb-radio__label">{{ label }}</span>
+  </label>
 </template>
 
 <script>
