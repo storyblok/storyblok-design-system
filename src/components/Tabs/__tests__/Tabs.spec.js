@@ -3,7 +3,7 @@ import { SbTabs, SbTab } from '..'
 
 describe('Test SbTabs', () => {
   describe('when default behavior', () => {
-    const onInput = jest.fn()
+    const onInput = vi.fn()
     const Wrapper = {
       components: {
         SbTabs,
@@ -54,8 +54,8 @@ describe('Test SbTabs', () => {
   })
 
   describe('when use the showAddButton property', () => {
-    const onInput = jest.fn()
-    const onNewTab = jest.fn()
+    const onInput = vi.fn()
+    const onNewTab = vi.fn()
 
     const Wrapper = {
       components: {
@@ -149,10 +149,10 @@ describe('Test SbTabs', () => {
 
   describe('when perform the navigation using arrows', () => {
     afterEach(() => {
-      jest.clearAllMocks()
+      vi.clearAllMocks()
     })
 
-    const onInput = jest.fn()
+    const onInput = vi.fn()
     const ComponentWrapper = {
       components: {
         SbTabs,
@@ -312,10 +312,10 @@ describe('Test SbTabs', () => {
 
   describe('when perform the navigation Home and End keys', () => {
     afterEach(() => {
-      jest.clearAllMocks()
+      vi.clearAllMocks()
     })
 
-    const onInput = jest.fn()
+    const onInput = vi.fn()
     const ComponentWrapper = {
       components: {
         SbTabs,

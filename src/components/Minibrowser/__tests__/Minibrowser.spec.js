@@ -33,8 +33,8 @@ describe('SbMinibrowser component', () => {
 
     // getting the first parameter from first execution
     const result = wrapper.emitted('select-item')[0][0]
-    expect(result.label).toEqual('Landing Page')
-    expect(result.value).toEqual('1.0')
+    expect(result.label).toBe('Landing Page')
+    expect(result.value).toBe('1.0')
 
     await wrapper.setProps({
       breadcrumbs: [{ label: 'Landing Page' }],
@@ -50,7 +50,7 @@ describe('SbMinibrowser component', () => {
     // getting the first parameter from second execution
     const newResult = wrapper.emitted('select-item')[1][0]
     expect(newResult.label).toBe('PPC')
-    expect(newResult.value).toEqual('2.0')
+    expect(newResult.value).toBe('2.0')
 
     await wrapper.setProps({
       breadcrumbs: [{ label: 'Landing Page' }, { label: 'PPC' }],
@@ -268,8 +268,8 @@ describe('SbMinibrowser component', () => {
 
   describe('using slots', () => {
     let wrapper = null
-    const onSelectItem = jest.fn()
-    const onClick = jest.fn()
+    const onSelectItem = vi.fn()
+    const onClick = vi.fn()
 
     beforeAll(() => {
       wrapper = mount({

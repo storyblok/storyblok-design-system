@@ -2,18 +2,20 @@ module.exports = {
   root: true,
   env: {
     node: true,
-    jest: true,
     'vue/setup-compiler-macros': true,
   },
-  plugins: ['testing-library', 'jest-dom', 'jest', 'vuejs-accessibility'],
+  globals: {
+    vi: true,
+  },
+  plugins: ['testing-library', 'vuejs-accessibility', 'vitest'],
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
     'plugin:vue/vue3-strongly-recommended',
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier',
+    'plugin:vitest/recommended',
     'plugin:prettier/recommended',
-    'plugin:jest-dom/recommended',
     'plugin:vuejs-accessibility/recommended',
   ],
   parser: 'vue-eslint-parser',
