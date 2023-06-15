@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "yarn storybook",
-    "build": "vite build && yarn generate:types",
+    "build": "vite build",
     "test:unit": "vitest run --config ./vitest.config.ts",
     "generate:types": "vue-tsc --declaration --emitDeclarationOnly --outdir ./dist",
     "lint": "eslint src src/ tests/ .storybook/",
