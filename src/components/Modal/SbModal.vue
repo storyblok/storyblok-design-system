@@ -8,7 +8,7 @@
     :target="modalTarget"
     :disabled="disabledTargetDefault"
   >
-    <SbBlokUi v-if="open" :style="computedBlokUiStyle" @mousedown="wrapClose">
+    <SbBlokUi v-if="open" :style="computedBlokUiStyle" :with-margin="fullWidth" @mousedown="wrapClose">
       <div
         ref="modal"
         class="sb-modal"

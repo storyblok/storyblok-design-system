@@ -13,12 +13,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    withMargin: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
     computedClass() {
       return {
         'sb-block-ui--in-element': this.inElement,
+        'sb-block-ui--with-margin': this.withMargin,
       }
     },
   },
