@@ -12,11 +12,16 @@
   overflow-y: auto;
   box-sizing: border-box;
   width: 100%;
-  padding: 20px;
   background-color: $black-trasparent;
-}
 
-.sb-block-ui--in-element {
-  position: absolute;
-  background-color: transparent;
+  &--in-element {
+    position: absolute;
+    background-color: transparent;
+  }
+
+  &--with-margin {
+    @include mq($from: sm) {
+      padding: 20px;
+    }
+  }
 }
