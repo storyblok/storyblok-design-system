@@ -15,6 +15,7 @@
         :placeholder="placeholder"
         :model-value="internalValueFormatted"
         :error="invalidDate"
+        :inline-label="inlineLabel"
         clearable
         @icon-click="handleInputClick"
         @clear="handleClear"
@@ -180,6 +181,11 @@ export default {
     disabledPast: {
       type: Boolean,
       default: false,
+    },
+
+    inlineLabel: {
+      type: String,
+      default: '',
     },
   },
 

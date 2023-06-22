@@ -32,6 +32,7 @@
       :error="error"
       :show-caption="showCaption"
       :item-caption="itemCaption"
+      :inline-label="inlineLabel"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
       @search="handleSearchInput"
@@ -214,6 +215,10 @@ export default {
     isOptionDisabled: {
       type: Function,
       default: () => false,
+    },
+    inlineLabel: {
+      type: String,
+      default: '',
     },
   },
 

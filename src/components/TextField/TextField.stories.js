@@ -96,7 +96,7 @@ export const Default = (args) => ({
         :errorMessage="errorMessage"
         error
       /><br>
-      <SbTextFiel
+      <SbTextField
       :id="id"
       :name="name"
       label="With error but no icon"
@@ -108,7 +108,7 @@ export const Default = (args) => ({
       v-model="internalValue"
       :errorMessage="errorMessage"
       error
-    />
+    /><br>
       <SbTextField
         :id="id"
         :name="name"
@@ -135,23 +135,23 @@ export const Default = (args) => ({
       <SbTextField
         :id="id"
         :name="name"
-        :label="label"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        :maxlength="maxlength"
-        v-model="internalValue"
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
         label="With max length"
         :disabled="disabled"
         :required="required"
         :placeholder="placeholder"
         :readonly="readonly"
         maxlength="200"
+        v-model="internalValue"
+      /><br>
+      <SbTextField
+        :id="id"
+        :name="name"
+        label="With inline label"
+        inline-label="User:"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
         v-model="internalValue"
       /><br>
     </div>
@@ -400,6 +400,45 @@ withMask.parameters = {
     description: {
       story:
         'Use "#" for numbers (0-9), “S” for letter in any case (a-z,A-Z), “X” for number or letter (a-z,A-Z,0-9), “*” for repeat and “!” for optional (next character).',
+    },
+  },
+}
+
+export const withInlineLabel = (args) => ({
+  components: { SbTextField },
+  setup() {
+    return { ...args }
+  },
+  data: () => ({
+    internalValue: '',
+  }),
+  template: `
+    <div style="max-width: 300px">
+      <SbTextField
+        v-model="internalValue"
+        label="With inline label"
+        :name="name"
+        :id="id"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :mask="mask"
+        :inline-label="inlineLabel"
+        native-value="Boris Spassky"
+      />
+    </div>
+  `,
+})
+
+withInlineLabel.args = {
+  inlineLabel: 'Email:'
+}
+
+withInlineLabel.parameters = {
+  docs: {
+    description: {
+      story: 'Use the `inline-label` property to add text inside field',
     },
   },
 }
