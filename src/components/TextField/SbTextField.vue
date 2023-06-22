@@ -1,13 +1,5 @@
 <template>
-  <div
-    class="sb-textfield"
-    :class="[
-      $attrs.class,
-      {
-        'sb-textfield--inline-label': !!inlineLabel
-      }
-    ]"
-  >
+  <div :class="textFieldClasses">
     <label v-if="label" :for="id" class="sb-textfield__label">
       {{ label }} <span v-if="required" class="sb-textfield__required">*</span>
     </label>
@@ -314,6 +306,16 @@ export default {
         ...this.$attrs,
         class: '',
       }
+    },
+    textFieldClasses() {
+      return [
+        this.$attrs.class,
+        {
+          'sb-textfield': true,
+          'sb-textfield--inline-label': !!this.inlineLabel,
+          'sb-textfield--error': this.error,
+        },
+      ]
     },
   },
 

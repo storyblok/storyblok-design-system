@@ -423,7 +423,6 @@ export const withInlineLabel = (args) => ({
         :required="required"
         :placeholder="placeholder"
         :readonly="readonly"
-        :mask="mask"
         :inline-label="inlineLabel"
         native-value="Boris Spassky"
       />
@@ -432,7 +431,7 @@ export const withInlineLabel = (args) => ({
 })
 
 withInlineLabel.args = {
-  inlineLabel: 'Email:'
+  inlineLabel: 'Email:',
 }
 
 withInlineLabel.parameters = {

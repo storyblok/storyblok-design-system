@@ -1,6 +1,22 @@
 .sb-textfield {
   width: 100%;
 
+  &--error {
+    &.sb-textfield--inline-label .sb-textfield__inner {
+      border: 1px solid $red;
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        border-color: $red;
+      }
+
+      &:focus-within {
+        box-shadow: 0 0 0 3px rgb(255, 179, 176, 0.3);
+      }
+    }
+  }
+
   &--inline-label {
     .sb-textfield__inner {
       align-items: stretch;
@@ -30,7 +46,7 @@
 
     .sb-textfield__input {
       padding-left: 0;
-      border: 0;
+      border: 0 !important;
       box-shadow: none !important;
 
       &--with-icon-left {
