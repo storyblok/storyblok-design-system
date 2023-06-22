@@ -13,15 +13,16 @@
   box-sizing: border-box;
   width: 100%;
   background-color: $black-trasparent;
+  padding: 20px;
 
   &--in-element {
     position: absolute;
     background-color: transparent;
   }
 
-  &--with-margin {
-    @include mq($from: sm) {
-      padding: 20px;
+  @include mq($until: lg) {
+    &--full-width {
+      padding: 0;
     }
   }
 }

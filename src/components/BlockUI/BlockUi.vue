@@ -13,7 +13,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    withMargin: {
+    fullWidth: {
       type: Boolean,
       default: false,
     },
@@ -23,7 +23,7 @@ export default {
     computedClass() {
       return {
         'sb-block-ui--in-element': this.inElement,
-        'sb-block-ui--with-margin': this.withMargin,
+        'sb-block-ui--full-width': this.fullWidth,
       }
     },
   },
