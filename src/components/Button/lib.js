@@ -22,6 +22,7 @@ export const sharedProps = {
   size: {
     type: String,
     validator: (size) => includes(availableSizes, size),
+    default: 'normal'
   },
   variant: {
     type: String,
