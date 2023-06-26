@@ -1,20 +1,24 @@
 <template>
   <div class="sb-editor-header" :class="computedClasses">
     <slot name="left" />
-    <SbHeaderTitle :title="headerTitle" />
+    <HeaderTitle v-bind="$props" />
     <slot />
 
     <slot name="middle" />
     <slot />
 
     <slot name="right" />
-    <HeaderActions v-bind="$props" has-save-button />
+    <HeaderActions v-bind="$props">
+      <template #save>
+        <slot name="save" />
+      </template>
+    </HeaderActions>
     <slot />
   </div>
 </template>
 
 <script>
-import SbHeaderTitle from './components/HeaderTitle'
+import HeaderTitle from './components/HeaderTitle'
 import HeaderActions from './components/HeaderActions'
 
 import { sharedProps } from './sharedProps'
@@ -25,7 +29,7 @@ export default {
   name: 'SbEditorHeader',
 
   components: {
-    SbHeaderTitle,
+    HeaderTitle,
     HeaderActions,
   },
 

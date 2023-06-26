@@ -30,6 +30,11 @@
   }
 }
 
+.sb-editor-header__subtitle {
+  margin-top: $s-1;
+  color: $sb-dark-blue-50;
+}
+
 .sb-editor-header__actions {
   display: flex;
   justify-content: flex-end;

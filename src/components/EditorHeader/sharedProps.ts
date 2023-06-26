@@ -8,7 +8,7 @@ const sharedProps = {
     default: null,
   },
   actions: {
-    type: [Array, String],
+    type: [Array, String, Object],
     default: null,
   },
   options: {
@@ -30,7 +30,7 @@ const sharedProps = {
     type: String,
     default: 'API-based & Headless CMS as a Service',
   },
-  headerSubTitle: {
+  headerSubtitle: {
     type: String,
     default: null,
   },

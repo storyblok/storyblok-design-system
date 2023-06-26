@@ -62,8 +62,15 @@
         </SbMenu>
       </SbHeaderItem>
 
-      <SbHeaderItem v-if="hasSaveButton">
-        <SbButton :label="saveButtonLabel" variant="secondary" />
+      <SbHeaderItem>
+        <slot name="save">
+          <SbButton
+            v-if="hasSaveButton"
+            :label="saveButtonLabel"
+            variant="secondary"
+            @click="$emit('save')"
+          />
+        </slot>
       </SbHeaderItem>
     </div>
   </div>
@@ -120,7 +127,7 @@ export default {
     isOnMobileOrTablet: Boolean,
   },
 
-  emits: ['language-change', 'changes'],
+  emits: ['language-change', 'changes', 'save'],
 
   data: () => ({
     selectedLanguage: null,
