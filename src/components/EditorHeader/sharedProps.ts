@@ -22,8 +22,9 @@ const sharedProps = {
   hasSaveButton: {
     type: Boolean,
   },
-  showPublishedIcon: {
-    type: Boolean,
+  saveButtonLabel: {
+    type: String,
+    default: 'Save',
   },
   headerTitle: {
     type: String,
@@ -32,6 +33,13 @@ const sharedProps = {
   headerSubTitle: {
     type: String,
     default: null,
+  },
+  mode: {
+    type: String,
+    default: 'light',
+    validation: (value: string): boolean => {
+      return ['light', 'dark'].includes(value)
+    },
   },
 }
 

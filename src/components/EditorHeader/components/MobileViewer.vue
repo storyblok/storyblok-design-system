@@ -48,7 +48,7 @@ import {
   SbMenuGroup,
 } from '../../Menu'
 
-import { sharedProps } from '../lib'
+import { sharedProps } from '../sharedProps'
 
 export default {
   name: 'SbMobileViewer',
@@ -87,3 +87,4 @@ export default {
   },
 }
 </script>
+../sharedProps

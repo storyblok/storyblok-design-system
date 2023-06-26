@@ -1,164 +1,91 @@
-.sb-editor {
-  &__container {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-  }
+.sb-editor-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 60px;
+  padding: $s-4;
+  color: $sb-dark-blue;
+  background-color: $white;
+  border: 1px solid $light;
+}
 
-  &--title {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 52px;
-    color: $white;
-    font-size: $font-14;
-    font-weight: $font-medium;
-    background-color: $sb-dark-blue;
+.sb-editor-header__title {
+  display: flex;
+  gap: $s-2;
+  align-items: center;
+  color: inherit;
+  font-size: $font-14;
+  font-weight: $font-medium;
 
-    .sb-button--small {
-      padding: 5px $s-4;
-    }
+  .sb-button {
+    padding: 0;
+    color: inherit;
+    border: transparent;
   }
 }
 
-.sb-editor-header {
+.sb-editor-header__actions {
   display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
   width: 100%;
-  height: 70px;
-  background-color: $white;
-  border: 1px solid $light;
+  padding: 17px 0 $s-4 26px;
 
-  &__desktop {
-    display: flex;
-    justify-content: flex-end;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 17px 0 $s-4 26px;
-
-    .header__desktop {
-      display: grid;
-      flex: auto;
-      padding-top: 5px;
-
-      .desktop__title {
-        color: $sb-dark-blue;
-        font-size: $font-14;
-        font-weight: $font-medium;
-      }
-
-      .desktop__sub-title {
-        color: $light-gray;
-        font-size: $font-12;
-        font-weight: $font-regular;
-      }
-    }
-
-    .header-item--avatar {
-      min-width: 70px;
-    }
+  .header-item--avatar {
+    min-width: 70px;
   }
+}
 
-  &__item {
+.sb-editor-header__item {
+  max-height: 37px;
+  min-width: 37px;
+  padding-left: 10px;
+
+  .sb-menu,
+  button {
     max-height: 37px;
-    min-width: 37px;
-    padding-left: 10px;
+  }
+}
 
-    .sb-menu,
-    button {
-      max-height: 37px;
-    }
+.sb-editor-header__separator {
+  margin-left: 10px;
+  border-left: 1px solid $light-75;
+}
+
+.sb-editor-header__menu {
+  display: flex;
+
+  svg {
+    padding-top: 2px;
   }
 
-  &__separator {
-    margin-left: 10px;
-    border-left: 1px solid $light-75;
-  }
-
-  &__title {
-    position: fixed;
-    left: 26px;
-    padding-top: 10px;
-    color: $black;
-    font-size: $font-14;
-    font-weight: $font-medium;
-    text-align: center;
-  }
-
-  &__actions {
-    display: flex;
-
-    svg {
-      padding-top: 2px;
-    }
-
-    .action__button {
-      background-color: $white;
-      border: 0;
-      cursor: pointer;
-    }
-  }
-
-  &__save-button {
-    margin-top: 10px;
-    color: $sb-green;
-    font-size: $font-14;
-    font-weight: $font-medium;
+  .action__button {
     background-color: $white;
     border: 0;
     cursor: pointer;
   }
-
-  &__mobile {
-    box-sizing: border-box;
-    height: 52px;
-    padding: 5px;
-
-    &--more {
-      display: flex;
-    }
-  }
-
-  &__content {
-    display: flex;
-    box-sizing: border-box;
-    padding: 17px 19px $s-4 0;
-
-    &--mobile {
-      padding: 0;
-    }
-  }
-
-  &__status {
-    svg {
-      padding-top: $s-1;
-    }
-  }
 }
 
-// for small mobiles
-@include mq($until: sm) {
-  .sb-editor-header__mobile {
-    .sb-editor-header__item {
-      margin-left: 2px;
-      padding-left: 2px;
-    }
+// dark omde
 
-    .sb-editor-header__mobile--more .sb-editor-header__item {
-      max-width: 70px;
-      padding-left: 0;
+.sb-editor-header--dark {
+  color: $white;
+  background-color: $sb-dark-blue;
+  border: 1px solid $sb-dark-blue-75;
 
-      .sb-button {
-        max-width: 70px;
-      }
-    }
+  .sb-button {
+    color: $white;
+    background-color: transparent;
 
-    .sb-menu {
-      max-width: 70px;
-    }
-
-    .sb-editor-header__separator {
-      margin-left: 3px;
+    &:hover,
+    &:focus {
+      background-color: $sb-dark-blue-75;
     }
   }
 }
