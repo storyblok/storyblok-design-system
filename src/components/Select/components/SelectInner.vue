@@ -6,6 +6,13 @@
     v-bind="$attrs"
     @keydown="handleKeyDown"
   >
+    <span
+      v-if="inlineLabel"
+      class="sb-select-inner__inline-label"
+    >
+      {{ inlineLabel }}
+    </span>
+
     <SbIcon
       v-if="leftIcon"
       class="sb-select-inner__icon-left"
@@ -206,6 +213,10 @@ export default {
       type: String,
       default: 'path',
     },
+    inlineLabel: {
+      type: String,
+      default: '',
+    },
   },
 
   emits: [
@@ -261,7 +272,7 @@ export default {
 
       if (this.showCaption && this.currentOptionValue) {
         return this.currentOptionValue[this.itemCaption] ? `${this.currentOptionLabel} (${
-          this.currentOptionValue[this.itemCaption]})` : 
+          this.currentOptionValue[this.itemCaption]})` :
           `${this.currentOptionLabel}`
       }
 
