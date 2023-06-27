@@ -1,7 +1,7 @@
 <template>
   <div class="sb-editor-header" :class="computedClasses">
     <slot name="left" />
-    <HeaderTitle v-bind="$props" />
+    <HeaderTitle v-bind="$props" @go-back="$emit('go-back')" />
     <slot />
 
     <slot name="middle" />
@@ -45,7 +45,7 @@ export default {
 
   emits: [
     'change-language',
-    'publish',
+    'go-back',
     'save',
     'select-action',
     'select-options',

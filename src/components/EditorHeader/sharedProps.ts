@@ -1,7 +1,7 @@
 const sharedProps = {
   languages: {
     type: [Array, String],
-    default: 'English',
+    default: [],
   },
   users: {
     type: [Array, String],
@@ -9,10 +9,6 @@ const sharedProps = {
   },
   actions: {
     type: [Array, String, Object],
-    default: null,
-  },
-  options: {
-    type: [Array, String],
     default: null,
   },
   spaceStatus: {

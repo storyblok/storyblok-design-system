@@ -11,7 +11,7 @@
       </SbAvatarGroup>
     </SbHeaderItem>
 
-    <SbHeaderItem v-if="languages">
+    <SbHeaderItem v-if="languages.length > 0">
       <SbMenu>
         <SbMenuButton
           :label="menuButtonLabel"
@@ -43,12 +43,17 @@
       <SbHeaderItem>
         <SbMenu>
           <SbMenuButton
+            ref="headerActionsButton"
             has-icon-only
             is-borderless
             size="small"
             variant="tertiary"
           />
-          <SbMenuList placement="bottom-end">
+          <SbMenuList
+            placement="bottom-end"
+            use-portal
+            :reference="$refs.headerActionsButton"
+          >
             <SbMenuItem
               v-for="act in actions"
               :key="act.id"
@@ -155,17 +160,11 @@ export default {
   },
 
   methods: {
-    /**
-     * method to emit new language
-     */
     handleSetNewLanguage({ code, name }) {
       this.selectedLanguage = name
       this.$emit('language-change', { type: 'lang', language: code })
     },
 
-    /**
-     * method to emit new action
-     */
     handleSelectNewAction(act) {
       this.$emit('changes', { type: 'act', action: act })
     },

@@ -17,6 +17,7 @@
 
 .sb-editor-header__title {
   display: flex;
+  flex: 1 1 33%;
   gap: $s-2;
   align-items: center;
   color: inherit;

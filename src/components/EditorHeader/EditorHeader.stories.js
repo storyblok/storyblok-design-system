@@ -1,6 +1,15 @@
 import { SbEditorHeader } from './index'
 
-const languagesItems = ['English', 'German']
+const languages = [
+  {
+    name: 'English',
+    code: 'en',
+  },
+  {
+    name: 'Portuguese',
+    code: 'pt',
+  },
+]
 
 const usersList = [
   {
@@ -17,7 +26,7 @@ const usersList = [
   },
 ]
 
-const optionsList = [
+const actionsList = [
   {
     name: 'Open Draft',
   },
@@ -33,18 +42,6 @@ const optionsList = [
   {
     name: 'Unpublish',
     type: 'negative',
-  },
-]
-
-const actionsList = [
-  {
-    name: 'Dimensions',
-  },
-  {
-    name: 'Preview',
-  },
-  {
-    name: 'Unpublish',
   },
 ]
 
@@ -71,13 +68,10 @@ export default {
     },
   },
   args: {
-    languages: [...languagesItems],
+    languages: [...languages],
     users: [...usersList],
     actions: [...actionsList],
-    options: [...optionsList],
-    spaceStatus: 'unpublished',
     hasSaveButton: true,
-    showPublishedIcon: true,
     headerTitle: 'API-based & Headless CMS as a Service',
     headerSubTitle: 'Updated 15m ago',
   },
@@ -103,32 +97,9 @@ export default {
         type: 'object',
       },
     },
-    options: {
-      name: 'options',
-      description: 'Available options array',
-      control: {
-        type: 'object',
-      },
-    },
-    spaceStatus: {
-      name: 'spaceStatus',
-      description:
-        'Change the icon to inform whether the space is published or not',
-      options: ['unpublished', 'published', 'published-and-changes'],
-      control: {
-        type: 'select',
-      },
-    },
     hasSaveButton: {
       name: 'hasSaveButton',
       description: 'Props to show the save icon',
-      control: {
-        type: 'boolean',
-      },
-    },
-    showPublishedIcon: {
-      name: 'showPublishedIcon',
-      description: 'Props to show or not the published icon',
       control: {
         type: 'boolean',
       },
