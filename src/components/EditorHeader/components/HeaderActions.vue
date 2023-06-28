@@ -1,7 +1,7 @@
 <template>
   <div class="sb-editor-header__actions">
     <SbHeaderItem v-if="users" class="header-item--avatar">
-      <SbAvatarGroup :max-elements="returnNumberOfAvatars">
+      <SbAvatarGroup>
         <SbAvatar
           v-for="user in users"
           :key="user.id"
@@ -66,18 +66,18 @@
           </SbMenuList>
         </SbMenu>
       </SbHeaderItem>
-
-      <SbHeaderItem>
-        <slot name="save">
-          <SbButton
-            v-if="hasSaveButton"
-            :label="saveButtonLabel"
-            variant="secondary"
-            @click="$emit('save')"
-          />
-        </slot>
-      </SbHeaderItem>
     </div>
+
+    <SbHeaderItem>
+      <slot name="save">
+        <SbButton
+          v-if="hasSaveButton"
+          :label="saveButtonLabel"
+          variant="secondary"
+          @click="$emit('save')"
+        />
+      </slot>
+    </SbHeaderItem>
   </div>
 </template>
 
@@ -139,13 +139,6 @@ export default {
   }),
 
   computed: {
-    returnNumberOfAvatars() {
-      return (this.size < 1015 && this.format !== 'tablet') ||
-        (this.size < 625 && this.format === 'tablet')
-        ? 1
-        : 5
-    },
-
     isDesktopFormat() {
       return this.format === 'desktop'
     },
