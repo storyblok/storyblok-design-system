@@ -1142,7 +1142,7 @@ const richtextIcons = {
 
   'rc-paste-md': {
     viewBox: '0 0 24 24',
-    path: `<g fill="none"><path d="M11 18a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2h-5a1 1 0 0 1-1-1Z" fill="#1B243F"/><path d="M16 8.3V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h1.3" stroke="#1B243F" stroke-width="2"/><path d="M11.68 10.313h1.117l1.27 3.957 1.269-3.957h1.117L14.52 16h-.907l-1.933-5.688Zm-.68 0h1.156l.215 4.359V16H11v-5.688Zm4.977 0h1.16V16h-1.375v-1.328l.215-4.36Z" fill="#1B243F"/></g>`,
+    path: `<g fill="none"><path d="M11 18a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2h-5a1 1 0 0 1-1-1Z" fill="currentColor"/><path d="M16 8.3V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h1.3" stroke="currentColor" stroke-width="2"/><path d="M11.68 10.313h1.117l1.27 3.957 1.269-3.957h1.117L14.52 16h-.907l-1.933-5.688Zm-.68 0h1.156l.215 4.359V16H11v-5.688Zm4.977 0h1.16V16h-1.375v-1.328l.215-4.36Z" fill="currentColor"/></g>`,
   },
 
   'rc-quote': {
