@@ -1165,4 +1165,34 @@ describe('SbSelect component', () => {
       ).toBe(false)
     })
   })
+
+  describe('rightIcon slot', () => {
+    const factory = (slots = {}) => {
+      return mountAttachingComponent(SbSelect, {
+        props: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+        },
+        slots,
+      })
+    }
+
+    it('should render the arrow icon by default', () => {
+      const wrapper = factory()
+
+      expect(
+        wrapper.find('.sb-select-inner__chevron').exists()
+      ).toBeTruthy()
+    })
+
+    it('should render the rightIcon slot if present', () => {
+      const wrapper = factory({
+        rightIcon: '<span class="custom-right-icon" />',
+      })
+
+      expect(
+        wrapper.find('.custom-right-icon').exists()
+      ).toBeTruthy()
+    })
+  })
 })

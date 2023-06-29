@@ -45,6 +45,10 @@
         <slot name="selection" v-bind="scope" />
       </template>
 
+      <template #rightIcon>
+        <slot name="rightIcon" />
+      </template>
+
       <slot name="innerSelect" />
     </SbSelectInner>
 
