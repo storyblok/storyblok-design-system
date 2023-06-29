@@ -121,8 +121,9 @@ class="sb-select-inner__avatar">
         <SbIcon name="x-clear" />
       </button>
 
-      <SbIcon class="sb-select-inner__chevron"
-:name="rightIconName" />
+      <slot name="rightIcon">
+        <SbIcon class="sb-select-inner__chevron" :name="rightIconName" />
+      </slot>
     </div>
   </div>
 </template>
