@@ -32,6 +32,7 @@
       :error="error"
       :show-caption="showCaption"
       :item-caption="itemCaption"
+      :inline-label="inlineLabel"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
       @search="handleSearchInput"
@@ -42,6 +43,10 @@
     >
       <template #selection="scope">
         <slot name="selection" v-bind="scope" />
+      </template>
+
+      <template #rightIcon>
+        <slot name="rightIcon" />
       </template>
 
       <slot name="innerSelect" />
@@ -214,6 +219,10 @@ export default {
     isOptionDisabled: {
       type: Function,
       default: () => false,
+    },
+    inlineLabel: {
+      type: String,
+      default: '',
     },
   },
 

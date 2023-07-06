@@ -45,7 +45,8 @@
 .sb-datepicker {
   position: relative;
 
-  &--active .sb-textfield__input {
+  &--active .sb-textfield__input,
+  &--active .sb-textfield--inline-label .sb-textfield__inner {
     @include focusedTextField;
   }
 

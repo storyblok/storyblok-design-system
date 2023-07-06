@@ -6,6 +6,13 @@
     v-bind="$attrs"
     @keydown="handleKeyDown"
   >
+    <span
+      v-if="inlineLabel"
+      class="sb-select-inner__inline-label"
+    >
+      {{ inlineLabel }}
+    </span>
+
     <SbIcon
       v-if="leftIcon"
       class="sb-select-inner__icon-left"
@@ -114,8 +121,9 @@ class="sb-select-inner__avatar">
         <SbIcon name="x-clear" />
       </button>
 
-      <SbIcon class="sb-select-inner__chevron"
-:name="rightIconName" />
+      <slot name="rightIcon">
+        <SbIcon class="sb-select-inner__chevron" :name="rightIconName" />
+      </slot>
     </div>
   </div>
 </template>
@@ -206,6 +214,10 @@ export default {
       type: String,
       default: 'path',
     },
+    inlineLabel: {
+      type: String,
+      default: '',
+    },
   },
 
   emits: [
@@ -261,7 +273,7 @@ export default {
 
       if (this.showCaption && this.currentOptionValue) {
         return this.currentOptionValue[this.itemCaption] ? `${this.currentOptionLabel} (${
-          this.currentOptionValue[this.itemCaption]})` : 
+          this.currentOptionValue[this.itemCaption]})` :
           `${this.currentOptionLabel}`
       }
 

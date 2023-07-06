@@ -3,8 +3,11 @@ import { iconSizes } from '../Icon/utils'
 import { availableColors } from '../../utils'
 
 import LIB_ICONS from '../../lib/internal-icons'
+import * as lucideIcons from 'lucide-vue-next'
 
 const availableIcons = Object.keys(LIB_ICONS)
+const lucideIconsKeys = Object.keys(lucideIcons)
+const allIcons = [...availableIcons, ...lucideIconsKeys]
 
 export default {
   title: 'Basic/SbIconButton',
@@ -16,24 +19,20 @@ export default {
   },
   argTypes: {
     iconName: {
-      name: 'name',
-      description: 'name',
-      options: availableIcons,
+      description:
+        'Icon name (https://lucide.dev/icons) or custom Storyblok icons',
+      options: allIcons,
       control: {
         type: 'select',
       },
     },
     iconSize: {
-      name: 'size',
-      description: 'size',
       options: iconSizes,
       control: {
         type: 'select',
       },
     },
     iconColor: {
-      name: 'color',
-      description: 'color',
       options: availableColors,
       control: {
         type: 'select',

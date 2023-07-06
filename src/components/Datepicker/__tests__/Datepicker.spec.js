@@ -96,4 +96,24 @@ describe('SbDatepicker component', () => {
       expect(document.querySelector('[role="tooltip"]')).toBe(null)
     })
   })
+
+  describe('Inline label', () => {
+    it('should render the inline label if present', () => {
+      const wrapper = factory({
+        inlineLabel: 'Inline label',
+      })
+
+      expect(
+        wrapper.find('.sb-textfield__inner-label').text()
+      ).toBe('Inline label')
+    })
+
+    it('should not render the inline label by default', () => {
+      const wrapper = factory()
+
+      expect(
+        wrapper.find('.sb-textfield__inner-label').exists()
+      ).toBe(false)
+    })
+  })
 })
