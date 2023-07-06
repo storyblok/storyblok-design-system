@@ -136,6 +136,12 @@
   }
 
   // elements
+  &__inline-label {
+    margin-right: $s-1;
+    font-size: $font-14;
+    font-weight: $font-medium;
+  }
+
   &__icon-left {
     margin-right: 10px;
   }

@@ -1,6 +1,65 @@
 .sb-textfield {
   width: 100%;
 
+  &--error {
+    &.sb-textfield--inline-label .sb-textfield__inner {
+      border: 1px solid $red;
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        border-color: $red;
+      }
+
+      &:focus-within {
+        box-shadow: 0 0 0 3px rgb(255, 179, 176, 0.3);
+      }
+    }
+  }
+
+  &--inline-label {
+    .sb-textfield__inner {
+      align-items: stretch;
+      box-sizing: border-box;
+      background: $white;
+      border: 1px solid $light;
+      border-radius: $base-border-radius;
+
+      &:hover,
+      &:focus {
+        border-color: $sb-green;
+      }
+
+      &:focus-within {
+        @include focusedTextField;
+      }
+    }
+
+    .sb-textfield__inner-label {
+      padding-left: 10px;
+      padding-right: $s-1;
+      font-size: $font-14;
+      font-weight: $font-medium;
+
+      @include flexCentering;
+    }
+
+    .sb-textfield__input {
+      padding-left: 0;
+      border: 0 !important;
+      box-shadow: none !important;
+
+      &--with-icon-left {
+        padding-left: $s-5;
+      }
+    }
+
+    .sb-textfield__icon--left {
+      left: 0;
+      padding: 0;
+    }
+  }
+
   &__label {
     display: block;
     margin-bottom: 10px;
@@ -39,6 +98,11 @@
     width: 100%;
   }
 
+  &__inner-field {
+    position: relative;
+    width: 100%;
+  }
+
   &__textarea {
     box-sizing: border-box;
     min-height: 130px;
@@ -53,6 +117,7 @@
 
   &__input,
   &__textarea {
+    box-sizing: border-box;
     width: 100%;
     color: $sb-dark-blue;
     font-size: $font-14;

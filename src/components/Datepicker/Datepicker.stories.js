@@ -24,6 +24,7 @@ const Template = (args) => ({
         :min-date="minDate"
         :max-date="maxDate"
         :disabled-past="disabledPast"
+        :inline-label="inlineLabel"
       />
     </div>
   `,
@@ -137,6 +138,18 @@ export default {
         type: 'boolean',
       },
     },
+    inlineLabel: {
+      name: 'inlineLabel',
+      description: 'Use the `inline-label` property to add text inside the field',
+      defaultValue: '',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '' },
+      },
+      control: {
+        type: 'text',
+      },
+    },
   },
 }
 
@@ -224,6 +237,20 @@ DisabledDatePast.parameters = {
     description: {
       story:
         'Add the `disabled-past` attribute to disabled select dates in past.',
+    },
+  },
+}
+
+export const WithInlineLabel = Template.bind({})
+
+WithInlineLabel.args = {
+  inlineLabel: 'Date:'
+}
+
+WithInlineLabel.parameters = {
+  docs: {
+    description: {
+      story: 'Use the `inline-label` property to add text inside the field',
     },
   },
 }

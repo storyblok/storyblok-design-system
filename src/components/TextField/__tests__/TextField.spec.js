@@ -138,6 +138,24 @@ describe('SbTextField component', () => {
 
     expect(wrapper.find('.sb-textfield__counter').exists()).toBe(false)
   })
+
+  it('should render the inline label if present', () => {
+    const wrapper = factory({
+      inlineLabel: 'Inline label',
+    })
+
+    expect(
+      wrapper.find('.sb-textfield__inner-label').text()
+    ).toBe('Inline label')
+  })
+
+  it('should not render the inline label by default', () => {
+    const wrapper = factory()
+
+    expect(
+      wrapper.find('.sb-textfield__inner-label').exists()
+    ).toBe(false)
+  })
 })
 
 describe('SbTextField as textarea', () => {

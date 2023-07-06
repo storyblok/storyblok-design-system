@@ -32,7 +32,7 @@ const SbTabPanel = {
         tabindex: isActive ? 0 : -1,
         'aria-hidden': !isActive,
       },
-      this.$slots.default()
+      isActive ? this.$slots.default() : null
     )
   },
 }

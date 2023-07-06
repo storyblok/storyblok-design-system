@@ -1135,4 +1135,64 @@ describe('SbSelect component', () => {
       expect(wrapper.emitted('update:modelValue')).toBeUndefined()
     })
   })
+
+  describe('Inline label', () => {
+    const factory = (props = {}) => {
+      return mountAttachingComponent(SbSelect, {
+        props: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+          ...props,
+        },
+      })
+    }
+
+    it('should render the inline label if present', () => {
+      const wrapper = factory({
+        inlineLabel: 'Inline label',
+      })
+
+      expect(
+        wrapper.find('.sb-select-inner__inline-label').text()
+      ).toBe('Inline label')
+    })
+
+    it('should not render the inline label by default', () => {
+      const wrapper = factory()
+
+      expect(
+        wrapper.find('.sb-select-inner__inline-label').exists()
+      ).toBe(false)
+    })
+  })
+
+  describe('rightIcon slot', () => {
+    const factory = (slots = {}) => {
+      return mountAttachingComponent(SbSelect, {
+        props: {
+          label: 'Choose an option',
+          options: [...defaultSelectOptionsData],
+        },
+        slots,
+      })
+    }
+
+    it('should render the arrow icon by default', () => {
+      const wrapper = factory()
+
+      expect(
+        wrapper.find('.sb-select-inner__chevron').exists()
+      ).toBeTruthy()
+    })
+
+    it('should render the rightIcon slot if present', () => {
+      const wrapper = factory({
+        rightIcon: '<span class="custom-right-icon" />',
+      })
+
+      expect(
+        wrapper.find('.custom-right-icon').exists()
+      ).toBeTruthy()
+    })
+  })
 })

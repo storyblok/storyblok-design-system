@@ -1,74 +1,70 @@
 <template>
-  <div class="sb-textfield" :class="$attrs.class">
+  <div :class="textFieldClasses">
     <label v-if="label" :for="id" class="sb-textfield__label">
       {{ label }} <span v-if="required" class="sb-textfield__required">*</span>
     </label>
     <div class="sb-textfield__inner">
       <span v-if="prefix" class="sb-textfield__prefix">{{ prefix }}</span>
-      <input
-        v-if="!isTextAreaType"
-        v-bind="inputAttrs"
-        :id="id"
-        ref="textfield"
-        v-model="computedValue"
-        v-maska="mask"
-        :type="internalType"
-        :placeholder="placeholder"
-        :name="name"
-        :readonly="readonly"
-        :class="componentClasses"
-        :required="required"
-        :disabled="disabled"
-        :maxlength="maxlength"
-        :minlength="minlength"
-        @focus="handleFocusInput"
-        @blur="handleBlurInput"
-        @keydown="handleKeyDownInput"
-        @keypress="handleKeyPressInput"
-        @keyup="handleKeyUpInput"
-      />
 
-      <textarea
-        v-else
-        :id="id"
-        ref="textfield"
-        v-model="computedValue"
-        v-bind="$attrs"
-        class="sb-textfield__textarea"
-        :placeholder="placeholder"
-        :name="name"
-        :readonly="readonly"
-        :class="componentClasses"
-        :required="required"
-        :disabled="disabled"
-        :cols="cols"
-        :rows="rows"
-        :wrap="wrap"
-        :maxlength="maxlength"
-        :minlength="minlength"
-        @focus="handleFocusInput"
-        @blur="handleBlurInput"
-        @keydown="handleKeyDownInput"
-        @keypress="handleKeyPressInput"
-        @keyup="handleKeyUpInput"
-      />
-
-      <SbIcon
-        v-if="iconLeft && type !== 'password' && !iconDescription"
-        :style="returnIconCustomColor"
-        :name="iconLeft"
-        class="sb-textfield__icon sb-textfield__icon--left"
-        :color="iconColor"
-        data-testid="sb-textfield-icon-click"
-        @click="handleIconClick"
-      />
-      <SbTooltip
-        v-if="iconLeft && type !== 'password' && iconDescription"
-        :label="iconDescription"
-        position="bottom"
+      <span
+        v-if="inlineLabel"
+        class="sb-textfield__inner-label"
+        @click="$refs.textfield.focus()"
       >
+        {{ inlineLabel }}
+      </span>
+
+      <div class="sb-textfield__inner-field">
+        <input
+          v-if="!isTextAreaType"
+          v-bind="inputAttrs"
+          :id="id"
+          ref="textfield"
+          v-model="computedValue"
+          v-maska="mask"
+          :type="internalType"
+          :placeholder="placeholder"
+          :name="name"
+          :readonly="readonly"
+          :class="componentClasses"
+          :required="required"
+          :disabled="disabled"
+          :maxlength="maxlength"
+          :minlength="minlength"
+          @focus="handleFocusInput"
+          @blur="handleBlurInput"
+          @keydown="handleKeyDownInput"
+          @keypress="handleKeyPressInput"
+          @keyup="handleKeyUpInput"
+        />
+
+        <textarea
+          v-else
+          :id="id"
+          ref="textfield"
+          v-model="computedValue"
+          v-bind="$attrs"
+          class="sb-textfield__textarea"
+          :placeholder="placeholder"
+          :name="name"
+          :readonly="readonly"
+          :class="componentClasses"
+          :required="required"
+          :disabled="disabled"
+          :cols="cols"
+          :rows="rows"
+          :wrap="wrap"
+          :maxlength="maxlength"
+          :minlength="minlength"
+          @focus="handleFocusInput"
+          @blur="handleBlurInput"
+          @keydown="handleKeyDownInput"
+          @keypress="handleKeyPressInput"
+          @keyup="handleKeyUpInput"
+        />
+
         <SbIcon
-          v-if="iconLeft && type !== 'password'"
+          v-if="iconLeft && type !== 'password' && !iconDescription"
           :style="returnIconCustomColor"
           :name="iconLeft"
           class="sb-textfield__icon sb-textfield__icon--left"
@@ -76,31 +72,47 @@
           data-testid="sb-textfield-icon-click"
           @click="handleIconClick"
         />
-      </SbTooltip>
-      <SbIcon
-        v-if="hasIconRight"
-        :name="iconRight"
-        class="sb-textfield__icon sb-textfield__icon--right"
-        :color="iconColor"
-        data-testid="sb-textfield-icon-click"
-        @click="handleIconClick"
-      />
-      <SbIcon
-        v-if="internalIconRight && type === 'password'"
-        :name="internalIconRight"
-        class="sb-textfield__icon sb-textfield__icon--right"
-        :color="iconColor"
-        data-testid="sb-textfield-icon-click"
-        @click="handleShowHidePassword"
-      />
-      <SbIcon
-        v-if="showClearIcon"
-        v-tooltip="{ label: 'Clear' }"
-        name="x-clear"
-        :class="computedClearIconClasses"
-        :color="iconColor"
-        @click="handleClearableClick"
-      />
+        <SbTooltip
+          v-if="iconLeft && type !== 'password' && iconDescription"
+          :label="iconDescription"
+          position="bottom"
+        >
+          <SbIcon
+            v-if="iconLeft && type !== 'password'"
+            :style="returnIconCustomColor"
+            :name="iconLeft"
+            class="sb-textfield__icon sb-textfield__icon--left"
+            :color="iconColor"
+            data-testid="sb-textfield-icon-click"
+            @click="handleIconClick"
+          />
+        </SbTooltip>
+        <SbIcon
+          v-if="hasIconRight"
+          :name="iconRight"
+          class="sb-textfield__icon sb-textfield__icon--right"
+          :color="iconColor"
+          data-testid="sb-textfield-icon-click"
+          @click="handleIconClick"
+        />
+        <SbIcon
+          v-if="internalIconRight && type === 'password'"
+          :name="internalIconRight"
+          class="sb-textfield__icon sb-textfield__icon--right"
+          :color="iconColor"
+          data-testid="sb-textfield-icon-click"
+          @click="handleShowHidePassword"
+        />
+        <SbIcon
+          v-if="showClearIcon"
+          v-tooltip="{ label: 'Clear' }"
+          name="x-clear"
+          :class="computedClearIconClasses"
+          :color="iconColor"
+          @click="handleClearableClick"
+        />
+      </div>
+
       <span v-if="suffix" class="sb-textfield__suffix">{{ suffix }}</span>
 
       <slot />
@@ -168,6 +180,10 @@ export default {
       default: '',
     },
     mask: {
+      type: String,
+      default: '',
+    },
+    inlineLabel: {
       type: String,
       default: '',
     },
@@ -290,6 +306,16 @@ export default {
         ...this.$attrs,
         class: '',
       }
+    },
+    textFieldClasses() {
+      return [
+        this.$attrs.class,
+        {
+          'sb-textfield': true,
+          'sb-textfield--inline-label': !!this.inlineLabel,
+          'sb-textfield--error': this.error,
+        },
+      ]
     },
   },
 

@@ -58,6 +58,7 @@ const SelectTemplate = (args) => ({
       :clearable="clearable"
       :show-caption="showCaption"
       :is-option-disabled="isOptionDisabled"
+      :inline-label="inlineLabel"
       v-model="internalValue"
       :first-value-is-all-value="firstValueIsAllValue"
       style="max-width: 300px"
@@ -645,6 +646,20 @@ WithOptionDisabled.parameters = {
     description: {
       story:
         'When we pass the `isOptionDisabled` prop, it will be possible to render a option disabled',
+    },
+  },
+}
+
+export const WithInlineLabel = SelectTemplate.bind({})
+
+WithInlineLabel.args = {
+  inlineLabel: 'Item:'
+}
+
+WithInlineLabel.parameters = {
+  docs: {
+    description: {
+      story: 'Use the `inline-label` property to add text inside the select',
     },
   },
 }

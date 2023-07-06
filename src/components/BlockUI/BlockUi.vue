@@ -13,12 +13,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    fullWidth: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
     computedClass() {
       return {
         'sb-block-ui--in-element': this.inElement,
+        'sb-block-ui--full-width': this.fullWidth,
       }
     },
   },
