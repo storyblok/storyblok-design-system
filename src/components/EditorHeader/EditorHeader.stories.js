@@ -45,25 +45,13 @@ const actionsList = [
   },
 ]
 
-const EditorTemplate = (args) => ({
-  components: { SbEditorHeader },
-  setup() {
-    return { args }
-  },
-  template: `
-    <SbEditorHeader
-      v-bind="args"
-    />
-  `,
-})
-
 export default {
   title: 'Interface/SbEditorHeader',
   component: SbEditorHeader,
   parameters: {
     docs: {
       description: {
-        component: 'SbEditorHeader',
+        component: 'Header component for various editors',
       },
     },
   },
@@ -72,53 +60,54 @@ export default {
     users: [...usersList],
     actions: [...actionsList],
     hasSaveButton: true,
-    headerTitle: 'API-based & Headless CMS as a Service',
-    headerSubTitle: 'Updated 15m ago',
+    headerTitle: 'Headless CMS',
+    headerSubtitle: 'Updated 15m ago',
+    mode: 'light',
   },
   argTypes: {
-    languages: {
-      name: 'languages',
-      description: 'Available languages array',
-      control: {
-        type: 'array',
-      },
-    },
-    users: {
-      name: 'users',
-      description: 'User information array',
-      control: {
-        type: 'object',
-      },
-    },
-    actions: {
-      name: 'actions',
-      description: 'Available actions array',
-      control: {
-        type: 'object',
-      },
-    },
-    hasSaveButton: {
-      name: 'hasSaveButton',
-      description: 'Props to show the save icon',
-      control: {
-        type: 'boolean',
-      },
-    },
-    headerTitle: {
-      name: 'headerTitle',
-      description: '',
-      control: {
-        type: 'text',
-      },
-    },
-    headerSubTitle: {
-      name: 'headerSubTitle',
-      description: '',
-      control: {
-        type: 'text',
-      },
+    mode: {
+      options: ['light', 'dark'],
+      control: { type: 'radio' },
     },
   },
 }
 
-export const Default = EditorTemplate.bind({})
+export const Default = {
+  name: 'Default',
+  render: (args, { argTypes }) => ({
+    components: { SbEditorHeader },
+    props: Object.keys(argTypes),
+    template: `
+        <SbEditorHeader v-bind="$props"  />
+      `,
+  }),
+}
+
+export const WithSlots = () => ({
+  components: { SbEditorHeader },
+  template: `
+      <SbEditorHeader>
+        <template #left>
+          <p>Custom left slot</p>
+        </template>
+
+        <template #middle>
+          <p>Custom center slot</p>
+        </template>
+
+        <template #right>
+        <p>Custom right slot</p>
+        </template>
+      </SbEditorHeader>
+  `,
+})
+
+export const DarkMode = () => ({
+  components: { SbEditorHeader },
+  template: `
+    <SbEditorHeader
+      header-title="My title"
+      mode="dark"
+    />
+  `,
+})

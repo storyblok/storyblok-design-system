@@ -13,6 +13,10 @@
   color: $sb-dark-blue;
   background-color: $white;
   border: 1px solid $light;
+
+  p {
+    margin: 0;
+  }
 }
 
 .sb-editor-header__title {
@@ -31,8 +35,13 @@
   }
 }
 
+.sb-editor-header__title-text {
+  display: flex;
+  flex-direction: column;
+  gap: $s-1;
+}
+
 .sb-editor-header__subtitle {
-  margin-top: $s-1;
   color: $sb-dark-blue-50;
 }
 

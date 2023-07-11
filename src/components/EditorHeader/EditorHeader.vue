@@ -1,19 +1,18 @@
 <template>
   <div class="sb-editor-header" :class="computedClasses">
-    <slot name="left" />
-    <HeaderTitle v-bind="$props" @go-back="$emit('go-back')" />
-    <slot />
+    <slot name="left">
+      <HeaderTitle v-bind="$props" @go-back="$emit('go-back')" />
+    </slot>
 
-    <slot name="middle" />
-    <slot />
+    <slot name="middle"> </slot>
 
-    <slot name="right" />
-    <HeaderActions v-bind="$props" @changes="(e) => $emit('click-action', e)">
-      <template #save>
-        <slot name="save" />
-      </template>
-    </HeaderActions>
-    <slot />
+    <slot name="right">
+      <HeaderActions v-bind="$props" @changes="(e) => $emit('click-action', e)">
+        <template #save>
+          <slot name="save" />
+        </template>
+      </HeaderActions>
+    </slot>
   </div>
 </template>
 
@@ -37,10 +36,6 @@ export default {
 
   props: {
     ...sharedProps,
-    visual: {
-      type: Boolean,
-      default: false,
-    },
   },
 
   emits: [
