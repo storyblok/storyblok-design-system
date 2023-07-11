@@ -58,7 +58,7 @@
               v-for="act in actions"
               :key="act.id"
               :type="act.type"
-              @click="handleSelectNewAction(act.name)"
+              @click="handleSelectNewAction(act.id)"
             >
               <SbIcon :name="act.name.toLowerCase()" size="large" />
               {{ act.name }}

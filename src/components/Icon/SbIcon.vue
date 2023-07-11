@@ -84,10 +84,11 @@ export default {
       return Object.keys(lucideIcons).includes(this.lucideIconName)
     },
     lucideIconName() {
+      if (!this.name) return
       const pascalIcon = this.name.replace(/-(.)/g, (_, char) =>
         char.toUpperCase()
       )
-      return pascalIcon.charAt(0).toUpperCase() + pascalIcon.slice(1)
+      return pascalIcon?.charAt(0).toUpperCase() + pascalIcon?.slice(1)
     },
     lucideIcon() {
       return this.isLucideIcon ? lucideIcons[this.lucideIconName] : null

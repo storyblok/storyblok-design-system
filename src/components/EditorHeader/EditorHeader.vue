@@ -8,7 +8,7 @@
     <slot />
 
     <slot name="right" />
-    <HeaderActions v-bind="$props">
+    <HeaderActions v-bind="$props" @changes="(e) => $emit('click-action', e)">
       <template #save>
         <slot name="save" />
       </template>
@@ -46,6 +46,7 @@ export default {
   emits: [
     'change-language',
     'go-back',
+    'click-action',
     'save',
     'select-action',
     'select-options',
