@@ -55,6 +55,7 @@ export default {
       default: false,
     },
   },
+  emits: [],
   computed: {
     iconDeff() {
       if (customIconNames.includes(this.name)) {
