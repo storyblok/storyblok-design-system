@@ -29,6 +29,10 @@
     text-overflow: ellipsis;
   }
 
+  &__avatar {
+    margin-right: 5px;
+  }
+
   &--primary {
     @include setColor($color-primary, $white);
   }

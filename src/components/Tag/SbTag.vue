@@ -1,5 +1,11 @@
 <template>
   <div :class="computedClass" v-bind="$attrs">
+    <SbAvatar
+      v-if="user"
+      class="sb-tag__avatar"
+      :src="user.avatar"
+      :friendly-name="user.friendly_name"
+    />
     <span class="sb-tag__label">
       <slot>
         {{ label }}
@@ -22,6 +28,7 @@ import SbIcon from '../Icon'
 import { Tooltip } from '../../directives'
 import { includes } from '../../utils'
 import { tagTypes } from './lib'
+import SbAvatar from '@/components/Avatar/SbAvatar.vue'
 
 export default {
   name: 'SbTag',
@@ -30,6 +37,7 @@ export default {
     tooltip: Tooltip,
   },
   components: {
+    SbAvatar,
     SbIcon,
   },
   props: {
@@ -45,6 +53,10 @@ export default {
       type: String,
       default: 'light-grey',
       validator: (type) => includes(tagTypes, type),
+    },
+    user: {
+      type: Object,
+      default: null,
     },
   },
 
