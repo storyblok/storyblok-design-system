@@ -34,19 +34,23 @@
   }
 
   &--primary {
-    @include setColor($color-primary, $white);
+    @include setColor($sb-green-20, $sb-green);
+  }
+
+  &--success {
+    @include setColor($green-20, $green);
   }
 
   &--negative {
-    @include setColor($color-negative, $white);
+    @include setColor($red-20, $red);
   }
 
   &--warning {
-    @include setColor($color-warning, $white);
+    @include setColor($orange-20, $primary-text-color);
   }
 
   &--info {
-    @include setColor($blue, $white);
+    @include setColor($blue-20, $blue);
   }
 
   &--light-grey {
@@ -63,10 +67,6 @@
 
   &--light-info {
     @include setColor($blue-25, $primary-text-color);
-  }
-
-  &--success {
-    @include setColor($green, $white);
   }
 
   .sb-icon {
