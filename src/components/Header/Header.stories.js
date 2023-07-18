@@ -81,3 +81,59 @@ export default {
 }
 
 export const Default = HeaderTemplate.bind({})
+
+export const WithoutButton = HeaderTemplate.bind({})
+
+WithoutButton.args = {
+  hasButton: false,
+}
+
+WithoutButton.parameters = {
+  docs: {
+    description: {
+      story: 'Types of buttons with loading.',
+    },
+  },
+}
+
+export const LoadingButton = HeaderTemplate.bind({})
+
+LoadingButton.args = {
+  isLoading: true,
+}
+
+LoadingButton.parameters = {
+  docs: {
+    description: {
+      story: 'Types of buttons with loading.',
+    },
+  },
+}
+
+export const DisabledButton = HeaderTemplate.bind({})
+
+DisabledButton.args = {
+  buttonDisabled: true,
+}
+
+DisabledButton.parameters = {
+  docs: {
+    description: {
+      story: 'Types of buttons with disabled.',
+    },
+  },
+}
+
+export const TooltipButton = HeaderTemplate.bind({})
+
+TooltipButton.args = {
+  buttonTooltip: 'Tooltip test',
+}
+
+TooltipButton.parameters = {
+  docs: {
+    description: {
+      story: 'Types of tooltip button.',
+    },
+  },
+}
