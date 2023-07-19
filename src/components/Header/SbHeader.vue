@@ -30,7 +30,7 @@
 
 <script>
 import SbButton from '../Button'
-import { isMobileWidth } from '@/utils/isMobileWidth'
+import { isMobileWidth } from '../../utils/isMobileWidth'
 
 export default {
   name: 'SbHeader',
