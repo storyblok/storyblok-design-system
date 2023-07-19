@@ -92,7 +92,7 @@ WithoutButton.args = {
 WithoutButton.parameters = {
   docs: {
     description: {
-      story: 'Types of buttons with loading.',
+      story: 'Header without the button',
     },
   },
 }
@@ -106,7 +106,7 @@ LoadingButton.args = {
 LoadingButton.parameters = {
   docs: {
     description: {
-      story: 'Types of buttons with loading.',
+      story: 'Button in header with a loading state',
     },
   },
 }
@@ -120,7 +120,7 @@ DisabledButton.args = {
 DisabledButton.parameters = {
   docs: {
     description: {
-      story: 'Types of buttons with disabled.',
+      story: 'Header with a disabled button',
     },
   },
 }
@@ -134,7 +134,7 @@ TooltipButton.args = {
 TooltipButton.parameters = {
   docs: {
     description: {
-      story: 'Types of tooltip button.',
+      story: 'Button in header with a tooltip',
     },
   },
 }
