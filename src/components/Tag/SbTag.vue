@@ -28,7 +28,7 @@ import SbIcon from '../Icon'
 import { Tooltip } from '../../directives'
 import { includes } from '../../utils'
 import { tagTypes } from './lib'
-import SbAvatar from '@/components/Avatar/SbAvatar.vue'
+import SbAvatar from '../Avatar/SbAvatar.vue'
 
 export default {
   name: 'SbTag',
