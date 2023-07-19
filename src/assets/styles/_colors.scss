@@ -5,6 +5,7 @@ $sb-green-100: #40bebb;
 $sb-green-75: #40c6c4;
 $sb-green-50: #7fd9d7;
 $sb-green-25: #d9f4f3;
+$sb-green-20: #ccf0ef;
 
 // Ink
 $sb-dark-blue: #1b243f;
@@ -17,7 +18,9 @@ $green: #2db47d;
 $green-75: #62c79e;
 $green-50: #96d9be;
 $green-25: #caecde;
+$green-20: #d5f0e5;
 $green-disabled: #004e4c;
+
 // yellow
 $yellow: #fbce41;
 $yellow-75: #fcdb71;
@@ -29,18 +32,21 @@ $blue: #395ece;
 $blue-75: #6b87db;
 $blue-50: #9caee6;
 $blue-25: #cdd7f3;
+$blue-20: #d7dff5;
 
 // orange
 $orange: #ffac00;
 $orange-75: #ffc140;
 $orange-50: #ffd57f;
 $orange-25: #ffeabf;
+$orange-20: #fec;
 
 // red
 $red: #ff6159;
 $red-75: #ff8983;
 $red-50: #ffb0ac;
 $red-25: #ffd7d5;
+$red-20: #ffdfde;
 
 // light
 $light: #dfe3e8;
@@ -66,20 +72,20 @@ $color-warning: $orange;
 $color-white: $white;
 
 $colors: (
-  'primary':                                     $color-primary,
-  'primary-dark':                                $color-primary-dark,
-  'secondary':                                   $color-secondary,
-  'positive':                                    $color-positive,
-  'negative':                                    $color-negative,
-  'warning':                                     $color-warning,
-  'white':                                       $color-white,
-  'teal':                                        $sb-green,
-  'ink':                                         $sb-dark-blue,
-  'green':                                       $green,
-  'yellow':                                      $yellow,
-  'blue':                                        $blue,
-  'orange':                                      $orange,
-  'red':                                         $red,
-  'light':                                       $light,
-  'light-gray':                                  $light-gray
+  'primary': $color-primary,
+  'primary-dark': $color-primary-dark,
+  'secondary': $color-secondary,
+  'positive': $color-positive,
+  'negative': $color-negative,
+  'warning': $color-warning,
+  'white': $color-white,
+  'teal': $sb-green,
+  'ink': $sb-dark-blue,
+  'green': $green,
+  'yellow': $yellow,
+  'blue': $blue,
+  'orange': $orange,
+  'red': $red,
+  'light': $light,
+  'light-gray': $light-gray,
 );
