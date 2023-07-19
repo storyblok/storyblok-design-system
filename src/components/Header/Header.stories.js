@@ -21,20 +21,20 @@ export default {
     docs: {
       description: {
         component:
-          'Header is used to name an area. It could also have a button which trigger an action called button-click',
+          'Header is used to name an area. It could also have a button which triggers an event called "button-click"',
       },
     },
   },
   args: {
     hasButton: true,
-    title: 'Example title',
-    subtitleText: 'Example subtitle',
+    title: 'Title',
+    subtitleText: 'Subtitle',
     isLoading: false,
-    buttonLabel: 'Example button label',
+    buttonLabel: 'Button label',
     buttonIcon: 'plus',
     buttonVariant: 'primary',
     buttonDisabled: false,
-    buttonTooltip: '',
+    buttonTooltip: { label: 'Hello', position: 'top' },
   },
   argTypes: {
     title: {
@@ -46,7 +46,7 @@ export default {
       control: 'text',
     },
     hasButton: {
-      description: 'Shows the button',
+      description: 'Define if it has a button or not',
       control: 'boolean',
     },
     buttonLabel: {
@@ -62,18 +62,21 @@ export default {
       control: 'boolean',
     },
     buttonIcon: {
-      description: 'Choose the icon of the button',
+      description: 'Define the icon name of the button',
       options: availableIcons,
       control: 'select',
     },
     buttonVariant: {
-      description: 'Choose the color of the button',
+      description: 'Define the color variant of the button',
       options: availableVariants,
       control: 'select',
     },
     buttonTooltip: {
       description: 'Define the button tooltip',
-      control: 'text',
+      control: 'object',
+    },
+    onButtonClick: {
+      action: 'button-click'
     },
   },
 }
@@ -125,7 +128,7 @@ DisabledButton.parameters = {
 export const TooltipButton = HeaderTemplate.bind({})
 
 TooltipButton.args = {
-  buttonTooltip: 'Tooltip test',
+  buttonTooltip: { label: 'Tooltip test', position: 'bottom' },
 }
 
 TooltipButton.parameters = {
