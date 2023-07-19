@@ -3,9 +3,7 @@ import SbButton from './index'
 import { availablePositions as availableTooltipPositions } from '../Tooltip/lib'
 import { availableButtonsTypes } from './lib'
 import { availableColors } from '../../utils'
-import LIB_ICONS from '../../lib/internal-icons'
-
-const availableIcons = Object.keys(LIB_ICONS)
+import availableIcons from '../../lib/all-icons'
 
 const ButtonTemplate = (args) => ({
   components: { SbButton },

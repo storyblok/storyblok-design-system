@@ -1,8 +1,6 @@
 import SbHeader from './index'
-import LIB_ICONS from '../../lib/internal-icons'
+import availableIcons from '../../lib/all-icons'
 import { availableVariants } from '../Button/lib'
-
-const availableIcons = Object.keys(LIB_ICONS)
 
 const HeaderTemplate = (args) => ({
   components: { SbHeader },

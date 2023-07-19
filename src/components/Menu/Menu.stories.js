@@ -9,9 +9,7 @@ import {
 
 import SbButton from '../Button'
 import SbGroupButton from '../GroupButton'
-import LIB_ICONS from '../../lib/internal-icons'
-
-const availableIcons = Object.keys(LIB_ICONS)
+import availableIcons from '../../lib/all-icons'
 
 export default {
   title: 'Navigation/SbMenu',
