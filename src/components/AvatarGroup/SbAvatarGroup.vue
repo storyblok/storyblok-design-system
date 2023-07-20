@@ -4,7 +4,10 @@
       :is="element.type.name"
       v-for="(element, index) of visibleAvatars"
       :key="element.name"
-      v-bind="getAvatarAttrs(element, index)"
+      v-bind="element.props"
+      use-tooltip
+      :size="size"
+      :bg-color="element.props['bg-color'] || availableColors[index]"
     />
     <SbMoreAvatars
       v-if="totalHiddenAvatars"
@@ -100,15 +103,6 @@ export default {
   },
 
   methods: {
-    getAvatarAttrs(element, index) {
-      return {
-        ...element.props,
-        useTooltip: true,
-        size: this.size,
-        bgColor: availableColors[index],
-      }
-    },
-
     handleMoreAvatarsClick() {
       this.isVisibleDropdown = !this.isVisibleDropdown
       this.$emit('toggle-visible-dropdown', {

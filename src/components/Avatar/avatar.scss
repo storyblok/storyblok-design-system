@@ -1,5 +1,9 @@
 .sb-avatar {
   display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 100%;
+  border-style: solid;
 
   // types of avatar
   &__image,
@@ -13,7 +17,6 @@
   // image
   img {
     vertical-align: middle;
-    border-radius: 100%;
   }
 
   img,

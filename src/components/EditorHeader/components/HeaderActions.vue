@@ -5,8 +5,10 @@
         <SbAvatar
           v-for="user in users"
           :key="user.id"
-          :src="user.src"
+          :src="user.avatar"
           :name="user.name"
+          :color="user.color"
+          :bg-color="user.color"
         />
       </SbAvatarGroup>
     </SbHeaderItem>
