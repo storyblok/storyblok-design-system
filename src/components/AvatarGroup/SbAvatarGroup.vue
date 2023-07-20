@@ -7,7 +7,7 @@
       v-bind="element.props"
       use-tooltip
       :size="size"
-      :bg-color="element.props['bg-color'] || availableColors[index]"
+      :bg-color="getBgColor(element, index)"
     />
     <SbMoreAvatars
       v-if="totalHiddenAvatars"
@@ -103,6 +103,9 @@ export default {
   },
 
   methods: {
+    getBgColor(element, index) {
+      return element?.props['bg-color'] || availableColors[index]
+    },
     handleMoreAvatarsClick() {
       this.isVisibleDropdown = !this.isVisibleDropdown
       this.$emit('toggle-visible-dropdown', {
