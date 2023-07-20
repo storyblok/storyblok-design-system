@@ -7,8 +7,7 @@
           :key="user.id"
           :src="user.avatar"
           :name="user.name"
-          :color="user.color"
-          :bg-color="user.color"
+          :border-color="user.color"
         />
       </SbAvatarGroup>
     </SbHeaderItem>

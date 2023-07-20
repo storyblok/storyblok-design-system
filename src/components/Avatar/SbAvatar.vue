@@ -1,13 +1,8 @@
 <template>
-  <div
-    v-tooltip="avatarTooltipAttrs"
-    :class="avatarClass"
-    :style="avatarStyle"
-    v-bind="$attrs"
-  >
+  <div v-tooltip="avatarTooltipAttrs" :class="avatarClass" v-bind="$attrs">
     <template v-if="showImage">
       <slot>
-        <div class="sb-avatar__image">
+        <div class="sb-avatar__image" :style="avatarStyle">
           <img
             v-show="isImageLoaded"
             :src="src"
@@ -108,7 +103,7 @@ export default {
       type: String,
       default: null,
     },
-    color: {
+    borderColor: {
       type: String,
       default: null,
     },
@@ -144,20 +139,17 @@ export default {
     },
 
     avatarStyle() {
-      const isBgColorValid = this.bgColor && this.bgColor.startsWith('#')
-      const isColorValid = this.color && this.color.startsWith('#')
+      const isColorValid = this.borderColor && this.borderColor.startsWith('#')
 
       return {
-        borderColor: isColorValid && this.color,
+        borderColor: isColorValid && this.borderColor,
         borderWidth: isColorValid && '2px',
-        backgroundColor: isBgColorValid && this.bgColor,
       }
     },
 
     avatarInitialsClass() {
       const color =
         this.bgColor || generateRandomBgColor(this.friendlyName || this.name)
-      if (color.startsWith('#')) return ['sb-avatar__initials']
       const bgColorClass = this.bgColor ? `bg-${color}` : color
 
       return ['sb-avatar__initials', bgColorClass]

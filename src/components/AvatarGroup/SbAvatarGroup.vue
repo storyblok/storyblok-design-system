@@ -4,10 +4,7 @@
       :is="element.type.name"
       v-for="(element, index) of visibleAvatars"
       :key="element.name"
-      v-bind="element.props"
-      use-tooltip
-      :size="size"
-      :bg-color="getBgColor(element, index)"
+      v-bind="getAvatarAttrs(element, index)"
     />
     <SbMoreAvatars
       v-if="totalHiddenAvatars"
@@ -64,7 +61,7 @@ export default {
         children &&
         children.length === 1 &&
         children[0].children &&
-        children[0].children[0]?.type?.name === 'SbAvatar'
+        children[0].children[0]?.type.name === 'SbAvatar'
       const avatarChildren = useGrandchildren ? children[0].children : children
       return avatarChildren.filter(({ type }) => type.name === 'SbAvatar')
     },
@@ -103,9 +100,15 @@ export default {
   },
 
   methods: {
-    getBgColor(element, index) {
-      return element?.props['bg-color'] || availableColors[index]
+    getAvatarAttrs(element, index) {
+      return {
+        ...element.props,
+        useTooltip: true,
+        size: this.size,
+        bgColor: availableColors[index],
+      }
     },
+
     handleMoreAvatarsClick() {
       this.isVisibleDropdown = !this.isVisibleDropdown
       this.$emit('toggle-visible-dropdown', {

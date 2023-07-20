@@ -1,6 +1,6 @@
 @mixin avatarGroupItem {
   background-clip: padding-box;
-  border: 2px solid inherit;
+  border: 2px solid $white;
   border-radius: 100%;
 }
 
@@ -51,8 +51,11 @@
 
   >.sb-avatar:hover,
   >.sb-avatar:focus {
-    z-index: 10;
-    transform: translate(0, -4px);
+    .sb-avatar__image,
+    .sb-avatar__initials {
+      z-index: 99999;
+      transform: translate(0, -10px);
+    }
   }
   // sizes
   &--large &__more {
@@ -77,7 +80,7 @@
     >.sb-avatar .sb-avatar__image,
     >.sb-avatar .sb-avatar__initials,
     >.sb-avatar-group__more {
-      border: 3px solid inherit;
+      border: 3px solid $color-primary-dark;
     }
   }
 
