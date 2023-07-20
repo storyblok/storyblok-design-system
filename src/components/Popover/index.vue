@@ -1,6 +1,5 @@
 <template>
-  <SbPortal ref="portalRef"
-:target="portalTarget" :disabled="!usePortal">
+  <SbPortal ref="portalRef" :target="portalTarget" :disabled="!usePortal">
     <component
       :is="parentElementTag"
       :id="anchorId"
