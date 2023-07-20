@@ -1,0 +1,71 @@
+.sb-header {
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  &--has-button {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: $s-4 50px;
+
+    @include mq($until: sm) {
+      align-items: flex-start;
+    }
+  }
+
+  &__title {
+    overflow: hidden;
+    width: 100%;
+    color: $sb-dark-blue;
+    font-size: $font-26;
+    font-weight: $font-bold;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__text-container {
+    display: flex;
+    flex: 1 1 min-content;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  &__subtitle--bold,
+  &__subtitle {
+    color: $sb-dark-blue-50;
+    font-size: $font-14;
+    line-height: 1.3;
+  }
+
+  &__subtitle-separator {
+    margin: 0 10px;
+  }
+
+  &__subtitle--bold {
+    font-weight: $font-medium;
+  }
+
+  &__buttons-container {
+    display: flex;
+    gap: 10px;
+    align-self: flex-start;
+    justify-content: space-between;
+
+    @include mq($until: md) {
+      gap: 15px;
+    }
+
+    .sb-button {
+      width: max-content;
+    }
+  }
+
+  &__btn-trashcan {
+    color: $sb-dark-blue-50;
+    border: 0;
+  }
+}

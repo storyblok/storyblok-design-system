@@ -28,6 +28,7 @@ import SbToggle from './Toggle'
 import SbTooltip from './Tooltip'
 import SbUploadDialog from './UploadDialog'
 import SbNumberField from './NumberField'
+import SbHeader from './Header'
 
 export * from './Loading'
 export * from './Breadcrumbs'
@@ -80,4 +81,5 @@ export {
   SbToggle,
   SbTooltip,
   SbUploadDialog,
+  SbHeader,
 }
