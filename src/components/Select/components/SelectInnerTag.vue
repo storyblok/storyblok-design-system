@@ -44,7 +44,7 @@ export default {
   props: {
     item: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
     itemLabel: {
       type: String,
@@ -84,10 +84,7 @@ export default {
 
   methods: {
     getSource(label) {
-      if (label?.src) {
-        return label.src
-      }
-      return ''
+      return label?.src || ''
     },
 
     getTagTitle(tagLabel) {
