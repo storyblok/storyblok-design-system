@@ -156,7 +156,6 @@ export default {
     label: {
       type: String,
       default: '',
-      required: true,
     },
     inputId: {
       type: String,
