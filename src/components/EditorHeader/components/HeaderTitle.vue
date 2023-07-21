@@ -1,7 +1,7 @@
 <template>
   <div class="sb-editor-header__title">
     <SbButton
-      icon="chevron-left"
+      icon="arrow-left"
       variant="tertiary"
       size="small"
       @click="$emit('go-back')"
