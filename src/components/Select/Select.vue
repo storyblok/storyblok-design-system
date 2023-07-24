@@ -33,6 +33,7 @@
       :show-caption="showCaption"
       :item-caption="itemCaption"
       :inline-label="inlineLabel"
+      :show-count="showCount"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
       @search="handleSearchInput"
@@ -222,6 +223,10 @@ export default {
     inlineLabel: {
       type: String,
       default: '',
+    },
+    showCount: {
+      type: Boolean,
+      default: false
     },
   },
 
