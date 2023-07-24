@@ -36,13 +36,20 @@ export default {
   },
 }
 
-export const Default = (args) => ({
+const Template = (args) => ({
   components: { SbHeading },
   setup() {
-    console.log(args)
     return { args }
   },
   template: `
-    <SbHeading v-bind="args"> Storyblok is amazing! </SbHeading>
-  `,
+  <SbHeading v-bind="args"> Storyblok is amazing! </SbHeading>
+`,
 })
+
+export const Default = Template.bind({})
+
+export const HeadingWithCustomFontSize = Template.bind({})
+
+HeadingWithCustomFontSize.args = {
+  customFontSize: '40px',
+}
