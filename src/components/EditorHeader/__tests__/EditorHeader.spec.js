@@ -63,7 +63,7 @@ describe('SbEditorHeader component', () => {
 
     expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
 
-    expect(wrapper.findAllComponents(SbIcon).length).toBe(11)
+    expect(wrapper.findAllComponents(SbIcon).length).toBe(9)
 
     expect(wrapper.findComponent(SbButton).exists()).toBe(true)
 
