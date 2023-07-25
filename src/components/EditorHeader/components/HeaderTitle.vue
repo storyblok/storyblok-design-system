@@ -1,12 +1,22 @@
 <template>
-  <div v-if="format !== 'desktop'" class="sb-editor--title">
-    <SbButton icon="plus" variant="secondary" size="small" />
-    <span>{{ title }}</span>
+  <div class="sb-editor-header__title">
+    <SbButton
+      icon="arrow-left"
+      variant="tertiary"
+      size="small"
+      @click="$emit('go-back')"
+    />
+    <div class="sb-editor-header__title-text">
+      <p>{{ headerTitle }}</p>
+      <p class="sb-editor-header__subtitle">{{ headerSubtitle }}</p>
+    </div>
   </div>
 </template>
 
 <script>
 import SbButton from '../../Button'
+import { sharedProps } from '../sharedProps'
+
 export default {
   name: 'SbHeaderTitle',
 
@@ -15,14 +25,9 @@ export default {
   },
 
   props: {
-    title: {
-      type: String,
-      default: null,
-    },
-    format: {
-      type: String,
-      default: null,
-    },
+    ...sharedProps,
   },
+
+  emits: ['go-back'],
 }
 </script>

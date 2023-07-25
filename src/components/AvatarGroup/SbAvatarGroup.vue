@@ -61,7 +61,7 @@ export default {
         children &&
         children.length === 1 &&
         children[0].children &&
-        children[0].children[0].type.name === 'SbAvatar'
+        children[0].children[0]?.type.name === 'SbAvatar'
       const avatarChildren = useGrandchildren ? children[0].children : children
       return avatarChildren.filter(({ type }) => type.name === 'SbAvatar')
     },

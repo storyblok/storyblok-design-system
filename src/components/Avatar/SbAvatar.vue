@@ -2,7 +2,7 @@
   <div v-tooltip="avatarTooltipAttrs" :class="avatarClass" v-bind="$attrs">
     <template v-if="showImage">
       <slot>
-        <div class="sb-avatar__image">
+        <div class="sb-avatar__image" :style="avatarStyle">
           <img
             v-show="isImageLoaded"
             :src="src"
@@ -103,6 +103,10 @@ export default {
       type: String,
       default: null,
     },
+    borderColor: {
+      type: String,
+      default: null,
+    },
     status: {
       type: String,
       default: null,
@@ -132,6 +136,15 @@ export default {
       const avatarSizeClass =
         this.size && this.size !== 'normal' && `sb-avatar--${this.size}`
       return ['sb-avatar', avatarSizeClass]
+    },
+
+    avatarStyle() {
+      const isColorValid = this.borderColor && this.borderColor.startsWith('#')
+
+      return {
+        borderColor: isColorValid && this.borderColor,
+        borderWidth: isColorValid && '2px',
+      }
     },
 
     avatarInitialsClass() {
