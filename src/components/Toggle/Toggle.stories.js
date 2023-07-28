@@ -1,7 +1,5 @@
 import SbToggle from './index'
-import LIB_ICONS from '../../lib/internal-icons'
-
-const availableIcons = Object.keys(LIB_ICONS)
+import availableIcons from '../../lib/all-icons'
 
 export default {
   title: 'Forms/SbToggle',

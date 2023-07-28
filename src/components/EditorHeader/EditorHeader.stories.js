@@ -1,6 +1,15 @@
 import { SbEditorHeader } from './index'
 
-const languagesItems = ['English', 'German']
+const languages = [
+  {
+    name: 'English',
+    code: 'en',
+  },
+  {
+    name: 'Portuguese',
+    code: 'pt',
+  },
+]
 
 const usersList = [
   {
@@ -17,7 +26,7 @@ const usersList = [
   },
 ]
 
-const optionsList = [
+const actionsList = [
   {
     name: 'Open Draft',
   },
@@ -36,118 +45,69 @@ const optionsList = [
   },
 ]
 
-const actionsList = [
-  {
-    name: 'Dimensions',
-  },
-  {
-    name: 'Preview',
-  },
-  {
-    name: 'Unpublish',
-  },
-]
-
-const EditorTemplate = (args) => ({
-  components: { SbEditorHeader },
-  setup() {
-    return { args }
-  },
-  template: `
-    <SbEditorHeader
-      v-bind="args"
-    />
-  `,
-})
-
 export default {
   title: 'Interface/SbEditorHeader',
   component: SbEditorHeader,
   parameters: {
     docs: {
       description: {
-        component: 'SbEditorHeader',
+        component: 'Header component for various editors',
       },
     },
   },
   args: {
-    languages: [...languagesItems],
+    languages: [...languages],
     users: [...usersList],
     actions: [...actionsList],
-    options: [...optionsList],
-    spaceStatus: 'unpublished',
     hasSaveButton: true,
-    showPublishedIcon: true,
-    headerTitle: 'API-based & Headless CMS as a Service',
-    headerSubTitle: 'Updated 15m ago',
+    headerTitle: 'Headless CMS',
+    headerSubtitle: 'Updated 15m ago',
+    mode: 'light',
   },
   argTypes: {
-    languages: {
-      name: 'languages',
-      description: 'Available languages array',
-      control: {
-        type: 'array',
-      },
-    },
-    users: {
-      name: 'users',
-      description: 'User information array',
-      control: {
-        type: 'object',
-      },
-    },
-    actions: {
-      name: 'actions',
-      description: 'Available actions array',
-      control: {
-        type: 'object',
-      },
-    },
-    options: {
-      name: 'options',
-      description: 'Available options array',
-      control: {
-        type: 'object',
-      },
-    },
-    spaceStatus: {
-      name: 'spaceStatus',
-      description:
-        'Change the icon to inform whether the space is published or not',
-      options: ['unpublished', 'published', 'published-and-changes'],
-      control: {
-        type: 'select',
-      },
-    },
-    hasSaveButton: {
-      name: 'hasSaveButton',
-      description: 'Props to show the save icon',
-      control: {
-        type: 'boolean',
-      },
-    },
-    showPublishedIcon: {
-      name: 'showPublishedIcon',
-      description: 'Props to show or not the published icon',
-      control: {
-        type: 'boolean',
-      },
-    },
-    headerTitle: {
-      name: 'headerTitle',
-      description: '',
-      control: {
-        type: 'text',
-      },
-    },
-    headerSubTitle: {
-      name: 'headerSubTitle',
-      description: '',
-      control: {
-        type: 'text',
-      },
+    mode: {
+      options: ['light', 'dark'],
+      control: { type: 'radio' },
     },
   },
 }
 
-export const Default = EditorTemplate.bind({})
+export const Default = {
+  name: 'Default',
+  render: (args, { argTypes }) => ({
+    components: { SbEditorHeader },
+    props: Object.keys(argTypes),
+    template: `
+        <SbEditorHeader v-bind="$props"  />
+      `,
+  }),
+}
+
+export const WithSlots = () => ({
+  components: { SbEditorHeader },
+  template: `
+      <SbEditorHeader>
+        <template #left>
+          <p>Custom left slot</p>
+        </template>
+
+        <template #middle>
+          <p>Custom center slot</p>
+        </template>
+
+        <template #right>
+        <p>Custom right slot</p>
+        </template>
+      </SbEditorHeader>
+  `,
+})
+
+export const DarkMode = () => ({
+  components: { SbEditorHeader },
+  template: `
+    <SbEditorHeader
+      header-title="My title"
+      mode="dark"
+    />
+  `,
+})

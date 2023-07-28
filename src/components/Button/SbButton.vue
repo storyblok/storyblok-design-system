@@ -85,6 +85,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isBorderless: {
+      type: Boolean,
+      default: false,
+    },
     label: {
       type: String,
       default: null,
@@ -105,6 +109,7 @@ export default {
         `sb-button--${this.variant}`,
         {
           'sb-button--disabled': this.isDisabled,
+          'sb-button--borderless': this.isBorderless,
           'sb-button--small': this.size === 'small',
           'sb-button--large': this.size === 'large',
           'sb-button--full': this.isFullWidth,

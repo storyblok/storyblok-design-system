@@ -1,10 +1,4 @@
-import {
-  SbEditorHeader,
-  SbHeaderTitle,
-  SbHeaderItem,
-  SbMobileViewer,
-  SbDesktopAndTabletViewer,
-} from '../index'
+import { SbEditorHeader, SbHeaderTitle, SbHeaderItem } from '../index'
 
 import SbIcon from '../../Icon'
 import SbButton from '../../Button'
@@ -30,25 +24,6 @@ const usersList = [
   },
 ]
 
-const optionsList = [
-  {
-    name: 'Open Draft',
-  },
-  {
-    name: 'Open Published',
-  },
-  {
-    name: 'Draft json',
-  },
-  {
-    name: 'Published json',
-  },
-  {
-    name: 'Unpublish',
-    type: 'negative',
-  },
-]
-
 const actionsList = [
   {
     name: 'dimensions',
@@ -65,33 +40,30 @@ const fakeProps = {
   languages: ['English', 'German'],
   users: [...usersList],
   actions: [...actionsList],
-  options: [...optionsList],
   spaceStatus: 'unpublished',
   hasSaveButton: true,
   showPublishedIcon: true,
-  headerTitle: 'A awesome CMS',
-  headerSubTitle: 'Its true',
+  headerTitle: 'An awesome CMS',
+  headerSubtitle: 'Its true',
 }
 
-describe.skip('SbEditorHeader component', () => {
+describe('SbEditorHeader component', () => {
   it('should render all internal components', () => {
     const wrapper = factory(fakeProps)
 
     expect(wrapper.findComponent(SbHeaderTitle).exists()).toBe(true)
 
-    expect(wrapper.findComponent(SbHeaderTitle).text()).toBe('')
+    expect(wrapper.findComponent(SbHeaderTitle).text()).toBe(
+      'An awesome CMSIts true'
+    )
 
     expect(wrapper.findComponent(SbHeaderItem).exists()).toBe(true)
 
-    expect(wrapper.findAllComponents(SbHeaderItem).length).toBe(9)
-
-    expect(wrapper.findComponent(SbDesktopAndTabletViewer).exists()).toBe(true)
-
-    expect(wrapper.findComponent(SbMobileViewer).exists()).toBe(false)
+    expect(wrapper.findAllComponents(SbHeaderItem).length).toBe(7)
 
     expect(wrapper.findComponent(SbIcon).exists()).toBe(true)
 
-    expect(wrapper.findAllComponents(SbIcon).length).toBe(8)
+    expect(wrapper.findAllComponents(SbIcon).length).toBe(9)
 
     expect(wrapper.findComponent(SbButton).exists()).toBe(true)
 
@@ -105,7 +77,7 @@ describe.skip('SbEditorHeader component', () => {
 
     expect(wrapper.findAllComponents(SbMenuList).length).toBe(2)
 
-    expect(wrapper.findAllComponents(SbMenuItem).length).toBe(7)
+    expect(wrapper.findAllComponents(SbMenuItem).length).toBe(5)
   })
 
   it('should emit all internal events', async () => {
@@ -124,15 +96,6 @@ describe.skip('SbEditorHeader component', () => {
     await wrapper.vm.$nextTick()
 
     expect(wrapper.emitted('publish')).toBeTruthy()
-
-    // select-options event
-    wrapper.vm.$emit('select-options', 'unpublished')
-
-    await wrapper.vm.$nextTick()
-
-    expect(wrapper.emitted('select-options')).toBeTruthy()
-
-    expect(wrapper.emitted('select-options')).toEqual([['unpublished']])
 
     // select-action event
     wrapper.vm.$emit('select-action', 'unpublished')

@@ -9,16 +9,16 @@ const factory = (props) => {
   })
 }
 
-describe.skip('Test if Header title renderer correctly', () => {
+describe('Test if Header title renderer correctly', () => {
   it('Test to check if the component renders the text', () => {
     const wrapper = factory({
-      title: 'Awesome cms',
-      format: 'mobile',
+      headerTitle: 'Awesome cms',
+      headerSubtitle: 'Its true',
     })
 
-    expect(wrapper.find('div').classes('sb-editor--title')).toBe(true)
+    expect(wrapper.find('div').classes('sb-editor-header__title')).toBe(true)
 
-    expect(wrapper.find('div').text()).toBe('Awesome cms')
+    expect(wrapper.find('div').text()).toBe('Awesome cmsIts true')
 
     expect(wrapper.findComponent(SbButton).exists()).toBe(true)
   })

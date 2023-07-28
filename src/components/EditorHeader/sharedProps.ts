@@ -1,18 +1,14 @@
 const sharedProps = {
   languages: {
     type: [Array, String],
-    default: 'English',
+    default: [],
   },
   users: {
     type: [Array, String],
     default: null,
   },
   actions: {
-    type: [Array, String],
-    default: null,
-  },
-  options: {
-    type: [Array, String],
+    type: [Array, String, Object],
     default: null,
   },
   spaceStatus: {
@@ -22,16 +18,24 @@ const sharedProps = {
   hasSaveButton: {
     type: Boolean,
   },
-  showPublishedIcon: {
-    type: Boolean,
+  saveButtonLabel: {
+    type: String,
+    default: 'Save',
   },
   headerTitle: {
     type: String,
     default: 'API-based & Headless CMS as a Service',
   },
-  headerSubTitle: {
+  headerSubtitle: {
     type: String,
     default: null,
+  },
+  mode: {
+    type: String,
+    default: 'light',
+    validation: (value: string): boolean => {
+      return ['light', 'dark'].includes(value)
+    },
   },
 }
 

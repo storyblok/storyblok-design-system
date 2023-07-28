@@ -3,19 +3,20 @@
  */
 export const tagTypes = [
   'primary',
+  'success',
   'negative',
   'warning',
   'info',
   'light-grey',
   'dark-grey',
   'light-info',
-  'success',
   'dark-ink',
 ]
 
 /**
  * @typedef {{
  * 'primary': string,
+ * 'success': string,
  * 'negative': string,
  * 'warning': string,
  * 'info': string,
@@ -23,7 +24,6 @@ export const tagTypes = [
  * 'dark-grey': string,
  * 'light-info': string,
  * 'dark-ink': string,
- * 'success': string,
  * }}
  */
 export let tagTypesMap = {}

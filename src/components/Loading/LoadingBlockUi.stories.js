@@ -2,13 +2,19 @@ import { SbLoading } from './index'
 import { availableColors } from '../../utils'
 import { loadingTypes, loadingSizes } from './utils'
 
-const LoadingBlockTemplate = (args) => ({
+const LoadingBlockTemplate = (args, storyContext) => ({
   components: { SbLoading },
   setup() {
     return { args }
   },
+  computed: {
+    styleForDocs() {
+      if (storyContext.viewMode === 'docs') return 'position: inherit'
+    },
+  },
   template: `
     <SbLoading
+      :style="styleForDocs"
       v-bind="args"
     />
   `,

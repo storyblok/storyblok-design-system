@@ -9,9 +9,7 @@ const SelectTemplate = (args) => ({
     SbSelect,
   },
 
-  setup() {
-    return { ...args }
-  },
+  props: Object.keys(args),
 
   data: () => ({
     internalValue: null,
@@ -59,6 +57,7 @@ const SelectTemplate = (args) => ({
       :show-caption="showCaption"
       :is-option-disabled="isOptionDisabled"
       :inline-label="inlineLabel"
+      :show-count="showCount"
       v-model="internalValue"
       :first-value-is-all-value="firstValueIsAllValue"
       style="max-width: 300px"
@@ -226,6 +225,7 @@ export default {
     disableInternalSearch: false,
     showCaption: false,
     isOptionDisabled: () => false,
+    showCount: false,
   },
 }
 
@@ -660,6 +660,21 @@ WithInlineLabel.parameters = {
   docs: {
     description: {
       story: 'Use the `inline-label` property to add text inside the select',
+    },
+  },
+}
+
+export const MultipleWithCountLabels = SelectTemplate.bind({})
+
+MultipleWithCountLabels.args = {
+  multiple: true,
+  showCount: true,
+}
+
+MultipleWithCountLabels.parameters = {
+  docs: {
+    description: {
+      story: 'Use the `show-count` property to group the selected items in a counter.',
     },
   },
 }

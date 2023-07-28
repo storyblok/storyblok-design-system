@@ -28,11 +28,12 @@ import SbToggle from './Toggle'
 import SbTooltip from './Tooltip'
 import SbUploadDialog from './UploadDialog'
 import SbNumberField from './NumberField'
+import SbHeader from './Header'
 
 export * from './Loading'
 export * from './Breadcrumbs'
 export * from './Card'
-export * from './EditorHeader'
+export * from './EditorHeader/index.ts'
 export * from './Menu'
 export * from './Minibrowser'
 export * from './Sidebar'
@@ -80,4 +81,5 @@ export {
   SbToggle,
   SbTooltip,
   SbUploadDialog,
+  SbHeader,
 }

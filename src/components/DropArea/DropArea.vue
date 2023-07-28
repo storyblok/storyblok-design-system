@@ -8,17 +8,10 @@
   >
     <div class="sb-drop-area__content">
       <div class="sb-drop-area__icon">
-        <SbIcon
-          v-if="isOver || forceOver"
-          size="x-large"
-          name="upload-pictogram"
-        />
-
-        <img
-          v-else
-          draggable="false"
-          src="../../assets/icons/empty-state-illustration.svg"
-          alt=""
+        <SbIllustration
+          v-if="illustrationLink.length"
+          :src="illustrationLink"
+          :width="illustrationWidth"
         />
       </div>
       <p class="sb-drop-area__title">
@@ -35,13 +28,13 @@
 </template>
 
 <script>
-import SbIcon from '../Icon'
+import SbIllustration from '../Illustration'
 
 export default {
   name: 'SbDropArea',
 
   components: {
-    SbIcon,
+    SbIllustration,
   },
 
   props: {
@@ -73,6 +66,11 @@ export default {
     forceOver: {
       type: Boolean,
       default: false,
+    },
+    illustrationLink: {
+      type: String,
+      default:
+        'https://a.storyblok.com/f/136045/726x811/c4e9e2a9cf/add-files.svg',
     },
   },
 

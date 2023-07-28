@@ -20,40 +20,40 @@
       color="primary-dark"
     />
 
-    <div v-if="isTagsVisible"
-class="sb-select-inner__tags">
-      <div v-for="(tagLabel, key) in tagLabels"
-:key="key">
+    <div v-if="isTagsVisible" class="sb-select-inner__tags">
+      <div v-if="showCount">
+        <SelectInnerTag 
+            :item="firstTagLabel"
+            :item-label="itemLabel"
+            :item-value="itemValue"
+            :item-caption="itemCaption"
+            :show-caption="showCaption"
+            :is-tag-avatar-visible="isTagAvatarVisible"
+            :show-tag-count="tagLabels.length > 1"
+            :value-tag-count="tagLabels.length - 1"
+            :is-disabled="isDisabled"
+            @keydown="handleTagKeydown($event, firstTagLabel)"
+            @close="removeItem($event, firstTagLabel)"
+          />
+      </div>
+
+      <div v-else v-for="(tagLabel, key) in tagLabels" :key="key">
         <slot
           name="selection"
           :item="tagLabel"
           :remove="(e) => removeItem(e, tagLabel)"
         >
-          <SbTag
-            tabindex="0"
-            :closable="!isDisabled"
-            @keydown="handleTagKeydown($event, tagLabel)"
-            @close="removeItem($event, tagLabel)"
-          >
-            <template v-if="tagLabel">
-              <SbAvatar
-                v-if="isTagAvatarVisible"
-                :key="tagLabel[itemLabel]"
-                :src="getSource(tagLabel)"
-                size="small"
-                :name="tagLabel[itemLabel]"
-              />
-              <span class="sb-select-inner__tag"
-:title="getTagTitle(tagLabel)">
-                <template v-if="showCaption">
-                  {{ tagLabel[itemLabel] }} <span v-if="tagLabel[itemCaption]">({{ tagLabel[itemCaption] }})</span>
-                </template>
-                <template v-else>{{
-                  tagLabel[itemLabel] || tagLabel
-                }}</template>
-              </span>
-            </template>
-          </SbTag>
+          <SelectInnerTag 
+              :item="tagLabel"
+              :item-label="itemLabel"
+              :item-value="itemValue"
+              :item-caption="itemCaption"
+              :show-caption="showCaption"
+              :is-tag-avatar-visible="isTagAvatarVisible"
+              :is-disabled="isDisabled"
+              @keydown="handleTagKeydown($event, tagLabel)"
+              @close="removeItem($event, tagLabel)"
+            />
         </slot>
       </div>
 
@@ -72,8 +72,7 @@ class="sb-select-inner__tags">
       />
     </div>
 
-    <div v-if="isAvatarVisible && showAvatar"
-class="sb-select-inner__avatar">
+    <div v-if="isAvatarVisible && showAvatar" class="sb-select-inner__avatar">
       <SbAvatar
         :src="avatarData.src"
         size="small"
@@ -131,10 +130,10 @@ class="sb-select-inner__avatar">
 <script>
 import { isArray } from '../../../utils'
 import SbIcon from '../../Icon'
-import SbTag from '../../Tag'
 import SbAvatar from '../../Avatar'
 
 import { Tooltip } from '../../../directives'
+import SelectInnerTag from './SelectInnerTag.vue'
 
 export default {
   name: 'SbSelectInner',
@@ -145,8 +144,8 @@ export default {
 
   components: {
     SbIcon,
-    SbTag,
     SbAvatar,
+    SelectInnerTag,
   },
 
   inject: ['selectContext'],
@@ -217,6 +216,10 @@ export default {
     inlineLabel: {
       type: String,
       default: '',
+    },
+    showCount: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -396,6 +399,11 @@ export default {
     rightIconName() {
       return this.isLoading ? 'loading' : 'chevron-down'
     },
+
+    firstTagLabel() {
+      return this.tagLabels[0]
+    },
+
   },
 
   watch: {
@@ -532,24 +540,6 @@ export default {
     getComputedTagValue(tag) {
       const value = this.emitOption ? tag : tag[this.itemValue]
       return value !== undefined ? value : tag
-    },
-
-    getSource(label) {
-      if (label?.src) {
-        return label.src
-      }
-      return ''
-    },
-
-    getTagTitle(tagLabel) {
-      const label = tagLabel[this.itemLabel] || tagLabel
-
-      if (this.showCaption) {
-        const caption = tagLabel[this.itemCaption]
-        return caption ? `${label} (${caption})` : `${label}`
-      }
-
-      return label
     },
   },
 }
