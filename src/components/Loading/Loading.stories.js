@@ -219,9 +219,7 @@ SpinnerWithPercentage.parameters = {
 
 export const LoadingWithPlaceholder = (args) => ({
   components: { SbLoading, SbLoadingPlaceholder },
-  setup() {
-    return { args }
-  },
+  props: Object.keys(args),
   template: `
     <SbLoading :type="type">
       <SbLoadingPlaceholder :width="width" :height="height" style="margin-bottom: 10px"/>
