@@ -1,6 +1,8 @@
 $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
 
 .sb-checkbox {
+  position: relative;
+
   &--inline {
     position: relative;
     display: inline-block;
@@ -65,7 +67,10 @@ $checkbox-transition: 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 
 .sb-checkbox__native {
-  @include screenReaderOnly();
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  opacity: 0;
 
   &:focus,
   &:hover {
