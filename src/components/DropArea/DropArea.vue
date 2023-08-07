@@ -11,7 +11,6 @@
         <SbIllustration
           v-if="illustrationLink.length"
           :src="illustrationLink"
-          :width="illustrationWidth"
         />
       </div>
       <p class="sb-drop-area__title">
