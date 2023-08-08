@@ -2,6 +2,7 @@ import SbIcon from '.'
 import { iconSizes } from './utils'
 import { availableColors } from '../../utils'
 import availableIcons from '../../lib/all-icons'
+import internalIcons from '../../lib/internal-icons'
 
 export default {
   title: 'Basic/SbIcon',
@@ -116,7 +117,7 @@ export const StoryblokIcons = (args) => ({
     return { args }
   },
   data: () => ({
-    icons: [...availableIcons],
+    icons: [...internalIcons],
   }),
   template: `
   <div>
