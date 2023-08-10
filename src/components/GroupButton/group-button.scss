@@ -29,7 +29,7 @@
 
       .sb-button:last-child {
         border-bottom-right-radius: $base-border-radius;
-        border-top-right-radius: 5$base-border-radius;
+        border-top-right-radius: $base-border-radius;
       }
 
       .sb-button:not(:first-child) {
