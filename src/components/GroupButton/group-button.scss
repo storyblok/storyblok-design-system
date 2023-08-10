@@ -23,13 +23,13 @@
       }
 
       .sb-button:first-child {
-        border-bottom-left-radius: 5px;
-        border-top-left-radius: 5px;
+        border-bottom-left-radius: $base-border-radius;
+        border-top-left-radius: $base-border-radius;
       }
 
       .sb-button:last-child {
-        border-bottom-right-radius: 5px;
-        border-top-right-radius: 5px;
+        border-bottom-right-radius: $base-border-radius;
+        border-top-right-radius: 5$base-border-radius;
       }
 
       .sb-button:not(:first-child) {

@@ -40,13 +40,13 @@
     &--increase {
       bottom: initial;
       top: 1px;
-      border-radius: 0 5px 0 0;
+      border-radius: 0 $base-border-radius  0 0;
     }
 
     &--decrease {
       bottom: 1px;
       top: initial;
-      border-radius: 0 0 5px;
+      border-radius: 0 0 $base-border-radius;
       border-top: 0.5px solid #dcdfe6;
     }
 
@@ -102,7 +102,7 @@
       border: 1px solid $red;
 
       &:focus {
-        box-shadow: 0 0 0 3px rgb(255, 179, 176, 0.3);
+        box-shadow: 0 0 0 3px rgb(255 179 176 / 30%);
         outline: none;
       }
     }
