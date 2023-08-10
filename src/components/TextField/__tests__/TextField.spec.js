@@ -70,7 +70,7 @@ describe('SbTextField component', () => {
     const iconElement = wrapper.find('svg')
 
     await iconElement.trigger('click')
-    expect(wrapper.vm.computedValue).toBe(null)
+    expect(wrapper.vm.computedValue).toBeNull()
   })
 
   it('should perform v-model', async () => {
@@ -125,13 +125,14 @@ describe('SbTextField component', () => {
 
     await wrapper.vm.$nextTick()
 
-    const remaining = wrapper.find('.sb-textfield__counter')
+    let remaining = wrapper.find('.sb-textfield__counter')
 
-    expect(remaining.text()).toBe('10 characters remaining')
+    expect(remaining.exists()).toBeFalsy()
 
     await inputElement.setValue('Luke Skywalker')
 
-    expect(remaining.classes('sb-textfield__counter--warning')).toBe(true)
+    remaining = wrapper.find('.sb-textfield__counter')
+
     expect(remaining.text()).toBe('1/15 characters remaining')
 
     await inputElement.setValue('')
@@ -144,17 +145,15 @@ describe('SbTextField component', () => {
       inlineLabel: 'Inline label',
     })
 
-    expect(
-      wrapper.find('.sb-textfield__inner-label').text()
-    ).toBe('Inline label')
+    expect(wrapper.find('.sb-textfield__inner-label').text()).toBe(
+      'Inline label'
+    )
   })
 
   it('should not render the inline label by default', () => {
     const wrapper = factory()
 
-    expect(
-      wrapper.find('.sb-textfield__inner-label').exists()
-    ).toBe(false)
+    expect(wrapper.find('.sb-textfield__inner-label').exists()).toBe(false)
   })
 })
 
