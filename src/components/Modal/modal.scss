@@ -68,8 +68,8 @@
     margin-left: -35px;
     padding: 0 35px;
     background-color: $light-50;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: $base-border-radius;
+    border-bottom-right-radius: $base-border-radius;
   }
 
   &-header {

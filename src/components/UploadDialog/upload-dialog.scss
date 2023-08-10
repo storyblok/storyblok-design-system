@@ -6,7 +6,7 @@
   margin: 0 auto;
   background-color: $white;
   border-radius: $base-border-radius;
-  box-shadow: 0 3px 44px 13px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 44px 13px rgb(0 0 0 / 8%);
 
   svg {
     padding-right: $s-4;
@@ -30,19 +30,19 @@
     position: absolute;
     bottom: 0;
     overflow: auto;
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 $base-border-radius $base-border-radius;
   }
 
   .sb-loading__bar::-webkit-progress-bar {
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 $base-border-radius $base-border-radius;
   }
 
   .sb-loading__bar::-webkit-progress-value {
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 $base-border-radius $base-border-radius;
   }
 
   .sb-loading__bar::-moz-progress-bar {
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 $base-border-radius $base-border-radius;
   }
 
   &__time-left {
