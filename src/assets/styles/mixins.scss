@@ -88,6 +88,16 @@
   }
 }
 
+@mixin calcCentered($index: 1, $count: 4) {
+  $button-width: 36px;
+  $spacer-width: 20px;
+  $full-width: $button-width + $spacer-width;
+
+  transform:
+    translateX(calc(-50% - (#{$count} * #{$full-width} - #{$spacer-width}) / 2 + (#{$index} * #{$full-width} +
+    #{$button-width} / 2)));
+}
+
 @mixin arrow {
   &::after {
     content: '';
