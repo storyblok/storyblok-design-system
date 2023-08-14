@@ -124,18 +124,8 @@
       {{ errorMessage }}
     </span>
 
-    <span
-      v-if="showCounter"
-      class="sb-textfield__counter"
-      :class="{ 'sb-textfield__counter--warning': isAlmostRaiseMaxlength }"
-    >
-      <template v-if="!isAlmostRaiseMaxlength">
-        {{ remainingValue }} characters remaining
-      </template>
-
-      <template v-else>
-        {{ remainingValue }}/{{ maxlengthParsed }} characters remaining
-      </template>
+    <span v-if="showCounter" class="sb-textfield__counter">
+      {{ remainingValue }}/{{ maxlengthParsed }} characters remaining
     </span>
   </div>
 </template>
@@ -257,7 +247,11 @@ export default {
 
     showCounter() {
       return (
-        this.maxlength && !this.showError && this.hasValue && this.isOnInput
+        this.maxlength &&
+        this.isAlmostRaiseMaxlength &&
+        !this.showError &&
+        this.hasValue &&
+        this.isOnInput
       )
     },
 

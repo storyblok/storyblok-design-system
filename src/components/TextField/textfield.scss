@@ -251,14 +251,10 @@
   &__counter {
     display: block;
     margin-top: 5px;
-    color: $sb-dark-blue-50;
+    color: $orange;
     font-size: $font-14;
     font-weight: $font-regular;
     letter-spacing: 0;
-
-    &--warning {
-      color: $orange;
-    }
   }
 
   &__required {
