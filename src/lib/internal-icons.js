@@ -769,6 +769,12 @@ const sidebarIcons = {
       </g>
     `,
   },
+  'sidebar-ideas': {
+    viewBox: '0 0 24 24',
+    path: `
+      <path fill="#fff" d="M10 7a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V7Z"/><path fill="#fff" fill-rule="evenodd" d="M6 6a2 2 0 0 0-2 2h4a2 2 0 0 0-2-2Zm2 4H4v5.394a2 2 0 0 0 .336 1.11l.832 1.248a1 1 0 0 0 1.664 0l.832-1.248A2 2 0 0 0 8 15.394V10Z" clip-rule="evenodd" opacity=".57"/><rect width="7" height="2" x="12" y="8" fill="#9DA1AC" rx="1"/><rect width="5" height="2" x="12" y="12" fill="#9DA1AC" rx="1"/>
+    `,
+  },
   'sidebar-quickstart': {
     viewBox: '0 0 24 24',
     path: `

@@ -1,8 +1,14 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines"],
-
-  "plugins": ["stylelint-order", "stylelint-a11y"],
-
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-prettier-scss",
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-recommended-vue"
+  ],
+  "plugins": [
+    "stylelint-order",
+    "@ronilaukkarinen/stylelint-a11y"
+  ],
   "rules": {
     "max-nesting-depth": 3,
     "a11y/selector-pseudo-class-focus": true,
@@ -16,13 +22,18 @@
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": ["global", "export"]
+        "ignorePseudoClasses": [
+          "global",
+          "export"
+        ]
       }
     ],
     "font-family-no-missing-generic-family-keyword": [
       true,
       {
-        "ignoreFontFamilies": ["Roboto"]
+        "ignoreFontFamilies": [
+          "Roboto"
+        ]
       }
     ],
     "no-descending-specificity": null,
@@ -46,16 +57,17 @@
         },
         "rules"
       ],
-      { "severity": "warning" }
+      {
+        "severity": "warning"
+      }
     ],
     "order/properties-order": [
       [
-        "composes", 
-        "@import", 
-        "@extend", 
-        "@mixin", 
+        "composes",
+        "@import",
+        "@extend",
+        "@mixin",
         "@at-root",
-
         "content",
         "position",
         "bottom",
@@ -63,7 +75,6 @@
         "right",
         "top",
         "z-index",
-
         "display",
         "flex",
         "flex-basis",
@@ -99,19 +110,16 @@
         "justify-content",
         "justify-items",
         "justify-self",
-
         "clear",
         "float",
         "object-fit",
-        "object-position", 
+        "object-position",
         "order",
-        "overflow", 
+        "overflow",
         "overflow-scrolling",
-        "overflow-x", 
+        "overflow-x",
         "overflow-y",
         "vertical-align",
-        
-
         "box-sizing",
         "width",
         "height",
@@ -119,7 +127,6 @@
         "max-width",
         "min-height",
         "min-width",
-
         "margin",
         "margin-bottom",
         "margin-left",
@@ -129,9 +136,7 @@
         "padding-bottom",
         "padding-left",
         "padding-right",
-        "padding-top", 
-
-
+        "padding-top",
         "-ms-writing-mode",
         "break-after",
         "break-before",
@@ -191,7 +196,6 @@
         "word-break",
         "word-spacing",
         "word-wrap",
-
         "background",
         "background-attachment",
         "background-clip",
@@ -266,7 +270,6 @@
         "table-layout",
         "user-select",
         "visibility",
-
         "animation",
         "animation-delay",
         "animation-direction",
@@ -283,7 +286,6 @@
         "transition-duration",
         "transition-property",
         "transition-timing-function",
-
         "appearance",
         "clip",
         "clip-path",

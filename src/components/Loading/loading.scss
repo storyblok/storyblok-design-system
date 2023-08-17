@@ -116,7 +116,7 @@
     background: $light-50;
     background: linear-gradient(to right, $light-50 4%, $light 25%, $light-50 36%);
     background-size: 1000px 100%;
-    border-radius: 2px;
+    border-radius: $base-border-radius;
     animation: shimmer 2s infinite linear;
   }
 }
