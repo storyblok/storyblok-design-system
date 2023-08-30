@@ -32,6 +32,7 @@
             :show-tag-count="tagLabels.length > 1"
             :value-tag-count="tagLabels.length - 1"
             :is-disabled="isDisabled"
+            :tags-count-tooltip="tagsCountTooltip"
             @keydown="handleTagKeydown($event, firstTagLabel)"
             @close="removeItem($event, firstTagLabel)"
           />
@@ -402,6 +403,13 @@ export default {
 
     firstTagLabel() {
       return this.tagLabels[0]
+    },
+
+    tagsCountTooltip() {
+      return {
+        label: this.tagLabels?.map(item => item.label).slice(1).join(', '),
+        position: 'top',
+      }
     },
 
   },

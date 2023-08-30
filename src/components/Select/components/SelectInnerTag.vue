@@ -26,7 +26,7 @@
     </template>
   </SbTag>
 
-  <SbTag v-if="showTagCount" type="primary"> +{{ valueTagCount }} </SbTag>
+  <SbTag v-if="showTagCount" v-tooltip="tagsCountTooltip" type="primary"> +{{ valueTagCount }} </SbTag>
 </template>
 
 <script>
@@ -77,6 +77,10 @@ export default {
     isDisabled: {
       type: Boolean,
       default: false,
+    },
+    tagsCountTooltip: {
+      type: Object,
+      required: true,
     },
   },
 
