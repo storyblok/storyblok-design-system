@@ -109,7 +109,6 @@ export default {
     },
 
     computedClasses() {
-      console.log('io', this.$attrs)
       return [
         this.customClass?.length && this.customClass,
         this.fullWidth && 'sb-modal__full-width',

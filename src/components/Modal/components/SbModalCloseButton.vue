@@ -3,7 +3,6 @@
     class="sb-modal__close-button"
     aria-label="Close Modal"
     @click="handleCloseModal"
-    data-testid="close-modal-button"
   >
     <SbIcon name="x" color="primary-dark" />
   </button>
