@@ -21,10 +21,12 @@
       class="sb-minibrowser__input-container-clear"
       @click="clearSearchInputValue"
     >
-      <SbIcon name="x-clear" color="light-gray" />
+      <SbIcon name="x-clear"
+color="light-gray" />
     </button>
 
-    <SbIcon class="sb-minibrowser__input-container-icon" v-bind="icon" />
+    <SbIcon class="sb-minibrowser__input-container-icon"
+v-bind="icon" />
   </div>
 </template>
 
@@ -86,6 +88,10 @@ export default {
     isLoading() {
       this.$refs.input.focus()
     },
+  },
+
+  mounted() {
+    this.$refs.input.focus()
   },
 
   methods: {

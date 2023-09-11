@@ -313,19 +313,13 @@ export default {
     },
   },
 
-  watch: {
-    autofocus(val) {
-      if (val) this.handleAutoFocus()
-    },
-  },
-
   mounted() {
-    if (this.autofocus) this.handleAutoFocus()
+    this.handleAutoFocus()
   },
 
   methods: {
     handleAutoFocus() {
-      this.$nextTick(() => this.$refs.textfield?.focus())
+      this.$refs.textfield?.focus()
     },
 
     handleShowHidePassword() {
