@@ -23,6 +23,7 @@ const Template = (args) => ({
         style="width: 29.4rem"
         :min-date="minDate"
         :max-date="maxDate"
+        :minute-range="minuteRange"
         :disabled-past="disabledPast"
         :inline-label="inlineLabel"
       />
@@ -43,6 +44,7 @@ export default {
     tzTooltip: '',
     minDate: '',
     maxDate: '',
+    minuteRange: 1,
     disabledPast: false,
   },
   argTypes: {
@@ -129,6 +131,15 @@ export default {
         type: 'text',
       },
     },
+    minuteRange: {
+      name: 'minuteRange',
+      description:
+        'The range the minutes should be displayed. WARNING: the range number should be a multiplier of 60, if not it will fallback to 1',
+      defaultValue: 1,
+      control: {
+        type: 'number',
+      },
+    },
     disabledPast: {
       name: 'disabledPast',
       description:
@@ -140,7 +151,8 @@ export default {
     },
     inlineLabel: {
       name: 'inlineLabel',
-      description: 'Use the `inline-label` property to add text inside the field',
+      description:
+        'Use the `inline-label` property to add text inside the field',
       defaultValue: '',
       table: {
         type: { summary: 'String' },
@@ -156,6 +168,10 @@ export default {
 export const Default = Template.bind({})
 
 export const TimeType = Template.bind({})
+
+TimeType.args = {
+  minuteRange: 5,
+}
 
 TimeType.parameters = {
   docs: {
@@ -244,7 +260,7 @@ DisabledDatePast.parameters = {
 export const WithInlineLabel = Template.bind({})
 
 WithInlineLabel.args = {
-  inlineLabel: 'Date:'
+  inlineLabel: 'Date:',
 }
 
 WithInlineLabel.parameters = {

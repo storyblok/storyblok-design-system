@@ -12,6 +12,7 @@
         type="text"
         icon-left="calendar"
         :disabled="disabled"
+        :readonly="isInputReadonly"
         :placeholder="placeholder"
         :model-value="internalValueFormatted"
         :error="invalidDate"
@@ -32,8 +33,7 @@
           {{ tzOffsetLabel }}
         </span>
 
-        <span v-else
-class="sb-datepicker__timezone">
+        <span v-else class="sb-datepicker__timezone">
           {{ tzOffsetLabel }}
         </span>
       </template>
@@ -64,6 +64,7 @@ class="sb-datepicker__timezone">
         :internal-date="internalDate"
         :min-date="minDate"
         :max-date="maxDate"
+        :minute-range="minuteRange"
         :disabled-past="disabledPast"
         @update:model-value="handleComponentsInput"
         @input-minutes="handleMinutesInput"
@@ -187,6 +188,11 @@ export default {
       type: String,
       default: '',
     },
+
+    minuteRange: {
+      type: Number,
+      default: 1,
+    },
   },
 
   emits: ['clear', 'update:modelValue'],
@@ -213,6 +219,9 @@ export default {
   }),
 
   computed: {
+    isInputReadonly() {
+      return this.minuteRange > 1
+    },
     hasDayDisabled() {
       return this.maxDate || this.minDate || this.disabledPast
     },
