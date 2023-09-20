@@ -30,7 +30,7 @@
     "@popperjs/core": "^2.11.8",
     "click-outside-vue3": "^4.0.1",
     "dayjs": "^1.11.7",
-    "lucide-vue-next": "^0.214.0",
+    "lucide-vue-next": "^0.268.0",
     "maska": "^1.5.0",
     "throttle-debounce": "^4.0.1"
   },
