@@ -1,7 +1,5 @@
 <template>
-  <div
-class="sb-pagination" :class="computedClasses"
->
+  <div class="sb-pagination" :class="computedClasses">
     <template v-if="carousel || compact || hasNextPrevBtn">
       <SbPaginationButton
         v-if="hasNextPrevBtn"
@@ -199,13 +197,13 @@ export default {
     handlePreviousPage() {
       if (!this.isFirstDisabled) {
         this.updateValue(this.modelValue - 1)
-        this.$emit('on-previous-page', this.modelValue - 1)
+        this.$emit('previous-page', this.modelValue - 1)
       }
     },
     handleNextPage() {
       if (!this.isLastDisabled) {
         this.updateValue(this.modelValue + 1)
-        this.$emit('on-next-page', this.modelValue + 1)
+        this.$emit('next-page', this.modelValue + 1)
       }
     },
     onPageChange(page) {
