@@ -1,9 +1,9 @@
 <template>
   <div :class="activeClasses">
-    <SbIcon v-if="isRenderIcon" :name="iconName" />
-    <span v-if="hasLabelToRender" class="sb-badge__label"
-      ><slot>{{ activeLabel }}</slot></span
-    >
+    <SbIcon v-if="isRenderIcon" :name="iconName" :data-testid="`${dataTestId}-icon`"/>
+    <span v-if="hasLabelToRender" class="sb-badge__label" :data-testid="`${dataTestid}-active-label`">
+      <slot>{{ activeLabel }}</slot>
+    </span>
     <slot v-else></slot>
   </div>
 </template>
@@ -50,7 +50,7 @@ export default {
     },
   },
 
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
     const isRenderIcon = !props.contract && !isValidNumber(props.number)
     const activeLabel = isValidNumber(props.number) ? props.number : props.label
     const isLabelAllowed = !props.contract && !props.onlyIcon
@@ -67,6 +67,7 @@ export default {
       },
     ])
     const iconName = computed(() => mapIconByTypes[props.type])
+    const dataTestid = computed(() => attrs['data-testid'] || 'sb-badge')
 
     return {
       isRenderIcon,
@@ -74,6 +75,7 @@ export default {
       activeClasses,
       activeLabel,
       iconName,
+      dataTestid
     }
   },
 }

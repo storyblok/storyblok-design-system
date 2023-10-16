@@ -2,7 +2,7 @@
   <div v-tooltip="avatarTooltipAttrs" :class="avatarClass" v-bind="$attrs">
     <template v-if="showImage">
       <slot>
-        <div class="sb-avatar__image" :style="avatarStyle">
+        <div class="sb-avatar__image" :style="avatarStyle" :data-testid="`${dataTestid}-image`">
           <img
             v-show="isImageLoaded"
             :src="src"
@@ -17,23 +17,23 @@
             :color="fallbackAvatarColor"
           />
         </div>
-        <SbBadge v-if="!!status" v-bind="badgeAttrs" />
+        <SbBadge v-if="!!status" v-bind="badgeAttrs" :data-testid="`${dataTestid}-badge`"/>
       </slot>
     </template>
     <template v-else-if="name || friendlyName">
-      <div :class="avatarInitialsClass">
+      <div :class="avatarInitialsClass" :data-testid="`${dataTestid}-initials`">
         <span>{{ initials }}</span>
         <SbBadge v-if="!!status" v-bind="badgeAttrs" />
       </div>
     </template>
     <div v-if="showTextContainer" class="sb-avatar__text-container">
-      <span v-if="isDescriptionTop" :class="descriptionClass">
+      <span v-if="isDescriptionTop" :class="descriptionClass" :data-testid="`${dataTestid}-top-description`">
         {{ description }}
       </span>
-      <span class="sb-avatar__text">
+      <span class="sb-avatar__text" :data-testid="`${dataTestid}-text`">
         {{ friendlyName || name }}
       </span>
-      <span v-if="isDescriptionBottom" :class="descriptionClass">
+      <span v-if="isDescriptionBottom" :class="descriptionClass" :data-testid="`${dataTestid}-bottom-description`">
         {{ description }}
       </span>
     </div>
@@ -132,6 +132,10 @@ export default {
   },
 
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-avatar'
+    },
+
     avatarClass() {
       const avatarSizeClass =
         this.size && this.size !== 'normal' && `sb-avatar--${this.size}`

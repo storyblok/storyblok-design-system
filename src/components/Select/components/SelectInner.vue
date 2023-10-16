@@ -22,7 +22,7 @@
 
     <div v-if="isTagsVisible" class="sb-select-inner__tags">
       <div v-if="showCount">
-        <SelectInnerTag 
+        <SelectInnerTag
             :item="firstTagLabel"
             :item-label="itemLabel"
             :item-value="itemValue"
@@ -33,6 +33,7 @@
             :value-tag-count="tagLabels.length - 1"
             :is-disabled="isDisabled"
             :tags-count-tooltip="tagsCountTooltip"
+            :data-testid="`${dataTestid}-tag-show-count`"
             @keydown="handleTagKeydown($event, firstTagLabel)"
             @close="removeItem($event, firstTagLabel)"
           />
@@ -44,7 +45,7 @@
           :item="tagLabel"
           :remove="(e) => removeItem(e, tagLabel)"
         >
-          <SelectInnerTag 
+          <SelectInnerTag
               :item="tagLabel"
               :item-label="itemLabel"
               :item-value="itemValue"
@@ -52,6 +53,7 @@
               :show-caption="showCaption"
               :is-tag-avatar-visible="isTagAvatarVisible"
               :is-disabled="isDisabled"
+              :data-testid="`${dataTestid}-tag`"
               @keydown="handleTagKeydown($event, tagLabel)"
               @close="removeItem($event, tagLabel)"
             />
@@ -69,6 +71,7 @@
         :style="inlineWidth"
         :placeholder="placeholderLabel"
         :readonly="!filterable"
+        :data-testid="`${dataTestid}-search-input`"
         @focus="handleEmitSearchInput"
       />
     </div>
@@ -79,6 +82,7 @@
         size="small"
         show-name
         :name="innerLabel"
+        :data-testid="`${dataTestid}-avatar`"
       />
     </div>
 
@@ -92,6 +96,7 @@
       :style="inlineWidth"
       :placeholder="placeholderLabel"
       :readonly="!filterable || inline"
+      :data-testid="`${dataTestid}-search-input`"
       @focus="handleEmitSearchInput"
     />
 
@@ -114,6 +119,7 @@
         v-tooltip="{ label: 'Clear selection' }"
         aria-label="Clear all values"
         class="sb-select-inner__clear"
+        :data-testid="`${dataTestid}-clear-button`"
         type="button"
         @keydown="clearAllValuesKeydown"
         @click="clearAllValues"
@@ -122,7 +128,7 @@
       </button>
 
       <slot name="rightIcon">
-        <SbIcon class="sb-select-inner__chevron" :name="rightIconName" />
+        <SbIcon class="sb-select-inner__chevron" :name="rightIconName" :data-testid="`${dataTestid}-right-icon`"/>
       </slot>
     </div>
   </div>
@@ -238,6 +244,10 @@ export default {
   }),
 
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-select-inner'
+    },
+
     searchInputText: {
       get() {
         return this.searchInput

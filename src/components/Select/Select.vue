@@ -34,6 +34,7 @@
       :item-caption="itemCaption"
       :inline-label="inlineLabel"
       :show-count="showCount"
+      :data-testid="`${dataTestid}-inner`"
       @click="handleSelectInnerClick"
       @keydown-enter="handleKeyDownEnter"
       @search="handleSearchInput"
@@ -81,6 +82,7 @@
       :all-option-value="firstOptionValue"
       :first-value-is-all-value="firstValueIsAllValue"
       :is-option-disabled="isOptionDisabled"
+      :data-testid="`${dataTestid}-list`"
       @emit-value="handleEmitValue"
       @option-created="handleOptionCreated"
       @focus-item="focusAtIndex($event)"
@@ -252,6 +254,10 @@ export default {
   }),
 
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-select'
+    },
+
     selectContext() {
       return {
         // controls elements
