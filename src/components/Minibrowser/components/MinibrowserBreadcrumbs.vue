@@ -16,6 +16,7 @@
           :is-active="index === lastIndex"
           v-bind="item"
           @click="navigateTo($event, index)"
+          :data-testid="`${dataTestid}-item-${index}`"
         />
 
         <SbBreadcrumbSeparator
@@ -52,6 +53,10 @@ export default {
   },
 
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-mini-browser-breadcrumbs'
+    },
+
     context() {
       return this.browserContext()
     },
