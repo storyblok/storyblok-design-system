@@ -4,9 +4,9 @@
     :class="computedClasses"
     :width="width"
     :is-sort-icon-always-visible="isSortIconAlwaysVisible"
+    :data-testid="$attrs['data-testid']"
   >
-    <span
-v-if="showLabel" class="sb-data-table__body-cell-label"
+    <span v-if="showLabel" class="sb-data-table__body-cell-label"
       >{{ label }}:</span
     >
     <slot :row="row" />
