@@ -31,6 +31,10 @@ const SbDataTable = {
   },
 
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-data-table'
+    },
+
     allRowsSelected() {
       const selectableItems = this.items.filter(
         (item) => item.selectable !== false
@@ -85,7 +89,9 @@ const SbDataTable = {
       const items = [...this.sortedData]
       const pageChunkIndex = this.pagination.currentPage - 1
       while (items.length > 0) {
-        const pageParam = Object.keys(this.pagination).includes('pageSize') ? 'pageSize' : 'perPage'
+        const pageParam = Object.keys(this.pagination).includes('pageSize')
+          ? 'pageSize'
+          : 'perPage'
         const pageChunk = items.splice(0, this.pagination[pageParam])
         paginatedItems = [...paginatedItems, pageChunk]
       }
@@ -231,12 +237,13 @@ const SbDataTable = {
         })
 
         bodyData = items.map((tableRow, index) => {
-          const columns = children.map((tableData) => {
+          const columns = children.map((tableData, index) => {
             return h(
               SbDataTableColumn,
               {
                 ...tableData.props,
                 row: tableRow,
+                'data-testid': `${this.dataTestid}-column__${index}`,
               },
               tableData.children
             )
@@ -250,6 +257,7 @@ const SbDataTable = {
               row: tableRow,
               selectedRows: this.hasSelectedRowsInList,
               rowId: `${this.rowIdPrefix}-${index}`,
+              'data-testid': `${this.dataTestid}-body-row__${index}`,
             },
             () => [columns]
           )
@@ -260,6 +268,7 @@ const SbDataTable = {
         'table',
         {
           class: 'sb-data-table__container',
+          'data-testid': this.dataTestid,
         },
         [
           this.showHeader
@@ -271,6 +280,7 @@ const SbDataTable = {
                 selectionMode: this.selectionMode,
                 sortedKey: this.sortKey,
                 isSortIconAlwaysVisible: this.isSortIconAlwaysVisible,
+                'data-testid': `${this.dataTestid}-header`,
               })
             : null,
           this.sortedData.length && !this.$slots.default
@@ -279,6 +289,7 @@ const SbDataTable = {
                 headers: this.headers,
                 items: this.sortedData,
                 selectedRows: this.hasSelectedRowsInList,
+                'data-testid': `${this.dataTestid}-body`,
               })
             : null,
           this.$slots.default
@@ -292,6 +303,7 @@ const SbDataTable = {
                       selectionMode: this.selectionMode,
                       sortedKey: this.sortKey,
                       isSortIconAlwaysVisible: this.isSortIconAlwaysVisible,
+                      'data-testid': `${this.dataTestid}-header`,
                     })
                   : null,
                 h('tbody', bodyData),
