@@ -235,6 +235,32 @@
       outline: none;
     }
   }
+
+  &__icons-single-plugin {
+    position: absolute;
+    right: $s-2;
+    top: 20px;
+    display: flex;
+
+    @include mq($from: md) {
+      opacity: 0;
+    }
+
+    &--visible,
+    &:hover,
+    &:focus {
+      background: $white;
+      border-radius: $base-border-radius;
+      opacity: 1;
+    }
+
+    &.sb-select-inner__chevron-dropdown {
+      padding: 6px;
+      color: $black;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+  }
 }
 
 .sb-select-inner--error:hover,
