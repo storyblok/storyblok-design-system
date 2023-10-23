@@ -37,7 +37,7 @@ const SbDataTable = {
 
     allRowsSelected() {
       const selectableItems = this.items.filter(
-        (item) => item.selectable !== false
+        (item) => item.selectable !== false,
       )
 
       if (this.selectionMode === 'single' || !this.selectedRows.length)
@@ -65,8 +65,8 @@ const SbDataTable = {
     hasSelectedRowsInList() {
       return this.items.filter((item) =>
         this.selectedRows.some(
-          (row) => JSON.stringify(item) === JSON.stringify(row)
-        )
+          (row) => JSON.stringify(item) === JSON.stringify(row),
+        ),
       )
     },
 
@@ -245,7 +245,7 @@ const SbDataTable = {
                 row: tableRow,
                 'data-testid': `${this.dataTestid}-column__${index}`,
               },
-              tableData.children
+              tableData.children,
             )
           })
 
@@ -259,7 +259,7 @@ const SbDataTable = {
               rowId: `${this.rowIdPrefix}-${index}`,
               'data-testid': `${this.dataTestid}-body-row__${index}`,
             },
-            () => [columns]
+            () => [columns],
           )
         })
       }
@@ -268,7 +268,7 @@ const SbDataTable = {
         'table',
         {
           class: 'sb-data-table__container',
-          'data-testid': this.dataTestid,
+          'data-testid': this.dataTestid + '-table',
         },
         [
           this.showHeader
@@ -309,7 +309,7 @@ const SbDataTable = {
                 h('tbody', bodyData),
               ]
             : null,
-        ]
+        ],
       )
     }
 
@@ -328,7 +328,7 @@ const SbDataTable = {
         this.hasSelectedRowsInList.length > 0 && renderActions(),
         renderTable(),
         this.isLoading,
-      ]
+      ],
     )
   },
 }
