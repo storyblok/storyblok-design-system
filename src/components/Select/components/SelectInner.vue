@@ -128,7 +128,7 @@
       </button>
 
       <slot name="rightIcon">
-        <SbIcon class="sb-select-inner__chevron" :name="rightIconName" :data-testid="`${dataTestid}-right-icon`"/>
+        <SbIcon :class="{ 'sb-select-inner__chevron': !currentOptionLabel }" :name="rightIconName" :data-testid="`${dataTestid}-right-icon`"/>
       </slot>
     </div>
   </div>
