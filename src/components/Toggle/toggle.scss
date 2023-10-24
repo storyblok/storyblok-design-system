@@ -8,7 +8,6 @@ $toggle-padding: 4px;
   position: relative;
   width: $toggle-width;
   height: $toggle-height;
-  margin-left: 10px;
 }
 
 .sb-toggle--primary .sb-toggle__label {
@@ -39,7 +38,7 @@ $toggle-padding: 4px;
 }
 
 .sb-toggle__native {
-  @include screenReaderOnly();
+  @include screenReaderOnly;
 
   &:checked {
     + .sb-toggle__label {
@@ -52,7 +51,7 @@ $toggle-padding: 4px;
   &:focus,
   &:hover {
     &:not([disabled]) + .sb-toggle__label {
-      box-shadow: 0 0 0 2px rgba(217, 244, 243, 1);
+      box-shadow: 0 0 0 2px rgb(217 244 243 / 100%);
     }
   }
 

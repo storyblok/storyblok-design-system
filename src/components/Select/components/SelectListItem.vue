@@ -12,6 +12,7 @@
       :key="label"
       :src="option.src"
       :name="label"
+      :data-testid="`${dataTestid}-avatar`"
       show-name
       size="small"
     />
@@ -22,22 +23,22 @@
         :model-value="isSelected"
         :disabled="isDisabled"
         non-reactive
+        :data-testid="`${dataTestid}-checkbox`"
       />
 
       <slot name="list-item" :item="option">
-        <span class="sb-select-list__item-icon">
+        <span class="sb-select-list__item-icon" :data-testid="`${dataTestid}-icon`">
           <SbIcon v-if="option.icon" :name="option.icon" />
         </span>
 
-        <span v-if="!showCaption" class="sb-select-list__item-name">{{
-          label
-        }}</span>
+        <span v-if="!showCaption" class="sb-select-list__item-name" :data-testid="`${dataTestid}-label`">
+          {{ label }}
+        </span>
 
         <div v-else class="sb-select-list__item--with-path">
-          <span class="sb-select-list__item-name">{{ label }}</span>
-          <span v-if="showCaption" class="sb-select-list__item-caption">{{
-            path
-          }}</span>
+          <span class="sb-select-list__item-name" :data-testid="`${dataTestid}-label`">{{ label }}</span>
+          <span v-if="showCaption" class="sb-select-list__item-caption" :data-testid="`${dataTestid}-path`">
+            {{ path }}</span>
         </div>
       </slot>
     </template>
@@ -105,6 +106,10 @@ export default {
   emits: ['emit-value'],
 
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-select-list-item'
+    },
+
     isSelected() {
       return isArray(this.inputValue)
         ? this.isValueAlreadyExists()
