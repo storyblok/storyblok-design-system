@@ -128,7 +128,7 @@
       </button>
 
       <slot name="rightIcon">
-        <SbIcon :class="{ 'sb-select-inner__chevron': !currentOptionLabel }" :name="rightIconName" :data-testid="`${dataTestid}-right-icon`"/>
+        <SbIcon class="sb-select-inner__chevron-dropdown" :name="rightIconName" :data-testid="`${dataTestid}-right-icon`"/>
       </slot>
     </div>
   </div>
@@ -562,3 +562,6 @@ export default {
   },
 }
 </script>
+<style lang="scss">
+@import './select-inner';
+</style>
