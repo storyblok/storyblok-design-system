@@ -226,6 +226,7 @@ export default {
     showCaption: false,
     isOptionDisabled: () => false,
     showCount: false,
+    inlineLabel: '',
   },
 }
 
@@ -401,7 +402,8 @@ export const WithMinibrowser = (args) => ({
 
   methods: {
     onSelectItem(item) {
-      if (!item?.items?.length) {
+      const hasChilren = item?.items?.length > 0
+      if (!hasChilren) {
         this.internalValue = item.label
 
         this.$refs.select.hideList()
