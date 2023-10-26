@@ -9,10 +9,11 @@
   >
     <SbMinibrowserSearch
       v-if="!hideSearch"
+      :data-testid="`${dataTestid}-search`"
       :clear-search-label="clearSearchLabel"
       :model-value="searchInput"
       :placeholder="placeholder"
-      @update:modelValue="handleSearchInput"
+      @update:model-value="handleSearchInput"
       @keydown="handleSearchKeydown"
     />
 
@@ -21,6 +22,7 @@
       <SbMinibrowserBreadcrumbs
         v-if="hasBreadcrumbs"
         :items="internalBreadcrumbs"
+        :data-testid="`${dataTestid}-breadcrumbs`"
       />
 
       <template v-if="hasGroupedItems">
@@ -29,6 +31,7 @@
             v-if="!$slots.list"
             :key="index"
             v-bind="groupItem"
+            :data-testid="`${dataTestid}-list`"
           />
 
           <slot name="list" v-bind="groupItem" />
@@ -36,13 +39,21 @@
       </template>
 
       <template v-if="hasOtherItems">
-        <SbMinibrowserList v-if="!$slots.list" :items="otherItems" />
+        <SbMinibrowserList
+          v-if="!$slots.list"
+          :items="otherItems"
+          :data-testid="`${dataTestid}-additional-list`"
+        />
 
         <slot name="list" :items="otherItems" />
       </template>
     </div>
 
-    <p v-if="hasNotFilteredElements" class="sb-minibrowser__not-found">
+    <p
+      v-if="hasNotFilteredElements"
+      class="sb-minibrowser__not-found"
+      :data-testid="`${dataTestid}-not-found-text`"
+    >
       {{ notFoundText }}
     </p>
   </div>
@@ -134,6 +145,10 @@ export default {
   }),
 
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-mini-browser'
+    },
+
     browserContext() {
       return {
         // browser states

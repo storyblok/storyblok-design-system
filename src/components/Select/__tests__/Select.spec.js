@@ -1152,17 +1152,17 @@ describe('SbSelect component', () => {
         inlineLabel: 'Inline label',
       })
 
-      expect(
-        wrapper.find('.sb-select-inner__inline-label').text()
-      ).toBe('Inline label')
+      expect(wrapper.find('.sb-select-inner__inline-label').text()).toBe(
+        'Inline label'
+      )
     })
 
     it('should not render the inline label by default', () => {
       const wrapper = factory()
 
-      expect(
-        wrapper.find('.sb-select-inner__inline-label').exists()
-      ).toBe(false)
+      expect(wrapper.find('.sb-select-inner__inline-label').exists()).toBe(
+        false
+      )
     })
   })
 
@@ -1181,7 +1181,7 @@ describe('SbSelect component', () => {
       const wrapper = factory()
 
       expect(
-        wrapper.find('.sb-select-inner__chevron').exists()
+        wrapper.find('.sb-select-inner__chevron-dropdown').exists()
       ).toBeTruthy()
     })
 
@@ -1190,9 +1190,7 @@ describe('SbSelect component', () => {
         rightIcon: '<span class="custom-right-icon" />',
       })
 
-      expect(
-        wrapper.find('.custom-right-icon').exists()
-      ).toBeTruthy()
+      expect(wrapper.find('.custom-right-icon').exists()).toBeTruthy()
     })
   })
 })

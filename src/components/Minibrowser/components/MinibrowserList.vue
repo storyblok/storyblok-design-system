@@ -1,6 +1,6 @@
 <template>
   <div class="sb-minibrowser__list">
-    <SbMiniBrowserListHeader v-if="isInternalTitleVisible" :title="title" />
+    <SbMiniBrowserListHeader v-if="isInternalTitleVisible" :title="title" :data-testid="`${dataTestid}-header`" />
 
     <slot name="header" :title="title" />
 
@@ -14,6 +14,7 @@
           ...item,
           modelValue: item.value,
         }"
+        :data-testid="`${dataTestid}-item-${key}`"
       />
     </ul>
   </div>
@@ -44,6 +45,10 @@ export default {
   },
 
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-mini-browser-list'
+    },
+
     isInternalTitleVisible() {
       return this.title && !this.$slots.header
     },

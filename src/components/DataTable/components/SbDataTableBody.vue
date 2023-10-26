@@ -1,9 +1,10 @@
 <template>
-  <tbody>
+  <tbody :data-testid="dataTestid">
     <SbDataTableBodyRow
       v-for="(row, i) in items"
       v-bind="{ allowSelection, headers, row, selectedRows }"
       :key="i"
+      :data-testid="`${dataTestid}-row__${i}`"
     />
   </tbody>
 </template>
@@ -22,6 +23,11 @@ export default {
     headers: sharedProps.headers,
     items: sharedProps.items,
     selectedRows: sharedProps.selectedItems,
+  },
+  computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-data-table-body'
+    },
   },
 }
 </script>

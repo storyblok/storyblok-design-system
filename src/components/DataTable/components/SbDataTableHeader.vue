@@ -1,14 +1,23 @@
 <template>
-  <thead>
+  <thead :data-testid="dataTestid">
     <tr>
-      <th v-if="allowSelection && isMultiple" class="sb-data-table__head-cell">
-        <SbCheckbox v-model="isActive" :indeterminate="isIndeterminate" />
+      <th
+        v-if="allowSelection && isMultiple"
+        class="sb-data-table__head -cell"
+        :data-testid="`${dataTestid}-checkbox-cell`"
+      >
+        <SbCheckbox
+          v-model="isActive"
+          :indeterminate="isIndeterminate"
+          :data-testid="`${dataTestid}-checkbox`"
+        />
       </th>
       <SbDataTableHeaderCell
         v-for="(elem, index) in headers"
         :key="index"
         :column="elem"
         :sorted-key="sortedKey"
+        :data-testid="`${dataTestid}-cell__${index}`"
         :is-sort-icon-always-visible="isSortIconAlwaysVisible"
       />
     </tr>
@@ -51,6 +60,10 @@ export default {
   },
 
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-data-table-header'
+    },
+
     context() {
       return this.dataTableContext()
     },
