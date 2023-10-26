@@ -104,8 +104,8 @@ export default {
 
   computed: {
     closeButtonDataTestId() {
-      const dataTestId = this.$attrs['data-testid']
-      return dataTestId ? `${dataTestId}-close-button` : 'sb-modal-close-button'
+      const dataTestid = this.$attrs['data-testid']
+      return dataTestid ? `${dataTestid}-close-button` : 'sb-modal-close-button'
     },
 
     computedClasses() {

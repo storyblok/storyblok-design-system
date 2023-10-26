@@ -1,7 +1,15 @@
 <template>
   <div :class="activeClasses">
-    <SbIcon v-if="isRenderIcon" :name="iconName" :data-testid="`${dataTestId}-icon`"/>
-    <span v-if="hasLabelToRender" class="sb-badge__label" :data-testid="`${dataTestid}-active-label`">
+    <SbIcon
+      v-if="isRenderIcon"
+      :name="iconName"
+      :data-testid="`${dataTestid}-icon`"
+    />
+    <span
+      v-if="hasLabelToRender"
+      class="sb-badge__label"
+      :data-testid="`${dataTestid}-active-label`"
+    >
       <slot>{{ activeLabel }}</slot>
     </span>
     <slot v-else></slot>
@@ -75,7 +83,7 @@ export default {
       activeClasses,
       activeLabel,
       iconName,
-      dataTestid
+      dataTestid,
     }
   },
 }
