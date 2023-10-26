@@ -68,7 +68,7 @@
   .sb-minibrowser {
     display: none;
 
-    @include listPosition();
+    @include listPosition;
   }
 
   &--loading .sb-select-inner__chevron {
@@ -249,7 +249,6 @@
     &--visible,
     &:hover,
     &:focus {
-      background: $white;
       border-radius: $base-border-radius;
       opacity: 1;
     }
@@ -259,6 +258,17 @@
       color: $black;
       border-radius: 0 $base-border-radius $base-border-radius 0;
       cursor: pointer;
+    }
+
+     .multi-link-select-inner__open-story,
+      .sb-select-inner__clear,
+      .sb-select-inner__chevron-dropdown
+     {
+      &--visible,
+      &:hover,
+      &:focus {
+        background-color: $light-50;
+      }
     }
   }
 }
@@ -294,8 +304,8 @@
   padding: 13px 0;
   background-color: $white;
 
-  @include popoverComponent();
-  @include listPosition();
+  @include popoverComponent;
+  @include listPosition;
 
   ul {
     margin: 0;
