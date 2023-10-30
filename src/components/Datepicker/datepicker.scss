@@ -72,7 +72,7 @@
     box-sizing: border-box;
     width: 100%;
 
-    @include popoverComponent();
+    @include popoverComponent;
 
     &.sb-popover {
       max-width: 294px;
@@ -82,30 +82,17 @@
   &__actions {
     display: flex;
     justify-content: flex-end;
+    padding: 10px 15px;
     background-color: $white;
   }
 
   &__action-button {
-    padding: 15px 37.5px;
-    color: $color-primary-dark;
-    font-size: $font-14;
-    font-weight: $font-medium;
-    background-color: $white;
-    border: 0;
-    appearance: none;
-
-    &:hover,
-    &:focus {
-      cursor: pointer;
-    }
-
-    &--primary {
-      color: $white;
-      background-color: $color-primary;
+    &:first-of-type {
+      margin-right: 10px;
     }
   }
 }
-
+ 
 .sb-datepicker-header {
   z-index: 2;
   background-color: $light-50;
@@ -178,8 +165,8 @@
     height: 42px;
     padding: 13px 17px;
 
-    @include flexCentering();
-    @include datepickerItem();
+    @include flexCentering;
+    @include datepickerItem;
 
     &--inactive {
       color: $sb-dark-blue-50;
@@ -190,9 +177,9 @@
 .sb-datepicker-time {
   box-sizing: border-box;
   width: 100%;
+  padding: 0 15px;
 
   &__numbers-container {
-    display: flex;
     background-color: $white;
   }
 
@@ -212,11 +199,31 @@
     border-right: 0;
     cursor: pointer;
 
-    @include flexCentering();
-    @include datepickerItem();
+    @include flexCentering;
+    @include datepickerItem;
 
     &:last-of-type {
       border-bottom: 0;
+    }
+  }
+
+  &__title {
+    color: $color-primary-dark;
+    font-size: $font-14;
+    font-weight: $font-medium;
+  }
+
+  &__selection {
+    display: flex;
+
+    &-spacer {
+      padding: 0 8px;
+      font-size: $font-14;
+      font-weight: $font-medium;
+    }
+
+    .sb-select {
+      width: 75px;
     }
   }
 }
@@ -234,8 +241,8 @@
     padding: 13px 25px;
     text-align: center;
 
-    @include flexCentering();
-    @include datepickerItem();
+    @include flexCentering;
+    @include datepickerItem;
   }
 }
 
@@ -254,7 +261,7 @@
     height: 42px;
     text-align: center;
 
-    @include flexCentering();
-    @include datepickerItem();
+    @include flexCentering;
+    @include datepickerItem;
   }
 }

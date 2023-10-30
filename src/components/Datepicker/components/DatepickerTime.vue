@@ -1,30 +1,29 @@
 <template>
   <div class="sb-datepicker-time">
     <div class="sb-datepicker-time__numbers-container">
-      <div class="sb-datepicker-time__number-column">
-        <div
-          v-for="hour in hours"
-          :key="hour.value"
-          class="sb-datepicker-time__number"
-          data-testid="div-hours"
-          :class="{ 'sb-datepicker-time__number--active': hour.checked }"
-          @click="($evt) => handleHourClick(hour.value)"
-        >
-          {{ hour.value }}
-        </div>
+      <p class="sb-datepicker-time__title">Enter time</p>
+      <div class="sb-datepicker-time__selection">
+        <SbSelect
+          :model-value="internalHour"
+          :options="hours"
+          @update:model-value="handleHourClick"
+        />
+        <p class="sb-datepicker-time__selection-spacer">:</p>
+        <SbSelect
+          :model-value="internalMinutes"
+          :options="minutes"
+          @update:model-value="handleMinuteClick"
+        />
       </div>
 
-      <div class="sb-datepicker-time__number-column">
-        <div
-          v-for="minute in minutes"
-          :key="minute.value"
-          class="sb-datepicker-time__number"
-          data-testid="div-minutes"
-          :class="{ 'sb-datepicker-time__number--active': minute.checked }"
-          @click="($evt) => handleMinuteClick(minute.value)"
-        >
-          {{ minute.value }}
-        </div>
+      <p class="sb-datepicker-time__title">Time zone</p>
+
+      <div class="sb-datepicker-time__selection-timezone">
+        <SbSelect
+          :options="timezones"
+          :model-value="'Etc/GMT+12'"
+          @update:model-value="handleChangeTimezone"
+        />
       </div>
     </div>
   </div>
@@ -32,8 +31,12 @@
 
 <script>
 import dayjs from 'dayjs'
+import SbSelect from '../../Select'
+
 export default {
   name: 'SbDatepickerTime',
+
+  components: { SbSelect },
 
   props: {
     internalDate: {
@@ -43,6 +46,10 @@ export default {
     minuteRange: {
       type: Number,
       default: 1,
+    },
+    timezoneList: {
+      type: Array,
+      default: () => [],
     },
   },
 
@@ -60,6 +67,7 @@ export default {
       while (hour > 0) {
         hour--
         list.push({
+          label: `${hour}`,
           checked: hour === this.internalHour,
           value: hour < 10 ? '0' + hour : hour,
         })
@@ -74,11 +82,22 @@ export default {
       while (min > 0) {
         minuteRange > 1 ? (min = min - minuteRange) : min--
         list.push({
+          label: `${min}`,
           checked: min === this.internalMinutes,
           value: min < 10 ? '0' + min : min,
         })
       }
       return list
+    },
+
+    timezones() {
+      return [
+        {
+          label: 'International Date Line West (UTC-12)',
+          offset: '-12',
+          value: 'Etc/GMT+12',
+        },
+      ]
     },
   },
 
@@ -115,6 +134,10 @@ export default {
     $_syncValue(value) {
       this.internalHour = dayjs(value).hour()
       this.internalMinutes = dayjs(value).minute()
+    },
+
+    handleChangeTimezone(timezone) {
+      console.log(timezone)
     },
   },
 }

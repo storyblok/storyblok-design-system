@@ -45,6 +45,7 @@
       class="sb-datepicker__overlay"
     >
       <SbDatepickerHeader
+        v-if="showDatepickerHeader"
         v-bind="{
           isCalendarView,
           isYearView,
@@ -71,19 +72,20 @@
       />
 
       <div class="sb-datepicker__actions">
-        <button
+        <SbButton
+          label="Cancel"
+          variant="tertiary"
+          size="small"
           class="sb-datepicker__action-button"
           @click="handleCancelAction"
-        >
-          Cancel
-        </button>
-
-        <button
-          class="sb-datepicker__action-button sb-datepicker__action-button--primary"
+        />
+        <SbButton
+          label="Apply"
+          variant="primary"
+          size="small"
+          class="sb-datepicker__action-button"
           @click="handleDoneAction"
-        >
-          Apply
-        </button>
+        />
       </div>
     </SbPopover>
   </div>
@@ -99,6 +101,7 @@ import { ClickOutside, Tooltip } from '../../directives'
 import { includes } from '../../utils'
 import { SbTextField } from '../TextField'
 import { SbPopover } from '../Popover'
+import { SbButton } from '../Button'
 
 import SbDatepickerHeader from './components/DatepickerHeader'
 import SbDatepickerTime from './components/DatepickerTime'
@@ -123,6 +126,7 @@ export default {
     SbDatepickerTime,
     SbDatepickerMonths,
     SbDatepickerYears,
+    SbButton,
   },
 
   directives: {
@@ -320,6 +324,10 @@ export default {
         this.isMinDateDisabled ||
         this.isMaxDateDisabled
       )
+    },
+
+    showDatepickerHeader() {
+      return this.isComponentView !== 'SbDatepickerTime'
     },
   },
 
