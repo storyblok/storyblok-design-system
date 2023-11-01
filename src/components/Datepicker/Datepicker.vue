@@ -67,8 +67,10 @@
         :max-date="maxDate"
         :minute-range="minuteRange"
         :disabled-past="disabledPast"
+        :timezone="internalTimezone"
         @update:model-value="handleComponentsInput"
         @input-minutes="handleMinutesInput"
+        @input-timezone="handleTimezoneInput"
       />
 
       <div class="sb-datepicker__actions">
@@ -204,6 +206,7 @@ export default {
   data: () => ({
     internalDate: dayjs().format(),
     internalValue: '',
+    internalTimezone: '',
     inputElement: null,
     isOverlayVisible: false,
     internalVisualization: INTERNAL_VIEWS.CALENDAR,
@@ -278,7 +281,11 @@ export default {
     },
 
     tzValue() {
-      return this.isTimeDisabled ? 'UTC' : this.timeZone ? this.timeZone : 'UTC'
+      return this.isTimeDisabled
+        ? 'UTC'
+        : this.internalTimezone
+        ? this.internalTimezone
+        : 'UTC'
     },
 
     tzOffsetLabel() {
@@ -291,7 +298,7 @@ export default {
       }
 
       if (
-        !this.timeZone ||
+        !this.internalTimezone ||
         !this.internalValue ||
         this.internalValue.length <= 4
       ) {
@@ -299,7 +306,7 @@ export default {
       }
 
       if (this.tzOffset) return this.tzOffset.replace('GMT', '')
-      return dayjs.tz(this.internalValue, this.timeZone).format('Z')
+      return dayjs.tz(this.internalValue, this.internalTimezone).format('Z')
     },
 
     isDateDisabledPast() {
@@ -349,6 +356,8 @@ export default {
 
   mounted() {
     if (this.internalValue) this.internalDate = this.internalValue
+
+    this.internalTimezone = this.timeZone
 
     this.$nextTick(() => {
       this.inputElement = this.$refs.input && this.$refs.input.$el
@@ -511,6 +520,12 @@ export default {
       if (hasContains && targetIsNode && !this.$el.contains(e.target)) {
         this.handleCancelAction()
       }
+    },
+
+    handleTimezoneInput(timezone) {
+      this.internalTimezone = timezone
+
+      // TODO: EMIT
     },
   },
 }

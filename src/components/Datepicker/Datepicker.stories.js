@@ -40,7 +40,7 @@ export default {
     type: 'datetime',
     disabled: false,
     isoDate: false,
-    timeZone: 'America/Detroit',
+    timeZone: 'America/Sao_Paulo',
     tzTooltip: '',
     minDate: '',
     maxDate: '',
@@ -51,7 +51,7 @@ export default {
     timeZone: {
       name: 'timeZone',
       description:
-        'Use this property to bind the user timezone, for example "America/Detroit". The component will calculate the offset automatically',
+        'Use this property to bind the user timezone, for example "America/Sao_Paulo". The component will calculate the offset automatically',
       defaultValue: 'UTC',
       table: {
         type: { summary: 'String' },

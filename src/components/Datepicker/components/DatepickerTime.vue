@@ -6,22 +6,24 @@
         <SbSelect
           :model-value="internalHour"
           :options="hours"
+          filterable
           @update:model-value="handleHourClick"
         />
         <p class="sb-datepicker-time__selection-spacer">:</p>
         <SbSelect
           :model-value="internalMinutes"
           :options="minutes"
+          filterable
           @update:model-value="handleMinuteClick"
         />
       </div>
-
       <p class="sb-datepicker-time__title">Time zone</p>
 
       <div class="sb-datepicker-time__selection-timezone">
         <SbSelect
-          :options="timezones"
-          :model-value="'Etc/GMT+12'"
+          :options="timezonesList"
+          :model-value="currentTimeZone"
+          filterable
           @update:model-value="handleChangeTimezone"
         />
       </div>
@@ -32,6 +34,7 @@
 <script>
 import dayjs from 'dayjs'
 import SbSelect from '../../Select'
+import { TIMEZONES_LIST } from '../utils'
 
 export default {
   name: 'SbDatepickerTime',
@@ -47,13 +50,13 @@ export default {
       type: Number,
       default: 1,
     },
-    timezoneList: {
-      type: Array,
-      default: () => [],
+    timezone: {
+      type: String,
+      default: null,
     },
   },
 
-  emits: ['update:modelValue', 'input-minutes'],
+  emits: ['update:modelValue', 'input-minutes', 'input-timezone'],
 
   data: () => ({
     internalHour: null,
@@ -66,8 +69,9 @@ export default {
       let hour = 24
       while (hour > 0) {
         hour--
+        const hourLabel = `${hour} ${hour >= 12 ? 'PM' : 'AM'}`
         list.push({
-          label: `${hour}`,
+          label: hourLabel,
           checked: hour === this.internalHour,
           value: hour < 10 ? '0' + hour : hour,
         })
@@ -90,14 +94,16 @@ export default {
       return list
     },
 
-    timezones() {
-      return [
-        {
-          label: 'International Date Line West (UTC-12)',
-          offset: '-12',
-          value: 'Etc/GMT+12',
-        },
-      ]
+    currentTimeZone() {
+      const currentTimeZone = TIMEZONES_LIST.find(
+        (tz) => tz.value === this.timezone
+      )
+
+      return currentTimeZone.label || ''
+    },
+
+    timezonesList() {
+      return TIMEZONES_LIST
     },
   },
 
@@ -137,7 +143,7 @@ export default {
     },
 
     handleChangeTimezone(timezone) {
-      console.log(timezone)
+      this.$emit('input-timezone', timezone)
     },
   },
 }
