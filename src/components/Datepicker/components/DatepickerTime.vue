@@ -99,7 +99,7 @@ export default {
         (tz) => tz.value === this.timezone
       )
 
-      return currentTimeZone.label || ''
+      return currentTimeZone?.label || ''
     },
 
     timezonesList() {
