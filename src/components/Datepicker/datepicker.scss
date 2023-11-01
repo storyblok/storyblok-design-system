@@ -178,10 +178,7 @@
   box-sizing: border-box;
   width: 100%;
   padding: 0 15px;
-
-  &__numbers-container {
-    background-color: $white;
-  }
+  background-color: $white;
 
   &__number-column {
     display: block;
@@ -223,7 +220,19 @@
     }
 
     .sb-select {
-      width: 75px;
+      width: 100px;
+    }
+
+    .sb-select-list {
+      top: calc(100% + 5px);
+      width: 100px;
+      max-height: 135px;
+      min-width: 100px;
+      padding: 0;
+
+      .sb-select-list__item {
+        padding: 7px 10px;
+      }
     }
   }
 }

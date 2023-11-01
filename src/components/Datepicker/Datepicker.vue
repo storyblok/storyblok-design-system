@@ -69,7 +69,6 @@
         :disabled-past="disabledPast"
         :timezone="internalTimezone"
         @update:model-value="handleComponentsInput"
-        @input-minutes="handleMinutesInput"
         @input-timezone="handleTimezoneInput"
       />
 
@@ -468,10 +467,6 @@ export default {
       if (this.isYearView) {
         this.internalVisualization = INTERNAL_VIEWS.MONTH
       }
-    },
-
-    handleMinutesInput() {
-      this.$nextTick(this.handleDoneAction)
     },
 
     handleInputClick() {
