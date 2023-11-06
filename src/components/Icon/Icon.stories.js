@@ -117,7 +117,7 @@ export const StoryblokIcons = (args) => ({
     return { args }
   },
   data: () => ({
-    icons: [...internalIcons],
+    icons: [...Object.keys(internalIcons)],
   }),
   template: `
   <div>

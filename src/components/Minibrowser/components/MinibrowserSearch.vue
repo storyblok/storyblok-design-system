@@ -9,6 +9,7 @@
       ref="input"
       class="sb-textfield__input sb-textfield__input--default sb-textfield__input--ghost-light"
       type="search"
+      :data-testid="`${dataTestid}-input`"
       :value="modelValue"
       :placeholder="placeholder"
       @input="handleSearchInput"
@@ -21,10 +22,12 @@
       class="sb-minibrowser__input-container-clear"
       @click="clearSearchInputValue"
     >
-      <SbIcon name="x-clear" color="light-gray" />
+      <SbIcon name="x-clear"
+color="light-gray" />
     </button>
 
-    <SbIcon class="sb-minibrowser__input-container-icon" v-bind="icon" />
+    <SbIcon class="sb-minibrowser__input-container-icon"
+v-bind="icon" />
   </div>
 </template>
 
@@ -58,6 +61,10 @@ export default {
   emits: ['update:modelValue', 'keydown'],
 
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-mini-browser-search'
+    },
+
     context() {
       return this.browserContext()
     },
@@ -86,6 +93,10 @@ export default {
     isLoading() {
       this.$refs.input.focus()
     },
+  },
+
+  mounted() {
+    this.$refs.input.focus()
   },
 
   methods: {

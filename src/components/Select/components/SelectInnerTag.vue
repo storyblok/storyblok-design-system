@@ -5,6 +5,7 @@
     :closable="!isDisabled"
     @keydown="$emit('keydown', $event, item)"
     @close="$emit('close', $event, item)"
+    :data-testid="`${dataTestid}-tag`"
   >
     <template v-if="item">
       <SbAvatar
@@ -13,8 +14,9 @@
         :src="getSource(item)"
         size="small"
         :name="item[itemLabel]"
+        :data-testid="`${dataTestid}-avatar`"
       />
-      <span class="sb-select-inner__tag" :title="getTagTitle(item)">
+      <span class="sb-select-inner__tag" :title="getTagTitle(item)" :data-testid="`${dataTestid}-inner-tag`">
         <template v-if="showCaption">
           {{ item[itemLabel] }}
           <span v-if="item[itemCaption]">({{ item[itemCaption] }})</span>
@@ -26,7 +28,7 @@
     </template>
   </SbTag>
 
-  <SbTag v-if="showTagCount" type="primary"> +{{ valueTagCount }} </SbTag>
+  <SbTag v-if="showTagCount" v-tooltip="tagsCountTooltip" type="primary"> +{{ valueTagCount }} </SbTag>
 </template>
 
 <script>
@@ -78,9 +80,19 @@ export default {
       type: Boolean,
       default: false,
     },
+    tagsCountTooltip: {
+      type: Object,
+      required: true,
+    },
   },
 
   emits: ['keydown', 'close'],
+
+  computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-select-inner-tag'
+    }
+  },
 
   methods: {
     getSource(label) {

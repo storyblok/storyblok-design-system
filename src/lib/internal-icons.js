@@ -1263,6 +1263,14 @@ const onboardingIcons = {
       </g>
     `,
   },
+
+  'whats-new': {
+    viewBox: '0 0 24 24',
+    path: `
+      <path fill="currentColor" fill-opacity=".57" fill-rule="evenodd" d="M6 6a1 1 0 0 0-2 0v1H3a1 1 0 0 0 0 2h1v1a1 1 0 1 0 2 0V9h1a1 1 0 0 0 0-2H6V6ZM20 14a1 1 0 1 0-2 0v1h-1a1 1 0 1 0 0 2h1v1a1 1 0 1 0 2 0v-1h1a1 1 0 1 0 0-2h-1v-1ZM11 2a1 1 0 1 0-2 0 1 1 0 0 0 0 2 1 1 0 0 0 2 0 1 1 0 1 0 0-2Z" clip-rule="evenodd"/>
+      <path fill="currentColor" fill-rule="evenodd" d="M16.435 7.414a2 2 0 0 0-2.828 0l-.707.707 2.828 2.829.707-.707a2 2 0 0 0 0-2.829ZM7.243 19.435l7.778-7.778-2.829-2.829-7.778 7.779a2 2 0 1 0 2.829 2.828Z" clip-rule="evenodd"/>
+    `,
+  },
 }
 
 const keyboardShortcutIcons = {

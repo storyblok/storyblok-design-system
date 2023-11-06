@@ -1,6 +1,6 @@
 <template>
-  <div class="sb-actions-menu" :class="activeClasses">
-    <span class="sb-actions-menu__rows-selected">{{
+  <div class="sb-actions-menu" :class="activeClasses" data-testid="sb-data-table-actions-menu">
+    <span class="sb-actions-menu__rows-selected" data-testid="sb-data-table-action__selected-items">{{
       labelselectedItemsLength
     }}</span>
     <SbButton

@@ -40,6 +40,10 @@ export default {
       type: String,
       default: null,
     },
+    minuteRange: {
+      type: Number,
+      default: 1,
+    },
   },
 
   emits: ['update:modelValue', 'input-minutes'],
@@ -66,8 +70,9 @@ export default {
     minutes() {
       const list = []
       let min = 60
+      const minuteRange = min % this.minuteRange === 0 ? this.minuteRange : 0
       while (min > 0) {
-        min--
+        minuteRange > 1 ? (min = min - minuteRange) : min--
         list.push({
           checked: min === this.internalMinutes,
           value: min < 10 ? '0' + min : min,

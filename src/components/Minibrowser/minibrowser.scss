@@ -31,7 +31,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   }
 
   &__breadcrumbs {
-    padding: 10px $general-padding 13px;
+    padding: 10px $general-padding 0;
 
     .sb-breadcrumbs__item--active {
       color: $sb-dark-blue-50;

@@ -226,6 +226,7 @@ export default {
     showCaption: false,
     isOptionDisabled: () => false,
     showCount: false,
+    inlineLabel: '',
   },
 }
 
@@ -401,7 +402,8 @@ export const WithMinibrowser = (args) => ({
 
   methods: {
     onSelectItem(item) {
-      if (!item.items.length) {
+      const hasChilren = item?.items?.length > 0
+      if (!hasChilren) {
         this.internalValue = item.label
 
         this.$refs.select.hideList()
@@ -653,7 +655,7 @@ WithOptionDisabled.parameters = {
 export const WithInlineLabel = SelectTemplate.bind({})
 
 WithInlineLabel.args = {
-  inlineLabel: 'Item:'
+  inlineLabel: 'Item:',
 }
 
 WithInlineLabel.parameters = {
@@ -674,7 +676,8 @@ MultipleWithCountLabels.args = {
 MultipleWithCountLabels.parameters = {
   docs: {
     description: {
-      story: 'Use the `show-count` property to group the selected items in a counter.',
+      story:
+        'Use the `show-count` property to group the selected items in a counter.',
     },
   },
 }

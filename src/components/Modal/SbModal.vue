@@ -8,7 +8,12 @@
     :target="modalTarget"
     :disabled="disabledTargetDefault"
   >
-    <SbBlokUi v-if="open" :style="computedBlokUiStyle" :full-width="fullWidth" @mousedown="wrapClose">
+    <SbBlokUi
+      v-if="open"
+      :style="computedBlokUiStyle"
+      :full-width="fullWidth"
+      @mousedown="wrapClose"
+    >
       <div
         ref="modal"
         class="sb-modal"
@@ -17,7 +22,10 @@
         :style="computedStyle"
         v-bind="$attrs"
       >
-        <SbModalCloseButton v-if="showClose" />
+        <SbModalCloseButton
+          v-if="showClose"
+          :data-testid="closeButtonDataTestId"
+        />
         <slot />
       </div>
     </SbBlokUi>
@@ -95,6 +103,11 @@ export default {
   },
 
   computed: {
+    closeButtonDataTestId() {
+      const dataTestid = this.$attrs['data-testid']
+      return dataTestid ? `${dataTestid}-close-button` : 'sb-modal-close-button'
+    },
+
     computedClasses() {
       return [
         this.customClass?.length && this.customClass,
