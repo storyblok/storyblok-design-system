@@ -3,7 +3,7 @@
     <tr>
       <th
         v-if="allowSelection && isMultiple"
-        class="sb-data-table__head -cell"
+        class="sb-data-table__head-cell"
         :data-testid="`${dataTestid}-checkbox-cell`"
       >
         <SbCheckbox
