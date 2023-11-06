@@ -69,6 +69,7 @@
 
   &__overlay {
     z-index: 1;
+    overflow: unset !important;
     box-sizing: border-box;
     width: 100%;
 
@@ -84,6 +85,7 @@
     justify-content: flex-end;
     padding: 10px 15px;
     background-color: $white;
+    border-radius: 8px;
   }
 
   &__action-button {
@@ -224,11 +226,8 @@
     }
 
     .sb-select-list {
-      top: calc(100% + 5px);
       width: 100px;
-      max-height: 135px;
       min-width: 100px;
-      padding: 0;
 
       .sb-select-list__item {
         padding: 7px 10px;

@@ -66,29 +66,30 @@ export default {
   computed: {
     hours() {
       const list = []
-      let hour = 24
-      while (hour > 0) {
-        hour--
+      let hour = 0
+      while (hour < 23) {
+        hour++
         const hourLabel = `${hour} ${hour >= 12 ? 'PM' : 'AM'}`
         list.push({
           label: hourLabel,
           checked: hour === this.internalHour,
-          value: hour < 10 ? '0' + hour : hour,
+          value: hour,
         })
       }
+      console.log('List', list)
       return list
     },
 
     minutes() {
       const list = []
-      let min = 60
+      let min = 0
       const minuteRange = min % this.minuteRange === 0 ? this.minuteRange : 0
-      while (min > 0) {
-        minuteRange > 1 ? (min = min - minuteRange) : min--
+      while (min < 59) {
+        minuteRange > 1 ? (min = min - minuteRange) : min++
         list.push({
           label: `${min}`,
           checked: min === this.internalMinutes,
-          value: min < 10 ? '0' + min : min,
+          value: min < 10 ? `0${min}` : min,
         })
       }
       return list
