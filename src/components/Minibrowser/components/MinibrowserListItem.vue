@@ -20,6 +20,7 @@
       <div class="sb-minibrowser__list-item-container">
         <div class="sb-minibrowser__list-item-name">
           {{ label }}
+          <slot name="meta-icon" />
           <SbIcon
             v-if="isStartpage"
             v-tooltip="{ label: 'Homepage' }"
