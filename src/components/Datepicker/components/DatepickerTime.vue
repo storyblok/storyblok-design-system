@@ -76,7 +76,6 @@ export default {
           value: hour,
         })
       }
-      console.log('List', list)
       return list
     },
 
