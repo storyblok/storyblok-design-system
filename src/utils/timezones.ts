@@ -1,18 +1,3 @@
-/**
- * @type {Array<String>}
- */
-export const datepickerOptions = ['datetime', 'date']
-
-/**
- * @type {Object}
- */
-export const INTERNAL_VIEWS = {
-  CALENDAR: 'CALENDAR',
-  TIME: 'TIME',
-  YEAR: 'YEAR',
-  MONTH: 'MONTH',
-}
-
 export const TIMEZONES_LIST = [
   {
     label: 'International Date Line West (UTC-12)',

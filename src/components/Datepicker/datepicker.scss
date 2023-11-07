@@ -69,11 +69,11 @@
 
   &__overlay {
     z-index: 1;
-    overflow: unset !important;
     box-sizing: border-box;
     width: 100%;
-
-    @include popoverComponent;
+    border: 1px solid $light;
+    border-radius: $base-border-radius;
+    box-shadow: $box-shadow-default;
 
     &.sb-popover {
       max-width: 294px;

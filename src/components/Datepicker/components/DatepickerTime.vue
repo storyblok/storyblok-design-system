@@ -31,10 +31,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import dayjs from 'dayjs'
 import SbSelect from '../../Select'
-import { TIMEZONES_LIST } from '../utils'
+import { TIMEZONES_LIST } from '../../../utils'
 
 export default {
   name: 'SbDatepickerTime',
@@ -59,16 +59,14 @@ export default {
   emits: ['update:modelValue', 'input-minutes', 'input-timezone'],
 
   data: () => ({
-    internalHour: null,
-    internalMinutes: null,
+    internalHour: null as null | string | number,
+    internalMinutes: null as null | string | number,
   }),
 
   computed: {
     hours() {
       const list = []
-      let hour = 0
-      while (hour < 23) {
-        hour++
+      for (let hour = 1; hour < 24; hour++) {
         const hourLabel = `${hour} ${hour >= 12 ? 'PM' : 'AM'}`
         list.push({
           label: hourLabel,
@@ -81,10 +79,7 @@ export default {
 
     minutes() {
       const list = []
-      let min = 0
-      const minuteRange = min % this.minuteRange === 0 ? this.minuteRange : 0
-      while (min < 59) {
-        minuteRange > 1 ? (min = min - minuteRange) : min++
+      for (let min = 0; min < 60; min += this.minuteRange) {
         list.push({
           label: `${min}`,
           checked: min === this.internalMinutes,
@@ -115,12 +110,12 @@ export default {
   },
 
   methods: {
-    handleHourClick(hour) {
+    handleHourClick(hour: string | number) {
       this.internalHour = hour
       this.$_processInput()
     },
 
-    handleMinuteClick(minute) {
+    handleMinuteClick(minute: string | number) {
       this.internalMinutes = minute
       this.$_processInput()
     },
@@ -136,12 +131,12 @@ export default {
       this.$emit('update:modelValue', value)
     },
 
-    $_syncValue(value) {
+    $_syncValue(value: string | number) {
       this.internalHour = dayjs(value).hour()
       this.internalMinutes = dayjs(value).minute()
     },
 
-    handleChangeTimezone(timezone) {
+    handleChangeTimezone(timezone: string) {
       this.$emit('input-timezone', timezone)
     },
   },
