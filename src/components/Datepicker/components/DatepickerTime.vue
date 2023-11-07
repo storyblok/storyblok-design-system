@@ -6,6 +6,7 @@
         <SbSelect
           :model-value="internalHour"
           :options="hours"
+          data-testid="hours-select"
           filterable
           @update:model-value="handleHourClick"
         />
@@ -13,6 +14,7 @@
         <SbSelect
           :model-value="internalMinutes"
           :options="minutes"
+          data-testid="minutes-select"
           filterable
           @update:model-value="handleMinuteClick"
         />
@@ -23,6 +25,7 @@
         <SbSelect
           :options="timezonesList"
           :model-value="currentTimeZone"
+          data-testid="timezone-select"
           filterable
           @update:model-value="handleChangeTimezone"
         />
