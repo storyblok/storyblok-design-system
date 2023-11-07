@@ -216,7 +216,11 @@
     @include datepickerItem();
 
     &:last-of-type {
-      border-bottom: 0;
+      border-bottom: none;
+    }
+
+    &:nth-child(4) {
+      border-bottom: 1px solid $light;
     }
   }
 }
