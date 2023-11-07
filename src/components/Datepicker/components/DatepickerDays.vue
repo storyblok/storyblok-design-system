@@ -11,6 +11,7 @@
         'sb-datepicker-days__item--disabled': dayItem.disabled,
       }"
       @click="($evt) => handleDayClick($evt, dayItem)"
+      :data-testid="dayItem.dataTestid" 
     >
       {{ dayItem.label }}
     </span>
@@ -44,6 +45,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    dataTestid: {
+      type: String,
+      default: null,
+    },
   },
 
   emits: ['update:modelValue'],
@@ -64,6 +69,7 @@ export default {
           checked: false,
           current: false,
           disabled: this.isDisabledDay(dateValue),
+          dataTestid: this.getDataTestid(dateValue),
         })
       }
 
@@ -77,6 +83,7 @@ export default {
           checked: dayjs(this.modelValue).isSame(dateValue, 'day'),
           current: dayjs().isSame(dateValue, 'day'),
           disabled: this.isDisabledDay(dateValue),
+          dataTestid: this.getDataTestid(dateValue),
         })
       }
 
@@ -91,6 +98,7 @@ export default {
           checked: false,
           current: false,
           disabled: this.isDisabledDay(dateValue),
+          dataTestid: this.getDataTestid(dateValue),
         })
       }
 
@@ -133,6 +141,10 @@ export default {
         this.isMinDateDisabled(dateValue) ||
         this.isMaxDateDisabled(dateValue)
       )
+    },
+
+    getDataTestid(date) {
+      return `${this.dataTestid}-day-${dayjs(date).format('MM-DD-YYYY')}`
     },
   },
 }
