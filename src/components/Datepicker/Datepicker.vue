@@ -68,7 +68,7 @@
         :max-date="maxDate"
         :minute-range="minuteRange"
         :disabled-past="disabledPast"
-        :dataTestid="dataTestid"
+        :data-testid="dataTestid"
         @update:model-value="handleComponentsInput"
         @input-minutes="handleMinutesInput"
       />
@@ -76,7 +76,7 @@
       <div class="sb-datepicker__actions">
         <button
           class="sb-datepicker__action-button"
-          :dataTestid="`${dataTestid}-cancel`"
+          :data-testid="`${dataTestid}-cancel`"
           @click="handleCancelAction"
         >
           Cancel
@@ -84,7 +84,7 @@
 
         <button
           class="sb-datepicker__action-button sb-datepicker__action-button--primary"
-          :dataTestid="`${dataTestid}-apply`"
+          :data-testid="`${dataTestid}-apply`"
           @click="handleDoneAction"
         >
           Apply
