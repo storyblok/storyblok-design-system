@@ -9,6 +9,7 @@
       <span
         v-if="inlineLabel"
         class="sb-textfield__inner-label"
+        :data-testid="baseDataTestId"
         @click="$refs.textfield.focus()"
       >
         {{ inlineLabel }}
@@ -69,7 +70,7 @@
           :name="iconLeft"
           class="sb-textfield__icon sb-textfield__icon--left"
           :color="iconColor"
-          data-testid="sb-textfield-icon-click"
+          :data-testid="`${baseDataTestId}-icon-click`"
           @click="handleIconClick"
         />
         <SbTooltip
@@ -83,7 +84,7 @@
             :name="iconLeft"
             class="sb-textfield__icon sb-textfield__icon--left"
             :color="iconColor"
-            data-testid="sb-textfield-icon-click"
+            :data-testid="`${baseDataTestId}-icon-click`"
             @click="handleIconClick"
           />
         </SbTooltip>
@@ -92,7 +93,7 @@
           :name="iconRight"
           class="sb-textfield__icon sb-textfield__icon--right"
           :color="iconColor"
-          data-testid="sb-textfield-icon-click"
+          :data-testid="`${baseDataTestId}-icon-click`"
           @click="handleIconClick"
         />
         <SbIcon
@@ -100,7 +101,7 @@
           :name="internalIconRight"
           class="sb-textfield__icon sb-textfield__icon--right"
           :color="iconColor"
-          data-testid="sb-textfield-icon-click"
+          :data-testid="`${baseDataTestId}-icon-click`"
           @click="handleShowHidePassword"
         />
         <SbIcon
@@ -109,6 +110,7 @@
           name="x-clear"
           :class="computedClearIconClasses"
           :color="iconColor"
+          :data-testid="`${baseDataTestId}-icon-clear`"
           @click="handleClearableClick"
         />
       </div>
@@ -191,6 +193,11 @@ export default {
   ],
 
   computed: {
+    baseDataTestId() {
+      const dataTestid = this.$attrs['data-testid']
+      return dataTestid ? dataTestid : 'sb-textfield'
+    },
+    
     hasValue() {
       return this.computedValue !== null && ('' + this.computedValue).length > 0
     },
