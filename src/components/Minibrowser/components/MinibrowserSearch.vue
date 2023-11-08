@@ -9,6 +9,7 @@
       ref="input"
       class="sb-textfield__input sb-textfield__input--default sb-textfield__input--ghost-light"
       type="search"
+      :data-testid="`${dataTestid}-input`"
       :value="modelValue"
       :placeholder="placeholder"
       @input="handleSearchInput"
@@ -60,6 +61,10 @@ export default {
   emits: ['update:modelValue', 'keydown'],
 
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-mini-browser-search'
+    },
+
     context() {
       return this.browserContext()
     },

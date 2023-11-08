@@ -94,7 +94,8 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     }
 
     &-name {
-      display: block;
+      display: flex;
+      align-items: center;
       color: $color-primary-dark;
       font-size: $font-14;
     }
@@ -120,6 +121,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
       border: transparent;
       border-radius: $base-border-radius;
       cursor: pointer;
+      flex: 0 0 auto;
 
       .sb-icon {
         margin: 0;

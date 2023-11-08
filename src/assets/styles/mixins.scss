@@ -29,7 +29,7 @@
 @mixin popoverComponent {
   overflow: hidden;
   border: 1px solid $light;
-  border-radius: $s-1;
+  border-radius: $base-border-radius;
   box-shadow: $box-shadow-default;
 }
 

@@ -5,14 +5,16 @@
       class="sb-tag__avatar"
       :src="user.avatar"
       :friendly-name="user.friendly_name"
+      :data-testid="`${dataTestid}-avatar`"
     />
-    <span class="sb-tag__label">
+    <span class="sb-tag__label" :data-testid="`${dataTestid}-label`">
       <slot>
         {{ label }}
       </slot>
     </span>
     <SbIcon
       v-if="closable"
+      :data-testid="`${dataTestid}-remove-button`"
       v-tooltip="{
         label: 'Remove',
         position: 'bottom',
@@ -61,7 +63,12 @@ export default {
   },
 
   emits: ['close'],
+
   computed: {
+    dataTestid() {
+      return this.$attrs['data-testid'] || 'sb-tag'
+    },
+
     computedClass() {
       return [
         `sb-tag sb-tag--${this.type}`,
