@@ -4,6 +4,7 @@
       <button
         class="sb-datepicker-header__button"
         :disabled="isDisabled"
+        :data-testid="`${dataTestid}-header-previous-month`"
         @click="handlePreviousClick"
       >
         <SbIcon name="chevron-left" :color="iconColor" />
@@ -30,6 +31,7 @@
       <button
         class="sb-datepicker-header__button"
         :disabled="isDisabled"
+        :data-testid="`${dataTestid}-header-next-month`"  
         @click="handleNextClick"
       >
         <SbIcon name="chevron-right" :color="iconColor" />
@@ -62,6 +64,10 @@ export default {
     isTimeView: Boolean,
     isYearView: Boolean,
     modelValue: {
+      type: String,
+      default: null,
+    },
+    dataTestid: {
       type: String,
       default: null,
     },
