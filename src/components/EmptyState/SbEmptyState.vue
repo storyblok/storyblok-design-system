@@ -27,7 +27,7 @@
         'sb-empty-state__text',
         { 'sb-empty-state__text-wide': wideDescription },
       ]"
-      v-html="description"
+      v-html="sanitizedDescription"
     />
     <div class="sb-empty-state__buttons">
       <SbLink
@@ -87,6 +87,7 @@ import SbLink from '../Link'
 import SbButton from '../Button'
 import SbLoading from '../Loading'
 import SbIllustration from '../Illustration'
+import DOMPurify from 'dompurify'
 
 export default {
   name: 'SbEmptyState',
@@ -218,6 +219,9 @@ export default {
 
     showIcon() {
       return this.iconName.length || this.isSearch
+    },
+    sanitizedDescription() {
+      return DOMPurify.sanitize(this.description)
     },
   },
 }
