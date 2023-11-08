@@ -17,6 +17,7 @@
         :model-value="internalValueFormatted"
         :error="invalidDate"
         :inline-label="inlineLabel"
+        :data-testid="`${baseDataTestId}-input`"
         clearable
         @icon-click="handleInputClick"
         @clear="handleClear"
@@ -51,6 +52,7 @@
           isMonthView,
           isTimeView,
           modelValue: internalDate,
+          dataTestid: baseDataTestId,
         }"
         @previous-month="handlePreviousMonth"
         @next-month="handleNextMonth"
@@ -66,6 +68,7 @@
         :max-date="maxDate"
         :minute-range="minuteRange"
         :disabled-past="disabledPast"
+        :data-testid="baseDataTestId"
         @update:model-value="handleComponentsInput"
         @input-minutes="handleMinutesInput"
       />
@@ -73,6 +76,7 @@
       <div class="sb-datepicker__actions">
         <button
           class="sb-datepicker__action-button"
+          :data-testid="`${baseDataTestId}-cancel`"
           @click="handleCancelAction"
         >
           Cancel
@@ -80,6 +84,7 @@
 
         <button
           class="sb-datepicker__action-button sb-datepicker__action-button--primary"
+          :data-testid="`${baseDataTestId}-apply`"
           @click="handleDoneAction"
         >
           Apply
@@ -219,6 +224,10 @@ export default {
   }),
 
   computed: {
+    baseDataTestId() {
+      const dataTestid = this.$attrs['data-testid']
+      return dataTestid ? dataTestid : 'sb-datepicker'
+    },
     isInputReadonly() {
       return this.minuteRange > 1
     },

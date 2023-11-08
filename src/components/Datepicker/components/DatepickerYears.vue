@@ -5,6 +5,7 @@
       :key="index"
       class="sb-datepicker-years__item"
       :class="{ 'sb-datepicker-years__item--active': yearItem.checked }"
+      :data-testid="yearItem.dataTestid" 
       @click="($evt) => handleYearClick($evt, yearItem.label)"
     >
       {{ yearItem.label }}
@@ -27,6 +28,10 @@ export default {
       type: String,
       default: null,
     },
+    dataTestid: {
+      type: String,
+      default: null,
+    },
   },
 
   emits: ['update:modelValue'],
@@ -45,6 +50,7 @@ export default {
         return {
           label: year,
           checked: year === this.currentYear,
+          dataTestid: `${this.dataTestid}-year-${year}`,
         }
       })
     },
