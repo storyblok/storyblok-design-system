@@ -17,7 +17,7 @@
         :model-value="internalValueFormatted"
         :error="invalidDate"
         :inline-label="inlineLabel"
-        :data-testid="`${baseDataTestId}`"
+        :data-testid="`${baseDataTestId}-input`"
         clearable
         @icon-click="handleInputClick"
         @clear="handleClear"
