@@ -5,7 +5,7 @@
       :key="index"
       class="sb-datepicker-months__item"
       :class="{ 'sb-datepicker-months__item--active': monthItem.checked }"
-      :data-testid="monthItem.dataTestid" 
+      :data-testid="monthItem.dataTestid"
       @click="($evt) => handleMonthClick($evt, monthItem.label)"
     >
       {{ monthItem.label }}

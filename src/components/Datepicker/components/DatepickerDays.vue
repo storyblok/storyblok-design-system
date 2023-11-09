@@ -10,8 +10,8 @@
         'sb-datepicker-days__item--current': dayItem.current,
         'sb-datepicker-days__item--disabled': dayItem.disabled,
       }"
+      :data-testid="dayItem.dataTestid"
       @click="($evt) => handleDayClick($evt, dayItem)"
-      :data-testid="dayItem.dataTestid" 
     >
       {{ dayItem.label }}
     </span>

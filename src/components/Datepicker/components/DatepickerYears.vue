@@ -5,7 +5,7 @@
       :key="index"
       class="sb-datepicker-years__item"
       :class="{ 'sb-datepicker-years__item--active': yearItem.checked }"
-      :data-testid="yearItem.dataTestid" 
+      :data-testid="yearItem.dataTestid"
       @click="($evt) => handleYearClick($evt, yearItem.label)"
     >
       {{ yearItem.label }}

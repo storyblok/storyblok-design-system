@@ -4,8 +4,8 @@
       <button
         class="sb-datepicker-header__button"
         :disabled="isDisabled"
-        @click="handlePreviousClick"
         :data-testid="`${dataTestid}-header-previous-month`"
+        @click="handlePreviousClick"
       >
         <SbIcon name="chevron-left" :color="iconColor" />
       </button>
@@ -31,8 +31,8 @@
       <button
         class="sb-datepicker-header__button"
         :disabled="isDisabled"
-        @click="handleNextClick"
         :data-testid="`${dataTestid}-header-next-month`"
+        @click="handleNextClick"
       >
         <SbIcon name="chevron-right" :color="iconColor" />
       </button>

@@ -9,8 +9,8 @@
       <span
         v-if="inlineLabel"
         class="sb-textfield__inner-label"
-        @click="$refs.textfield.focus()"
         :data-testid="baseDataTestId"
+        @click="$refs.textfield.focus()"
       >
         {{ inlineLabel }}
       </span>
