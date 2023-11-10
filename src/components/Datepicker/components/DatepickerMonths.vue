@@ -5,6 +5,7 @@
       :key="index"
       class="sb-datepicker-months__item"
       :class="{ 'sb-datepicker-months__item--active': monthItem.checked }"
+      :data-testid="monthItem.dataTestid"
       @click="($evt) => handleMonthClick($evt, monthItem.label)"
     >
       {{ monthItem.label }}
@@ -14,6 +15,7 @@
 
 <script>
 import dayjs from 'dayjs'
+
 export default {
   name: 'SbDatepickerMonths',
 
@@ -23,6 +25,10 @@ export default {
       default: null,
     },
     internalDate: {
+      type: String,
+      default: null,
+    },
+    dataTestid: {
       type: String,
       default: null,
     },
@@ -53,6 +59,7 @@ export default {
         return {
           checked: dayjs(this.internalDate).format('MMM') === month,
           label: month,
+          dataTestid: `${this.dataTestid}-month-${month}`,
         }
       })
     },

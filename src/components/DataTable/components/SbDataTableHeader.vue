@@ -1,9 +1,9 @@
 <template>
   <thead :data-testid="dataTestid">
-    <tr>
+    <tr :data-testid="`${dataTestid}-list-column`">
       <th
         v-if="allowSelection && isMultiple"
-        class="sb-data-table__head -cell"
+        class="sb-data-table__head-cell"
         :data-testid="`${dataTestid}-checkbox-cell`"
       >
         <SbCheckbox
