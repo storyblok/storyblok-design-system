@@ -26,6 +26,7 @@ const Template = (args) => ({
         :minute-range="minuteRange"
         :disabled-past="disabledPast"
         :inline-label="inlineLabel"
+        :hour-format="hourFormat"
       />
     </div>
   `,
@@ -46,6 +47,7 @@ export default {
     maxDate: '',
     minuteRange: 1,
     disabledPast: false,
+    hourFormat: '24h',
   },
   argTypes: {
     timeZone: {
@@ -162,6 +164,16 @@ export default {
         type: 'text',
       },
     },
+    hourFormat: {
+      name: 'hourFormat',
+      options: ['24h', '12h'],
+      description:
+        'Use the property `hour-format` to manipulate the time format shown in the timer select, values ​​can be 24h or 12h',
+      defaultValue: '24h',
+      control: {
+        type: 'select',
+      },
+    },
   },
 }
 
@@ -171,6 +183,7 @@ export const TimeType = Template.bind({})
 
 TimeType.args = {
   minuteRange: 5,
+  hourFormat: '24h',
 }
 
 TimeType.parameters = {

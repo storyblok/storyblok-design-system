@@ -57,6 +57,11 @@ export default {
       type: String,
       default: null,
     },
+    hourFormat: {
+      type: String,
+      dafult: () => '24h',
+      validator: (value: string) => ['24h', '12h'].includes(value),
+    },
   },
 
   emits: ['update:modelValue', 'input-minutes', 'input-timezone'],
@@ -69,14 +74,19 @@ export default {
   computed: {
     hours() {
       const list = []
-      for (let hour = 1; hour < 24; hour++) {
-        const hourLabel = `${hour} ${hour >= 12 ? 'PM' : 'AM'}`
+
+      for (let hour = 0; hour < 24; hour++) {
+        const time = hour >= 12 ? 'PM' : 'AM'
+        const formattedHour = `${hour === 0 ? 12 : hour} ${time}`
+        const hourLabel = this.is24hFormat ? hour : formattedHour
+
         list.push({
           label: hourLabel,
           checked: hour === this.internalHour,
           value: hour,
         })
       }
+
       return list
     },
 
@@ -102,6 +112,10 @@ export default {
 
     timezonesList() {
       return TIMEZONES_LIST
+    },
+
+    is24hFormat() {
+      return this.hourFormat === '24h'
     },
   },
 

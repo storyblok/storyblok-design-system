@@ -68,6 +68,7 @@
         :minute-range="minuteRange"
         :disabled-past="disabledPast"
         :timezone="internalTimezone"
+        :hour-format="'12h'"
         @update:model-value="handleComponentsInput"
         @input-timezone="handleTimezoneInput"
       />
