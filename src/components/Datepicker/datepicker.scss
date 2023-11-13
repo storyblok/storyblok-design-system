@@ -71,6 +71,7 @@
     z-index: 1;
     box-sizing: border-box;
     width: 100%;
+    background-color: $white;
     border: 1px solid $light;
     border-radius: $base-border-radius;
     box-shadow: $box-shadow-default;
@@ -179,8 +180,9 @@
 .sb-datepicker-time {
   box-sizing: border-box;
   width: 100%;
-  padding: 0 15px;
+  padding: 15px;
   background-color: $white;
+  border-radius: $base-border-radius;
 
   &__number-column {
     display: block;
@@ -207,6 +209,7 @@
   }
 
   &__title {
+    margin: 10px 0;
     color: $color-primary-dark;
     font-size: $font-14;
     font-weight: $font-medium;
@@ -216,7 +219,7 @@
     display: flex;
 
     &-spacer {
-      padding: 0 8px;
+      margin: auto 8px;
       font-size: $font-14;
       font-weight: $font-medium;
     }
