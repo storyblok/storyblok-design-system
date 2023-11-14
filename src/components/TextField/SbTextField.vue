@@ -197,7 +197,7 @@ export default {
       const dataTestid = this.$attrs['data-testid']
       return dataTestid ? dataTestid : 'sb-textfield'
     },
-    
+
     hasValue() {
       return this.computedValue !== null && ('' + this.computedValue).length > 0
     },
