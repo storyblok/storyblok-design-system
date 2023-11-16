@@ -7,17 +7,31 @@
           :model-value="internalHour"
           :options="hours"
           data-testid="hours-select"
-          filterable
           @update:model-value="handleHourClick"
-        />
+        >
+          <template #innerSelect>
+            <span
+              class="sb-select-inner__value sb-select-inner__value-filterable"
+            >
+              {{ hourLabel() }}
+            </span>
+          </template>
+        </SbSelect>
         <p class="sb-datepicker-time__selection-spacer">:</p>
         <SbSelect
           :model-value="internalMinutes"
           :options="minutes"
           data-testid="minutes-select"
-          filterable
           @update:model-value="handleMinuteClick"
-        />
+        >
+          <template #innerSelect>
+            <span
+              class="sb-select-inner__value sb-select-inner__value-filterable"
+            >
+              {{ minutesLabel() }}
+            </span>
+          </template>
+        </SbSelect>
       </div>
       <p class="sb-datepicker-time__title">Time zone</p>
 
@@ -76,15 +90,22 @@ export default {
       const list = []
 
       for (let hour = 0; hour < 24; hour++) {
-        const time = hour >= 12 ? 'PM' : 'AM'
-        const formattedHour = `${hour === 0 ? 12 : hour} ${time}`
-        const hourLabel = this.is24hFormat ? hour : formattedHour
-
-        list.push({
-          label: hourLabel,
-          checked: hour === this.internalHour,
-          value: hour,
-        })
+        if (this.is24hFormat) {
+          const hourLabel = `${hour.toString().padStart(2, '0')}`
+          list.push({
+            label: hourLabel,
+            checked: hour === this.internalHour,
+            value: hour,
+          })
+        } else {
+          let hour12h = (hour % 12 || 12).toString().padStart(2, '0')
+          const period = hour < 12 ? 'AM' : 'PM'
+          list.push({
+            label: `${hour12h} ${period}`,
+            checked: hour === this.internalHour,
+            value: hour,
+          })
+        }
       }
 
       return list
@@ -93,10 +114,11 @@ export default {
     minutes() {
       const list = []
       for (let min = 0; min < 60; min += this.minuteRange) {
+        const minLabel = `${min.toString().padStart(2, '0')}`
         list.push({
-          label: `${min}`,
+          label: minLabel,
           checked: min === this.internalMinutes,
-          value: min < 10 ? `0${min}` : min,
+          value: `${min}`,
         })
       }
       return list
@@ -155,6 +177,20 @@ export default {
 
     handleChangeTimezone(timezone: string) {
       this.$emit('input-timezone', timezone)
+    },
+
+    minutesLabel(): string {
+      return (
+        this.minutes.find((min) => min.value === `${this.internalMinutes}` || 0)
+          ?.label || '00'
+      )
+    },
+
+    hourLabel(): string {
+      return (
+        this.hours.find((hour) => hour.value === this.internalHour || 0)
+          ?.label || '00'
+      )
     },
   },
 }

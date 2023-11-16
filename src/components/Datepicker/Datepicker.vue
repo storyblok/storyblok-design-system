@@ -68,7 +68,7 @@
         :minute-range="minuteRange"
         :disabled-past="disabledPast"
         :timezone="internalTimezone"
-        :hour-format="'12h'"
+        :hour-format="hourFormat"
         @update:model-value="handleComponentsInput"
         @input-timezone="handleTimezoneInput"
       />
@@ -198,6 +198,12 @@ export default {
     minuteRange: {
       type: Number,
       default: 1,
+    },
+
+    hourFormat: {
+      type: String,
+      dafult: () => '24h',
+      validator: (value) => ['24h', '12h'].includes(value),
     },
   },
 
