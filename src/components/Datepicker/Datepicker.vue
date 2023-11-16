@@ -45,6 +45,7 @@
       class="sb-datepicker__overlay"
     >
       <SbDatepickerHeader
+        v-if="showDatepickerHeader"
         v-bind="{
           isCalendarView,
           isYearView,
@@ -66,24 +67,27 @@
         :max-date="maxDate"
         :minute-range="minuteRange"
         :disabled-past="disabledPast"
+        :timezone="internalTimezone"
+        :hour-format="hourFormat"
         @update:model-value="handleComponentsInput"
-        @input-minutes="handleMinutesInput"
+        @input-timezone="handleTimezoneInput"
       />
 
       <div class="sb-datepicker__actions">
-        <button
+        <SbButton
+          label="Cancel"
+          variant="tertiary"
+          size="small"
           class="sb-datepicker__action-button"
           @click="handleCancelAction"
-        >
-          Cancel
-        </button>
-
-        <button
-          class="sb-datepicker__action-button sb-datepicker__action-button--primary"
+        />
+        <SbButton
+          label="Apply"
+          variant="primary"
+          size="small"
+          class="sb-datepicker__action-button"
           @click="handleDoneAction"
-        >
-          Apply
-        </button>
+        />
       </div>
     </SbPopover>
   </div>
@@ -99,6 +103,7 @@ import { ClickOutside, Tooltip } from '../../directives'
 import { includes } from '../../utils'
 import { SbTextField } from '../TextField'
 import { SbPopover } from '../Popover'
+import { SbButton } from '../Button'
 
 import SbDatepickerHeader from './components/DatepickerHeader'
 import SbDatepickerTime from './components/DatepickerTime'
@@ -123,6 +128,7 @@ export default {
     SbDatepickerTime,
     SbDatepickerMonths,
     SbDatepickerYears,
+    SbButton,
   },
 
   directives: {
@@ -193,6 +199,12 @@ export default {
       type: Number,
       default: 1,
     },
+
+    hourFormat: {
+      type: String,
+      dafult: () => '24h',
+      validator: (value) => ['24h', '12h'].includes(value),
+    },
   },
 
   emits: ['clear', 'update:modelValue'],
@@ -200,6 +212,7 @@ export default {
   data: () => ({
     internalDate: dayjs().format(),
     internalValue: '',
+    internalTimezone: '',
     inputElement: null,
     isOverlayVisible: false,
     internalVisualization: INTERNAL_VIEWS.CALENDAR,
@@ -274,7 +287,11 @@ export default {
     },
 
     tzValue() {
-      return this.isTimeDisabled ? 'UTC' : this.timeZone ? this.timeZone : 'UTC'
+      return this.isTimeDisabled
+        ? 'UTC'
+        : this.internalTimezone
+        ? this.internalTimezone
+        : 'UTC'
     },
 
     tzOffsetLabel() {
@@ -287,7 +304,7 @@ export default {
       }
 
       if (
-        !this.timeZone ||
+        !this.internalTimezone ||
         !this.internalValue ||
         this.internalValue.length <= 4
       ) {
@@ -295,7 +312,7 @@ export default {
       }
 
       if (this.tzOffset) return this.tzOffset.replace('GMT', '')
-      return dayjs.tz(this.internalValue, this.timeZone).format('Z')
+      return dayjs.tz(this.internalValue, this.internalTimezone).format('Z')
     },
 
     isDateDisabledPast() {
@@ -321,6 +338,10 @@ export default {
         this.isMaxDateDisabled
       )
     },
+
+    showDatepickerHeader() {
+      return this.isComponentView !== 'SbDatepickerTime'
+    },
   },
 
   watch: {
@@ -341,6 +362,8 @@ export default {
 
   mounted() {
     if (this.internalValue) this.internalDate = this.internalValue
+
+    this.internalTimezone = this.timeZone
 
     this.$nextTick(() => {
       this.inputElement = this.$refs.input && this.$refs.input.$el
@@ -453,10 +476,6 @@ export default {
       }
     },
 
-    handleMinutesInput() {
-      this.$nextTick(this.handleDoneAction)
-    },
-
     handleInputClick() {
       if (this.disabled) {
         return
@@ -503,6 +522,12 @@ export default {
       if (hasContains && targetIsNode && !this.$el.contains(e.target)) {
         this.handleCancelAction()
       }
+    },
+
+    handleTimezoneInput(timezone) {
+      this.internalTimezone = timezone
+
+      // TODO: EMIT
     },
   },
 }

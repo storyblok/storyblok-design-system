@@ -1,12 +1,12 @@
 /**
  * @type {Array<String>}
  */
-export const datepickerOptions = ['datetime', 'date']
+export const datepickerOptions: Array<string> = ['datetime', 'date']
 
 /**
  * @type {Object}
  */
-export const INTERNAL_VIEWS = {
+export const INTERNAL_VIEWS: object = {
   CALENDAR: 'CALENDAR',
   TIME: 'TIME',
   YEAR: 'YEAR',
