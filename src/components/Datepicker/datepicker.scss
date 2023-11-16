@@ -108,25 +108,33 @@
   &__title {
     flex: 1;
     margin: 0;
-    padding: 15px 0;
+    padding: 20px 15px;
     color: $color-primary-dark;
     font-size: $font-14;
     font-weight: $font-medium;
-    text-align: center;
+    text-align: left;
 
     span {
       cursor: pointer;
     }
   }
 
-  &__button {
-    padding: $s-2 14px;
+  .sb-button--tertiary:focus {
+    outline: unset;
+  }
+
+  .sb-button--has-icon {
+    min-height: 26px;
+    padding: 0;
     background-color: transparent;
     border: 0;
-    cursor: pointer;
 
-    &:disabled {
-      cursor: not-allowed;
+    &:last-of-type {
+      margin: 0 5px;
+    }
+
+    .sb-icon {
+      margin-right: 0;
     }
   }
 
