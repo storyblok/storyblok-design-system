@@ -1271,6 +1271,21 @@ const onboardingIcons = {
       <path fill="currentColor" fill-rule="evenodd" d="M16.435 7.414a2 2 0 0 0-2.828 0l-.707.707 2.828 2.829.707-.707a2 2 0 0 0 0-2.829ZM7.243 19.435l7.778-7.778-2.829-2.829-7.778 7.779a2 2 0 1 0 2.829 2.828Z" clip-rule="evenodd"/>
     `,
   },
+
+  'circle-check': {
+    viewBox: '0 0 20 20',
+    path: `
+      <g clip-path="url(#clip0_2247_10827)" fill="none">
+        <path d="M10 18.3333C14.6025 18.3333 18.3334 14.6025 18.3334 9.99996C18.3334 5.39746 14.6025 1.66663 10 1.66663C5.39752 1.66663 1.66669 5.39746 1.66669 9.99996C1.66669 14.6025 5.39752 18.3333 10 18.3333Z" stroke="#395ECE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M7.5 10L9.16667 11.6667L12.5 8.33337" stroke="#395ECE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <defs>
+         <clipPath id="clip0_2247_10827">
+            <rect width="20" height="20" />
+         </clipPath>
+      </defs>
+    `,
+  },
 }
 
 export default {
