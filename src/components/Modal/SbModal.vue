@@ -151,6 +151,9 @@ export default {
 
   created() {
     this.$_createPortalInstance()
+    if (this.isOpen) {
+      this.handleCloseModalByPressingEsc()
+    }
   },
 
   beforeUnmount() {

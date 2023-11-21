@@ -31,7 +31,7 @@
       <button
         class="sb-datepicker-header__button"
         :disabled="isDisabled"
-        :data-testid="`${dataTestid}-header-next-month`"  
+        :data-testid="`${dataTestid}-header-next-month`"
         @click="handleNextClick"
       >
         <SbIcon name="chevron-right" :color="iconColor" />

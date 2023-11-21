@@ -142,7 +142,7 @@ export default {
         this.isMaxDateDisabled(dateValue)
       )
     },
-    
+
     getDataTestid(date) {
       return `${this.dataTestid}-day-${dayjs(date).format('MM-DD-YYYY')}`
     },
