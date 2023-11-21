@@ -38,11 +38,6 @@ $font-size: (
   '32': $font-32,
 );
 
-@each $name, $pair in $font-size {
-  .font-#{$name} {
-    font-size: $pair !important;
-  }
-}
 
 // -- Font weight helper classes
 // E.g. .font-thin, .font-light, ..
@@ -53,11 +48,6 @@ $font-weight: (
   'bold':     $font-bold,
 );
 
-@each $name, $pair in $font-weight {
-  .font-#{$name} {
-    font-weight: $pair !important;
-  }
-}
 
 // WILL BE REMOVED SOON
 $heading-2xl: 3.2rem; // will be removed, use font-32

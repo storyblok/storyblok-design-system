@@ -1,0 +1,73 @@
+@each $name, $pair in $font-size {
+  .font-#{$name} {
+    font-size: $pair !important;
+  }
+}
+
+@each $name, $pair in $font-weight {
+  .font-#{$name} {
+    font-weight: $pair !important;
+  }
+}
+
+@each $name, $value in $sizes {
+  .sb-m-#{$name} {
+    margin: $value !important;
+  }
+
+  .sb-mt-#{$name} {
+    margin-top: $value !important;
+  }
+
+  .sb-mr-#{$name} {
+    margin-right: $value !important;
+  }
+
+  .sb-mb-#{$name} {
+    margin-bottom: $value !important;
+  }
+
+  .sb-ml-#{$name} {
+    margin-left: $value !important;
+  }
+
+  .sb-mx-#{$name} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+
+  .sb-my-#{$name} {
+    margin-bottom: $value !important;
+    margin-top: $value !important;
+  }
+
+  .sb-p-#{$name} {
+    margin: $value !important;
+  }
+
+  .sb-pt-#{$name} {
+    margin-top: $value !important;
+  }
+
+  .sb-pr-#{$name} {
+    margin-right: $value !important;
+  }
+
+  .sb-pb-#{$name} {
+    margin-bottom: $value !important;
+  }
+
+  .sb-pl-#{$name} {
+    margin-left: $value !important;
+  }
+
+  .sb-px-#{$name} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+
+  .sb-py-#{$name} {
+    margin-bottom: $value !important;
+    margin-top: $value !important;
+  }
+}
