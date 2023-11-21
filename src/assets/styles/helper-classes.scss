@@ -1,16 +1,20 @@
-@each $name, $pair in $font-size {
+@use './typography' as typography;
+@use './sizes' as sizes;
+@use './colors' as colors;
+
+@each $name, $pair in typography.$font-size {
   .font-#{$name} {
     font-size: $pair !important;
   }
 }
 
-@each $name, $pair in $font-weight {
+@each $name, $pair in typography.$font-weight {
   .font-#{$name} {
     font-weight: $pair !important;
   }
 }
 
-@each $name, $value in $sizes {
+@each $name, $value in sizes.$sizes {
   .sb-m-#{$name} {
     margin: $value !important;
   }
@@ -69,5 +73,15 @@
   .sb-py-#{$name} {
     margin-bottom: $value !important;
     margin-top: $value !important;
+  }
+}
+
+@each $name, $pair in colors.$colors {
+  .bg-#{$name} {
+    background-color: $pair !important;
+  }
+
+  .text-#{$name} {
+    color: $pair !important;
   }
 }
