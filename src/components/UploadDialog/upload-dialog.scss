@@ -34,15 +34,15 @@
   }
 
   .sb-loading__bar::-webkit-progress-bar {
-    border-radius: 0 0 $base-border-radius $base-border-radius;
+    border-radius: 0 0 0 $base-border-radius;
   }
 
   .sb-loading__bar::-webkit-progress-value {
-    border-radius: 0 0 $base-border-radius $base-border-radius;
+    border-radius: 0 0 0 $base-border-radius;
   }
 
   .sb-loading__bar::-moz-progress-bar {
-    border-radius: 0 0 $base-border-radius $base-border-radius;
+    border-radius: 0 0 0 $base-border-radius;
   }
 
   &__time-left {

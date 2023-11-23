@@ -57,7 +57,7 @@ export default {
       description:
         'The `percentageValue` property defines the percentage of file that being uploaded',
       control: {
-        type: 'text',
+        type: 'number',
       },
     },
     totalFiles: {
@@ -65,7 +65,7 @@ export default {
       description:
         'The `totalFiles` property defines the total of files to upload',
       control: {
-        type: 'text',
+        type: 'number',
       },
     },
     timeLeft: {
@@ -73,7 +73,7 @@ export default {
       description:
         'The `timeLeft` property defines the time to left (in seconds) of actual file that being uploaded',
       control: {
-        type: 'text',
+        type: 'number',
       },
     },
   },
