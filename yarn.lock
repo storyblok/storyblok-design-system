@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 8
+  version: 6
   cacheKey: 10
 
 "@ampproject/remapping@npm:^2.2.0":
@@ -42,6 +42,16 @@ __metadata:
     "@babel/highlight": "npm:^7.22.13"
     chalk: "npm:^2.4.2"
   checksum: bf6ae6ba3a510adfda6a211b4a89b0f1c98ca1352b745c077d113f3b568141e0d44ce750b9ac2a80143ba5c8c4080c50fcfc1aa11d86e194ea6785f62520eb5a
+  languageName: node
+  linkType: hard
+
+"@babel/code-frame@npm:^7.23.4":
+  version: 7.23.4
+  resolution: "@babel/code-frame@npm:7.23.4"
+  dependencies:
+    "@babel/highlight": ^7.23.4
+    chalk: ^2.4.2
+  checksum: 8/29999d08c3dbd803f3c296dae7f4f40af1f9e381d6bbc76e5a75327c4b8b023bcb2e209843d292f5d71c3b5c845df1da959d415ed862d6a68e0ad6c5c9622d37
   languageName: node
   linkType: hard
 
@@ -140,6 +150,18 @@ __metadata:
     "@jridgewell/trace-mapping": "npm:^0.3.17"
     jsesc: "npm:^2.5.1"
   checksum: 0f815d275cb3de97ec4724b959b3c7a67b1cde1861eda6612b50c6ba22565f12536d1f004dd48e7bad5e059751950265c6ff546ef48b7a719a11d7b512f1e29d
+  languageName: node
+  linkType: hard
+
+"@babel/generator@npm:^7.23.4":
+  version: 7.23.4
+  resolution: "@babel/generator@npm:7.23.4"
+  dependencies:
+    "@babel/types": ^7.23.4
+    "@jridgewell/gen-mapping": ^0.3.2
+    "@jridgewell/trace-mapping": ^0.3.17
+    jsesc: ^2.5.1
+  checksum: 8/7403717002584eaeb58559f4d0de19b79e924ef2735711278f7cb5206d081428bf3960578566d6fa4102b7b30800d44f70acffea5ecef83f0cb62361c2a23062
   languageName: node
   linkType: hard
 
@@ -308,15 +330,6 @@ __metadata:
     "@babel/template": "npm:^7.22.15"
     "@babel/types": "npm:^7.23.0"
   checksum: 7b2ae024cd7a09f19817daf99e0153b3bf2bc4ab344e197e8d13623d5e36117ed0b110914bc248faa64e8ccd3e97971ec7b41cc6fd6163a2b980220c58dcdf6d
-  languageName: node
-  linkType: hard
-
-"@babel/helper-hoist-variables@npm:^7.18.6":
-  version: 7.18.6
-  resolution: "@babel/helper-hoist-variables@npm:7.18.6"
-  dependencies:
-    "@babel/types": "npm:^7.18.6"
-  checksum: fd9c35bb435fda802bf9ff7b6f2df06308a21277c6dec2120a35b09f9de68f68a33972e2c15505c1a1a04b36ec64c9ace97d4a9e26d6097b76b4396b7c5fa20f
   languageName: node
   linkType: hard
 
@@ -536,6 +549,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/helper-string-parser@npm:^7.23.4":
+  version: 7.23.4
+  resolution: "@babel/helper-string-parser@npm:7.23.4"
+  checksum: 8/c0641144cf1a7e7dc93f3d5f16d5327465b6cf5d036b48be61ecba41e1eece161b48f46b7f960951b67f8c3533ce506b16dece576baef4d8b3b49f8c65410f90
+  languageName: node
+  linkType: hard
+
 "@babel/helper-validator-identifier@npm:^7.18.6, @babel/helper-validator-identifier@npm:^7.19.1":
   version: 7.19.1
   resolution: "@babel/helper-validator-identifier@npm:7.19.1"
@@ -619,7 +639,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.13.16, @babel/parser@npm:^7.14.7, @babel/parser@npm:^7.16.4, @babel/parser@npm:^7.20.15, @babel/parser@npm:^7.20.7, @babel/parser@npm:^7.21.3, @babel/parser@npm:^7.21.4, @babel/parser@npm:^7.21.5, @babel/parser@npm:^7.21.8, @babel/parser@npm:^7.6.0, @babel/parser@npm:^7.9.6":
+"@babel/highlight@npm:^7.23.4":
+  version: 7.23.4
+  resolution: "@babel/highlight@npm:7.23.4"
+  dependencies:
+    "@babel/helper-validator-identifier": ^7.22.20
+    chalk: ^2.4.2
+    js-tokens: ^4.0.0
+  checksum: 8/643acecdc235f87d925979a979b539a5d7d1f31ae7db8d89047269082694122d11aa85351304c9c978ceeb6d250591ccadb06c366f358ccee08bb9c122476b89
+  languageName: node
+  linkType: hard
+
+"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.13.16, @babel/parser@npm:^7.14.7, @babel/parser@npm:^7.16.4, @babel/parser@npm:^7.20.15, @babel/parser@npm:^7.20.7, @babel/parser@npm:^7.21.3, @babel/parser@npm:^7.21.4, @babel/parser@npm:^7.21.8, @babel/parser@npm:^7.6.0, @babel/parser@npm:^7.9.6":
   version: 7.21.8
   resolution: "@babel/parser@npm:7.21.8"
   bin:
@@ -634,6 +665,15 @@ __metadata:
   bin:
     parser: ./bin/babel-parser.js
   checksum: 284c22ec1d939df66fb94929959d2160c30df1ba5778f212668dfb2f4aa8ac176f628c6073a2c9ea7ab2a1701d2ebdafb0dfb173dc737db9dc6708d5d2f49e0a
+  languageName: node
+  linkType: hard
+
+"@babel/parser@npm:^7.23.4":
+  version: 7.23.4
+  resolution: "@babel/parser@npm:7.23.4"
+  bin:
+    parser: ./bin/babel-parser.js
+  checksum: 8/1d90e17d966085b8ea12f357ffcc76568969364481254f0ae3e7ed579e9421d31c7fd3876ccb3b215a5b2ada48251b0c2d0f21ba225ee194f0e18295b49085f2
   languageName: node
   linkType: hard
 
@@ -1823,39 +1863,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/traverse@npm:^7.21.5":
-  version: 7.21.5
-  resolution: "@babel/traverse@npm:7.21.5"
+"@babel/traverse@npm:^7.21.5, @babel/traverse@npm:^7.22.8, @babel/traverse@npm:^7.23.2, @babel/traverse@npm:^7.23.3":
+  version: 7.23.4
+  resolution: "@babel/traverse@npm:7.23.4"
   dependencies:
-    "@babel/code-frame": "npm:^7.21.4"
-    "@babel/generator": "npm:^7.21.5"
-    "@babel/helper-environment-visitor": "npm:^7.21.5"
-    "@babel/helper-function-name": "npm:^7.21.0"
-    "@babel/helper-hoist-variables": "npm:^7.18.6"
-    "@babel/helper-split-export-declaration": "npm:^7.18.6"
-    "@babel/parser": "npm:^7.21.5"
-    "@babel/types": "npm:^7.21.5"
-    debug: "npm:^4.1.0"
-    globals: "npm:^11.1.0"
-  checksum: 467aaaa306092d9c5851232784ca0691d9ba56ff51f3ef89674fc69e085351c78821942ef089930c0a984b8778152aa2987a621ae206f3816314de1297062c10
-  languageName: node
-  linkType: hard
-
-"@babel/traverse@npm:^7.22.8, @babel/traverse@npm:^7.23.2, @babel/traverse@npm:^7.23.3":
-  version: 7.23.3
-  resolution: "@babel/traverse@npm:7.23.3"
-  dependencies:
-    "@babel/code-frame": "npm:^7.22.13"
-    "@babel/generator": "npm:^7.23.3"
-    "@babel/helper-environment-visitor": "npm:^7.22.20"
-    "@babel/helper-function-name": "npm:^7.23.0"
-    "@babel/helper-hoist-variables": "npm:^7.22.5"
-    "@babel/helper-split-export-declaration": "npm:^7.22.6"
-    "@babel/parser": "npm:^7.23.3"
-    "@babel/types": "npm:^7.23.3"
-    debug: "npm:^4.1.0"
-    globals: "npm:^11.1.0"
-  checksum: 522ef8eefe1ed31cd392129efb2f8794ca25bd54b1ad7c3bfa7f46d20c47ef0e392d5c1654ddee3454eed5e546d04c9bfa38b04b82e47144aa545f87ba55572d
+    "@babel/code-frame": ^7.23.4
+    "@babel/generator": ^7.23.4
+    "@babel/helper-environment-visitor": ^7.22.20
+    "@babel/helper-function-name": ^7.23.0
+    "@babel/helper-hoist-variables": ^7.22.5
+    "@babel/helper-split-export-declaration": ^7.22.6
+    "@babel/parser": ^7.23.4
+    "@babel/types": ^7.23.4
+    debug: ^4.1.0
+    globals: ^11.1.0
+  checksum: 8/e8c9cd92cfd6fec9cf3969604edea5a58c2d55275b88b9de06f0d94de43b64b04d57168554b617159d62c840a8700e6d4c7954d2e6ed69cfb918202ac01561e9
   languageName: node
   linkType: hard
 
@@ -1878,6 +1900,17 @@ __metadata:
     "@babel/helper-validator-identifier": "npm:^7.22.20"
     to-fast-properties: "npm:^2.0.0"
   checksum: 05ec1527d0468aa6f3e30fa821625322794055fb572c131aaa8befdf24d174407e2e5954c2b0a292a5456962e23383e36cf9d7cbb01318146d6140ce2128d000
+  languageName: node
+  linkType: hard
+
+"@babel/types@npm:^7.23.4":
+  version: 7.23.4
+  resolution: "@babel/types@npm:7.23.4"
+  dependencies:
+    "@babel/helper-string-parser": ^7.23.4
+    "@babel/helper-validator-identifier": ^7.22.20
+    to-fast-properties: ^2.0.0
+  checksum: 8/8a1ab20da663d202b1c090fdef4b157d3c7d8cb1cf60ea548f887d7b674935371409804d6cba52f870c22ced7685fcb41b0578d3edde720990de00cbb328da54
   languageName: node
   linkType: hard
 
@@ -3199,75 +3232,75 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storyblok/design-system@workspace:."
   dependencies:
-    "@babel/core": "npm:^7.22.20"
-    "@babel/eslint-parser": "npm:^7.21.8"
-    "@babel/plugin-proposal-decorators": "npm:^7.22.15"
-    "@babel/plugin-proposal-export-default-from": "npm:^7.18.10"
-    "@popperjs/core": "npm:^2.11.8"
-    "@ronilaukkarinen/stylelint-a11y": "npm:^1.2.7"
-    "@storybook/addon-a11y": "npm:^7.0.27"
-    "@storybook/addon-essentials": "npm:^7.0.27"
-    "@storybook/addon-storysource": "npm:^7.0.27"
-    "@storybook/addon-viewport": "npm:^7.0.27"
-    "@storybook/addons": "npm:^7.0.27"
-    "@storybook/theming": "npm:^7.0.27"
-    "@storybook/vue3": "npm:^7.0.27"
-    "@storybook/vue3-vite": "npm:^7.0.27"
-    "@testing-library/vue": "npm:^7.0.0"
-    "@types/jsdom": "npm:^21.1.5"
-    "@vitejs/plugin-vue": "npm:^4.2.3"
-    "@vue/eslint-config-prettier": "npm:^7.1.0"
-    "@vue/eslint-config-standard": "npm:^8.0.1"
-    "@vue/eslint-config-typescript": "npm:^11.0.3"
-    "@vue/test-utils": "npm:^2.3.2"
-    "@vue/tsconfig": "npm:^0.4.0"
-    "@vue/vue3-jest": "npm:^29.2.6"
-    babel-jest: "npm:^29.5.0"
-    babel-preset-vue: "npm:^2.0.2"
-    chromatic: "npm:^6.18.2"
-    click-outside-vue3: "npm:^4.0.1"
-    dayjs: "npm:^1.11.10"
-    dompurify: "npm:^3.0.6"
-    eslint: "npm:^8.42.0"
-    eslint-config-prettier: "npm:^8.8.0"
-    eslint-plugin-import: "npm:^2.27.5"
-    eslint-plugin-n: "npm:^16.0.2"
-    eslint-plugin-node: "npm:^11.1.0"
-    eslint-plugin-prettier: "npm:^4.2.1"
-    eslint-plugin-promise: "npm:^6.1.1"
-    eslint-plugin-standard: "npm:^4.1.0"
-    eslint-plugin-storybook: "npm:^0.6.15"
-    eslint-plugin-testing-library: "npm:^5.11.1"
-    eslint-plugin-vitest: "npm:^0.2.8"
-    eslint-plugin-vue: "npm:^9.14.1"
-    eslint-plugin-vuejs-accessibility: "npm:^2.1.0"
-    husky: "npm:^8.0.3"
-    is-ci: "npm:^3.0.1"
-    jest-transform-stub: "npm:^2.0.0"
-    jsdom: "npm:^22.1.0"
-    lint-staged: "npm:^10.5.4"
-    lucide-vue-next: "npm:^0.279.0"
-    maska: "npm:^1.5.2"
-    prettier: "npm:^2.8.8"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
-    sass: "npm:^1.64.2"
-    sass-mq: "npm:^6.0.0"
-    storybook: "npm:^7.0.27"
-    stylelint: "npm:^15.10.3"
-    stylelint-config-prettier-scss: "npm:^1.0.0"
-    stylelint-config-recommended-vue: "npm:^1.5.0"
-    stylelint-config-sass-guidelines: "npm:^10.0.0"
-    stylelint-config-standard-scss: "npm:^10.0.0"
-    stylelint-order: "npm:^4.1.0"
-    throttle-debounce: "npm:^4.0.1"
-    typescript: "npm:^4.9.5"
-    vite: "npm:^4.3.9"
-    vite-svg-loader: "npm:^4.0.0"
-    vitest: "npm:^0.32.4"
-    vue: "npm:^3.3.8"
-    vue-eslint-parser: "npm:^9.3.2"
-    vue-tsc: "npm:^1.6.5"
+    "@babel/core": ^7.22.20
+    "@babel/eslint-parser": ^7.21.8
+    "@babel/plugin-proposal-decorators": ^7.22.15
+    "@babel/plugin-proposal-export-default-from": ^7.18.10
+    "@popperjs/core": ^2.11.8
+    "@ronilaukkarinen/stylelint-a11y": ^1.2.7
+    "@storybook/addon-a11y": ^7.0.27
+    "@storybook/addon-essentials": ^7.0.27
+    "@storybook/addon-storysource": ^7.0.27
+    "@storybook/addon-viewport": ^7.0.27
+    "@storybook/addons": ^7.0.27
+    "@storybook/theming": ^7.0.27
+    "@storybook/vue3": ^7.0.27
+    "@storybook/vue3-vite": ^7.0.27
+    "@testing-library/vue": ^7.0.0
+    "@types/jsdom": ^21.1.5
+    "@vitejs/plugin-vue": ^4.2.3
+    "@vue/eslint-config-prettier": ^7.1.0
+    "@vue/eslint-config-standard": ^8.0.1
+    "@vue/eslint-config-typescript": ^11.0.3
+    "@vue/test-utils": ^2.3.2
+    "@vue/tsconfig": ^0.4.0
+    "@vue/vue3-jest": ^29.2.6
+    babel-jest: ^29.5.0
+    babel-preset-vue: ^2.0.2
+    chromatic: ^6.18.2
+    click-outside-vue3: ^4.0.1
+    dayjs: ^1.11.10
+    dompurify: ^3.0.6
+    eslint: ^8.42.0
+    eslint-config-prettier: ^8.8.0
+    eslint-plugin-import: ^2.27.5
+    eslint-plugin-n: ^16.0.2
+    eslint-plugin-node: ^11.1.0
+    eslint-plugin-prettier: ^4.2.1
+    eslint-plugin-promise: ^6.1.1
+    eslint-plugin-standard: ^4.1.0
+    eslint-plugin-storybook: ^0.6.15
+    eslint-plugin-testing-library: ^5.11.1
+    eslint-plugin-vitest: ^0.2.8
+    eslint-plugin-vue: ^9.14.1
+    eslint-plugin-vuejs-accessibility: ^2.1.0
+    husky: ^8.0.3
+    is-ci: ^3.0.1
+    jest-transform-stub: ^2.0.0
+    jsdom: ^22.1.0
+    lint-staged: ^10.5.4
+    lucide-vue-next: ^0.279.0
+    maska: ^1.5.2
+    prettier: ^2.8.8
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    sass: ^1.64.2
+    sass-mq: ^6.0.0
+    storybook: ^7.0.27
+    stylelint: ^15.10.3
+    stylelint-config-prettier-scss: ^1.0.0
+    stylelint-config-recommended-vue: ^1.5.0
+    stylelint-config-sass-guidelines: ^10.0.0
+    stylelint-config-standard-scss: ^10.0.0
+    stylelint-order: ^4.1.0
+    throttle-debounce: ^4.0.1
+    typescript: ^4.9.5
+    vite: ^4.3.9
+    vite-svg-loader: ^4.0.0
+    vitest: ^0.32.4
+    vue: ^3.3.8
+    vue-eslint-parser: ^9.3.2
+    vue-tsc: ^1.6.5
   languageName: unknown
   linkType: soft
 
@@ -8620,9 +8653,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@npm%3A^2.3.2#optional!builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.2#optional!builtin<compat/fsevents>":
+"fsevents@patch:fsevents@npm%3A^2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
   dependencies:
     node-gyp: "npm:latest"
   conditions: os=darwin
@@ -12557,16 +12590,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.10.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.10.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.14.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.15.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.3.0#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.10.0#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.10.1#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.15.1#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.1#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.2#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.3.0#~builtin<compat/resolve>":
   version: 1.22.2
-  resolution: "resolve@patch:resolve@npm%3A1.22.2#optional!builtin<compat/resolve>::version=1.22.2&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.22.2#~builtin<compat/resolve>::version=1.22.2&hash=c3c19d"
   dependencies:
     is-core-module: "npm:^2.11.0"
     path-parse: "npm:^1.0.7"
     supports-preserve-symlinks-flag: "npm:^1.0.0"
   bin:
     resolve: bin/resolve
-  checksum: 14594f99dbff19c1f51f6daac0caf0b75ed345256ada3722c23f63935eace79532dcfa349b3d8889d2771c143822c38dd5d7d8eb85fb8cff257b7abccbad7872
+  checksum: 8/66cc788f13b8398de18eb4abb3aed90435c84bb8935953feafcf7231ba4cd191b2c10b4a87b1e9681afc34fb138c705f91f7330ff90bfa36f457e5584076a2b8
   languageName: node
   linkType: hard
 
@@ -13994,13 +14027,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^4.9.5#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@^4.9.5#~builtin<compat/typescript>":
   version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"
+  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=289587"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 5659316360b5cc2d6f5931b346401fa534107b68b60179cf14970e27978f0936c1d5c46f4b5b8175f8cba0430f522b3ce355b4b724c0ea36ce6c0347fab25afd
+  checksum: 8/1f8f3b6aaea19f0f67cba79057674ba580438a7db55057eb89cc06950483c5d632115c14077f6663ea76fd09fce3c190e6414bb98582ec80aa5a4eaf345d5b68
   languageName: node
   linkType: hard
 
