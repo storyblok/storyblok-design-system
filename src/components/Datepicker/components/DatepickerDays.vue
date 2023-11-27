@@ -3,14 +3,8 @@
     <span
       v-for="(dayItem, key) in days"
       :key="key"
-      class="sb-datepicker-days__item"
-      :class="{
-        'sb-datepicker-days__item--inactive': !dayItem.inMonth,
-        'sb-datepicker-days__item--active': dayItem.checked,
-        'sb-datepicker-days__item--current': dayItem.current,
-        'sb-datepicker-days__item--disabled': dayItem.disabled,
-      }"
-      @click="($evt) => handleDayClick($evt, dayItem)"
+      :class="returnClasses(dayItem)"
+      @click.stop="handleDayClick(dayItem)"
     >
       {{ dayItem.label }}
     </span>
@@ -19,7 +13,6 @@
 
 <script>
 import dayjs from 'dayjs'
-
 export default {
   name: 'SbDatepickerDays',
 
@@ -98,11 +91,10 @@ export default {
     },
   },
   methods: {
-    handleDayClick($event, day) {
+    handleDayClick(day) {
       if (day.disabled) {
         return
       }
-      $event.stopPropagation()
       this.$emit('update:modelValue', day.date.format())
     },
 
@@ -133,6 +125,16 @@ export default {
         this.isMinDateDisabled(dateValue) ||
         this.isMaxDateDisabled(dateValue)
       )
+    },
+
+    returnClasses(dayItem) {
+      return [
+        'sb-datepicker-days__item',
+        !dayItem.inMonth && 'sb-datepicker-days__item--inactive',
+        dayItem.checked && 'sb-datepicker-days__item--active',
+        dayItem.current && 'sb-datepicker-days__item--current',
+        dayItem.disabled && 'sb-datepicker-days__item--disabled',
+      ]
     },
   },
 }

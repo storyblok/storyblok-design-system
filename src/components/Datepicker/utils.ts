@@ -12,3 +12,50 @@ export const INTERNAL_VIEWS: object = {
   YEAR: 'YEAR',
   MONTH: 'MONTH',
 }
+
+/**
+ * @type {Object}
+ */
+export const FORMATS: object = {
+  date: 'YYYY-MM-DD',
+  datetime: 'YYYY-MM-DD HH:mm',
+}
+
+/**
+ * @type {Object}
+ */
+export const MASKS: object = {
+  date: '####-##-##',
+  datetime: '####-##-## ##:##',
+}
+
+/**
+ * @type {Array<String>}
+ */
+export const WEEK_DAYS: Array<string> = [
+  'Mo',
+  'Tu',
+  'We',
+  'Th',
+  'Fr',
+  'Sa',
+  'Su',
+]
+
+/**
+ * @type {Array<String>}
+ */
+export const MONTHS: Array<string> = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+]

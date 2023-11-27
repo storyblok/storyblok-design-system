@@ -111,7 +111,7 @@ import SbDatepickerDays from './components/DatepickerDays'
 import SbDatepickerMonths from './components/DatepickerMonths'
 import SbDatepickerYears from './components/DatepickerYears'
 
-import { datepickerOptions, INTERNAL_VIEWS } from './utils'
+import { datepickerOptions, INTERNAL_VIEWS, FORMATS, MASKS } from './utils'
 
 dayjs.extend(timezone)
 dayjs.extend(customParseFormat)
@@ -216,14 +216,6 @@ export default {
     inputElement: null,
     isOverlayVisible: false,
     internalVisualization: INTERNAL_VIEWS.CALENDAR,
-    FORMATS: {
-      date: 'YYYY-MM-DD',
-      datetime: 'YYYY-MM-DD HH:mm',
-    },
-    MASKS: {
-      date: '####-##-##',
-      datetime: '####-##-## ##:##',
-    },
     hitClear: false,
     invalidDate: false,
     vcoConfig: {
@@ -240,11 +232,11 @@ export default {
     },
 
     internalMask() {
-      return this.MASKS[this.type]
+      return MASKS[this.type]
     },
 
     internalFormat() {
-      return this.FORMATS[this.type]
+      return FORMATS[this.type]
     },
 
     internalValueFormatted() {
@@ -397,6 +389,7 @@ export default {
         this.internalFormat,
         true
       ).isValid()
+
       if (!isValid || (this.hasDayDisabled && this.isDateDisabled)) {
         this.invalidDate = true
         return
@@ -406,9 +399,7 @@ export default {
         utcTime = dayjs
           .tz(this.internalValue, this.tzValue)
           .utc()
-          .format(
-            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat
-          )
+          .format(this.isTimeDisabled ? FORMATS.datetime : this.internalFormat)
       } else {
         const offset = this.tzOffset.replace(/[+-]/g, ($1) =>
           $1 === '+' ? '-' : '+'
@@ -416,9 +407,7 @@ export default {
         utcTime = dayjs
           .utc(this.internalValue)
           .utcOffset(offset)
-          .format(
-            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat
-          )
+          .format(this.isTimeDisabled ? FORMATS.datetime : this.internalFormat)
       }
 
       this.hitClear = false

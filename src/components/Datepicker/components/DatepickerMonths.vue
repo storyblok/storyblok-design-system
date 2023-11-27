@@ -14,6 +14,7 @@
 
 <script>
 import dayjs from 'dayjs'
+import { MONTHS } from '../utils'
 export default {
   name: 'SbDatepickerMonths',
 
@@ -30,26 +31,9 @@ export default {
 
   emits: ['update:modelValue'],
 
-  data: () => ({
-    months: [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ],
-  }),
-
   computed: {
     monthsList() {
-      return this.months.map((month) => {
+      return MONTHS.map((month) => {
         return {
           checked: dayjs(this.internalDate).format('MMM') === month,
           label: month,
@@ -66,7 +50,7 @@ export default {
      */
     handleMonthClick($event, month) {
       $event.stopPropagation()
-      const monthIndex = this.months.indexOf(month)
+      const monthIndex = MONTHS.indexOf(month)
       const value = dayjs(this.internalDate).month(monthIndex).format()
       this.$emit('update:modelValue', value)
     },
