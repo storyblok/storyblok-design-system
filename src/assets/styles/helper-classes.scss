@@ -1,20 +1,20 @@
-@use './typography' as typography;
-@use './sizes' as sizes;
-@use './colors' as colors;
+@import './typography';
+@import './sizes';
+@import './colors';
 
-@each $name, $pair in typography.$font-size {
+@each $name, $pair in $font-size {
   .font-#{$name} {
     font-size: $pair !important;
   }
 }
 
-@each $name, $pair in typography.$font-weight {
+@each $name, $pair in $font-weight {
   .font-#{$name} {
     font-weight: $pair !important;
   }
 }
 
-@each $name, $value in sizes.$sizes {
+@each $name, $value in $sizes {
   .sb-m-#{$name} {
     margin: $value !important;
   }
@@ -76,7 +76,7 @@
   }
 }
 
-@each $name, $pair in colors.$colors {
+@each $name, $pair in $colors {
   .bg-#{$name} {
     background-color: $pair !important;
   }
