@@ -1,4 +1,5 @@
 import './spacing.scss'
+import '../../../src/assets/styles/helper-classes.scss'
 
 export default {
   title: 'Design/Spacing',

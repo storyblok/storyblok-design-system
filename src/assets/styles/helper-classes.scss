@@ -46,33 +46,33 @@
   }
 
   .sb-p-#{$name} {
-    margin: $value !important;
+    padding: $value !important;
   }
 
   .sb-pt-#{$name} {
-    margin-top: $value !important;
+    padding-top: $value !important;
   }
 
   .sb-pr-#{$name} {
-    margin-right: $value !important;
+    padding-right: $value !important;
   }
 
   .sb-pb-#{$name} {
-    margin-bottom: $value !important;
+    padding-bottom: $value !important;
   }
 
   .sb-pl-#{$name} {
-    margin-left: $value !important;
+    padding-left: $value !important;
   }
 
   .sb-px-#{$name} {
-    margin-left: $value !important;
-    margin-right: $value !important;
+    padding-left: $value !important;
+    padding-right: $value !important;
   }
 
   .sb-py-#{$name} {
-    margin-bottom: $value !important;
-    margin-top: $value !important;
+    padding-bottom: $value !important;
+    padding-top: $value !important;
   }
 }
 
