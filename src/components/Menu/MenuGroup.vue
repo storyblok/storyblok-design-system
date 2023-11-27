@@ -1,6 +1,10 @@
 <template>
-  <div role="group">
-    <p v-if="title.length" :class="computedClasses">
+  <div role="group" :data-testid="dataTestid">
+    <p
+      v-if="title.length"
+      :class="computedClasses"
+      :data-testid="`${dataTestid}-title`"
+    >
       {{ title }}
     </p>
     <slot />
@@ -17,6 +21,10 @@ export default {
       default: '',
     },
     isTitleBold: Boolean,
+    dataTestid: {
+      type: String,
+      default: 'menu-group',
+    },
   },
 
   computed: {
