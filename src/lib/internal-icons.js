@@ -487,6 +487,16 @@ const pictogramIcons = {
     <path fill-rule="evenodd" clip-rule="evenodd" d="M32 18C32 16.8954 31.1046 16 30 16L18 16C16.8954 16 16 16.8954 16 18V25C16 26.1046 16.8954 27 18 27H30C31.1046 27 32 26.1046 32 25V18Z" fill="#00B3B0"/>
     `,
   },
+  'undo-pictogram': {
+    viewBox: '0 0 48 48',
+    path: `
+    <g fill="none">
+      <circle cx="24" cy="24" r="24" fill="#CCF0EF"/>
+      <path d="M18 20.6667V24.6667H22" stroke="#00B3B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M30 27.3333C30 25.742 29.3679 24.2159 28.2426 23.0907C27.1174 21.9655 25.5913 21.3333 24 21.3333C22.5234 21.3348 21.0992 21.8808 20 22.8666L18 24.6666" stroke="#00B3B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    `,
+  },
 }
 
 const blockTwoIcons = {
