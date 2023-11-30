@@ -6,6 +6,7 @@
   >
     <div class="sb-datepicker__input">
       <SbTextField
+        v-if="showTextInput"
         ref="input"
         v-model="internalValue"
         :mask="internalMask"
@@ -22,6 +23,16 @@
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
         @blur="handleDoneAction"
+      />
+
+      <SbDatepickerFakeInput
+        v-else-if="!showTextInput"
+        :prefix="daterange[0]"
+        :sufix="daterange[1]"
+        :focus-item="focusFakeItem"
+        :type="type"
+        @open-calendar="handleInputClick"
+        @clear="handleClear"
       />
 
       <template v-if="isShowTzOffset">
@@ -111,8 +122,9 @@ import SbDatepickerTime from './components/DatepickerTime'
 import SbDatepickerDays from './components/DatepickerDays'
 import SbDatepickerMonths from './components/DatepickerMonths'
 import SbDatepickerYears from './components/DatepickerYears'
+import SbDatepickerFakeInput from './components/DatepickerFakeInput'
 
-import { datepickerOptions, INTERNAL_VIEWS, FORMATS, MASKS } from './utils'
+import { datepickerOptions, INTERNAL_VIEWS, FORMATS, MASKS, FOCUS_ITEM } from './utils'
 
 dayjs.extend(timezone)
 dayjs.extend(customParseFormat)
@@ -130,6 +142,7 @@ export default {
     SbDatepickerMonths,
     SbDatepickerYears,
     SbButton,
+    SbDatepickerFakeInput,
   },
 
   directives: {
@@ -222,7 +235,8 @@ export default {
     vcoConfig: {
       detectIFrame: false,
     },
-    daterange: ['', '']
+    daterange: ['', ''],
+    focusFakeItem: '',
   }),
 
   computed: {
@@ -348,7 +362,15 @@ export default {
 
     cancelButtonLabel() {
       return this.isDateRangeType && this.hasRange ? 'Clear range' : 'Cancel'
-    }
+    },
+
+    showTextInput() {
+      return !this.isDateRangeType
+    },
+
+    fakeInputData() {
+      return `${this.daterange[0]} - ${this.daterange[1]}`
+    },
   },
 
   watch: {
@@ -501,17 +523,21 @@ export default {
 
       this.isOverlayVisible = !this.isOverlayVisible
       this.internalVisualization = INTERNAL_VIEWS.CALENDAR
+      this.focusFakeItem = FOCUS_ITEM.FIRST
     },
 
     handleClear(previousValue) {
       this.internalValue = ''
       this.hitClear = true
+      this.focusFakeItem = FOCUS_ITEM.FIRST
+      this.daterange = ['', '']
       this.$emit('update:modelValue', '')
       this.$emit('clear', previousValue)
     },
 
     closeOverlay() {
       this.isOverlayVisible = false
+      this.focusFakeItem = null
     },
 
     syncInternalValue(value) {
@@ -565,10 +591,11 @@ export default {
 
     populateRange(date) {
       if (this.daterange[0] === '') {
-        this.daterange[0] = date
+        this.daterange[0] =  dayjs(date).format(FORMATS.date)
+        this.focusFakeItem = FOCUS_ITEM.LAST
         return
-      } 
-      this.daterange[1] = date
+      }
+      this.daterange[1] = dayjs(date).format(FORMATS.date)
     },
   },
 }

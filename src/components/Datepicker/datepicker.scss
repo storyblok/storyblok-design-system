@@ -55,9 +55,39 @@
     @include focusedTextField;
   }
 
+  &__fake-input {
+    box-sizing: border-box;
+    width: 100%;
+    color: $sb-dark-blue-50;
+    font-size: $font-14;
+    border: 1px solid $light;
+    border-radius: $base-border-radius;
+    transition: $base-transition;
+    height: 45.5px;
+    display: flex;
+    align-items: center;
+
+    &--text {
+      padding: 3px;
+
+      &:first-of-type {
+        margin-left: 42px;
+      }
+    }
+
+    &--separator {
+      padding: 0 5px;
+    }
+
+    &--focus {
+      background-color: $light;
+      border-radius: 4px;
+    }
+  }
+
   &__input {
     position: relative;
-
+    
     .sb-textfield__icon {
       cursor: pointer;
     }

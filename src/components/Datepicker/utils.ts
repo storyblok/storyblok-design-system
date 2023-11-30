@@ -59,3 +59,11 @@ export const MONTHS: Array<string> = [
   'Nov',
   'Dec',
 ]
+
+/**
+ * @type {Object}
+ */
+export const FOCUS_ITEM: object = {
+  FIRST: 'fisrt',
+  LAST: 'last',
+}
