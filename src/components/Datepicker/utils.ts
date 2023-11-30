@@ -1,7 +1,11 @@
 /**
  * @type {Array<String>}
  */
-export const datepickerOptions: Array<string> = ['datetime', 'date', 'daterange']
+export const datepickerOptions: Array<string> = [
+  'datetime',
+  'date',
+  'daterange',
+]
 
 /**
  * @type {Object}
@@ -19,6 +23,7 @@ export const INTERNAL_VIEWS: object = {
 export const FORMATS: object = {
   date: 'YYYY-MM-DD',
   datetime: 'YYYY-MM-DD HH:mm',
+  time: 'hh:mm',
 }
 
 /**
@@ -63,7 +68,9 @@ export const MONTHS: Array<string> = [
 /**
  * @type {Object}
  */
-export const FOCUS_ITEM: object = {
-  FIRST: 'fisrt',
-  LAST: 'last',
+export const COMPONENTS: object = {
+  CALENDAR: 'SbDatepickerDays',
+  TIME: 'SbDatepickerTime',
+  MONTH: 'SbDatepickerMonths',
+  YEAR: 'SbDatepickerYears',
 }

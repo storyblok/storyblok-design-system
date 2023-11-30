@@ -7,10 +7,22 @@
       data-testid="sb-textfield-icon-click"
       @click="handleAction('open-calendar')"
     />
-    <p class="sb-datepicker__fake-input--text" :class="{ 'sb-datepicker__fake-input--focus' : focusOnFirst }">{{ prefixPlaceholder }}</p>
+    <p
+      class="sb-datepicker__fake-input--text"
+      :class="{ 'sb-datepicker__fake-input--focus': focusOnFirst }"
+    >
+      {{ prefixPlaceholder }}
+    </p>
     <span class="sb-datepicker__fake-input--separator">-</span>
-    <p class="sb-datepicker__fake-input--text" :class="{ 'sb-datepicker__fake-input--focus' : focusOnLast }">{{ sufixPlaceholder }}</p>
+    <p
+      class="sb-datepicker__fake-input--text"
+      :class="{ 'sb-datepicker__fake-input--focus': focusOnLast }"
+    >
+      {{ sufixPlaceholder }}
+    </p>
     <SbIcon
+      v-if="showClearIcon"
+      v-tooltip="{ label: 'Clear' }"
       name="x-clear"
       color="light-gray"
       class="sb-textfield__icon sb-textfield__icon--right"
@@ -20,7 +32,7 @@
   </div>
 </template>
 <script>
-import { FOCUS_ITEM } from '../utils'
+import { FORMATS, COMPONENTS } from '../utils'
 export default {
   name: 'SbDatepickerFakeInput',
 
@@ -37,50 +49,63 @@ export default {
       type: String,
       default: null,
     },
-    focusItem: {
+    view: {
       type: String,
       default: null,
-    }
+    },
+    isOverlayVisible: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   emits: ['open-calendar', 'clear'],
 
   computed: {
     prefixPlaceholder() {
-      const FORMATS = {
-        date: 'YYYY-MM-DD',
-        datetime: 'hh:mm',
-      }
-
       return this.prefix ? this.prefix : FORMATS.date
     },
 
     sufixPlaceholder() {
-      const FORMATS = {
-        date: 'YYYY-MM-DD',
-        time: 'hh:mm',
-      }
-
-      return this.sufix ? this.sufix : this.type === 'daterange' ? FORMATS.date : FORMATS.time
+      return this.sufix
+        ? this.sufix
+        : this.type === 'daterange'
+        ? FORMATS.date
+        : FORMATS.time
     },
 
     showSeparator() {
       return this.prefix !== null
     },
 
+    isCalendarView() {
+      return this.view === COMPONENTS.CALENDAR
+    },
+
+    isTimeView() {
+      return this.view === COMPONENTS.TIME
+    },
+
     focusOnFirst() {
-      return this.focusItem === FOCUS_ITEM.FIRST
+      return this.isOverlayVisible && this.prefix === '' && this.isCalendarView
     },
 
     focusOnLast() {
-      return this.focusItem === FOCUS_ITEM.LAST
-    }
+      return (
+        (this.isOverlayVisible && this.sufix === '' && this.isTimeView) ||
+        (this.prefix !== '' && this.sufix === '')
+      )
+    },
+
+    showClearIcon() {
+      return this.prefix !== '' || this.sufix !== ''
+    },
   },
 
   methods: {
     handleAction(action) {
       this.$emit(action)
     },
-  }
+  },
 }
 </script>

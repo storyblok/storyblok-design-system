@@ -27,10 +27,12 @@
 
       <SbDatepickerFakeInput
         v-else-if="!showTextInput"
+        ref="input"
         :prefix="daterange[0]"
         :sufix="daterange[1]"
-        :focus-item="focusFakeItem"
         :type="type"
+        :view="isComponentView"
+        :is-overlay-visible="isOverlayVisible"
         @open-calendar="handleInputClick"
         @clear="handleClear"
       />
@@ -124,7 +126,13 @@ import SbDatepickerMonths from './components/DatepickerMonths'
 import SbDatepickerYears from './components/DatepickerYears'
 import SbDatepickerFakeInput from './components/DatepickerFakeInput'
 
-import { datepickerOptions, INTERNAL_VIEWS, FORMATS, MASKS, FOCUS_ITEM } from './utils'
+import {
+  datepickerOptions,
+  INTERNAL_VIEWS,
+  FORMATS,
+  MASKS,
+  COMPONENTS,
+} from './utils'
 
 dayjs.extend(timezone)
 dayjs.extend(customParseFormat)
@@ -236,13 +244,13 @@ export default {
       detectIFrame: false,
     },
     daterange: ['', ''],
-    focusFakeItem: '',
   }),
 
   computed: {
     isInputReadonly() {
       return this.minuteRange > 1
     },
+
     hasDayDisabled() {
       return this.maxDate || this.minDate || this.disabledPast
     },
@@ -268,7 +276,12 @@ export default {
     },
 
     isShowTzOffset() {
-      return !this.isTimeDisabled && this.tzOffsetValue && this.internalValue && !this.isDateRangeType
+      return (
+        !this.isTimeDisabled &&
+        this.tzOffsetValue &&
+        this.internalValue &&
+        !this.isDateRangeType
+      )
     },
 
     isCalendarView() {
@@ -288,13 +301,6 @@ export default {
     },
 
     isComponentView() {
-      const COMPONENTS = {
-        CALENDAR: 'SbDatepickerDays',
-        TIME: 'SbDatepickerTime',
-        MONTH: 'SbDatepickerMonths',
-        YEAR: 'SbDatepickerYears',
-      }
-
       return COMPONENTS[this.internalVisualization]
     },
 
@@ -325,7 +331,9 @@ export default {
 
       if (this.tzOffset) return this.tzOffset.replace('GMT', '')
 
-      return this.sanitizetzValue(dayjs.tz(this.internalValue, this.internalTimezone).format('ZZ'))
+      return this.sanitizetzValue(
+        dayjs.tz(this.internalValue, this.internalTimezone).format('ZZ')
+      )
     },
 
     isDateDisabledPast() {
@@ -367,10 +375,6 @@ export default {
     showTextInput() {
       return !this.isDateRangeType
     },
-
-    fakeInputData() {
-      return `${this.daterange[0]} - ${this.daterange[1]}`
-    },
   },
 
   watch: {
@@ -397,11 +401,17 @@ export default {
     this.$nextTick(() => {
       this.inputElement = this.$refs.input && this.$refs.input.$el
     })
+
+    if (Array.isArray(this.modelValue) && this.isDateRangeType) {
+      this.daterange = JSON.parse(JSON.stringify(this.modelValue))
+      this.internalDate = this.daterange[0]
+      this.internalValue = this.daterange[0]
+    }
   },
 
   methods: {
-    handleCancelAction() {
-      if (this.isDateRangeType) {
+    handleCancelAction(clearRange = false) {
+      if (this.isDateRangeType && this.isOverlayVisible && clearRange) {
         this.daterange = ['', '']
         return
       }
@@ -523,13 +533,11 @@ export default {
 
       this.isOverlayVisible = !this.isOverlayVisible
       this.internalVisualization = INTERNAL_VIEWS.CALENDAR
-      this.focusFakeItem = FOCUS_ITEM.FIRST
     },
 
     handleClear(previousValue) {
       this.internalValue = ''
       this.hitClear = true
-      this.focusFakeItem = FOCUS_ITEM.FIRST
       this.daterange = ['', '']
       this.$emit('update:modelValue', '')
       this.$emit('clear', previousValue)
@@ -537,7 +545,6 @@ export default {
 
     closeOverlay() {
       this.isOverlayVisible = false
-      this.focusFakeItem = null
     },
 
     syncInternalValue(value) {
@@ -562,14 +569,16 @@ export default {
       const hasTarget = e && e?.target && this.$el
       const hasContains = hasTarget && typeof this.$el?.contains === 'function'
       const targetIsNode = e?.target instanceof Node
+      const targetHasElement = this.$el.contains(e.target)
 
-      if (hasContains && targetIsNode && !this.$el.contains(e.target)) {
-        this.handleCancelAction()
+      if (hasContains && targetIsNode && !targetHasElement) {
+        const clearRange = !this.isDateRangeType
+        this.handleCancelAction(clearRange)
       }
     },
 
     sanitizetzValue(input) {
-      const match = input.match(/^([+\-])(\d{2})(\d{2})$/)
+      const match = input.match(/^([+-])(\d{2})(\d{2})$/)
 
       if (match) {
         const [, signal, hours, min] = match
@@ -577,7 +586,6 @@ export default {
         const minutes = min > 0 ? `.${min}` : ''
 
         return `${signal}${parseInt(hours, 10)}${minutes}`
-
       } else {
         return input
       }
@@ -591,8 +599,7 @@ export default {
 
     populateRange(date) {
       if (this.daterange[0] === '') {
-        this.daterange[0] =  dayjs(date).format(FORMATS.date)
-        this.focusFakeItem = FOCUS_ITEM.LAST
+        this.daterange[0] = dayjs(date).format(FORMATS.date)
         return
       }
       this.daterange[1] = dayjs(date).format(FORMATS.date)

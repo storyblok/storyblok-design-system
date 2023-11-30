@@ -8,7 +8,9 @@ const Template = (args) => ({
   props: Object.keys(args),
 
   data: () => ({
-    internalDatetimeValue: dayjs(args.modelValue).format('YYYY-MM-DD HH:mm'),
+    internalDatetimeValue: Array.isArray(args.modelValue)
+      ? args.modelValue
+      : dayjs(args.modelValue).format('YYYY-MM-DD HH:mm'),
   }),
 
   template: `
@@ -287,7 +289,7 @@ WithInlineLabel.parameters = {
 export const DateRange = Template.bind({})
 
 DateRange.args = {
-  modelValue: ['2021-12-02', '2021-12-20'],
+  modelValue: ['2023-12-02', '2023-12-20'],
   type: 'daterange',
 }
 

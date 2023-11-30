@@ -56,6 +56,7 @@ export default {
 
       for (let i = this.$_getDayInWeek(firstDate); i > 1; i--) {
         const dateValue = firstDate.subtract(i - 1, 'day')
+        const insideRange = this.hasRange && this.insideRange(dateValue)
 
         days.push({
           label: dateValue.date(),
@@ -63,18 +64,24 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
+          insideRange,
           disabled: this.isDisabledDay(dateValue),
         })
       }
 
       for (let i = 1; i <= daysInTheMonth; i++) {
         const dateValue = dayjs(this.internalDate).date(i)
-        const checked = !this.hasRange ? dayjs(this.modelValue).isSame(dateValue, 'day') : dayjs(this.modelValue[0]).isSame(dateValue, 'day')
+        const checked = !this.hasRange
+          ? dayjs(this.modelValue).isSame(dateValue, 'day')
+          : dayjs(this.modelValue[0]).isSame(dateValue, 'day')
+        const insideRange = this.hasRange && this.insideRange(dateValue)
+
         days.push({
           label: i,
           date: dateValue,
           inMonth: true,
           checked,
+          insideRange,
           current: !this.hasRange ? dayjs().isSame(dateValue, 'day') : false,
           disabled: this.isDisabledDay(dateValue),
         })
@@ -83,6 +90,7 @@ export default {
       const nextDays = 42 - days.length
       for (let i = 1; i <= nextDays; i++) {
         const dateValue = lastDate.add(i, 'day')
+        const insideRange = this.hasRange && this.insideRange(dateValue)
 
         days.push({
           label: dateValue.date(),
@@ -90,6 +98,7 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
+          insideRange,
           disabled: this.isDisabledDay(dateValue),
         })
       }
@@ -98,8 +107,8 @@ export default {
     },
 
     hasRange() {
-      return this.range[0] !== '' && this.range[1] !== '' 
-    }
+      return this.range[0] !== '' && this.range[1] !== ''
+    },
   },
   methods: {
     handleDayClick(day) {
@@ -145,12 +154,12 @@ export default {
         dayItem.checked && 'sb-datepicker-days__item--active',
         dayItem.current && 'sb-datepicker-days__item--current',
         dayItem.disabled && 'sb-datepicker-days__item--disabled',
-        this.hasRange && this.insideRage(dayItem) && 'sb-datepicker-days__item--range',
+        dayItem.insideRange && 'sb-datepicker-days__item--range',
       ]
     },
 
-    insideRage(day) {
-      const date = dayjs(day.date.$d)
+    insideRange(day) {
+      const date = dayjs(day.$d)
 
       return date.isBetween(this.range[0], dayjs(this.range[1]), 'day', '[]')
     },
