@@ -52,11 +52,12 @@
 import dayjs from 'dayjs'
 
 import SbDatepickerWeek from './DatepickerWeek'
+import SbButton from '../../Button'
 
 export default {
   name: 'SbDatepickerHeader',
 
-  components: { SbDatepickerWeek },
+  components: { SbDatepickerWeek, SbButton },
 
   props: {
     isCalendarView: Boolean,

@@ -43,6 +43,7 @@ export default {
     type: 'datetime',
     disabled: false,
     isoDate: false,
+    tzOffset: '',
     timeZone: 'America/Sao_Paulo',
     tzTooltip: '',
     minDate: '',
@@ -50,6 +51,7 @@ export default {
     minuteRange: 1,
     disabledPast: false,
     hourFormat: '24h',
+    inlineLabel: '',
   },
   argTypes: {
     timeZone: {

@@ -33,8 +33,17 @@
 </template>
 <script>
 import { FORMATS, COMPONENTS } from '../utils'
+import { Tooltip } from '../../../directives'
+
+import SbIcon from '../../Icon'
 export default {
   name: 'SbDatepickerFakeInput',
+
+  directives: {
+    tooltip: Tooltip,
+  },
+
+  components: { SbIcon },
 
   props: {
     type: {
