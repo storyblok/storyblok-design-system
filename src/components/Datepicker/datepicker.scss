@@ -30,6 +30,11 @@
     }
   }
 
+  &--range {
+    background-color: $sb-green-25;
+    color: $sb-green;
+  }
+
   &--disabled {
     color: $sb-dark-blue-50;
     text-decoration: line-through;
@@ -63,7 +68,7 @@
     right: $s-7;
     top: 50%;
     color: $sb-dark-blue;
-    font-size: $font-12;
+    font-size: $font-14;
     transform: translateY(-50%);
   }
 

@@ -13,12 +13,15 @@
 
 <script>
 import dayjs from 'dayjs'
+import * as isBetween from 'dayjs/plugin/isBetween'
+
+dayjs.extend(isBetween)
 export default {
   name: 'SbDatepickerDays',
 
   props: {
     modelValue: {
-      type: String,
+      type: [String, Array],
       default: null,
     },
     internalDate: {
@@ -36,6 +39,10 @@ export default {
     disabledPast: {
       type: Boolean,
       default: false,
+    },
+    range: {
+      type: Array,
+      default: () => [],
     },
   },
 
@@ -62,13 +69,13 @@ export default {
 
       for (let i = 1; i <= daysInTheMonth; i++) {
         const dateValue = dayjs(this.internalDate).date(i)
-
+        const checked = !this.hasRange ? dayjs(this.modelValue).isSame(dateValue, 'day') : dayjs(this.modelValue[0]).isSame(dateValue, 'day')
         days.push({
           label: i,
           date: dateValue,
           inMonth: true,
-          checked: dayjs(this.modelValue).isSame(dateValue, 'day'),
-          current: dayjs().isSame(dateValue, 'day'),
+          checked,
+          current: !this.hasRange ? dayjs().isSame(dateValue, 'day') : false,
           disabled: this.isDisabledDay(dateValue),
         })
       }
@@ -89,6 +96,10 @@ export default {
 
       return days
     },
+
+    hasRange() {
+      return this.range[0] !== '' && this.range[1] !== '' 
+    }
   },
   methods: {
     handleDayClick(day) {
@@ -134,7 +145,14 @@ export default {
         dayItem.checked && 'sb-datepicker-days__item--active',
         dayItem.current && 'sb-datepicker-days__item--current',
         dayItem.disabled && 'sb-datepicker-days__item--disabled',
+        this.hasRange && this.insideRage(dayItem) && 'sb-datepicker-days__item--range',
       ]
+    },
+
+    insideRage(day) {
+      const date = dayjs(day.date.$d)
+
+      return date.isBetween(this.range[0], dayjs(this.range[1]), 'day', '[]')
     },
   },
 }

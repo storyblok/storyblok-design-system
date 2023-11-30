@@ -69,13 +69,14 @@
         :disabled-past="disabledPast"
         :timezone="internalTimezone"
         :hour-format="hourFormat"
+        :range="daterange"
         @update:model-value="handleComponentsInput"
         @input-timezone="handleTimezoneInput"
       />
 
       <div class="sb-datepicker__actions">
         <SbButton
-          label="Cancel"
+          :label="cancelButtonLabel"
           variant="tertiary"
           size="small"
           class="sb-datepicker__action-button"
@@ -171,8 +172,8 @@ export default {
     },
 
     modelValue: {
-      type: String,
-      default: '',
+      type: [String, Array],
+      default: null,
     },
 
     minDate: {
@@ -221,6 +222,7 @@ export default {
     vcoConfig: {
       detectIFrame: false,
     },
+    daterange: ['', '']
   }),
 
   computed: {
@@ -247,8 +249,12 @@ export default {
       return this.type === 'date'
     },
 
+    isDateRangeType() {
+      return this.type === 'daterange'
+    },
+
     isShowTzOffset() {
-      return !this.isTimeDisabled && this.tzOffsetValue && this.internalValue
+      return !this.isTimeDisabled && this.tzOffsetValue && this.internalValue && !this.isDateRangeType
     },
 
     isCalendarView() {
@@ -304,7 +310,8 @@ export default {
       }
 
       if (this.tzOffset) return this.tzOffset.replace('GMT', '')
-      return dayjs.tz(this.internalValue, this.internalTimezone).format('Z')
+
+      return this.sanitizetzValue(dayjs.tz(this.internalValue, this.internalTimezone).format('ZZ'))
     },
 
     isDateDisabledPast() {
@@ -334,6 +341,14 @@ export default {
     showDatepickerHeader() {
       return this.isComponentView !== 'SbDatepickerTime'
     },
+
+    hasRange() {
+      return this.daterange[0] !== '' && this.daterange[1] !== ''
+    },
+
+    cancelButtonLabel() {
+      return this.isDateRangeType && this.hasRange ? 'Clear range' : 'Cancel'
+    }
   },
 
   watch: {
@@ -364,6 +379,11 @@ export default {
 
   methods: {
     handleCancelAction() {
+      if (this.isDateRangeType) {
+        this.daterange = ['', '']
+        return
+      }
+
       this.closeOverlay()
 
       if (!this.internalValue) {
@@ -443,10 +463,19 @@ export default {
     handleComponentsInput(value) {
       const inputTime = dayjs(value).format(this.internalFormat)
 
+      if (this.isDateRangeType) {
+        this.populateRange(inputTime)
+
+        this.internalDate = this.daterange[0]
+        this.internalValue = this.daterange[0]
+
+        return
+      }
+
       this.internalDate = inputTime
       this.internalValue = inputTime
 
-      if (this.type === 'date') {
+      if (this.isTimeDisabled) {
         this.closeOverlay()
         this.handleDoneAction()
         return
@@ -513,10 +542,33 @@ export default {
       }
     },
 
+    sanitizetzValue(input) {
+      const match = input.match(/^([+\-])(\d{2})(\d{2})$/)
+
+      if (match) {
+        const [, signal, hours, min] = match
+
+        const minutes = min > 0 ? `.${min}` : ''
+
+        return `${signal}${parseInt(hours, 10)}${minutes}`
+
+      } else {
+        return input
+      }
+    },
+
     handleTimezoneInput(timezone) {
       this.internalTimezone = timezone
 
       // TODO: EMIT
+    },
+
+    populateRange(date) {
+      if (this.daterange[0] === '') {
+        this.daterange[0] = date
+        return
+      } 
+      this.daterange[1] = date
     },
   },
 }

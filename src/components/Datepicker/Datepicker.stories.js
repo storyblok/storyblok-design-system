@@ -283,3 +283,18 @@ WithInlineLabel.parameters = {
     },
   },
 }
+
+export const DateRange = Template.bind({})
+
+DateRange.args = {
+  modelValue: ['2021-12-02', '2021-12-20'],
+  type: 'daterange',
+}
+
+DateRange.parameters = {
+  docs: {
+    description: {
+      story: 'TODO',
+    },
+  },
+}
