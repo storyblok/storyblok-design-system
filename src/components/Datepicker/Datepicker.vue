@@ -6,7 +6,7 @@
   >
     <div class="sb-datepicker__input">
       <SbTextField
-        v-if="showTextInput"
+        v-if="!showFakeInput"
         ref="input"
         v-model="internalValue"
         :mask="internalMask"
@@ -22,14 +22,15 @@
         @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
+        @focus="handleInputFocus"
         @blur="handleDoneAction"
       />
 
       <SbDatepickerFakeInput
-        v-else-if="!showTextInput"
+        v-else-if="showFakeInput"
         ref="input"
-        :prefix="daterange[0]"
-        :sufix="daterange[1]"
+        :prefix="returnPrefixValue"
+        :sufix="returnSufixValue"
         :type="type"
         :view="isComponentView"
         :is-overlay-visible="isOverlayVisible"
@@ -241,6 +242,7 @@ export default {
     internalVisualization: INTERNAL_VIEWS.CALENDAR,
     hitClear: false,
     invalidDate: false,
+    inputFocus: true,
     vcoConfig: {
       detectIFrame: false,
     },
@@ -373,8 +375,22 @@ export default {
       return this.isDateRangeType && this.hasRange ? 'Clear range' : 'Cancel'
     },
 
-    showTextInput() {
-      return !this.isDateRangeType
+    showFakeInput() {
+      return this.isDateRangeType || !this.inputFocus
+    },
+
+    returnPrefixValue() {
+      const dateValue = this.internalValue
+        ? dayjs(this.internalValue).format(FORMATS.date)
+        : ''
+      return this.isDateRangeType ? this.daterange[0] : dateValue
+    },
+
+    returnSufixValue() {
+      const timeValue = this.internalValue
+        ? dayjs(this.internalValue).format(FORMATS.time)
+        : ''
+      return this.isDateRangeType ? this.daterange[1] : timeValue
     },
   },
 
@@ -431,6 +447,7 @@ export default {
 
     handleDoneAction() {
       let utcTime
+      this.handleInputFocus()
 
       if (this.internalValue === '') {
         this.handleClear()
@@ -604,6 +621,10 @@ export default {
         return
       }
       this.daterange[1] = dayjs(date).format(FORMATS.date)
+    },
+
+    handleInputFocus() {
+      this.inputFocus = !this.inputFocus
     },
   },
 }

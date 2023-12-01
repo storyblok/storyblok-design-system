@@ -95,19 +95,30 @@ export default {
       return this.view === COMPONENTS.TIME
     },
 
+    isDateRangeType() {
+      return this.type === 'daterange'
+    },
+
+    hasValues() {
+      return this.prefix !== '' || this.sufix !== ''
+    },
+
     focusOnFirst() {
-      return this.isOverlayVisible && this.prefix === '' && this.isCalendarView
+      if (this.isDateRangeType && this.isOverlayVisible) {
+        return this.prefix === ''
+      }
+      return false
     },
 
     focusOnLast() {
-      return (
-        (this.isOverlayVisible && this.sufix === '' && this.isTimeView) ||
-        (this.prefix !== '' && this.sufix === '')
-      )
+      if (this.isDateRangeType && this.isOverlayVisible) {
+        return this.hasValues
+      }
+      return false
     },
 
     showClearIcon() {
-      return this.prefix !== '' || this.sufix !== ''
+      return this.hasValues
     },
   },
 
