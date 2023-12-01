@@ -376,7 +376,7 @@ export default {
     },
 
     showFakeInput() {
-      return this.isDateRangeType || !this.inputFocus
+      return this.isDateRangeType
     },
 
     returnPrefixValue() {
@@ -428,7 +428,7 @@ export default {
 
   methods: {
     handleCancelAction(clearRange = false) {
-      if (this.isDateRangeType && this.isOverlayVisible && clearRange) {
+      if (this.hasRange && this.isOverlayVisible && clearRange) {
         this.daterange = ['', '']
         return
       }
@@ -455,7 +455,10 @@ export default {
       }
 
       if (this.isDateRangeType) {
-        return this.$emit('update:modelValue', this.daterange)
+        this.$emit('update:modelValue', this.daterange)
+        this.closeOverlay()
+
+        return
       }
 
       const isValid = dayjs(

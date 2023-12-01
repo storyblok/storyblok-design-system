@@ -47,6 +47,7 @@ export default {
   },
 
   emits: ['update:modelValue'],
+
   computed: {
     days() {
       const daysInTheMonth = dayjs(this.internalDate).daysInMonth()
@@ -56,7 +57,6 @@ export default {
 
       for (let i = this.$_getDayInWeek(firstDate); i > 1; i--) {
         const dateValue = firstDate.subtract(i - 1, 'day')
-        const insideRange = this.hasRange && this.insideRange(dateValue)
 
         days.push({
           label: dateValue.date(),
@@ -64,7 +64,7 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
-          insideRange,
+          insideRange: this.insideRange(dateValue),
           disabled: this.isDisabledDay(dateValue),
         })
       }
@@ -74,18 +74,14 @@ export default {
         const checked = !this.hasRange
           ? dayjs(this.modelValue).isSame(dateValue, 'day')
           : dayjs(this.modelValue[0]).isSame(dateValue, 'day')
-        const insideRange = this.hasRange && this.insideRange(dateValue)
-        const isOnBorderOfDateRange =
-          dayjs(this.range[0]).isSame(dateValue, 'day') ||
-          dayjs(this.range[1]).isSame(dateValue, 'day')
 
         days.push({
           label: i,
           date: dateValue,
           inMonth: true,
           checked,
-          border: isOnBorderOfDateRange,
-          insideRange,
+          border: this.isOnBorderOfDateRange(dateValue),
+          insideRange: this.insideRange(dateValue),
           current: !this.hasRange ? dayjs().isSame(dateValue, 'day') : false,
           disabled: this.isDisabledDay(dateValue),
         })
@@ -94,10 +90,6 @@ export default {
       const nextDays = 42 - days.length
       for (let i = 1; i <= nextDays; i++) {
         const dateValue = lastDate.add(i, 'day')
-        const insideRange = this.hasRange && this.insideRange(dateValue)
-        const isOnBorderOfDateRange =
-          dayjs(this.range[0]).isSame(dateValue, 'day') ||
-          dayjs(this.range[1]).isSame(dateValue, 'day')
 
         days.push({
           label: dateValue.date(),
@@ -105,8 +97,8 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
-          insideRange,
-          border: isOnBorderOfDateRange,
+          insideRange: this.insideRange(dateValue),
+          border: this.isOnBorderOfDateRange(dateValue),
           disabled: this.isDisabledDay(dateValue),
         })
       }
@@ -171,7 +163,17 @@ export default {
     insideRange(day) {
       const date = dayjs(day.$d)
 
-      return date.isBetween(this.range[0], dayjs(this.range[1]), 'day', '[]')
+      return (
+        this.hasRange &&
+        date.isBetween(this.range[0], dayjs(this.range[1]), 'day', '[]')
+      )
+    },
+
+    isOnBorderOfDateRange(dateValue) {
+      return (
+        dayjs(this.range[0]).isSame(dateValue, 'day') ||
+        dayjs(this.range[1]).isSame(dateValue, 'day')
+      )
     },
   },
 }
