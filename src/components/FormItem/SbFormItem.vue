@@ -62,6 +62,10 @@ export default {
       type: String,
       default: null,
     },
+    tooltipPosition: {
+      type: String,
+      default: 'top',
+    },
     labelFor: {
       type: String,
       default: null,
@@ -78,7 +82,7 @@ export default {
   computed: {
     computedTooltip() {
       if (this.helperIconText) {
-        return { label: this.helperIconText, textAlign: this.helperTextAlign }
+        return { label: this.helperIconText, textAlign: this.helperTextAlign, position: this.tooltipPosition }
       }
       return null
     },
