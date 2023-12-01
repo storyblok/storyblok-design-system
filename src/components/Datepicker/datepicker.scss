@@ -33,6 +33,10 @@
   &--range {
     color: $sb-green;
     background-color: $sb-green-25;
+
+    &:last-of-type {
+      background-color: $sb-green;
+    }
   }
 
   &--disabled {
