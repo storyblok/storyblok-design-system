@@ -30,15 +30,6 @@
     }
   }
 
-  &--range {
-    color: $sb-green;
-    background-color: $sb-green-25;
-
-    &:last-of-type {
-      background-color: $sb-green;
-    }
-  }
-
   &--disabled {
     color: $sb-dark-blue-50;
     text-decoration: line-through;
@@ -224,6 +215,16 @@
 
     &--inactive {
       color: $sb-dark-blue-50;
+    }
+
+    &--range {
+      color: $sb-green;
+      background-color: $sb-green-25;
+    }
+
+    &--range-border {
+      color: $white;
+      background-color: $sb-green;
     }
   }
 }

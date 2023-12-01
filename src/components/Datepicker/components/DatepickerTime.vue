@@ -41,6 +41,7 @@
           :model-value="currentTimeZone"
           data-testid="timezone-select"
           filterable
+          emit-option
           @update:model-value="handleChangeTimezone"
         />
       </div>

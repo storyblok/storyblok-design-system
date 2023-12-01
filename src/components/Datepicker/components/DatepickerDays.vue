@@ -75,12 +75,16 @@ export default {
           ? dayjs(this.modelValue).isSame(dateValue, 'day')
           : dayjs(this.modelValue[0]).isSame(dateValue, 'day')
         const insideRange = this.hasRange && this.insideRange(dateValue)
+        const isOnBorderOfDateRange =
+          dayjs(this.range[0]).isSame(dateValue, 'day') ||
+          dayjs(this.range[1]).isSame(dateValue, 'day')
 
         days.push({
           label: i,
           date: dateValue,
           inMonth: true,
           checked,
+          border: isOnBorderOfDateRange,
           insideRange,
           current: !this.hasRange ? dayjs().isSame(dateValue, 'day') : false,
           disabled: this.isDisabledDay(dateValue),
@@ -91,6 +95,9 @@ export default {
       for (let i = 1; i <= nextDays; i++) {
         const dateValue = lastDate.add(i, 'day')
         const insideRange = this.hasRange && this.insideRange(dateValue)
+        const isOnBorderOfDateRange =
+          dayjs(this.range[0]).isSame(dateValue, 'day') ||
+          dayjs(this.range[1]).isSame(dateValue, 'day')
 
         days.push({
           label: dateValue.date(),
@@ -99,6 +106,7 @@ export default {
           checked: false,
           current: false,
           insideRange,
+          border: isOnBorderOfDateRange,
           disabled: this.isDisabledDay(dateValue),
         })
       }
@@ -115,7 +123,8 @@ export default {
       if (day.disabled) {
         return
       }
-      this.$emit('update:modelValue', day.date.format())
+      const value = day.date.format()
+      this.$emit('update:modelValue', { value, key: 'day' })
     },
 
     /**
@@ -155,6 +164,7 @@ export default {
         dayItem.current && 'sb-datepicker-days__item--current',
         dayItem.disabled && 'sb-datepicker-days__item--disabled',
         dayItem.insideRange && 'sb-datepicker-days__item--range',
+        dayItem.border && 'sb-datepicker-days__item--range-border',
       ]
     },
 

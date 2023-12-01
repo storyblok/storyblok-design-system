@@ -454,6 +454,10 @@ export default {
         return
       }
 
+      if (this.isDateRangeType) {
+        return this.$emit('update:modelValue', this.daterange)
+      }
+
       const isValid = dayjs(
         this.internalValue,
         this.internalFormat,
@@ -510,10 +514,10 @@ export default {
       this.internalVisualization = INTERNAL_VIEWS.YEAR
     },
 
-    handleComponentsInput(value) {
+    handleComponentsInput({ value, key }) {
       const inputTime = dayjs(value).format(this.internalFormat)
 
-      if (this.isDateRangeType) {
+      if (this.isDateRangeType && key === 'day') {
         this.populateRange(inputTime)
 
         this.internalDate = this.daterange[0]
@@ -610,9 +614,9 @@ export default {
     },
 
     handleTimezoneInput(timezone) {
-      this.internalTimezone = timezone
+      this.internalTimezone = timezone.value
 
-      // TODO: EMIT
+      this.$emit('change-timezone', timezone)
     },
 
     populateRange(date) {

@@ -298,7 +298,8 @@ DateRange.args = {
 DateRange.parameters = {
   docs: {
     description: {
-      story: 'TODO',
+      story:
+        'With the `daterange` prop it is possible to select two different dates and this range value will be output as an array, with the first item being the first date in the range and the second the second date, such as `["2023-12-02", "2023-12-20"]`',
     },
   },
 }

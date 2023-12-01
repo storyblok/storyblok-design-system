@@ -52,7 +52,7 @@ export default {
       $event.stopPropagation()
       const monthIndex = MONTHS.indexOf(month)
       const value = dayjs(this.internalDate).month(monthIndex).format()
-      this.$emit('update:modelValue', value)
+      this.$emit('update:modelValue', { value, key: 'months' })
     },
   },
 }
