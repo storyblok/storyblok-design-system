@@ -98,9 +98,7 @@ export default {
       ]
     },
     descriptionToRender() {
-      return this.description
-        ? capitalize(this.description)
-        : this.$slots.default
+      return this.description ? capitalize(this.description) : ''
     },
     linkText() {
       return this.linkName ? capitalize(this.linkName) : 'View Details'
@@ -113,7 +111,7 @@ export default {
     },
     isDescriptionVisible() {
       return (
-        this.description && (this.isExpandableAndExpanded || !this.isExpandable)
+        (this.description || this.$slots.default) && (this.isExpandableAndExpanded || !this.isExpandable)
       )
     },
     isLinkVisible() {
