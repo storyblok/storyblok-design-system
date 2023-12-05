@@ -17,6 +17,8 @@
       @keydown="handleSearchKeydown"
     />
 
+    <slot name="filter" v-if="$slots.filter" />
+
     <div class="sb-minibrowser__list-container">
       <SbBlockUi v-if="isLoading" in-element />
       <SbMinibrowserBreadcrumbs
