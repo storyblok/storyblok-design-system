@@ -393,7 +393,7 @@ export default {
     },
 
     returnPlaceholder() {
-      return this.internalFormat
+      return this.placeholder ? this.placeholder : this.internalFormat
     },
   },
 

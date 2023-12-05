@@ -36,7 +36,7 @@ const Template = (args) => ({
 
 export default {
   title: 'Forms/SbDatepicker',
-  components: { SbDatepicker },
+  components: SbDatepicker,
   args: {
     placeholder: 'Select date and time',
     modelValue: '2021-12-02 00:00',
@@ -181,7 +181,19 @@ export default {
   },
 }
 
-export const Default = Template.bind({})
+export const Default = (args) => ({
+  components: { SbDatepicker },
+  setup() {
+    return { args }
+  },
+  template: `
+    <div class="large">
+      <SbDatepicker
+        v-bind="args"
+      />
+    </div>
+  `,
+})
 
 export const TimeType = Template.bind({})
 
