@@ -242,7 +242,6 @@ export default {
     internalVisualization: INTERNAL_VIEWS.CALENDAR,
     hitClear: false,
     invalidDate: false,
-    inputFocus: true,
     vcoConfig: {
       detectIFrame: false,
     },
@@ -451,7 +450,6 @@ export default {
 
     handleDoneAction() {
       let utcTime
-      this.handleInputFocus()
 
       if (this.internalValue === '') {
         this.handleClear()
@@ -635,7 +633,7 @@ export default {
     },
 
     handleInputFocus() {
-      this.inputFocus = !this.inputFocus
+      this.isOverlayVisible = true
     },
   },
 }
