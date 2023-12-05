@@ -1,5 +1,5 @@
 <template>
-  <div :class="computedClasses">
+  <div :class="computedClasses" @click.stop="expandNotification">
     <SbIcon
       class="sb-notification--icon-container"
       size="small"
@@ -15,7 +15,7 @@
     <button
       v-if="isExpandable"
       class="sb-notification--btn"
-      @click="expandNotification"
+      @click.prevent.stop="expandNotification"
     >
       <SbIcon size="small" :name="chevronText" />
     </button>
@@ -126,6 +126,7 @@ export default {
   },
   methods: {
     expandNotification() {
+      if(!this.isExpandable) return
       this.expanded = !this.expanded
     },
   },
