@@ -64,6 +64,7 @@ export const AllColors = () => ({
       <SbColors color-name="#FCDB71" name="Yellow 75%" />
       <SbColors color-name="#FDE6A0" name="Yellow 50%" />
       <SbColors color-name="#FEF3CF" name="Yellow 25%" />
+      <SbColors color-name="#FEF5D9" name="Yellow 20%" />
 
       <br />
 
