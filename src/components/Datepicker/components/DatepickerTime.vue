@@ -79,7 +79,7 @@ export default {
     },
   },
 
-  emits: ['update:modelValue', 'input-minutes', 'input-timezone'],
+  emits: ['update:modelValue', 'input-timezone'],
 
   data: () => ({
     internalHour: null as null | string | number,
@@ -168,7 +168,7 @@ export default {
         .minute(minutes)
         .format()
 
-      this.$emit('update:modelValue', value)
+      this.$emit('update:modelValue', { value, key: 'time' })
     },
 
     $_syncValue(value: string | number) {
