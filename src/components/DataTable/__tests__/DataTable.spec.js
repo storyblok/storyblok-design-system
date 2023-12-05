@@ -77,6 +77,12 @@ describe('SbDataTable component', () => {
       ).toBe(5)
     })
 
+    it('should render an empty header in the checkbox column', () => {
+      expect(
+        wrapperSbDataTableHeader.findAll('th').length
+      ).toBe(7)
+    })
+
     it('should toggle the color of the checkbox and toggle the background color of the row itself', async () => {
       const row = wrapperSbDataTableBody.findAll('.sb-data-table__row')[2]
 

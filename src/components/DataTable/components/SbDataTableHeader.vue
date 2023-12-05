@@ -2,11 +2,12 @@
   <thead :data-testid="dataTestid">
     <tr :data-testid="`${dataTestid}-list-column`">
       <th
-        v-if="allowSelection && isMultiple"
+        v-if="allowSelection"
         class="sb-data-table__head-cell"
         :data-testid="`${dataTestid}-checkbox-cell`"
       >
         <SbCheckbox
+          v-if="isMultiple"
           v-model="isActive"
           :indeterminate="isIndeterminate"
           :data-testid="`${dataTestid}-checkbox`"
