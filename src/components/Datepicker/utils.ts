@@ -22,7 +22,7 @@ export const INTERNAL_VIEWS: object = {
  */
 export const FORMATS: object = {
   date: 'YYYY-MM-DD',
-  datetime: 'YYYY-MM-DD HH:mm',
+  datetime: 'YYYY-MM-DD hh:mm',
   time: 'hh:mm',
 }
 

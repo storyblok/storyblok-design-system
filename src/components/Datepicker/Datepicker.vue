@@ -14,7 +14,7 @@
         icon-left="calendar"
         :disabled="disabled"
         :readonly="isInputReadonly"
-        :placeholder="placeholder"
+        :placeholder="returnPlaceholder"
         :model-value="internalValueFormatted"
         :error="invalidDate"
         :inline-label="inlineLabel"
@@ -391,6 +391,10 @@ export default {
         ? dayjs(this.internalValue).format(FORMATS.time)
         : ''
       return this.isDateRangeType ? this.daterange[1] : timeValue
+    },
+
+    returnPlaceholder() {
+      return this.internalFormat
     },
   },
 

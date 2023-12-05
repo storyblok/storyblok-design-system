@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-datepicker__fake-input">
+  <div :class="returnClasses">
     <SbIcon
       name="calendar"
       color="light-gray"
@@ -119,6 +119,13 @@ export default {
 
     showClearIcon() {
       return this.hasValues
+    },
+
+    returnClasses() {
+      return [
+        'sb-datepicker__fake-input',
+        !this.hasValues && 'sb-datepicker__fake-input--placeholder',
+      ]
     },
   },
 
