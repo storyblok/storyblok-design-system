@@ -254,7 +254,7 @@ export default {
         hideList,
         listItems,
       } = this.context
-      const count = listItems.length
+      const count = listItems?.length || 0
 
       switch (event.key) {
         case 'ArrowDown':

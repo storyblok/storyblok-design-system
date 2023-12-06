@@ -9,7 +9,7 @@ const SelectTemplate = (args) => ({
     SbSelect,
   },
 
-  props: Object.keys(args),
+  setup: () => ({ args }),
 
   data: () => ({
     internalValue: null,
@@ -41,27 +41,10 @@ const SelectTemplate = (args) => ({
   template: `
     <div style="min-height: 300px;">
       <SbSelect
-      :label="label"
-      :options="options"
-      :multiple="multiple"
-      :left-icon="leftIcon"
-      :filterable="filterable"
-      :use-avatars="useAvatars"
-      :inline="inline"
-      :no-data-text="noDataText"
-      :no-data-text-tag="noDataTextTag"
-      :allow-create="allowCreate"
-      :is-loading="isLoading"
-      :loading-label="loadingLabel"
-      :clearable="clearable"
-      :show-caption="showCaption"
-      :is-option-disabled="isOptionDisabled"
-      :inline-label="inlineLabel"
-      :show-count="showCount"
-      v-model="internalValue"
-      :first-value-is-all-value="firstValueIsAllValue"
-      style="max-width: 300px"
-      @option-created="handleOptionCreated"
+        v-bind="args"
+        v-model="internalValue"
+        style="max-width: 300px"
+        @option-created="handleOptionCreated"
     />
     </div>
     `,
@@ -265,7 +248,7 @@ export const LazySearch = (args) => ({
   },
 
   setup() {
-    return { ...args }
+    return { args }
   },
 
   data: () => ({
@@ -298,20 +281,7 @@ export const LazySearch = (args) => ({
   template: `
   <div style="min-height: 300px">
     <SbSelect
-      :label="label"
-      :options="internalOptions"
-      :multiple="multiple"
-      :left-icon="leftIcon"
-      :filterable="filterable"
-      :use-avatars="useAvatars"
-      :inline="inline"
-      :no-data-text="noDataText"
-      :no-data-text-tag="noDataTextTag"
-      :allow-create="allowCreate"
-      :is-loading="internalLoading"
-      :loading-label="loadingLabel"
-      :clearable="clearable"
-      :disable-internal-filter="internalSearch"
+      v-bind="args"
       v-model="internalValue"
       style="max-width: 300px"
       @filter="handleFilter"
@@ -383,7 +353,7 @@ export const WithMinibrowser = (args) => ({
   },
 
   setup() {
-    return { ...args }
+    return { args }
   },
 
   data: () => ({
@@ -419,17 +389,13 @@ export const WithMinibrowser = (args) => ({
     <div style="min-height: 300px">
       <SbSelect
         ref="select"
-        :label="label"
-        :left-icon="leftIcon"
-        :filterable="filterable"
-        :use-avatars="useAvatars"
-        :inline="inline"
+        v-bind="args"
         v-model="internalValue"
         style="max-width: 300px"
       >
         <template #minibrowser>
         <SbMinibrowser
-          :options="minibrowserOptions"
+          :options="args.minibrowserOptions"
           @select-item="onSelectItem"
           @close="handleCloseBrowser"
         />
@@ -446,7 +412,7 @@ export const EmitOption = (args) => ({
   },
 
   setup() {
-    return { ...args }
+    return { args }
   },
 
   data: () => ({
@@ -478,19 +444,7 @@ export const EmitOption = (args) => ({
         <h2 style="margin-bottom: 10px"> Single Select </h2>
 
         <SbSelect
-          :label="label"
-          :options="options"
-          :multiple="multiple"
-          :left-icon="leftIcon"
-          :filterable="filterable"
-          :use-avatars="useAvatars"
-          :inline="inline"
-          :no-data-text="noDataText"
-          :no-data-text-tag="noDataTextTag"
-          :allow-create="allowCreate"
-          :is-loading="isLoading"
-          :loading-label="loadingLabel"
-          :clearable="clearable"
+          v-bind="args"
           emit-option
           :modelValue="singleSelectValue"
           @update:modelValue="handleSingleSelect"
@@ -508,18 +462,7 @@ export const EmitOption = (args) => ({
       <h2 style="margin-bottom: 10px"> Multiple Select </h2>
 
       <SbSelect
-        :label="label"
-        :options="options"
-        :left-icon="leftIcon"
-        :filterable="filterable"
-        :use-avatars="useAvatars"
-        :inline="inline"
-        :no-data-text="noDataText"
-        :no-data-text-tag="noDataTextTag"
-        :allow-create="allowCreate"
-        :is-loading="isLoading"
-        :loading-label="loadingLabel"
-        :clearable="clearable"
+        v-bind="args"
         multiple
         emit-option
         v-model="multipleSelectValue"
@@ -548,7 +491,7 @@ export const EmitSearch = (args) => ({
   },
 
   setup() {
-    return { ...args }
+    return { args }
   },
 
   data: () => ({
@@ -571,19 +514,7 @@ export const EmitSearch = (args) => ({
         <h2 style="margin-bottom: 10px"> Typed value {{ searchInput }} </h2>
 
         <SbSelect
-          :label="label"
-          :options="options"
-          :multiple="multiple"
-          :left-icon="leftIcon"
-          :filterable="true"
-          :use-avatars="useAvatars"
-          :inline="inline"
-          :no-data-text="noDataText"
-          :no-data-text-tag="noDataTextTag"
-          :allow-create="allowCreate"
-          :is-loading="isLoading"
-          :loading-label="loadingLabel"
-          :clearable="clearable"
+          v-bind="args"
           emit-search
           emit-option
           :modelValue="searchInput"
