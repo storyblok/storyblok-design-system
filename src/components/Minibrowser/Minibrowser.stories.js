@@ -161,11 +161,11 @@ const MinibrowserTemplate = (args) => ({
       this.internalLoading = newLoading
     },
 
-    syncBreadcrumbs(newBreadcrumbs) {
+    syncBreadcrumbs(newBreadcrumbs = []) {
       this.internalBreadcrumbsOptions = [...newBreadcrumbs]
     },
 
-    syncOptions(newOptions) {
+    syncOptions(newOptions = []) {
       this.internalOptions = [...newOptions]
     },
 
