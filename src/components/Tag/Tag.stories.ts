@@ -1,41 +1,21 @@
 import SbTag from './index'
 import { tagTypes } from './lib'
-import type { Args, ArgTypes, StoryFn } from '@storybook/vue3'
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+type Story = StoryObj<typeof SbTag>
 
-export default {
+const meta: Meta<typeof SbTag> = {
   title: 'Basic/SbTag',
-  components: SbTag,
-  parameters: {
-    docs: {
-      description: {
-        component: '',
-      },
-    },
-  },
+  component: SbTag,
   args: {
     closable: false,
-    label: 'Tag Label',
+    label: 'a label',
     type: 'light',
     user: {
-      avatar: '',
-      friendly_name: '',
+      avatar: 'https://placehold.co/22x22',
+      friendly_name: 'John Doe',
     },
   },
   argTypes: {
-    closable: {
-      name: 'closable',
-      description: 'Render a close icon on the right',
-      control: {
-        type: 'boolean',
-      },
-    },
-    label: {
-      name: 'label',
-      description: 'Label to `SbTag`',
-      control: {
-        type: 'text',
-      },
-    },
     type: {
       name: 'type',
       description: 'Type of the `SbTag`',
@@ -44,44 +24,32 @@ export default {
         type: 'select',
       },
     },
-    onClick: {
-      action: 'clicked',
-    },
-    user: {
-      name: 'user',
-      description: 'used for the `SbAvatar` component',
-      control: {
-        type: 'object',
-      },
-    },
   },
 }
 
-export const Default: StoryFn = {
+export default meta
+
+export const Default: Story = {
   render: (args) => ({
     components: { SbTag },
     setup(): Args {
       return { args }
     },
-    template: `
-    <SbTag
-      :closable="closable"
-      :label="label"
-      :type="type"
-      @close="onClick"
-  />`,
+    template: `<SbTag v-bind="args" />`,
   }),
-  args: {
-    closable: false,
-    label: 'Label',
-  },
 }
 
-export const Closable: StoryFn = {
+Default.args = {
+  closable: false,
+  label: 'Label',
+  type: 'light',
+}
+
+export const Closable: Story = {
   render: (args) => ({
     components: { SbTag },
     setup(): Args {
-      return { args }
+      return { ...args }
     },
     template: `
     <SbTag
@@ -96,6 +64,7 @@ export const Closable: StoryFn = {
 Closable.args = {
   closable: true,
   label: 'Closable tag',
+  type: 'light',
 }
 
 Closable.parameters = {
@@ -107,13 +76,13 @@ Closable.parameters = {
   },
 }
 
-export const Avatar: StoryFn = {
+export const Avatar: Story = {
   render: (args) => ({
     components: {
       SbTag,
     },
     setup(): Args {
-      return { args }
+      return { ...args }
     },
     template: `
   <SbTag

@@ -74,11 +74,13 @@ export default {
 
 export const Default = {
   name: 'Default',
-  render: (args, { argTypes }) => ({
+  render: (args) => ({
     components: { SbEditorHeader },
-    props: Object.keys(argTypes),
+    setup() {
+      return { args }
+    },
     template: `
-        <SbEditorHeader v-bind="$props"  />
+        <SbEditorHeader v-bind="args"  />
       `,
   }),
 }

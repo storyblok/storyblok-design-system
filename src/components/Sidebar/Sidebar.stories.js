@@ -59,18 +59,22 @@ export default {
 }
 
 export const Normal = {
-  render: (args, { argTypes }) => ({
+  render: (args) => ({
     components: { SbSidebar },
-    props: Object.keys(argTypes),
-    template: '<SbSidebar v-bind="$props" v-on="$props" />',
+    setup() {
+      return { args }
+    },
+    template: '<SbSidebar v-bind="args" v-on="args" />',
   }),
 }
 
 export const Minimized = {
   render: (args) => ({
     components: { SbSidebar },
-    props: Object.keys(args),
-    template: '<SbSidebar v-bind="$props" v-on="$props" />',
+    setup() {
+      return { args }
+    },
+    template: '<SbSidebar v-bind="args" v-on="args" />',
   }),
   args: {
     minimize: true,
