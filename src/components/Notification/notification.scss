@@ -78,7 +78,7 @@
     background-color: $white;
     border-radius: 10px;
 
-    @include generalBoxShadow();
+    @include generalBoxShadow;
   }
 
   // Content style for notification

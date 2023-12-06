@@ -22,8 +22,7 @@
   animation: fadein 0.3s;
 
   &--scrollbar {
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden auto;
   }
 
   &--close-on-header &__close-button {

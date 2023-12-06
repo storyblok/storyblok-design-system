@@ -74,7 +74,7 @@ describe('Test SbHeading Component', () => {
       const wrapper = factory(options)
 
       expect(wrapper.find('.header-title').html()).toBe(
-        '<div class="header-title">Main Content</div>'
+        '<div class="header-title">Main Content</div>',
       )
     })
   })

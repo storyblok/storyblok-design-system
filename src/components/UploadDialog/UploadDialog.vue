@@ -39,7 +39,7 @@ const props = withDefaults(
     timeLeft: 0,
     totalFiles: 0,
     locale: 'en',
-  }
+  },
 )
 
 const labelToUpload = computed(() => {

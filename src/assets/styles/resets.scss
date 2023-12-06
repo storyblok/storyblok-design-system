@@ -3,8 +3,8 @@
 /* Input type search resets */
 
 /* clears the 'X' icon from Internet Explorer */
-input[type=search]::-ms-clear,
-input[type=search]::-ms-reveal {
+input[type="search"]::-ms-clear,
+input[type="search"]::-ms-reveal {
   display: none;
   width: 0;
   height: 0;

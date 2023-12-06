@@ -1,28 +1,24 @@
 .sb-block-ui {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
   z-index: 4;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
   box-sizing: border-box;
   width: 100%;
-  background-color: $black-trasparent;
   padding: 20px;
-
-  &--in-element {
-    position: absolute;
-    background-color: transparent;
-  }
+  background-color: $black-trasparent;
+  inset: 0;
 
   @include mq($until: lg) {
     &--full-width {
       padding: 0;
     }
+  }
+
+  &--in-element {
+    position: absolute;
+    background-color: transparent;
   }
 }

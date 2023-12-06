@@ -68,7 +68,7 @@ describe('with content info', () => {
   it('should render the "4 items" html element in the  content info slot', () => {
     const wrapper = factory(
       { title: 'Group Name 2' },
-      { contentInfo: '<i>4 items</i>' }
+      { contentInfo: '<i>4 items</i>' },
     )
 
     const info = wrapper

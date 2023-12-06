@@ -432,7 +432,7 @@ describe('SbSelect component', () => {
       expect(listComponent.findAllComponents(SbAvatar).length).toBe(1)
 
       expect(listComponent.findAllComponents(SbAvatar)[0].props('name')).toBe(
-        'Alexander Feiglstorfer'
+        'Alexander Feiglstorfer',
       )
     })
   })
@@ -1126,7 +1126,7 @@ describe('SbSelect component', () => {
 
     it('Should disabled option when user pass a function prop "isOptionDisabled"', () => {
       expect(
-        wrapper.find('.sb-select-list__item--disabled').exists()
+        wrapper.find('.sb-select-list__item--disabled').exists(),
       ).toBeTruthy()
     })
 
@@ -1153,7 +1153,7 @@ describe('SbSelect component', () => {
       })
 
       expect(wrapper.find('.sb-select-inner__inline-label').text()).toBe(
-        'Inline label'
+        'Inline label',
       )
     })
 
@@ -1161,7 +1161,7 @@ describe('SbSelect component', () => {
       const wrapper = factory()
 
       expect(wrapper.find('.sb-select-inner__inline-label').exists()).toBe(
-        false
+        false,
       )
     })
   })
@@ -1181,7 +1181,7 @@ describe('SbSelect component', () => {
       const wrapper = factory()
 
       expect(
-        wrapper.find('.sb-select-inner__chevron-dropdown').exists()
+        wrapper.find('.sb-select-inner__chevron-dropdown').exists(),
       ).toBeTruthy()
     })
 

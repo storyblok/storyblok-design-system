@@ -45,11 +45,11 @@ describe('Tests for SbModal', () => {
 
   it('Test if SBModal component renderer correctly', () => {
     expect(wrapper.findComponent(SbModalHeader).props('title')).toBe(
-      'Awesome Title'
+      'Awesome Title',
     )
 
     expect(wrapper.findComponent(SbModalContent).text()).toBe(
-      'The body copy that explains empty state'
+      'The body copy that explains empty state',
     )
 
     expect(wrapper.findComponent(SbModalFooter).exists()).toBe(true)
@@ -67,11 +67,11 @@ describe('Tests for SbModal', () => {
 
   it('Test if SbHeader renderer correctly', () => {
     expect(
-      wrapper.findComponent(SbModalHeader).findComponent(SbIcon).exists()
+      wrapper.findComponent(SbModalHeader).findComponent(SbIcon).exists(),
     ).toBe(false)
 
     expect(wrapper.findComponent(SbModalHeader).props().title).toBe(
-      'Awesome Title'
+      'Awesome Title',
     )
 
     expect(wrapper.findComponent(SbModalHeader).props().align).toBe('center')
@@ -79,7 +79,7 @@ describe('Tests for SbModal', () => {
 
   it('Test if SbContent renderer correctly', () => {
     expect(wrapper.findComponent(SbModalContent).text()).toBe(
-      'The body copy that explains empty state'
+      'The body copy that explains empty state',
     )
 
     expect(wrapper.findComponent(SbModalContent).find('p').exists()).toBe(true)
@@ -89,7 +89,7 @@ describe('Tests for SbModal', () => {
     expect(wrapper.findComponent(SbModalFooter).exists()).toBe(true)
 
     expect(
-      wrapper.findComponent(SbModalFooter).findComponent(SbButton).exists()
+      wrapper.findComponent(SbModalFooter).findComponent(SbButton).exists(),
     ).toBe(true)
   })
 
@@ -110,11 +110,17 @@ describe('Tests for SbModal', () => {
 
     expect(wrapper.findComponent(SbModalHeader).exists()).toBe(true)
     expect(wrapper.findComponent(SbModalHeader).props().title).toBe(
-      'Main header'
+      'Main header',
     )
     expect(
-      wrapper.findComponent(SbModalHeader).find('sb-modal-header__actions')
+      wrapper
+        .findComponent(SbModalHeader)
+        .find('sb-modal-header__actions')
     )
-    expect(wrapper.findComponent(SbModalHeader).find('sb-modal__close-button'))
+    expect(
+      wrapper
+        .findComponent(SbModalHeader)
+        .find('sb-modal__close-button')
+    )
   })
 })

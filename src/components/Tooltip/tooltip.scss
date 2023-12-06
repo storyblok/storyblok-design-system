@@ -1,6 +1,6 @@
 @mixin tooltip($position) {
   &--#{$position} {
-    @if ($position=='top') {
+    @if  $position=='top' {
       .sb-tooltip__label {
         bottom: 125%;
         left: 50%;
@@ -14,7 +14,7 @@
       }
     }
 
-    @if ($position=='bottom') {
+    @if  $position=='bottom' {
       .sb-tooltip__label {
         left: 50%;
         top: 125%;
@@ -29,7 +29,7 @@
       }
     }
 
-    @if ($position=='left') {
+    @if  $position=='left' {
       .sb-tooltip__label {
         right: 125%;
         top: 50%;
@@ -43,7 +43,7 @@
       }
     }
 
-    @if ($position=='right') {
+    @if  $position=='right' {
       .sb-tooltip__label {
         left: 125%;
         top: 50%;
@@ -68,7 +68,7 @@
   line-height: 15px;
   word-break: break-word;
   border-radius: 2px;
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 2px 1px rgb(0 0 0 / 8%);
 
   &--dark {
     color: $white;
@@ -133,7 +133,7 @@
     &::before {
       border-left: 0;
       border-top: 0;
-      box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.08);
+      box-shadow: 1px 1px 2px 0 rgb(0 0 0 / 8%);
     }
   }
 
@@ -143,7 +143,7 @@
     &::before {
       border-bottom: 0;
       border-right: 0;
-      box-shadow: -1px -1px 2px 0 rgba(0, 0, 0, 0.08);
+      box-shadow: -1px -1px 2px 0 rgb(0 0 0 / 8%);
     }
   }
 
@@ -154,7 +154,7 @@
     &::before {
       border-bottom: 0;
       border-left: 0;
-      box-shadow: 1px -1px 2px 0 rgba(0, 0, 0, 0.08);
+      box-shadow: 1px -1px 2px 0 rgb(0 0 0 / 8%);
     }
   }
 
@@ -165,7 +165,7 @@
     &::before {
       border-right: 0;
       border-top: 0;
-      box-shadow: -1px 1px 2px 0 rgba(0, 0, 0, 0.08);
+      box-shadow: -1px 1px 2px 0 rgb(0 0 0 / 8%);
     }
   }
 }

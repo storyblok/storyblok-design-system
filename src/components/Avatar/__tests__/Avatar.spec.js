@@ -40,7 +40,7 @@ describe('SbAvatar component', () => {
       await waitMs()
 
       expect(wrapper.find('.sb-avatar').attributes('class')).toBe(
-        'sb-avatar sb-avatar--small'
+        'sb-avatar sb-avatar--small',
       )
     })
 
@@ -63,7 +63,7 @@ describe('SbAvatar component', () => {
       await waitMs()
 
       expect(wrapper.find('.sb-avatar').attributes('class')).toBe(
-        'sb-avatar sb-avatar--large'
+        'sb-avatar sb-avatar--large',
       )
     })
   })
@@ -214,7 +214,7 @@ describe('SbAvatar component', () => {
 
     it('should have the specific bg class', async () => {
       expect(wrapper.find('.sb-avatar__initials.bg-secondary').exists()).toBe(
-        true
+        true,
       )
     })
   })

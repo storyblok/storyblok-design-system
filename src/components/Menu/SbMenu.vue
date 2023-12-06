@@ -202,7 +202,7 @@ export default {
         this.focusableElements = list.filter(
           (node) =>
             ['menuitemradio'].includes(node.getAttribute('role')) &&
-            node.style.display !== 'none'
+            node.style.display !== 'none',
         )
         this.focusableCount = +this.focusableElements?.length
       }

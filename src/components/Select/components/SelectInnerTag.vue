@@ -3,9 +3,9 @@
     v-if="item"
     tabindex="0"
     :closable="!isDisabled"
+    :data-testid="`${dataTestid}-tag`"
     @keydown="$emit('keydown', $event, item)"
     @close="$emit('close', $event, item)"
-    :data-testid="`${dataTestid}-tag`"
   >
     <template v-if="item">
       <SbAvatar
@@ -16,7 +16,11 @@
         :name="item[itemLabel]"
         :data-testid="`${dataTestid}-avatar`"
       />
-      <span class="sb-select-inner__tag" :title="getTagTitle(item)" :data-testid="`${dataTestid}-inner-tag`">
+      <span
+        class="sb-select-inner__tag"
+        :title="getTagTitle(item)"
+        :data-testid="`${dataTestid}-inner-tag`"
+      >
         <template v-if="showCaption">
           {{ item[itemLabel] }}
           <span v-if="item[itemCaption]">({{ item[itemCaption] }})</span>
@@ -28,7 +32,9 @@
     </template>
   </SbTag>
 
-  <SbTag v-if="showTagCount" v-tooltip="tagsCountTooltip" type="primary"> +{{ valueTagCount }} </SbTag>
+  <SbTag v-if="showTagCount" v-tooltip="tagsCountTooltip" type="primary">
+    +{{ valueTagCount }}
+  </SbTag>
 </template>
 
 <script>
@@ -91,7 +97,7 @@ export default {
   computed: {
     dataTestid() {
       return this.$attrs['data-testid'] || 'sb-select-inner-tag'
-    }
+    },
   },
 
   methods: {

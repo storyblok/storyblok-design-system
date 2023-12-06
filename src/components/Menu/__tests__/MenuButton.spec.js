@@ -123,7 +123,7 @@ describe('SbMenuButton component', () => {
     const wrapper = factoryMountComponent(wrapperComponent)
 
     expect(
-      wrapper.findComponent(SbMenuButton).classes('sb-menu-button-borderless')
+      wrapper.findComponent(SbMenuButton).classes('sb-menu-button-borderless'),
     ).toBe(true)
   })
 })

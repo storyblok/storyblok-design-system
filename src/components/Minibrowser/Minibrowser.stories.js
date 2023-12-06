@@ -241,7 +241,7 @@ const MinibrowserTemplate = (args) => ({
       const currentItem = this.internalBreadcrumbsOptions[index]
       this.internalOptions = this.getOptionsByLevel(currentItem)
       this.internalBreadcrumbsOptions = this.internalBreadcrumbsOptions.filter(
-        (_, itemIndex) => itemIndex <= index
+        (_, itemIndex) => itemIndex <= index,
       )
 
       this.internalLoading = false

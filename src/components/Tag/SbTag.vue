@@ -14,11 +14,11 @@
     </span>
     <SbIcon
       v-if="closable"
-      :data-testid="`${dataTestid}-remove-button`"
       v-tooltip="{
         label: 'Remove',
         position: 'bottom',
       }"
+      :data-testid="`${dataTestid}-remove-button`"
       name="x"
       size="small"
       @click="onClose"

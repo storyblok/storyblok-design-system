@@ -72,7 +72,7 @@
     box-sizing: border-box;
     width: 100%;
 
-    @include popoverComponent();
+    @include popoverComponent;
 
     &.sb-popover {
       max-width: 294px;
@@ -178,8 +178,8 @@
     height: 42px;
     padding: 13px 17px;
 
-    @include flexCentering();
-    @include datepickerItem();
+    @include flexCentering;
+    @include datepickerItem;
 
     &--inactive {
       color: $sb-dark-blue-50;
@@ -212,8 +212,8 @@
     border-right: 0;
     cursor: pointer;
 
-    @include flexCentering();
-    @include datepickerItem();
+    @include flexCentering;
+    @include datepickerItem;
 
     &:last-of-type {
       border-bottom: none;
@@ -238,8 +238,8 @@
     padding: 13px 25px;
     text-align: center;
 
-    @include flexCentering();
-    @include datepickerItem();
+    @include flexCentering;
+    @include datepickerItem;
   }
 }
 
@@ -258,7 +258,7 @@
     height: 42px;
     text-align: center;
 
-    @include flexCentering();
-    @include datepickerItem();
+    @include flexCentering;
+    @include datepickerItem;
   }
 }

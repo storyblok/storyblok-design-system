@@ -171,7 +171,7 @@ export default {
 
     createObserver() {
       const elementToObserve = document.querySelector(
-        '.sb-sidebar-list__container'
+        '.sb-sidebar-list__container',
       )
       if (window.ResizeObserver && elementToObserve) {
         this.sizeObserver = new ResizeObserver(() => {
@@ -187,7 +187,7 @@ export default {
 
     checkScrollbar() {
       const list = document.getElementsByClassName(
-        'sb-sidebar-list__container'
+        'sb-sidebar-list__container',
       )[0]
       if (list) {
         this.hasScrollbar = list.scrollHeight > list.clientHeight
@@ -199,7 +199,7 @@ export default {
         const betweenMaxAndMin = `(max-width: ${this.maxWidth}) and (min-width: ${this.minWidth})`
         this.$emit(
           'update:minimize',
-          window.matchMedia(betweenMaxAndMin).matches
+          window.matchMedia(betweenMaxAndMin).matches,
         )
       }
     },

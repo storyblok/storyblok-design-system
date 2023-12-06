@@ -47,7 +47,7 @@ export default {
     pagesOptions() {
       return buildSelectOptions(
         this.pages,
-        (page) => i18n(this.locale, 'goToPage') + `${page}`
+        (page) => i18n(this.locale, 'goToPage') + `${page}`,
       )
     },
   },

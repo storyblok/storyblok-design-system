@@ -44,7 +44,7 @@ describe('SbBreadrumbs component', () => {
 
     it('should show only two SbBreadcrumbItem in the first level', () => {
       expect(
-        wrapper.findAll('.sb-breadcrumbs > .sb-breadcrumbs__item').length
+        wrapper.findAll('.sb-breadcrumbs > .sb-breadcrumbs__item').length,
       ).toBe(3)
     })
 
@@ -53,7 +53,7 @@ describe('SbBreadrumbs component', () => {
         wrapper
           .findComponent(SbBreadcrumbDropdown)
           .find('.sb-breadcrumbs__dropdown')
-          .exists()
+          .exists(),
       ).toBe(false)
 
       await wrapper.vm.toggleDropdown()
@@ -62,7 +62,7 @@ describe('SbBreadrumbs component', () => {
         wrapper
           .findComponent(SbBreadcrumbDropdown)
           .find('.sb-breadcrumbs__dropdown')
-          .exists()
+          .exists(),
       ).toBe(true)
 
       await wrapper.vm.toggleDropdown()
@@ -71,7 +71,7 @@ describe('SbBreadrumbs component', () => {
         wrapper
           .findComponent(SbBreadcrumbDropdown)
           .find('.sb-breadcrumbs__dropdown')
-          .exists()
+          .exists(),
       ).toBe(false)
     })
   })
@@ -84,7 +84,7 @@ describe('SbBreadrumbs component', () => {
 
     it('should the container contains a class with --large-section modifier', () => {
       expect(wrapper.attributes('class')).toBe(
-        'sb-breadcrumbs sb-breadcrumbs--large-section'
+        'sb-breadcrumbs sb-breadcrumbs--large-section',
       )
     })
   })

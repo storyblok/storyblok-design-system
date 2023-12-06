@@ -1,22 +1,8 @@
 import { SbSlideover } from '../index'
 
-import SbButton from '../../Button'
-import { SbModalHeader, SbModalContent, SbModalFooter } from '../../Modal'
-
 import { mount } from '@vue/test-utils'
-import { waitMs } from '../../../utils/tests-utils'
 
 describe('SbSlideover component', () => {
-  const WrapperComponent = {
-    components: {
-      SbSlideover,
-      SbButton,
-      SbModalHeader,
-      SbModalContent,
-      SbModalFooter,
-    },
-  }
-
   const wrapper = mount(SbSlideover, {
     props: {
       isOpen: true,

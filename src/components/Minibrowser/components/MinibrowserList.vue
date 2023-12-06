@@ -1,6 +1,10 @@
 <template>
   <div class="sb-minibrowser__list">
-    <SbMiniBrowserListHeader v-if="isInternalTitleVisible" :title="title" :data-testid="`${dataTestid}-header`" />
+    <SbMiniBrowserListHeader
+      v-if="isInternalTitleVisible"
+      :title="title"
+      :data-testid="`${dataTestid}-header`"
+    />
 
     <slot name="header" :title="title" />
 

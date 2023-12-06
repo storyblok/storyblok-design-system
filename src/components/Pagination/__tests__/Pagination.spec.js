@@ -28,19 +28,19 @@ describe('SbPagination component', () => {
     it('should have the previous button disabled', () => {
       expect(
         wrapper.find('[data-testid="pagination-previous-button"]').element
-          .disabled
+          .disabled,
       ).toBe(true)
     })
 
     it('should have a text showing how many pages are', () => {
       expect(
-        wrapper.find('[data-testid="pagination-pages-information"]').text()
+        wrapper.find('[data-testid="pagination-pages-information"]').text(),
       ).toBe('of 4 pages')
     })
 
     it('should have a text showing the current pagination items', () => {
       expect(
-        wrapper.find('[data-testid="pagination-items-information"]').text()
+        wrapper.find('[data-testid="pagination-items-information"]').text(),
       ).toBe('1-25 of 100 items')
     })
   })
@@ -59,17 +59,17 @@ describe('SbPagination component', () => {
     it('should not have the previous and next buttons disabled', () => {
       expect(
         wrapper.find('[data-testid="pagination-previous-button"]').element
-          .disabled
+          .disabled,
       ).toBe(false)
 
       expect(
-        wrapper.find('[data-testid="pagination-next-button"]').element.disabled
+        wrapper.find('[data-testid="pagination-next-button"]').element.disabled,
       ).toBe(false)
     })
 
     it('should have the correct text showing the current page items', () => {
       expect(
-        wrapper.find('[data-testid="pagination-items-information"]').text()
+        wrapper.find('[data-testid="pagination-items-information"]').text(),
       ).toBe('51-75 of 100 items')
     })
   })
@@ -87,13 +87,13 @@ describe('SbPagination component', () => {
 
     it('should have the next button disabled', () => {
       expect(
-        wrapper.find('[data-testid="pagination-next-button"]').element.disabled
+        wrapper.find('[data-testid="pagination-next-button"]').element.disabled,
       ).toBe(true)
     })
 
     it('should have the text showing the residual last items', () => {
       expect(
-        wrapper.find('[data-testid="pagination-items-information"]').text()
+        wrapper.find('[data-testid="pagination-items-information"]').text(),
       ).toBe('91-100 of 100 items')
     })
   })
@@ -111,7 +111,7 @@ describe('SbPagination component', () => {
 
     it('should have the correct text with how many pages information', () => {
       expect(
-        wrapper.find('[data-testid="pagination-pages-information"]').text()
+        wrapper.find('[data-testid="pagination-pages-information"]').text(),
       ).toBe('of 2 pages')
     })
   })
@@ -135,7 +135,7 @@ describe('SbPagination component', () => {
         perPage: 50,
       })
       expect(
-        wrapper.find('[data-testid="pagination-pages-information"]').text()
+        wrapper.find('[data-testid="pagination-pages-information"]').text(),
       ).toBe('of 2 pages')
     })
   })
@@ -212,7 +212,7 @@ describe('SbPagination component', () => {
 
     it('should have the text showing pagination items information', () => {
       expect(
-        wrapper.find('[data-testid="pagination-items-information"]').text()
+        wrapper.find('[data-testid="pagination-items-information"]').text(),
       ).toBe('1-5 of 60 items')
     })
   })
@@ -244,7 +244,7 @@ describe('SbPagination component', () => {
 
     it('should have a text with pages information', () => {
       expect(
-        wrapper.find('[data-testid="pagination-pages-information"]').text()
+        wrapper.find('[data-testid="pagination-pages-information"]').text(),
       ).toBe('1 of 4 pages')
     })
   })

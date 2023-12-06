@@ -14,7 +14,7 @@ describe('SbNotification tests', () => {
     })
 
     expect(wrapper.find('div').attributes('class')).toBe(
-      'sb-notification sb-notification--positive'
+      'sb-notification sb-notification--positive',
     )
   })
 
@@ -24,7 +24,7 @@ describe('SbNotification tests', () => {
     })
 
     expect(wrapper.find('div').attributes('class')).toBe(
-      'sb-notification sb-notification--general sb-notification--full'
+      'sb-notification sb-notification--general sb-notification--full',
     )
   })
 
@@ -38,7 +38,7 @@ describe('SbNotification tests', () => {
     })
 
     expect(wrapper.find('div').attributes('class')).toBe(
-      'sb-notification sb-notification--positive sb-notification--content'
+      'sb-notification sb-notification--positive sb-notification--content',
     )
 
     expect(wrapper.find('span').text()).toBe('Notification title')

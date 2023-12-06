@@ -35,6 +35,6 @@ const focusableElSelector = focusableElList.join()
 export function getFocusableElements(element) {
   // filter out elements with display: none
   return Array.from(element.querySelectorAll(focusableElSelector)).filter(
-    (focusableEl) => window.getComputedStyle(focusableEl).display !== 'none'
+    (focusableEl) => window.getComputedStyle(focusableEl).display !== 'none',
   )
 }
