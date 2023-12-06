@@ -94,7 +94,7 @@
     "stylelint-config-standard-scss": "^11.0.0",
     "stylelint-order": "^6.0.3",
     "typescript": "^5.2.2",
-    "vite": "^4.4.11",
+    "vite": "^4.5.1",
     "vite-svg-loader": "^4.0.0",
     "vitest": "^0.33.0",
     "vue": "^3.3.8",
