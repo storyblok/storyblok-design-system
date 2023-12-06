@@ -116,13 +116,11 @@ describe('Tests for SbModal', () => {
       wrapper
         .findComponent(SbModalHeader)
         .find('sb-modal-header__actions')
-        .exists(),
-    ).toBe(true)
+    )
     expect(
       wrapper
         .findComponent(SbModalHeader)
         .find('sb-modal__close-button')
-        .exists(),
-    ).toBe(true)
+    )
   })
 })
