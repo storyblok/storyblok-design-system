@@ -112,15 +112,5 @@ describe('Tests for SbModal', () => {
     expect(wrapper.findComponent(SbModalHeader).props().title).toBe(
       'Main header',
     )
-    expect(
-      wrapper
-        .findComponent(SbModalHeader)
-        .find('sb-modal-header__actions')
-    )
-    expect(
-      wrapper
-        .findComponent(SbModalHeader)
-        .find('sb-modal__close-button')
-    )
   })
 })
