@@ -178,9 +178,8 @@ InlineLabel.parameters = {
   },
 }
 
-export const SlotLabel = (args) => ({
+export const SlotLabel = () => ({
   components: { SbBadge },
-  props: Object.keys(args),
   template: `<div>
     <SbBadge type="positive">A slot text</SbBadge>
   </div>`,

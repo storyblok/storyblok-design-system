@@ -10,7 +10,7 @@ const SlideoverTemplate = (args) => ({
     SbModalContent,
     SbModalFooter,
   },
-  props: Object.keys(args),
+  setup: () => ({ args }),
   methods: {
     handleToggleSlide() {
       this.show = !this.show
@@ -26,12 +26,9 @@ const SlideoverTemplate = (args) => ({
         @click="handleToggleSlide"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
-      <SbSlideover
-        :is-open="show"
-        @hide="handleToggleSlide"
-        :orientation="orientation">
+      <SbSlideover :is-open="show" v-bind="args" @hide="handleToggleSlide">
 
-        <SbModalHeader :title="title" align="left" />
+        <SbModalHeader :title="args.title" align="left" />
 
         <SbModalContent style="flex: 1;">
           <p>Storyblok helps your team to tell your story and...</p>
@@ -80,7 +77,7 @@ SlideoverOnLeft.args = {
 
 export const SlideoverWithoutFooter = (args) => ({
   components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
-  props: Object.keys(args),
+  setup: () => ({ args }),
   methods: {
     handleToggleSlide() {
       this.show = !this.show
@@ -96,10 +93,7 @@ export const SlideoverWithoutFooter = (args) => ({
         @click="handleToggleSlide"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
-      <SbSlideover
-        :is-open="show"
-        @hide="handleToggleSlide"
-        :orientation="orientation">
+      <SbSlideover :is-open="show" v-bind="args" @hide="handleToggleSlide" >
 
         <SbModalHeader title="Hi man" align="left" />
 
@@ -113,7 +107,7 @@ export const SlideoverWithoutFooter = (args) => ({
 
 export const SlideoverInMaxSize = (args) => ({
   components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
-  props: Object.keys(args),
+  setup: () => ({ args }),
   methods: {
     handleToggleSlide() {
       this.show = !this.show
@@ -129,10 +123,7 @@ export const SlideoverInMaxSize = (args) => ({
         @click="handleToggleSlide"
         style="margin: 0 auto; display: flex; margin-top: 30%;"/>
 
-      <SbSlideover
-        :is-open="show"
-        @hide="handleToggleSlide"
-        :orientation="orientation">
+      <SbSlideover :is-open="show" v-bind="args" @hide="handleToggleSlide">
 
         <SbModalHeader title="Hi man" align="left" />
 

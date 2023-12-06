@@ -17,7 +17,7 @@
       @keydown="handleSearchKeydown"
     />
 
-    <slot name="filter" v-if="$slots.filter" />
+    <slot v-if="$slots.filter" name="filter" />
 
     <div class="sb-minibrowser__list-container">
       <SbBlockUi v-if="isLoading" in-element />
@@ -169,7 +169,11 @@ export default {
     },
 
     hasNotFilteredElements() {
-      return !this.isLoading && this.internalItems.length === 0
+      return (
+        !this.isLoading &&
+        this.internalItems?.length === 0 &&
+        this.searchInput?.length > 0
+      )
     },
 
     notFoundText() {

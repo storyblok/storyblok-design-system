@@ -18,28 +18,21 @@ export default {
 
 export const Default = (args) => ({
   components: { SbRadio },
-  props: Object.keys(args),
+  setup: () => ({ args }),
   data: () => ({
     internalValue: 'Jon Doe',
   }),
   template: `
     <SbRadio
-      :name="name"
-      :id="id"
-      :outline="outline"
-      :inline="inline"
-      :label="label"
-      :disabled="disabled"
-      :required="required"
+      v-bind="args"
       v-model="internalValue"
-      :native-value="nativeValue"
     />
   `,
 })
 
 export const Selected = (args) => ({
   components: { SbRadio },
-  props: Object.keys(args),
+  setup: () => ({ args }),
   data: () => ({
     internalValue: 'Jon Doe',
   }),
@@ -79,7 +72,7 @@ export const Selected = (args) => ({
 
 export const Inline = (args) => ({
   components: { SbRadio },
-  props: Object.keys(args),
+  setup: () => ({ args }),
   data: () => ({
     internalValue: 'Jon Doe',
   }),
@@ -123,7 +116,7 @@ export const Inline = (args) => ({
 
 export const WithOutline = (args) => ({
   components: { SbRadio },
-  props: Object.keys(args),
+  setup: () => ({ args }),
   data: () => ({
     internalValue: 'Jon Doe',
   }),

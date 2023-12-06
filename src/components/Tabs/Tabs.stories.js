@@ -4,7 +4,7 @@ import { SbTabPanels, SbTabPanel } from '../TabPanels'
 // @vue/component
 const TabsTemplate = (template) => (args) => ({
   components: { SbTabs, SbTab, SbTabPanel, SbTabPanels },
-  props: Object.keys(args),
+  setup: () => ({ args }),
   data() {
     return {
       tabs: [
@@ -56,9 +56,7 @@ const TabsTemplate = (template) => (args) => ({
     <div>
       <SbTabs
         v-model="currentTab"
-        :show-add-button="showAddButton"
-        :type="type"
-        :orientation="orientation"
+        v-bind="args"
         aria-label="This is a simple description"
         @new-tab="onNewTab"
       >
@@ -148,8 +146,7 @@ export const WithTabPanels = TabsTemplate(`
   <div>
     <SbTabs
       v-model="currentTab"
-      :show-add-button="showAddButton"
-      :type="type"
+      v-bind="args"
       @new-tab="onNewTab"
     >
       <SbTab
@@ -182,8 +179,7 @@ export const EditableTabs = TabsTemplate(`
 <div>
   <SbTabs
     v-model="currentTab"
-    :show-add-button="showAddButton"
-    :type="type"
+    v-bind="args"
     @new-tab="onNewTab"
   >
     <SbTab

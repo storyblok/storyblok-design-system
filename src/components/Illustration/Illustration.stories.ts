@@ -1,5 +1,5 @@
 import SbIllustration from './index'
-import type { StoryObj } from '@storybook/vue3'
+import type { Args, StoryObj } from '@storybook/vue3'
 
 export default {
   title: 'Data/SbIllustration',
@@ -37,24 +37,28 @@ type Story = StoryObj<typeof SbIllustration>
 
 export const Default: Story = {
   name: 'Default Illustration',
-  render: (args, { argTypes }) => ({
+  render: (args) => ({
     components: { SbIllustration },
-    props: Object.keys(argTypes),
+    setup(): Args {
+      return { args }
+    },
     template: `
-        <SbIllustration v-bind="$props" />
+        <SbIllustration v-bind="args" />
       `,
   }),
 }
 
 export const DifferentSizes: Story = {
   name: 'Illustration in different sizes',
-  render: (args, { argTypes }) => ({
+  render: (args) => ({
     components: { SbIllustration },
-    props: Object.keys(argTypes),
+    setup(): Args {
+      return { args }
+    },
     template: `
-      <SbIllustration :src="$props.src" width="80px" />
-      <SbIllustration :src="$props.src" width="160px" />
-      <SbIllustration :src="$props.src" width="50%" />
+      <SbIllustration :src="args.src" width="80px" />
+      <SbIllustration :src="args.src" width="160px" />
+      <SbIllustration :src="args.src" width="50%" />
 
       `,
   }),

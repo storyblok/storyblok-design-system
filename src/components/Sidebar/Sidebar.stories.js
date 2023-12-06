@@ -59,18 +59,22 @@ export default {
 }
 
 export const Normal = {
-  render: (args, { argTypes }) => ({
+  render: (args) => ({
     components: { SbSidebar },
-    props: Object.keys(argTypes),
-    template: '<SbSidebar v-bind="$props" v-on="$props" />',
+    setup() {
+      return { args }
+    },
+    template: '<SbSidebar v-bind="args" v-on="args" />',
   }),
 }
 
 export const Minimized = {
   render: (args) => ({
     components: { SbSidebar },
-    props: Object.keys(args),
-    template: '<SbSidebar v-bind="$props" v-on="$props" />',
+    setup() {
+      return { args }
+    },
+    template: '<SbSidebar v-bind="args" v-on="args" />',
   }),
   args: {
     minimize: true,
@@ -80,8 +84,8 @@ export const Minimized = {
 export const CustomLogo = {
   render: (args) => ({
     components: { SbSidebar },
-    props: Object.keys(args),
-    template: '<SbSidebar v-bind="$props" v-on="$props" />',
+    setup: () => ({ args }),
+    template: '<SbSidebar v-bind="args" v-on="args" />',
   }),
   args: {
     logo: 'https://bcassetcdn.com/social/bvrg7kkg12/preview.png',
@@ -98,7 +102,7 @@ export const CustomItems = {
       SbMenuList,
       SbMenuItem,
     },
-    props: Object.keys(args),
+    setup: () => ({ args }),
     data: () => ({
       internalMinimize: false,
       openUserDropdown: false,

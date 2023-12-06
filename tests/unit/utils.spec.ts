@@ -2,7 +2,7 @@ import {
   capitalize,
   capitalizeAllAfterSpaces,
   getRandomNumber,
-} from '../../src/utils'
+} from '../../src/utils/index.js'
 
 describe('Utils function', () => {
   describe('test capitalize function', () => {
