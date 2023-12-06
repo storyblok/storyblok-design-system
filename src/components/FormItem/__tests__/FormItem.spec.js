@@ -71,7 +71,7 @@ describe('SbFormItem component', () => {
 
     it('should not render a label element', () => {
       expect(
-        wrapper.findComponent(SbFormItem).find('.sb-form-item__label').exists()
+        wrapper.findComponent(SbFormItem).find('.sb-form-item__label').exists(),
       ).toBe(false)
     })
 
@@ -80,7 +80,7 @@ describe('SbFormItem component', () => {
         wrapper
           .findComponent(SbFormItem)
           .find('.sb-form-item__helper-text')
-          .exists()
+          .exists(),
       ).toBe(false)
     })
 
@@ -89,7 +89,7 @@ describe('SbFormItem component', () => {
         wrapper
           .findComponent(SbFormItem)
           .find('.sb-form-item__helper-icon-text')
-          .exists()
+          .exists(),
       ).toBe(false)
     })
 

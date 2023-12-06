@@ -101,7 +101,7 @@ const SbTabs = {
           showEditInput: true,
           onEditTab: this.handleEditTabOnCreate,
           onCancelEditTab: this.handleCancelEditTabOnCreate,
-        })
+        }),
       )
     },
 
@@ -196,7 +196,7 @@ const SbTabs = {
         this.children,
         ...this.additionalTabs,
         this.enableAddButton && renderAddButton(),
-      ]
+      ],
     )
   },
 }

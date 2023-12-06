@@ -82,7 +82,11 @@ export default {
   computed: {
     computedTooltip() {
       if (this.helperIconText) {
-        return { label: this.helperIconText, textAlign: this.helperTextAlign, position: this.tooltipPosition }
+        return {
+          label: this.helperIconText,
+          textAlign: this.helperTextAlign,
+          position: this.tooltipPosition,
+        }
       }
       return null
     },
@@ -91,7 +95,7 @@ export default {
   mounted() {
     if (this.helperText && this.$slots.helper) {
       console.warn(
-        `[SbFormItem]: If the 'helper slot' and the helper-text property are set, only the contents of the slot will be shown`
+        `[SbFormItem]: If the 'helper slot' and the helper-text property are set, only the contents of the slot will be shown`,
       )
     }
   },

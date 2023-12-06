@@ -6,10 +6,7 @@
     v-bind="$attrs"
     @keydown="handleKeyDown"
   >
-    <span
-      v-if="inlineLabel"
-      class="sb-select-inner__inline-label"
-    >
+    <span v-if="inlineLabel" class="sb-select-inner__inline-label">
       {{ inlineLabel }}
     </span>
 
@@ -23,40 +20,40 @@
     <div v-if="isTagsVisible" class="sb-select-inner__tags">
       <div v-if="showCount">
         <SelectInnerTag
-            :item="firstTagLabel"
-            :item-label="itemLabel"
-            :item-value="itemValue"
-            :item-caption="itemCaption"
-            :show-caption="showCaption"
-            :is-tag-avatar-visible="isTagAvatarVisible"
-            :show-tag-count="tagLabels.length > 1"
-            :value-tag-count="tagLabels.length - 1"
-            :is-disabled="isDisabled"
-            :tags-count-tooltip="tagsCountTooltip"
-            :data-testid="`${dataTestid}-tag-show-count`"
-            @keydown="handleTagKeydown($event, firstTagLabel)"
-            @close="removeItem($event, firstTagLabel)"
-          />
+          :item="firstTagLabel"
+          :item-label="itemLabel"
+          :item-value="itemValue"
+          :item-caption="itemCaption"
+          :show-caption="showCaption"
+          :is-tag-avatar-visible="isTagAvatarVisible"
+          :show-tag-count="tagLabels.length > 1"
+          :value-tag-count="tagLabels.length - 1"
+          :is-disabled="isDisabled"
+          :tags-count-tooltip="tagsCountTooltip"
+          :data-testid="`${dataTestid}-tag-show-count`"
+          @keydown="handleTagKeydown($event, firstTagLabel)"
+          @close="removeItem($event, firstTagLabel)"
+        />
       </div>
 
-      <div v-else v-for="(tagLabel, key) in tagLabels" :key="key">
+      <div v-for="(tagLabel, key) in tagLabels" v-else :key="key">
         <slot
           name="selection"
           :item="tagLabel"
           :remove="(e) => removeItem(e, tagLabel)"
         >
           <SelectInnerTag
-              :item="tagLabel"
-              :item-label="itemLabel"
-              :item-value="itemValue"
-              :item-caption="itemCaption"
-              :show-caption="showCaption"
-              :is-tag-avatar-visible="isTagAvatarVisible"
-              :is-disabled="isDisabled"
-              :data-testid="`${dataTestid}-tag`"
-              @keydown="handleTagKeydown($event, tagLabel)"
-              @close="removeItem($event, tagLabel)"
-            />
+            :item="tagLabel"
+            :item-label="itemLabel"
+            :item-value="itemValue"
+            :item-caption="itemCaption"
+            :show-caption="showCaption"
+            :is-tag-avatar-visible="isTagAvatarVisible"
+            :is-disabled="isDisabled"
+            :data-testid="`${dataTestid}-tag`"
+            @keydown="handleTagKeydown($event, tagLabel)"
+            @close="removeItem($event, tagLabel)"
+          />
         </slot>
       </div>
 
@@ -128,7 +125,11 @@
       </button>
 
       <slot name="rightIcon">
-        <SbIcon class="sb-select-inner__chevron-dropdown" :name="rightIconName" :data-testid="`${dataTestid}-right-icon`"/>
+        <SbIcon
+          class="sb-select-inner__chevron-dropdown"
+          :name="rightIconName"
+          :data-testid="`${dataTestid}-right-icon`"
+        />
       </slot>
     </div>
   </div>
@@ -286,9 +287,11 @@ export default {
       }
 
       if (this.showCaption && this.currentOptionValue) {
-        return this.currentOptionValue[this.itemCaption] ? `${this.currentOptionLabel} (${
-          this.currentOptionValue[this.itemCaption]})` :
-          `${this.currentOptionLabel}`
+        return this.currentOptionValue[this.itemCaption]
+          ? `${this.currentOptionLabel} (${
+              this.currentOptionValue[this.itemCaption]
+            })`
+          : `${this.currentOptionLabel}`
       }
 
       if (this.inline) {
@@ -354,7 +357,7 @@ export default {
           }
 
           const selectedOption = this.options.find(
-            (option) => option[this.itemValue] === value
+            (option) => option[this.itemValue] === value,
           )
 
           const shouldCreate = this.allowCreate && !selectedOption
@@ -417,11 +420,13 @@ export default {
 
     tagsCountTooltip() {
       return {
-        label: this.tagLabels?.map(item => item.label).slice(1).join(', '),
+        label: this.tagLabels
+          ?.map((item) => item.label)
+          .slice(1)
+          .join(', '),
         position: 'top',
       }
     },
-
   },
 
   watch: {

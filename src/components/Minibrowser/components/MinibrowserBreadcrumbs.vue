@@ -15,8 +15,8 @@
         <SbBreadcrumbItem
           :is-active="index === lastIndex"
           v-bind="item"
-          @click="navigateTo($event, index)"
           :data-testid="`${dataTestid}-item-${index}`"
+          @click="navigateTo($event, index)"
         />
 
         <SbBreadcrumbSeparator

@@ -41,7 +41,7 @@ describe('SbTextField component', () => {
     inputElement.setValue('Boris Spassky')
 
     expect(inputElement.attributes('class')).toContain(
-      'sb-textfield__input--error'
+      'sb-textfield__input--error',
     )
     expect(inputElement.element.value).toBe('Boris Spassky')
   })
@@ -56,7 +56,7 @@ describe('SbTextField component', () => {
     const inputElement = wrapper.find('input')
 
     expect(inputElement.attributes('class')).toContain(
-      'sb-textfield__input--ghost'
+      'sb-textfield__input--ghost',
     )
   })
 
@@ -146,7 +146,7 @@ describe('SbTextField component', () => {
     })
 
     expect(wrapper.find('.sb-textfield__inner-label').text()).toBe(
-      'Inline label'
+      'Inline label',
     )
   })
 

@@ -1,4 +1,4 @@
-//Slide right Fade
+// Slide right Fade
 .slide-right-fade-enter-active,
 .slide-left-fade-enter-active {
   transition: all 0.2s ease;
@@ -14,13 +14,13 @@
   transform: translateX(100%);
 }
 
-//Slide left Fade
+// Slide left Fade
 .slide-left-fade-enter-from,
 .slide-left-fade-leave-active {
   transform: translateX(-100%);
 }
 
-//Fade
+// Fade
 .bg-fade-enter-active,
 .bg-fade-leave-active {
   transition: background-color 0.2s;

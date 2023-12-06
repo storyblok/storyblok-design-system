@@ -228,7 +228,7 @@ export default {
     },
     showCount: {
       type: Boolean,
-      default: false
+      default: false,
     },
   },
 
@@ -302,7 +302,7 @@ export default {
         return this.transformedOptions.filter((opt) => {
           return includes(
             toLowerCase(opt[this.itemLabel]),
-            toLowerCase(this.searchInput)
+            toLowerCase(this.searchInput),
           )
         })
       }
@@ -354,11 +354,11 @@ export default {
   mounted() {
     if (this.allowCreate && (!this.filterable || !this.multiple)) {
       console.warn(
-        `[SbSelect]: Note that for 'allow-create' to work, 'filterable' and 'multiple' must be true.`
+        `[SbSelect]: Note that for 'allow-create' to work, 'filterable' and 'multiple' must be true.`,
       )
     } else if (this.filterable && this.inline) {
       console.warn(
-        `[SbSelect]: Note that 'filterable' does not work when 'inline' is true.`
+        `[SbSelect]: Note that 'filterable' does not work when 'inline' is true.`,
       )
     }
 
@@ -432,14 +432,14 @@ export default {
           (option) =>
             option === value ||
             option[this.itemValue] === value ||
-            option[this.itemLabel] === value
+            option[this.itemLabel] === value,
         )
         if (valueExists) {
           const parsedValue = this.emitOption ? valueExists : value
           const inputValue = this.processMultipleValue(parsedValue)
           this.$emit(
             'update:modelValue',
-            this.validateValue(inputValue, this.modelValue)
+            this.validateValue(inputValue, this.modelValue),
           )
         } else if (this.allowCreate) {
           this.handleOptionCreated(value)
@@ -511,7 +511,7 @@ export default {
     removeValueFromArray(value) {
       if (this.emitOption) {
         return this.modelValue.filter(
-          (val) => val[this.itemValue] !== value[this.itemValue]
+          (val) => val[this.itemValue] !== value[this.itemValue],
         )
       }
 

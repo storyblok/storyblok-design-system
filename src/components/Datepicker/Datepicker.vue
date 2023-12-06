@@ -381,7 +381,7 @@ export default {
       const isValid = dayjs(
         this.internalValue,
         this.internalFormat,
-        true
+        true,
       ).isValid()
       if (!isValid || (this.hasDayDisabled && this.isDateDisabled)) {
         this.invalidDate = true
@@ -393,17 +393,17 @@ export default {
           .tz(this.internalValue, this.tzValue)
           .utc()
           .format(
-            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat
+            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat,
           )
       } else {
         const offset = this.tzOffset.replace(/[+-]/g, ($1) =>
-          $1 === '+' ? '-' : '+'
+          $1 === '+' ? '-' : '+',
         )
         utcTime = dayjs
           .utc(this.internalValue)
           .utcOffset(offset)
           .format(
-            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat
+            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat,
           )
       }
 

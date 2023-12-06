@@ -16,7 +16,7 @@ describe('Test SbButton Component', () => {
     })
 
     expect(wrapper.find('button').attributes('class')).toBe(
-      'sb-button sb-button--primary'
+      'sb-button sb-button--primary',
     )
     expect(wrapper.find('button').text()).toBe('Primary')
   })
@@ -28,7 +28,7 @@ describe('Test SbButton Component', () => {
     })
 
     expect(wrapper.find('button').attributes('class')).toBe(
-      'sb-button sb-button--primary sb-button--small'
+      'sb-button sb-button--primary sb-button--small',
     )
     expect(wrapper.find('button').text()).toBe('Small button')
   })
@@ -40,7 +40,7 @@ describe('Test SbButton Component', () => {
     })
 
     expect(wrapper.find('button').attributes('class')).toBe(
-      'sb-button sb-button--primary sb-button--large'
+      'sb-button sb-button--primary sb-button--large',
     )
     expect(wrapper.find('button').text()).toBe('Large Button')
   })
@@ -52,7 +52,7 @@ describe('Test SbButton Component', () => {
     })
 
     expect(wrapper.find('button').attributes('class')).toBe(
-      'sb-button sb-button--secondary'
+      'sb-button sb-button--secondary',
     )
     expect(wrapper.find('button').text()).toBe('Secondary Button')
   })
@@ -64,7 +64,7 @@ describe('Test SbButton Component', () => {
     })
 
     expect(wrapper.find('button').attributes('class')).toBe(
-      'sb-button sb-button--caution'
+      'sb-button sb-button--caution',
     )
     expect(wrapper.find('button').text()).toBe('Caution Button')
   })
@@ -76,7 +76,7 @@ describe('Test SbButton Component', () => {
     })
 
     expect(wrapper.find('button').attributes('class')).toBe(
-      'sb-button sb-button--primary sb-button--disabled'
+      'sb-button sb-button--primary sb-button--disabled',
     )
     expect(wrapper.find('button').text()).toBe('Disabled Button')
   })
@@ -160,7 +160,7 @@ describe('Test SbButton Component', () => {
     it('should have a tooltip with correct text', async () => {
       await wrapper.find('button').trigger('focus')
       expect(document.querySelector('[role="tooltip"]').innerText).toBe(
-        iconDescription
+        iconDescription,
       )
     })
   })

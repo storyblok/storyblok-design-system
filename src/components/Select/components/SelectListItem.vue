@@ -27,18 +27,34 @@
       />
 
       <slot name="list-item" :item="option">
-        <span class="sb-select-list__item-icon" :data-testid="`${dataTestid}-icon`">
+        <span
+          class="sb-select-list__item-icon"
+          :data-testid="`${dataTestid}-icon`"
+        >
           <SbIcon v-if="option.icon" :name="option.icon" />
         </span>
 
-        <span v-if="!showCaption" class="sb-select-list__item-name" :data-testid="`${dataTestid}-label`">
+        <span
+          v-if="!showCaption"
+          class="sb-select-list__item-name"
+          :data-testid="`${dataTestid}-label`"
+        >
           {{ label }}
         </span>
 
         <div v-else class="sb-select-list__item--with-path">
-          <span class="sb-select-list__item-name" :data-testid="`${dataTestid}-label`">{{ label }}</span>
-          <span v-if="showCaption" class="sb-select-list__item-caption" :data-testid="`${dataTestid}-path`">
-            {{ path }}</span>
+          <span
+            class="sb-select-list__item-name"
+            :data-testid="`${dataTestid}-label`"
+            >{{ label }}</span
+          >
+          <span
+            v-if="showCaption"
+            class="sb-select-list__item-caption"
+            :data-testid="`${dataTestid}-path`"
+          >
+            {{ path }}</span
+          >
         </div>
       </slot>
     </template>

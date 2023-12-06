@@ -12,7 +12,7 @@
       }
 
       &:focus-within {
-        box-shadow: 0 0 0 3px rgb(255, 179, 176, 0.3);
+        box-shadow: 0 0 0 3px rgb(255 179 176 / 30%);
       }
     }
   }
@@ -204,7 +204,7 @@
       border: 1px solid $red !important;
 
       &:focus {
-        box-shadow: 0 0 0 3px rgb(255, 179, 176, 0.3);
+        box-shadow: 0 0 0 3px rgb(255 179 176 / 30%);
         outline: none;
       }
     }

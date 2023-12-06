@@ -9,7 +9,11 @@
       v-if="allowSelection && row.selectable !== false"
       class="sb-data-table__body-cell sb-data-table__col-selection"
     >
-      <SbCheckbox :id="rowId" v-model="isSelected" :data-testid="`sb-data-table-body-row-checkbox-${rowId}`" />
+      <SbCheckbox
+        :id="rowId"
+        v-model="isSelected"
+        :data-testid="`sb-data-table-body-row-checkbox-${rowId}`"
+      />
     </td>
 
     <td
@@ -74,7 +78,7 @@ export default {
     isSelected: {
       get() {
         return this.selectedRows?.some(
-          (row) => JSON.stringify(row) === JSON.stringify(this.row)
+          (row) => JSON.stringify(row) === JSON.stringify(this.row),
         )
       },
       set() {

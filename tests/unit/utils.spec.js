@@ -7,36 +7,36 @@ import {
 describe('Utils function', () => {
   describe('test capitalize function', () => {
     it('should change to upper case the first letter in a string', () => {
-      expect(capitalize('storyblok is amazing')).toEqual('Storyblok is amazing')
+      expect(capitalize('storyblok is amazing')).toBe('Storyblok is amazing')
     })
 
     it('should return an empty string when is pass an empty string or nothing', () => {
-      expect(capitalize('')).toEqual('')
+      expect(capitalize('')).toBe('')
 
-      expect(capitalize()).toEqual('')
+      expect(capitalize()).toBe('')
     })
 
     it('should keep the capitalize behavior when the string is already capitalized', () => {
-      expect('Storyblok is amazing').toEqual('Storyblok is amazing')
+      expect('Storyblok is amazing').toBe('Storyblok is amazing')
     })
   })
 
   describe('test capitalizeAllAfterSpaces function', () => {
     it('should capitalize every word in a string', () => {
-      expect(capitalizeAllAfterSpaces('storyblok is amazing')).toEqual(
-        'Storyblok Is Amazing'
+      expect(capitalizeAllAfterSpaces('storyblok is amazing')).toBe(
+        'Storyblok Is Amazing',
       )
     })
 
     it('should return an empty string when is pass an empty string or nothing', () => {
-      expect(capitalizeAllAfterSpaces('')).toEqual('')
+      expect(capitalizeAllAfterSpaces('')).toBe('')
 
-      expect(capitalizeAllAfterSpaces()).toEqual('')
+      expect(capitalizeAllAfterSpaces()).toBe('')
     })
 
     it('should keep the same input when the string is already capitalized', () => {
-      expect(capitalizeAllAfterSpaces('Storyblok Is Amazing')).toEqual(
-        'Storyblok Is Amazing'
+      expect(capitalizeAllAfterSpaces('Storyblok Is Amazing')).toBe(
+        'Storyblok Is Amazing',
       )
     })
   })

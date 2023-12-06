@@ -40,7 +40,7 @@ describe('SbToggle component', () => {
 
     await wrapper.find('input[type="checkbox"]').setValue(true)
 
-    expect(wrapper.vm.internalValue).toEqual(true)
+    expect(wrapper.vm.internalValue).toBe(true)
   })
 
   it('should have the primary class', async () => {
@@ -79,7 +79,7 @@ describe('SbToggle component', () => {
     })
 
     expect(wrapper.find('.sb-toggle').attributes('class')).toBe(
-      'sb-toggle sb-toggle--secondary'
+      'sb-toggle sb-toggle--secondary',
     )
   })
 })

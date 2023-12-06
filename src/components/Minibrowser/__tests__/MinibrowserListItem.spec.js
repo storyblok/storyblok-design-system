@@ -75,7 +75,7 @@ describe('SbMinibrowserListItem component', () => {
     expect(
       wrapper
         .find('.sb-minibrowser__list-item')
-        .classes('sb-minibrowser__list-item--active')
+        .classes('sb-minibrowser__list-item--active'),
     ).toBe(true)
   })
 
@@ -88,10 +88,10 @@ describe('SbMinibrowserListItem component', () => {
     })
 
     expect(wrapper.find('.sb-minibrowser__list-item-name').text()).toBe(
-      'An awesome label'
+      'An awesome label',
     )
     expect(wrapper.find('.sb-minibrowser__list-item-subtitle').text()).toBe(
-      'An awesome subtitle'
+      'An awesome subtitle',
     )
   })
 })

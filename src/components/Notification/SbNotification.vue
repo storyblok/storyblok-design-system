@@ -111,7 +111,8 @@ export default {
     },
     isDescriptionVisible() {
       return (
-        (this.description || this.$slots.default) && (this.isExpandableAndExpanded || !this.isExpandable)
+        (this.description || this.$slots.default) &&
+        (this.isExpandableAndExpanded || !this.isExpandable)
       )
     },
     isLinkVisible() {
@@ -126,7 +127,7 @@ export default {
   },
   methods: {
     expandNotification() {
-      if(!this.isExpandable) return
+      if (!this.isExpandable) return
       this.expanded = !this.expanded
     },
   },

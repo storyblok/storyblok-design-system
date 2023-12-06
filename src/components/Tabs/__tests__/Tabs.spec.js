@@ -87,7 +87,7 @@ describe('Test SbTabs', () => {
 
     // select the button to create the new tag
     const buttonComponent = wrapper.find(
-      '[data-testid="new-tab-container"] button'
+      '[data-testid="new-tab-container"] button',
     )
 
     it('should exists the add button', () => {

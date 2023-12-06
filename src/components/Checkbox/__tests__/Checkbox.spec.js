@@ -1,6 +1,5 @@
 import SbCheckbox from '..'
 import { mount } from '@vue/test-utils'
-import { waitMs } from '../../../utils/tests-utils'
 
 const factory = (props) => {
   return mount(SbCheckbox, {

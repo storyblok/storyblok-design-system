@@ -238,7 +238,7 @@ describe('SbMinibrowser component', () => {
     await wrapper.vm.$nextTick()
 
     expect(wrapper.find('.sb-minibrowser__not-found').text()).toBe(
-      'No matches for "foobar"'
+      'No matches for "foobar"',
     )
   })
 
