@@ -119,7 +119,7 @@ export default {
         list.push({
           label: minLabel,
           checked: min === this.internalMinutes,
-          value: `${min}`,
+          value: min,
         })
       }
       return list
@@ -182,7 +182,7 @@ export default {
 
     minutesLabel(): string {
       return (
-        this.minutes.find((min) => min.value === `${this.internalMinutes}` || 0)
+        this.minutes.find((min) => min.value === this.internalMinutes || 0)
           ?.label || '00'
       )
     },

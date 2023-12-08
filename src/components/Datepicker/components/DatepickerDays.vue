@@ -13,7 +13,7 @@
 
 <script>
 import dayjs from 'dayjs'
-import * as isBetween from 'dayjs/plugin/isBetween'
+import isBetween from 'dayjs/plugin/isBetween'
 
 dayjs.extend(isBetween)
 export default {
@@ -71,9 +71,13 @@ export default {
 
       for (let i = 1; i <= daysInTheMonth; i++) {
         const dateValue = dayjs(this.internalDate).date(i)
-        const checked = !this.hasRange
-          ? dayjs(this.modelValue).isSame(dateValue, 'day')
-          : dayjs(this.modelValue[0]).isSame(dateValue, 'day')
+        let checked = false
+
+        if (!this.range) {
+          checked = dayjs(this.modelValue).isSame(dateValue, 'day')
+        } else {
+          checked = dayjs(this.range[0]).isSame(dateValue, 'day')
+        }
 
         days.push({
           label: i,

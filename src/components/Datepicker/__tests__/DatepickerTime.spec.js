@@ -40,7 +40,7 @@ describe('SbDatepickerTime component', () => {
 
     await waitMs(100)
 
-    expect(defaultComponentMounted.vm.internalHour).toEqual(hourToSelect + 1)
+    expect(defaultComponentMounted.vm.internalHour).toEqual(hourToSelect)
     expect(defaultComponentMounted.emitted('update:modelValue')[0].length).toBe(
       1
     )
@@ -69,7 +69,7 @@ describe('SbDatepickerTime component', () => {
       .trigger('click')
 
     expect(defaultComponentMounted.emitted('input-timezone')[0]).toEqual([
-      HawaiiTimeZone.value,
+      HawaiiTimeZone,
     ])
   })
 })
