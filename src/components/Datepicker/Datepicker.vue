@@ -132,6 +132,7 @@ import {
   datepickerOptions,
   INTERNAL_VIEWS,
   FORMATS,
+  FORMATS24h,
   MASKS,
   COMPONENTS,
 } from './utils'
@@ -231,7 +232,7 @@ export default {
     },
   },
 
-  emits: ['clear', 'update:modelValue'],
+  emits: ['clear', 'update:modelValue', 'change-timezone'],
 
   data: () => ({
     internalDate: dayjs().format(),
@@ -262,7 +263,7 @@ export default {
     },
 
     internalFormat() {
-      return FORMATS[this.type]
+      return this.is24hFormat ? FORMATS24h[this.type] : FORMATS[this.type]
     },
 
     internalValueFormatted() {
@@ -315,7 +316,7 @@ export default {
     },
 
     tzOffsetLabel() {
-      return `GMT ${this.tzOffsetValue}`
+      return `GMT${this.tzOffsetValue}`
     },
 
     tzOffsetValue() {
@@ -394,6 +395,10 @@ export default {
 
     returnPlaceholder() {
       return this.placeholder ? this.placeholder : this.internalFormat
+    },
+
+    is24hFormat() {
+      return this.hourFormat === '24h'
     },
   },
 

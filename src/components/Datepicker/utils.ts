@@ -21,17 +21,23 @@ export const INTERNAL_VIEWS: object = {
  * @type {Object}
  */
 export const FORMATS: object = {
-  date: 'YYYY-MM-DD',
-  datetime: 'YYYY-MM-DD hh:mm',
+  date: 'YYYY/MM/DD',
+  datetime: 'YYYY/MM/DD hh:mm',
   time: 'hh:mm',
+}
+
+export const FORMATS24h: object = {
+  date: 'YYYY/MM/DD',
+  datetime: 'YYYY/MM/DD HH:mm',
+  time: 'HH:mm',
 }
 
 /**
  * @type {Object}
  */
 export const MASKS: object = {
-  date: '####-##-##',
-  datetime: '####-##-## ##:##',
+  date: '####/##/##',
+  datetime: '####/##/## ##:##',
 }
 
 /**

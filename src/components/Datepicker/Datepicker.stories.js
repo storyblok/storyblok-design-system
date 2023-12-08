@@ -187,7 +187,7 @@ export const Default = (args) => ({
     return { args }
   },
   template: `
-    <div class="large">
+    <div style="width: 300px; height: 450px">
       <SbDatepicker
         v-bind="args"
       />
