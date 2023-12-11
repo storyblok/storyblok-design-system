@@ -7,7 +7,7 @@
     width: $sb-avatar-normal;
     height: $sb-avatar-normal;
 
-    @include avatarComponent();
+    @include avatarComponent;
   }
 
   // image

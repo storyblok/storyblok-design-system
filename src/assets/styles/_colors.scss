@@ -26,6 +26,7 @@ $yellow: #fbce41;
 $yellow-75: #fcdb71;
 $yellow-50: #fde6a0;
 $yellow-25: #fef3cf;
+$yellow-20: #fef5d9;
 
 // blue
 $blue: #395ece;
@@ -70,7 +71,7 @@ $color-positive: $green;
 $color-negative: $red;
 $color-warning: $orange;
 $color-white: $white;
-
+$primary-text-color: $sb-dark-blue;
 $colors: (
   'primary': $color-primary,
   'primary-dark': $color-primary-dark,

@@ -67,7 +67,7 @@ export default {
 
       const friendlyName = truncate(
         MAX_NAME_LENGTH,
-        element.props.friendlyName || ''
+        element.props.friendlyName || '',
       )
 
       return {

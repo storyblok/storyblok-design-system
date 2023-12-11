@@ -54,7 +54,7 @@ describe('SbEditorHeader component', () => {
     expect(wrapper.findComponent(SbHeaderTitle).exists()).toBe(true)
 
     expect(wrapper.findComponent(SbHeaderTitle).text()).toBe(
-      'An awesome CMSIts true'
+      'An awesome CMSIts true',
     )
 
     expect(wrapper.findComponent(SbHeaderItem).exists()).toBe(true)

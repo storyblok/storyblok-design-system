@@ -56,7 +56,7 @@ describe('SbNumberField component', () => {
 
       const inputElement = wrapper.find('input')
       expect(inputElement.attributes('class')).toContain(
-        'sb-numberfield__input--error'
+        'sb-numberfield__input--error',
       )
     })
 
@@ -86,7 +86,7 @@ describe('SbNumberField component', () => {
 
       expect(wrapper.vm.computedValue).toBe(5)
       expect(arrowElement.attributes('class')).toContain(
-        'sb-numberfield__arrow--disabled'
+        'sb-numberfield__arrow--disabled',
       )
     })
 
@@ -101,7 +101,7 @@ describe('SbNumberField component', () => {
 
       expect(wrapper.vm.computedValue).toBe(-5)
       expect(arrowElement.attributes('class')).toContain(
-        'sb-numberfield__arrow--disabled'
+        'sb-numberfield__arrow--disabled',
       )
     })
 
@@ -120,7 +120,7 @@ describe('SbNumberField component', () => {
         modelValue: '+99-99',
       })
 
-      expect(wrapper.vm.computedValue).toBe(NaN)
+      expect(wrapper.vm.computedValue).toBeNaN()
     })
   })
 
@@ -156,13 +156,13 @@ describe('SbNumberField component', () => {
 
       wrapper.vm.getClosestPreciseNumber(
         wrapper.vm.modelValue,
-        wrapper.vm.precision
+        wrapper.vm.precision,
       )
       expect(
         wrapper.vm.getClosestPreciseNumber(
           wrapper.vm.modelValue,
-          wrapper.vm.precision
-        )
+          wrapper.vm.precision,
+        ),
       ).toBe(7)
     })
   })

@@ -147,8 +147,8 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   }
 
   &__not-found {
-    margin: 0;
-    padding-bottom: 27px;
+    margin: $s-4 0 0 0;
+    padding-bottom: $s-3;
     color: $sb-dark-blue-50;
     font-size: $font-13;
     text-align: center;

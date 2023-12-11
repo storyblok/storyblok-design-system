@@ -19,6 +19,7 @@
 
   &--expandable {
     height: auto;
+    cursor: pointer;
   }
 
   &--expandle-button {
@@ -77,12 +78,12 @@
     background-color: $white;
     border-radius: 10px;
 
-    @include generalBoxShadow();
+    @include generalBoxShadow;
   }
 
   // Content style for notification
   &--content {
-    height: 118px;
+    min-height: 118px;
   }
 
   &--title {

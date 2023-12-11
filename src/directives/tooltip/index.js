@@ -148,7 +148,7 @@ function validateBinding(binding) {
 
     if (!value) {
       console.warn(
-        `[v-tooltip] position ${binding.value.position} is not valid`
+        `[v-tooltip] position ${binding.value.position} is not valid`,
       )
     }
 
@@ -188,7 +188,7 @@ export default {
     let checkdelay
     const wrapper = document.querySelector('#tooltip-wrapper')
 
-    function showHandler(e) {
+    function showHandler() {
       if (
         el.__tooltip?.popperInstance === null &&
         el.__tooltip?.label.length &&
@@ -197,7 +197,7 @@ export default {
         const tooltip = createTooltip(
           el.__tooltip.label,
           el.__tooltip.options,
-          wrapper
+          wrapper,
         )
         const tooltipId =
           el.__tooltip.tooltipId || `sb-tooltip-${randomString(5)}`
@@ -213,7 +213,7 @@ export default {
         el.__tooltip.popperInstance = createPopperInstance(
           el,
           tooltip,
-          el.__tooltip.options
+          el.__tooltip.options,
         )
 
         checkdelay = addInterval(tooltip)
@@ -296,7 +296,7 @@ export default {
    * @param  {HTMLElement} el node element that the directive is bind to
    * @param  {Object} binding
    */
-  unmounted(el, _) {
+  unmounted(el) {
     if (el.__tooltip) {
       cleanup(el)
       if (el?.__tooltip?.tooltipEl) el.__tooltip.tooltipEl.remove()

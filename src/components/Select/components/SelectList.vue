@@ -25,6 +25,7 @@
           :data-testid="`${dataTestid}-item__${index}`"
           @emit-value="handleEmitValue"
           @mouseenter="handleFocusItem(index)"
+          @focus="handleFocusItem(index)"
         >
           <template #list-item="scope">
             <slot name="list-item" v-bind="scope" />
@@ -38,20 +39,33 @@
         @click="handleOptionCreated(searchInput)"
       >
         <span class="sb-select-list__create-label">Create tag</span>
-        <span class="sb-select-list__create-value" :title="searchInput" :data-testid="`${dataTestid}-create-search`">
+        <span
+          class="sb-select-list__create-value"
+          :title="searchInput"
+          :data-testid="`${dataTestid}-create-search`"
+        >
           "{{ searchInput }}"
         </span>
       </li>
       <li v-else-if="isLoadingMore">
-        <span class="sb-select-list__empty" :data-testid="`${dataTestid}-loading-more`">
+        <span
+          class="sb-select-list__empty"
+          :data-testid="`${dataTestid}-loading-more`"
+        >
           <SbLoading color="primary" size="small" />
           {{ loadingMoreText }}
         </span>
       </li>
-      <li v-else-if="showTextStartingTagCreation" :data-testid="`${dataTestid}-no-data-text-tag`">
+      <li
+        v-else-if="showTextStartingTagCreation"
+        :data-testid="`${dataTestid}-no-data-text-tag`"
+      >
         <span class="sb-select-list__empty"> {{ noDataTextTag }} </span>
       </li>
-      <li v-else-if="!hasOptions && !isLoading" :data-testid="`${dataTestid}-no-data-text`">
+      <li
+        v-else-if="!hasOptions && !isLoading"
+        :data-testid="`${dataTestid}-no-data-text`"
+      >
         <span class="sb-select-list__empty">{{ noDataText }}</span>
       </li>
     </ul>
@@ -240,7 +254,7 @@ export default {
         hideList,
         listItems,
       } = this.context
-      const count = listItems.length
+      const count = listItems?.length || 0
 
       switch (event.key) {
         case 'ArrowDown':

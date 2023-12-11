@@ -4,7 +4,7 @@
     .sb-checkbox__inner:hover,
     .sb-checkbox__inner:focus {
       .sb-checkbox__input {
-        box-shadow: 0 0 0 2px rgba(217, 244, 243, 1);
+        box-shadow: 0 0 0 2px rgb(217 244 243 / 100%);
       }
     }
   }
@@ -15,12 +15,9 @@
 
   &__loading {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
     width: 100%;
     height: 100%;
+    inset: 0;
   }
 
   &__container {
@@ -69,7 +66,7 @@
     .sb-loading {
       position: absolute;
 
-      @include middleXY();
+      @include middleXY;
     }
 
     .sb-data-table__body-cell {

@@ -2,7 +2,7 @@ import SbPagination from '.'
 
 const PaginationTemplate = (args) => ({
   components: { SbPagination },
-  props: Object.keys(args),
+  setup: () => ({ args }),
   data: () => ({
     currentPage: 1,
     perPageData: 10,
@@ -24,7 +24,7 @@ const PaginationTemplate = (args) => ({
   template: `
     <div style="padding: 20px; margin-top: 250px">
       <SbPagination
-        v-bind="$props"
+        v-bind="args"
         :per-page="perPageData"
         v-model="currentPage"
         @page-change="onPageChange"

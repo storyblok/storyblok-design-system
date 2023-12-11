@@ -1,0 +1,87 @@
+@import './typography';
+@import './sizes';
+@import './colors';
+
+@each $name, $pair in $font-size {
+  .font-#{$name} {
+    font-size: $pair !important;
+  }
+}
+
+@each $name, $pair in $font-weight {
+  .font-#{$name} {
+    font-weight: $pair !important;
+  }
+}
+
+@each $name, $value in $sizes {
+  .sb-m-#{$name} {
+    margin: $value !important;
+  }
+
+  .sb-mt-#{$name} {
+    margin-top: $value !important;
+  }
+
+  .sb-mr-#{$name} {
+    margin-right: $value !important;
+  }
+
+  .sb-mb-#{$name} {
+    margin-bottom: $value !important;
+  }
+
+  .sb-ml-#{$name} {
+    margin-left: $value !important;
+  }
+
+  .sb-mx-#{$name} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+
+  .sb-my-#{$name} {
+    margin-bottom: $value !important;
+    margin-top: $value !important;
+  }
+
+  .sb-p-#{$name} {
+    padding: $value !important;
+  }
+
+  .sb-pt-#{$name} {
+    padding-top: $value !important;
+  }
+
+  .sb-pr-#{$name} {
+    padding-right: $value !important;
+  }
+
+  .sb-pb-#{$name} {
+    padding-bottom: $value !important;
+  }
+
+  .sb-pl-#{$name} {
+    padding-left: $value !important;
+  }
+
+  .sb-px-#{$name} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+
+  .sb-py-#{$name} {
+    padding-bottom: $value !important;
+    padding-top: $value !important;
+  }
+}
+
+@each $name, $pair in $colors {
+  .bg-#{$name} {
+    background-color: $pair !important;
+  }
+
+  .text-#{$name} {
+    color: $pair !important;
+  }
+}

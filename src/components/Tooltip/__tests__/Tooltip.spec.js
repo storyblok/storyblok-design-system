@@ -7,7 +7,7 @@ import SbPopover from '../../Popover'
 const factory = (
   template,
   additionalComponents = {},
-  additionalInformation = {}
+  additionalInformation = {},
 ) => {
   const WrapperComponent = {
     components: { SbTooltip, SbPopover, ...additionalComponents },

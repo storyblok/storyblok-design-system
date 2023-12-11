@@ -2,101 +2,77 @@
   <SbBlockUi>
     <div class="sb-upload-dialog">
       <div class="sb-upload-dialog__content">
-        <SbIcon
-name="refreshing" size="small"
-color="primary"
-/>
+        <SbIcon name="refreshing" size="small" color="primary" />
         <span class="sb-upload-dialog__label"> {{ labelToUpload }} </span>
-        <span
-v-if="timeLeft" class="sb-upload-dialog__time-left"
->
+        <span v-if="timeLeft" class="sb-upload-dialog__time-left">
           {{ timeLeftLabel }}
         </span>
       </div>
-      <SbLoading
-type="bar" :model-value="percentageValue"
-/>
+      <SbLoading type="bar" :model-value="percentageValue" />
     </div>
   </SbBlockUi>
 </template>
 
-<script>
+<script setup lang="ts">
+import { computed } from 'vue'
 import SbIcon from '../Icon'
 import SbLoading from '../Loading'
 import SbBlockUi from '../BlockUI'
 import i18n from '../../i18n/index'
 
-export default {
+defineOptions({
   name: 'SbUploadDialog',
+})
 
-  components: {
-    SbIcon,
-    SbLoading,
-    SbBlockUi,
+const props = withDefaults(
+  defineProps<{
+    currentFile?: number
+    currentFileName?: string
+    percentageValue?: number
+    timeLeft?: number
+    totalFiles?: number
+    locale?: string
+  }>(),
+  {
+    currentFile: 0,
+    percentageValue: 0,
+    timeLeft: 0,
+    totalFiles: 0,
+    locale: 'en',
   },
+)
 
-  props: {
-    currentFile: {
-      type: Number,
-      default: 0,
-    },
-    currentFileName: {
-      type: String,
-      default: null,
-    },
-    percentageValue: {
-      type: Number,
-      default: 0,
-    },
-    timeLeft: {
-      type: Number,
-      default: 0,
-    },
-    totalFiles: {
-      type: Number,
-      default: 0,
-    },
-    locale: {
-      type: String,
-      required: false,
-      default: 'en',
-    },
-  },
+const labelToUpload = computed(() => {
+  if (props.currentFileName) {
+    return `${uploadingLabel.value} - ${props.currentFileName}`
+  }
+  return uploadingLabel
+})
 
-  computed: {
-    labelToUpload() {
-      if (this.currentFileName) {
-        return `${this.uploadingLabel} - ${this.currentFileName}`
-      }
-      return this.uploadingLabel
-    },
+const uploadingLabel = computed(() => {
+  const ofTranslated = i18n(props.locale, 'of')
+  const fileTranslated = i18n(props.locale, 'file')
+  const filesTranslated = i18n(props.locale, 'files')
+  const uploadingTranslated = i18n(props.locale, 'uploading')
 
-    uploadingLabel() {
-      const ofTranslated = i18n(this.locale, 'of')
-      const fileTranslated = i18n(this.locale, 'file')
-      const filesTranslated = i18n(this.locale, 'files')
-      const uploadingTranslated = i18n(this.locale, 'uploading')
+  if (props.totalFiles === 1) {
+    return `${uploadingTranslated} ${props.currentFile} ${ofTranslated} ${props.totalFiles} ${fileTranslated}`
+  }
+  return `${uploadingTranslated} ${props.currentFile} ${ofTranslated} ${props.totalFiles} ${filesTranslated}`
+})
 
-      if (this.totalFiles === 1) {
-        return `${uploadingTranslated} ${this.currentFile} ${ofTranslated} ${this.totalFiles} ${fileTranslated}`
-      }
-      return `${uploadingTranslated} ${this.currentFile} ${ofTranslated} ${this.totalFiles} ${filesTranslated}`
-    },
+const timeLeftLabel = computed(() => {
+  const time = props.timeLeft
+  const minAndTranslated = i18n(props.locale, 'minAnd')
+  const secLeftTranslated = i18n(props.locale, 'secLeft')
 
-    timeLeftLabel() {
-      const time = parseInt(this.timeLeft)
-      const minAndTranslated = i18n(this.locale, 'minAnd')
-      const secLeftTranslated = i18n(this.locale, 'secLeft')
+  if (time > 59) {
+    const minutes = Math.floor(time / 60)
+    const seconds = time % 60
 
-      if (time > 59) {
-        const minutes = Math.floor(time / 60)
-        const seconds = time % 60
+    return `${minutes} ${minAndTranslated} ${seconds} ${secLeftTranslated}`
+  }
 
-        return `${minutes} ${minAndTranslated} ${seconds} ${secLeftTranslated}`
-      }
-
-      return `${this.timeLeft} ${secLeftTranslated}`
-    },
-  },
-}
+  return `${props.timeLeft} ${secLeftTranslated}`
+})
 </script>

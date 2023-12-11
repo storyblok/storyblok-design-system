@@ -33,7 +33,7 @@ describe('Test SbSidebar component', () => {
       expect(wrapper.find('[role="navigation"]').exists()).toBe(true)
 
       expect(
-        wrapper.findAll('[role="navigation"] .sb-sidebar-link').length
+        wrapper.findAll('[role="navigation"] .sb-sidebar-link').length,
       ).toBe(listItemsData.length)
     })
 

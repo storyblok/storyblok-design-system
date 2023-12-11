@@ -79,7 +79,7 @@ export default {
           (value) =>
             i18n(this.locale, 'selectPerPage') +
             ` ${value} ` +
-            i18n(this.locale, 'items')
+            i18n(this.locale, 'items'),
         )
       })
     },

@@ -17,7 +17,7 @@ describe('Test SbIllustration component', (): void => {
 
     expect(Image.exists()).toBe(true)
     expect(Image.attributes('src')).toBe(
-      'https://a.storyblok.com/f/136045/140x109/458988e575/first-entry-modal-image.svg'
+      'https://a.storyblok.com/f/136045/140x109/458988e575/first-entry-modal-image.svg',
     )
     expect(Image.attributes('alt')).toBe('Ready to go illustration')
   })

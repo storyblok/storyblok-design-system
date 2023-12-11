@@ -131,10 +131,10 @@ WithLargeSection.parameters = {
 
 export const LongBreadcrumbs = (args) => ({
   components: { SbBreadcrumbs },
-  props: Object.keys(args),
+  setup: () => ({ args }),
   template: `
     <div style="max-width: 400px">
-      <SbBreadcrumbs v-bind="{ items }" />
+      <SbBreadcrumbs v-bind="args" />
     </div>
   `,
 })

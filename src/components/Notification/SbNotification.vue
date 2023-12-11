@@ -1,5 +1,5 @@
 <template>
-  <div :class="computedClasses">
+  <div :class="computedClasses" @click.stop="expandNotification">
     <SbIcon
       class="sb-notification--icon-container"
       size="small"
@@ -15,7 +15,7 @@
     <button
       v-if="isExpandable"
       class="sb-notification--btn"
-      @click="expandNotification"
+      @click.prevent.stop="expandNotification"
     >
       <SbIcon size="small" :name="chevronText" />
     </button>
@@ -98,9 +98,7 @@ export default {
       ]
     },
     descriptionToRender() {
-      return this.description
-        ? capitalize(this.description)
-        : this.$slots.default
+      return this.description ? capitalize(this.description) : ''
     },
     linkText() {
       return this.linkName ? capitalize(this.linkName) : 'View Details'
@@ -113,7 +111,8 @@ export default {
     },
     isDescriptionVisible() {
       return (
-        this.description && (this.isExpandableAndExpanded || !this.isExpandable)
+        (this.description || this.$slots.default) &&
+        (this.isExpandableAndExpanded || !this.isExpandable)
       )
     },
     isLinkVisible() {
@@ -128,6 +127,7 @@ export default {
   },
   methods: {
     expandNotification() {
+      if (!this.isExpandable) return
       this.expanded = !this.expanded
     },
   },

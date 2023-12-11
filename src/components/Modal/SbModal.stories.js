@@ -37,7 +37,7 @@ const StoriesModalMixin = (args, storyContext) => {
   return {
     mixins: [StorybookInjectionsMixin(storyContext)],
 
-    props: Object.keys(args),
+    setup: () => ({ ...args }),
 
     data: () => ({
       showModal: false,
@@ -101,7 +101,7 @@ const ModalTemplate = (args, storyContext) => ({
 const ModalTypeTemplate = (args, storyContext) => ({
   mixins: [StorybookInjectionsMixin(storyContext)],
 
-  props: Object.keys(args),
+  setup: () => ({ ...args }),
 
   components: { SbModalType },
 

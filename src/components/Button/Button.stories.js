@@ -24,6 +24,7 @@ const ButtonTemplate = (args) => ({
         :is-disabled="args.isDisabled"
         :icon="args.icon"
         :icon-color="args.iconColor"
+        :icon-filled="args.iconFilled"
         :label="args.label"
         :size="args.size"
         :type="args.type"
@@ -43,6 +44,7 @@ const ButtonTemplate = (args) => ({
         :variant="args.variant"
         :label="args.label"
         :is-loading="args.isLoading"
+        :icon-filled="args.iconFilled"
         isDisabled
         :size="args.size"
         :type="args.type"
@@ -52,6 +54,7 @@ const ButtonTemplate = (args) => ({
         :variant="args.variant"
         is-loading
         :icon-color="args.iconColor"
+        :icon-filled="args.iconFilled"
         :is-disabled="args.isDisabled"
         :size="args.size"
         :type="args.type"
@@ -79,6 +82,7 @@ export default {
     icon: null,
     iconDescription: '',
     iconRight: '',
+    iconFilled: false,
     hasIconOnly: false,
     label: 'Default',
     size: null,
@@ -125,6 +129,13 @@ export default {
       options: availableIcons,
       control: {
         type: 'select',
+      },
+    },
+    iconFilled: {
+      name: 'iconFilled',
+      description: 'Filled icon',
+      control: {
+        type: 'boolean',
       },
     },
     isFullWidth: {
@@ -358,6 +369,7 @@ export const JustIcons = (args) => ({
       :icon-color="args.iconColor"
       :is-loading="args.isLoading"
       :is-disabled="args.isDisabled"
+      :icon-filled="args.iconFilled"
       :type="args.type"
       has-icon-only
     />
@@ -369,6 +381,7 @@ export const JustIcons = (args) => ({
       :icon-color="args.iconColor"
       :is-loading="args.isLoading"
       :is-disabled="args.isDisabled"
+      :icon-filled="args.iconFilled"
       :type="type"
       has-icon-only
     />
@@ -378,6 +391,7 @@ export const JustIcons = (args) => ({
       :size="args.size"
       :icon="args.icon"
       :icon-color="args.iconColor"
+      :icon-filled="args.iconFilled"
       :is-loading="args.isLoading"
       :is-disabled="args.isDisabled"
       :icon-description="args.iconDescription"

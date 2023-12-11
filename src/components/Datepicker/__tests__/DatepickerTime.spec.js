@@ -8,7 +8,7 @@ describe('SbDatepickerTime component', () => {
     it('Should make a direct call method on click in HOURS', async () => {
       const handleHourClick = vi.spyOn(
         SbDatepickerTime.methods,
-        'handleHourClick'
+        'handleHourClick',
       )
       await shallowMount(SbDatepickerTime)
         .find('[data-testid="div-hours"]')
@@ -18,7 +18,7 @@ describe('SbDatepickerTime component', () => {
     it('Should make a direct call method on click in MINUTES', async () => {
       const handleMinuteClick = vi.spyOn(
         SbDatepickerTime.methods,
-        'handleMinuteClick'
+        'handleMinuteClick',
       )
       await shallowMount(SbDatepickerTime)
         .find('[data-testid="div-minutes"]')

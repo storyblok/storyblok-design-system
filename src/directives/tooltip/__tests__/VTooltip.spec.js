@@ -28,7 +28,7 @@ describe('Vtooltip directive', () => {
 
     expect(findTarget(wrapper).text()).toBe('Target element')
 
-    expect(findTooltip()).toBe(null)
+    expect(findTooltip()).toBeNull()
   })
 
   it('should render the tooltip with a string label', async () => {
@@ -66,7 +66,7 @@ describe('Vtooltip directive', () => {
 
     wrapper.unmount()
 
-    expect(findTooltip()).toBe(null)
+    expect(findTooltip()).toBeNull()
   })
 
   it('should render the tooltip when focus/blur in the target element', async () => {
@@ -87,7 +87,7 @@ describe('Vtooltip directive', () => {
 
     await targetEl.trigger('blur')
 
-    expect(findTooltip()).toBe(null)
+    expect(findTooltip()).toBeNull()
   })
 
   it('should render the tooltip when mouseover/mouseleave in the target element', async () => {
@@ -107,7 +107,7 @@ describe('Vtooltip directive', () => {
 
     await targetEl.trigger('mouseleave')
 
-    expect(findTooltip()).toBe(null)
+    expect(findTooltip()).toBeNull()
   })
 
   it('should hide the tooltip when escape keydown', async () => {
@@ -130,7 +130,7 @@ describe('Vtooltip directive', () => {
       key: 'Escape',
     })
 
-    expect(findTooltip()).toBe(null)
+    expect(findTooltip()).toBeNull()
   })
 
   it('should update the tooltip value when change the logic', async () => {
@@ -180,7 +180,6 @@ describe('Vtooltip directive', () => {
     expect(tooltipEl.innerText).toBe('Tooltip label changed')
     expect(tooltipEl.getAttribute('data-popper-placement')).toBe('bottom')
     expect(tooltipEl.className.includes('sb-tooltip--text--left')).toBe(true)
-
 
     await targetEl.trigger('mouseleave')
   })

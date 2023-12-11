@@ -22,7 +22,7 @@ type CustomHTMLElement = HTMLElement & {
 }
 
 const getAttributes = (
-  el: HTMLElement
+  el: HTMLElement,
 ): { delay: number; disabled: boolean } => {
   const delayFromAttr = el.getAttribute(`${ATTR_PREFIX}delay`)
 
