@@ -1,0 +1,42 @@
+@import '../src/assets/styles/helper-classes.scss';
+
+body {
+  margin: 20px;
+}
+
+.medium {
+  min-height: 300px;
+}
+
+.large {
+  min-height: 450px;
+}
+
+.mw-300 {
+  max-width: 300px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mr-20 {
+  margin-right: 20px;
+}
+
+.list-none {
+  list-style: none;
+}
+
+.align-self-center {
+  align-self: center !important;
+}
+
+.sb-show-main.sb-main-centered #storybook-root,
+.sb-story {
+  width: 100%;
+}
+
+#story--interface-sbuploaddialog--default--primary .sb-block-ui {
+  position: static;
+}
