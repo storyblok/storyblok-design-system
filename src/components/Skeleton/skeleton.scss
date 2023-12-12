@@ -1,0 +1,13 @@
+.sb-skeleton {
+  background-color: #e5e7eb;
+  border-radius: $base-border-radius;
+}
+
+.sb-skeleton::after {
+  background: linear-gradient(90deg, rgb(255 255 255 / 0%), rgb(255 255 255 / 40%), rgb(255 255 255 / 0%));
+}
+
+.sb-skeleton.p-skeleton-circle {
+  border-radius: 50%;
+}
+
