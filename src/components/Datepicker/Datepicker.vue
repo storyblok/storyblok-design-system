@@ -481,7 +481,7 @@ export default {
       if (!this.tzOffset) {
         utcTime = dayjs
           .tz(this.internalValue, this.tzValue)
-          .utc()
+          .utc(this.internalValue)
           .format(this.isTimeDisabled ? FORMATS.datetime : this.internalFormat)
       } else {
         const offset = this.tzOffset.replace(/[+-]/g, ($1) =>
