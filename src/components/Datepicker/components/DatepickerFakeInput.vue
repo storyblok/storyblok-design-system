@@ -1,11 +1,10 @@
 <template>
-  <div :class="returnClasses">
+  <div :class="returnClasses" @click="handleAction('open-calendar')">
     <SbIcon
       name="calendar"
       color="light-gray"
       class="sb-textfield__icon sb-textfield__icon--left"
       data-testid="sb-textfield-icon-click"
-      @click="handleAction('open-calendar')"
     />
     <p
       class="sb-datepicker__fake-input--text"
@@ -27,7 +26,7 @@
       color="light-gray"
       class="sb-textfield__icon sb-textfield__icon--right"
       data-testid="sb-textfield-icon-click"
-      @click="handleAction('clear')"
+      @click.stop="handleAction('clear')"
     />
   </div>
 </template>

@@ -22,8 +22,7 @@
         @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
-        @focus="handleInputFocus"
-        @blur="handleDoneAction"
+        @focus="handleInputClick"
       />
 
       <SbDatepickerFakeInput
@@ -635,10 +634,6 @@ export default {
         return
       }
       this.daterange[1] = dayjs(date).format(FORMATS.date)
-    },
-
-    handleInputFocus() {
-      this.isOverlayVisible = true
     },
   },
 }
