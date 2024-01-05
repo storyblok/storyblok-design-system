@@ -6,6 +6,7 @@
   >
     <div class="sb-datepicker__input">
       <SbTextField
+        v-if="!showFakeInput"
         ref="input"
         v-model="internalValue"
         :mask="internalMask"
@@ -13,7 +14,7 @@
         icon-left="calendar"
         :disabled="disabled"
         :readonly="isInputReadonly"
-        :placeholder="placeholder"
+        :placeholder="returnPlaceholder"
         :model-value="internalValueFormatted"
         :error="invalidDate"
         :inline-label="inlineLabel"
@@ -21,7 +22,19 @@
         @icon-click="handleInputClick"
         @clear="handleClear"
         @keyup.enter="handleDoneAction"
-        @blur="handleDoneAction"
+        @focus="handleInputClick"
+      />
+
+      <SbDatepickerFakeInput
+        v-else-if="showFakeInput"
+        ref="input"
+        :prefix="returnPrefixValue"
+        :sufix="returnSufixValue"
+        :type="type"
+        :view="isComponentView"
+        :is-overlay-visible="isOverlayVisible"
+        @open-calendar="handleInputClick"
+        @clear="handleClear"
       />
 
       <template v-if="isShowTzOffset">
@@ -69,13 +82,14 @@
         :disabled-past="disabledPast"
         :timezone="internalTimezone"
         :hour-format="hourFormat"
+        :range="daterange"
         @update:model-value="handleComponentsInput"
         @input-timezone="handleTimezoneInput"
       />
 
       <div class="sb-datepicker__actions">
         <SbButton
-          label="Cancel"
+          :label="cancelButtonLabel"
           variant="tertiary"
           size="small"
           class="sb-datepicker__action-button"
@@ -101,6 +115,7 @@ import utc from 'dayjs/plugin/utc'
 
 import { ClickOutside, Tooltip } from '../../directives'
 import { includes } from '../../utils'
+
 import { SbTextField } from '../TextField'
 import { SbPopover } from '../Popover'
 import { SbButton } from '../Button'
@@ -110,8 +125,16 @@ import SbDatepickerTime from './components/DatepickerTime'
 import SbDatepickerDays from './components/DatepickerDays'
 import SbDatepickerMonths from './components/DatepickerMonths'
 import SbDatepickerYears from './components/DatepickerYears'
+import SbDatepickerFakeInput from './components/DatepickerFakeInput'
 
-import { datepickerOptions, INTERNAL_VIEWS } from './utils'
+import {
+  datepickerOptions,
+  INTERNAL_VIEWS,
+  FORMATS,
+  FORMATS24h,
+  MASKS,
+  COMPONENTS,
+} from './utils'
 
 dayjs.extend(timezone)
 dayjs.extend(customParseFormat)
@@ -129,6 +152,7 @@ export default {
     SbDatepickerMonths,
     SbDatepickerYears,
     SbButton,
+    SbDatepickerFakeInput,
   },
 
   directives: {
@@ -171,8 +195,8 @@ export default {
     },
 
     modelValue: {
-      type: String,
-      default: '',
+      type: [String, Array],
+      default: null,
     },
 
     minDate: {
@@ -207,7 +231,7 @@ export default {
     },
   },
 
-  emits: ['clear', 'update:modelValue'],
+  emits: ['clear', 'update:modelValue', 'change-timezone'],
 
   data: () => ({
     internalDate: dayjs().format(),
@@ -216,35 +240,29 @@ export default {
     inputElement: null,
     isOverlayVisible: false,
     internalVisualization: INTERNAL_VIEWS.CALENDAR,
-    FORMATS: {
-      date: 'YYYY-MM-DD',
-      datetime: 'YYYY-MM-DD HH:mm',
-    },
-    MASKS: {
-      date: '####-##-##',
-      datetime: '####-##-## ##:##',
-    },
     hitClear: false,
     invalidDate: false,
     vcoConfig: {
       detectIFrame: false,
     },
+    daterange: ['', ''],
   }),
 
   computed: {
     isInputReadonly() {
       return this.minuteRange > 1
     },
+
     hasDayDisabled() {
       return this.maxDate || this.minDate || this.disabledPast
     },
 
     internalMask() {
-      return this.MASKS[this.type]
+      return MASKS[this.type]
     },
 
     internalFormat() {
-      return this.FORMATS[this.type]
+      return this.is24hFormat ? FORMATS24h[this.type] : FORMATS[this.type]
     },
 
     internalValueFormatted() {
@@ -255,8 +273,17 @@ export default {
       return this.type === 'date'
     },
 
+    isDateRangeType() {
+      return this.type === 'daterange'
+    },
+
     isShowTzOffset() {
-      return !this.isTimeDisabled && this.tzOffsetValue && this.internalValue
+      return (
+        !this.isTimeDisabled &&
+        this.tzOffsetValue &&
+        this.internalValue &&
+        !this.isDateRangeType
+      )
     },
 
     isCalendarView() {
@@ -276,13 +303,6 @@ export default {
     },
 
     isComponentView() {
-      const COMPONENTS = {
-        CALENDAR: 'SbDatepickerDays',
-        TIME: 'SbDatepickerTime',
-        MONTH: 'SbDatepickerMonths',
-        YEAR: 'SbDatepickerYears',
-      }
-
       return COMPONENTS[this.internalVisualization]
     },
 
@@ -295,7 +315,7 @@ export default {
     },
 
     tzOffsetLabel() {
-      return `GMT ${this.tzOffsetValue}`
+      return `GMT${this.tzOffsetValue}`
     },
 
     tzOffsetValue() {
@@ -312,7 +332,10 @@ export default {
       }
 
       if (this.tzOffset) return this.tzOffset.replace('GMT', '')
-      return dayjs.tz(this.internalValue, this.internalTimezone).format('Z')
+
+      return this.sanitizetzValue(
+        dayjs.tz(this.internalValue, this.internalTimezone).format('ZZ')
+      )
     },
 
     isDateDisabledPast() {
@@ -342,6 +365,40 @@ export default {
     showDatepickerHeader() {
       return this.isComponentView !== 'SbDatepickerTime'
     },
+
+    hasRange() {
+      return this.daterange[0] !== '' && this.daterange[1] !== ''
+    },
+
+    cancelButtonLabel() {
+      return this.isDateRangeType && this.hasRange ? 'Clear range' : 'Cancel'
+    },
+
+    showFakeInput() {
+      return this.isDateRangeType
+    },
+
+    returnPrefixValue() {
+      const dateValue = this.internalValue
+        ? dayjs(this.internalValue).format(FORMATS.date)
+        : ''
+      return this.isDateRangeType ? this.daterange[0] : dateValue
+    },
+
+    returnSufixValue() {
+      const timeValue = this.internalValue
+        ? dayjs(this.internalValue).format(FORMATS.time)
+        : ''
+      return this.isDateRangeType ? this.daterange[1] : timeValue
+    },
+
+    returnPlaceholder() {
+      return this.placeholder ? this.placeholder : this.internalFormat
+    },
+
+    is24hFormat() {
+      return this.hourFormat === '24h'
+    },
   },
 
   watch: {
@@ -368,10 +425,21 @@ export default {
     this.$nextTick(() => {
       this.inputElement = this.$refs.input && this.$refs.input.$el
     })
+
+    if (Array.isArray(this.modelValue) && this.isDateRangeType) {
+      this.daterange = JSON.parse(JSON.stringify(this.modelValue))
+      this.internalDate = this.daterange[0]
+      this.internalValue = this.daterange[0]
+    }
   },
 
   methods: {
-    handleCancelAction() {
+    handleCancelAction(clearRange = false) {
+      if (this.hasRange && this.isOverlayVisible && clearRange) {
+        this.daterange = ['', '']
+        return
+      }
+
       this.closeOverlay()
 
       if (!this.internalValue) {
@@ -392,11 +460,19 @@ export default {
         return
       }
 
+      if (this.isDateRangeType) {
+        this.$emit('update:modelValue', this.daterange)
+        this.closeOverlay()
+
+        return
+      }
+
       const isValid = dayjs(
         this.internalValue,
         this.internalFormat,
         true
       ).isValid()
+
       if (!isValid || (this.hasDayDisabled && this.isDateDisabled)) {
         this.invalidDate = true
         return
@@ -405,10 +481,8 @@ export default {
       if (!this.tzOffset) {
         utcTime = dayjs
           .tz(this.internalValue, this.tzValue)
-          .utc()
-          .format(
-            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat
-          )
+          .utc(this.internalValue)
+          .format(this.isTimeDisabled ? FORMATS.datetime : this.internalFormat)
       } else {
         const offset = this.tzOffset.replace(/[+-]/g, ($1) =>
           $1 === '+' ? '-' : '+'
@@ -416,9 +490,7 @@ export default {
         utcTime = dayjs
           .utc(this.internalValue)
           .utcOffset(offset)
-          .format(
-            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat
-          )
+          .format(this.isTimeDisabled ? FORMATS.datetime : this.internalFormat)
       }
 
       this.hitClear = false
@@ -451,13 +523,22 @@ export default {
       this.internalVisualization = INTERNAL_VIEWS.YEAR
     },
 
-    handleComponentsInput(value) {
+    handleComponentsInput({ value, key }) {
       const inputTime = dayjs(value).format(this.internalFormat)
+
+      if (this.isDateRangeType && key === 'day') {
+        this.populateRange(inputTime)
+
+        this.internalDate = this.daterange[0]
+        this.internalValue = this.daterange[0]
+
+        return
+      }
 
       this.internalDate = inputTime
       this.internalValue = inputTime
 
-      if (this.type === 'date') {
+      if (this.isTimeDisabled) {
         this.closeOverlay()
         this.handleDoneAction()
         return
@@ -488,6 +569,7 @@ export default {
     handleClear(previousValue) {
       this.internalValue = ''
       this.hitClear = true
+      this.daterange = ['', '']
       this.$emit('update:modelValue', '')
       this.$emit('clear', previousValue)
     },
@@ -518,16 +600,40 @@ export default {
       const hasTarget = e && e?.target && this.$el
       const hasContains = hasTarget && typeof this.$el?.contains === 'function'
       const targetIsNode = e?.target instanceof Node
+      const targetHasElement = this.$el.contains(e.target)
 
-      if (hasContains && targetIsNode && !this.$el.contains(e.target)) {
-        this.handleCancelAction()
+      if (hasContains && targetIsNode && !targetHasElement) {
+        const clearRange = !this.isDateRangeType
+        this.handleCancelAction(clearRange)
+      }
+    },
+
+    sanitizetzValue(input) {
+      const match = input.match(/^([+-])(\d{2})(\d{2})$/)
+
+      if (match) {
+        const [, signal, hours, min] = match
+
+        const minutes = min > 0 ? `.${min}` : ''
+
+        return `${signal}${parseInt(hours, 10)}${minutes}`
+      } else {
+        return input
       }
     },
 
     handleTimezoneInput(timezone) {
-      this.internalTimezone = timezone
+      this.internalTimezone = timezone.value
 
-      // TODO: EMIT
+      this.$emit('change-timezone', timezone)
+    },
+
+    populateRange(date) {
+      if (this.daterange[0] === '') {
+        this.daterange[0] = dayjs(date).format(FORMATS.date)
+        return
+      }
+      this.daterange[1] = dayjs(date).format(FORMATS.date)
     },
   },
 }

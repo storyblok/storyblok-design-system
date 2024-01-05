@@ -41,6 +41,7 @@
           :model-value="currentTimeZone"
           data-testid="timezone-select"
           filterable
+          emit-option
           @update:model-value="handleChangeTimezone"
         />
       </div>
@@ -78,7 +79,7 @@ export default {
     },
   },
 
-  emits: ['update:modelValue', 'input-minutes', 'input-timezone'],
+  emits: ['update:modelValue', 'input-timezone'],
 
   data: () => ({
     internalHour: null as null | string | number,
@@ -118,7 +119,7 @@ export default {
         list.push({
           label: minLabel,
           checked: min === this.internalMinutes,
-          value: `${min}`,
+          value: min,
         })
       }
       return list
@@ -167,7 +168,7 @@ export default {
         .minute(minutes)
         .format()
 
-      this.$emit('update:modelValue', value)
+      this.$emit('update:modelValue', { value, key: 'time' })
     },
 
     $_syncValue(value: string | number) {
@@ -181,7 +182,7 @@ export default {
 
     minutesLabel(): string {
       return (
-        this.minutes.find((min) => min.value === `${this.internalMinutes}` || 0)
+        this.minutes.find((min) => min.value === this.internalMinutes || 0)
           ?.label || '00'
       )
     },

@@ -14,24 +14,23 @@ describe('SbDatepicker component', () => {
       plugins: [Maska],
     })
   }
-  const { placeholder } = SbDatepickerData.args
-  const { timeZone } = SbDatepickerData.args
-  const { type } = SbDatepickerData.args
-  const { modelValue } = SbDatepickerData.args
+  const { placeholder, timeZone, type, modelValue, hourFormat } =
+    SbDatepickerData.args
+
   const wrapper = factory({
     placeholder,
     timeZone,
     type,
     modelValue,
+    hourFormat,
   })
 
   describe('test datepicker I/Os', () => {
     it('should transform the date correctly', () => {
       wrapper.vm.handleDoneAction()
       expect(wrapper.emitted('update:modelValue')[0]).toEqual([
-        '2021-12-02 00:00',
+        '2021/12/02 00:00',
       ])
-      expect(wrapper.vm.internalValue).toEqual('2021-12-01 19:00')
     })
   })
 
@@ -93,7 +92,7 @@ describe('SbDatepicker component', () => {
         tzTooltip: null,
       })
 
-      expect(document.querySelector('[role="tooltip"]')).toBe(null)
+      expect(document.querySelector('[role="tooltip"]')).toBeNull()
     })
   })
 
@@ -103,17 +102,15 @@ describe('SbDatepicker component', () => {
         inlineLabel: 'Inline label',
       })
 
-      expect(
-        wrapper.find('.sb-textfield__inner-label').text()
-      ).toBe('Inline label')
+      expect(wrapper.find('.sb-textfield__inner-label').text()).toBe(
+        'Inline label'
+      )
     })
 
     it('should not render the inline label by default', () => {
       const wrapper = factory()
 
-      expect(
-        wrapper.find('.sb-textfield__inner-label').exists()
-      ).toBe(false)
+      expect(wrapper.find('.sb-textfield__inner-label').exists()).toBe(false)
     })
   })
 })

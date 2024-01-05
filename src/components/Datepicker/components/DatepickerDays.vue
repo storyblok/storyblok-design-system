@@ -3,14 +3,8 @@
     <span
       v-for="(dayItem, key) in days"
       :key="key"
-      class="sb-datepicker-days__item"
-      :class="{
-        'sb-datepicker-days__item--inactive': !dayItem.inMonth,
-        'sb-datepicker-days__item--active': dayItem.checked,
-        'sb-datepicker-days__item--current': dayItem.current,
-        'sb-datepicker-days__item--disabled': dayItem.disabled,
-      }"
-      @click="($evt) => handleDayClick($evt, dayItem)"
+      :class="returnClasses(dayItem)"
+      @click.stop="handleDayClick(dayItem)"
     >
       {{ dayItem.label }}
     </span>
@@ -19,13 +13,15 @@
 
 <script>
 import dayjs from 'dayjs'
+import isBetween from 'dayjs/plugin/isBetween'
 
+dayjs.extend(isBetween)
 export default {
   name: 'SbDatepickerDays',
 
   props: {
     modelValue: {
-      type: String,
+      type: [String, Array],
       default: null,
     },
     internalDate: {
@@ -44,9 +40,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    range: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   emits: ['update:modelValue'],
+
   computed: {
     days() {
       const daysInTheMonth = dayjs(this.internalDate).daysInMonth()
@@ -63,19 +64,29 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
+          insideRange: this.insideRange(dateValue),
           disabled: this.isDisabledDay(dateValue),
         })
       }
 
       for (let i = 1; i <= daysInTheMonth; i++) {
         const dateValue = dayjs(this.internalDate).date(i)
+        let checked = false
+
+        if (!this.range) {
+          checked = dayjs(this.modelValue).isSame(dateValue, 'day')
+        } else {
+          checked = dayjs(this.range[0]).isSame(dateValue, 'day')
+        }
 
         days.push({
           label: i,
           date: dateValue,
           inMonth: true,
-          checked: dayjs(this.modelValue).isSame(dateValue, 'day'),
-          current: dayjs().isSame(dateValue, 'day'),
+          checked,
+          border: this.isOnBorderOfDateRange(dateValue),
+          insideRange: this.insideRange(dateValue),
+          current: !this.hasRange ? dayjs().isSame(dateValue, 'day') : false,
           disabled: this.isDisabledDay(dateValue),
         })
       }
@@ -90,20 +101,26 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
+          insideRange: this.insideRange(dateValue),
+          border: this.isOnBorderOfDateRange(dateValue),
           disabled: this.isDisabledDay(dateValue),
         })
       }
 
       return days
     },
+
+    hasRange() {
+      return this.range[0] !== '' && this.range[1] !== ''
+    },
   },
   methods: {
-    handleDayClick($event, day) {
+    handleDayClick(day) {
       if (day.disabled) {
         return
       }
-      $event.stopPropagation()
-      this.$emit('update:modelValue', day.date.format())
+      const value = day.date.format()
+      this.$emit('update:modelValue', { value, key: 'day' })
     },
 
     /**
@@ -132,6 +149,34 @@ export default {
         this.isDateDisabledPast(dateValue) ||
         this.isMinDateDisabled(dateValue) ||
         this.isMaxDateDisabled(dateValue)
+      )
+    },
+
+    returnClasses(dayItem) {
+      return [
+        'sb-datepicker-days__item',
+        !dayItem.inMonth && 'sb-datepicker-days__item--inactive',
+        dayItem.checked && 'sb-datepicker-days__item--active',
+        dayItem.current && 'sb-datepicker-days__item--current',
+        dayItem.disabled && 'sb-datepicker-days__item--disabled',
+        dayItem.insideRange && 'sb-datepicker-days__item--range',
+        dayItem.border && 'sb-datepicker-days__item--range-border',
+      ]
+    },
+
+    insideRange(day) {
+      const date = dayjs(day.$d)
+
+      return (
+        this.hasRange &&
+        date.isBetween(this.range[0], dayjs(this.range[1]), 'day', '[]')
+      )
+    },
+
+    isOnBorderOfDateRange(dateValue) {
+      return (
+        dayjs(this.range[0]).isSame(dateValue, 'day') ||
+        dayjs(this.range[1]).isSame(dateValue, 'day')
       )
     },
   },

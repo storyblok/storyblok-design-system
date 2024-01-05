@@ -1,14 +1,6 @@
 <template>
   <div class="sb-datepicker-header">
     <div class="sb-datepicker-header__top">
-      <button
-        class="sb-datepicker-header__button"
-        :disabled="isDisabled"
-        @click="handlePreviousClick"
-      >
-        <SbIcon name="chevron-left" :color="iconColor" />
-      </button>
-
       <p v-if="isCalendarView" class="sb-datepicker-header__title">
         <span data-testid="span-current-month" @click="handleCurrentMonthClick">
           {{ currentMonth }},&nbsp;
@@ -27,13 +19,25 @@
         {{ currentMonth }}, {{ currentYear }}
       </p>
 
-      <button
+      <SbButton
         class="sb-datepicker-header__button"
         :disabled="isDisabled"
+        size="small"
+        icon="chevron-left"
+        only-icon
+        variant="tertiary"
+        @click="handlePreviousClick"
+      />
+
+      <SbButton
+        class="sb-datepicker-header__button"
+        :disabled="isDisabled"
+        size="small"
+        icon="chevron-right"
+        only-icon
+        variant="tertiary"
         @click="handleNextClick"
-      >
-        <SbIcon name="chevron-right" :color="iconColor" />
-      </button>
+      />
     </div>
 
     <SbDatepickerWeek v-if="isCalendarView" />
@@ -47,14 +51,13 @@
 <script>
 import dayjs from 'dayjs'
 
-import SbIcon from '../../Icon'
-
 import SbDatepickerWeek from './DatepickerWeek'
+import SbButton from '../../Button'
 
 export default {
   name: 'SbDatepickerHeader',
 
-  components: { SbIcon, SbDatepickerWeek },
+  components: { SbDatepickerWeek, SbButton },
 
   props: {
     isCalendarView: Boolean,

@@ -50,9 +50,43 @@
     @include focusedTextField;
   }
 
+  &__fake-input {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 45.5px;
+    color: $sb-dark-blue;
+    font-size: $font-14;
+    border: 1px solid $light;
+    border-radius: $base-border-radius;
+    transition: $base-transition;
+
+    &--text {
+      padding: 5px 3px;
+
+      &:first-of-type {
+        margin-left: 39px;
+      }
+    }
+
+    &--separator {
+      padding: 0 5px;
+    }
+
+    &--focus {
+      background-color: $light;
+      border-radius: 4px;
+    }
+
+    &--placeholder {
+      color: $sb-dark-blue-50;
+    }
+  }
+
   &__input {
     position: relative;
-
+    
     .sb-textfield__icon {
       cursor: pointer;
     }
@@ -62,8 +96,8 @@
     position: absolute;
     right: $s-7;
     top: 50%;
-    color: $light-gray;
-    font-size: $font-12;
+    color: $sb-dark-blue;
+    font-size: $font-14;
     transform: translateY(-50%);
   }
 
@@ -108,25 +142,33 @@
   &__title {
     flex: 1;
     margin: 0;
-    padding: 15px 0;
+    padding: 20px 15px;
     color: $color-primary-dark;
     font-size: $font-14;
     font-weight: $font-medium;
-    text-align: center;
+    text-align: left;
 
     span {
       cursor: pointer;
     }
   }
 
-  &__button {
-    padding: $s-2 14px;
+  .sb-button--tertiary:focus {
+    outline: unset;
+  }
+
+  .sb-button--has-icon {
+    min-height: 26px;
+    padding: 0;
     background-color: transparent;
     border: 0;
-    cursor: pointer;
 
-    &:disabled {
-      cursor: not-allowed;
+    &:last-of-type {
+      margin: 0 5px;
+    }
+
+    .sb-icon {
+      margin-right: 0;
     }
   }
 
@@ -173,6 +215,16 @@
 
     &--inactive {
       color: $sb-dark-blue-50;
+    }
+
+    &--range {
+      color: $sb-green;
+      background-color: $sb-green-25;
+    }
+
+    &--range-border {
+      color: $white;
+      background-color: $sb-green;
     }
   }
 }

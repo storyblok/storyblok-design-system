@@ -8,7 +8,9 @@ const Template = (args) => ({
   props: Object.keys(args),
 
   data: () => ({
-    internalDatetimeValue: dayjs(args.modelValue).format('YYYY-MM-DD HH:mm'),
+    internalDatetimeValue: Array.isArray(args.modelValue)
+      ? args.modelValue
+      : dayjs(args.modelValue).format('YYYY-MM-DD HH:mm'),
   }),
 
   template: `
@@ -34,13 +36,14 @@ const Template = (args) => ({
 
 export default {
   title: 'Forms/SbDatepicker',
-  components: { SbDatepicker },
+  components: SbDatepicker,
   args: {
     placeholder: 'Select date and time',
     modelValue: '2021-12-02 00:00',
     type: 'datetime',
     disabled: false,
     isoDate: false,
+    tzOffset: '',
     timeZone: 'America/Sao_Paulo',
     tzTooltip: '',
     minDate: '',
@@ -48,6 +51,7 @@ export default {
     minuteRange: 1,
     disabledPast: false,
     hourFormat: '24h',
+    inlineLabel: '',
   },
   argTypes: {
     timeZone: {
@@ -177,7 +181,19 @@ export default {
   },
 }
 
-export const Default = Template.bind({})
+export const Default = (args) => ({
+  components: { SbDatepicker },
+  setup() {
+    return { args }
+  },
+  template: `
+    <div style="width: 300px; height: 450px">
+      <SbDatepicker
+        v-bind="args"
+      />
+    </div>
+  `,
+})
 
 export const TimeType = Template.bind({})
 
@@ -280,6 +296,22 @@ WithInlineLabel.parameters = {
   docs: {
     description: {
       story: 'Use the `inline-label` property to add text inside the field',
+    },
+  },
+}
+
+export const DateRange = Template.bind({})
+
+DateRange.args = {
+  modelValue: ['2023-12-02', '2023-12-20'],
+  type: 'daterange',
+}
+
+DateRange.parameters = {
+  docs: {
+    description: {
+      story:
+        'With the `daterange` prop it is possible to select two different dates and this range value will be output as an array, with the first item being the first date in the range and the second the second date, such as `["2023-12-02", "2023-12-20"]`',
     },
   },
 }
