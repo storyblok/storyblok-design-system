@@ -73,7 +73,7 @@
       />
     </div>
 
-    <div v-if="isAvatarVisible && showAvatar" class="sb-select-inner__avatar">
+    <div v-if="isAvatarVisible" class="sb-select-inner__avatar">
       <SbAvatar
         :src="avatarData.src"
         size="small"
@@ -240,10 +240,6 @@ export default {
     'remove-item-value',
   ],
 
-  data: () => ({
-    showAvatar: false,
-  }),
-
   computed: {
     dataTestid() {
       return this.$attrs['data-testid'] || 'sb-select-inner'
@@ -318,8 +314,7 @@ export default {
         this.hasValue &&
         !this.multiple &&
         !this.searchInputText.length &&
-        !this.isAvatarVisible &&
-        !this.showAvatar
+        !this.isAvatarVisible
       )
     },
 
@@ -430,16 +425,6 @@ export default {
   },
 
   watch: {
-    searchInputText(val) {
-      if (
-        this.avatarData &&
-        val === this.avatarData?.label &&
-        this.isAvatarVisible
-      ) {
-        this.showAvatar = true
-      }
-    },
-
     modelValue(val, oldVal) {
       const isSameValue = JSON.stringify(val) === JSON.stringify(oldVal)
       if (this.isSearchTextVisible && !isSameValue) {
@@ -448,14 +433,6 @@ export default {
         }
         return
       }
-
-      if (this.isAvatarVisible) {
-        this.showAvatar = true
-      }
-    },
-
-    isAvatarVisible(val) {
-      this.showAvatar = val
     },
   },
 
