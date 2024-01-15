@@ -416,7 +416,7 @@ export default {
     tagsCountTooltip() {
       return {
         label: this.tagLabels
-          ?.map((item) => item.label)
+          ?.map((item) => item[this.itemLabel])
           .slice(1)
           .join(', '),
         position: 'top',
