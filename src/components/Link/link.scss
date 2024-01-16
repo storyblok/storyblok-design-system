@@ -33,7 +33,7 @@
     color: $white;
 
     &::after {
-      background-color: $white;
+      background-color: var(--sb-color-bg-4);
     }
 
     &:hover:not([disabled])::after,

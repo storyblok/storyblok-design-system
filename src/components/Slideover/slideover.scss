@@ -13,7 +13,7 @@
   max-height: calc(100vh - 40px);
   margin-left: auto;
   padding: 20px;
-  background-color: $white;
+  background-color: var(--sb-color-bg-4);
   border-radius: $base-border-radius;
 
   @include mq($from: lg) {

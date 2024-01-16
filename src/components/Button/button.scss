@@ -33,20 +33,20 @@
 }
 
 .sb-button--primary {
-  background-color: $sb-green;
+  background-color: var(--sb-color-primary-1);
 
   &:focus {
-    outline: 3px solid $sb-green-25;
+    outline: 3px solid var(--sb-color-primary-5);
   }
 
   &:hover:not([disabled]),
   &:focus:not([disabled]) {
-    background-color: darken($sb-green, 4%);
+    // background-color: darken(var(--sb-color-primary-1), 4%);
   }
 }
 
 .sb-button--secondary {
-  background-color: $sb-dark-blue;
+  background-color: var(--sb-color-bg-1);
 
   &:focus {
     outline: 3px solid $sb-dark-blue-25;
@@ -59,8 +59,8 @@
 }
 
 .sb-button--tertiary {
-  color: $sb-dark-blue;
-  background-color: $white;
+  color: var(--sb-color-text-4);
+  background-color: var(--sb-color-bg-4);
   border-color: $light;
 
   &:focus {
@@ -73,7 +73,7 @@
   }
 
   .sb-loading svg {
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
     fill: $sb-dark-blue;
   }
 }
@@ -232,6 +232,6 @@
 }
 
 .sb-button--primary-link {
-  color: $sb-green;
+  color: var(--sb-color-primary-1);
   background: transparent;
 }

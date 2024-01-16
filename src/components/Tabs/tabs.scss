@@ -58,12 +58,12 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background-color: $sb-green;
+    background-color: var(--sb-color-primary-1);
   }
 }
 
 .sb-tab:focus {
-  color: $sb-green;
+  color: var(--sb-color-primary-1);
 }
 
 .sb-tab--editable {
@@ -137,7 +137,7 @@
     border-bottom: 0;
 
     &::after {
-      background-color: $white;
+      background-color: var(--sb-color-bg-4);
     }
   }
 }

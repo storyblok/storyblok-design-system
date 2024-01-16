@@ -82,12 +82,12 @@
   }
 
   &--light {
-    color: $sb-dark-blue;
-    background-color: $white;
+    color: var(--sb-color-text-4);
+    background-color: var(--sb-color-bg-4);
     border: 1px solid $light;
 
     [data-popper-arrow]::before {
-      background: $white;
+      background-color: var(--sb-color-bg-4);
       border: 1px solid $light;
     }
   }

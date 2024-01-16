@@ -85,7 +85,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     align-items: center;
     margin-bottom: 1px;
     padding: 9px $general-padding;
-    background-color: $white;
+    background-color: var(--sb-color-bg-4);
 
     &-container {
       flex: 1;

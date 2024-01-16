@@ -4,7 +4,7 @@
 
   &:hover,
   &:focus {
-    background-color: darken($color, 5%);
+    // background-color: darken($color, 5%);
   }
 }
 
@@ -34,7 +34,7 @@
   }
 
   &--primary {
-    @include setColor($sb-green-20, $sb-green);
+    @include setColor(var(--sb-color-primary-6), var(--sb-color-primary-1));
   }
 
   &--success {

@@ -13,7 +13,7 @@
 
 @mixin generalBoxShadow() {
   z-index: 99999;
-  background-color: $white;
+  background-color: var(--sb-color-bg-4);
   border: 1px solid $light;
   border-radius: $s-1;
   box-shadow: $box-shadow-default;
@@ -69,7 +69,7 @@
     background-color: $light-50;
 
     .sb-icon {
-      color: $sb-dark-blue;
+      color: var(--sb-color-text-4);
     }
   }
 }
@@ -106,7 +106,7 @@
     top: -3px;
     width: 13px;
     height: 13px;
-    background-color: $white;
+    background-color: var(--sb-color-bg-4);
     border: 1px solid rgb(223 227 232);
     transform: translateX(-50%) rotate(45deg);
     clip-path: polygon(0 60%, 0 0, 60% 0);

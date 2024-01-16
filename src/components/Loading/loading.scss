@@ -10,7 +10,7 @@
   }
 
   &__bar::-webkit-progress-value {
-    background: $sb-green;
+    background: var(--sb-color-primary-1);
   }
 
   &__bar[value]::-webkit-progress-bar {
@@ -18,11 +18,11 @@
   }
 
   &__bar::-moz-progress-bar {
-    background: $sb-green;
+    background: var(--sb-color-primary-1);
   }
 
   &__bar::-ms-fill {
-    background-color: $sb-green;
+    background-color: var(--sb-color-primary-1);
   }
 
   &__bar-label {

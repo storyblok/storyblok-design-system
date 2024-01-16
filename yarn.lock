@@ -3296,6 +3296,7 @@ __metadata:
     "@storybook/addon-a11y": "npm:^7.6.3"
     "@storybook/addon-essentials": "npm:^7.6.3"
     "@storybook/addon-storysource": "npm:^7.6.3"
+    "@storybook/addon-themes": "npm:^7.6.8"
     "@storybook/addon-viewport": "npm:^7.6.3"
     "@storybook/addons": "npm:^7.6.3"
     "@storybook/theming": "npm:^7.6.3"
@@ -3498,6 +3499,15 @@ __metadata:
     estraverse: "npm:^5.2.0"
     tiny-invariant: "npm:^1.3.1"
   checksum: 0db086a9d2ad4d7798be24a49446749a3418ba9bea2c3c9d241b1303117f512b36cd6191d78b10f159fe112f0fc31c63dd17a2da828d721d22e6c2e346a83163
+  languageName: node
+  linkType: hard
+
+"@storybook/addon-themes@npm:^7.6.8":
+  version: 7.6.8
+  resolution: "@storybook/addon-themes@npm:7.6.8"
+  dependencies:
+    ts-dedent: "npm:^2.0.0"
+  checksum: b7f4d1c137ed96d5b9e00beeffe458ee789f0c855be33cf9347da632d9434e0cdaf1e5ee180ed5324c4f5560502981002e6ca0c6b422331847fd6e1a1dd36c75
   languageName: node
   linkType: hard
 

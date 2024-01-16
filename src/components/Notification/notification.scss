@@ -75,7 +75,7 @@
   }
 
   &--general {
-    background-color: $white;
+    background-color: var(--sb-color-bg-4);
     border-radius: 10px;
 
     @include generalBoxShadow;
@@ -91,7 +91,7 @@
     overflow: hidden;
     vertical-align: middle;
     width: 75%;
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
     font-size: $font-16;
     font-weight: $font-medium;
     text-overflow: ellipsis;
@@ -103,7 +103,7 @@
     overflow: hidden;
     margin-left: $s-6;
     margin-top: $s-3;
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
     font-size: $font-14;
     font-weight: $font-regular;
     line-height: 1.2;

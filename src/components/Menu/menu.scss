@@ -2,7 +2,7 @@
   z-index: 2;
   min-width: 180px;
   padding: 11px 0;
-  background-color: $white;
+  background-color: var(--sb-color-bg-4);
 
   @include popoverComponent;
 
@@ -19,11 +19,11 @@
   width: 100%;
   margin: 0;
   padding: $s-2 20px;
-  color: $sb-dark-blue;
+  color: var(--sb-color-text-4);
   font-size: $font-14;
   line-height: normal;
   text-align: left;
-  background-color: $white;
+  background-color: var(--sb-color-bg-4);
   border: 0;
   cursor: pointer;
   appearance: none;
@@ -85,7 +85,7 @@
 
     &--bold {
       padding-left: 20px;
-      color: $sb-dark-blue;
+      color: var(--sb-color-text-4);
       font-size: $font-14;
       font-weight: $font-medium;
     }

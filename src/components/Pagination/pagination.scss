@@ -96,7 +96,7 @@
     }
 
     &--active {
-      background-color: $sb-dark-blue;
+      background-color: var(--sb-color-bg-1);
 
       &::after {
         content: '';
@@ -166,7 +166,7 @@
     &:not(:disabled):focus:not(.sb-button--tertiary),
     &:not(:disabled):hover:not(.sb-button--tertiary) {
       color: $white;
-      background-color: darken($blue, 15);
+      // background-color: darken($blue, 15);
     }
   }
 

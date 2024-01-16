@@ -4,7 +4,7 @@
   &__label {
     display: block;
     margin-bottom: 10px;
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
     font-size: $font-14;
     font-weight: $font-medium;
     letter-spacing: 0;
@@ -59,7 +59,7 @@
   &__input {
     width: 100%;
     padding: 13.5px 17px;
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
     font-size: $font-14;
     border-radius: $base-border-radius;
     appearance: textfield;
@@ -87,13 +87,13 @@
       border: 1px solid $light;
 
       &:hover {
-        border-color: $sb-green;
+        border-color: var(--sb-color-primary-1);
       }
 
       &:focus {
         border-radius: $base-border-radius;
-        border-color: $sb-green;
-        box-shadow: 0 0 0 3px $sb-green-25;
+        border-color: var(--sb-color-primary-1);
+        box-shadow: 0 0 0 3px var(--sb-color-primary-5);
         outline: none;
       }
     }

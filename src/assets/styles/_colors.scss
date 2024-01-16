@@ -1,77 +1,80 @@
+@import './css/theme-dark';
+@import './css/theme-light';
+
 // Color pallete
 // teal
-$sb-green: #00b3b0;
-$sb-green-100: #40bebb;
-$sb-green-75: #40c6c4;
-$sb-green-50: #7fd9d7;
-$sb-green-25: #d9f4f3;
-$sb-green-20: #ccf0ef;
+$sb-green: var(--sb-color-primary-1);
+$sb-green-100: var(--sb-color-primary-2);
+$sb-green-75: var(--sb-color-primary-3);
+$sb-green-50: var(--sb-color-primary-4);
+$sb-green-25: var(--sb-color-primary-5);
+$sb-green-20: var(--sb-color-primary-6);
 
 // Ink
-$sb-dark-blue: #1b243f;
-$sb-dark-blue-75: #545b6f;
-$sb-dark-blue-50: #8d919f;
-$sb-dark-blue-25: #c6c8cf;
+$sb-dark-blue: var(--sb-color-secondary-1);
+$sb-dark-blue-75: var(--sb-color-secondary-2);
+$sb-dark-blue-50: var(--sb-color-secondary-3);
+$sb-dark-blue-25: var(--sb-color-secondary-4);
 
 // green
-$green: #2db47d;
-$green-75: #62c79e;
-$green-50: #96d9be;
-$green-25: #caecde;
-$green-20: #d5f0e5;
-$green-disabled: #004e4c;
+$green: var(--sb-color-success-1);
+$green-75: var(--sb-color-success-2);
+$green-50:  var(--sb-color-success-3);
+$green-25: var(--sb-color-success-3);
+$green-20: var(--sb-color-success-4);
+$green-disabled: var(--sb-color-success-5);
 
 // yellow
-$yellow: #fbce41;
-$yellow-75: #fcdb71;
-$yellow-50: #fde6a0;
-$yellow-25: #fef3cf;
-$yellow-20: #fef5d9;
+$yellow: var(--sb-color-caution-1);
+$yellow-75: var(--sb-color-caution-2);
+$yellow-50: var(--sb-color-caution-3);
+$yellow-25: var(--sb-color-caution-4);
+$yellow-20: var(--sb-color-caution-5);
 
 // blue
-$blue: #395ece;
-$blue-75: #6b87db;
-$blue-50: #9caee6;
-$blue-25: #cdd7f3;
-$blue-20: #d7dff5;
+$blue: var(--sb-color-info-1);
+$blue-75: var(--sb-color-info-2);
+$blue-50: var(--sb-color-info-3);
+$blue-25: var(--sb-color-info-4);
+$blue-20: var(--sb-color-info-5);
 
 // orange
-$orange: #ffac00;
-$orange-75: #ffc140;
-$orange-50: #ffd57f;
-$orange-25: #ffeabf;
-$orange-20: #fec;
+$orange: var(--sb-color-warning-1);
+$orange-75: var(--sb-color-warning-2);
+$orange-50: var(--sb-color-warning-3);
+$orange-25: var(--sb-color-warning-4);
+$orange-20: var(--sb-color-warning-5);
 
 // red
-$red: #ff6159;
-$red-75: #ff8983;
-$red-50: #ffb0ac;
-$red-25: #ffd7d5;
-$red-20: #ffdfde;
+$red: var(--sb-color-error-1);
+$red-75: var(--sb-color-error-2);
+$red-50: var(--sb-color-error-3);
+$red-25: var(--sb-color-error-4);
+$red-20: var(--sb-color-error-5);
 
 // light
-$light: #dfe3e8;
-$light-75: #e7eaee;
-$light-50: #eff1f3;
-$light-25: #f7f8f9;
-$light-gray: #b1b5be;
-$neutral-gray: #8d919c;
+$light: var(--sb-color-grey-1);
+$light-75: var(--sb-color-grey-2);
+$light-50: var(--sb-color-grey-3);
+$light-25: var(--sb-color-grey-4);
+$light-gray: var(--sb-color-grey-5);
+$neutral-gray: var(--sb-color-grey-6);
 
 // general
 $black: #101525;
-$white: #fff;
+$white: var(--sb-color-bg-4);
 $black-trasparent: rgba($sb-dark-blue, 0.2);
-$blue-grey: #415467;
+$blue-grey: rgb(65, 84, 103);
 
 // Colors
-$color-primary: $sb-green;
-$color-primary-dark: $sb-dark-blue;
-$color-secondary: $green;
-$color-positive: $green;
-$color-negative: $red;
-$color-warning: $orange;
-$color-white: $white;
-$primary-text-color: $sb-dark-blue;
+$color-primary: var(--sb-color-primary-1);
+$color-primary-dark: var(--sb-color-secondary-1);
+$color-secondary: var(--sb-color-secondary-1);
+$color-positive:  var(--sb-color-success-1);
+$color-negative: var(--sb-color-error-1);
+$color-warning: var(--sb-color-warning-1);
+$color-white: var(--sb-color-bg-4);
+$primary-text-color: var(--sb-color-text-1);
 $colors: (
   'primary': $color-primary,
   'primary-dark': $color-primary-dark,

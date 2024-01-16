@@ -33,7 +33,7 @@
   }
 
   &__legend {
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
     font-size: $font-size-default;
     font-weight: $font-medium;
   }

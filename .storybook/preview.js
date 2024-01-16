@@ -3,6 +3,7 @@ import '../src/assets/styles/global.scss'
 import './preview.css'
 import BlokInkPlugin from '../src/main'
 import { setup } from '@storybook/vue3'
+import { withThemeByClassName } from '@storybook/addon-themes';
 
 const customViewports = {
   xxs: {
@@ -78,4 +79,13 @@ export const parameters = {
   viewport: {
     viewports: customViewports,
   },
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        light: 'sb-theme-light',
+        dark: 'sb-theme-dark',
+      },
+      defaultTheme: 'light',
+    }),
+  ],
 }

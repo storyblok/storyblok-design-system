@@ -16,7 +16,7 @@
   max-width: 620px;
   margin: auto;
   padding: 35px;
-  background-color: $white;
+  background-color: var(--sb-color-bg-4);
   border-radius: $base-border-radius;
   box-shadow: $box-shadow-default;
   animation: fadein 0.3s;
@@ -35,7 +35,7 @@
     right: 14px;
     top: 14px;
     z-index: 1;
-    background-color: $white;
+    background-color: var(--sb-color-bg-4);
     border: 0;
     cursor: pointer;
 
@@ -97,7 +97,7 @@
     }
 
     &__title {
-      color: $sb-dark-blue;
+      color: var(--sb-color-text-4);
       font-size: $font-20;
       font-weight: $font-bold;
       text-align: center;

@@ -11,11 +11,11 @@ $toggle-padding: 4px;
 }
 
 .sb-toggle--primary .sb-toggle__label {
-  background-color: $sb-green;
+  background-color: var(--sb-color-primary-1);
 }
 
 .sb-toggle--secondary .sb-toggle__label {
-  background-color: $sb-dark-blue;
+  background-color: var(--sb-color-bg-1);
 }
 
 .sb-toggle--ghost {
@@ -25,11 +25,11 @@ $toggle-padding: 4px;
   }
 
   .sb-toggle__label::after {
-    background-color: $sb-dark-blue;
+    background-color: var(--sb-color-bg-1);
   }
 
   .sb-toggle__icon--active {
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
   }
 }
 
@@ -86,7 +86,7 @@ $toggle-padding: 4px;
     z-index: 2;
     width: $toggle-circle;
     height: $toggle-circle;
-    background: $white;
+    background-color: var(--sb-color-bg-4);
     border-radius: 100%;
     transition: transform 0.3s $toggle-easing;
   }

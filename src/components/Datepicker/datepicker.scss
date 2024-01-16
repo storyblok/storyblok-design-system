@@ -15,18 +15,18 @@
 
     &:hover,
     &:focus {
-      background-color: $sb-green-25;
+      background-color: var(--sb-color-primary-5);
     }
   }
 
   &--active {
     font-size: $font-18;
     font-weight: $font-medium;
-    background-color: $sb-green-25;
+    background-color: var(--sb-color-primary-5);
 
     &:hover,
     &:focus {
-      background-color: $sb-green-25;
+      background-color: var(--sb-color-primary-5);
     }
   }
 
@@ -37,7 +37,7 @@
 
     &:hover,
     &:focus {
-      background-color: $white;
+      background-color: var(--sb-color-bg-4);
     }
   }
 }
@@ -82,7 +82,7 @@
   &__actions {
     display: flex;
     justify-content: flex-end;
-    background-color: $white;
+    background-color: var(--sb-color-bg-4);
   }
 
   &__action-button {
@@ -90,7 +90,7 @@
     color: $color-primary-dark;
     font-size: $font-14;
     font-weight: $font-medium;
-    background-color: $white;
+    background-color: var(--sb-color-bg-4);
     border: 0;
     appearance: none;
 
@@ -169,7 +169,7 @@
   grid-template-rows: repeat(6, 1fr);
   box-sizing: border-box;
   width: 100%;
-  background-color: $white;
+  background-color: var(--sb-color-bg-4);
 
   &__item {
     flex: 1;
@@ -193,7 +193,7 @@
 
   &__numbers-container {
     display: flex;
-    background-color: $white;
+    background-color: var(--sb-color-bg-4);
   }
 
   &__number-column {
@@ -230,7 +230,7 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   width: 100%;
-  background: $white;
+  background-color: var(--sb-color-bg-4);
 
   &__item {
     box-sizing: border-box;
@@ -250,7 +250,7 @@
   box-sizing: border-box;
   width: 100%;
   max-height: 252px;
-  background: $white;
+  background-color: var(--sb-color-bg-4);
 
   &__item {
     box-sizing: border-box;

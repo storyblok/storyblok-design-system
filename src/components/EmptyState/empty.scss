@@ -44,7 +44,7 @@
   display: flex;
   padding: $s-1;
   color: $white;
-  background: $sb-green;
+  background: var(--sb-color-primary-1);
   border-radius: 100%;
 
   .sb-icon {
@@ -61,7 +61,7 @@
   width: $s-8;
   height: $s-8;
   margin: 0 auto 25px;
-  background-color: $sb-green-25;
+  background-color: var(--sb-color-primary-5);
   border-radius: 50%;
 
   .sb-icon {
@@ -72,7 +72,7 @@
 .sb-empty-state__title {
   max-width: 600px;
   margin-bottom: $s-2;
-  color: $sb-dark-blue;
+  color: var(--sb-color-text-4);
   font-size: $font-20;
   font-weight: $font-medium;
 }
@@ -94,7 +94,7 @@
   font-size: $font-14;
 
   .sb-link {
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
   }
 }
 

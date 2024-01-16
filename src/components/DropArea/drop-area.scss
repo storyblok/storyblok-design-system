@@ -13,14 +13,14 @@
 
     .sb-drop-area__content {
       width: 90%;
-      background-color: $white;
+      background-color: var(--sb-color-bg-4);
       border-radius: 50%;
       pointer-events: none;
       aspect-ratio: 1/1;
     }
 
     .sb-drop-area__icon {
-      background-color: $sb-green-25;
+      background-color: var(--sb-color-primary-5);
 
       svg {
         width: $s-8;
@@ -62,7 +62,7 @@
     text-align: center;
 
     span {
-      color: $sb-green;
+      color: var(--sb-color-primary-1);
       cursor: pointer;
 
       &:hover,
@@ -79,7 +79,7 @@
     width: 104px;
     height: 104px;
     margin-bottom: $s-4;
-    background-color: $white;
+    background-color: var(--sb-color-bg-4);
     border-radius: 50%;
     transition: $base-transition;
 

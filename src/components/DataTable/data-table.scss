@@ -126,7 +126,7 @@
   }
 
   &__col-main {
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
     font-weight: $font-medium;
   }
 
@@ -153,7 +153,7 @@
   min-height: 50px;
   padding: 0 20px;
   color: $white;
-  background-color: $sb-dark-blue;
+  background-color: var(--sb-color-bg-1);
   border-radius: $base-border-radius;
 
   @include mq($until: sm) {

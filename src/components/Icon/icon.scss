@@ -23,9 +23,9 @@ $icon-colors: (
   'light-gray': $light-gray,
 );
 $bg-colors: (
-  'primary': $sb-green-25,
+  'primary': var(--sb-color-primary-5),
   'primary-dark': $sb-dark-blue-25,
-  'secondary': $sb-green-25,
+  'secondary': var(--sb-color-primary-5),
   'positive': $green-25,
   'negative': $red-25,
   'warning': $orange-25,

@@ -44,7 +44,7 @@
     &:hover,
     &:focus {
       .sb-select-inner__input::placeholder {
-        color: $sb-dark-blue;
+        color: var(--sb-color-text-4);
         opacity: 1;
       }
     }
@@ -72,7 +72,7 @@
   }
 
   &--loading .sb-select-inner__chevron {
-    color: $sb-green;
+    color: var(--sb-color-primary-1);
   }
 }
 
@@ -94,15 +94,15 @@
   align-items: center;
   overflow-x: hidden;
   padding: 10px 10px 9px 17px;
-  color: $sb-dark-blue;
+  color: var(--sb-color-text-4);
   font-size: $font-14;
-  background-color: $white;
+  background-color: var(--sb-color-bg-4);
   border: 1px solid $light;
   border-radius: $base-border-radius;
   cursor: pointer;
 
   &:hover {
-    border-color: $sb-green;
+    border-color: var(--sb-color-primary-1);
   }
 
   &:focus {
@@ -177,7 +177,7 @@
     flex: 1;
     width: 100%;
     padding: 0;
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
     font-size: inherit;
     background-color: transparent;
     border: 0;
@@ -216,7 +216,7 @@
 
   &:hover &__chevron,
   &:focus &__chevron {
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
   }
 
   &__disabled {
@@ -302,7 +302,7 @@
   max-height: 235px;
   min-width: 176px;
   padding: 13px 0;
-  background-color: $white;
+  background-color: var(--sb-color-bg-4);
 
   @include popoverComponent;
   @include listPosition;
@@ -353,7 +353,7 @@
     gap: 5px;
     overflow: hidden;
     min-height: 17px;
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
   }
 
   &__item-name {
@@ -363,7 +363,7 @@
   }
 
   &__create-label {
-    color: $sb-green;
+    color: var(--sb-color-primary-1);
   }
 
   &__create-value {

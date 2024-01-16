@@ -1,8 +1,8 @@
 .sb-accordion {
   position: relative;
   width: 100%;
-  color: $sb-dark-blue;
-  background: $white;
+  color: var(--sb-color-text-4);
+  background-color: var(--sb-color-bg-4);
 
   &:last-child {
     border-bottom: 1px solid $light;
@@ -31,7 +31,7 @@
 
   &:hover .sb-accordion__button,
   &:focus .sb-accordion__button {
-    color: $sb-dark-blue;
+    color: var(--sb-color-text-4);
     background: $light-25;
   }
 
@@ -64,14 +64,14 @@
   font-size: $font-14;
   font-weight: $font-medium;
   text-align: left;
-  background: $white;
+  background-color: var(--sb-color-bg-4);
   border: 0;
   border-top: 1px solid $light;
   cursor: pointer;
 
   &:hover,
   &:focus {
-    color: $sb-green;
+    color: var(--sb-color-primary-1);
   }
 
   .sb-icon {
@@ -95,7 +95,7 @@
 
     &:hover .sb-accordion__button,
     &:focus .sb-accordion__button {
-      color: $sb-dark-blue;
+      color: var(--sb-color-text-4);
       background: transparent;
     }
   }

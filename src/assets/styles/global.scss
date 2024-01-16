@@ -4,6 +4,8 @@
 html {
   font-family: $primary-font-family;
   font-size: 62.5%;
+  background-color: var(--sb-color-bg-4);
+  color: var(--sb-color-text-4);
 }
 
 body {
@@ -40,7 +42,7 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-  color: $sb-dark-blue;
+  color: var(--sb-color-text-3);
   font-weight: $font-medium;
   letter-spacing: 0;
 }
