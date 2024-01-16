@@ -76,7 +76,7 @@ export default {
       control: 'object',
     },
     onButtonClick: {
-      action: 'button-click'
+      action: 'button-click',
     },
   },
 }

@@ -10,17 +10,17 @@
 
 .sb-colors {
   display: inline-block;
-  width: 250px;
-  height: 100px;
-  margin: -1px;
+  width: 120px;
+  height: 120px;
+  margin: 0 0 4px;
   padding: 0;
 }
 
 .sb-colors--container {
   display: inline-grid;
-  width: 250px;
+  width: 120px;
   height: 150px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: $light-gray;
   font-size: $font-14;
 }

@@ -44,7 +44,7 @@
   margin: 0;
   padding: 9px 0;
 
-  @include generalBoxShadow();
+  @include generalBoxShadow;
 
   .sb-breadcrumbs__item {
     display: block;

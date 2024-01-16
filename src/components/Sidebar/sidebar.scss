@@ -87,8 +87,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
   margin: 0;
   padding: 0;
 
@@ -103,8 +102,7 @@
 }
 
 .sb-sidebar-list__container {
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
 }
 
 .sb-sidebar-list__fade {
@@ -192,7 +190,7 @@
 
   &:hover,
   &:focus {
-    @include activeItemState();
+    @include activeItemState;
   }
 
   .sb-icon,
@@ -226,7 +224,7 @@
   }
 
   &--active {
-    @include activeItemState();
+    @include activeItemState;
   }
 
   &--use-avatar {

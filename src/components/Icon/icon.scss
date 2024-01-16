@@ -22,7 +22,6 @@ $icon-colors: (
   'light': $light,
   'light-gray': $light-gray,
 );
-
 $bg-colors: (
   'primary': $sb-green-25,
   'primary-dark': $sb-dark-blue-25,
@@ -52,13 +51,13 @@ $bg-colors: (
   }
 
   &--fill {
-    fill: currentColor;
-    stroke: currentColor;
+    fill: currentcolor;
+    stroke: currentcolor;
   }
 
   &--lucide {
     padding: 3px;
-    stroke: currentColor;
+    stroke: currentcolor;
 
     @include setIconSize(1.8rem);
 
@@ -76,7 +75,7 @@ $bg-colors: (
   }
 
   &--custom {
-    fill: currentColor;
+    fill: currentcolor;
     stroke-width: 2px;
 
     &.sb-icon--small {

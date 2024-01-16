@@ -59,7 +59,7 @@
       border: 0;
     }
 
-    &:not(:disabled):not(&--with-label) {
+    &:not(:disabled, &--with-label) {
       &:hover,
       &:focus {
         color: $color-primary;

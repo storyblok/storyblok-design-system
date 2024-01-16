@@ -102,7 +102,7 @@ export default {
         this.context.toggleTableOrder(this.order, this.sortKey)
       } else if (!this.sortKey && this.isSortable) {
         throw new Error(
-          'Must provide the value property when sortable is defined.'
+          'Must provide the value property when sortable is defined.',
         )
       }
     },

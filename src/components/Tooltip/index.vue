@@ -90,7 +90,7 @@ export default {
     this.$nextTick(() => {
       if (canUseDOM) {
         this.tooltipAnchor = document.querySelector(
-          `[x-tooltip-anchor=${this.tooltipAnchorId}]`
+          `[x-tooltip-anchor=${this.tooltipAnchorId}]`,
         )
       }
     })

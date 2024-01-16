@@ -1,6 +1,5 @@
 <template>
-  <div class="sb-accordion"
-:class="activeClasses">
+  <div class="sb-accordion" :class="activeClasses">
     <button
       class="sb-accordion__button"
       type="button"
@@ -21,8 +20,7 @@
         @click.stop="$emit('icon-click')"
       />
 
-      <div v-if="$slots.contentInfo"
-class="sb-accordion__content-info">
+      <div v-if="$slots.contentInfo" class="sb-accordion__content-info">
         <slot name="contentInfo" />
       </div>
     </button>
@@ -94,7 +92,7 @@ export default {
   setup(props, { emit }) {
     const isOpenLocal = ref(props.isOpen)
     const chevronIcon = computed(() =>
-      isOpenLocal.value ? 'chevron-down' : 'chevron-right'
+      isOpenLocal.value ? 'chevron-down' : 'chevron-right',
     )
     const activeClasses = computed(() => ({
       'sb-accordion--open': isOpenLocal.value,
@@ -107,7 +105,7 @@ export default {
       () => props.isOpen,
       (newValue) => {
         isOpenLocal.value = newValue
-      }
+      },
     )
 
     const toggleAccordion = () => {

@@ -8,6 +8,7 @@ import { TIMEZONES_LIST } from '../../../utils'
 const INTERNAL_DATE = '2021-12-02 00:00'
 
 describe('SbDatepickerTime component', () => {
+<<<<<<< HEAD
   const defaultComponentMounted = mountAttachingComponent(SbDatepickerTime, {
     props: {
       internalDate: INTERNAL_DATE,
@@ -71,5 +72,42 @@ describe('SbDatepickerTime component', () => {
     expect(defaultComponentMounted.emitted('input-timezone')[0]).toEqual([
       HawaiiTimeZone,
     ])
+=======
+  describe('Test component method to handle the TIME', () => {
+    it('Should make a direct call method on click in HOURS', async () => {
+      const handleHourClick = vi.spyOn(
+        SbDatepickerTime.methods,
+        'handleHourClick',
+      )
+      await shallowMount(SbDatepickerTime)
+        .find('[data-testid="div-hours"]')
+        .trigger('click')
+      expect(handleHourClick).toHaveBeenCalled()
+    })
+    it('Should make a direct call method on click in MINUTES', async () => {
+      const handleMinuteClick = vi.spyOn(
+        SbDatepickerTime.methods,
+        'handleMinuteClick',
+      )
+      await shallowMount(SbDatepickerTime)
+        .find('[data-testid="div-minutes"]')
+        .trigger('click')
+      expect(handleMinuteClick).toHaveBeenCalled()
+    })
+    it('Should make an indirect call method on click', async () => {
+      const processInput = vi.spyOn(SbDatepickerTime.methods, '$_processInput')
+      await shallowMount(SbDatepickerTime)
+        .find('.sb-datepicker-time__number')
+        .trigger('click')
+      expect(processInput).toHaveBeenCalled()
+    })
+    it('Should emit date for input on click', async () => {
+      const wrapper = mount(SbDatepickerTime)
+      const value = dayjs().format()
+      await wrapper.setProps({ modelValue: value })
+      wrapper.vm.$_processInput()
+      expect(wrapper.emitted('update:modelValue')[0].length).toBe(1)
+    })
+>>>>>>> main
   })
 })

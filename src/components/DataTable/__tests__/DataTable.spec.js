@@ -42,7 +42,7 @@ describe('SbDataTable component', () => {
       const wrapperSbDataTableBody = wrapper.findComponent(SbDataTableBody)
       expect(wrapperSbDataTableBody.exists()).toBe(true)
       expect(wrapperSbDataTableBody.findAll('.sb-data-table__row').length).toBe(
-        5
+        5,
       )
     })
 
@@ -67,14 +67,18 @@ describe('SbDataTable component', () => {
 
     it('should not render any checkbox in table header', () => {
       expect(
-        wrapperSbDataTableHeader.findAll('.sb-checkbox__native').length
+        wrapperSbDataTableHeader.findAll('.sb-checkbox__native').length,
       ).toBe(0)
     })
 
     it('should render 5 checkboxes in table body', () => {
       expect(
-        wrapperSbDataTableBody.findAll('.sb-checkbox__native').length
+        wrapperSbDataTableBody.findAll('.sb-checkbox__native').length,
       ).toBe(5)
+    })
+
+    it('should render an empty header in the checkbox column', () => {
+      expect(wrapperSbDataTableHeader.findAll('th').length).toBe(7)
     })
 
     it('should toggle the color of the checkbox and toggle the background color of the row itself', async () => {
@@ -100,7 +104,7 @@ describe('SbDataTable component', () => {
         wrapper
           .findComponent(SbDataTableActions)
           .find('.sb-actions-menu__rows-selected')
-          .text()
+          .text(),
       ).toBe('1 item selected')
 
       wrapper.vm.deselectRow(defaultTableItemsData[2])
@@ -108,7 +112,7 @@ describe('SbDataTable component', () => {
 
       // should checkbox status is unchecked
       expect(
-        row.find('.sb-checkbox__inner').classes('sb-checkbox__inner--truthy')
+        row.find('.sb-checkbox__inner').classes('sb-checkbox__inner--truthy'),
       ).toBe(false)
 
       // should remove class to selected row
@@ -136,13 +140,13 @@ describe('SbDataTable component', () => {
 
     it('should render 1 checkbox in table header', () => {
       expect(
-        wrapperSbDataTableHeader.findAll('.sb-checkbox__native').length
+        wrapperSbDataTableHeader.findAll('.sb-checkbox__native').length,
       ).toBe(1)
     })
 
     it('should render 5 checkboxes in table body', () => {
       expect(
-        wrapperSbDataTableBody.findAll('.sb-checkbox__native').length
+        wrapperSbDataTableBody.findAll('.sb-checkbox__native').length,
       ).toBe(5)
     })
 
@@ -172,7 +176,7 @@ describe('SbDataTable component', () => {
         wrapper
           .findComponent(SbDataTableActions)
           .find('.sb-actions-menu__rows-selected')
-          .text()
+          .text(),
       ).toBe('2 items selected')
 
       // when clicks the first row again
@@ -190,7 +194,7 @@ describe('SbDataTable component', () => {
         wrapper
           .findComponent(SbDataTableActions)
           .find('.sb-actions-menu__rows-selected')
-          .text()
+          .text(),
       ).toBe('1 item selected')
 
       // when clicks the second row again
@@ -225,13 +229,13 @@ describe('SbDataTable component', () => {
 
     it('should render 1 checkbox in table header', () => {
       expect(
-        wrapperSbDataTableHeader.findAll('.sb-checkbox__native').length
+        wrapperSbDataTableHeader.findAll('.sb-checkbox__native').length,
       ).toBe(1)
     })
 
     it('should render 5 checkboxes in table body', () => {
       expect(
-        wrapperSbDataTableBody.findAll('.sb-checkbox__native').length
+        wrapperSbDataTableBody.findAll('.sb-checkbox__native').length,
       ).toBe(5)
     })
 
@@ -263,7 +267,7 @@ describe('SbDataTable component', () => {
         wrapper
           .findComponent(SbDataTableActions)
           .find('.sb-actions-menu__rows-selected')
-          .text()
+          .text(),
       ).toBe('5 items selected')
 
       wrapper.vm.deselectAll()
@@ -274,7 +278,7 @@ describe('SbDataTable component', () => {
         expect(
           wrapper
             .find('.sb-checkbox__inner')
-            .classes('sb-checkbox__inner--truthy')
+            .classes('sb-checkbox__inner--truthy'),
         ).toBe(false)
       })
 
@@ -335,7 +339,7 @@ describe('SbDataTable component', () => {
 
     it('should change the rows order', async () => {
       const cell = wrapperSbDataTableHeader.findAll(
-        '.sb-data-table__head-cell'
+        '.sb-data-table__head-cell',
       )[0]
       const row = wrapperSbDataTableBody
         .findAll('.sb-data-table__row')[0]

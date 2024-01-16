@@ -2,7 +2,7 @@
 import '../src/assets/styles/global.scss'
 import './preview.css'
 import BlokInkPlugin from '../src/main'
-import { setup } from '@storybook/vue3';
+import { setup } from '@storybook/vue3'
 
 const customViewports = {
   xxs: {
@@ -63,11 +63,19 @@ export const parameters = {
   options: {
     storySort: {
       method: '',
-      order: ['Introduction', 'Design', 'Basic', 'Forms', 'Navigation', 'Data', 'Interface'],
+      order: [
+        'Introduction',
+        'Design',
+        'Basic',
+        'Forms',
+        'Navigation',
+        'Data',
+        'Interface',
+      ],
       locales: '',
     },
   },
   viewport: {
     viewports: customViewports,
   },
-};
+}

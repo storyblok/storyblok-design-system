@@ -3,8 +3,20 @@
     <span
       v-for="(dayItem, key) in days"
       :key="key"
+<<<<<<< HEAD
       :class="returnClasses(dayItem)"
       @click.stop="handleDayClick(dayItem)"
+=======
+      class="sb-datepicker-days__item"
+      :class="{
+        'sb-datepicker-days__item--inactive': !dayItem.inMonth,
+        'sb-datepicker-days__item--active': dayItem.checked,
+        'sb-datepicker-days__item--current': dayItem.current,
+        'sb-datepicker-days__item--disabled': dayItem.disabled,
+      }"
+      :data-testid="dayItem.dataTestid"
+      @click="($evt) => handleDayClick($evt, dayItem)"
+>>>>>>> main
     >
       {{ dayItem.label }}
     </span>
@@ -40,9 +52,15 @@ export default {
       type: Boolean,
       default: false,
     },
+<<<<<<< HEAD
     range: {
       type: Array,
       default: () => [],
+=======
+    dataTestid: {
+      type: String,
+      default: null,
+>>>>>>> main
     },
   },
 
@@ -66,6 +84,7 @@ export default {
           current: false,
           insideRange: this.insideRange(dateValue),
           disabled: this.isDisabledDay(dateValue),
+          dataTestid: this.getDataTestid(dateValue),
         })
       }
 
@@ -88,6 +107,7 @@ export default {
           insideRange: this.insideRange(dateValue),
           current: !this.hasRange ? dayjs().isSame(dateValue, 'day') : false,
           disabled: this.isDisabledDay(dateValue),
+          dataTestid: this.getDataTestid(dateValue),
         })
       }
 
@@ -104,6 +124,7 @@ export default {
           insideRange: this.insideRange(dateValue),
           border: this.isOnBorderOfDateRange(dateValue),
           disabled: this.isDisabledDay(dateValue),
+          dataTestid: this.getDataTestid(dateValue),
         })
       }
 
@@ -152,6 +173,7 @@ export default {
       )
     },
 
+<<<<<<< HEAD
     returnClasses(dayItem) {
       return [
         'sb-datepicker-days__item',
@@ -178,6 +200,10 @@ export default {
         dayjs(this.range[0]).isSame(dateValue, 'day') ||
         dayjs(this.range[1]).isSame(dateValue, 'day')
       )
+=======
+    getDataTestid(date) {
+      return `${this.dataTestid}-day-${dayjs(date).format('MM-DD-YYYY')}`
+>>>>>>> main
     },
   },
 }

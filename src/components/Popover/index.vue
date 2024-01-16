@@ -226,7 +226,7 @@ export default {
             {
               placement: this.placement,
               modifiers: this.computedModifiers,
-            }
+            },
           )
 
           this.popoverInstance.update()

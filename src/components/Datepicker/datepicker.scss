@@ -105,10 +105,15 @@
     z-index: 1;
     box-sizing: border-box;
     width: 100%;
+<<<<<<< HEAD
     background-color: $white;
     border: 1px solid $light;
     border-radius: $base-border-radius;
     box-shadow: $box-shadow-default;
+=======
+
+    @include popoverComponent;
+>>>>>>> main
 
     &.sb-popover {
       max-width: 294px;
@@ -256,7 +261,11 @@
     @include datepickerItem;
 
     &:last-of-type {
-      border-bottom: 0;
+      border-bottom: none;
+    }
+
+    &:nth-child(4) {
+      border-bottom: 1px solid $light;
     }
   }
 

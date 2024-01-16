@@ -1,11 +1,13 @@
 <template>
   <div class="sb-modal-footer" v-bind="$attrs">
     <slot v-if="!footer" />
-    <div v-else v-html="footer" />
+    <div v-else v-html="sanitizedContent" />
   </div>
 </template>
 
 <script>
+import DOMPurify from 'dompurify'
+
 export default {
   name: 'SbModalFooter',
 
@@ -13,6 +15,12 @@ export default {
     footer: {
       type: String,
       default: null,
+    },
+  },
+
+  computed: {
+    sanitizedContent() {
+      return DOMPurify.sanitize(this.footer)
     },
   },
 }

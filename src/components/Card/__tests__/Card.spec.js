@@ -242,10 +242,10 @@ describe('SbCard component', () => {
     // footer tests
     expect(wrapper.findComponent(SbCardFooter).exists()).toBe(true)
     expect(wrapper.findComponent(SbLink).props('label')).toBe(
-      'Awesome link name'
+      'Awesome link name',
     )
     expect(wrapper.findComponent(SbLink).props('href')).toBe(
-      'https://storyblok.com'
+      'https://storyblok.com',
     )
   })
 

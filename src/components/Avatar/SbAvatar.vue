@@ -2,7 +2,11 @@
   <div v-tooltip="avatarTooltipAttrs" :class="avatarClass" v-bind="$attrs">
     <template v-if="showImage">
       <slot>
-        <div class="sb-avatar__image" :style="avatarStyle" :data-testid="`${dataTestid}-image`">
+        <div
+          class="sb-avatar__image"
+          :style="avatarStyle"
+          :data-testid="`${dataTestid}-image`"
+        >
           <img
             v-show="isImageLoaded"
             :src="src"
@@ -17,7 +21,11 @@
             :color="fallbackAvatarColor"
           />
         </div>
-        <SbBadge v-if="!!status" v-bind="badgeAttrs" :data-testid="`${dataTestid}-badge`"/>
+        <SbBadge
+          v-if="!!status"
+          v-bind="badgeAttrs"
+          :data-testid="`${dataTestid}-badge`"
+        />
       </slot>
     </template>
     <template v-else-if="name || friendlyName">
@@ -27,13 +35,21 @@
       </div>
     </template>
     <div v-if="showTextContainer" class="sb-avatar__text-container">
-      <span v-if="isDescriptionTop" :class="descriptionClass" :data-testid="`${dataTestid}-top-description`">
+      <span
+        v-if="isDescriptionTop"
+        :class="descriptionClass"
+        :data-testid="`${dataTestid}-top-description`"
+      >
         {{ description }}
       </span>
       <span class="sb-avatar__text" :data-testid="`${dataTestid}-text`">
         {{ friendlyName || name }}
       </span>
-      <span v-if="isDescriptionBottom" :class="descriptionClass" :data-testid="`${dataTestid}-bottom-description`">
+      <span
+        v-if="isDescriptionBottom"
+        :class="descriptionClass"
+        :data-testid="`${dataTestid}-bottom-description`"
+      >
         {{ description }}
       </span>
     </div>

@@ -18,6 +18,7 @@
         :model-value="internalValueFormatted"
         :error="invalidDate"
         :inline-label="inlineLabel"
+        :data-testid="`${baseDataTestId}-input`"
         clearable
         @icon-click="handleInputClick"
         @clear="handleClear"
@@ -65,6 +66,7 @@
           isMonthView,
           isTimeView,
           modelValue: internalDate,
+          dataTestid: baseDataTestId,
         }"
         @previous-month="handlePreviousMonth"
         @next-month="handleNextMonth"
@@ -80,9 +82,13 @@
         :max-date="maxDate"
         :minute-range="minuteRange"
         :disabled-past="disabledPast"
+<<<<<<< HEAD
         :timezone="internalTimezone"
         :hour-format="hourFormat"
         :range="daterange"
+=======
+        :data-testid="baseDataTestId"
+>>>>>>> main
         @update:model-value="handleComponentsInput"
         @input-timezone="handleTimezoneInput"
       />
@@ -93,13 +99,24 @@
           variant="tertiary"
           size="small"
           class="sb-datepicker__action-button"
+          :data-testid="`${baseDataTestId}-cancel`"
           @click="handleCancelAction"
+<<<<<<< HEAD
         />
         <SbButton
           label="Apply"
           variant="primary"
           size="small"
           class="sb-datepicker__action-button"
+=======
+        >
+          Cancel
+        </button>
+
+        <button
+          class="sb-datepicker__action-button sb-datepicker__action-button--primary"
+          :data-testid="`${baseDataTestId}-apply`"
+>>>>>>> main
           @click="handleDoneAction"
         />
       </div>
@@ -249,6 +266,10 @@ export default {
   }),
 
   computed: {
+    baseDataTestId() {
+      const dataTestid = this.$attrs['data-testid']
+      return dataTestid ? dataTestid : 'sb-datepicker'
+    },
     isInputReadonly() {
       return this.minuteRange > 1
     },
@@ -470,7 +491,7 @@ export default {
       const isValid = dayjs(
         this.internalValue,
         this.internalFormat,
-        true
+        true,
       ).isValid()
 
       if (!isValid || (this.hasDayDisabled && this.isDateDisabled)) {
@@ -481,16 +502,29 @@ export default {
       if (!this.tzOffset) {
         utcTime = dayjs
           .tz(this.internalValue, this.tzValue)
+<<<<<<< HEAD
           .utc(this.internalValue)
           .format(this.isTimeDisabled ? FORMATS.datetime : this.internalFormat)
+=======
+          .utc()
+          .format(
+            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat,
+          )
+>>>>>>> main
       } else {
         const offset = this.tzOffset.replace(/[+-]/g, ($1) =>
-          $1 === '+' ? '-' : '+'
+          $1 === '+' ? '-' : '+',
         )
         utcTime = dayjs
           .utc(this.internalValue)
           .utcOffset(offset)
+<<<<<<< HEAD
           .format(this.isTimeDisabled ? FORMATS.datetime : this.internalFormat)
+=======
+          .format(
+            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat,
+          )
+>>>>>>> main
       }
 
       this.hitClear = false

@@ -7,7 +7,13 @@
     :type="type"
     @click="handleClick"
   >
-    <SbIcon v-if="icon" :size="iconSize" :name="icon" :color="iconColor" />
+    <SbIcon
+      v-if="icon"
+      :size="iconSize"
+      :name="icon"
+      :color="iconColor"
+      :is-filled="iconFilled"
+    />
     <span v-if="!hasIconOnly" class="sb-button__label">
       <slot>{{ label }}</slot>
     </span>
@@ -55,6 +61,10 @@ export default {
     },
     iconColor: {
       type: String,
+      default: null,
+    },
+    iconFilled: {
+      type: Boolean,
       default: null,
     },
     iconSize: {

@@ -43,7 +43,7 @@ describe('SbHeader component', () => {
 
     it('should have a variant button primary', () => {
       expect(wrapper.find('button').attributes('class')).toBe(
-        'sb-button sb-button--primary sb-button--small sb-button--has-icon'
+        'sb-button sb-button--primary sb-button--small sb-button--has-icon',
       )
     })
   })

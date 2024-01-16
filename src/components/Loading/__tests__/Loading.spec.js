@@ -48,10 +48,10 @@ describe('Testing loading component', () => {
     })
 
     expect(wrapper.findComponent(SbLoading).attributes('class')).toBe(
-      'sb-loading sb-loading__spinner sb-loading__spinner--normal'
+      'sb-loading sb-loading__spinner sb-loading__spinner--normal',
     )
     expect(wrapper.find('svg').attributes('class')).toBe(
-      'sb-icon sb-icon--custom sb-icon--normal'
+      'sb-icon sb-icon--custom sb-icon--normal',
     )
     expect(wrapper.find('label').text()).toBe('35%')
   })
@@ -65,7 +65,7 @@ describe('Testing loading component', () => {
     })
 
     expect(wrapper.findComponent(SbBlockUI).attributes('class')).toBe(
-      'sb-block-ui'
+      'sb-block-ui',
     )
   })
 

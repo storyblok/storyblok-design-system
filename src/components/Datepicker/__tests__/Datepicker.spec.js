@@ -31,6 +31,10 @@ describe('SbDatepicker component', () => {
       expect(wrapper.emitted('update:modelValue')[0]).toEqual([
         '2021/12/02 00:00',
       ])
+<<<<<<< HEAD
+=======
+      expect(wrapper.vm.internalValue).toBe('2021-12-01 19:00')
+>>>>>>> main
     })
   })
 
@@ -48,7 +52,7 @@ describe('SbDatepicker component', () => {
     it('Should change internal visualization property based on type', () => {
       wrapper.vm.handleInputClick()
       expect(
-        wrapper.vm.internalVisualization === INTERNAL_VIEWS.CALENDAR
+        wrapper.vm.internalVisualization === INTERNAL_VIEWS.CALENDAR,
       ).toBeTruthy()
     })
   })
@@ -60,7 +64,7 @@ describe('SbDatepicker component', () => {
       const after = dayjs(wrapper.vm.internalDate)
 
       expect(
-        currentDate.subtract(1, 'month').month() === after.month()
+        currentDate.subtract(1, 'month').month() === after.month(),
       ).toBeTruthy()
     })
     it('Should add a month', () => {
@@ -103,7 +107,11 @@ describe('SbDatepicker component', () => {
       })
 
       expect(wrapper.find('.sb-textfield__inner-label').text()).toBe(
+<<<<<<< HEAD
         'Inline label'
+=======
+        'Inline label',
+>>>>>>> main
       )
     })
 

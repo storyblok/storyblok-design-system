@@ -121,7 +121,7 @@ export default {
 const MinibrowserTemplate = (args) => ({
   components: { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader },
 
-  props: Object.keys(args),
+  setup: () => ({ args }),
 
   data: () => ({
     internalLoading: false,
@@ -161,11 +161,11 @@ const MinibrowserTemplate = (args) => ({
       this.internalLoading = newLoading
     },
 
-    syncBreadcrumbs(newBreadcrumbs) {
+    syncBreadcrumbs(newBreadcrumbs = []) {
       this.internalBreadcrumbsOptions = [...newBreadcrumbs]
     },
 
-    syncOptions(newOptions) {
+    syncOptions(newOptions = []) {
       this.internalOptions = [...newOptions]
     },
 
@@ -241,7 +241,7 @@ const MinibrowserTemplate = (args) => ({
       const currentItem = this.internalBreadcrumbsOptions[index]
       this.internalOptions = this.getOptionsByLevel(currentItem)
       this.internalBreadcrumbsOptions = this.internalBreadcrumbsOptions.filter(
-        (_, itemIndex) => itemIndex <= index
+        (_, itemIndex) => itemIndex <= index,
       )
 
       this.internalLoading = false
@@ -250,17 +250,7 @@ const MinibrowserTemplate = (args) => ({
 
   template: `
     <SbMinibrowser
-      :is-loading="internalLoading"
-      :breadcrumbs="internalBreadcrumbs"
-      :options="internalOptions"
-      :is-list="isList"
-      :is-expanded="isExpanded"
-      :is-full-height="isFullHeight"
-      :is-borderless="isBorderless"
-      :filter-debounce="filterDebounce"
-      :not-found-prefix="notFoundPrefix"
-      :placeholder="placeholder"
-      :clear-on-select="clearOnSelect"
+      v-bind="args"
       @filter="handleFilter"
       @clear-navigation="handleClearNavigation"
       @navigate="handleNavigate"

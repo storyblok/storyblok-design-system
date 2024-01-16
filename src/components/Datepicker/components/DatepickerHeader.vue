@@ -1,6 +1,18 @@
 <template>
   <div class="sb-datepicker-header">
     <div class="sb-datepicker-header__top">
+<<<<<<< HEAD
+=======
+      <button
+        class="sb-datepicker-header__button"
+        :disabled="isDisabled"
+        :data-testid="`${dataTestid}-header-previous-month`"
+        @click="handlePreviousClick"
+      >
+        <SbIcon name="chevron-left" :color="iconColor" />
+      </button>
+
+>>>>>>> main
       <p v-if="isCalendarView" class="sb-datepicker-header__title">
         <span data-testid="span-current-month" @click="handleCurrentMonthClick">
           {{ currentMonth }},&nbsp;
@@ -22,6 +34,7 @@
       <SbButton
         class="sb-datepicker-header__button"
         :disabled="isDisabled"
+<<<<<<< HEAD
         size="small"
         icon="chevron-left"
         only-icon
@@ -36,6 +49,9 @@
         icon="chevron-right"
         only-icon
         variant="tertiary"
+=======
+        :data-testid="`${dataTestid}-header-next-month`"
+>>>>>>> main
         @click="handleNextClick"
       />
     </div>
@@ -65,6 +81,10 @@ export default {
     isTimeView: Boolean,
     isYearView: Boolean,
     modelValue: {
+      type: String,
+      default: null,
+    },
+    dataTestid: {
       type: String,
       default: null,
     },

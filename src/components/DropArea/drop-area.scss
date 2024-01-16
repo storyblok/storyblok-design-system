@@ -4,15 +4,12 @@
 
   &__over {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
     z-index: 5;
     box-sizing: border-box;
     min-height: 100vh;
-    background-color: rgba(19, 25, 45, 0.47);
+    background-color: rgb(19 25 45 / 47%);
     cursor: copy;
+    inset: 0;
 
     .sb-drop-area__content {
       width: 90%;

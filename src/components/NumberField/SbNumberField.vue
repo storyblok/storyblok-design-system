@@ -83,7 +83,7 @@ export default {
 
       if (this.precision && stepPrecision > this.precision) {
         console.warn(
-          '[NumberField] - precision should not be less than the decimal places of step'
+          '[NumberField] - precision should not be less than the decimal places of step',
         )
 
         return this.precision
@@ -170,7 +170,7 @@ export default {
       }
 
       return parseFloat(
-        Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision)
+        Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision),
       )
     },
 
@@ -198,7 +198,7 @@ export default {
       const precisionFactor = Math.pow(10, this.precisionNumber)
 
       return this.getClosestPreciseNumber(
-        (precisionFactor * value + precisionFactor * step) / precisionFactor
+        (precisionFactor * value + precisionFactor * step) / precisionFactor,
       )
     },
 
@@ -210,7 +210,7 @@ export default {
       const precisionFactor = Math.pow(10, this.precisionNumber)
 
       return this.getClosestPreciseNumber(
-        (precisionFactor * value - precisionFactor * step) / precisionFactor
+        (precisionFactor * value - precisionFactor * step) / precisionFactor,
       )
     },
 

@@ -26,12 +26,12 @@ export const availableColors = [
  * @type {Array<string>}
  */
 export const availableColorsNoWhite = availableColors.filter(
-  (color) => color !== 'white'
+  (color) => color !== 'white',
 )
 
 /**
  * @type {Array<string>}
  */
 export const availableTextColors = availableColors.map(
-  (color) => `text-${color}`
+  (color) => `text-${color}`,
 )

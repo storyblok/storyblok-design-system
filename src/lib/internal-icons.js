@@ -487,6 +487,25 @@ const pictogramIcons = {
     <path fill-rule="evenodd" clip-rule="evenodd" d="M32 18C32 16.8954 31.1046 16 30 16L18 16C16.8954 16 16 16.8954 16 18V25C16 26.1046 16.8954 27 18 27H30C31.1046 27 32 26.1046 32 25V18Z" fill="#00B3B0"/>
     `,
   },
+  'undo-pictogram': {
+    viewBox: '0 0 48 48',
+    path: `
+    <g fill="none">
+      <circle cx="24" cy="24" r="24" fill="#CCF0EF"/>
+      <path d="M18 20.6667V24.6667H22" stroke="#00B3B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M30 27.3333C30 25.742 29.3679 24.2159 28.2426 23.0907C27.1174 21.9655 25.5913 21.3333 24 21.3333C22.5234 21.3348 21.0992 21.8808 20 22.8666L18 24.6666" stroke="#00B3B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    `,
+  },
+  'warning-pictogram': {
+    viewBox: '0 0 48 48',
+    path: `
+    <g fill="none">
+      <circle cx="24" cy="24" r="24" fill="#FFDFDE"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M23.1318 17.5195C23.5157 16.8477 24.4844 16.8477 24.8683 17.5195L31.1451 28.5039C31.526 29.1706 31.0447 30.0001 30.2769 30.0001H17.7232C16.9554 30.0001 16.474 29.1706 16.855 28.5039L23.1318 17.5195ZM23 22.0001C23 21.4478 23.4477 21.0001 24 21.0001C24.5523 21.0001 25 21.4478 25 22.0001V24.0001C25 24.5523 24.5523 25.0001 24 25.0001C23.4477 25.0001 23 24.5523 23 24.0001V22.0001ZM24 26.0001C23.4477 26.0001 23 26.4478 23 27.0001C23 27.5523 23.4477 28.0001 24 28.0001C24.5523 28.0001 25 27.5523 25 27.0001C25 26.4478 24.5523 26.0001 24 26.0001Z" fill="#FF6159"/>
+    </g>
+    `,
+  },
 }
 
 const blockTwoIcons = {
@@ -1269,6 +1288,21 @@ const onboardingIcons = {
     path: `
       <path fill="currentColor" fill-opacity=".57" fill-rule="evenodd" d="M6 6a1 1 0 0 0-2 0v1H3a1 1 0 0 0 0 2h1v1a1 1 0 1 0 2 0V9h1a1 1 0 0 0 0-2H6V6ZM20 14a1 1 0 1 0-2 0v1h-1a1 1 0 1 0 0 2h1v1a1 1 0 1 0 2 0v-1h1a1 1 0 1 0 0-2h-1v-1ZM11 2a1 1 0 1 0-2 0 1 1 0 0 0 0 2 1 1 0 0 0 2 0 1 1 0 1 0 0-2Z" clip-rule="evenodd"/>
       <path fill="currentColor" fill-rule="evenodd" d="M16.435 7.414a2 2 0 0 0-2.828 0l-.707.707 2.828 2.829.707-.707a2 2 0 0 0 0-2.829ZM7.243 19.435l7.778-7.778-2.829-2.829-7.778 7.779a2 2 0 1 0 2.829 2.828Z" clip-rule="evenodd"/>
+    `,
+  },
+
+  'circle-check': {
+    viewBox: '0 0 20 20',
+    path: `
+      <g clip-path="url(#clip0_2247_10827)" fill="none">
+        <path d="M10 18.3333C14.6025 18.3333 18.3334 14.6025 18.3334 9.99996C18.3334 5.39746 14.6025 1.66663 10 1.66663C5.39752 1.66663 1.66669 5.39746 1.66669 9.99996C1.66669 14.6025 5.39752 18.3333 10 18.3333Z" stroke="#395ECE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M7.5 10L9.16667 11.6667L12.5 8.33337" stroke="#395ECE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <defs>
+         <clipPath id="clip0_2247_10827">
+            <rect width="20" height="20" />
+         </clipPath>
+      </defs>
     `,
   },
 }

@@ -84,7 +84,7 @@ describe('SbBreadcrumbItem component', () => {
 
     it('should render a <li> tag with --active class', () => {
       expect(wrapper.attributes('class')).toBe(
-        'sb-breadcrumbs__item sb-breadcrumbs__item--active'
+        'sb-breadcrumbs__item sb-breadcrumbs__item--active',
       )
     })
 
@@ -133,7 +133,7 @@ describe('SbBreadcrumbItem component', () => {
           slots: {
             default: 'In default slot',
           },
-        }
+        },
       )
 
       const linkTag = wrapper.find('a')
@@ -147,7 +147,7 @@ describe('SbBreadcrumbItem component', () => {
           slots: {
             default: h(SbIcon, { name: 'home' }),
           },
-        }
+        },
       )
 
       const iconComponent = wrapper.findComponent(SbIcon)
@@ -167,7 +167,7 @@ describe('SbBreadcrumbItem component', () => {
               h('p', {}, 'Link using default slot'),
             ],
           },
-        }
+        },
       )
 
       const iconComponent = wrapper.findComponent(SbIcon)
