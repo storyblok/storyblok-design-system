@@ -186,7 +186,11 @@ export default {
     const options = getOptions(binding)
     const label = getLabel(binding)
     let checkdelay
-    const wrapper = document.querySelector('#tooltip-wrapper')
+    const wrapper = document?.querySelector('#tooltip-wrapper')
+
+    if(!wrapper) {
+      return
+    }
 
     function showHandler() {
       if (
@@ -249,26 +253,6 @@ export default {
       }
     }
 
-    el.__tooltip = {
-      // options
-      label,
-      options,
-
-      // instance properties
-      popperInstance: null,
-      tooltipEl: null,
-
-      // methods
-      showHandler,
-      hideHandler,
-      handleKeydown,
-    }
-
-    el.addEventListener('mouseover', showHandler)
-    el.addEventListener('mouseleave', hideHandler)
-    el.addEventListener('focus', showHandler)
-    el.addEventListener('blur', hideHandler)
-    el.addEventListener('keydown', handleKeydown)
   },
 
   /**
