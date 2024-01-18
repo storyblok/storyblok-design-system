@@ -62,6 +62,7 @@
           @keydown="handleKeyDownInput"
           @keypress="handleKeyPressInput"
           @keyup="handleKeyUpInput"
+          @input="resize()"
         />
 
         <SbIcon
@@ -179,6 +180,10 @@ export default {
     inlineLabel: {
       type: String,
       default: '',
+    },
+    autoGrow: {
+      type: Boolean,
+      default: false,
     },
     iconRightDescription: {
       type: String,
@@ -333,9 +338,21 @@ export default {
 
   mounted() {
     if (this.autofocus) this.handleAutoFocus()
+    this.resize()
   },
 
   methods: {
+    resize() {
+      if (!this.autoGrow) {
+        return
+      }
+
+      let element = this.$refs['textfield']
+      element.style.minHeight = 'auto'
+      element.style.height = 'auto'
+      element.style.height = element.scrollHeight + 'px'
+    },
+
     handleAutoFocus() {
       this.$nextTick(() => this.$refs.textfield?.focus())
     },
