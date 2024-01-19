@@ -115,3 +115,5 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" src="./tooltip.scss" />
