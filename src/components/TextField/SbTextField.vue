@@ -90,6 +90,7 @@
         </SbTooltip>
         <SbIcon
           v-if="hasIconRight"
+          v-tooltip="iconRightDescription"
           :name="iconRight"
           class="sb-textfield__icon sb-textfield__icon--right"
           :color="iconColor"
@@ -176,6 +177,10 @@ export default {
       default: '',
     },
     inlineLabel: {
+      type: String,
+      default: '',
+    },
+    iconRightDescription: {
       type: String,
       default: '',
     },
