@@ -1,39 +1,24 @@
-@layer blokink {
   .sb-tab-menu {
     position: relative;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow: visible;
-    overflow-x: auto;
     width: 100%;
     margin: 0;
     padding: 0;
     border-bottom: solid 1px $light;
-    list-style-type: none;
 
     @include scrollbar($white, $sb-dark-blue-25, 4px);
 
     &::-webkit-scrollbar {
       display: none;
     }
-
-    a {
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      text-decoration: none;
-      cursor: pointer;
-      user-select: none;
-
-      &:focus {
-        z-index: 1;
-      }
-    }
   }
 
   .sb-tab-menu__menu {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: visible;
+    overflow-x: auto;
     color: inherit;
+    list-style-type: none;
   }
 
   .sb-tab-menu__menu-item {
@@ -58,14 +43,29 @@
     }
   }
 
-  .sb-tab-menu__menu-label,
-  .sb-tab-menu__action {
+  .sb-tab-menu__menu-label{
     line-height: 1;
 
     &:hover,
     &:focus {
       color: $primary-text-color;
     }
+  }
+
+  .sb-tab-menu__action {
+    position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+
+      &:hover,
+      &:focus {
+        z-index: 1;
+        color: $primary-text-color;
+      }
   }
 
   .sb-tab-menu__icon {
@@ -80,4 +80,3 @@
     height: 3px;
     background-color: $sb-green;
   }
-}
