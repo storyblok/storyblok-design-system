@@ -1,5 +1,10 @@
 <template>
-  <div class="sb-toggle" :class="componentClasses" @click="handleClick">
+  <div
+    :data-testid="`wrapper-${id}`"
+    class="sb-toggle"
+    :class="componentClasses"
+    @click="handleClick"
+  >
     <input
       :id="id"
       v-model="internalValue"
