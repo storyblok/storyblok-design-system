@@ -11,18 +11,25 @@
       hooks: 'sb-tab-menu__hooks',
       ...$props.pt,
     }"
-    @tab-change="(event) => $emit('update:modelValue', event)"
+    unstyled
+    @tab-change="(e) => $emit('tab-change', e)"
+    @update:active-index="(e) => $emit('update:activeIndex', e)"
   />
 </template>
 
 <script setup>
 import PrimeTabMenu from 'primevue/tabmenu'
+import { defineProps, defineEmits, computed } from 'vue'
 
 defineProps({
   ...PrimeTabMenu.props,
+  pt: {
+    type: Object,
+    default: () => ({}),
+  },
 })
 
-defineEmits(['update:modelValue', ...PrimeTabMenu.emits])
+defineEmits([...PrimeTabMenu.emits])
 </script>
 
 <style lang="scss" src="./tab-menu.scss" />

@@ -23,6 +23,7 @@ import SbRadio from './Radio'
 import SbSelect from './Select'
 import SbSeparator from './Separator'
 import SbTag from './Tag'
+import SbTabMenu from './TabMenu'
 import SbTextField from './TextField'
 import SbToggle from './Toggle'
 import SbTooltip from './Tooltip'
@@ -77,6 +78,7 @@ export {
   SbSelect,
   SbSeparator,
   SbTag,
+  SbTabMenu,
   SbTextField,
   SbToggle,
   SbTooltip,
