@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import CheckboxRadioMixin from '../../mixins/checkbox-radio-mixin'
 import SbIcon from '../Icon'
 
@@ -38,7 +38,6 @@ export default {
     SbIcon,
   },
   mixins: [CheckboxRadioMixin],
-
   inheritAttrs: false,
 
   props: {
