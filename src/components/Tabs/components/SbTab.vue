@@ -28,7 +28,7 @@
   </button>
 </template>
 
-<script>
+<script lang="ts">
 import SbIcon from '../../Icon'
 import SbEditableInput from './SbEditableInput'
 import SbEditButton from './SbEditButton'

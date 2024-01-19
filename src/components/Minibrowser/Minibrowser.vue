@@ -61,7 +61,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { debounce } from 'throttle-debounce'
 
 import { flatten } from '../../utils'

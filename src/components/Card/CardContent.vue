@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbLoading from '../Loading'
 
 export default {

@@ -18,7 +18,7 @@
   </nav>
 </template>
 
-<script>
+<script lang="ts">
 import SbBreadcrumbItem from './BreadcrumbItem.vue'
 import SbBreadcrumbSeparator from './BreadcrumbSeparator.vue'
 import SbBreadcrumbDropdown from './BreadcrumbDropdown.vue'

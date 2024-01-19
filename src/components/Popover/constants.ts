@@ -1,8 +1,4 @@
-import './popover.scss'
-
-import SbPopover from './index.vue'
-import SbPopoverArrow from './PopoverArrow.vue'
-
+// @see https://popper.js.org/docs/v2/constructors/#placement
 export const placementOptions = [
   'auto',
   'auto-start',
@@ -20,6 +16,3 @@ export const placementOptions = [
   'left-start',
   'left-end',
 ]
-
-export { SbPopover, SbPopoverArrow }
-export default SbPopover

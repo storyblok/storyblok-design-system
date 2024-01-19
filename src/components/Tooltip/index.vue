@@ -30,7 +30,7 @@
   </SbPopover>
 </template>
 
-<script>
+<script lang="ts">
 import { SbPopover, SbPopoverArrow } from '../Popover'
 import { canUseDOM, includes, randomString } from '../../utils'
 import { availablePositions } from './lib'

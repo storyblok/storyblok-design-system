@@ -7,7 +7,7 @@
   </span>
 </template>
 
-<script>
+<script lang="ts">
 import i18n from '../../../i18n/index'
 
 export default {

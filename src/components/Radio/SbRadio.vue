@@ -17,7 +17,7 @@
   </label>
 </template>
 
-<script>
+<script lang="ts">
 import CheckboxRadioMixin from '../../mixins/checkbox-radio-mixin'
 
 export default {

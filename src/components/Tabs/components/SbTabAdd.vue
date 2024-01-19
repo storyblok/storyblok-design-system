@@ -13,7 +13,7 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
 import { Tooltip } from '../../../directives'
 import SbIcon from '../../Icon'
 

@@ -27,7 +27,7 @@
     </Loading>
   </SbBlockUI>
 </template>
-<script>
+<script lang="ts">
 import SbBlockUI from '../BlockUI'
 import Loading from './components/Loading'
 import { sharedProps } from './utils'

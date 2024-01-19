@@ -26,7 +26,7 @@
     <slot v-else />
   </div>
 </template>
-<script>
+<script lang="ts">
 import SbIcon from '../../Icon'
 import { sharedProps } from '../utils'
 

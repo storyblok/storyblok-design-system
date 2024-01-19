@@ -39,7 +39,7 @@
   </tr>
 </template>
 
-<script>
+<script lang="ts">
 import SbCheckbox from '../../Checkbox'
 import SbIcon from '../../Icon'
 import sharedProps from '../sharedProps'

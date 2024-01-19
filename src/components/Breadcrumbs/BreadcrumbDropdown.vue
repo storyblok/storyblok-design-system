@@ -7,7 +7,7 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
 import SbBreadcrumbItem from './BreadcrumbItem'
 
 export default {

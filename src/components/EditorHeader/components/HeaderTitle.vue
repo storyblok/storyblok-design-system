@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbButton from '../../Button'
 import { sharedProps } from '../sharedProps'
 
