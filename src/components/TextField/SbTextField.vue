@@ -62,7 +62,7 @@
           @keydown="handleKeyDownInput"
           @keypress="handleKeyPressInput"
           @keyup="handleKeyUpInput"
-          @input="resize()"
+          @input="resize"
         />
 
         <SbIcon
