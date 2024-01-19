@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { randomString, canUseDOM } from '../../utils'
 
 export default {

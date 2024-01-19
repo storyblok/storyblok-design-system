@@ -25,7 +25,7 @@
   </thead>
 </template>
 
-<script>
+<script lang="ts">
 import SbCheckbox from '../../Checkbox'
 import SbDataTableHeaderCell from './SbDataTableHeaderCell'
 import sharedProps from '../sharedProps'

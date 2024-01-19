@@ -17,7 +17,7 @@
   </th>
 </template>
 
-<script>
+<script lang="ts">
 import SbIcon from '../../Icon'
 import VNodes from '../../../utils/VNodes'
 

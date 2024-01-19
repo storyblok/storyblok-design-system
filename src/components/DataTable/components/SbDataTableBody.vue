@@ -9,7 +9,7 @@
   </tbody>
 </template>
 
-<script>
+<script lang="ts">
 import SbDataTableBodyRow from './SbDataTableBodyRow'
 import sharedProps from '../sharedProps'
 

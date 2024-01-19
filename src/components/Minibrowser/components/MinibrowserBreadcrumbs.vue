@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {
   SbBreadcrumbs,
   SbBreadcrumbItem,

@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { capitalize } from '../../utils'
 import SbIcon from '../Icon'
 

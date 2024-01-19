@@ -25,7 +25,7 @@
     />
   </div>
 </template>
-<script>
+<script lang="ts">
 import SbIcon from '../Icon'
 import { Tooltip } from '../../directives'
 import { includes } from '../../utils'
@@ -83,4 +83,5 @@ export default {
   },
 }
 </script>
+
 <style lang="scss" src="./tag.scss" />

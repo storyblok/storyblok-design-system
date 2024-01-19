@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { sharedProps } from '../Button/lib'
 import VNodes from '../../utils/VNodes'
 

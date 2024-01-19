@@ -9,7 +9,7 @@
   />
 </template>
 
-<script>
+<script lang="ts">
 import SbSelect from '../../Select'
 
 export default {

@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { SbPaginationSelect, SbPaginationPagesText } from './shared'
 import { buildSelectOptions } from '../utils'
 import i18n from '../../../i18n/index'

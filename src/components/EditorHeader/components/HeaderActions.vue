@@ -82,7 +82,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbAvatar from '../../Avatar'
 import SbButton from '../../Button'
 import SbAvatarGroup from '../../AvatarGroup'

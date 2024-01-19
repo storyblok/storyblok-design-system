@@ -8,7 +8,7 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
 import { availableHeadingTags, availableHeadingWeights } from './lib'
 
 export default {

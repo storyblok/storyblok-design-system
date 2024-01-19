@@ -81,7 +81,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import SbIcon from '../Icon'
 import SbLink from '../Link'
 import SbButton from '../Button'

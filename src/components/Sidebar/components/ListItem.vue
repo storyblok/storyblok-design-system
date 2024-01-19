@@ -52,7 +52,7 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
 import ListItemInner from './ListItemInner.vue'
 
 export default {

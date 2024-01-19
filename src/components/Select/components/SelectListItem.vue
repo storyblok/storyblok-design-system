@@ -61,7 +61,7 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
 import { includes, isArray } from '../../../utils'
 import SbAvatar from '../../Avatar'
 import SbCheckbox from '../../Checkbox'
