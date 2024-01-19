@@ -1,6 +1,6 @@
 <template>
   <div
-    :data-testid="id"
+    :data-testid="`wrapper-${id}`"
     class="sb-toggle"
     :class="componentClasses"
     @click="handleClick"
