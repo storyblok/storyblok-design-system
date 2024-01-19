@@ -3339,6 +3339,7 @@ __metadata:
     postcss-html: "npm:^1.5.0"
     postcss-scss: "npm:^4.0.9"
     prettier: "npm:^3.1.0"
+    primevue: "npm:^3.43.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     sass: "npm:^1.67.0"
@@ -11913,6 +11914,15 @@ __metadata:
   version: 1.0.3
   resolution: "pretty-hrtime@npm:1.0.3"
   checksum: 0a462e88a0a3fd3320288fd8307f488974326ae8e13eea8c27f590f8ee767ccb59cf35bcae1cadff241cd8b72f3e373fc76ff1be95243649899bf8c816874af9
+  languageName: node
+  linkType: hard
+
+"primevue@npm:^3.43.0":
+  version: 3.46.0
+  resolution: "primevue@npm:3.46.0"
+  peerDependencies:
+    vue: ^3.0.0
+  checksum: 424c152831280e15837e5cb72ee0ec45e1e74ef827b4b72c99834aca6b2f2bc1c6f9ad2365fb89ef4dec2c3c4c3b1ae93ad68b8e18678e66081d017e9b7a5560
   languageName: node
   linkType: hard
 

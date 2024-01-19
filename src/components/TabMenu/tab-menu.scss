@@ -1,0 +1,58 @@
+.sb-tab-menu {
+  position: relative;
+  display: flex;
+  overflow: visible;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-bottom: solid 1px $light;
+  list-style-type: none;
+
+  @include scrollbar($white, $sb-dark-blue-25, 4px);
+}
+
+.sb-tab-menu__menu {
+  color: inherit;
+}
+
+.sb-tab-menu__menu-item {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+  padding: 14px 2px;
+  color: $sb-dark-blue-50;
+  font-family: $primary-font-family;
+  font-size: $font-14;
+  font-weight: $font-medium;
+  text-align: center;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+
+  &[data-p-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.sb-tab-menu__action {
+  &:hover,
+  &:focus {
+    color: $primary-text-color;
+  }
+}
+
+.sb-tab-menu__icon {
+  padding: 9px $s-1 9px 2px;
+}
+
+.sb-tab-menu__inkbar {
+  position: absolute;
+  bottom: -2px;
+  z-index: 2;
+  display: block;
+  height: 3px;
+  background-color: $sb-green;
+}
