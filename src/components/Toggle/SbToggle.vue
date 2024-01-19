@@ -1,5 +1,5 @@
 <template>
-  <div class="sb-toggle" :class="componentClasses">
+  <div class="sb-toggle" :class="componentClasses" @click="handleClick">
     <input
       :id="id"
       v-model="internalValue"
@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import CheckboxRadioMixin from '../../mixins/checkbox-radio-mixin'
 import SbIcon from '../Icon'
 
@@ -56,6 +56,8 @@ export default {
     },
     indeterminate: Boolean,
   },
+  emits: ['update:modelValue', 'disabled-click'],
+
   computed: {
     componentClasses() {
       return [this.variant ? `sb-toggle--${this.variant}` : '']
@@ -64,6 +66,11 @@ export default {
   methods: {
     handleInput(e) {
       this.$emit('update:modelValue', e.target.checked)
+    },
+    handleClick() {
+      if (this.disabled) {
+        this.$emit('disabled-click')
+      }
     },
   },
 }
