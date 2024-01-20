@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 8
+  version: 6
   cacheKey: 10
 
 "@aashutoshrathi/word-wrap@npm:^1.2.3":
@@ -3296,78 +3296,78 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@storyblok/design-system@workspace:."
   dependencies:
-    "@babel/core": "npm:^7.23.5"
-    "@babel/eslint-parser": "npm:^7.23.3"
-    "@babel/plugin-proposal-decorators": "npm:^7.22.15"
-    "@babel/plugin-proposal-export-default-from": "npm:^7.18.10"
-    "@popperjs/core": "npm:^2.11.8"
-    "@ronilaukkarinen/stylelint-a11y": "npm:^1.2.7"
-    "@storybook/addon-a11y": "npm:^7.6.10"
-    "@storybook/addon-essentials": "npm:^7.6.10"
-    "@storybook/addon-mdx-gfm": "npm:^7.6.10"
-    "@storybook/addon-storysource": "npm:^7.6.10"
-    "@storybook/addon-viewport": "npm:^7.6.10"
-    "@storybook/addons": "npm:^7.6.10"
-    "@storybook/theming": "npm:^7.6.10"
-    "@storybook/vue3": "npm:^7.6.10"
-    "@storybook/vue3-vite": "npm:^7.6.10"
-    "@testing-library/vue": "npm:^7.0.0"
-    "@types/jsdom": "npm:^21.1.5"
-    "@vitejs/plugin-vue": "npm:^4.2.3"
-    "@vue/eslint-config-prettier": "npm:^8.0.0"
-    "@vue/eslint-config-standard": "npm:^8.0.1"
-    "@vue/eslint-config-typescript": "npm:^12.0.0"
-    "@vue/test-utils": "npm:^2.3.2"
-    "@vue/tsconfig": "npm:^0.4.0"
-    "@vue/vue3-jest": "npm:^29.2.6"
-    babel-jest: "npm:^29.7.0"
-    babel-preset-vue: "npm:^2.0.2"
-    chromatic: "npm:^6.18.2"
-    click-outside-vue3: "npm:^4.0.1"
-    dayjs: "npm:^1.11.10"
-    dompurify: "npm:^3.0.6"
-    eslint: "npm:^8.55.0"
-    eslint-config-prettier: "npm:^9.1.0"
-    eslint-plugin-import: "npm:^2.29.0"
-    eslint-plugin-n: "npm:^16.3.1"
-    eslint-plugin-node: "npm:^11.1.0"
-    eslint-plugin-prettier: "npm:^5.0.1"
-    eslint-plugin-promise: "npm:^6.1.1"
-    eslint-plugin-standard: "npm:^4.1.0"
-    eslint-plugin-storybook: "npm:^0.6.15"
-    eslint-plugin-testing-library: "npm:^6.2.0"
-    eslint-plugin-vitest: "npm:^0.3.10"
-    eslint-plugin-vue: "npm:^9.19.2"
-    eslint-plugin-vuejs-accessibility: "npm:^2.2.0"
-    husky: "npm:^8.0.3"
-    is-ci: "npm:^3.0.1"
-    jest-transform-stub: "npm:^2.0.0"
-    jsdom: "npm:^22.1.0"
-    lint-staged: "npm:^13.2.3"
-    lucide-vue-next: "npm:^0.279.0"
-    maska: "npm:^1.5.2"
-    postcss-html: "npm:^1.5.0"
-    postcss-scss: "npm:^4.0.9"
-    prettier: "npm:^3.1.0"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
-    sass: "npm:^1.67.0"
-    sass-mq: "npm:^6.0.0"
-    storybook: "npm:^7.6.10"
-    stylelint: "npm:^15.10.3"
-    stylelint-config-prettier-scss: "npm:^1.0.0"
-    stylelint-config-recommended-vue: "npm:^1.5.0"
-    stylelint-config-sass-guidelines: "npm:^10.0.0"
-    stylelint-config-standard-scss: "npm:^11.0.0"
-    stylelint-order: "npm:^6.0.3"
-    throttle-debounce: "npm:^5.0.0"
-    typescript: "npm:^5.2.2"
-    vite: "npm:^4.5.1"
-    vite-svg-loader: "npm:^4.0.0"
-    vitest: "npm:^0.33.0"
-    vue: "npm:^3.3.8"
-    vue-eslint-parser: "npm:^9.3.2"
-    vue-tsc: "npm:^1.8.22"
+    "@babel/core": ^7.23.5
+    "@babel/eslint-parser": ^7.23.3
+    "@babel/plugin-proposal-decorators": ^7.22.15
+    "@babel/plugin-proposal-export-default-from": ^7.18.10
+    "@popperjs/core": ^2.11.8
+    "@ronilaukkarinen/stylelint-a11y": ^1.2.7
+    "@storybook/addon-a11y": ^7.6.10
+    "@storybook/addon-essentials": ^7.6.10
+    "@storybook/addon-mdx-gfm": ^7.6.10
+    "@storybook/addon-storysource": ^7.6.10
+    "@storybook/addon-viewport": ^7.6.10
+    "@storybook/addons": ^7.6.10
+    "@storybook/theming": ^7.6.10
+    "@storybook/vue3": ^7.6.10
+    "@storybook/vue3-vite": ^7.6.10
+    "@testing-library/vue": ^7.0.0
+    "@types/jsdom": ^21.1.5
+    "@vitejs/plugin-vue": ^4.2.3
+    "@vue/eslint-config-prettier": ^8.0.0
+    "@vue/eslint-config-standard": ^8.0.1
+    "@vue/eslint-config-typescript": ^12.0.0
+    "@vue/test-utils": ^2.3.2
+    "@vue/tsconfig": ^0.4.0
+    "@vue/vue3-jest": ^29.2.6
+    babel-jest: ^29.7.0
+    babel-preset-vue: ^2.0.2
+    chromatic: ^6.18.2
+    click-outside-vue3: ^4.0.1
+    dayjs: ^1.11.10
+    dompurify: ^3.0.6
+    eslint: ^8.55.0
+    eslint-config-prettier: ^9.1.0
+    eslint-plugin-import: ^2.29.0
+    eslint-plugin-n: ^16.3.1
+    eslint-plugin-node: ^11.1.0
+    eslint-plugin-prettier: ^5.0.1
+    eslint-plugin-promise: ^6.1.1
+    eslint-plugin-standard: ^4.1.0
+    eslint-plugin-storybook: ^0.6.15
+    eslint-plugin-testing-library: ^6.2.0
+    eslint-plugin-vitest: ^0.3.10
+    eslint-plugin-vue: ^9.19.2
+    eslint-plugin-vuejs-accessibility: ^2.2.0
+    husky: ^8.0.3
+    is-ci: ^3.0.1
+    jest-transform-stub: ^2.0.0
+    jsdom: ^22.1.0
+    lint-staged: ^13.2.3
+    lucide-vue-next: ^0.279.0
+    maska: ^1.5.2
+    postcss-html: ^1.5.0
+    postcss-scss: ^4.0.9
+    prettier: ^3.1.0
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    sass: ^1.67.0
+    sass-mq: ^6.0.0
+    storybook: ^7.6.10
+    stylelint: ^15.10.3
+    stylelint-config-prettier-scss: ^1.0.0
+    stylelint-config-recommended-vue: ^1.5.0
+    stylelint-config-sass-guidelines: ^10.0.0
+    stylelint-config-standard-scss: ^11.0.0
+    stylelint-order: ^6.0.3
+    throttle-debounce: ^5.0.0
+    typescript: ^5.2.2
+    vite: ^4.5.2
+    vite-svg-loader: ^4.0.0
+    vitest: ^0.33.0
+    vue: ^3.3.8
+    vue-eslint-parser: ^9.3.2
+    vue-tsc: ^1.8.22
   languageName: unknown
   linkType: soft
 
@@ -8811,9 +8811,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@npm%3A^2.3.2#optional!builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.2#optional!builtin<compat/fsevents>":
+"fsevents@patch:fsevents@npm%3A^2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
   dependencies:
     node-gyp: "npm:latest"
   conditions: os=darwin
@@ -13293,29 +13293,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.10.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.10.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.14.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.15.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.3.0#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.10.0#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.10.1#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.15.1#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.1#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.2#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.3.0#~builtin<compat/resolve>":
   version: 1.22.2
-  resolution: "resolve@patch:resolve@npm%3A1.22.2#optional!builtin<compat/resolve>::version=1.22.2&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.22.2#~builtin<compat/resolve>::version=1.22.2&hash=c3c19d"
   dependencies:
     is-core-module: "npm:^2.11.0"
     path-parse: "npm:^1.0.7"
     supports-preserve-symlinks-flag: "npm:^1.0.0"
   bin:
     resolve: bin/resolve
-  checksum: 14594f99dbff19c1f51f6daac0caf0b75ed345256ada3722c23f63935eace79532dcfa349b3d8889d2771c143822c38dd5d7d8eb85fb8cff257b7abccbad7872
+  checksum: 8/66cc788f13b8398de18eb4abb3aed90435c84bb8935953feafcf7231ba4cd191b2c10b4a87b1e9681afc34fb138c705f91f7330ff90bfa36f457e5584076a2b8
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.22.4#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.22.4#~builtin<compat/resolve>":
   version: 1.22.8
-  resolution: "resolve@patch:resolve@npm%3A1.22.8#optional!builtin<compat/resolve>::version=1.22.8&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.22.8#~builtin<compat/resolve>::version=1.22.8&hash=c3c19d"
   dependencies:
     is-core-module: "npm:^2.13.0"
     path-parse: "npm:^1.0.7"
     supports-preserve-symlinks-flag: "npm:^1.0.0"
   bin:
     resolve: bin/resolve
-  checksum: f345cd37f56a2c0275e3fe062517c650bb673815d885e7507566df589375d165bbbf4bdb6aa95600a9bc55f4744b81f452b5a63f95b9f10a72787dba3c90890a
+  checksum: 8/5479b7d431cacd5185f8db64bfcb7286ae5e31eb299f4c4f404ad8aa6098b77599563ac4257cb2c37a42f59dfc06a1bec2bcf283bb448f319e37f0feb9a09847
   languageName: node
   linkType: hard
 
@@ -14860,13 +14860,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@^5.2.2#~builtin<compat/typescript>":
   version: 5.3.2
-  resolution: "typescript@patch:typescript@npm%3A5.3.2#optional!builtin<compat/typescript>::version=5.3.2&hash=e012d7"
+  resolution: "typescript@patch:typescript@npm%3A5.3.2#~builtin<compat/typescript>::version=5.3.2&hash=e012d7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 1b45cdfb577a78ae7a9a9d0b77a7b772142cb98ba05e4e5aefba7044a028ded885bcecef63166407a5986645cea816fe4986894336aacd5e791796ea79a6a7ed
+  checksum: 8/47b2e63418ea7ef7dd0bf359ee41c6fca852c680826089269c5d03673ead471e052b172561f377f9e51212054e5f0fe19dd58085ff7db7b168449a6af704c784
   languageName: node
   linkType: hard
 
@@ -15334,14 +15334,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^4.5.1":
-  version: 4.5.1
-  resolution: "vite@npm:4.5.1"
+"vite@npm:^4.5.2":
+  version: 4.5.2
+  resolution: "vite@npm:4.5.2"
   dependencies:
-    esbuild: "npm:^0.18.10"
-    fsevents: "npm:~2.3.2"
-    postcss: "npm:^8.4.27"
-    rollup: "npm:^3.27.1"
+    esbuild: ^0.18.10
+    fsevents: ~2.3.2
+    postcss: ^8.4.27
+    rollup: ^3.27.1
   peerDependencies:
     "@types/node": ">= 14"
     less: "*"
@@ -15370,7 +15370,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 2ea9c030a5718ca0adaaa0ecc54402a725cff59131cf80bc84d0237f59c98168803ee59d23e697b98b1184be3af6c6edc2e81517f769c62159f11531b3341a4e
+  checksum: 8/9d1f84f703c2660aced34deee7f309278ed368880f66e9570ac115c793d91f7fffb80ab19c602b3c8bc1341fe23437d86a3fcca2a9ef82f7ef0cdac5a40d0c86
   languageName: node
   linkType: hard
 
