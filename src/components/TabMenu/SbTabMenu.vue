@@ -1,5 +1,6 @@
 <template>
-  <div class="sb-tab-menu">
+  <div class="sb-tab-menu" :class="computedClasses">
+    <slot name="left-slot"></slot>
     <SbIconButton
       v-if="showLeftArrow"
       class="sb-tab-menu__arrow"
@@ -10,7 +11,6 @@
       @mouseover="scrollTabs('left')"
       @click="scrollTabs('left')"
     />
-    <slot name="left-slot"></slot>
     <PrimeTabMenu
       ref="tabContainer"
       v-bind="props"
@@ -25,15 +25,13 @@
         hooks: 'sb-tab-menu__hooks',
         ...$props.pt,
       }"
-      :class="computedClasses"
       unstyled
       @tab-change="handleTabChange"
       @update:active-index="handleActiveIndexChange"
     />
-    <slot name="right-slot"></slot>
     <SbIconButton
       v-if="showRightArrow"
-      class="sb-tab-menu__arrow"
+      class="sb-tab-menu__arrow sb-tab-menu__arrow--right"
       aria-label="Go to next tab"
       icon-name="chevron-right"
       icon-color="light-gray"
@@ -41,6 +39,7 @@
       @mouseover="scrollTabs('right')"
       @click="scrollTabs('right')"
     />
+    <slot name="right-slot"></slot>
   </div>
 </template>
 
