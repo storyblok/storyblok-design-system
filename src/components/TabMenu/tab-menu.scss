@@ -1,15 +1,24 @@
 .sb-tab-menu {
-  position: relative;
+  display: flex;
   width: 100%;
   margin: 0;
   padding: 0;
-  border-bottom: solid 1px $light;
+  box-shadow: inset 0 -1px 0 $light;
+}
 
-  @include scrollbar($white, $sb-dark-blue-25, 4px);
+.sb-tab-menu__container {
+  position: relative;
+  overflow-x: scroll;
+  width: auto;
 
   &::-webkit-scrollbar {
     display: none;
   }
+
+}
+
+.sb-tab-menu__arrow {
+  align-self: center;
 }
 
 .sb-tab-menu--vertical {
@@ -35,10 +44,9 @@
 .sb-tab-menu__menu {
   display: flex;
   flex-wrap: nowrap;
-  overflow: visible;
-  overflow-x: auto;
   color: inherit;
   list-style-type: none;
+
 }
 
 .sb-tab-menu__menu-item {
@@ -98,7 +106,7 @@
 
 .sb-tab-menu__inkbar {
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   z-index: 2;
   display: block;
   height: 3px;

@@ -23,6 +23,21 @@ const defaultItems = [
     label: 'Customized Option',
     class: 'sb-custom-class',
   },
+  {
+    label: 'Option 3',
+  },
+  {
+    label: 'Option 4',
+  },
+  {
+    label: 'Option 5',
+  },
+  {
+    label: 'Option 6',
+  },
+  {
+    label: 'Option 7',
+  },
 ] as MenuItem[]
 
 const meta: Meta<typeof SbTabMenu> = {
