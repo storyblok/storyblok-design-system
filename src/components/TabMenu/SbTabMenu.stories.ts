@@ -67,4 +67,11 @@ export const VerticalMenu: Story = {
   },
 }
 
+export const LoadingMenu: Story = {
+  render: renderFn,
+  args: {
+    isLoading: true,
+  },
+}
+
 export default meta

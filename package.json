@@ -28,6 +28,7 @@
   ],
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@vueuse/core": "^10.7.2",
     "click-outside-vue3": "^4.0.1",
     "dayjs": "^1.11.10",
     "dompurify": "^3.0.6",

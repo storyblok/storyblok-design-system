@@ -2,9 +2,9 @@
   <div class="sb-tab-menu" :class="computedClasses">
     <template v-if="isLoading">
       <SbLoading type="placeholder" class="sb-tab-menu__loading">
-        <SbLoadingPlaceholder width="100px" height="30px" />
-        <SbLoadingPlaceholder width="100px" height="30px" />
-        <SbLoadingPlaceholder width="100px" height="30px" />
+        <SbLoadingPlaceholder width="100px" height="24px" />
+        <SbLoadingPlaceholder width="100px" height="24px" />
+        <SbLoadingPlaceholder width="100px" height="24px" />
       </SbLoading>
     </template>
     <template v-else>
@@ -36,7 +36,9 @@
         unstyled
         @tab-change="handleTabChange"
         @update:active-index="handleActiveIndexChange"
-      />
+      >
+        <slot></slot>
+      </PrimeTabMenu>
       <SbIconButton
         v-if="showRightArrow"
         class="sb-tab-menu__arrow sb-tab-menu__arrow--right"
