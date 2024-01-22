@@ -6,7 +6,7 @@
   </SbModal>
 </template>
 
-<script>
+<script lang="ts">
 import { SbModal, SbModalHeader, SbModalContent, SbModalFooter } from '../index'
 export default {
   name: 'ModalPlugin',

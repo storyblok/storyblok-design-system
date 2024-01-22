@@ -7,7 +7,7 @@
     <SbCardOptions v-if="options" :options="options" />
   </div>
 </template>
-<script>
+<script lang="ts">
 import SbCardOptions from './CardOptions.vue'
 export default {
   name: 'SbCardHeader',

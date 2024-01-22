@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbButton from '../Button'
 import { isMobileWidth } from '../../utils/isMobileWidth'
 

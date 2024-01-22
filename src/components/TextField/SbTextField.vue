@@ -133,7 +133,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbIcon from '../Icon'
 import SbTooltip from '../Tooltip'
 import { maska } from 'maska'

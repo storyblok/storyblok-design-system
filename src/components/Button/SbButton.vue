@@ -32,7 +32,7 @@
   </button>
 </template>
 
-<script>
+<script lang="ts">
 import { Tooltip } from '../../directives'
 import { sharedProps } from './lib'
 import SbIcon from '../Icon'

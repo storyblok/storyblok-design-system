@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { isSizeValid } from '../Avatar/utils'
 
 import { availableColors } from '../../utils'

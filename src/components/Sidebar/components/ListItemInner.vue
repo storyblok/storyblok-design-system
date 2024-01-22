@@ -37,7 +37,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbAvatar from '../../Avatar'
 import SbIcon from '../../Icon'
 import { Tooltip } from '../../../directives'

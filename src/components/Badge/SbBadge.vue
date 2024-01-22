@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbIcon from '../Icon'
 
 import { computed } from 'vue'

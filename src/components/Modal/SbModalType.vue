@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { SbModal, SbModalHeader, SbModalContent } from './index'
 import SbButton from '../Button'
 

@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbButton from '../../Button'
 import { Tooltip } from '../../../directives'
 import { WindowResizeObserverMixin } from '../../../mixins'

@@ -37,7 +37,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbIcon from '../Icon'
 import AccordionTransition from './AccordionTransition'
 import { computed, watch, ref } from 'vue'

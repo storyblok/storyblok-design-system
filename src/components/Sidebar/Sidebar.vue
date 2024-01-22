@@ -73,7 +73,7 @@
   </aside>
 </template>
 
-<script>
+<script lang="ts">
 import { ClickOutside } from '../../directives'
 
 import SbIcon from '../Icon'

@@ -56,7 +56,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { includes } from '../../utils'
 
 import {
@@ -64,7 +64,7 @@ import {
   getInitials,
   generateRandomBgColor,
   generateRandomColor,
-} from './utils.js'
+} from './utils'
 
 import SbBadge from '../Badge'
 import SbIcon from '../Icon'
