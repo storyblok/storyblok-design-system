@@ -38,8 +38,11 @@
     flex-direction: column;
   }
 
+  .sb-tab-menu__action {
+    padding: $s-4 0;
+  }
+
   .sb-tab-menu__menu-item {
-    padding: $s-4;
     color: $sb-dark-blue;
 
     &[data-p-highlight='true'] {
