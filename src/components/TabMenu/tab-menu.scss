@@ -53,6 +53,10 @@
   .sb-tab-menu__inkbar {
     display: none;
   }
+
+  .sb-tab-menu__loading {
+    flex-direction: column;
+  }
 }
 
 .sb-tab-menu__menu {
@@ -125,4 +129,10 @@
   display: block;
   height: 3px;
   background-color: $sb-green;
+}
+
+.sb-tab-menu__loading {
+  display: flex;
+  gap: $s-2;
+  margin-bottom: $s-2;
 }
