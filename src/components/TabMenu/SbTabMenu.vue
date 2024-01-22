@@ -46,7 +46,7 @@
 <script lang="ts" setup>
 import { SbIconButton } from '..'
 import PrimeTabMenu, { type TabMenuChangeEvent } from 'primevue/tabmenu'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useEventListener, useResizeObserver } from '@vueuse/core'
 
 const props = defineProps({
@@ -103,6 +103,8 @@ const tabContainer = ref<HTMLElement | null>(null)
 const containerWidth = ref(0)
 const scrollWidth = ref(0)
 const scrollPosition = ref(0)
+let cleanUpScroll = null
+let cleanUpResize = null
 
 const showTabArrows = computed(() => {
   return scrollWidth.value >= containerWidth.value && props.scrollable
@@ -117,7 +119,7 @@ const showLeftArrow = computed(() => {
 const showRightArrow = computed(() => {
   return (
     showTabArrows.value &&
-    scrollPosition.value + containerWidth.value < scrollWidth.value
+    scrollPosition.value + containerWidth.value < scrollWidth.value - 10
   )
 })
 
@@ -142,13 +144,18 @@ onMounted(() => {
   scrollWidth.value = container?.scrollWidth || 0
   scrollPosition.value = container?.scrollLeft || 0
 
-  useResizeObserver(container, () => {
+  cleanUpResize = useResizeObserver(container, () => {
     containerWidth.value = container?.clientWidth || 0
     scrollWidth.value = container?.scrollWidth || 0
   })
-  useEventListener(container, 'scroll', () => {
+  cleanUpScroll = useEventListener(container, 'scroll', () => {
     scrollPosition.value = container?.scrollLeft
   })
+})
+
+onBeforeUnmount(() => {
+  if (typeof cleanUpScroll === 'function') cleanUpScroll()
+  if (typeof cleanUpResize === 'function') cleanUpResize.stop()
 })
 </script>
 
