@@ -1,5 +1,6 @@
 <template>
   <PrimeTabMenu
+    v-bind="props"
     :pt="{
       root: 'sb-tab-menu',
       menu: 'sb-tab-menu__menu',
@@ -11,25 +12,59 @@
       hooks: 'sb-tab-menu__hooks',
       ...$props.pt,
     }"
+    :class="computedClasses"
     unstyled
-    @tab-change="(e) => $emit('tab-change', e)"
-    @update:active-index="(e) => $emit('update:activeIndex', e)"
+    @tab-change="handleTabChange"
+    @update:active-index="handleActiveIndexChange"
   />
 </template>
 
-<script setup>
-import PrimeTabMenu from 'primevue/tabmenu'
-import { defineProps, defineEmits, computed } from 'vue'
+<script lang="ts" setup>
+import PrimeTabMenu, { type TabMenuChangeEvent } from 'primevue/tabmenu'
+import { computed } from 'vue'
 
-defineProps({
-  ...PrimeTabMenu.props,
+const props = defineProps({
+  model: {
+    type: Array,
+    default: null,
+  },
+  activeIndex: {
+    type: Number,
+    default: 0,
+  },
+  ariaLabelledby: {
+    type: String,
+    default: null,
+  },
+  ariaLabel: {
+    type: String,
+    default: null,
+  },
+  vertical: {
+    type: Boolean,
+    default: false,
+  },
   pt: {
     type: Object,
     default: () => ({}),
   },
 })
 
-defineEmits([...PrimeTabMenu.emits])
+const emits = defineEmits(['update:activeIndex', 'tab-change'])
+
+const computedClasses = computed(() => {
+  return {
+    'sb-tab-menu--vertical': props.vertical,
+  }
+})
+
+const handleTabChange = (e: TabMenuChangeEvent): void => {
+  emits('tab-change', props.model[e.index])
+}
+
+const handleActiveIndexChange = (e: number): void => {
+  emits('update:activeIndex', e)
+}
 </script>
 
 <style lang="scss" src="./tab-menu.scss" />

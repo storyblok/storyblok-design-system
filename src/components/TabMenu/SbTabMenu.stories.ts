@@ -45,4 +45,11 @@ export const Default: Story = {
   render: renderFn,
 }
 
+export const VerticalMenu: Story = {
+  render: renderFn,
+  args: {
+    vertical: true,
+  },
+}
+
 export default meta
