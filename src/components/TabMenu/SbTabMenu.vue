@@ -1,50 +1,59 @@
 <template>
   <div class="sb-tab-menu" :class="computedClasses">
-    <slot name="left-slot"></slot>
-    <SbIconButton
-      v-if="showLeftArrow"
-      class="sb-tab-menu__arrow"
-      aria-label="Go to previous tab"
-      icon-name="chevron-left"
-      icon-color="light-gray"
-      @focus="scrollTabs('left')"
-      @mouseover="scrollTabs('left')"
-      @click="scrollTabs('left')"
-    />
-    <PrimeTabMenu
-      ref="tabContainer"
-      v-bind="props"
-      :pt="{
-        root: 'sb-tab-menu__container',
-        menu: 'sb-tab-menu__menu',
-        menuitem: 'sb-tab-menu__menu-item',
-        action: 'sb-tab-menu__action',
-        icon: 'sb-tab-menu__icon',
-        label: 'sb-tab-menu__label',
-        inkbar: 'sb-tab-menu__inkbar',
-        hooks: 'sb-tab-menu__hooks',
-        ...$props.pt,
-      }"
-      unstyled
-      @tab-change="handleTabChange"
-      @update:active-index="handleActiveIndexChange"
-    />
-    <SbIconButton
-      v-if="showRightArrow"
-      class="sb-tab-menu__arrow sb-tab-menu__arrow--right"
-      aria-label="Go to next tab"
-      icon-name="chevron-right"
-      icon-color="light-gray"
-      @focus="scrollTabs('right')"
-      @mouseover="scrollTabs('right')"
-      @click="scrollTabs('right')"
-    />
-    <slot name="right-slot"></slot>
+    <template v-if="isLoading">
+      <SbLoading type="placeholder" class="sb-tab-menu__loading">
+        <SbLoadingPlaceholder width="100px" height="30px" />
+        <SbLoadingPlaceholder width="100px" height="30px" />
+        <SbLoadingPlaceholder width="100px" height="30px" />
+      </SbLoading>
+    </template>
+    <template v-else>
+      <slot name="left-slot"></slot>
+      <SbIconButton
+        v-if="showLeftArrow"
+        class="sb-tab-menu__arrow"
+        aria-label="Go to previous tab"
+        icon-name="chevron-left"
+        icon-color="light-gray"
+        @focus="scrollTabs('left')"
+        @mouseover="scrollTabs('left')"
+        @click="scrollTabs('left')"
+      />
+      <PrimeTabMenu
+        ref="tabContainer"
+        v-bind="props"
+        :pt="{
+          root: 'sb-tab-menu__container',
+          menu: 'sb-tab-menu__menu',
+          menuitem: 'sb-tab-menu__menu-item',
+          action: 'sb-tab-menu__action',
+          icon: 'sb-tab-menu__icon',
+          label: 'sb-tab-menu__label',
+          inkbar: 'sb-tab-menu__inkbar',
+          hooks: 'sb-tab-menu__hooks',
+          ...$props.pt,
+        }"
+        unstyled
+        @tab-change="handleTabChange"
+        @update:active-index="handleActiveIndexChange"
+      />
+      <SbIconButton
+        v-if="showRightArrow"
+        class="sb-tab-menu__arrow sb-tab-menu__arrow--right"
+        aria-label="Go to next tab"
+        icon-name="chevron-right"
+        icon-color="light-gray"
+        @focus="scrollTabs('right')"
+        @mouseover="scrollTabs('right')"
+        @click="scrollTabs('right')"
+      />
+      <slot name="right-slot"></slot>
+    </template>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { SbIconButton } from '..'
+import { SbIconButton, SbLoading, SbLoadingPlaceholder } from '..'
 import PrimeTabMenu, { type TabMenuChangeEvent } from 'primevue/tabmenu'
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useEventListener, useResizeObserver } from '@vueuse/core'
@@ -73,6 +82,10 @@ const props = defineProps({
   scrollable: {
     type: Boolean,
     default: true,
+  },
+  isLoading: {
+    type: Boolean,
+    default: false,
   },
   pt: {
     type: Object,
