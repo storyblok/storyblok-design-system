@@ -155,7 +155,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   if (typeof cleanUpScroll === 'function') cleanUpScroll()
-  if (typeof cleanUpResize === 'function') cleanUpResize.stop()
+  if (typeof cleanUpResize?.stop === 'function') cleanUpResize.stop()
 })
 </script>
 
