@@ -42,7 +42,7 @@ const SbTabPanel = {
  *
  * SbTabPanels component
  *
- * SbTabPanels is a container to SbTabPanel component to perform a visualization of information by using the value property. It's good to use along with SbTabs component.
+ * SbTabPanels is a container to SbTabPanel component to perform a visualization of information by using the value property. It's good to use along with component.
  */
 const SbTabPanels = {
   name: 'SbTabPanels',
