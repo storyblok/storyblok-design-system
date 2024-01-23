@@ -1,8 +1,8 @@
 import SbTabMenu from './index'
 import type { Args, Meta, StoryObj } from '@storybook/vue3'
 import type { MenuItem } from 'primevue/menuitem'
-
-type Story = StoryObj<typeof SbTabMenu>
+import SbIcon from '../Icon'
+import SbAvatar from '../Avatar'
 
 const defaultItems = [
   {
@@ -40,38 +40,64 @@ const defaultItems = [
   },
 ] as MenuItem[]
 
+type Story = StoryObj<typeof SbTabMenu>
+
 const meta: Meta<typeof SbTabMenu> = {
   title: 'Navigation/SbTabMenu',
-  component: SbTabMenu,
   args: {
     model: defaultItems,
   },
+  render: (args): unknown => ({
+    components: { SbTabMenu },
+    setup(): Args {
+      return { args }
+    },
+    template: `<SbTabMenu v-bind="args" />`,
+  }),
 }
 
-const renderFn = (args: Args): unknown => ({
-  components: { SbTabMenu },
-  setup(): Args {
-    return { args }
-  },
-  template: `<SbTabMenu v-bind="args" />`,
-})
+export default meta
 
-export const Default: Story = {
-  render: renderFn,
-}
+export const Default: Story = {}
 
 export const VerticalMenu: Story = {
-  render: renderFn,
   args: {
     vertical: true,
   },
 }
 
 export const LoadingMenu: Story = {
-  render: renderFn,
   args: {
     isLoading: true,
   },
 }
 
-export default meta
+export const WithSlot = (): unknown => ({
+  components: { SbTabMenu, SbIcon, SbAvatar },
+  setup(): Args {
+    const model = [
+      {
+        label: 'Option 1',
+        iconLeft: 'chevron-down-circle',
+      },
+      {
+        label: 'Option 2',
+        iconRight: 'search',
+      },
+      {
+        label: 'Option 3',
+        avatar: 'https://avatars.githubusercontent.com/u/6871945?v=4',
+      },
+    ]
+    return { model }
+  },
+  template: `<SbTabMenu :model="model">
+  <template #item="{ item, props }">
+  <p class="custom-slot">
+  <SbAvatar v-if="item.avatar" :src="item.avatar" />
+  <SbIcon v-if="item.iconLeft" :name="item.iconLeft" />
+  {{ item.label }}
+  <SbIcon v-if="item.iconRight" :name="item.iconRight" />
+  </p>
+  </template>`,
+})

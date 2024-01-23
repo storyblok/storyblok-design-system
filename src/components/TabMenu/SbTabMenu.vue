@@ -37,7 +37,9 @@
         @tab-change="handleTabChange"
         @update:active-index="handleActiveIndexChange"
       >
-        <slot></slot>
+        <template v-if="$slots.item" #item="{ item, props }">
+          <slot name="item" :item="item" :props="props" />
+        </template>
       </PrimeTabMenu>
       <SbIconButton
         v-if="showRightArrow"
