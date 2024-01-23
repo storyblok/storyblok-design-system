@@ -33,6 +33,7 @@
     "dompurify": "^3.0.6",
     "lucide-vue-next": "^0.279.0",
     "maska": "^1.5.2",
+    "primevue": "^3.43.0",
     "throttle-debounce": "^5.0.0"
   },
   "devDependencies": {

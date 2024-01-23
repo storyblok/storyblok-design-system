@@ -1,44 +1,41 @@
 .sb-group-button {
   display: inline-flex;
 
-  @include mq($until: sm) {
-    flex-direction: column;
-    row-gap: $s-2;
-  }
-
-  .sb-link {
-    margin: 0 15px;
-  }
-
   &--has-spaces {
-    .sb-button:not(:last-child) {
-      margin-right: 10px;
+    gap: $s-2;
+  }
+}
+
+.sb-group-button:not(.sb-group-button--has-spaces) {
+  .sb-group-button__button {
+    &:not(:last-child) .sb-button {
+      border-right: 0 none;
+    }
+
+    &:not(:first-of-type, :last-of-type) .sb-button {
+      border-radius: 0;
+    }
+
+    &:first-of-type:not(:only-of-type) .sb-button {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    &:last-of-type:not(:only-of-type) .sb-button {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    &:focus .sb-button {
+      position: relative;
+      z-index: 1;
     }
   }
+}
 
-  &:not(&--has-spaces) {
-    @include mq($from: sm) {
-      .sb-button {
-        border-radius: 0;
-      }
-
-      .sb-button:first-child {
-        border-bottom-left-radius: $base-border-radius;
-        border-top-left-radius: $base-border-radius;
-      }
-
-      .sb-button:last-child {
-        border-bottom-right-radius: $base-border-radius;
-        border-top-right-radius: $base-border-radius;
-      }
-
-      .sb-button:not(:first-child) {
-        border-left: 0;
-      }
-    }
-  }
-
-  .sb-button {
-    outline: none;
-  }
+.sb-group-button__button:focus-visible {
+  border-radius: $base-border-radius;
+  box-shadow: 0 0 0 0.2rem $sb-green-25;
+  outline-offset: 0;
+  outline: 0 none;
 }

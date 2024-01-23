@@ -1,16 +1,24 @@
-import SbGroupButton from '.'
-import SbButton from '../Button/index'
+import { SbGroupButton } from './index'
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
 
-import { availableVariants } from '../Button/lib'
+type Story = StoryObj<typeof SbGroupButton>
+
+import { availableVariants, availableButtonsTypes } from '../Button/lib'
 import { availableSizes } from '../../utils'
 
-export default {
+const defaultOptions = [
+  { label: 'First Button', value: 'first', icon: 'calendar' },
+  { label: 'Second Button', value: 'second' },
+  { label: 'Third Button', value: 'third' },
+]
+
+const meta: Meta<typeof SbGroupButton> = {
   title: 'Basic/SbGroupButton',
   component: SbGroupButton,
   args: {
+    options: defaultOptions,
     variant: 'tertiary',
-    size: null,
-    hasSpaces: false,
+    size: 'small',
   },
   argTypes: {
     size: {
@@ -29,6 +37,14 @@ export default {
         type: 'select',
       },
     },
+    type: {
+      name: 'type',
+      description: 'button type',
+      options: [...availableButtonsTypes],
+      control: {
+        type: 'select',
+      },
+    },
     hasSpaces: {
       name: 'hasSpaces',
       description: 'Set if it has spaces between `SbButton` components',
@@ -37,61 +53,51 @@ export default {
       },
     },
   },
+  render: (args): unknown => ({
+    components: { SbGroupButton },
+    setup(): Args {
+      const handleClicked = (value: string): void => {
+        window.alert('Clicked: ' + value)
+      }
+      return { args, handleClicked }
+    },
+    template: `<SbGroupButton v-bind="args" @update:modelValue="handleClicked" />`,
+  }),
 }
 
-export const Default = (args) => ({
-  components: { SbGroupButton, SbButton },
-  setup() {
-    return { args }
-  },
-  template: `
-    <SbGroupButton v-bind="args">
-      <SbButton label="First Button" />
-      <SbButton label="Secondary Button" />
-      <SbButton label="Third Button" />
-    </SbGroupButton>
-  `,
-})
+export default meta
 
-export const WithIcons = (args) => ({
-  components: { SbGroupButton, SbButton },
-  setup() {
-    return { args }
-  },
-  template: `
-    <SbGroupButton v-bind="args">
-      <SbButton label="First Button" />
-      <SbButton label="Secondary Button" />
-      <SbButton has-icon-only icon="x" />
-    </SbGroupButton>
-  `,
-})
+export const Default: Story = {}
 
-export const JustIcons = (args) => ({
-  components: { SbGroupButton, SbButton },
-  setup() {
-    return { args }
+export const WithIcons: Story = {
+  args: {
+    options: [
+      { label: 'First', value: 'first', icon: 'calendar', hasIconOnly: true },
+      {
+        label: 'Second Option',
+        value: 'second',
+        icon: 'plus',
+        hasIconOnly: true,
+      },
+      {
+        label: 'Third Option',
+        value: 'third',
+        icon: 'more-vertical',
+        hasIconOnly: true,
+      },
+    ],
   },
-  template: `
-    <SbGroupButton v-bind="args">
-      <SbButton has-icon-only icon="calendar" iconDescription="Calendar Icon" />
-      <SbButton has-icon-only icon="plus" iconDescription="Plus Icon" />
-      <SbButton has-icon-only icon="more-vertical" iconDescription="Overflow Icon" />
-    </SbGroupButton>
-  `,
-})
+}
 
-export const InvertedLink = (args) => ({
-  components: { SbGroupButton, SbButton },
-  setup() {
-    return { args }
+export const InvertedLink: Story = {
+  render: (args: Args): unknown => ({
+    components: { SbGroupButton },
+    setup(): Args {
+      return { args }
+    },
+    template: ` <div style="background-color:#1b243f;height:100px;"><SbGroupButton v-bind="args"  /> </div>`,
+  }),
+  args: {
+    variant: 'inverted-link',
   },
-  template: `
-    <div style="background-color:#1b243f;height:100px;">
-      <SbGroupButton variant="inverted-link">
-          <SbButton label="First button" />
-          <SbButton label="Second button" />
-      </SbGroupButton>
-    </div>
-  `,
-})
+}

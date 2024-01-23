@@ -99,6 +99,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isTransparent: {
+      type: Boolean,
+      default: false,
+    },
     label: {
       type: String,
       default: null,
@@ -120,6 +124,7 @@ export default {
         {
           'sb-button--disabled': this.isDisabled,
           'sb-button--borderless': this.isBorderless,
+          'sb-button--transparent': this.isTransparent,
           'sb-button--small': this.size === 'small',
           'sb-button--large': this.size === 'large',
           'sb-button--full': this.isFullWidth,
