@@ -1,5 +1,6 @@
 import { SbSkeleton } from './index'
 import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
 type Story = StoryObj<typeof SbSkeleton>
 
 const meta: Meta<typeof SbSkeleton> = {
@@ -52,20 +53,18 @@ const meta: Meta<typeof SbSkeleton> = {
       options: ['wave', 'none'],
     },
   },
+  render: (args): unknown => ({
+    components: { SbSkeleton },
+    setup(): Args {
+      return { args }
+    },
+    template: `<SbSkeleton v-bind="args" />`,
+  }),
 }
 
 export default meta
 
-const renderFn = (args: Args): unknown => ({
-  components: { SbSkeleton },
-  setup(): Args {
-    return { args }
-  },
-  template: `<SbSkeleton v-bind="args" />`,
-})
-
 export const Default: Story = {
-  render: renderFn,
   args: {
     width: '100%',
     height: '1rem',
@@ -73,7 +72,6 @@ export const Default: Story = {
 }
 
 export const Circle: Story = {
-  render: renderFn,
   args: {
     size: '3rem',
     shape: 'circle',
@@ -81,7 +79,6 @@ export const Circle: Story = {
 }
 
 export const Animation: Story = {
-  render: renderFn,
   args: {
     size: '3rem',
     animation: 'wave',

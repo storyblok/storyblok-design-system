@@ -1,21 +1,49 @@
 <template>
-  <PrimeSkeleton v-bind="$attrs" class="sb-skeleton" />
+  <PrimeSkeleton v-bind="props" :class="computedClasses" unstyled />
 </template>
 
-<script>
+<script lang="ts" setup>
 import PrimeSkeleton from 'primevue/skeleton'
+import { computed } from 'vue'
 
-export default {
-  name: 'SbSkeleton',
-  components: {
-    PrimeSkeleton,
+const props = defineProps({
+  shape: {
+    type: String,
+    default: 'rectangle',
   },
-  props: {
-    ...PrimeSkeleton.props,
+  size: {
+    type: String,
+    default: null,
   },
-}
+  width: {
+    type: String,
+    default: '100%',
+  },
+  height: {
+    type: String,
+    default: '1rem',
+  },
+  borderRadius: {
+    type: String,
+    default: null,
+  },
+  animation: {
+    type: String,
+    default: 'wave',
+  },
+  pt: {
+    type: Object,
+    default: () => ({}),
+  },
+})
+
+const computedClasses = computed(() => {
+  return {
+    'sb-skeleton': true,
+    [`sb-skeleton--circle`]: props.shape === 'circle',
+    [`sb-skeleton--none`]: props.animation === 'none',
+  }
+})
 </script>
 
-<style lang="scss">
-@import './skeleton';
-</style>
+<style lang="scss" src="./skeleton.scss" />
