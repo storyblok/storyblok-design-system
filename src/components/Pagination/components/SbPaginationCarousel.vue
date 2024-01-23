@@ -15,7 +15,7 @@
   </nav>
 </template>
 
-<script>
+<script lang="ts">
 import SbPaginationDot from './SbPaginationDot.vue'
 import i18n from '../../../i18n/index'
 

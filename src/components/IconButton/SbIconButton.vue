@@ -4,7 +4,7 @@
   </button>
 </template>
 
-<script>
+<script lang="ts">
 import SbIcon from '../Icon'
 
 export default {

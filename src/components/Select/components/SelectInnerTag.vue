@@ -37,7 +37,7 @@
   </SbTag>
 </template>
 
-<script>
+<script lang="ts">
 import SbTag from '../../Tag'
 import SbAvatar from '../../Avatar'
 

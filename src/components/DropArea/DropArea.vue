@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbIllustration from '../Illustration'
 
 export default {

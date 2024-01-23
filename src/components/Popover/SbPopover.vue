@@ -14,7 +14,7 @@
   </SbPortal>
 </template>
 
-<script>
+<script lang="ts">
 import SbPortal from '../Portal'
 import { createPopper } from '@popperjs/core/lib/popper-lite'
 import {
@@ -27,25 +27,7 @@ import {
 
 import { randomString, canUseDOM, includes } from '../../utils'
 import { ClickOutside } from '../../directives'
-
-// @see https://popper.js.org/docs/v2/constructors/#placement
-export const placementOptions = [
-  'auto',
-  'auto-start',
-  'auto-end',
-  'top',
-  'top-start',
-  'top-end',
-  'bottom',
-  'bottom-start',
-  'bottom-end',
-  'right',
-  'right-start',
-  'right-end',
-  'left',
-  'left-start',
-  'left-end',
-]
+import { placementOptions } from './constants'
 
 export default {
   name: 'SbPopover',

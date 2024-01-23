@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbMinibrowserBreadcrumbs from './MinibrowserBreadcrumbs'
 import SbMinibrowserList from './MinibrowserList'
 

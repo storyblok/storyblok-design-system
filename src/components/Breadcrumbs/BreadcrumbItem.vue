@@ -22,7 +22,7 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
 import { Tooltip } from '../../directives'
 import SbBreadcrumbLink from './BreadcrumbLink'
 

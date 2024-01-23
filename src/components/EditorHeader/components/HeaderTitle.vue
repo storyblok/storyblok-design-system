@@ -10,10 +10,11 @@
       <p>{{ headerTitle }}</p>
       <p class="sb-editor-header__subtitle">{{ headerSubtitle }}</p>
     </div>
+    <slot />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbButton from '../../Button'
 import { sharedProps } from '../sharedProps'
 
