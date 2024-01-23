@@ -36,6 +36,6 @@ describe('SbSkeleton', () => {
         shape: 'circle',
       },
     })
-    expect(html()).toContain('p-skeleton-circle')
+    expect(html()).toContain('sb-skeleton--circle')
   })
 })
