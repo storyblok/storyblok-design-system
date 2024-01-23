@@ -1,5 +1,3 @@
-@use 'sass:color';
-
 .sb-button {
   position: relative;
   display: inline-flex;
@@ -43,7 +41,7 @@
 
   &:hover:not([disabled]),
   &:focus:not([disabled]) {
-    background-color: color.adjust($sb-green, $lightness: -4%);
+    background-color: darken($sb-green, 4%);
   }
 }
 
