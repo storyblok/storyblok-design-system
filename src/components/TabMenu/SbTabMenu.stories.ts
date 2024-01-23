@@ -93,11 +93,13 @@ export const WithSlot = (): unknown => ({
   },
   template: `<SbTabMenu :model="model">
   <template #item="{ item, props }">
-  <p class="custom-slot">
-  <SbAvatar v-if="item.avatar" :src="item.avatar" />
-  <SbIcon v-if="item.iconLeft" :name="item.iconLeft" />
-  {{ item.label }}
-  <SbIcon v-if="item.iconRight" :name="item.iconRight" />
-  </p>
+  <a v-bind="props.action" role="menuitem">
+    <p class="custom-slot">
+      <SbAvatar v-if="item.avatar" :src="item.avatar" />
+      <SbIcon v-if="item.iconLeft" :name="item.iconLeft" />
+      {{ item.label }}
+      <SbIcon v-if="item.iconRight" :name="item.iconRight" />
+    </p>
+  </a>
   </template>`,
 })
