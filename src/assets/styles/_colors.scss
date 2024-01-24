@@ -1,6 +1,3 @@
-@import './css/theme-dark';
-@import './css/theme-light';
-
 // Color pallete
 // teal
 $sb-green: var(--sb-color-primary-1);
@@ -19,7 +16,7 @@ $sb-dark-blue-25: var(--sb-color-secondary-4);
 // green
 $green: var(--sb-color-success-1);
 $green-75: var(--sb-color-success-2);
-$green-50:  var(--sb-color-success-3);
+$green-50: var(--sb-color-success-3);
 $green-25: var(--sb-color-success-3);
 $green-20: var(--sb-color-success-4);
 $green-disabled: var(--sb-color-success-5);
@@ -70,7 +67,7 @@ $blue-grey: rgb(65, 84, 103);
 $color-primary: var(--sb-color-primary-1);
 $color-primary-dark: var(--sb-color-secondary-1);
 $color-secondary: var(--sb-color-secondary-1);
-$color-positive:  var(--sb-color-success-1);
+$color-positive: var(--sb-color-success-1);
 $color-negative: var(--sb-color-error-1);
 $color-warning: var(--sb-color-warning-1);
 $color-white: var(--sb-color-bg-4);

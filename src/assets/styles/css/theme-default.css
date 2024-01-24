@@ -1,6 +1,4 @@
-:root,html.sb-theme-dark {
-
-color-scheme:dark;
+:root,html.sb-theme-default {
 
   --sb-color-primary-1: #00B3B0;
   --sb-color-primary-2: #40BEBB;
