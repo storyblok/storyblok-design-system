@@ -11,30 +11,30 @@ $toggle-padding: 4px;
 }
 
 .sb-toggle--primary .sb-toggle__label {
-  background-color: $sb-green;
+  background-color: $teal-600;
 }
 
 .sb-toggle--secondary .sb-toggle__label {
-  background-color: $sb-dark-blue;
+  background-color: $dark-blue-950;
 }
 
 .sb-toggle--ghost {
   .sb-toggle__label {
     background-color: transparent;
-    border: 1px solid $light;
+    border: 1px solid $gray-100;
   }
 
   .sb-toggle__label::after {
-    background-color: $sb-dark-blue;
+    background-color: $dark-blue-950;
   }
 
   .sb-toggle__icon--active {
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
   }
 }
 
 .sb-toggle--danger .sb-toggle__label {
-  background-color: $red;
+  background-color: $red-400;
 }
 
 .sb-toggle__native {
@@ -56,13 +56,13 @@ $toggle-padding: 4px;
   }
 
   &[disabled] + .sb-toggle__label {
-    background: $light;
+    background: $gray-100;
     cursor: not-allowed;
   }
 
   &:not(:checked) {
     + .sb-toggle__label {
-      background: $light;
+      background: $gray-100;
     }
   }
 }
@@ -73,7 +73,7 @@ $toggle-padding: 4px;
   width: 100%;
   height: 100%;
   text-indent: -9999px;
-  background: $light;
+  background: $gray-100;
   border-radius: $toggle-height;
   cursor: pointer;
   transition: background-color 0.2s $toggle-easing 0.1s;
@@ -113,6 +113,6 @@ $toggle-padding: 4px;
 
   &--inactive {
     right: $s-1;
-    color: $light-gray;
+    color: $gray-400;
   }
 }

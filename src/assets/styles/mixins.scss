@@ -14,7 +14,7 @@
 @mixin generalBoxShadow() {
   z-index: 99999;
   background-color: $white;
-  border: 1px solid $light;
+  border: 1px solid $gray-100;
   border-radius: $s-1;
   box-shadow: $box-shadow-default;
 }
@@ -28,7 +28,7 @@
 // creates a box-shadow and a border for general suspense menu components
 @mixin popoverComponent {
   overflow: hidden;
-  border: 1px solid $light;
+  border: 1px solid $gray-100;
   border-radius: $base-border-radius;
   box-shadow: $box-shadow-default;
 }
@@ -66,10 +66,10 @@
 
   &:hover,
   &:focus {
-    background-color: $light-50;
+    background-color: $gray-100;
 
     .sb-icon {
-      color: $sb-dark-blue;
+      color: $dark-blue-950;
     }
   }
 }
@@ -114,14 +114,14 @@
 }
 
 @mixin selectedItem {
-  color: $sb-green;
+  color: $teal-600;
   font-weight: $font-medium;
 }
 
 @mixin focusedTextField {
   border-radius: $base-border-radius;
-  border-color: $sb-green;
-  box-shadow: 0 0 0 3px $sb-green-25;
+  border-color: $teal-600;
+  box-shadow: 0 0 0 3px $teal-400;
   outline: none;
 }
 

@@ -121,3 +121,26 @@ $black: #101525;
 $white: #fff;
 $black-trasparent: rgba($dark-blue-950, 0.2);
 
+
+// text
+$text-primary: $dark-blue-950;
+
+// colors for helper classes
+$colors: (
+  'primary': $teal-600,
+  'primary-dark': $dark-blue-950,
+  'secondary': $green-500,
+  'positive': $green-500,
+  'negative': $red-400,
+  'warning': $yellow-300,
+  'white': $white,
+  'teal': $teal-600,
+  'ink': $dark-blue-950,
+  'green': $green-500,
+  'yellow': $yellow-300,
+  'blue': $blue-500,
+  'orange': $orange-500,
+  'red': $red-400,
+  'light': $gray-50,
+  'light-gray': $gray-400,
+);

@@ -39,7 +39,7 @@
     position: relative;
     display: inline-block;
     padding-left: 28px;
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
     font-size: $font-14;
     font-stretch: normal;
     font-style: normal;
@@ -56,8 +56,8 @@
   }
 
   &::before {
-    background-color: $light-gray;
-    border: 1px solid $light-gray;
+    background-color: $gray-400;
+    border: 1px solid $gray-400;
   }
 }
 
@@ -74,8 +74,8 @@
     top: 0;
     width: $s-4;
     height: $s-4;
-    background-color: $sb-green;
-    border: 1px solid $sb-green;
+    background-color: $teal-600;
+    border: 1px solid $teal-600;
   }
 
   &::after {
@@ -98,7 +98,7 @@
 
   &::before {
     background-color: #f5f5f5;
-    border: 1px solid $light;
+    border: 1px solid $gray-100;
   }
 }
 
@@ -116,10 +116,10 @@
     width: $s-4;
     height: $s-4;
     background-color: $white;
-    border: 1px solid $light;
+    border: 1px solid $gray-100;
   }
 }
 
 .sb-radio__input[disabled] + .sb-radio__label {
-  color: $sb-dark-blue-50;
+  color: $dark-blue-400;
 }

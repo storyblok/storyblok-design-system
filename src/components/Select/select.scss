@@ -24,11 +24,11 @@
 
       &__label {
         margin-right: 5px;
-        color: $sb-dark-blue-50;
+        color: $dark-blue-400;
       }
 
       &__chevron {
-        color: $light-gray;
+        color: $gray-400;
       }
 
       &__input {
@@ -44,7 +44,7 @@
     &:hover,
     &:focus {
       .sb-select-inner__input::placeholder {
-        color: $sb-dark-blue;
+        color: $dark-blue-950;
         opacity: 1;
       }
     }
@@ -72,7 +72,7 @@
   }
 
   &--loading .sb-select-inner__chevron {
-    color: $sb-green;
+    color: $teal-600;
   }
 }
 
@@ -85,7 +85,7 @@
 }
 
 .sb-select__message--error {
-  color: $red;
+  color: $red-400;
 }
 
 .sb-select-inner {
@@ -94,15 +94,15 @@
   align-items: center;
   overflow-x: hidden;
   padding: 10px 10px 9px 17px;
-  color: $sb-dark-blue;
+  color: $dark-blue-950;
   font-size: $font-14;
   background-color: $white;
-  border: 1px solid $light;
+  border: 1px solid $gray-100;
   border-radius: $base-border-radius;
   cursor: pointer;
 
   &:hover {
-    border-color: $sb-green;
+    border-color: $teal-600;
   }
 
   &:focus {
@@ -165,7 +165,7 @@
 
   &__clear {
     padding: 0;
-    color: $light-gray;
+    color: $gray-400;
     background-color: transparent;
     border: 0;
     border-radius: 50%;
@@ -177,7 +177,7 @@
     flex: 1;
     width: 100%;
     padding: 0;
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
     font-size: inherit;
     background-color: transparent;
     border: 0;
@@ -188,7 +188,7 @@
     }
 
     &::placeholder {
-      color: $sb-dark-blue-50;
+      color: $dark-blue-400;
     }
   }
 
@@ -216,21 +216,21 @@
 
   &:hover &__chevron,
   &:focus &__chevron {
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
   }
 
   &__disabled {
-    background: $light-25;
+    background: $gray-50;
     cursor: not-allowed !important;
 
     .sb-select-inner__input {
-      background: $light-25;
+      background: $gray-50;
       pointer-events: none;
     }
 
     &:focus,
     &:hover {
-      border-color: $light;
+      border-color: $gray-100;
       box-shadow: none;
       outline: none;
     }
@@ -267,7 +267,7 @@
       &--visible,
       &:hover,
       &:focus {
-        background-color: $light-50;
+        background-color: $gray-100;
       }
     }
   }
@@ -275,12 +275,12 @@
 
 .sb-select-inner--error:hover,
 .sb-select-inner--error:focus {
-  border: 1px solid $red;
+  border: 1px solid $red-400;
 }
 
 .sb-select[aria-expanded='true'] .sb-select-inner--error,
 .sb-select:focus-within .sb-select-inner--error {
-  border-color: $red;
+  border-color: $red-400;
   box-shadow: 0 0 0 3px rgb(255 179 176 / 30%);
   outline: none;
 }
@@ -328,7 +328,7 @@
     appearance: none;
 
     &--focused {
-      background-color: $light-50;
+      background-color: $gray-100;
       outline: none;
     }
 
@@ -343,7 +343,7 @@
       .sb-select-list__item-icon,
       .sb-select-list__item-name,
       .sb-select-list__item-path {
-        color: $neutral-gray;
+        color: $gray-700;
       }
     }
   }
@@ -353,7 +353,7 @@
     gap: 5px;
     overflow: hidden;
     min-height: 17px;
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
   }
 
   &__item-name {
@@ -363,7 +363,7 @@
   }
 
   &__create-label {
-    color: $sb-green;
+    color: $teal-600;
   }
 
   &__create-value {
@@ -375,7 +375,7 @@
 
   &__empty {
     display: block;
-    color: $sb-dark-blue-50;
+    color: $dark-blue-400;
     font-size: 1.3rem;
     text-align: center;
 
@@ -398,7 +398,7 @@
 .sb-select-list__item-caption {
   display: block;
   margin-top: 2px;
-  color: $light-gray;
+  color: $gray-400;
   font-size: $font-12;
 }
 

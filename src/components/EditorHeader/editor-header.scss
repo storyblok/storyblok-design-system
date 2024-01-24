@@ -10,9 +10,9 @@
   width: 100vw;
   height: 60px;
   padding: $s-4;
-  color: $sb-dark-blue;
+  color: $dark-blue-950;
   background-color: $white;
-  border: 1px solid $light;
+  border: 1px solid $gray-100;
 
   p {
     margin: 0;
@@ -46,7 +46,7 @@
 }
 
 .sb-editor-header__subtitle {
-  color: $sb-dark-blue-50;
+  color: $dark-blue-400;
 }
 
 .sb-editor-header__actions {
@@ -74,7 +74,7 @@
 
 .sb-editor-header__separator {
   margin-left: 10px;
-  border-left: 1px solid $light-75;
+  border-left: 1px solid $blue-gray-100;
 }
 
 .sb-editor-header__menu {
@@ -95,8 +95,8 @@
 
 .sb-editor-header--dark {
   color: $white;
-  background-color: $sb-dark-blue;
-  border: 1px solid $sb-dark-blue-75;
+  background-color: $dark-blue-950;
+  border: 1px solid $dark-blue-600;
 
   .sb-button {
     color: $white;
@@ -104,7 +104,7 @@
 
     &:hover,
     &:focus {
-      background-color: $sb-dark-blue-75;
+      background-color: $dark-blue-600;
     }
   }
 }

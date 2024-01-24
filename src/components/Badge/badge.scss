@@ -20,19 +20,19 @@
   border-radius: $base-border-radius;
 
   &--positive {
-    @include setColor($green);
+    @include setColor($green-500);
   }
 
   &--warning {
-    @include setColor($orange);
+    @include setColor($orange-500);
   }
 
   &--info {
-    @include setColor($blue);
+    @include setColor($blue-600);
   }
 
   &--negative {
-    @include setColor($red);
+    @include setColor($red-400);
   }
 
   &--only-icon {
@@ -60,7 +60,7 @@
 
     .sb-badge__label {
       margin-left: 5px;
-      color: $color-primary-dark;
+      color: $dark-blue-950;
       font-size: $font-14;
       font-weight: $font-medium;
     }

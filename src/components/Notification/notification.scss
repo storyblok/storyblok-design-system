@@ -59,19 +59,19 @@
   }
 
   &--positive {
-    background-color: $green-25;
+    background-color: $green-100;
   }
 
   &--warning {
-    background-color: $yellow-25;
+    background-color: $yellow-100;
   }
 
   &--info {
-    background-color: $blue-25;
+    background-color: $blue-300;
   }
 
   &--negative {
-    background-color: $red-25;
+    background-color: $red-100;
   }
 
   &--general {
@@ -91,7 +91,7 @@
     overflow: hidden;
     vertical-align: middle;
     width: 75%;
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
     font-size: $font-16;
     font-weight: $font-medium;
     text-overflow: ellipsis;
@@ -103,7 +103,7 @@
     overflow: hidden;
     margin-left: $s-6;
     margin-top: $s-3;
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
     font-size: $font-14;
     font-weight: $font-regular;
     line-height: 1.2;
@@ -118,12 +118,12 @@
     text-overflow: ellipsis;
 
     a {
-      color: $primary-text-color;
+      color: $text-primary;
       font-size: $font-14;
       font-weight: $font-regular;
       text-decoration: none;
       text-decoration: underline;
-      text-decoration-color: $primary-text-color;
+      text-decoration-color: $text-primary;
     }
   }
 }

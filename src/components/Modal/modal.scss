@@ -51,7 +51,7 @@
     width: 100%;
     min-height: 30px;
     padding: 5px 0 20px;
-    color: $sb-dark-blue-75;
+    color: $dark-blue-600;
     font-size: $font-14;
   }
 
@@ -66,7 +66,7 @@
     margin-bottom: -35px;
     margin-left: -35px;
     padding: 0 35px;
-    background-color: $light-50;
+    background-color: $gray-100;
     border-bottom-left-radius: $base-border-radius;
     border-bottom-right-radius: $base-border-radius;
   }
@@ -97,7 +97,7 @@
     }
 
     &__title {
-      color: $sb-dark-blue;
+      color: $dark-blue-950;
       font-size: $font-20;
       font-weight: $font-bold;
       text-align: center;

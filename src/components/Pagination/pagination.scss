@@ -5,7 +5,7 @@
   width: 100%;
   height: 53px;
   max-width: 100%;
-  color: $color-primary-dark;
+  color: $dark-blue-950;
   font-size: $font-14;
 
   // elements
@@ -36,7 +36,7 @@
   }
 
   &__placeholder {
-    color: $sb-dark-blue-50;
+    color: $dark-blue-400;
     font-size: $font-13;
     font-weight: $font-regular;
     white-space: nowrap;
@@ -50,7 +50,7 @@
     display: block;
     width: $s-6;
     height: $s-6;
-    color: $color-primary-dark;
+    color: $dark-blue-950;
     background-color: transparent;
     border-radius: $base-border-radius;
     cursor: pointer;
@@ -67,7 +67,7 @@
     }
 
     &--disabled {
-      color: $sb-dark-blue-25;
+      color: $dark-blue-300;
       cursor: not-allowed;
     }
 
@@ -86,7 +86,7 @@
     width: 10px;
     height: 10px;
     padding: 0;
-    background-color: $light;
+    background-color: $gray-100;
     border: 0;
     border-radius: 100%;
     cursor: pointer;
@@ -96,7 +96,7 @@
     }
 
     &--active {
-      background-color: $sb-dark-blue;
+      background-color: $dark-blue-950;
 
       &::after {
         content: '';
@@ -105,7 +105,7 @@
         top: -4px;
         width: 14px;
         height: 14px;
-        border: solid 2px $sb-dark-blue-25;
+        border: solid 2px $dark-blue-300;
         border-radius: 100%;
       }
     }
@@ -131,8 +131,8 @@
 
   &--compact &__button {
     border: 0;
-    border-left: 1px solid $light;
-    border-right: 1px solid $light;
+    border-left: 1px solid $gray-100;
+    border-right: 1px solid $gray-100;
   }
 
   &--carousel {
@@ -154,19 +154,19 @@
     font-size: $font-14;
 
     &:not(.sb-button--tertiary) {
-      color: $color-white;
-      background: $blue;
+      color: $white;
+      background: $blue-600;
     }
 
     &:not(:disabled):focus,
     &:not(:disabled):hover {
-      color: $blue;
+      color: $blue-600;
     }
 
     &:not(:disabled):focus:not(.sb-button--tertiary),
     &:not(:disabled):hover:not(.sb-button--tertiary) {
       color: $white;
-      background-color: darken($blue, 15);
+      background-color: $blue-800;
     }
   }
 
@@ -182,7 +182,7 @@
 
     &--active {
       width: $s-4;
-      background-color: $blue;
+      background-color: $blue-600;
       transition: width 0.1s ease-in-out;
 
       &::after {

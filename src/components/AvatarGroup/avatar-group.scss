@@ -34,10 +34,10 @@
     position: relative;
     z-index: 1;
     margin-left: -10px;
-    color: $color-primary-dark;
+    color: $dark-blue-950;
     font-size: $font-12;
     font-weight: $font-regular;
-    background-color: $light-75;
+    background-color: $blue-gray-100;
     cursor: pointer;
 
     @include avatarGroupItem;
@@ -82,7 +82,7 @@
     >.sb-avatar .sb-avatar__image,
     >.sb-avatar .sb-avatar__initials,
     >.sb-avatar-group__more {
-      border: 3px solid $color-primary-dark;
+      border: 3px solid $dark-blue-950;
     }
   }
 
@@ -97,7 +97,7 @@
     padding: 15px;
     text-align: left;
     background-color: $white;
-    border: 1px solid $light;
+    border: 1px solid $gray-100;
     border-radius: $s-1;
     box-shadow: $box-shadow-default;
 

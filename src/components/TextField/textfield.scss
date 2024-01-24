@@ -3,12 +3,12 @@
 
   &--error {
     &.sb-textfield--inline-label .sb-textfield__inner {
-      border: 1px solid $red;
+      border: 1px solid $red-400;
 
       &:hover,
       &:focus,
       &:focus-within {
-        border-color: $red;
+        border-color: $red-400;
       }
 
       &:focus-within {
@@ -22,12 +22,12 @@
       align-items: stretch;
       box-sizing: border-box;
       background: $white;
-      border: 1px solid $light;
+      border: 1px solid $gray-100;
       border-radius: $base-border-radius;
 
       &:hover,
       &:focus {
-        border-color: $sb-green;
+        border-color: $teal-600;
       }
 
       &:focus-within {
@@ -63,7 +63,7 @@
   &__label {
     display: block;
     margin-bottom: 10px;
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
     font-size: $font-14;
     font-weight: $font-medium;
     letter-spacing: 0;
@@ -76,7 +76,7 @@
 
     &:hover,
     &:focus {
-      color: $sb-dark-blue-50;
+      color: $dark-blue-400;
     }
 
     &--left {
@@ -119,29 +119,29 @@
   &__textarea {
     box-sizing: border-box;
     width: 100%;
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
     font-size: $font-14;
     border-radius: $base-border-radius;
     transition: $base-transition;
 
     &--disabled {
-      background: $light-25;
-      border: 1px solid $light !important;
+      background: $gray-50;
+      border: 1px solid $gray-100 !important;
       cursor: not-allowed;
     }
 
     &::placeholder {
-      color: $sb-dark-blue-50;
+      color: $dark-blue-400;
       font-size: $font-14;
       font-weight: normal;
       letter-spacing: 0;
     }
 
     &--default {
-      border: 1px solid $light;
+      border: 1px solid $gray-100;
 
       &:hover {
-        border-color: $sb-green;
+        border-color: $teal-600;
       }
 
       &:focus {
@@ -172,7 +172,7 @@
     &--ghost {
       border: 0;
       border-radius: 0;
-      border-bottom: 1px solid $light;
+      border-bottom: 1px solid $gray-100;
 
       &:focus {
         outline: none;
@@ -184,24 +184,24 @@
       display: block;
       padding: 13px 0 13px $s-6;
       font-size: $font-13;
-      background-color: $light-25;
+      background-color: $gray-50;
       border: 1px solid transparent;
       border-radius: $base-border-radius;
 
       &:hover {
-        border-color: $sb-green;
+        border-color: $teal-600;
       }
 
       &:focus {
         border-radius: $base-border-radius;
-        border-color: $sb-green;
-        box-shadow: 0 0 0 3px $sb-green-25;
+        border-color: $teal-600;
+        box-shadow: 0 0 0 3px $teal-400;
         outline: none;
       }
     }
 
     &--error {
-      border: 1px solid $red !important;
+      border: 1px solid $red-400 !important;
 
       &:focus {
         box-shadow: 0 0 0 3px rgb(255 179 176 / 30%);
@@ -215,12 +215,12 @@
     min-width: stretch;
     min-width: fit-content;
     padding: 15px 17px;
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
     font-size: $font-14;
     font-weight: normal;
     letter-spacing: 0;
     background-color: $white;
-    border: 1px solid $light;
+    border: 1px solid $gray-100;
     border-radius: $base-border-radius;
   }
 
@@ -244,21 +244,21 @@
     letter-spacing: 0;
 
     &--error {
-      color: $red;
+      color: $red-400;
     }
   }
 
   &__counter {
     display: block;
     margin-top: 5px;
-    color: $orange;
+    color: $orange-500;
     font-size: $font-14;
     font-weight: $font-regular;
     letter-spacing: 0;
   }
 
   &__required {
-    color: $red;
+    color: $red-400;
   }
 }
 

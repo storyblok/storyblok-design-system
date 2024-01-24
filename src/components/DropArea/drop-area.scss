@@ -20,7 +20,7 @@
     }
 
     .sb-drop-area__icon {
-      background-color: $sb-green-25;
+      background-color: $teal-400;
 
       svg {
         width: $s-8;
@@ -47,7 +47,7 @@
 
   &__title {
     margin: 20px 0 10px;
-    color: $primary-text-color;
+    color: $text-primary;
     font-size: $font-20;
     font-weight: $font-medium;
     text-align: center;
@@ -56,13 +56,13 @@
   &__subtitle {
     width: 80%;
     margin: 0 auto;
-    color: $light-gray;
+    color: $gray-400;
     font-size: $font-size-default;
     font-weight: $font-regular;
     text-align: center;
 
     span {
-      color: $sb-green;
+      color: $teal-600;
       cursor: pointer;
 
       &:hover,

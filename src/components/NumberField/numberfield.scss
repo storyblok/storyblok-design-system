@@ -4,7 +4,7 @@
   &__label {
     display: block;
     margin-bottom: 10px;
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
     font-size: $font-14;
     font-weight: $font-medium;
     letter-spacing: 0;
@@ -27,7 +27,7 @@
       padding: 0;
       font-size: 13px;
       text-align: center;
-      background: $light-25;
+      background: $gray-50;
       border: 0;
       border-left: 1px solid #dcdfe6;
       cursor: pointer;
@@ -59,7 +59,7 @@
   &__input {
     width: 100%;
     padding: 13.5px 17px;
-    color: $sb-dark-blue;
+    color: $dark-blue-950;
     font-size: $font-14;
     border-radius: $base-border-radius;
     appearance: textfield;
@@ -71,35 +71,35 @@
     }
 
     &:disabled {
-      background: $light-25;
-      border: 1px solid $light !important;
+      background: $gray-50;
+      border: 1px solid $gray-100 !important;
       cursor: not-allowed;
     }
 
     &::placeholder {
-      color: $sb-dark-blue-50;
+      color: $dark-blue-400;
       font-size: $font-14;
       font-weight: normal;
       letter-spacing: 0;
     }
 
     &--default {
-      border: 1px solid $light;
+      border: 1px solid $gray-100;
 
       &:hover {
-        border-color: $sb-green;
+        border-color: $teal-600;
       }
 
       &:focus {
         border-radius: $base-border-radius;
-        border-color: $sb-green;
-        box-shadow: 0 0 0 3px $sb-green-25;
+        border-color: $teal-600;
+        box-shadow: 0 0 0 3px $teal-400;
         outline: none;
       }
     }
 
     &--error {
-      border: 1px solid $red;
+      border: 1px solid $red-400;
 
       &:focus {
         box-shadow: 0 0 0 3px rgb(255 179 176 / 30%);
@@ -116,7 +116,7 @@
     letter-spacing: 0;
 
     &--error {
-      color: $sb-dark-blue-50;
+      color: $dark-blue-400;
     }
   }
 }

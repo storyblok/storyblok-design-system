@@ -19,7 +19,7 @@
   width: 100%;
   margin: 0;
   padding: $s-2 20px;
-  color: $sb-dark-blue;
+  color: $dark-blue-950;
   font-size: $font-14;
   line-height: normal;
   text-align: left;
@@ -30,7 +30,7 @@
 
   &:hover,
   &:focus {
-    background-color: $light-50;
+    background-color: $gray-100;
   }
 
   .sb-icon {
@@ -38,7 +38,7 @@
   }
 
   &--negative {
-    color: $red;
+    color: $red-400;
   }
 
   &--has-icon {
@@ -53,17 +53,17 @@
       $font-13: 1.3rem;
 
       flex-grow: 1;
-      color: $sb-dark-blue-50;
+      color: $dark-blue-400;
       text-align: end;
     }
   }
 
   &--disabled {
-    color: rgba($sb-dark-blue, 0.5);
+    color: rgba($dark-blue-950, 0.5);
 
     &:hover,
     &:focus {
-      background-color: $light-25;
+      background-color: $gray-50;
       cursor: not-allowed;
     }
   }
@@ -72,7 +72,7 @@
 .sb-menu-separator {
   height: 1px;
   margin: 6px 0 6px 20px;
-  background-color: $light;
+  background-color: $gray-100;
   border: 0;
 }
 
@@ -80,12 +80,12 @@
   &__title {
     margin: 0 0 5px;
     padding: 10px;
-    color: $sb-dark-blue-50;
+    color: $dark-blue-400;
     font-size: $font-13;
 
     &--bold {
       padding-left: 20px;
-      color: $sb-dark-blue;
+      color: $dark-blue-950;
       font-size: $font-14;
       font-weight: $font-medium;
     }

@@ -7,19 +7,19 @@
   color: $white;
   font-size: 1.2rem;
   font-weight: 700;
-  background-color: $sb-green;
+  background-color: $teal-600;
   border-radius: $base-border-radius;
 }
 
 .outer-margin {
   display: inline-block;
-  background-image: linear-gradient(135deg, $sb-dark-blue 10%, #0000 0, #0000 50%, $sb-dark-blue 0, $sb-dark-blue 60%, #0000 0, #0000);
+  background-image: linear-gradient(135deg, $dark-blue-950 10%, #0000 0, #0000 50%, $dark-blue-950 0, $dark-blue-950 60%, #0000 0, #0000);
   background-size: 7.07px 7.07px;
 }
 
 .outer-padding {
   display: inline-block;
-  background-image: linear-gradient(135deg, $sb-green 10%, #0000 0, #0000 50%, $sb-green 0, $sb-green 60%, #0000 0, #0000);
+  background-image: linear-gradient(135deg, $teal-600 10%, #0000 0, #0000 50%, $teal-600 0, $teal-600 60%, #0000 0, #0000);
   background-size: 7.07px 7.07px;
 }
 
@@ -34,7 +34,7 @@ pre {
   padding: 8px;
   color: #dcdcdc;
   font-size: 1.2rem;
-  background: $sb-dark-blue;
+  background: $dark-blue-950;
   border-radius: $base-border-radius;
 }
 

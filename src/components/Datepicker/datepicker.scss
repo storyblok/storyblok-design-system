@@ -1,37 +1,37 @@
 @mixin datepickerItem {
-  color: $color-primary-dark;
+  color: $dark-blue-950;
   font-size: $font-14;
-  border-bottom: $light-border;
-  border-right: $light-border;
+  border-bottom: $gray-100-border;
+  border-right: $gray-100-border;
   cursor: pointer;
 
   &:hover,
   &:focus {
-    background-color: $sb-dark-blue-25;
+    background-color: $dark-blue-300;
   }
 
   &--current {
-    background-color: $light-50;
+    background-color: $gray-100;
 
     &:hover,
     &:focus {
-      background-color: $sb-green-25;
+      background-color: $teal-400;
     }
   }
 
   &--active {
     font-size: $font-18;
     font-weight: $font-medium;
-    background-color: $sb-green-25;
+    background-color: $teal-400;
 
     &:hover,
     &:focus {
-      background-color: $sb-green-25;
+      background-color: $teal-400;
     }
   }
 
   &--disabled {
-    color: $sb-dark-blue-50;
+    color: $dark-blue-400;
     text-decoration: line-through;
     cursor: no-drop;
 
@@ -62,7 +62,7 @@
     position: absolute;
     right: $s-7;
     top: 50%;
-    color: $light-gray;
+    color: $gray-400;
     font-size: $font-12;
     transform: translateY(-50%);
   }
@@ -87,7 +87,7 @@
 
   &__action-button {
     padding: 15px 37.5px;
-    color: $color-primary-dark;
+    color: $dark-blue-950;
     font-size: $font-14;
     font-weight: $font-medium;
     background-color: $white;
@@ -108,7 +108,7 @@
 
 .sb-datepicker-header {
   z-index: 2;
-  background-color: $light-50;
+  background-color: $gray-100;
 
   &__top {
     display: flex;
@@ -119,7 +119,7 @@
     flex: 1;
     margin: 0;
     padding: 15px 0;
-    color: $color-primary-dark;
+    color: $dark-blue-950;
     font-size: $font-14;
     font-weight: $font-medium;
     text-align: center;
@@ -144,7 +144,7 @@
     display: block;
     margin: 0;
     padding-bottom: 10px;
-    color: $sb-dark-blue-50;
+    color: $dark-blue-400;
     font-size: $font-14;
     text-align: center;
   }
@@ -153,11 +153,11 @@
 .sb-datepicker-week {
   display: flex;
   padding-bottom: 10px;
-  background-color: $light-50;
+  background-color: $gray-100;
 
   span {
     flex: 1;
-    color: $sb-dark-blue-50;
+    color: $dark-blue-400;
     font-size: $font-14;
     text-align: center;
   }
@@ -182,7 +182,7 @@
     @include datepickerItem;
 
     &--inactive {
-      color: $sb-dark-blue-50;
+      color: $dark-blue-400;
     }
   }
 }
@@ -201,7 +201,7 @@
     overflow-y: scroll;
     width: 50%;
     max-height: 295px;
-    border-bottom: 1px solid $light;
+    border-bottom: 1px solid $gray-100;
   }
 
   &__number {
@@ -216,11 +216,11 @@
     @include datepickerItem;
 
     &:last-of-type {
-      border-bottom: none;
+      border-bottom: 0;
     }
 
     &:nth-child(4) {
-      border-bottom: 1px solid $light;
+      border-bottom: 1px solid $gray-100;
     }
   }
 }

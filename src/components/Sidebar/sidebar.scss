@@ -41,7 +41,7 @@
   width: 280px;
   height: 100vh;
   max-width: 280px;
-  background-color: $color-primary-dark;
+  background-color: $dark-blue-950;
   transition: max-width 0.2s ease;
 
   &:hover .sb-button,
@@ -79,7 +79,7 @@
   }
 
   &--dark {
-    color: $color-primary-dark;
+    color: $dark-blue-950;
   }
 }
 
@@ -113,7 +113,7 @@
   width: 100%;
   height: 40%;
   max-height: 200px;
-  background: linear-gradient(transparent 0%, rgba($sb-dark-blue, 1) 100%);
+  background: linear-gradient(transparent 0%, rgba($dark-blue-950, 1) 100%);
   pointer-events: none;
   transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -180,7 +180,7 @@
   align-items: center;
   vertical-align: middle;
   padding: $s-3;
-  color: $light-gray;
+  color: $gray-400;
   font-size: $font-14;
   font-weight: $font-medium;
   letter-spacing: 0;
@@ -261,16 +261,16 @@
   }
 
   .sb-sidebar-toggle .sb-button {
-    color: $color-primary-dark;
-    background-color: $light-75;
+    color: $dark-blue-950;
+    background-color: $blue-gray-100;
     opacity: 1;
 
     &:hover {
-      background-color: $light-75;
+      background-color: $blue-gray-100;
     }
 
     &:focus {
-      outline: 3px solid $light-25;
+      outline: 3px solid $gray-50;
     }
   }
 
@@ -310,7 +310,7 @@
   width: 100%;
   padding: 10px 20px;
   background-color: $white;
-  border-bottom: 1px solid $light;
+  border-bottom: 1px solid $gray-100;
 
   button {
     padding: 0;
@@ -324,7 +324,7 @@
 .sb-sidebar__mobile-header-menu-icon {
   margin-right: 20px;
   padding: 10px 20px 10px 0;
-  border-right: 1px solid $light;
+  border-right: 1px solid $gray-100;
 }
 
 .sb-sidebar__mobile-logo {

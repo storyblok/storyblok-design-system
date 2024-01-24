@@ -41,14 +41,14 @@
 
   &__text {
     display: block;
-    color: $primary-text-color;
+    color: $text-primary;
     font-size: $font-13;
     font-weight: $font-medium;
   }
 
   &__description {
     display: block;
-    color: $light-gray;
+    color: $gray-400;
     font-size: $font-12;
     font-weight: $font-regular;
   }

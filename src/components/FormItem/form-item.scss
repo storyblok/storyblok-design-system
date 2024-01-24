@@ -14,7 +14,7 @@
 
 .sb-form-item__label {
   position: relative;
-  color: $sb-dark-blue;
+  color: $dark-blue-950;
   font-size: $font-14;
   font-weight: $font-medium;
 
@@ -29,7 +29,7 @@
 .sb-form-item__helper-text {
   margin-left: auto;
   padding-left: 10px;
-  color: $sb-dark-blue-50;
+  color: $dark-blue-400;
   font-size: $font-13;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .sb-form-item__required {
-  color: $red;
+  color: $red-400;
 }
 
 .sb-form-item__body{
