@@ -10,17 +10,37 @@
 
 .sb-colors {
   display: inline-block;
-  width: 120px;
-  height: 120px;
+  min-height: 120px;
   margin: 0 0 4px;
   padding: 0;
+  border-radius: $base-border-radius;
 }
 
 .sb-colors--container {
   display: inline-grid;
-  width: 120px;
-  height: 150px;
   margin-bottom: 20px;
   color: $gray-400;
   font-size: $font-14;
+}
+
+.palette {
+  display: flex;
+  gap: 8px;
+}
+
+
+pre {
+  display: block;
+  max-width: 400px;
+  padding: 8px;
+  color: #dcdcdc;
+  font-size: 1.2rem;
+  background: $dark-blue-950;
+  border-radius: $base-border-radius;
+}
+
+code {
+  display: inline-block;
+  margin: 0;
+  line-height: 1.45;
 }
