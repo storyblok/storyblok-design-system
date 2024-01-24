@@ -15,11 +15,7 @@
 
 <script>
 import dayjs from 'dayjs'
-<<<<<<< HEAD
 import { MONTHS } from '../utils'
-=======
-
->>>>>>> main
 export default {
   name: 'SbDatepickerMonths',
 

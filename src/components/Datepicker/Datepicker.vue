@@ -82,13 +82,9 @@
         :max-date="maxDate"
         :minute-range="minuteRange"
         :disabled-past="disabledPast"
-<<<<<<< HEAD
         :timezone="internalTimezone"
         :hour-format="hourFormat"
         :range="daterange"
-=======
-        :data-testid="baseDataTestId"
->>>>>>> main
         @update:model-value="handleComponentsInput"
         @input-timezone="handleTimezoneInput"
       />
@@ -101,22 +97,12 @@
           class="sb-datepicker__action-button"
           :data-testid="`${baseDataTestId}-cancel`"
           @click="handleCancelAction"
-<<<<<<< HEAD
         />
         <SbButton
           label="Apply"
           variant="primary"
           size="small"
           class="sb-datepicker__action-button"
-=======
-        >
-          Cancel
-        </button>
-
-        <button
-          class="sb-datepicker__action-button sb-datepicker__action-button--primary"
-          :data-testid="`${baseDataTestId}-apply`"
->>>>>>> main
           @click="handleDoneAction"
         />
       </div>
@@ -502,15 +488,8 @@ export default {
       if (!this.tzOffset) {
         utcTime = dayjs
           .tz(this.internalValue, this.tzValue)
-<<<<<<< HEAD
           .utc(this.internalValue)
           .format(this.isTimeDisabled ? FORMATS.datetime : this.internalFormat)
-=======
-          .utc()
-          .format(
-            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat,
-          )
->>>>>>> main
       } else {
         const offset = this.tzOffset.replace(/[+-]/g, ($1) =>
           $1 === '+' ? '-' : '+',
@@ -518,13 +497,7 @@ export default {
         utcTime = dayjs
           .utc(this.internalValue)
           .utcOffset(offset)
-<<<<<<< HEAD
           .format(this.isTimeDisabled ? FORMATS.datetime : this.internalFormat)
-=======
-          .format(
-            this.isTimeDisabled ? this.FORMATS.datetime : this.internalFormat,
-          )
->>>>>>> main
       }
 
       this.hitClear = false
