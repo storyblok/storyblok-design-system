@@ -101,5 +101,6 @@ export const WithSlot = (): unknown => ({
       <SbIcon v-if="item.iconRight" :name="item.iconRight" />
     </p>
   </a>
-  </template>`,
+  </template>
+  </SbTabMenu>`,
 })
