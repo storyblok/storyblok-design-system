@@ -185,31 +185,31 @@ export const AllColors = () => ({
       <br />
 
       <pre><code>
-      $yellow-50: #fffbeb;
-      $yellow-100: #fef3c7;
-      $yellow-200: #fde58a;
-      $yellow-300: #fbce41; // basis color
-      $yellow-400: #fabd25;
-      $yellow-500: #f49c0c;
-      $yellow-600: #d87507;
-      $yellow-700: #b3520a;
-      $yellow-800: #913f0f;
-      $yellow-900: #78340f;
-      $yellow-950: #451903;
+      $yellow-50: #FFF4D5;
+      $yellow-100: #FFE6AA;
+      $yellow-200: #ffd86a;
+      $yellow-300: #fbcd41; // basis color
+      $yellow-400: #fbc823;
+      $yellow-500: #f4b20b;
+      $yellow-600: #da9707;
+      $yellow-700: #b2750a;
+      $yellow-800: #8f5e0f;
+      $yellow-900: #76520f;
+      $yellow-950: #453003;
       </code></pre>
 
       <div class="palette">
-      <SbColors color-name="#fffbeb" name="Yellow 50" />
-      <SbColors color-name="#fef3c7" name="Yellow 100" />
-      <SbColors color-name="#fde58a" name="Yellow 200" />
-      <SbColors color-name="#fbce41" name="Yellow 300" />
-      <SbColors color-name="#fabd25" name="Yellow 400" />
-      <SbColors color-name="#f49c0c" name="Yellow 500" />
-      <SbColors color-name="#d87507" name="Yellow 600" />
-      <SbColors color-name="#b3520a" name="Yellow 700" />
-      <SbColors color-name="#913f0f" name="Yellow 800" />
-      <SbColors color-name="#78340f" name="Yellow 900" />
-      <SbColors color-name="#451903" name="Yellow 950" />
+      <SbColors color-name="#FFF4D5" name="Yellow 50" />
+      <SbColors color-name="#FFE6AA" name="Yellow 100" />
+      <SbColors color-name="#ffd86a" name="Yellow 200" />
+      <SbColors color-name="#fbcd41" name="Yellow 300" />
+      <SbColors color-name="#fbc823" name="Yellow 400" />
+      <SbColors color-name="#f4b20b" name="Yellow 500" />
+      <SbColors color-name="#da9707" name="Yellow 600" />
+      <SbColors color-name="#b2750a" name="Yellow 700" />
+      <SbColors color-name="#8f5e0f" name="Yellow 800" />
+      <SbColors color-name="#76520f" name="Yellow 900" />
+      <SbColors color-name="#453003" name="Yellow 950" />
       </div>
 
       <br />
