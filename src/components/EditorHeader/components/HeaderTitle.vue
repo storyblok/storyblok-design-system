@@ -10,6 +10,7 @@
       <p>{{ headerTitle }}</p>
       <p class="sb-editor-header__subtitle">{{ headerSubtitle }}</p>
     </div>
+    <slot />
   </div>
 </template>
 

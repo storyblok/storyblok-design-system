@@ -24,6 +24,8 @@ export default {
 
     maxlength: 60,
     mask: '####-##-##',
+
+    autoGrow: false,
   },
 }
 
@@ -359,6 +361,7 @@ export const TextArea = (args) => ({
         :readonly="readonly"
         native-value="Boris Spassky"
         :maxlength="maxlength"
+        :auto-grow="autoGrow"
         v-model="internalValue"
       /><br>
     </div>

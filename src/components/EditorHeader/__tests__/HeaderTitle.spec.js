@@ -22,4 +22,21 @@ describe('Test if Header title renderer correctly', () => {
 
     expect(wrapper.findComponent(SbButton).exists()).toBe(true)
   })
+
+  it('Test to check if the default slot renders correctly', () => {
+    const defaultSlotText = 'Just a text'
+    const wrapper = mount(SbHeaderTitle, {
+      props: {
+        headerTitle: 'Awesome cms',
+        headerSubtitle: 'Its true',
+      },
+      slots: {
+        default: `<span data-testid="default-slot-text"> ${defaultSlotText} </span>`,
+      },
+    })
+
+    expect(wrapper.find('[data-testid="default-slot-text"]').text()).toBe(
+      defaultSlotText,
+    )
+  })
 })

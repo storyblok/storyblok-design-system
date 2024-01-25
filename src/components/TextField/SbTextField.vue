@@ -62,6 +62,7 @@
           @keydown="handleKeyDownInput"
           @keypress="handleKeyPressInput"
           @keyup="handleKeyUpInput"
+          @input="resize"
         />
 
         <SbIcon
@@ -90,6 +91,7 @@
         </SbTooltip>
         <SbIcon
           v-if="hasIconRight"
+          v-tooltip="iconRightDescription"
           :name="iconRight"
           class="sb-textfield__icon sb-textfield__icon--right"
           :color="iconColor"
@@ -176,6 +178,14 @@ export default {
       default: '',
     },
     inlineLabel: {
+      type: String,
+      default: '',
+    },
+    autoGrow: {
+      type: Boolean,
+      default: false,
+    },
+    iconRightDescription: {
       type: String,
       default: '',
     },
@@ -328,9 +338,21 @@ export default {
 
   mounted() {
     if (this.autofocus) this.handleAutoFocus()
+    this.resize()
   },
 
   methods: {
+    resize() {
+      if (!this.autoGrow) {
+        return
+      }
+
+      let element = this.$refs['textfield']
+      element.style.minHeight = 'auto'
+      element.style.height = 'auto'
+      element.style.height = element.scrollHeight + 'px'
+    },
+
     handleAutoFocus() {
       this.$nextTick(() => this.$refs.textfield?.focus())
     },
