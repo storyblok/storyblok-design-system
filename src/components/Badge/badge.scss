@@ -24,7 +24,7 @@
   }
 
   &--warning {
-    @include setColor($orange-500);
+    @include setColor($yellow-500);
   }
 
   &--info {

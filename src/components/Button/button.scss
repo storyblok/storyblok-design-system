@@ -89,11 +89,11 @@
 }
 
 .sb-button--caution {
-  background-color: $orange-500;
+  background-color: $yellow-500;
 
   &:hover:not([disabled]),
   &:focus:not([disabled]) {
-    background-color: $orange-600;
+    background-color: $yellow-600;
   }
 }
 

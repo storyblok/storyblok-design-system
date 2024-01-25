@@ -106,34 +106,6 @@ export const AllColors = () => ({
       <SbColors color-name="#333338" name="Gray 950" />
       </div>
 
-      <pre><code>
-      $blue-gray-50: #f6f8f9;
-      $blue-gray-100: #ebeff3;
-      $blue-gray-200: #d4dce3;
-      $blue-gray-300: #aebecb;
-      $blue-gray-400: #819aaf;
-      $blue-gray-500: #627e95;
-      $blue-gray-600: #4d657c;
-      $blue-gray-700: #415467; // basis color
-      $blue-gray-800: #374655;
-      $blue-gray-900: #313d49;
-      $blue-gray-950: #212830;
-      </code></pre>
-
-      <div class="palette">
-      <SbColors color-name="#f6f8f9" name="Blue Gray 50" />
-      <SbColors color-name="#ebeff3" name="Blue Gray 100" />
-      <SbColors color-name="#d4dce3" name="Blue Gray 200" />
-      <SbColors color-name="#aebecb" name="Blue Gray 300" />
-      <SbColors color-name="#819aaf" name="Blue Gray 400" />
-      <SbColors color-name="#627e95" name="Blue Gray 500" />
-      <SbColors color-name="#4d657c" name="Blue Gray 600" />
-      <SbColors color-name="#415467" name="Blue Gray 700" />
-      <SbColors color-name="#374655" name="Blue Gray 800" />
-      <SbColors color-name="#313d49" name="Blue Gray 900" />
-      <SbColors color-name="#212830" name="Blue Gray 950" />
-      </div>
-
       <br />
 
       <pre><code>
@@ -239,38 +211,6 @@ export const AllColors = () => ({
       <SbColors color-name="#78340f" name="Yellow 900" />
       <SbColors color-name="#451903" name="Yellow 950" />
       </div>
-
-
-      <br />
-
-      <pre><code>
-      $orange-50: #fffdea;
-      $orange-100: #fff7c5;
-      $orange-200: #ffef85;
-      $orange-300: #ffe046;
-      $orange-400: #ffce1b;
-      $orange-500: #ffac00; // basis color
-      $orange-600: #e28200;
-      $orange-700: #bb5b02;
-      $orange-800: #984608;
-      $orange-900: #7c390b;
-      $orange-950: #481c00;
-      </code></pre>
-
-      <div class="palette">
-      <SbColors color-name="#fffdea" name="Orange 50" />
-      <SbColors color-name="#fff7c5" name="Orange 100" />
-      <SbColors color-name="#ffef85" name="Orange 200" />
-      <SbColors color-name="#ffe046" name="Orange 300" />
-      <SbColors color-name="#ffce1b" name="Orange 400" />
-      <SbColors color-name="#ffac00" name="Orange 500" />
-      <SbColors color-name="#e28200" name="Orange 600" />
-      <SbColors color-name="#bb5b02" name="Orange 700" />
-      <SbColors color-name="#984608" name="Orange 800" />
-      <SbColors color-name="#7c390b" name="Orange 900" />
-      <SbColors color-name="#481c00" name="Orange 950" />
-      </div>
-
 
       <br />
 
