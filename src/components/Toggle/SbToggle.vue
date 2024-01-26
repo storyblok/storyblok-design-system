@@ -60,7 +60,7 @@ export default {
     },
     indeterminate: Boolean,
   },
-  emits: ['update:modelValue', 'disabled-click'],
+  emits: ['update:modelValue', 'click'],
 
   computed: {
     componentClasses() {
@@ -72,9 +72,7 @@ export default {
       this.$emit('update:modelValue', e.target.checked)
     },
     handleClick() {
-      if (this.disabled) {
-        this.$emit('disabled-click')
-      }
+      this.$emit('click', { isDisabled: this.disabled })
     },
   },
 }
