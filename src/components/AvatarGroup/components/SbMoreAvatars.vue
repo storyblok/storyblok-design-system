@@ -26,7 +26,7 @@
   </span>
 </template>
 
-<script>
+<script lang="ts">
 import { truncate } from '../../../utils'
 import { ClickOutside } from '../../../directives'
 

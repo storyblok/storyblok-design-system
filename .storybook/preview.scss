@@ -1,3 +1,5 @@
+@import '../src/assets/styles/helper-classes.scss';
+
 body {
   margin: 20px;
 }
@@ -20,6 +22,14 @@ body {
 
 .mr-20 {
   margin-right: 20px;
+}
+
+.list-none {
+  list-style: none;
+}
+
+.align-self-center {
+  align-self: center !important;
 }
 
 .sb-show-main.sb-main-centered #storybook-root,

@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbButton from '../../Button'
 export default {
   name: 'SbSidebarToggle',

@@ -26,7 +26,7 @@
   </SbPopover>
 </template>
 
-<script>
+<script lang="ts">
 import SbMenuListItems from './MenuListItems'
 import SbPopover from '../Popover'
 

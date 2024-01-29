@@ -23,7 +23,7 @@
   </Transition>
 </template>
 
-<script>
+<script lang="ts">
 import SbBlokUi from '../BlockUI'
 import SbIcon from '../Icon'
 export default {

@@ -28,7 +28,7 @@
   </button>
 </template>
 
-<script>
+<script lang="ts">
 import SbIcon from '../../Icon'
 import { Tooltip } from '../../../directives'
 import SbButton from '../../Button/SbButton'

@@ -32,7 +32,7 @@
   </SbPortal>
 </template>
 
-<script>
+<script lang="ts">
 import SbBlokUi from '../BlockUI'
 import SbPortal from '../Portal'
 import { randomString } from '../../utils'

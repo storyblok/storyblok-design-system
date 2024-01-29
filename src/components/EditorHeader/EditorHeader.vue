@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import HeaderTitle from './components/HeaderTitle'
 import HeaderActions from './components/HeaderActions'
 

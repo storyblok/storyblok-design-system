@@ -72,7 +72,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbSelectListItem from './SelectListItem'
 import SbLoading from '../../Loading'
 

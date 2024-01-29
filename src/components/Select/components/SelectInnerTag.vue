@@ -37,7 +37,7 @@
   </SbTag>
 </template>
 
-<script>
+<script lang="ts">
 import SbTag from '../../Tag'
 import SbAvatar from '../../Avatar'
 
@@ -71,8 +71,8 @@ export default {
       default: false,
     },
     valueTagCount: {
-      type: String,
-      default: '',
+      type: Number,
+      default: 0,
     },
     isTagAvatarVisible: {
       type: Boolean,
@@ -88,7 +88,7 @@ export default {
     },
     tagsCountTooltip: {
       type: Object,
-      required: true,
+      required: false,
     },
   },
 

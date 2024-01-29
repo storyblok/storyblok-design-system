@@ -10,7 +10,7 @@
     </SbMenu>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { SbMenu, SbMenuButton, SbMenuList } from '../Menu'
 export default {
   name: 'SbCardOptions',

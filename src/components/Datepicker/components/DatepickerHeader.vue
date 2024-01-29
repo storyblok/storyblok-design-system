@@ -46,7 +46,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import dayjs from 'dayjs'
 
 import SbIcon from '../../Icon'

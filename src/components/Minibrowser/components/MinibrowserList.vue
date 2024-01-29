@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbMiniBrowserListItem from './MinibrowserListItem'
 import SbMiniBrowserListHeader from './MinibrowserListHeader'
 

@@ -9,7 +9,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@components': fileURLToPath(
-        new URL('./src/components', import.meta.url)
+        new URL('./src/components', import.meta.url),
       ),
       '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
       '@styles': fileURLToPath(new URL('src/assets/styles', import.meta.url)),
@@ -30,7 +30,7 @@ export default defineConfig({
   build: {
     sourcemap: true,
     lib: {
-      entry: resolve(__dirname, 'src/main.js'),
+      entry: resolve(__dirname, 'src/main.ts'),
       name: 'BlokInkPlugin',
       formats: ['es', 'cjs', 'umd'],
       fileName: 'storyblok-design-system',

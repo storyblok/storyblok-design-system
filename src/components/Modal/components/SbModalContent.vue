@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import DOMPurify from 'dompurify'
 
 export default {

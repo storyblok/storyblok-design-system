@@ -1,0 +1,41 @@
+.sb-skeleton {
+  overflow: hidden;
+  background-color: #e5e7eb;
+  border-radius: $base-border-radius;
+
+  &--circle {
+    border-radius: 50%;
+  }
+
+  &--none::after {
+    animation: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgb(255 255 255 / 0%),
+      rgb(255 255 255 / 40%),
+      rgb(255 255 255 / 0%)
+    );
+    animation: sb-skeleton-animation 1.2s infinite;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes sb-skeleton-animation {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}

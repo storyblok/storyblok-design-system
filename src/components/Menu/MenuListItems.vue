@@ -13,7 +13,7 @@
   </ul>
 </template>
 
-<script>
+<script lang="ts">
 import SbMenuItem from './MenuItem'
 import SbMenuSeparator from './MenuSeparator'
 import SbMenuGroup from './MenuGroup'
