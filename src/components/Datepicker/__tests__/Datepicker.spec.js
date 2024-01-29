@@ -31,10 +31,6 @@ describe('SbDatepicker component', () => {
       expect(wrapper.emitted('update:modelValue')[0]).toEqual([
         '2021/12/02 00:00',
       ])
-<<<<<<< HEAD
-=======
-      expect(wrapper.vm.internalValue).toBe('2021-12-01 19:00')
->>>>>>> main
     })
   })
 
@@ -107,11 +103,7 @@ describe('SbDatepicker component', () => {
       })
 
       expect(wrapper.find('.sb-textfield__inner-label').text()).toBe(
-<<<<<<< HEAD
         'Inline label'
-=======
-        'Inline label',
->>>>>>> main
       )
     })
 
