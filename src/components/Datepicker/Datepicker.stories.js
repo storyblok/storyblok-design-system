@@ -5,7 +5,7 @@ import { datepickerOptions } from './utils'
 const Template = (args) => ({
   components: { SbDatepicker },
 
-  setup: () => ({ args }),
+  props: Object.keys(args),
 
   data: () => ({
     internalDatetimeValue: Array.isArray(args.modelValue)
@@ -17,7 +17,11 @@ const Template = (args) => ({
     <div class="large">
       <SbDatepicker
         v-model="internalDatetimeValue"
-        v-bind="args"
+        :disabled="disabled"
+        :placeholder="placeholder"
+        :time-zone="timeZone"
+        :tz-tooltip="tzTooltip"
+        :type="type"
         style="width: 29.4rem"
         :min-date="minDate"
         :max-date="maxDate"
