@@ -3,10 +3,8 @@
     <span
       v-for="(dayItem, key) in days"
       :key="key"
-<<<<<<< HEAD
       :class="returnClasses(dayItem)"
       @click.stop="handleDayClick(dayItem)"
-=======
       class="sb-datepicker-days__item"
       :class="{
         'sb-datepicker-days__item--inactive': !dayItem.inMonth,
@@ -16,7 +14,6 @@
       }"
       :data-testid="dayItem.dataTestid"
       @click="($evt) => handleDayClick($evt, dayItem)"
->>>>>>> main
     >
       {{ dayItem.label }}
     </span>
@@ -52,15 +49,12 @@ export default {
       type: Boolean,
       default: false,
     },
-<<<<<<< HEAD
     range: {
       type: Array,
       default: () => [],
-=======
     dataTestid: {
       type: String,
       default: null,
->>>>>>> main
     },
   },
 
@@ -173,7 +167,6 @@ export default {
       )
     },
 
-<<<<<<< HEAD
     returnClasses(dayItem) {
       return [
         'sb-datepicker-days__item',
@@ -200,10 +193,8 @@ export default {
         dayjs(this.range[0]).isSame(dateValue, 'day') ||
         dayjs(this.range[1]).isSame(dateValue, 'day')
       )
-=======
     getDataTestid(date) {
       return `${this.dataTestid}-day-${dayjs(date).format('MM-DD-YYYY')}`
->>>>>>> main
     },
   },
 }
