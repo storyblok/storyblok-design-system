@@ -19,15 +19,12 @@ const Template = (args) => ({
         v-model="internalDatetimeValue"
         v-bind="args"
         style="width: 29.4rem"
-<<<<<<< HEAD
         :min-date="minDate"
         :max-date="maxDate"
         :minute-range="minuteRange"
         :disabled-past="disabledPast"
         :inline-label="inlineLabel"
         :hour-format="hourFormat"
-=======
->>>>>>> main
       />
     </div>
   `,
