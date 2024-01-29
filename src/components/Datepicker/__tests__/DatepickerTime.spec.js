@@ -8,7 +8,6 @@ import { TIMEZONES_LIST } from '../../../utils'
 const INTERNAL_DATE = '2021-12-02 00:00'
 
 describe('SbDatepickerTime component', () => {
-<<<<<<< HEAD
   const defaultComponentMounted = mountAttachingComponent(SbDatepickerTime, {
     props: {
       internalDate: INTERNAL_DATE,
@@ -72,7 +71,6 @@ describe('SbDatepickerTime component', () => {
     expect(defaultComponentMounted.emitted('input-timezone')[0]).toEqual([
       HawaiiTimeZone,
     ])
-=======
   describe('Test component method to handle the TIME', () => {
     it('Should make a direct call method on click in HOURS', async () => {
       const handleHourClick = vi.spyOn(
@@ -108,6 +106,5 @@ describe('SbDatepickerTime component', () => {
       wrapper.vm.$_processInput()
       expect(wrapper.emitted('update:modelValue')[0].length).toBe(1)
     })
->>>>>>> main
   })
 })
