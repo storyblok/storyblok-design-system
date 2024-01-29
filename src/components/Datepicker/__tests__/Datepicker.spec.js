@@ -103,7 +103,7 @@ describe('SbDatepicker component', () => {
       })
 
       expect(wrapper.find('.sb-textfield__inner-label').text()).toBe(
-        'Inline label'
+        'Inline label',
       )
     })
 
