@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   padding: 0 11px 0 $s-1;
-  color: $white;
+ color: $text-white;
   font-size: $font-13;
   font-weight: $font-medium;
   letter-spacing: 0;
@@ -20,19 +20,19 @@
   border-radius: $base-border-radius;
 
   &--positive {
-    @include setColor($green);
+    @include setColor($green-500);
   }
 
   &--warning {
-    @include setColor($orange);
+    @include setColor($yellow-500);
   }
 
   &--info {
-    @include setColor($blue);
+    @include setColor($blue-600);
   }
 
   &--negative {
-    @include setColor($red);
+    @include setColor($red-400);
   }
 
   &--only-icon {
@@ -56,11 +56,11 @@
 
   &--inline-label {
     padding: 0;
-    background-color: $white;
+    background: $bg-white;
 
     .sb-badge__label {
       margin-left: 5px;
-      color: $color-primary-dark;
+      color: $text-dark-blue;
       font-size: $font-14;
       font-weight: $font-medium;
     }

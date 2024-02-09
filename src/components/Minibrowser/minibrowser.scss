@@ -12,7 +12,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   // components
   &__input-container {
     position: relative;
-    color: $sb-dark-blue-50;
+    color: $text-gray;
 
     &-icon {
       position: absolute;
@@ -34,7 +34,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     padding: 10px $general-padding 0;
 
     .sb-breadcrumbs__item--active {
-      color: $sb-dark-blue-50;
+      color: $text-gray;
     }
   }
 
@@ -52,6 +52,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     overflow-y: auto;
     max-height: 250px;
     padding: 13.5px 0;
+    @include scrollbar($bg-white, $bg-gray, 8px);
   }
 
   &__list-header {
@@ -66,7 +67,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
       flex: 1;
       margin: 0;
       padding: 0;
-      color: $sb-dark-blue-50;
+      color: $text-gray;
     }
 
     &-icon {
@@ -85,7 +86,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     align-items: center;
     margin-bottom: 1px;
     padding: 9px $general-padding;
-    background-color: $white;
+    background: $bg-white;
 
     &-container {
       flex: 1;
@@ -96,7 +97,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
     &-name {
       display: flex;
       align-items: center;
-      color: $color-primary-dark;
+      color: $text-dark-blue;
       font-size: $font-14;
     }
 
@@ -104,7 +105,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
       display: block;
       overflow: hidden;
       margin-top: 2px;
-      color: $light-gray;
+      color: $text-gray-light;
       font-size: $font-12;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -118,7 +119,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
       flex: 0 0 auto;
       margin-left: 2px;
       padding: 3px;
-      background-color: $light-50;
+      background: $bg-gray-100;
       border: transparent;
       border-radius: $base-border-radius;
       cursor: pointer;
@@ -141,7 +142,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
 
     &:hover,
     &:focus {
-      background-color: $light-50;
+      background: $bg-gray-50;
       cursor: pointer;
     }
   }
@@ -149,7 +150,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
   &__not-found {
     margin: $s-4 0 0 0;
     padding-bottom: $s-3;
-    color: $sb-dark-blue-50;
+    color: $text-gray;
     font-size: $font-13;
     text-align: center;
   }
@@ -186,7 +187,7 @@ $full-height-padding: $general-padding - $padding-full-height-difference;
 
   &__input-container-clear .sb-icon:hover,
   &__input-container-clear .sb-icon:focus {
-    color: $sb-dark-blue-50;
+    color: $text-gray;
   }
 
   &--full-height &__breadcrumbs {

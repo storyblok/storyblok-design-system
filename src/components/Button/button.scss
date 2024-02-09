@@ -16,6 +16,11 @@
     vertical-align: middle;
   }
 
+  &:focus-visible {
+    outline-offset: 2px;
+    outline: 1px solid currentcolor;
+  }
+
   .sb-loading {
     position: absolute;
   }
@@ -29,68 +34,78 @@
 .sb-button--danger,
 .sb-button--caution {
   padding: $s-3 28px;
-  color: $white;
+  color: $text-white;
 }
 
 .sb-button--primary {
-  background-color: $sb-green;
+  background: $bg-teal;
 
-  &:focus {
-    outline: 3px solid $sb-green-25;
+  &:focus-visible {
+    outline-color: $border-teal-focus;
   }
 
   &:hover:not([disabled]),
   &:focus:not([disabled]) {
-    background-color: darken($sb-green, 4%);
+    background: $bg-teal-hover;
   }
 }
 
 .sb-button--secondary {
-  background-color: $sb-dark-blue;
+  background: $bg-dark-blue;
 
   &:focus {
-    outline: 3px solid $sb-dark-blue-25;
+    outline-color: $border-dark-blue-focus;
   }
 
   &:hover:not([disabled]),
   &:focus:not([disabled]) {
-    background-color: $sb-dark-blue-75;
+    background: $bg-dark-blue-hover;
   }
 }
 
 .sb-button--tertiary {
-  color: $sb-dark-blue;
-  background-color: $white;
-  border-color: $light;
+  color: $text-dark-blue;
+  background: $bg-white;
+  border-color: $border-gray-light;
 
-  &:focus {
-    outline: 3px solid $light-25;
+  &:focus-visible {
+    outline-color: $border-gray-light;
   }
 
   &:hover:not([disabled]),
   &:focus:not([disabled]) {
-    background-color: $light-50;
+    background: $bg-gray-100;
   }
 
   .sb-loading svg {
-    color: $sb-dark-blue;
-    fill: $sb-dark-blue;
+    color: $text-dark-blue;
+    fill: $bg-dark-blue;
   }
 }
 
 .sb-button--danger {
-  background-color: $red;
+  background: $bg-red;
 
-  &:focus {
-    outline: 3px solid $red-25;
+  &:hover:not([disabled]),
+  &:focus:not([disabled]) {
+    background: $bg-red-hover;
+  }
+
+  &:focus-visible {
+    outline-color: $border-red;
   }
 }
 
 .sb-button--caution {
-  background-color: $orange;
+  background: $bg-yellow;
 
-  &:focus {
-    outline: 3px solid $orange-25;
+  &:hover:not([disabled]),
+  &:focus:not([disabled]) {
+    background: $bg-yellow-hover;
+  }
+
+  &:focus-visible {
+    outline-color: $border-yellow;
   }
 }
 
@@ -118,8 +133,8 @@
   cursor: not-allowed;
 
   &:not(.sb-button--loading) {
-    color: $light-gray;
-    background-color: $light;
+    color: $text-gray;
+    background: $bg-gray-100;
 
     .sb-icon {
       opacity: 0.5;
@@ -128,7 +143,6 @@
 }
 
 // button sizes
-
 .sb-button--small {
   min-height: 36px;
   padding: $s-2 $s-4;
@@ -227,11 +241,11 @@
 }
 
 .sb-button--inverted-link {
-  color: $white;
+  color: $text-white;
   background: transparent;
 }
 
 .sb-button--primary-link {
-  color: $sb-green;
+  color: $text-teal;
   background: transparent;
 }

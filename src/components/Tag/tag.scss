@@ -1,10 +1,10 @@
-@mixin setColor($color, $textColor) {
+@mixin setColor($textColor, $bgColor, $hoverColor) {
   color: $textColor;
-  background-color: $color;
+  background-color: $bgColor;
 
   &:hover,
   &:focus {
-    background-color: darken($color, 5%);
+    background-color: $hoverColor;
   }
 }
 
@@ -34,39 +34,35 @@
   }
 
   &--primary {
-    @include setColor($sb-green-20, $sb-green);
+    @include setColor($teal-800, $teal-100, $teal-200);
   }
 
   &--success {
-    @include setColor($green-20, $green);
+    @include setColor($green-700, $green-100, $green-200);
   }
 
   &--negative {
-    @include setColor($red-20, $red);
+    @include setColor($red-600, $red-100, $red-200);
   }
 
   &--warning {
-    @include setColor($orange-20, $primary-text-color);
+    @include setColor($yellow-800, $yellow-100, $yellow-200);
   }
 
   &--info {
-    @include setColor($blue-20, $blue);
+    @include setColor($blue-600, $blue-100, $blue-200);
   }
 
   &--light-grey {
-    @include setColor($light, $primary-text-color);
+    @include setColor($gray-950, $gray-100, $gray-200);
   }
 
   &--dark-grey {
-    @include setColor($neutral-gray, $white);
+    @include setColor($gray-950, $gray-300, $gray-400);
   }
 
   &--dark-ink {
-    @include setColor($color-primary-dark, $white);
-  }
-
-  &--light-info {
-    @include setColor($blue-25, $primary-text-color);
+    @include setColor($dark-blue-950, $dark-blue-100, $dark-blue-200);
   }
 
   .sb-icon {

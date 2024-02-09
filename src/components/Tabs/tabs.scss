@@ -31,7 +31,7 @@
   align-items: center;
   margin-right: 25px;
   padding: 14px 2px;
-  color: $sb-dark-blue-50;
+  color: $text-gray;
   font-family: $primary-font-family;
   font-size: $font-14;
   font-weight: $font-medium;
@@ -42,13 +42,13 @@
 
   &:hover,
   &:focus {
-    color: $primary-text-color;
+    color: $text-teal;
   }
 }
 
 .sb-tab--is-active {
   z-index: 3;
-  color: $primary-text-color;
+  color: $text-dark-blue;
   font-weight: $font-medium;
 
   &::after {
@@ -58,12 +58,12 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background-color: $sb-green;
+    background: $bg-teal;
   }
 }
 
 .sb-tab:focus {
-  color: $sb-green;
+  color: $text-teal;
 }
 
 .sb-tab--editable {
@@ -95,10 +95,10 @@
   padding: 0;
   list-style-type: none;
 
-  @include scrollbar($white, $sb-dark-blue-25, 4px);
+  @include scrollbar($bg-white, $bg-gray, 4px);
 
   @include mq($until: sm) {
-    border-bottom: solid 1px $light;
+    border-bottom: solid 1px $gray-100;
   }
 
   &::after {
@@ -108,7 +108,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: $light;
+    background: $bg-gray-100;
 
     @include mq($until: sm) {
       display: none;
@@ -132,12 +132,12 @@
 .sb-tabs--container {
   .sb-tab--is-active {
     padding: $s-2;
-    border: 1px solid $light-gray;
+    border: 1px solid $border-gray-light;
     border-radius: $base-border-radius $base-border-radius 0 0;
     border-bottom: 0;
 
     &::after {
-      background-color: $white;
+      background: $bg-white;
     }
   }
 }

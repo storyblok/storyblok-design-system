@@ -8,7 +8,7 @@
   box-sizing: border-box;
   width: 100%;
   padding: 20px;
-  background-color: $black-trasparent;
+  background-color: $bg-dark-blue-transparent;
   inset: 0;
 
   @include mq($until: lg) {

@@ -799,6 +799,16 @@ const sidebarIcons = {
       </g>
     `,
   },
+  'sidebar-delete': {
+    viewBox: '0 0 24 24',
+    path: `
+      <g fill="none" fill-rule="evenodd">
+        <rect width="16" height="2" x="4" y="7" fill="currentColor" opacity=".6" rx="1"/>
+        <path fill="currentColor" fill-rule="evenodd" d="M18 9v9.5c0 .8-.9 1.5-1.7 1.5H7.7C7 20 6 19.2 6 18.5V9h12Zm-9 3a1 1 0 1 1 2 0v4a1 1 0 1 1-2 0v-4Zm5-1a1 1 0 0 0-1 1v4a1 1 0 1 0 2 0v-4c0-.6-.4-1-1-1Z" clip-rule="evenodd"/>
+        <rect width="6" height="2" x="9" y="4" fill="currentColor" opacity=".6" rx="1"/>
+      </g>
+    `,
+  },
   'sidebar-quickstart': {
     viewBox: '0 0 24 24',
     path: `

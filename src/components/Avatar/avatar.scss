@@ -24,7 +24,7 @@
 
   // initials
   &__initials {
-    color: $white;
+    color: $text-white;
     font-size: $font-12;
     font-weight: $font-medium;
     line-height: normal;
@@ -41,14 +41,14 @@
 
   &__text {
     display: block;
-    color: $primary-text-color;
+    color: $text-dark-blue;
     font-size: $font-13;
     font-weight: $font-medium;
   }
 
   &__description {
     display: block;
-    color: $light-gray;
+    color: $text-gray;
     font-size: $font-12;
     font-weight: $font-regular;
   }
@@ -79,6 +79,6 @@
     position: absolute;
     left: 30px;
     top: 5px;
-    border: 1px solid $white;
+    border: 1px solid $border-white;
   }
 }

@@ -16,7 +16,7 @@
   &__title {
     overflow: hidden;
     width: 100%;
-    color: $sb-dark-blue;
+    color: $text-dark-blue;
     font-size: $font-26;
     font-weight: $font-bold;
     line-height: 1.2;
@@ -36,7 +36,7 @@
 
   &__subtitle--bold,
   &__subtitle {
-    color: $sb-dark-blue-50;
+    color: $text-gray;
     font-size: $font-14;
     line-height: 1.3;
   }
@@ -65,7 +65,7 @@
   }
 
   &__btn-trashcan {
-    color: $sb-dark-blue-50;
+    color: $text-gray;
     border: 0;
   }
 }

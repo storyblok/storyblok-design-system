@@ -7,20 +7,20 @@
     z-index: 5;
     box-sizing: border-box;
     min-height: 100vh;
-    background-color: rgb(19 25 45 / 47%);
+    background-color: $bg-dark-blue-transparent;
     cursor: copy;
     inset: 0;
 
     .sb-drop-area__content {
       width: 90%;
-      background-color: $white;
+      background: $bg-white;
       border-radius: 50%;
       pointer-events: none;
       aspect-ratio: 1/1;
     }
 
     .sb-drop-area__icon {
-      background-color: $sb-green-25;
+      background: $bg-teal;
 
       svg {
         width: $s-8;
@@ -47,7 +47,7 @@
 
   &__title {
     margin: 20px 0 10px;
-    color: $primary-text-color;
+    color: $text-teal;
     font-size: $font-20;
     font-weight: $font-medium;
     text-align: center;
@@ -56,13 +56,14 @@
   &__subtitle {
     width: 80%;
     margin: 0 auto;
-    color: $light-gray;
+    color: $text-gray;
     font-size: $font-size-default;
-    font-weight: $font-regular;
+    font-weight: $font-18;
+    line-height: 1.2;
     text-align: center;
 
     span {
-      color: $sb-green;
+      color: $text-teal;
       cursor: pointer;
 
       &:hover,
@@ -79,7 +80,7 @@
     width: 104px;
     height: 104px;
     margin-bottom: $s-4;
-    background-color: $white;
+    background: $bg-white;
     border-radius: 50%;
     transition: $base-transition;
 
