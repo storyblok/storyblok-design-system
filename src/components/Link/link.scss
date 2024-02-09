@@ -2,7 +2,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  color: $color-primary;
+ color: $text-teal;
   font-size: 1em;
   font-weight: $font-medium;
   line-height: 20px;
@@ -19,7 +19,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: $color-primary;
+    background: $bg-teal;
     opacity: 0;
   }
 
@@ -30,10 +30,10 @@
 
   // color variants
   &--white {
-    color: $white;
+   color: $text-white;
 
     &::after {
-      background-color: $white;
+      background: $bg-white;
     }
 
     &:hover:not([disabled])::after,

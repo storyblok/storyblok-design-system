@@ -6,20 +6,17 @@ name: 'Unit Tests'
 # and a push to develop and master branches
 on:
   push:
-    branches: [ master, develop, next ]
+    branches: [ master, develop, main ]
   pull_request:
-    branches: [ master, develop, next ]
+    branches: [ master, develop, main ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-        cache: 'yarn'
     - run: yarn
     - run: yarn test:unit

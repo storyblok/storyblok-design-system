@@ -4,7 +4,7 @@
   width: 100%;
   max-width: 602px;
   margin: 0 auto;
-  background-color: $white;
+  background: $bg-white;
   border-radius: $base-border-radius;
   box-shadow: 0 3px 44px 13px rgb(0 0 0 / 8%);
 
@@ -47,7 +47,7 @@
 
   &__time-left {
     margin-left: auto;
-    color: $sb-dark-blue-50;
+    color: $text-gray;
     font-size: $font-14;
     font-weight: $font-regular;
   }

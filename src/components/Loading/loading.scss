@@ -10,19 +10,19 @@
   }
 
   &__bar::-webkit-progress-value {
-    background: $sb-green;
+    background: $bg-teal;
   }
 
   &__bar[value]::-webkit-progress-bar {
-    background: $light;
+    background: $bg-gray-100;
   }
 
   &__bar::-moz-progress-bar {
-    background: $sb-green;
+    background: $bg-teal;
   }
 
   &__bar::-ms-fill {
-    background-color: $sb-green;
+    background: $bg-teal;
   }
 
   &__bar-label {
@@ -113,8 +113,8 @@
 
     margin: 0;
     padding: 0;
-    background: $light-50;
-    background: linear-gradient(to right, $light-50 4%, $light 25%, $light-50 36%);
+    background: $bg-gray-100;
+   background: linear-gradient(to right, $bg-gray-100 4%, $bg-gray-100 25%, $bg-gray-100 36%);
     background-size: 1000px 100%;
     border-radius: $base-border-radius;
     animation: shimmer 2s infinite linear;

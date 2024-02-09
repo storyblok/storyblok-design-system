@@ -43,8 +43,8 @@
   top: 0;
   display: flex;
   padding: $s-1;
-  color: $white;
-  background: $sb-green;
+  color: $text-white;
+  background: $bg-teal;
   border-radius: 100%;
 
   .sb-icon {
@@ -61,7 +61,7 @@
   width: $s-8;
   height: $s-8;
   margin: 0 auto 25px;
-  background-color: $sb-green-25;
+  background: $bg-teal-light;
   border-radius: 50%;
 
   .sb-icon {
@@ -72,7 +72,7 @@
 .sb-empty-state__title {
   max-width: 600px;
   margin-bottom: $s-2;
-  color: $sb-dark-blue;
+  color: $text-dark-blue;
   font-size: $font-20;
   font-weight: $font-medium;
 }
@@ -80,7 +80,7 @@
 .sb-empty-state__text {
   max-width: 390px;
   margin: 0 0 $s-4;
-  color: $sb-dark-blue-50;
+  color: $text-gray;
   font-size: $font-14;
   line-height: 22px;
 }
@@ -94,14 +94,14 @@
   font-size: $font-14;
 
   .sb-link {
-    color: $sb-dark-blue;
+    color: $text-dark-blue;
   }
 }
 
 .sb-empty-state__router {
   position: relative;
   margin-top: 10px;
-  color: $neutral-gray;
+  color: $text-gray-light;
   font-size: $font-14;
   font-weight: $font-medium;
   line-height: 20px;
@@ -116,7 +116,7 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background-color: $neutral-gray;
+  background: $bg-gray;
   opacity: 0;
 }
 

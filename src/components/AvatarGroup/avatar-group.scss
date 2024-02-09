@@ -1,6 +1,6 @@
 @mixin avatarGroupItem {
   background-clip: padding-box;
-  border: 2px solid $white;
+  border: 2px solid $border-white;
   border-radius: 100%;
 }
 
@@ -34,10 +34,10 @@
     position: relative;
     z-index: 1;
     margin-left: -10px;
-    color: $color-primary-dark;
+    color: $text-dark-blue;
     font-size: $font-12;
     font-weight: $font-regular;
-    background-color: $light-75;
+    background: $bg-gray-100;
     cursor: pointer;
 
     @include avatarGroupItem;
@@ -45,12 +45,12 @@
     @include avatarComponentSize(36px);
   }
 
-  >.sb-avatar:first-child {
+  > .sb-avatar:first-child {
     margin-left: 0;
   }
 
-  >.sb-avatar:hover,
-  >.sb-avatar:focus {
+  > .sb-avatar:hover,
+  > .sb-avatar:focus {
     .sb-avatar__image,
     .sb-avatar__initials {
       z-index: 99999;
@@ -79,10 +79,10 @@
 
   // color variants
   &--dark-bg {
-    >.sb-avatar .sb-avatar__image,
-    >.sb-avatar .sb-avatar__initials,
-    >.sb-avatar-group__more {
-      border: 3px solid $color-primary-dark;
+    > .sb-avatar .sb-avatar__image,
+    > .sb-avatar .sb-avatar__initials,
+    > .sb-avatar-group__more {
+      border: 3px solid $border-dark-blue;
     }
   }
 
@@ -96,8 +96,8 @@
     min-width: 210px;
     padding: 15px;
     text-align: left;
-    background-color: $white;
-    border: 1px solid $light;
+    background: $bg-white;
+    border: 1px solid $border-gray-light;
     border-radius: $s-1;
     box-shadow: $box-shadow-default;
 
@@ -134,7 +134,7 @@
       }
     }
 
-    &[aria-hidden="false"] {
+    &[aria-hidden='false'] {
       display: block;
     }
   }

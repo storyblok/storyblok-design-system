@@ -4,7 +4,7 @@
   &__label {
     display: block;
     margin-bottom: 10px;
-    color: $sb-dark-blue;
+    color: $text-dark-blue;
     font-size: $font-14;
     font-weight: $font-medium;
     letter-spacing: 0;
@@ -27,7 +27,7 @@
       padding: 0;
       font-size: 13px;
       text-align: center;
-      background: $light-25;
+      background: $bg-gray-50;
       border: 0;
       border-left: 1px solid #dcdfe6;
       cursor: pointer;
@@ -40,7 +40,7 @@
     &--increase {
       bottom: initial;
       top: 1px;
-      border-radius: 0 $base-border-radius  0 0;
+      border-radius: 0 $base-border-radius 0 0;
     }
 
     &--decrease {
@@ -59,7 +59,7 @@
   &__input {
     width: 100%;
     padding: 13.5px 17px;
-    color: $sb-dark-blue;
+    color: $text-dark-blue;
     font-size: $font-14;
     border-radius: $base-border-radius;
     appearance: textfield;
@@ -71,35 +71,35 @@
     }
 
     &:disabled {
-      background: $light-25;
-      border: 1px solid $light !important;
+      background: $bg-gray-50;
+      border: 1px solid $border-gray-light !important;
       cursor: not-allowed;
     }
 
     &::placeholder {
-      color: $sb-dark-blue-50;
+      color: $text-gray;
       font-size: $font-14;
       font-weight: normal;
       letter-spacing: 0;
     }
 
     &--default {
-      border: 1px solid $light;
+      border: 1px solid $border-gray-light;
 
       &:hover {
-        border-color: $sb-green;
+        border-color: $border-teal;
       }
 
       &:focus {
         border-radius: $base-border-radius;
-        border-color: $sb-green;
-        box-shadow: 0 0 0 3px $sb-green-25;
+        border-color: $border-teal;
+        box-shadow: 0 0 0 3px $shadow-teal-100;
         outline: none;
       }
     }
 
     &--error {
-      border: 1px solid $red;
+      border: 1px solid $border-red;
 
       &:focus {
         box-shadow: 0 0 0 3px rgb(255 179 176 / 30%);
@@ -116,7 +116,7 @@
     letter-spacing: 0;
 
     &--error {
-      color: $sb-dark-blue-50;
+      color: $text-gray;
     }
   }
 }
@@ -126,7 +126,7 @@ input::-webkit-inner-spin-button {
   appearance: none;
 }
 
-@supports (-webkit-appearance:none) and (stroke-color:transparent) {
+@supports (-webkit-appearance: none) and (stroke-color: transparent) {
   .sb-numberfield__arrow--increase {
     top: 3px;
   }

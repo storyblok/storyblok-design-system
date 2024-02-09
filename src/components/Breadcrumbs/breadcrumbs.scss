@@ -18,7 +18,7 @@
     > .sb-breadcrumbs__item:last-child {
       width: 100%;
       margin-top: $s-3;
-      color: $primary-text-color;
+      color: $text-dark-blue;
       font-size: $font-26;
       font-weight: $font-bold;
 
@@ -59,7 +59,7 @@
 
     &:hover,
     &:focus {
-      background-color: $light-50;
+      background: $bg-gray-100;
     }
   }
 
@@ -70,16 +70,16 @@
 
 .sb-breadcrumbs__item {
   display: inline-flex;
-  color: $primary-text-color;
+  color: $text-dark-blue;
   font-size: $font-13;
   line-height: 2;
 
   &--active {
-    color: $color-primary-dark;
+    color: $text-dark-blue;
   }
 
   a {
-    color: $primary-text-color;
+    color: $text-dark-blue;
     text-decoration: none;
     cursor: pointer;
   }
@@ -98,7 +98,7 @@
   transition: 0.1s ease-in-out;
 
   &--active {
-    background-color: $light-50;
+    background: $bg-gray-100;
     transform: rotate(90deg);
   }
 }

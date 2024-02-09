@@ -10,7 +10,7 @@
     &__info {
       margin-bottom: 15px;
       padding-bottom: 15px;
-      border-bottom: 1px solid $light;
+      border-bottom: 1px solid $gray-100;
     }
   }
 
@@ -21,7 +21,7 @@
   &:not(&--inline) &__info {
     margin-bottom: 15px;
     padding-bottom: 15px;
-    border-bottom: 1px solid $light;
+    border-bottom: 1px solid $gray-100;
   }
 
   &--inline &__info {
@@ -33,14 +33,14 @@
   }
 
   &__legend {
-    color: $sb-dark-blue;
+    color: $text-dark-blue;
     font-size: $font-size-default;
     font-weight: $font-medium;
   }
 
   &__description {
     margin: 5px 0 0;
-    color: $sb-dark-blue-50;
+    color: $text-gray;
     font-size: $font-14;
     line-height: 1.3;
   }

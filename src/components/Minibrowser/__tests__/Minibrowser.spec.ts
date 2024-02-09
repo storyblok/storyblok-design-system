@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 
 import { waitMs } from '../../../utils/tests-utils'
 import { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader } from '..'
-import { WithGroupsSlot, MOCK_DATA } from '../Minibrowser.stories.js'
+import { WithGroupsSlot, MOCK_DATA } from '../Minibrowser.stories'
 
 import SbIcon from '../../Icon'
 

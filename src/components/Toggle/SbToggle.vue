@@ -1,5 +1,10 @@
 <template>
-  <div class="sb-toggle" :class="componentClasses">
+  <div
+    :data-testid="`wrapper-${id}`"
+    class="sb-toggle"
+    :class="componentClasses"
+    @click="handleClick"
+  >
     <input
       :id="id"
       v-model="internalValue"
@@ -28,7 +33,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import CheckboxRadioMixin from '../../mixins/checkbox-radio-mixin'
 import SbIcon from '../Icon'
 
@@ -38,7 +43,6 @@ export default {
     SbIcon,
   },
   mixins: [CheckboxRadioMixin],
-
   inheritAttrs: false,
 
   props: {
@@ -56,6 +60,8 @@ export default {
     },
     indeterminate: Boolean,
   },
+  emits: ['update:modelValue', 'click'],
+
   computed: {
     componentClasses() {
       return [this.variant ? `sb-toggle--${this.variant}` : '']
@@ -64,6 +70,9 @@ export default {
   methods: {
     handleInput(e) {
       this.$emit('update:modelValue', e.target.checked)
+    },
+    handleClick() {
+      this.$emit('click', { isDisabled: this.disabled })
     },
   },
 }

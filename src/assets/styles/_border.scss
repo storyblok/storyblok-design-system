@@ -1,8 +1,7 @@
-
-$light-border: 1px solid #dfe3e8;
+$base-border: 1px solid $border-gray-light;
 
 // Box-shadow
-$box-shadow-default: 0 2px 17px 3px rgb(34 42 69 / 7%);
+$box-shadow-default: 0 2px 17px 3px $shadow-dark-blue-transparent;
 
 // Border radius
 $base-border-radius: 8px;

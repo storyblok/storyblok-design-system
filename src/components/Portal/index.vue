@@ -4,7 +4,7 @@
   </Teleport>
 </template>
 
-<script>
+<script lang="ts">
 import { canUseDOM } from '../../utils'
 
 export default {

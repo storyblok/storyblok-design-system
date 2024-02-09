@@ -2,14 +2,14 @@
   &__label {
     display: inline-block;
     margin-bottom: 10px;
-    color: $light-gray;
+    color: $text-gray-light;
     font-size: $font-14;
     font-weight: $font-medium;
   }
 
   &__title {
     margin-bottom: 50px;
-    color: $sb-dark-blue;
+    color: $text-dark-blue;
     font-size: 5rem;
     font-weight: $font-medium;
   }
@@ -17,7 +17,7 @@
   &__subtitle {
     margin-bottom: 20px;
     margin-top: 30px;
-    color: $sb-dark-blue;
+    color: $text-dark-blue;
     font-size: 3rem;
     font-weight: $font-medium;
   }

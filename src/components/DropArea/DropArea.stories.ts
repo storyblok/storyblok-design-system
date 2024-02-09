@@ -80,6 +80,7 @@ export const Default = (args) => ({
     return { args }
   },
   template: `
+  <div style="min-height: 400px;">
     <SbDropArea
       :accept="accept"
       :subtitle="subtitle"
@@ -87,6 +88,7 @@ export const Default = (args) => ({
       :max-file="maxFile"
       :max-file-size="maxFileSize"
     />
+    </div>
   `,
 })
 

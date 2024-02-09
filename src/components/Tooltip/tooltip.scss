@@ -1,6 +1,6 @@
 @mixin tooltip($position) {
   &--#{$position} {
-    @if  $position=='top' {
+    @if $position== 'top' {
       .sb-tooltip__label {
         bottom: 125%;
         left: 50%;
@@ -14,7 +14,7 @@
       }
     }
 
-    @if  $position=='bottom' {
+    @if $position== 'bottom' {
       .sb-tooltip__label {
         left: 50%;
         top: 125%;
@@ -29,7 +29,7 @@
       }
     }
 
-    @if  $position=='left' {
+    @if $position== 'left' {
       .sb-tooltip__label {
         right: 125%;
         top: 50%;
@@ -43,7 +43,7 @@
       }
     }
 
-    @if  $position=='right' {
+    @if $position== 'right' {
       .sb-tooltip__label {
         left: 125%;
         top: 50%;
@@ -71,24 +71,24 @@
   box-shadow: 0 0 2px 1px rgb(0 0 0 / 8%);
 
   &--dark {
-    color: $white;
-    background-color: $color-primary-dark;
-    border: 1px solid $color-primary-dark;
+    color: $text-white;
+    background: $bg-dark-blue;
+    border: 1px solid $border-dark-blue;
 
     [data-popper-arrow]::before {
-      background: $color-primary-dark;
-      border: 1px solid $color-primary-dark;
+      background: $bg-dark-blue;
+      border: 1px solid $border-dark-blue;
     }
   }
 
   &--light {
-    color: $sb-dark-blue;
-    background-color: $white;
-    border: 1px solid $light;
+    color: $text-dark-blue;
+    background: $bg-white;
+    border: 1px solid $border-gray-light;
 
     [data-popper-arrow]::before {
-      background: $white;
-      border: 1px solid $light;
+      background: $bg-white;
+      border: 1px solid $border-gray-light;
     }
   }
 

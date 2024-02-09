@@ -59,23 +59,23 @@
   }
 
   &--positive {
-    background-color: $green-25;
+    background: $bg-green-light;
   }
 
   &--warning {
-    background-color: $yellow-25;
+    background: $bg-yellow-light;
   }
 
   &--info {
-    background-color: $blue-25;
+    background: $bg-blue-light;
   }
 
   &--negative {
-    background-color: $red-25;
+    background: $bg-red-light;
   }
 
   &--general {
-    background-color: $white;
+    background: $bg-white;
     border-radius: 10px;
 
     @include generalBoxShadow;
@@ -91,7 +91,7 @@
     overflow: hidden;
     vertical-align: middle;
     width: 75%;
-    color: $sb-dark-blue;
+    color: $text-dark-blue;
     font-size: $font-16;
     font-weight: $font-medium;
     text-overflow: ellipsis;
@@ -103,7 +103,7 @@
     overflow: hidden;
     margin-left: $s-6;
     margin-top: $s-3;
-    color: $sb-dark-blue;
+    color: $text-dark-blue;
     font-size: $font-14;
     font-weight: $font-regular;
     line-height: 1.2;
@@ -118,12 +118,12 @@
     text-overflow: ellipsis;
 
     a {
-      color: $primary-text-color;
+      color: $text-teal;
       font-size: $font-14;
       font-weight: $font-regular;
       text-decoration: none;
       text-decoration: underline;
-      text-decoration-color: $primary-text-color;
+      text-decoration-color: $text-teal;
     }
   }
 }

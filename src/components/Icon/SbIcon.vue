@@ -17,7 +17,7 @@
   ></svg>
 </template>
 
-<script>
+<script lang="ts">
 import { getSvgIcon, customIconNames } from './utils'
 import { availableColors } from '../../utils'
 import * as lucideIcons from 'lucide-vue-next'

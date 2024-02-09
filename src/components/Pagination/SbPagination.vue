@@ -83,7 +83,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import i18n from '../../i18n/index'
 
 import { Tooltip } from '../../directives'

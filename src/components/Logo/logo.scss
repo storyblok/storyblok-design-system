@@ -1,9 +1,9 @@
 .logo-storyblok {
   #text {
-    fill: $sb-dark-blue;
+    fill: $bg-dark-blue;
   }
 
   &--text-white #text {
-    fill: $white;
+    fill: $bg-white;
   }
 }

@@ -40,7 +40,7 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-  color: $sb-dark-blue;
+  color: $text-dark-blue;
   font-weight: $font-medium;
   letter-spacing: 0;
 }
@@ -71,14 +71,14 @@ button {
 
 .transparent-scroll::-webkit-scrollbar-thumb {
   background-clip: padding-box;
-  background-color: #c1c1c1;
+  background-color: $bg-gray;
   border-radius: 6px;
   border-left: 3px solid transparent;
   border-right: 3px solid transparent;
 
   &:hover,
   &:focus {
-    background-color: #7d7d7d;
+    background-color: $bg-gray;
   }
 }
 

@@ -23,7 +23,7 @@
   </SbButton>
 </template>
 
-<script>
+<script lang="ts">
 import { sharedProps } from '../Button/lib'
 import SbButton from '../Button'
 

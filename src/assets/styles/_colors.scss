@@ -1,92 +1,160 @@
-// Color pallete
+// the colors are based on the css color variables
+// in order to style them with different themes
+// or adjust colors to contrast needs
 // teal
-$sb-green: #00b3b0;
-$sb-green-100: #40bebb;
-$sb-green-75: #40c6c4;
-$sb-green-50: #7fd9d7;
-$sb-green-25: #d9f4f3;
-$sb-green-20: #ccf0ef;
+$teal-50: var(--sb-color-teal-50, #f7fdfc);
+$teal-100: var(--sb-color-teal-100, #d4f7f3);
+$teal-200: var(--sb-color-teal-200, #a4efe5);
+$teal-300: var(--sb-color-teal-300, #6fdcd3);
+$teal-400: var(--sb-color-teal-400, #45bfb9);
+$teal-500: var(--sb-color-teal-500, #24aea9);
+$teal-600: var(--sb-color-teal-600, #00b3b0);
+$teal-700: var(--sb-color-teal-700, #057f7f);
+$teal-800: var(--sb-color-teal-800, #0a6566);
+$teal-900: var(--sb-color-teal-900, #0d5454);
+$teal-950: var(--sb-color-teal-950, #003033);
+$teal: var(--sb-color-teal, #00b3b0); // basis color
 
-// Ink
-$sb-dark-blue: #1b243f;
-$sb-dark-blue-75: #545b6f;
-$sb-dark-blue-50: #8d919f;
-$sb-dark-blue-25: #c6c8cf;
+// dark blue
+$dark-blue-50: var(--sb-color-dark-blue-50, #f6f6f9);
+$dark-blue-100: var(--sb-color-dark-blue-100, #eeeef2);
+$dark-blue-200: var(--sb-color-dark-blue-200, #d7d7e0);
+$dark-blue-300: var(--sb-color-dark-blue-300, #b4b8c5);
+$dark-blue-400: var(--sb-color-dark-blue-400, #8b91a7);
+$dark-blue-500: var(--sb-color-dark-blue-500, #6a728a);
+$dark-blue-600: var(--sb-color-dark-blue-600, #545b6f);
+$dark-blue-700: var(--sb-color-dark-blue-700, #32467b);
+$dark-blue-800: var(--sb-color-dark-blue-800, #2b4169);
+$dark-blue-900: var(--sb-color-dark-blue-900, #262e48);
+$dark-blue-950: var(--sb-color-dark-blue-950, #1b243f);
+$dark-blue: var(--sb-color-dark-blue, #1b243f); // basis color
 
 // green
-$green: #2db47d;
-$green-75: #62c79e;
-$green-50: #96d9be;
-$green-25: #caecde;
-$green-20: #d5f0e5;
-$green-disabled: #004e4c;
+$green-50: var(--sb-color-green-50, #eefbf4);
+$green-100: var(--sb-color-green-100, #d7f4e3);
+$green-200: var(--sb-color-green-200, #b2e8cb);
+$green-300: var(--sb-color-green-300, #7fd6ac);
+$green-400: var(--sb-color-green-400, #4bbc8a);
+$green-500: var(--sb-color-green-500, #2db47d);
+$green-600: var(--sb-color-green-600, #1a8159);
+$green-700: var(--sb-color-green-700, #15674a);
+$green-800: var(--sb-color-green-800, #13523b);
+$green-900: var(--sb-color-green-900, #104432);
+$green-950: var(--sb-color-green-950, #08261d);
+$green: var(--sb-color-green, #2db47d); // basis color
 
 // yellow
-$yellow: #fbce41;
-$yellow-75: #fcdb71;
-$yellow-50: #fde6a0;
-$yellow-25: #fef3cf;
-$yellow-20: #fef5d9;
+$yellow-50: var(--sb-color-yellow-50, #fff4d5);
+$yellow-100: var(--sb-color-yellow-100, #ffe6aa);
+$yellow-200: var(--sb-color-yellow-200, #ffd86a);
+$yellow-300: var(--sb-color-yellow-300, #fbcd41);
+$yellow-400: var(--sb-color-yellow-400, #fbc823);
+$yellow-500: var(--sb-color-yellow-500, #f4b20b);
+$yellow-600: var(--sb-color-yellow-600, #da9707);
+$yellow-700: var(--sb-color-yellow-700, #b2750a);
+$yellow-800: var(--sb-color-yellow-800, #8f5e0f);
+$yellow-900: var(--sb-color-yellow-900, #76520f);
+$yellow-950: var(--sb-color-yellow-950, #453003);
+$yellow: var(--sb-color-yellow, #fbcd41); // basis color
 
 // blue
-$blue: #395ece;
-$blue-75: #6b87db;
-$blue-50: #9caee6;
-$blue-25: #cdd7f3;
-$blue-20: #d7dff5;
-
-// orange
-$orange: #ffac00;
-$orange-75: #ffc140;
-$orange-50: #ffd57f;
-$orange-25: #ffeabf;
-$orange-20: #fec;
+$blue-50: var(--sb-color-blue-50, #f1f5fd);
+$blue-100: var(--sb-color-blue-100, #e0e9f9);
+$blue-200: var(--sb-color-blue-200, #c8d9f5);
+$blue-300: var(--sb-color-blue-300, #a2c1ee);
+$blue-400: var(--sb-color-blue-400, #75a0e5);
+$blue-500: var(--sb-color-blue-500, #557fdc);
+$blue-600: var(--sb-color-blue-600, #395ece);
+$blue-700: var(--sb-color-blue-700, #3751be);
+$blue-800: var(--sb-color-blue-800, #32449b);
+$blue-900: var(--sb-color-blue-900, #2d3c7b);
+$blue-950: var(--sb-color-blue-950, #1f274c);
+$blue: var(--sb-color-blue, #395ece); // basis color
 
 // red
-$red: #ff6159;
-$red-75: #ff8983;
-$red-50: #ffb0ac;
-$red-25: #ffd7d5;
-$red-20: #ffdfde;
+$red-50: var(--sb-color-red-50, #fff2f1);
+$red-100: var(--sb-color-red-100, #ffe2e1);
+$red-200: var(--sb-color-red-200, #ffcac7);
+$red-300: var(--sb-color-red-300, #ffa5a0);
+$red-400: var(--sb-color-red-400, #ff6159);
+$red-500: var(--sb-color-red-500, #f8443b);
+$red-600: var(--sb-color-red-600, #e5271d);
+$red-700: var(--sb-color-red-700, #c11c14);
+$red-800: var(--sb-color-red-800, #a01b14);
+$red-900: var(--sb-color-red-900, #841d18);
+$red-950: var(--sb-color-red-950, #480a07);
+$red: var(--sb-color-red, #ff6159); // basis color
 
-// light
-$light: #dfe3e8;
-$light-75: #e7eaee;
-$light-50: #eff1f3;
-$light-25: #f7f8f9;
-$light-gray: #b1b5be;
-$neutral-gray: #8d919c;
+// gray
+$gray-50: var(--sb-color-gray-50, #f6f7f8);
+$gray-100: var(--sb-color-gray-100, #ebecee);
+$gray-200: var(--sb-color-gray-200, #dbdde2);
+$gray-300: var(--sb-color-gray-300, #c3c7cd);
+$gray-400: var(--sb-color-gray-400, #b1b5be);
+$gray-500: var(--sb-color-gray-500, #8f93a2);
+$gray-600: var(--sb-color-gray-600, #7e8192);
+$gray-700: var(--sb-color-gray-700, #717384);
+$gray-800: var(--sb-color-gray-800, #5f616e);
+$gray-900: var(--sb-color-gray-900, #4f5059);
+$gray-950: var(--sb-color-gray-950, #333338);
+$gray: var(--sb-color-gray, #b1b5be); // basis color
 
 // general
-$black: #101525;
-$white: #fff;
-$black-trasparent: rgba($sb-dark-blue, 0.2);
-$blue-grey: #415467;
+$black: var(--sb-color-black, #101525);
+$white: var(--sb-color-white, #fff);
 
-// Colors
-$color-primary: $sb-green;
-$color-primary-dark: $sb-dark-blue;
-$color-secondary: $green;
-$color-positive: $green;
-$color-negative: $red;
-$color-warning: $orange;
-$color-white: $white;
-$primary-text-color: $sb-dark-blue;
-$colors: (
-  'primary': $color-primary,
-  'primary-dark': $color-primary-dark,
-  'secondary': $color-secondary,
-  'positive': $color-positive,
-  'negative': $color-negative,
-  'warning': $color-warning,
-  'white': $color-white,
-  'teal': $sb-green,
-  'ink': $sb-dark-blue,
-  'green': $green,
-  'yellow': $yellow,
-  'blue': $blue,
-  'orange': $orange,
-  'red': $red,
-  'light': $light,
-  'light-gray': $light-gray,
-);
+// text
+$text-yellow: var(--sb-color-text-yellow, #f4b20b);
+$text-yellow-hover: var(--sb-color-text-yellow-hover, #fbcd41);
+$text-white: var(--sb-color-text-white, #fff);
+$text-teal: var(--sb-color-text-teal, #00b3b0);
+$text-red: var(--sb-color-text-red, #ff6159);
+$text-green: var(--sb-color-text-green, #2db47d);
+$text-gray-light: var(--sb-color-text-gray-light, #b1b5be);
+$text-gray: var(--sb-color-text-gray, #6a728a);
+$text-dark-blue: var(--sb-color-text-dark-blue, #1b243f);
+$text-blue: var(--sb-color-text-blue, #3f6fcd);
+
+// background-color
+$bg-yellow: var(--sb-color-bg-yellow, #f4b20b);
+$bg-yellow-hover: var(--sb-color-bg-yellow-hover, #da9707);
+$bg-yellow-light: var(--sb-color-bg-yellow-light, #fff4d5);
+$bg-white: var(--sb-color-bg-white, #fff);
+$bg-teal: var(--sb-color-bg-teal, #00b3b0);
+$bg-teal-hover: var(--sb-color-bg-teal-hover, #057f7f);
+$bg-teal-light: var(--sb-color-bg-teal-light, #d4f7f3);
+$bg-red: var(--sb-color-bg-red, #ff6159);
+$bg-red-hover: var(--sb-color-bg-red-hover, #e5271d);
+$bg-red-light: var(--sb-color-bg-red-light, #ffe2e1);
+$bg-green: var(--sb-color-bg-green, #2db47d);
+$bg-green-light: var(--sb-color-bg-green-light, #d7f4e3);
+$bg-gray: var(--sb-color-bg-gray, #b1b5be);
+$bg-gray-50: var(--sb-color-bg-gray-50, #f6f7f8);
+$bg-gray-100: var(--sb-color-bg-gray-100, #ebecee);
+$bg-dark-blue: var(--sb-color-bg-dark-blue, #0a2e7f);
+$bg-dark-blue-hover: var(--sb-color-bg-dark-blue-hover, #262e48);
+$bg-blue: var(--sb-color-bg-blue, #395ece);
+$bg-blue-hover: var(--sb-color-bg-blue-hover, #75a0e5);
+$bg-blue-light: var(--sb-color-bg-blue-light, #e0e9f9);
+
+// transparent background color
+$bg-transparent: var(--sb-color-bg-transparent, transparent);
+$bg-dark-blue-transparent: var(--sb-color-bg-dark-blue-transparent, #1b243f33);
+
+// border
+$border-teal: var(--sb-color-border-teal, #00b3b0);
+$border-teal-focus: var(--sb-color-border-teal-focus, #6fdcd3);
+$border-dark-blue: var(--sb-color-border-dark-blue, #1b243f);
+$border-dark-blue-focus: var(--sb-color-border-dark-blue-focus, #8b91a7);
+$border-blue: var(--sb-color-border-blue, #a2c1ee);
+$border-yellow: var(--sb-color-border-yellow, #fbcd41);
+$border-red: var(--sb-color-border-red, #ff6159);
+$border-gray-light: var(--sb-color-border-gray-light, #dbdde2);
+$border-white: var(--sb-color-border-white, #fff);
+
+// box-shadow
+$shadow-teal: var(--sb-color-shadow-teal, #00b3b0);
+$shadow-teal-100: var(--sb-color-shadow-teal-100, #d4f7f3);
+$shadow-green-100: var(--sb-color-shadow-green-100, #d7f4e3);
+$shadow-gray-100: var(--sb-color-shadow-gray-100, #ebecee);
+$shadow-dark-blue-transparent: #1f274c15;

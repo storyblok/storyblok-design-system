@@ -16,7 +16,7 @@
   max-width: 620px;
   margin: auto;
   padding: 35px;
-  background-color: $white;
+  background: $bg-white;
   border-radius: $base-border-radius;
   box-shadow: $box-shadow-default;
   animation: fadein 0.3s;
@@ -35,7 +35,7 @@
     right: 14px;
     top: 14px;
     z-index: 1;
-    background-color: $white;
+    background: $bg-white;
     border: 0;
     cursor: pointer;
 
@@ -51,7 +51,7 @@
     width: 100%;
     min-height: 30px;
     padding: 5px 0 20px;
-    color: $sb-dark-blue-75;
+    color: $text-gray;
     font-size: $font-14;
   }
 
@@ -66,7 +66,7 @@
     margin-bottom: -35px;
     margin-left: -35px;
     padding: 0 35px;
-    background-color: $light-50;
+    background: $bg-gray-50;
     border-bottom-left-radius: $base-border-radius;
     border-bottom-right-radius: $base-border-radius;
   }
@@ -97,7 +97,7 @@
     }
 
     &__title {
-      color: $sb-dark-blue;
+      color: $text-dark-blue;
       font-size: $font-20;
       font-weight: $font-bold;
       text-align: center;

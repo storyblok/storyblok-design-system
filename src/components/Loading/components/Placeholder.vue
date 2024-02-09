@@ -1,7 +1,7 @@
 <template>
   <div class="sb-loading__placeholder" :style="createStyle" />
 </template>
-<script>
+<script lang="ts">
 export default {
   name: 'SbLoadingPlaceholder',
   props: {

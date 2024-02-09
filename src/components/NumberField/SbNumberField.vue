@@ -54,7 +54,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SbIcon from '../Icon'
 import NumberFieldMixin from '../../mixins/numberfield-mixin'
 

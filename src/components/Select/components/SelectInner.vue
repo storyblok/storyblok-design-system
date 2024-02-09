@@ -135,7 +135,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { isArray } from '../../../utils'
 import SbIcon from '../../Icon'
 import SbAvatar from '../../Avatar'

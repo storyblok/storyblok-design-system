@@ -1,41 +1,41 @@
-@mixin setIconSize ($size) {
+@mixin setIconSize($size) {
   width: $size;
   height: $size;
 }
 
-@mixin setIconColor ($color) {
+@mixin setIconColor($color) {
   color: $color;
 }
 
 $icon-colors: (
-  'primary': $color-primary,
-  'primary-dark': $color-primary-dark,
-  'secondary': $color-secondary,
-  'positive': $color-positive,
-  'negative': $color-negative,
-  'warning': $color-warning,
-  'white': $color-white,
-  'green': $green,
-  'yellow': $yellow,
-  'blue': $blue,
-  'orange': $orange,
-  'light': $light,
-  'light-gray': $light-gray,
+  'primary': $teal-600,
+  'primary-dark': $dark-blue-950,
+  'secondary': $green-500,
+  'positive': $green-500,
+  'negative': $red-400,
+  'warning': $yellow-500,
+  'white': $white,
+  'green': $green-500,
+  'yellow': $yellow-300,
+  'blue': $blue-600,
+  'orange': $yellow-600,
+  'light': $gray-500,
+  'light-gray': $gray-800,
 );
 $bg-colors: (
-  'primary': $sb-green-25,
-  'primary-dark': $sb-dark-blue-25,
-  'secondary': $sb-green-25,
-  'positive': $green-25,
-  'negative': $red-25,
-  'warning': $orange-25,
-  'white': $color-white,
-  'green': $green-25,
-  'yellow': $yellow-25,
-  'blue': $blue-25,
-  'orange': $orange-25,
-  'light': $light-25,
-  'light-gray': $light,
+  'primary': $teal-100,
+  'primary-dark': $dark-blue-200,
+  'secondary': $green-100,
+  'positive': $green-100,
+  'negative': $red-100,
+  'warning': $yellow-100,
+  'white': $white,
+  'green': $green-100,
+  'yellow': $yellow-100,
+  'blue': $blue-200,
+  'orange': $yellow-200,
+  'light': $gray-50,
+  'light-gray': $gray-200,
 );
 
 .sb-icon {

@@ -1,7 +1,6 @@
-/**
- * @type {Array<string>}
- */
-export const tagTypes = [
+import type { TagTypes } from './types'
+
+export const tagTypes: string[] = [
   'primary',
   'success',
   'negative',
@@ -9,7 +8,6 @@ export const tagTypes = [
   'info',
   'light-grey',
   'dark-grey',
-  'light-info',
   'dark-ink',
 ]
 
@@ -22,7 +20,6 @@ export const tagTypes = [
  * 'info': string,
  * 'light-grey': string,
  * 'dark-grey': string,
- * 'light-info': string,
  * 'dark-ink': string,
  * }}
  */
