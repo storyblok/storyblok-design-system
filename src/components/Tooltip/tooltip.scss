@@ -67,7 +67,7 @@
   font-size: $font-12;
   line-height: 15px;
   word-break: break-word;
-  border-radius: 2px;
+  border-radius: $base-border-radius;
   box-shadow: 0 0 2px 1px rgb(0 0 0 / 8%);
 
   &--dark {

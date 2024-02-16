@@ -1,5 +1,5 @@
 <template>
-  <div role="group" :data-testid="dataTestid">
+  <div role="group" :data-testid="dataTestid" class="sb-menu-group">
     <p
       v-if="title.length"
       :class="computedClasses"

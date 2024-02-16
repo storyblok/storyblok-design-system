@@ -83,6 +83,10 @@
 }
 
 .sb-menu-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+
   &__title {
     margin: 0 0 5px;
     padding: 10px;

@@ -55,7 +55,7 @@ const shouldShow = computed(() => {
   display: inline-grid;
   flex: 0 0 70px;
   margin-bottom: 20px;
-  color: $text-gray-light;
+  color: $text-gray;
   font-size: $font-14;
 }
 </style>
