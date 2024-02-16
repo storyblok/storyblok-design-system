@@ -28,7 +28,7 @@
       }
 
       &__chevron {
-        color: $text-gray-light;
+        color: $text-gray;
       }
 
       &__input {
@@ -165,7 +165,7 @@
 
   &__clear {
     padding: 0;
-    color: $text-gray-light;
+    color: $text-gray;
     background-color: transparent;
     border: 0;
     border-radius: 50%;
@@ -342,7 +342,7 @@
       .sb-select-list__item-icon,
       .sb-select-list__item-name,
       .sb-select-list__item-path {
-        color: $text-gray-light;
+        color: $text-gray;
       }
     }
   }
@@ -397,7 +397,7 @@
 .sb-select-list__item-caption {
   display: block;
   margin-top: 2px;
-  color: $text-gray-light;
+  color: $text-gray;
   font-size: $font-12;
 }
 

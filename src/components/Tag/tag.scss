@@ -62,7 +62,7 @@
   }
 
   &--dark-ink {
-    @include setColor($dark-blue-950, $dark-blue-100, $dark-blue-200);
+    @include setColor($white, $dark-blue-950, $dark-blue-800);
   }
 
   .sb-icon {

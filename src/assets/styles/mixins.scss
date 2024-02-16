@@ -143,3 +143,9 @@
     border-radius: $s-1;
   }
 }
+
+@mixin transition($props) {
+  transition-duration: 100ms;
+  transition-property: $props;
+  transition-timing-function: ease-in-out;
+}
