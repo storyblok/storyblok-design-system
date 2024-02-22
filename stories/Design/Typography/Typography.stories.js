@@ -33,41 +33,26 @@ export const AllTexts = () => ({
 
 
       <h2 class="sb-typography__subtitle">Text Color</h2>
-      <p class="text-primary">.text-primary</p>
-      <p class="text-primary-dark">.text-primary-dark</p>
-      <p class="text-secondary">.text-secondary</p>
-      <p class="text-positive">.text-positive</p>
-      <p class="text-negative">.text-negative</p>
-      <p class="text-warning">.text-warning</p>
-      <p class="text-white">.text-white</p>
-      <p class="text-teal">.text-teal</p>
-      <p class="text-ink">.text-ink</p>
-      <p class="text-green">.text-green</p>
       <p class="text-yellow">.text-yellow</p>
-      <p class="text-blue">.text-blue</p>
-      <p class="text-orange">.text-orange</p>
+      <p class="text-white bg-dark-blue">.text-white</p>
+      <p class="text-teal">.text-teal</p>
       <p class="text-red">.text-red</p>
-      <p class="text-light">.text-light</p>
-      <p class="text-light-gray">.text-light-gray</p>
-
+      <p class="text-green">.text-green</p>
+      <p class="text-gray-light">.text-gray-light</p>
+      <p class="text-gray">.text-gray</p>
+      <p class="text-blue">.text-blue</p>
+      <p class="text-dark-blue">.text-dark-blue</p>
 
       <h2 class="sb-typography__subtitle">Background color</h2>
-      <p class="bg-primary">.bg-primary</p>
-      <p class="bg-primary-dark">.bg-primary-dark</p>
-      <p class="bg-secondary">.bg-secondary</p>
-      <p class="bg-positive">.bg-positive</p>
-      <p class="bg-negative">.bg-negative</p>
-      <p class="bg-warning">.bg-warning</p>
-      <p class="bg-white">.bg-white</p>
       <p class="bg-teal">.bg-teal</p>
-      <p class="bg-ink">.bg-ink</p>
+      <p class="bg-dark-blue text-white">.bg-dark-blue</p>
       <p class="bg-green">.bg-green</p>
+      <p class="bg-white">.bg-white</p>
       <p class="bg-yellow">.bg-yellow</p>
       <p class="bg-blue">.bg-blue</p>
-      <p class="bg-orange">.bg-orange</p>
       <p class="bg-red">.bg-red</p>
-      <p class="bg-light">.bg-light</p>
-      <p class="bg-light-gray">.bg-light-gray</p>
+      <p class="bg-gray">.bg-gray</p>
+      <p class="bg-gray-50">.bg-gray-50</p>
 
       <h2 class="sb-typography__subtitle">Headings</h2>
       <h1>Heading 1</h1>

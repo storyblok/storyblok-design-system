@@ -2,6 +2,29 @@
 @import './sizes';
 @import './colors';
 
+$bg-colors: (
+  'white': $bg-white,
+  'teal': $bg-teal,
+  'dark-blue': $bg-dark-blue,
+  'green': $bg-green,
+  'yellow': $bg-yellow,
+  'blue': $bg-blue,
+  'red': $bg-red,
+  'gray': $bg-gray,
+  'gray-50': $bg-gray-50,
+);
+$text-colors: (
+  'yellow': $text-yellow,
+  'white': $text-white,
+  'teal': $text-teal,
+  'red': $text-red,
+  'green': $text-green,
+  'gray-light': $text-gray-light,
+  'gray': $text-gray,
+  'blue': $text-blue,
+  'dark-blue': $text-dark-blue,
+);
+
 @each $name, $pair in $font-size {
   .font-#{$name} {
     font-size: $pair !important;
@@ -76,11 +99,13 @@
   }
 }
 
-@each $name, $pair in $colors {
+@each $name, $pair in $bg-colors {
   .bg-#{$name} {
     background-color: $pair !important;
   }
+}
 
+@each $name, $pair in $text-colors {
   .text-#{$name} {
     color: $pair !important;
   }

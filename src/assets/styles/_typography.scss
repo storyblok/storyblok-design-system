@@ -37,32 +37,11 @@ $font-size: (
   '32': $font-32,
 );
 
-
 // -- Font weight helper classes
 // E.g. .font-thin, .font-light, ..
 $font-weight: (
-  'light':    $font-light,
-  'regular':  $font-regular,
-  'medium':   $font-medium,
-  'bold':     $font-bold,
+  'light': $font-light,
+  'regular': $font-regular,
+  'medium': $font-medium,
+  'bold': $font-bold,
 );
-
-
-// WILL BE REMOVED SOON
-$heading-2xl: 3.2rem; // will be removed, use font-32
-$heading-xl: 2.6rem; // will be removed, use font-26
-$heading-lg: 2rem; // will be removed, use $font-20
-$heading-md: 1.8rem; // will be removed, use $font-18
-$heading-base: 1.4rem; // will be removed, use font-14
-$heading-s: 1.2rem; // will be removed, use font-12
-$heading-xs: 1rem; // will be removed, use font-10
-$font-15: 1.4rem; // will be removed, use font-14
-$font-19: 1.8rem; // will be removed use font-18
-$font-21: 2rem; // will be removed, use font-20
-$font-25: 2.4rem; // will be removed, use font-24
-$font-36: 3.2rem; // will be removed, use font-32
-$font-weight-thin: 300; // use font-light
-$font-weight-light: 300; // use font-light
-$font-weight-regular: 400; // use font-regular
-$font-weight-medium: 500; // use font-medium
-$font-weight-bold: 700; // use font-bold
