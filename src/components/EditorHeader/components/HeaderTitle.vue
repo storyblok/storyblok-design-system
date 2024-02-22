@@ -1,6 +1,7 @@
 <template>
   <div class="sb-editor-header__title">
     <SbButton
+      has-icon-only
       icon="arrow-left"
       variant="tertiary"
       size="small"

@@ -451,10 +451,10 @@ export const EmitOption = (args) => ({
           style="max-width: 300px"
         />
 
-        <p class="font-medium text-ink font-size-lg">
+        <p class="font-medium text-dark-blue font-size-lg">
           Selected value {{ singleSelectValue }}
         </p>
-        <p class="font-medium text-ink font-size-lg">
+        <p class="font-medium text-dark-blue font-size-lg">
           Selected option {{ singleSelectOption }}
         </p>
       </div>
@@ -469,7 +469,7 @@ export const EmitOption = (args) => ({
         style="max-width: 300px"
       />
 
-      <p class="font-medium text-ink font-size-lg">
+      <p class="font-medium text-dark-blue font-size-lg">
         Selected value {{ multipleSelectValue }}
       </p>
     </div>
