@@ -91,8 +91,6 @@ export const FontWeights: StoryObj = {
   $font-bold: 700;
       </code></pre>
     </section>
-
-
   `,
   }),
 }
@@ -127,7 +125,6 @@ export const TextColors: StoryObj = {
       $text-dark-blue: #1b243f;
       $text-blue: #3f6fcd;
       </code></pre>
-    </section>
     </section>
   `,
   }),
