@@ -7,19 +7,13 @@ export const availableSizes = ['large', 'normal', 'small']
  * @type {Array<string>}
  */
 export const availableColors = [
-  'primary',
-  'primary-dark',
-  'secondary',
-  'positive',
-  'negative',
-  'warning',
   'white',
   'green',
   'yellow',
   'blue',
-  'orange',
-  'light',
-  'light-gray',
+  'dark-blue',
+  'gray',
+  'teal',
 ]
 
 /**

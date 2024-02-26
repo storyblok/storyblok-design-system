@@ -46,18 +46,3 @@
   gap: 8px;
   align-items: start;
 }
-
-pre {
-  display: inline-block;
-  padding: 8px;
-  color: $text-white;
-  font-size: 1.2rem;
-  background: $bg-dark-blue;
-  border-radius: $base-border-radius;
-}
-
-code {
-  display: inline-block;
-  margin: 0;
-  line-height: 1.45;
-}

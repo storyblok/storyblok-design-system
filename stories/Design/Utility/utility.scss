@@ -1,0 +1,62 @@
+.example-border {
+  background-color: $bg-gray-50;
+  border: 1px solid $border-gray-light;
+  border-radius: $base-border-radius;
+}
+
+.example-border-2 {
+  background-color: $bg-gray-50;
+  border: 1px solid $border-gray-light;
+  border-radius: $base-border-radius;
+
+  &:hover,
+  &:focus-within {
+    border-color: $border-teal-focus;
+  }
+}
+
+.example-border-3 {
+  background-color: $bg-gray-50;
+  border: 1px solid $border-gray-light;
+  border-radius: $base-border-radius;
+
+  &:hover,
+  &:focus-within {
+    border-color: $border-dark-blue-focus;
+  }
+}
+
+.example-bg {
+  background-color: $bg-teal-light;
+  border: $border-teal 1px solid;
+}
+
+.example-bg-blue {
+  background-color: $bg-blue-light;
+  border: $border-blue 1px solid;
+}
+
+.example-bg-yellow {
+  background-color: $bg-yellow-light;
+  border: $border-yellow 1px solid;
+}
+
+.example-bg-red {
+  color: $text-white;
+  background-color: $bg-red;
+
+  &:hover,
+  &:focus {
+    background-color: $bg-red-hover;
+  }
+}
+
+.example-bg-dark-blue {
+  color: $text-white;
+  background-color: $bg-dark-blue;
+
+  &:hover,
+  &:focus {
+    background-color: $bg-dark-blue-hover;
+  }
+}

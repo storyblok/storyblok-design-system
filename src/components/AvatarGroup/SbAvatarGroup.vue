@@ -20,7 +20,7 @@
 <script lang="ts">
 import { isSizeValid } from '../Avatar/utils'
 
-import { availableColors } from '../../utils'
+import { availableColorsNoWhite } from '../../utils'
 
 import SbAvatar from '../Avatar/SbAvatar'
 import SbMoreAvatars from './components/SbMoreAvatars'
@@ -105,7 +105,7 @@ export default {
         ...element.props,
         useTooltip: true,
         size: this.size,
-        bgColor: availableColors[index],
+        bgColor: availableColorsNoWhite[index],
       }
     },
 
