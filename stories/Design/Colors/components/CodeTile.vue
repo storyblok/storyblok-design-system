@@ -30,22 +30,3 @@ const calculatedCode = computed(() => {
 {{ calculatedCode }}
 </code></pre>
 </template>
-
-<style lang="scss" scoped>
-pre {
-  display: block;
-  max-width: 300px;
-  padding: 8px;
-  padding-left: 30px;
-  color: $text-white;
-  font-size: 1.2rem;
-  background: $bg-dark-blue;
-  border-radius: $base-border-radius;
-}
-
-code {
-  display: inline-block;
-  margin: 0;
-  line-height: 1.45;
-}
-</style>

@@ -4,6 +4,30 @@ body {
   margin: 20px;
 }
 
+hr {
+  height: 1px;
+  background: #ebecee;
+  border: 0;
+}
+
+pre {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  max-width: 330px;
+  padding: $s-3;
+  color: $text-white;
+  font-size: 1.2rem;
+  background: $bg-dark-blue;
+  border-radius: $base-border-radius;
+}
+
+code {
+  margin: 0;
+  line-height: 1.45;
+}
+
 .medium {
   min-height: 300px;
 }
@@ -24,8 +48,23 @@ body {
   margin-right: 20px;
 }
 
+.helper-square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 120px;
+  height: 120px;
+  padding: $s-2;
+  border-radius: $base-border-radius;
+}
+
 .list-none {
   list-style: none;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .align-self-center {

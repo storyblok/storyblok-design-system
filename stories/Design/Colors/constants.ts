@@ -106,7 +106,6 @@ export const colors = {
   },
 }
 
-
 export const mainColorValues = {
   teal: 600,
   darkBlue: 950,

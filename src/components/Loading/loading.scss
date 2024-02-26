@@ -101,23 +101,29 @@
   }
 
   &__placeholder {
-    @keyframes shimmer {
-      from {
-        background-position: -1000px 0;
-      }
-
-      to {
-        background-position: 1000px 0;
-      }
-    }
-
+    position: relative;
     margin: 0;
     padding: 0;
-    background: $bg-gray-100;
-   background: linear-gradient(to right, $bg-gray-100 4%, $bg-gray-100 25%, $bg-gray-100 36%);
-    background-size: 1000px 100%;
+    background-color: $bg-gray-100;
     border-radius: $base-border-radius;
-    animation: shimmer 2s infinite linear;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 1;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgb(255 255 255 / 0%),
+        rgb(255 255 255 / 40%),
+        rgb(255 255 255 / 0%)
+      );
+      animation: shimmer 1.2s infinite;
+      transform: translateX(-100%);
+    }
   }
 }
 
@@ -125,4 +131,14 @@
   position: absolute;
   left: calc(50% + 117px);
   top: calc(50% - 23px);
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
 }
