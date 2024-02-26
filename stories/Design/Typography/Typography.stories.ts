@@ -21,7 +21,7 @@ export const ExampleTextUsages: StoryObj = {
       <pre>$font-14, $text-gray, $font-medium</pre>
       <hr />
       <p class="font-14 text-teal">Highlighted text</p>
-      <pre>$font-14, $text-gray</pre>
+      <pre>$font-14, $text-teal</pre>
       <hr />
       <h1 class="font-26 font-bold text-dark-blue">Page title</h1>
       <pre>$font-26, $font-bold, $text-dark-blue</pre>
