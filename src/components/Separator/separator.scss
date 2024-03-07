@@ -1,18 +1,25 @@
 .separator {
-  width: 100%;
-  height: 1px;
-  margin: $s-7 0;
-  background: $bg-gray-100;
-  border: 0;
+  border-color: $bg-gray-100;
+  border-style: solid;
+}
 
-  &--small {
-    margin: 20px 0;
-  }
+.separator--horizontal {
+  margin: 0;
+  border-width: 1px 0 0;
+}
 
-  &--vertical {
-    width: 1px;
-    height: 25px;
-    margin: 0 10px;
-    background: $bg-gray;
-  }
+.separator--vertical {
+  align-self: stretch;
+  margin: 0;
+  border-width: 0 1px 0 0;
+}
+
+.separator--horizontal.separator--centered {
+  margin-left: $s-2;
+  margin-right: $s-2;
+}
+
+.separator--vertical.separator--centered {
+  margin-bottom: $s-2;
+  margin-top: $s-2;
 }

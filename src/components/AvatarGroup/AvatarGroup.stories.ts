@@ -2,7 +2,11 @@ import SbAvatarGroup from './SbAvatarGroup'
 import SbAvatar from '../Avatar'
 
 // default export defines configurations to all stories
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbAvatarGroup>
+
+const meta: Meta<typeof SbAvatarGroup> = {
   title: 'Data/SbAvatarGroup',
   component: SbAvatarGroup,
   parameters: {
@@ -43,12 +47,15 @@ export default {
   },
 }
 
-export const Default = (args) => ({
-  components: { SbAvatarGroup, SbAvatar },
-  setup() {
-    return { args }
-  },
-  template: `
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatarGroup, SbAvatar },
+    setup() {
+      return { args }
+    },
+    template: `
   <div>
     <p class="font-size-lg"> With white Background </p>
 
@@ -91,11 +98,13 @@ export const Default = (args) => ({
     </div>
   </div>
   `,
-})
+  }),
+}
 
-export const WithSizes = () => ({
-  components: { SbAvatarGroup, SbAvatar },
-  template: `
+export const WithSizes: Story = {
+  render: () => ({
+    components: { SbAvatarGroup, SbAvatar },
+    template: `
   <div>
     <SbAvatarGroup size="large">
       <SbAvatar
@@ -140,25 +149,25 @@ export const WithSizes = () => ({
     </SbAvatarGroup>
   </div>
   `,
-})
-
-WithSizes.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can change the size for all `SbAvatar` components just passing the `size` attribute for `SbAvatarGroup`',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can change the size for all `SbAvatar` components just passing the `size` attribute for `SbAvatarGroup`',
+      },
     },
   },
 }
 
-export const WithMoreAvatars = (args) => ({
-  components: { SbAvatarGroup, SbAvatar },
-  setup() {
-    return { args }
-  },
-  template: `
-  <div>
-    <div>
+export const WithMoreAvatars: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatarGroup, SbAvatar },
+    setup() {
+      return { args }
+    },
+    template: `
+    <div class="medium">
       <SbAvatarGroup v-bind="args">
         <SbAvatar
           src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
@@ -191,15 +200,14 @@ export const WithMoreAvatars = (args) => ({
         />
       </SbAvatarGroup>
     </div>
-  </div>
   `,
-})
-
-WithMoreAvatars.parameters = {
-  docs: {
-    description: {
-      story:
-        'When you have more than **5** `SbAvatar` components, it will be render a placeholder as last element indicating how many more components are there. The number of max elements can be changed with the `maxElements` property',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When you have more than **5** `SbAvatar` components, it will be render a placeholder as last element indicating how many more components are there. The number of max elements can be changed with the `maxElements` property',
+      },
     },
   },
 }

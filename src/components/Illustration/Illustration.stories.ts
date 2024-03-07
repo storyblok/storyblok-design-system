@@ -1,7 +1,10 @@
 import SbIllustration from './index'
-import type { Args, StoryObj } from '@storybook/vue3'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbIllustration>
+
+const meta: Meta<typeof SbIllustration> = {
   title: 'Data/SbIllustration',
   component: SbIllustration,
   args: {
@@ -33,11 +36,11 @@ export default {
   },
 }
 
-type Story = StoryObj<typeof SbIllustration>
+export default meta
 
 export const Default: Story = {
   name: 'Default Illustration',
-  render: (args) => ({
+  render: (args: Args) => ({
     components: { SbIllustration },
     setup(): Args {
       return { args }
@@ -50,7 +53,7 @@ export const Default: Story = {
 
 export const DifferentSizes: Story = {
   name: 'Illustration in different sizes',
-  render: (args) => ({
+  render: (args: Args) => ({
     components: { SbIllustration },
     setup(): Args {
       return { args }

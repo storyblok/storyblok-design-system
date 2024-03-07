@@ -1,21 +1,11 @@
 import SbTooltip from '.'
 import { availablePositions } from './lib'
 
-const TooltipTemplate = (args) => ({
-  components: { SbTooltip },
-  setup() {
-    return { args }
-  },
-  template: `
-    <div style="padding: 100px; text-align: center;">
-      <SbTooltip v-bind="args">
-        <span style="font-size: 1.8rem;">Hover me!</span>
-      </SbTooltip>
-    </div>
-  `,
-})
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
 
-export default {
+type Story = StoryObj<typeof SbTooltip>
+
+const meta: Meta<typeof SbTooltip> = {
   title: 'Interface/SbTooltip',
   component: SbTooltip,
   parameters: {
@@ -73,12 +63,27 @@ export default {
       },
     },
   },
+  render: (args: Args) => ({
+    components: { SbTooltip },
+    setup() {
+      return { args }
+    },
+    template: `
+      <div style="padding: 100px; text-align: center;">
+        <SbTooltip v-bind="args">
+          <span style="font-size: 1.8rem;">Hover me!</span>
+        </SbTooltip>
+      </div>
+    `,
+  }),
 }
 
-export const Default = TooltipTemplate.bind({})
+export default meta
 
-Default.args = {
-  label: 'Default tooltip label',
-  position: 'top',
-  variant: 'dark',
+export const Default: Story = {
+  args: {
+    label: 'Default tooltip label',
+    position: 'top',
+    variant: 'dark',
+  },
 }

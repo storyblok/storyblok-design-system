@@ -53,7 +53,7 @@ const meta: Meta<typeof SbSkeleton> = {
       options: ['wave', 'none'],
     },
   },
-  render: (args): unknown => ({
+  render: (args: Args) => ({
     components: { SbSkeleton },
     setup(): Args {
       return { args }

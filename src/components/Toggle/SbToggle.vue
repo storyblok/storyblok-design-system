@@ -19,7 +19,12 @@
       @click.stop
       @input="handleInput"
     />
-    <label :for="id" class="sb-toggle__label">{{ label }}</label>
+    <label :for="id" class="sb-toggle__label">
+      {{ label }}
+    </label>
+    <label v-if="showLabel" :for="id" class="sb-toggle__label-visible">{{
+      label
+    }}</label>
     <SbIcon
       v-if="icon"
       class="sb-toggle__icon sb-toggle__icon--active"
@@ -59,12 +64,20 @@ export default {
       default: 'primary',
     },
     indeterminate: Boolean,
+    showLabel: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['update:modelValue', 'click'],
 
   computed: {
     componentClasses() {
-      return [this.variant ? `sb-toggle--${this.variant}` : '']
+      return {
+        [`sb-toggle--${this.variant}`]: this.variant,
+        'sb-toggle--disabled': this.disabled,
+        'sb-toggle--visible-label': this.showLabel,
+      }
     },
   },
   methods: {

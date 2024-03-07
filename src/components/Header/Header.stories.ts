@@ -2,19 +2,11 @@ import SbHeader from './index'
 import availableIcons from '../../lib/all-icons'
 import { availableVariants } from '../Button/lib'
 
-const HeaderTemplate = (args) => ({
-  components: { SbHeader },
-  setup() {
-    return { args }
-  },
-  template: `
-    <SbHeader
-      v-bind="args"
-    />
-  `,
-})
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
 
-export default {
+type Story = StoryObj<typeof SbHeader>
+
+const meta: Meta<typeof SbHeader> = {
   title: 'Basic/SbHeader',
   component: SbHeader,
   parameters: {
@@ -79,62 +71,71 @@ export default {
       action: 'button-click',
     },
   },
+  render: (args: Args) => ({
+    components: { SbHeader },
+    setup() {
+      return { args }
+    },
+    template: `
+      <SbHeader
+        v-bind="args"
+      />
+    `,
+  }),
 }
 
-export const Default = HeaderTemplate.bind({})
+export default meta
 
-export const WithoutButton = HeaderTemplate.bind({})
+export const Default: Story = {}
+export const WithoutButton: Story = {
+  args: {
+    hasButton: false,
+  },
 
-WithoutButton.args = {
-  hasButton: false,
-}
-
-WithoutButton.parameters = {
-  docs: {
-    description: {
-      story: 'Header without the button',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Header without the button',
+      },
     },
   },
 }
+export const LoadingButton: Story = {
+  args: {
+    isLoading: true,
+  },
 
-export const LoadingButton = HeaderTemplate.bind({})
-
-LoadingButton.args = {
-  isLoading: true,
-}
-
-LoadingButton.parameters = {
-  docs: {
-    description: {
-      story: 'Button in header with a loading state',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Button in header with a loading state',
+      },
     },
   },
 }
+export const DisabledButton: Story = {
+  args: {
+    buttonDisabled: true,
+  },
 
-export const DisabledButton = HeaderTemplate.bind({})
-
-DisabledButton.args = {
-  buttonDisabled: true,
-}
-
-DisabledButton.parameters = {
-  docs: {
-    description: {
-      story: 'Header with a disabled button',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Header with a disabled button',
+      },
     },
   },
 }
+export const TooltipButton: Story = {
+  args: {
+    buttonTooltip: { label: 'Tooltip test', position: 'bottom' },
+  },
 
-export const TooltipButton = HeaderTemplate.bind({})
-
-TooltipButton.args = {
-  buttonTooltip: { label: 'Tooltip test', position: 'bottom' },
-}
-
-TooltipButton.parameters = {
-  docs: {
-    description: {
-      story: 'Button in header with a tooltip',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Button in header with a tooltip',
+      },
     },
   },
 }

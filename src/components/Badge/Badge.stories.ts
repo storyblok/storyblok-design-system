@@ -1,19 +1,11 @@
 import SbBadge from './index'
 import { badgeTypes } from './lib'
 
-const BadgeTemplate = (args) => ({
-  components: { SbBadge },
-  setup() {
-    return { args }
-  },
-  template: `
-    <SbBadge
-      v-bind="args"
-    />
-  `,
-})
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
 
-export default {
+type Story = StoryObj<typeof SbBadge>
+
+const meta: Meta<typeof SbBadge> = {
   title: 'Data/SbBadge',
   component: SbBadge,
   parameters: {
@@ -80,16 +72,30 @@ export default {
       },
     },
   },
+  render: (args: Args) => ({
+    components: { SbBadge },
+    setup() {
+      return { args }
+    },
+    template: `
+      <SbBadge
+        v-bind="args"
+      />
+    `,
+  }),
 }
 
-export const Default = BadgeTemplate.bind({})
+export default meta
 
-export const Types = (args) => ({
-  components: { SbBadge },
-  setup() {
-    return { args }
-  },
-  template: `<div>
+export const Default: Story = {}
+
+export const Types: Story = {
+  render: (args: Args) => ({
+    components: { SbBadge },
+    setup() {
+      return { args }
+    },
+    template: `<div>
     <SbBadge
       v-bind="args"
       type="positive"
@@ -107,80 +113,82 @@ export const Types = (args) => ({
       type="negative"
     />
   </div>`,
-})
+  }),
 
-Types.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can set the `type` property to change the type of the `SbBadge`',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can set the `type` property to change the type of the `SbBadge`',
+      },
     },
   },
 }
 
-export const JustNumber = BadgeTemplate.bind({})
+export const JustNumber: Story = {
+  args: {
+    number: 1000,
+  },
 
-JustNumber.args = {
-  number: 1000,
-}
-
-JustNumber.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can set the `type` property to change the type of the `SbBadge`',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can set the `type` property to change the type of the `SbBadge`',
+      },
     },
   },
 }
 
-export const OnlyIcon = BadgeTemplate.bind({})
+export const OnlyIcon: Story = {
+  args: {
+    onlyIcon: true,
+  },
 
-OnlyIcon.args = {
-  onlyIcon: true,
-}
-
-OnlyIcon.parameters = {
-  docs: {
-    description: {
-      story: 'You can set the `onlyIcon` property to just show the icon',
+  parameters: {
+    docs: {
+      description: {
+        story: 'You can set the `onlyIcon` property to just show the icon',
+      },
     },
   },
 }
 
-export const Contract = BadgeTemplate.bind({})
+export const Contract: Story = {
+  args: {
+    contract: true,
+  },
 
-Contract.args = {
-  contract: true,
-}
-
-Contract.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can set the `contract` property to just show a circle with a background type',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can set the `contract` property to just show a circle with a background type',
+      },
     },
   },
 }
 
-export const InlineLabel = BadgeTemplate.bind({})
-
-InlineLabel.args = {
-  inlineLabel: true,
-  label: 'Inline label',
-}
-
-InlineLabel.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can set the `inlineLabel` property to just the icon filled with a background type and the label is on the right',
+export const InlineLabel: Story = {
+  args: {
+    inlineLabel: true,
+    label: 'Inline label',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can set the `inlineLabel` property to just the icon filled with a background type and the label is on the right',
+      },
     },
   },
 }
 
-export const SlotLabel = () => ({
-  components: { SbBadge },
-  template: `<div>
+export const SlotLabel: Story = {
+  render: () => ({
+    components: { SbBadge },
+    template: `<div>
     <SbBadge type="positive">A slot text</SbBadge>
   </div>`,
-})
+  }),
+}

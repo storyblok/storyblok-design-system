@@ -11,7 +11,11 @@ import SbButton from '../Button'
 import SbGroupButton from '../GroupButton'
 import availableIcons from '../../lib/all-icons'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbMenu>
+
+const meta: Meta<typeof SbMenu> = {
   title: 'Navigation/SbMenu',
   component: SbMenu,
   parameters: {
@@ -65,19 +69,22 @@ export default {
   },
 }
 
-export const Default = (args) => ({
-  setup() {
-    return { ...args }
-  },
-  components: {
-    SbMenu,
-    SbMenuButton,
-    SbMenuList,
-    SbMenuItem,
-    SbMenuGroup,
-    SbMenuSeparator,
-  },
-  template: `
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    setup() {
+      return { ...args }
+    },
+    components: {
+      SbMenu,
+      SbMenuButton,
+      SbMenuList,
+      SbMenuItem,
+      SbMenuGroup,
+      SbMenuSeparator,
+    },
+    template: `
     <div style="min-height: 300px;">
       <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
@@ -97,21 +104,23 @@ export const Default = (args) => ({
       </SbMenu>
     </div>
   `,
-})
+  }),
+}
 
-export const WithSeparators = (args) => ({
-  setup() {
-    return { ...args }
-  },
-  components: {
-    SbMenu,
-    SbMenuButton,
-    SbMenuList,
-    SbMenuItem,
-    SbMenuGroup,
-    SbMenuSeparator,
-  },
-  template: `
+export const WithSeparators: Story = {
+  render: (args: Args) => ({
+    setup() {
+      return { ...args }
+    },
+    components: {
+      SbMenu,
+      SbMenuButton,
+      SbMenuList,
+      SbMenuItem,
+      SbMenuGroup,
+      SbMenuSeparator,
+    },
+    template: `
     <div style="min-height: 300px;">
       <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
@@ -132,21 +141,23 @@ export const WithSeparators = (args) => ({
       </SbMenu>
     </div>
   `,
-})
+  }),
+}
 
-export const WithIcons = (args) => ({
-  setup() {
-    return { ...args }
-  },
-  components: {
-    SbMenu,
-    SbMenuButton,
-    SbMenuList,
-    SbMenuItem,
-    SbMenuGroup,
-    SbMenuSeparator,
-  },
-  template: `
+export const WithIcons: Story = {
+  render: (args: Args) => ({
+    setup() {
+      return { ...args }
+    },
+    components: {
+      SbMenu,
+      SbMenuButton,
+      SbMenuList,
+      SbMenuItem,
+      SbMenuGroup,
+      SbMenuSeparator,
+    },
+    template: `
     <div style="min-height: 300px;">
       <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
@@ -163,21 +174,23 @@ export const WithIcons = (args) => ({
       </SbMenu>
     </div>
   `,
-})
+  }),
+}
 
-export const ButtonWithJustIcon = (args) => ({
-  setup() {
-    return { ...args }
-  },
-  components: {
-    SbMenu,
-    SbMenuButton,
-    SbMenuList,
-    SbMenuItem,
-    SbMenuGroup,
-    SbMenuSeparator,
-  },
-  template: `
+export const ButtonWithJustIcon: Story = {
+  render: (args: Args) => ({
+    setup() {
+      return { ...args }
+    },
+    components: {
+      SbMenu,
+      SbMenuButton,
+      SbMenuList,
+      SbMenuItem,
+      SbMenuGroup,
+      SbMenuSeparator,
+    },
+    template: `
     <div style="min-height: 300px;">
       <SbMenu :modelValue="modelValue">
         <SbMenuButton has-icon-only is-rounded :icon-right="iconRight" :icon="icon"/>
@@ -194,23 +207,25 @@ export const ButtonWithJustIcon = (args) => ({
       </SbMenu>
     </div>
   `,
-})
+  }),
+}
 
-export const AlongWithGroup = (args) => ({
-  setup() {
-    return { ...args }
-  },
-  components: {
-    SbMenu,
-    SbMenuButton,
-    SbMenuList,
-    SbMenuItem,
-    SbMenuGroup,
-    SbMenuSeparator,
-    SbButton,
-    SbGroupButton,
-  },
-  template: `
+export const AlongWithGroup: Story = {
+  render: (args: Args) => ({
+    setup() {
+      return { ...args }
+    },
+    components: {
+      SbMenu,
+      SbMenuButton,
+      SbMenuList,
+      SbMenuItem,
+      SbMenuGroup,
+      SbMenuSeparator,
+      SbButton,
+      SbGroupButton,
+    },
+    template: `
     <div style="display: flex; justify-content: center; min-height: 300px;">
       <SbMenu :modelValue="modelValue">
         <SbGroupButton variant="tertiary">
@@ -230,21 +245,23 @@ export const AlongWithGroup = (args) => ({
       </SbMenu>
     </div>
   `,
-})
+  }),
+}
 
-export const WithLinksOnMenuItem = (args) => ({
-  setup() {
-    return { ...args }
-  },
-  components: {
-    SbMenu,
-    SbMenuButton,
-    SbMenuList,
-    SbMenuItem,
-    SbMenuGroup,
-    SbButton,
-  },
-  template: `
+export const WithLinksOnMenuItem: Story = {
+  render: (args: Args) => ({
+    setup() {
+      return { ...args }
+    },
+    components: {
+      SbMenu,
+      SbMenuButton,
+      SbMenuList,
+      SbMenuItem,
+      SbMenuGroup,
+      SbButton,
+    },
+    template: `
     <div style="min-height: 300px;">
       <SbMenu :modelValue="modelValue">
         <SbMenuButton label="Combo button" :icon-right="iconRight" :icon="icon"/>
@@ -265,21 +282,23 @@ export const WithLinksOnMenuItem = (args) => ({
       </SbMenu>
     </div>
   `,
-})
+  }),
+}
 
-export const WithoutIconRight = (args) => ({
-  setup() {
-    return { ...args }
-  },
-  components: {
-    SbMenu,
-    SbMenuButton,
-    SbMenuList,
-    SbMenuItem,
-    SbMenuGroup,
-    SbMenuSeparator,
-  },
-  template: `
+export const WithoutIconRight: Story = {
+  render: (args: Args) => ({
+    setup() {
+      return { ...args }
+    },
+    components: {
+      SbMenu,
+      SbMenuButton,
+      SbMenuList,
+      SbMenuItem,
+      SbMenuGroup,
+      SbMenuSeparator,
+    },
+    template: `
   <div style="min-height: 300px;">
   <SbMenu :modelValue="modelValue">
     <SbMenuButton label="Combo button" ref="contentButton" :icon-right="iconRight" :icon="icon" />
@@ -291,25 +310,26 @@ export const WithoutIconRight = (args) => ({
   </SbMenu>
 </div>
   `,
-})
-
-WithoutIconRight.args = {
-  iconRight: null,
+  }),
+  args: {
+    iconRight: null,
+  },
 }
 
-export const WithIconLeft = (args) => ({
-  setup() {
-    return { ...args }
-  },
-  components: {
-    SbMenu,
-    SbMenuButton,
-    SbMenuList,
-    SbMenuItem,
-    SbMenuGroup,
-    SbMenuSeparator,
-  },
-  template: `
+export const WithIconLeft: Story = {
+  render: (args: Args) => ({
+    setup() {
+      return { ...args }
+    },
+    components: {
+      SbMenu,
+      SbMenuButton,
+      SbMenuList,
+      SbMenuItem,
+      SbMenuGroup,
+      SbMenuSeparator,
+    },
+    template: `
   <div style="min-height: 300px;">
   <SbMenu :modelValue="modelValue">
   <SbMenuButton
@@ -327,9 +347,9 @@ export const WithIconLeft = (args) => ({
   </SbMenu>
 </div>
   `,
-})
-
-WithIconLeft.args = {
-  iconRight: null,
-  icon: 'plus',
+  }),
+  args: {
+    iconRight: null,
+    icon: 'plus',
+  },
 }

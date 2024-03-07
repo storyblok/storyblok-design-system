@@ -1,6 +1,11 @@
 import SbTextField from './index'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+import { ref } from 'vue'
+
+type Story = StoryObj<typeof SbTextField>
+
+const meta: Meta<typeof SbTextField> = {
   title: 'Forms/SbTextField',
   component: SbTextField,
   args: {
@@ -13,434 +18,234 @@ export default {
     readonly: false,
     modelValue: 'Boris Spassky',
     nativeValue: 'Boris Spassky',
-    errorMessage: 'Some error message',
+    errorMessage: '',
 
     error: false,
     clearable: false,
     ghost: false,
 
-    prefix: 'http://',
-    suffix: '.com',
+    prefix: '',
+    suffix: '',
 
-    maxlength: 60,
-    mask: '####-##-##',
+    maxlength: undefined,
+    mask: undefined,
 
     autoGrow: false,
   },
 }
 
-export const Default = (args) => ({
-  components: { SbTextField },
-  setup() {
-    return { ...args }
-  },
-  data: () => ({
-    internalValue: 'Boris Spassky',
-    internalType: 'password',
-    internalIconRight: 'eye',
-  }),
-  template: `
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    components: { SbTextField },
+    setup() {
+      const internalValue = ref(args.modelValue)
+      return { args, internalValue }
+    },
+    template: `
     <div style="max-width: 300px">
       <SbTextField
-        :id="id"
-        :name="name"
-        :label="label"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        :native-valueargs.="nativeValue"
+        v-bind="args"
         v-model="internalValue"
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="With remaining characters counter"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        :maxlength="maxlength"
-        :native-valueargs.="nativeValue"
-        v-model="internalValue"
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Disabled text input"
-        :required="required"
-        :placeholder="placeholder"
-        :native-valueargs.="nativeValue"
-        v-model="internalValue"
-        disabled
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Read only"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :native-valueargs.="nativeValue"
-        v-model="internalValue"
-        readonly
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="With error"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        iconRight="square-error"
-        native-value="Some text with error"
-        v-model="internalValue"
-        :errorMessage="errorMessage"
-        error
-      /><br>
-      <SbTextField
-      :id="id"
-      :name="name"
-      label="With error but no icon"
-      :disabled="disabled"
-      :required="required"
-      :placeholder="placeholder"
-      iconRight=""
-      native-value="Some text with error but no icon"
-      v-model="internalValue"
-      :errorMessage="errorMessage"
-      error
-    /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Clearable"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-        clearable
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Show / Hide password"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        iconRight="eye"
-        type="password"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="With max length"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        maxlength="200"
-        v-model="internalValue"
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="With inline label"
-        inline-label="User:"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        v-model="internalValue"
-      /><br>
+      />
     </div>
   `,
-})
-
-export const withIcon = (args) => ({
-  components: { SbTextField },
-  setup() {
-    return { ...args }
-  },
-  data: () => ({
-    internalValue: 'Boris Spassky',
   }),
-  template: `
-    <div style="max-width: 300px">
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="With icon before"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        iconLeft="search"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="With icon after"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        iconRight="search"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Ghost with icon before"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        iconLeft="search"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-        ghost
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Ghost with icon after"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        iconRight="search"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-        ghost
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Default clearable with icon"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        iconLeft="search"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-        clearable
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Ghost clearable with icon"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        iconLeft="search"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-        clearable
-        ghost
-      /><br>
-    </div>
-  `,
-})
-
-export const Ghost = (args) => ({
-  components: { SbTextField },
-  setup() {
-    return { ...args }
+  args: {
+    id: 'example-default',
   },
-  data: () => ({
-    internalValue: 'Boris Spassky',
-    internalType: 'text',
-    internalIconRight: 'eye',
-  }),
-  template: `
-    <div style="max-width: 300px">
-      <SbTextField
-        :id="id"
-        :name="name"
-        :label="label"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-        ghost
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Clearable"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-        clearable
-        ghost
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="Show / Hide password"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        iconRight="eye"
-        type="password"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-        ghost
-      /><br>
-    </div>
-  `,
-})
-
-export const withText = (args) => ({
-  components: { SbTextField },
-  setup() {
-    return { ...args }
-  },
-  data: () => ({
-    internalValue: 'Boris Spassky',
-  }),
-  template: `
-    <div style="max-width: 300px">
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="With text before"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :prefix="prefix"
-        :readonly="readonly"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-      /><br>
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="With text after"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        :suffix="suffix"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-      /><br>
-    </div>
-  `,
-})
-
-export const TextArea = (args) => ({
-  components: { SbTextField },
-  setup() {
-    return { ...args }
-  },
-  data: () => ({
-    internalValue: 'Boris Spassky',
-  }),
-  template: `
-    <div style="max-width: 300px">
-      <SbTextField
-        type="textarea"
-        :id="id"
-        :name="name"
-        label="Textarea element"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        native-value="Boris Spassky"
-        :maxlength="maxlength"
-        :auto-grow="autoGrow"
-        v-model="internalValue"
-      /><br>
-    </div>
-  `,
-})
-
-export const withMask = (args) => ({
-  components: { SbTextField },
-  setup() {
-    return { ...args }
-  },
-  data: () => ({
-    internalValue: '',
-  }),
-  template: `
-    <div style="max-width: 300px">
-      <SbTextField
-        :id="id"
-        :name="name"
-        label="With mask"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        native-value="Boris Spassky"
-        v-model="internalValue"
-        :mask="mask"
-      /><br>
-    </div>
-  `,
-})
-
-withMask.args = {
-  placeholder: '####-##-##',
-  mask: '####-##-##',
 }
-withMask.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use "#" for numbers (0-9), “S” for letter in any case (a-z,A-Z), “X” for number or letter (a-z,A-Z,0-9), “*” for repeat and “!” for optional (next character).',
+
+export const withCounter: Story = {
+  args: {
+    maxlength: 14,
+    label: 'With remaining characters counter',
+    id: 'example-counter',
+  },
+}
+
+export const withMaxLength: Story = {
+  args: {
+    maxlength: 20,
+    label: 'With max length 20',
+    id: 'example-max-length',
+  },
+}
+
+export const Disabled: Story = {
+  args: {
+    label: 'Disabled text input',
+    disabled: true,
+    id: 'example-disabled',
+  },
+}
+
+export const ReadOnly: Story = {
+  args: {
+    label: 'Readonly text input',
+    readonly: true,
+    id: 'example-readonly',
+  },
+}
+
+export const withError: Story = {
+  args: {
+    label: 'With error',
+    error: true,
+    errorMessage: 'Some error message',
+    id: 'example-error',
+  },
+}
+
+export const withIconLeft: Story = {
+  args: {
+    label: 'With icon left',
+    iconLeft: 'search',
+    id: 'example-icon-right',
+  },
+}
+export const withIconRight: Story = {
+  args: {
+    label: 'With icon right',
+    iconRight: 'search',
+    id: 'example-icon-right',
+  },
+}
+
+export const clearable: Story = {
+  args: {
+    label: 'Default clearable',
+    clearable: true,
+    id: 'example-clearable',
+  },
+}
+
+export const asPassword: Story = {
+  args: {
+    label: 'Show / Hide password',
+    type: 'password',
+    iconRight: 'eye',
+    id: 'example-password',
+  },
+}
+
+export const withInlineLabel: Story = {
+  args: {
+    label: 'With inline label',
+    inlineLabel: 'User:',
+    id: 'example-inline-label',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use the `inline-label` property to add text inside field',
+      },
     },
   },
 }
 
-export const withInlineLabel = (args) => ({
-  components: { SbTextField },
-  setup() {
-    return { ...args }
+export const withPrefix: Story = {
+  args: {
+    label: 'With prefix',
+    prefix: 'http://',
+    id: 'example-prefix',
   },
-  data: () => ({
-    internalValue: '',
-  }),
-  template: `
-    <div style="max-width: 300px">
-      <SbTextField
-        v-model="internalValue"
-        label="With inline label"
-        :name="name"
-        :id="id"
-        :disabled="disabled"
-        :required="required"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        :inline-label="inlineLabel"
-        native-value="Boris Spassky"
-      />
-    </div>
-  `,
-})
-
-withInlineLabel.args = {
-  inlineLabel: 'Email:',
 }
 
-withInlineLabel.parameters = {
-  docs: {
-    description: {
-      story: 'Use the `inline-label` property to add text inside field',
+export const withSuffix: Story = {
+  args: {
+    label: 'With suffix',
+    suffix: '.com',
+    id: 'example-suffix',
+  },
+}
+
+export const withGhost: Story = {
+  args: {
+    label: 'Ghost text input',
+    ghost: true,
+    id: 'example-ghost',
+  },
+}
+
+export const withRequired: Story = {
+  args: {
+    label: 'Required text input',
+    required: true,
+    id: 'example-required',
+  },
+}
+
+export const withPlaceholder: Story = {
+  args: {
+    label: 'With placeholder',
+    placeholder: 'Placeholder text',
+    modelValue: undefined,
+    id: 'example-placeholder',
+  },
+}
+
+export const Ghost: Story = {
+  render: (args: Args) => ({
+    components: { SbTextField },
+    setup() {
+      const internalValue = ref('Boris Spassky')
+      return { ...args, internalValue }
+    },
+    template: `
+    <div style="max-width: 300px">
+      <SbTextField
+        v-bind="args"
+        v-model="internalValue"
+      /><br>
+      <SbTextField
+        v-bind="args"
+        v-model="internalValue"
+        clearable
+      /><br>
+      <SbTextField
+        v-bind="args"
+        iconRight="eye"
+        type="password"
+        native-value="Boris Spassky"
+        v-model="internalValue"
+      /><br>
+    </div>
+  `,
+  }),
+  args: {
+    ghost: true,
+  },
+}
+
+export const asTextArea: Story = {
+  args: {
+    type: 'textarea',
+    label: 'Textarea element',
+  },
+}
+
+export const withAutoGrowTextarea: Story = {
+  args: {
+    label: 'Textarea with auto grow',
+    autoGrow: true,
+    id: 'example-auto-grow',
+    type: 'textarea',
+  },
+}
+
+export const withMask: Story = {
+  args: {
+    placeholder: '####-##-##',
+    mask: '####-##-##',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use "#" for numbers (0-9), “S” for letter in any case (a-z,A-Z), “X” for number or letter (a-z,A-Z,0-9), “*” for repeat and “!” for optional (next character).',
+      },
     },
   },
 }

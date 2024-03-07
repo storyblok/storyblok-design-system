@@ -1,30 +1,14 @@
 import dayjs from 'dayjs'
-import { SbDatepicker } from '.'
+import { SbDatepicker } from './index'
 import { datepickerOptions } from './utils'
 
-const Template = (args) => ({
-  components: { SbDatepicker },
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+import { ref } from 'vue'
+type Story = StoryObj<typeof SbDatepicker>
 
-  setup: () => ({ args }),
-
-  data: () => ({
-    internalDatetimeValue: dayjs(args.modelValue).format('YYYY-MM-DD HH:mm'),
-  }),
-
-  template: `
-    <div class="large">
-      <SbDatepicker
-        v-model="internalDatetimeValue"
-        v-bind="args"
-        style="width: 29.4rem"
-      />
-    </div>
-  `,
-})
-
-export default {
+const meta: Meta<typeof SbDatepicker> = {
   title: 'Forms/SbDatepicker',
-  components: { SbDatepicker },
+  component: SbDatepicker,
   args: {
     placeholder: 'Select date and time',
     modelValue: '2021-12-02 00:00',
@@ -154,110 +138,125 @@ export default {
       },
     },
   },
+  render: (args: Args) => ({
+    components: { SbDatepicker },
+
+    setup: () => {
+      const internalDatetimeValue = ref(
+        dayjs(args.modelValue).format('YYYY-MM-DD HH:mm'),
+      )
+      return { args, internalDatetimeValue }
+    },
+
+    template: `
+      <div class="large">
+        <SbDatepicker
+          v-model="internalDatetimeValue"
+          v-bind="args"
+          style="width: 29.4rem"
+        />
+      </div>
+    `,
+  }),
 }
 
-export const Default = Template.bind({})
+export default meta
 
-export const TimeType = Template.bind({})
+export const Default: Story = {}
+export const TimeType: Story = {
+  args: {
+    minuteRange: 5,
+  },
 
-TimeType.args = {
-  minuteRange: 5,
-}
-
-TimeType.parameters = {
-  docs: {
-    description: {
-      story: 'Use `time` type to only change the time option.',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use `time` type to only change the time option.',
+      },
     },
   },
 }
+export const DateType: Story = {
+  args: {
+    type: 'date',
+  },
 
-export const DateType = Template.bind({})
-
-DateType.args = {
-  type: 'date',
-}
-
-DateType.parameters = {
-  docs: {
-    description: {
-      story: 'Use `date` type to only change the date option.',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use `date` type to only change the date option.',
+      },
     },
   },
 }
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
 
-export const Disabled = Template.bind({})
-
-Disabled.args = {
-  disabled: true,
-}
-
-Disabled.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use `disabled` property to disable the input that opens the Datepicker',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use `disabled` property to disable the input that opens the Datepicker',
+      },
     },
   },
 }
+export const WithTzOffset: Story = {
+  args: {
+    tzOffset: '-02:00',
+    tzTooltip: 'Timezone can be changed in settings',
+  },
 
-export const WithTzOffset = Template.bind({})
-
-WithTzOffset.args = {
-  tzOffset: '-02:00',
-  tzTooltip: 'Timezone can be changed in settings',
-}
-
-WithTzOffset.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use `timeZone` property to describe the user timezone. It is possible to use an optional property called `tzTooltip` to display a tooltip message for `timeZone` information.',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use `timeZone` property to describe the user timezone. It is possible to use an optional property called `tzTooltip` to display a tooltip message for `timeZone` information.',
+      },
     },
   },
 }
+export const MinMaxDate: Story = {
+  args: {
+    minDate: dayjs().subtract(3, 'day').format('YYYY-MM-DD'),
+    maxDate: dayjs().add(3, 'day').format('YYYY-MM-DD'),
+  },
 
-export const MinMaxDate = Template.bind({})
-
-MinMaxDate.args = {
-  minDate: dayjs().subtract(3, 'day').format('YYYY-MM-DD'),
-  maxDate: dayjs().add(3, 'day').format('YYYY-MM-DD'),
-}
-
-MinMaxDate.parameters = {
-  docs: {
-    description: {
-      story:
-        'Add the `minDate` attribute to establish a minimum selectable date and add the `maxDate` attribute to establish a maximum selectable date. Expected format `YYYY-MM-DD`.',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Add the `minDate` attribute to establish a minimum selectable date and add the `maxDate` attribute to establish a maximum selectable date. Expected format `YYYY-MM-DD`.',
+      },
     },
   },
 }
+export const DisabledDatePast: Story = {
+  args: {
+    disabledPast: true,
+  },
 
-export const DisabledDatePast = Template.bind({})
-
-DisabledDatePast.args = {
-  disabledPast: true,
-}
-
-DisabledDatePast.parameters = {
-  docs: {
-    description: {
-      story:
-        'Add the `disabled-past` attribute to disabled select dates in past.',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Add the `disabled-past` attribute to disabled select dates in past.',
+      },
     },
   },
 }
+export const WithInlineLabel: Story = {
+  args: {
+    inlineLabel: 'Date:',
+  },
 
-export const WithInlineLabel = Template.bind({})
-
-WithInlineLabel.args = {
-  inlineLabel: 'Date:',
-}
-
-WithInlineLabel.parameters = {
-  docs: {
-    description: {
-      story: 'Use the `inline-label` property to add text inside the field',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use the `inline-label` property to add text inside the field',
+      },
     },
   },
 }

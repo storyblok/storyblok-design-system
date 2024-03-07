@@ -1,6 +1,11 @@
 import SbRadio from './index'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+import { ref } from 'vue'
+
+type Story = StoryObj<typeof SbRadio>
+
+const meta: Meta<typeof SbRadio> = {
   title: 'Forms/SbRadio',
   component: SbRadio,
   args: {
@@ -16,27 +21,32 @@ export default {
   },
 }
 
-export const Default = (args) => ({
-  components: { SbRadio },
-  setup: () => ({ args }),
-  data: () => ({
-    internalValue: 'Jon Doe',
-  }),
-  template: `
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    components: { SbRadio },
+    setup: () => {
+      const internalValue = ref('Jon Doe')
+      return { args, internalValue }
+    },
+    template: `
     <SbRadio
       v-bind="args"
       v-model="internalValue"
     />
   `,
-})
-
-export const Selected = (args) => ({
-  components: { SbRadio },
-  setup: () => ({ args }),
-  data: () => ({
-    internalValue: 'Jon Doe',
   }),
-  template: `
+}
+
+export const Selected: Story = {
+  render: (args: Args) => ({
+    components: { SbRadio },
+    setup: () => {
+      const internalValue = ref('Jon Doe')
+      return { args, internalValue }
+    },
+    template: `
     <div>
       <SbRadio
         style="margin-bottom: 10px;"
@@ -68,15 +78,17 @@ export const Selected = (args) => ({
       />
     </div>
   `,
-})
-
-export const Inline = (args) => ({
-  components: { SbRadio },
-  setup: () => ({ args }),
-  data: () => ({
-    internalValue: 'Jon Doe',
   }),
-  template: `
+}
+
+export const Inline: Story = {
+  render: (args: Args) => ({
+    components: { SbRadio },
+    setup: () => {
+      const internalValue = ref('Jon Doe')
+      return { args, internalValue }
+    },
+    template: `
     <div>
       <div style="margin-bottom: 20px;">
         <SbRadio
@@ -112,15 +124,17 @@ export const Inline = (args) => ({
       </div>
     </div>
   `,
-})
-
-export const WithOutline = (args) => ({
-  components: { SbRadio },
-  setup: () => ({ args }),
-  data: () => ({
-    internalValue: 'Jon Doe',
   }),
-  template: `
+}
+
+export const WithOutline: Story = {
+  render: (args: Args) => ({
+    components: { SbRadio },
+    setup: () => {
+      const internalValue = ref('Jon Doe')
+      return { args, internalValue }
+    },
+    template: `
       <div>
         <SbRadio
           style="margin-right: 10px;"
@@ -157,4 +171,5 @@ export const WithOutline = (args) => ({
         />
       </div>
   `,
-})
+  }),
+}

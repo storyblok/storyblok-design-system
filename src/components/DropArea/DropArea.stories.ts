@@ -1,7 +1,11 @@
 import SbDropArea from './index'
 import SbUploadDialog from '../UploadDialog'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbDropArea>
+
+const meta: Meta<typeof SbDropArea> = {
   title: 'Interface/SbDropArea',
   parameters: {
     docs: {
@@ -74,12 +78,15 @@ export default {
   },
 }
 
-export const Default = (args) => ({
-  components: { SbDropArea },
-  setup() {
-    return { args }
-  },
-  template: `
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    components: { SbDropArea },
+    setup() {
+      return { args }
+    },
+    template: `
   <div style="min-height: 400px;">
     <SbDropArea
       :accept="accept"
@@ -90,19 +97,21 @@ export const Default = (args) => ({
     />
     </div>
   `,
-})
+  }),
+}
 
-export const DropAreaWithUploadModal = (args) => ({
-  components: { SbDropArea, SbUploadDialog },
-  setup() {
-    return { args }
-  },
-  data() {
-    return {
-      hasFiles: true,
-    }
-  },
-  template: `
+export const DropAreaWithUploadModal: Story = {
+  render: (args: Args) => ({
+    components: { SbDropArea, SbUploadDialog },
+    setup() {
+      return { args }
+    },
+    data() {
+      return {
+        hasFiles: true,
+      }
+    },
+    template: `
     <div>
       <SbDropArea
         :accept="accept"
@@ -121,14 +130,16 @@ export const DropAreaWithUploadModal = (args) => ({
         v-if="hasFiles"
       />
     </div>`,
-})
+  }),
+}
 
-export const DefaultWithUploadButton = (args) => ({
-  components: { SbDropArea },
-  setup() {
-    return { args }
-  },
-  template: `
+export const DefaultWithUploadButton: Story = {
+  render: (args: Args) => ({
+    components: { SbDropArea },
+    setup() {
+      return { args }
+    },
+    template: `
     <SbDropArea
       :accept="accept"
       subtitle="You can drop in multiple JPEGs, PNGs, SVGs, PDFs and all other files or choose"
@@ -138,13 +149,13 @@ export const DefaultWithUploadButton = (args) => ({
       :max-file-size="maxFileSize"
     />
   `,
-})
-
-DropAreaWithUploadModal.parameters = {
-  docs: {
-    description: {
-      story:
-        'In this story you can see how the SbUploadDialog component looks after dropping the files in the `SbDropArea` component, the use of this component is optional, the user can use or create new ones, as `SbDropArea` returns a callback with the dropped files.`',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'In this story you can see how the SbUploadDialog component looks after dropping the files in the `SbDropArea` component, the use of this component is optional, the user can use or create new ones, as `SbDropArea` returns a callback with the dropped files.`',
+      },
     },
   },
 }

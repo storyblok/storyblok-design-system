@@ -4,7 +4,11 @@ import SbButton from '../Button/index'
 import { availableVariants } from '../Button/lib'
 import { availableSizes } from '../../utils'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbGroupButton>
+
+const meta: Meta<typeof SbGroupButton> = {
   title: 'Basic/SbGroupButton',
   component: SbGroupButton,
   args: {
@@ -39,54 +43,63 @@ export default {
   },
 }
 
-export const Default = (args) => ({
-  components: { SbGroupButton, SbButton },
-  setup() {
-    return { args }
-  },
-  template: `
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    components: { SbGroupButton, SbButton },
+    setup() {
+      return { args }
+    },
+    template: `
     <SbGroupButton v-bind="args">
       <SbButton label="First Button" />
       <SbButton label="Secondary Button" />
       <SbButton label="Third Button" />
     </SbGroupButton>
   `,
-})
+  }),
+}
 
-export const WithIcons = (args) => ({
-  components: { SbGroupButton, SbButton },
-  setup() {
-    return { args }
-  },
-  template: `
+export const WithIcons: Story = {
+  render: (args: Args) => ({
+    components: { SbGroupButton, SbButton },
+    setup() {
+      return { args }
+    },
+    template: `
     <SbGroupButton v-bind="args">
       <SbButton label="First Button" />
       <SbButton label="Secondary Button" />
       <SbButton has-icon-only icon="x" />
     </SbGroupButton>
   `,
-})
+  }),
+}
 
-export const JustIcons = (args) => ({
-  components: { SbGroupButton, SbButton },
-  setup() {
-    return { args }
-  },
-  template: `
+export const JustIcons: Story = {
+  render: (args: Args) => ({
+    components: { SbGroupButton, SbButton },
+    setup() {
+      return { args }
+    },
+    template: `
     <SbGroupButton v-bind="args">
       <SbButton has-icon-only icon="calendar" iconDescription="Calendar Icon" />
       <SbButton has-icon-only icon="plus" iconDescription="Plus Icon" />
       <SbButton has-icon-only icon="more-vertical" iconDescription="Overflow Icon" />
     </SbGroupButton>
   `,
-})
+  }),
+}
 
-export const InvertedLink = (args) => ({
-  components: { SbGroupButton, SbButton },
-  setup() {
-    return { args }
-  },
-  template: `
+export const InvertedLink: Story = {
+  render: (args: Args) => ({
+    components: { SbGroupButton, SbButton },
+    setup() {
+      return { args }
+    },
+    template: `
     <div style="background-color:#1b243f;height:100px;">
       <SbGroupButton variant="inverted-link">
           <SbButton label="First button" />
@@ -94,4 +107,5 @@ export const InvertedLink = (args) => ({
       </SbGroupButton>
     </div>
   `,
-})
+  }),
+}

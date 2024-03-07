@@ -3,7 +3,11 @@ import { iconSizes } from '../Icon/utils'
 import { availableColors } from '../../utils'
 import availableIcons from '../../lib/all-icons'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbIconButton>
+
+const meta: Meta<typeof SbIconButton> = {
   title: 'Basic/SbIconButton',
   component: SbIconButton,
   args: {
@@ -35,24 +39,30 @@ export default {
   },
 }
 
-export const Default = (args) => ({
-  components: { SbIconButton },
-  setup() {
-    return { args }
-  },
-  template: `
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    components: { SbIconButton },
+    setup() {
+      return { args }
+    },
+    template: `
     <SbIconButton v-bind="args" />
   `,
-})
+  }),
+}
 
-export const WhiteColor = (args) => ({
-  components: { SbIconButton },
-  setup() {
-    return { args }
-  },
-  template: `
+export const WhiteColor: Story = {
+  render: (args: Args) => ({
+    components: { SbIconButton },
+    setup() {
+      return { args }
+    },
+    template: `
     <div style="background-color:#1b243f;padding:20px;">
       <SbIconButton icon-color="white" icon-name="toy-brick" />
     </div>
   `,
-})
+  }),
+}

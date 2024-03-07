@@ -71,11 +71,17 @@ export default {
 
   computed: {
     isMinArrowDisabled() {
-      return this.calculateDecreasement(this.modelValue, this.step) < this.min
+      return (
+        this.calculateDecreasement(this.modelValue, this.step) < this.min ||
+        this.disabled
+      )
     },
 
     isMaxArrowDisabled() {
-      return this.calculateIncreasement(this.modelValue, this.step) > this.max
+      return (
+        this.calculateIncreasement(this.modelValue, this.step) > this.max ||
+        this.disabled
+      )
     },
 
     precisionNumber() {

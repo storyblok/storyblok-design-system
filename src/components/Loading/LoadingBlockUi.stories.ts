@@ -2,25 +2,11 @@ import { SbLoading } from './index'
 import { availableColors } from '../../utils'
 import { loadingTypes, loadingSizes } from './utils'
 
-const LoadingBlockTemplate = (args, storyContext) => ({
-  components: { SbLoading },
-  setup() {
-    return { args }
-  },
-  computed: {
-    styleForDocs() {
-      if (storyContext.viewMode === 'docs') return 'position: inherit'
-    },
-  },
-  template: `
-    <SbLoading
-      :style="styleForDocs"
-      v-bind="args"
-    />
-  `,
-})
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
 
-export default {
+type Story = StoryObj<typeof SbLoading>
+
+const meta: Meta<typeof SbLoading> = {
   title: 'Interface/SbLoading',
   component: SbLoading,
   parameters: {
@@ -95,28 +81,47 @@ export default {
       },
     },
   },
+  render: (args: Args, storyContext) => ({
+    components: { SbLoading },
+    setup() {
+      return { args }
+    },
+    computed: {
+      styleForDocs() {
+        if (storyContext.viewMode === 'docs') return 'position: inherit'
+      },
+    },
+    template: `
+      <SbLoading
+        :style="styleForDocs"
+        v-bind="args"
+      />
+    `,
+  }),
 }
 
-export const BlockingUiLoadingSpinner = LoadingBlockTemplate.bind({})
+export default meta
 
-BlockingUiLoadingSpinner.args = {
-  uiBlock: true,
-  size: 'x-large',
-}
+export const BlockingUiLoadingSpinner: Story = {
+  args: {
+    uiBlock: true,
+    size: 'x-large',
+  },
 
-BlockingUiLoadingSpinner.parameters = {
-  docs: {
-    description: {
-      story:
-        'The `uiBlock` feature causes the user`s screen to be blocked during loading.',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `uiBlock` feature causes the user`s screen to be blocked during loading.',
+      },
     },
   },
 }
 
-export const BlockingUiLoadingProgressBar = LoadingBlockTemplate.bind({})
-
-BlockingUiLoadingProgressBar.args = {
-  uiBlock: true,
-  type: 'bar',
-  modelValue: 30,
+export const BlockingUiLoadingProgressBar: Story = {
+  args: {
+    uiBlock: true,
+    type: 'bar',
+    modelValue: 30,
+  },
 }

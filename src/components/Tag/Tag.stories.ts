@@ -11,10 +11,7 @@ const meta: Meta<typeof SbTag> = {
     closable: false,
     label: 'a label',
     type: 'light-grey',
-    user: {
-      avatar: 'https://placehold.co/22x22',
-      friendly_name: 'John Doe',
-    },
+    user: null,
   },
   argTypes: {
     type: {
@@ -26,7 +23,7 @@ const meta: Meta<typeof SbTag> = {
       },
     },
   },
-  render: (args) => ({
+  render: (args: Args) => ({
     components: { SbTag },
     setup(): Args {
       return { args }

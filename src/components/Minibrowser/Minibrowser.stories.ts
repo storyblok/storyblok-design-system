@@ -1,6 +1,7 @@
 import { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader } from '.'
 import { toLowerCase } from '../../utils'
 import { waitMs } from '../../utils/tests-utils'
+import { computed, ref, watch } from 'vue'
 
 export const MOCK_DATA = {
   FIRST_LEVEL: [
@@ -98,7 +99,11 @@ export const MOCK_DATA = {
   ],
 }
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbMinibrowser>
+
+const meta: Meta<typeof SbMinibrowser> = {
   title: 'Navigation/SbMinibrowser',
   component: SbMinibrowser,
   excludeStories: /.*Data$/i,
@@ -109,212 +114,218 @@ export default {
     isBorderless: false,
     isList: false,
     isLoading: false,
-
     breadcrumbs: [],
     options: [...MOCK_DATA.FIRST_LEVEL],
     placeholder: 'Search content items',
     notFoundPrefix: 'No matches for',
     clearOnSelect: true,
   },
-}
 
-const MinibrowserTemplate = (args) => ({
-  components: { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader },
+  render: (args: Args) => ({
+    components: { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader },
+    setup() {
+      const internalLoading = ref(false)
+      const internalOptions = ref([...MOCK_DATA.FIRST_LEVEL])
+      const internalBreadcrumbsOptions = ref([])
 
-  setup: () => ({ args }),
+      function syncLoading(newLoading) {
+        internalLoading.value = newLoading
+      }
 
-  data: () => ({
-    internalLoading: false,
-    internalOptions: [...MOCK_DATA.FIRST_LEVEL],
-    internalBreadcrumbsOptions: [],
-  }),
+      function syncBreadcrumbs(newBreadcrumbs = []) {
+        internalBreadcrumbsOptions.value = [...newBreadcrumbs]
+      }
 
-  watch: {
-    breadcrumbs: {
-      handler: 'syncBreadcrumbs',
-      immediate: true,
-    },
+      function syncOptions(newOptions = []) {
+        internalOptions.value = [...newOptions]
+      }
 
-    isLoading: {
-      handler: 'syncLoading',
-      immediate: true,
-    },
+      function getDefaultOptions() {
+        return [...args.options]
+      }
 
-    options: {
-      handler: 'syncOptions',
-      immediate: true,
-    },
-  },
-
-  computed: {
-    internalBreadcrumbs() {
-      return this.internalBreadcrumbsOptions.map((item) => {
-        return {
-          label: item.label,
+      function getOptionsByLevel(item) {
+        if (item.value === '1.0') {
+          return [...MOCK_DATA.SECOND_LEVEL]
         }
-      })
-    },
-  },
 
-  methods: {
-    syncLoading(newLoading) {
-      this.internalLoading = newLoading
-    },
+        if (item.value === '2.0') {
+          return [...MOCK_DATA.THIRD_LEVEL]
+        }
 
-    syncBreadcrumbs(newBreadcrumbs = []) {
-      this.internalBreadcrumbsOptions = [...newBreadcrumbs]
-    },
-
-    syncOptions(newOptions = []) {
-      this.internalOptions = [...newOptions]
-    },
-
-    getDefaultOptions() {
-      return [...args.options]
-    },
-
-    getOptionsByLevel(item) {
-      if (item.value === '1.0') {
-        return [...MOCK_DATA.SECOND_LEVEL]
+        return getDefaultOptions()
       }
 
-      if (item.value === '2.0') {
-        return [...MOCK_DATA.THIRD_LEVEL]
+      function handleFilter({ value }) {
+        if (!value) {
+          internalOptions.value = getDefaultOptions()
+          return
+        }
+
+        internalLoading.value = true
+
+        const data = [
+          ...MOCK_DATA.FIRST_LEVEL,
+          ...MOCK_DATA.SECOND_LEVEL,
+          ...MOCK_DATA.THIRD_LEVEL,
+        ]
+
+        internalOptions.value = data.filter((item) => {
+          const label = toLowerCase(item.label || '')
+
+          return label.indexOf(value) !== -1
+        })
+
+        internalLoading.value = false
       }
 
-      return this.getDefaultOptions()
-    },
+      async function handleClearNavigation() {
+        internalLoading.value = true
 
-    handleFilter({ value }) {
-      if (!value) {
-        this.internalOptions = this.getDefaultOptions()
-        return
+        await waitMs(300)
+
+        internalOptions.value = getDefaultOptions()
+        internalBreadcrumbsOptions.value = []
+
+        internalLoading.value = false
       }
 
-      this.internalLoading = true
+      async function handleSelectItem(item) {
+        internalLoading.value = true
 
-      const data = [
-        ...MOCK_DATA.FIRST_LEVEL,
-        ...MOCK_DATA.SECOND_LEVEL,
-        ...MOCK_DATA.THIRD_LEVEL,
-      ]
+        if (item.isParent) {
+          await waitMs(500)
 
-      this.internalOptions = data.filter((item) => {
-        const label = toLowerCase(item.label || '')
+          internalOptions.value = getOptionsByLevel(item)
 
-        return label.indexOf(value) !== -1
-      })
+          internalBreadcrumbsOptions.value.push(item)
+        }
 
-      this.internalLoading = false
-    },
-
-    async handleClearNavigation() {
-      this.internalLoading = true
-
-      await waitMs(300)
-
-      this.internalOptions = this.getDefaultOptions()
-      this.internalBreadcrumbsOptions = []
-
-      this.internalLoading = false
-    },
-
-    async handleSelectItem(item) {
-      this.internalLoading = true
-
-      if (item.isParent) {
-        await waitMs(500)
-
-        this.internalOptions = this.getOptionsByLevel(item)
-
-        this.internalBreadcrumbsOptions.push(item)
+        internalLoading.value = false
       }
 
-      this.internalLoading = false
-    },
+      async function handleNavigate(index) {
+        internalLoading.value = true
 
-    async handleNavigate(index) {
-      this.internalLoading = true
+        await waitMs(300)
 
-      await waitMs(300)
+        const currentItem = internalBreadcrumbsOptions.value[index]
+        internalOptions.value = getOptionsByLevel(currentItem)
+        internalBreadcrumbsOptions.value =
+          internalBreadcrumbsOptions.value.filter(
+            (_, itemIndex) => itemIndex <= index,
+          )
 
-      const currentItem = this.internalBreadcrumbsOptions[index]
-      this.internalOptions = this.getOptionsByLevel(currentItem)
-      this.internalBreadcrumbsOptions = this.internalBreadcrumbsOptions.filter(
-        (_, itemIndex) => itemIndex <= index,
+        internalLoading.value = false
+      }
+
+      watch(
+        () => args.breadcrumbs,
+        (newBreadcrumbs) => {
+          syncBreadcrumbs()
+        },
       )
 
-      this.internalLoading = false
-    },
-  },
-
-  template: `
-    <SbMinibrowser
-      v-bind="args"
-      @filter="handleFilter"
-      @clear-navigation="handleClearNavigation"
-      @navigate="handleNavigate"
-      @select-item="handleSelectItem"
-    />
-  `,
-})
-
-export const Default = MinibrowserTemplate.bind({})
-
-export const WithGroups = MinibrowserTemplate.bind({})
-
-WithGroups.args = {
-  options: [
-    {
-      group: true,
-      title: 'Recent Content',
-      items: [
-        {
-          label: 'Case Studies',
-          subtitle: 'case-studies',
+      watch(
+        () => args.isLoading,
+        (newLoading) => {
+          syncLoading(newLoading)
         },
-        {
-          label: 'Jobs',
-          subtitle: 'jobs',
+      )
+
+      watch(
+        () => args.options,
+        (newOptions) => {
+          syncOptions(newOptions)
         },
-      ],
+      )
+
+      const internalBreadcrumbs = computed(() => {
+        return internalBreadcrumbsOptions.value.map((item) => {
+          return {
+            label: item.label,
+          }
+        })
+      })
+
+      return {
+        args,
+        getDefaultOptions,
+        getOptionsByLevel,
+        handleClearNavigation,
+        handleFilter,
+        handleNavigate,
+        handleSelectItem,
+        internalBreadcrumbs,
+        internalBreadcrumbsOptions,
+        internalLoading,
+        internalOptions,
+        syncBreadcrumbs,
+        syncLoading,
+        syncOptions,
+      }
     },
-    {
-      group: true,
-      title: 'All Content',
-      items: [...MOCK_DATA.FIRST_LEVEL],
-    },
-  ],
+
+    template: `
+      <SbMinibrowser
+        v-bind="args"
+        :options="internalOptions"
+        :loading="internalLoading"
+        :breadcrumbs="internalBreadcrumbs"
+        @filter="handleFilter"
+        @clear-navigation="handleClearNavigation"
+        @navigate="handleNavigate"
+        @select-item="handleSelectItem"
+      />
+    `,
+  }),
 }
 
-export const Lazy = MinibrowserTemplate.bind({})
+export default meta
 
-export const WithGroupsSlot = (args) => ({
-  ...MinibrowserTemplate(args),
+export const Default: Story = {}
 
-  template: `
-    <SbMinibrowser
-      :is-loading="internalLoading"
-      :breadcrumbs="internalBreadcrumbs"
-      :options="internalOptions"
-      :is-list="isList"
-      :is-expanded="isExpanded"
-      :is-full-height="isFullHeight"
-      :is-borderless="isBorderless"
-      :filter-debounce="filterDebounce"
-      :not-found-prefix="notFoundPrefix"
-      :placeholder="placeholder"
-      :clear-on-select="clearOnSelect"
-      @filter="handleFilter"
-      @clear-navigation="handleClearNavigation"
-      @navigate="handleNavigate"
-      @select-item="handleSelectItem"
-    >
-      <template v-slot:list="slotProps">
+export const WithGroups: Story = {
+  args: {
+    options: [
+      {
+        group: true,
+        title: 'Recent Content',
+        items: [
+          {
+            label: 'Case Studies',
+            subtitle: 'case-studies',
+          },
+          {
+            label: 'Jobs',
+            subtitle: 'jobs',
+          },
+        ],
+      },
+      {
+        group: true,
+        title: 'All Content',
+        items: [...MOCK_DATA.FIRST_LEVEL],
+      },
+    ],
+  },
+}
+
+export const Lazy: Story = {}
+
+export const WithGroupsSlot: Story = {
+  render: (args: Args) => ({
+    components: { SbMinibrowser, SbMinibrowserList, SbMinibrowserListHeader },
+    setup() {
+      return { args }
+    },
+    template: `
+    <SbMinibrowser v-bind="args" >
+      <template #list="slotProps">
         <SbMinibrowserList v-bind="slotProps">
-          <template v-if="slotProps.title" v-slot:header="{ title }">
+          <template v-if="slotProps.title" #header="{ title }">
             <SbMinibrowserListHeader :title="title">
-              <template v-slot:right>
+              <template #right>
                 <button> Slot button </button>
               </template>
             </SbMinibrowserListHeader>
@@ -323,96 +334,71 @@ export const WithGroupsSlot = (args) => ({
       </template>
     </SbMinibrowser>
   `,
-})
-
-WithGroupsSlot.args = {
-  options: [
-    {
-      group: true,
-      title: 'Recent Content',
-      items: [
-        {
-          label: 'Case Studies',
-          subtitle: 'case-studies',
-        },
-        {
-          label: 'Jobs',
-          subtitle: 'jobs',
-        },
-      ],
-    },
-    {
-      group: true,
-      title: 'All Content',
-      items: [...MOCK_DATA.FIRST_LEVEL],
-    },
-  ],
+  }),
+  args: {
+    options: [
+      {
+        group: true,
+        title: 'Recent Content',
+        items: [
+          {
+            label: 'Case Studies',
+            subtitle: 'case-studies',
+          },
+          {
+            label: 'Jobs',
+            subtitle: 'jobs',
+          },
+        ],
+      },
+      {
+        group: true,
+        title: 'All Content',
+        items: [...MOCK_DATA.FIRST_LEVEL],
+      },
+    ],
+  },
 }
 
-export const Inline = (args) => ({
-  ...MinibrowserTemplate(args),
-
-  template: `
-    <div style="padding: 10px; border: 1px solid #B1B5BE; border-radius: 5px; max-width: 367px;">
-      <p style="font-size: 16px"> Inline Minibrowser </p>
-      <SbMinibrowser
-        :is-loading="internalLoading"
-        :breadcrumbs="internalBreadcrumbs"
-        :options="internalOptions"
-        :is-list="isList"
-        :is-expanded="isExpanded"
-        :is-full-height="isFullHeight"
-        :is-borderless="isBorderless"
-        :filter-debounce="filterDebounce"
-        :not-found-prefix="notFoundPrefix"
-        :placeholder="placeholder"
-        :clear-on-select="clearOnSelect"
-        @filter="handleFilter"
-        @clear-navigation="handleClearNavigation"
-        @navigate="handleNavigate"
-        @select-item="handleSelectItem"
-      />
-    </div>
-  `,
-})
-
-Inline.args = {
-  isFullHeight: true,
-  isBorderless: true,
-  isExpanded: true,
-  options: [
-    {
-      group: true,
-      title: 'Recent Content',
-      items: [
-        {
-          label: 'Case Studies',
-          subtitle: 'case-studies',
-        },
-        {
-          label: 'Jobs',
-          subtitle: 'jobs',
-        },
-      ],
-    },
-    {
-      group: true,
-      title: 'All Content',
-      items: [...MOCK_DATA.FIRST_LEVEL],
-    },
-  ],
+export const Inline: Story = {
+  args: {
+    isFullHeight: true,
+    isBorderless: true,
+    isExpanded: true,
+    options: [
+      {
+        group: true,
+        title: 'Recent Content',
+        items: [
+          {
+            label: 'Case Studies',
+            subtitle: 'case-studies',
+          },
+          {
+            label: 'Jobs',
+            subtitle: 'jobs',
+          },
+        ],
+      },
+      {
+        group: true,
+        title: 'All Content',
+        items: [...MOCK_DATA.FIRST_LEVEL],
+      },
+    ],
+  },
 }
 
-export const WithLoadingBlocking = MinibrowserTemplate.bind({})
-WithLoadingBlocking.args = {
-  isLoading: true,
-}
-
-WithLoadingBlocking.parameters = {
-  docs: {
-    description: {
-      story:
-        'When the `isLoading` prop is set to `true`, the minibrowser will be blocked for navigation and selection.',
+export const WithLoadingBlocking: Story = {
+  args: {
+    isLoading: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When the `isLoading` prop is set to `true`, the minibrowser will be blocked for navigation and selection.',
+      },
     },
   },
 }

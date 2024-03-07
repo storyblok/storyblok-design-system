@@ -82,6 +82,7 @@
         height: 10px;
         max-width: calc(100% - 20px);
         background: $bg-gray-100;
+        border-radius: $base-border-radius;
         transform: translateY(-50%);
       }
 

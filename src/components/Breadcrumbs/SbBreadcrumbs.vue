@@ -10,8 +10,9 @@
       <SbBreadcrumbItem v-bind="lastItem" />
     </template>
 
-    <template v-else>
-      <SbBreadcrumbItem v-for="item in items" v-bind="item" :key="item.label" />
+    <template v-for="(item, index) in items" v-else :key="item.label">
+      <SbBreadcrumbItem v-bind="item" />
+      <SbBreadcrumbSeparator v-if="index + 1 < items.length" />
     </template>
 
     <slot />

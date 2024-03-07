@@ -1,7 +1,11 @@
 import SbHeading from '.'
 import { availableHeadingTags, availableHeadingWeights } from './lib'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbHeading>
+
+const meta: Meta<typeof SbHeading> = {
   title: 'Basic/SbHeading',
   component: SbHeading,
   args: {
@@ -34,22 +38,23 @@ export default {
       },
     },
   },
+  render: (args: Args) => ({
+    components: { SbHeading },
+    setup() {
+      return { args }
+    },
+    template: `
+    <SbHeading v-bind="args"> Storyblok is amazing! </SbHeading>
+  `,
+  }),
 }
 
-const Template = (args) => ({
-  components: { SbHeading },
-  setup() {
-    return { args }
+export default meta
+
+export const Default: Story = {}
+
+export const HeadingWithCustomFontSize: Story = {
+  args: {
+    customFontSize: '40px',
   },
-  template: `
-  <SbHeading v-bind="args"> Storyblok is amazing! </SbHeading>
-`,
-})
-
-export const Default = Template.bind({})
-
-export const HeadingWithCustomFontSize = Template.bind({})
-
-HeadingWithCustomFontSize.args = {
-  customFontSize: '40px',
 }
