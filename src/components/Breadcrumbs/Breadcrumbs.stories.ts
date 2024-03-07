@@ -1,37 +1,11 @@
 import { SbBreadcrumbs, SbBreadcrumbItem, SbBreadcrumbSeparator } from '.'
 
-const Template = (args) => ({
-  components: { SbBreadcrumbs, SbBreadcrumbItem, SbBreadcrumbSeparator },
-  setup() {
-    return { ...args }
-  },
-  computed: {
-    lastIndex() {
-      return this.items.length - 1
-    },
-  },
-  template: `
-    <div style="max-width: 400px">
-      <SbBreadcrumbs v-bind="args">
-        <template v-for="(item, index) in items">
-          <SbBreadcrumbItem
-            :key="item.label"
-            :is-active="index === lastIndex"
-            :label="item.label"
-          />
-
-          <SbBreadcrumbSeparator
-            v-if="index < lastIndex"
-            :key="index"
-          />
-        </template>
-      </SbBreadcrumbs>
-    </div>
-  `,
-})
-
 // default export defines configurations to all stories
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbBreadcrumbs>
+
+const meta: Meta<typeof SbBreadcrumbs> = {
   title: 'Navigation/SbBreadcrumbs',
   component: SbBreadcrumbs,
   excludeStories: /.*Data$/,
@@ -61,6 +35,17 @@ export default {
       },
     },
   },
+  render: (args: Args) => ({
+    components: { SbBreadcrumbs, SbBreadcrumbItem, SbBreadcrumbSeparator },
+    setup() {
+      return { args }
+    },
+    template: `
+      <div style="max-width: 400px">
+        <SbBreadcrumbs v-bind="args" />
+      </div>
+    `,
+  }),
 }
 
 export const defaultBreadcrumbItemsData = [
@@ -95,121 +80,122 @@ export const defaultBreadcrumbItemsData = [
   },
 ]
 
-export const Default = Template.bind({})
+export default meta
 
-Default.args = {
-  items: [
-    ...defaultBreadcrumbItemsData.slice(0, 2),
-    {
-      label: 'CTA Section',
-      isActive: true,
-    },
-  ],
+export const Default: Story = {
+  args: {
+    items: [
+      ...defaultBreadcrumbItemsData.slice(0, 2),
+      {
+        label: 'CTA Section',
+        isActive: true,
+      },
+    ],
+  },
 }
 
-export const WithLargeSection = Template.bind({})
-
-WithLargeSection.args = {
-  items: [
-    ...defaultBreadcrumbItemsData.slice(0, 2),
-    {
-      label: 'CTA Section',
-      isActive: true,
-    },
-  ],
-  isLargeSection: true,
-}
-
-WithLargeSection.parameters = {
-  docs: {
-    description: {
-      story:
-        'When you set the attribute `isLargeSection`, the last item will be show in a new line, and the font size of this item will be changed to `$font-26` with the `2.6rem` size.',
+export const WithLargeSection: Story = {
+  args: {
+    items: [
+      ...defaultBreadcrumbItemsData.slice(0, 2),
+      {
+        label: 'CTA Section',
+        isActive: true,
+      },
+    ],
+    isLargeSection: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When you set the attribute `isLargeSection`, the last item will be show in a new line, and the font size of this item will be changed to `$font-26` with the `2.6rem` size.',
+      },
     },
   },
 }
 
-export const LongBreadcrumbs = (args) => ({
-  components: { SbBreadcrumbs },
-  setup: () => ({ args }),
-  template: `
+export const LongBreadcrumbs: Story = {
+  render: (args: Args) => ({
+    components: { SbBreadcrumbs },
+    setup: () => ({ args }),
+    template: `
     <div style="max-width: 400px">
       <SbBreadcrumbs v-bind="args" />
     </div>
   `,
-})
-
-LongBreadcrumbs.args = {
-  items: [
-    ...defaultBreadcrumbItemsData,
-    {
-      label: 'Button CTA',
-      href: '#Button-CTA',
-      title: 'Button CTA',
-    },
-    {
-      label: 'Button CTA2',
-      href: '#Button-CTA2',
-      title: 'Button CTA2',
-    },
-    {
-      label: 'CTA2 Section',
-      isActive: true,
-    },
-  ],
-}
-
-LongBreadcrumbs.parameters = {
-  docs: {
-    description: {
-      story:
-        'When a path contains more than six levels of entities, it will have a `SbDropdown` with the rest of the items, this happens automatically, you can click on the arrow to the right of the 3 dots to expand the `SbDropdown`.',
+  }),
+  args: {
+    items: [
+      ...defaultBreadcrumbItemsData,
+      {
+        label: 'Button CTA',
+        href: '#Button-CTA',
+        title: 'Button CTA',
+      },
+      {
+        label: 'Button CTA2',
+        href: '#Button-CTA2',
+        title: 'Button CTA2',
+      },
+      {
+        label: 'CTA2 Section',
+        isActive: true,
+      },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When a path contains more than six levels of entities, it will have a `SbDropdown` with the rest of the items, this happens automatically, you can click on the arrow to the right of the 3 dots to expand the `SbDropdown`.',
+      },
     },
   },
 }
 
-export const LongBreadcrumbsInTwoLines = Template.bind({})
+export const LongBreadcrumbsInTwoLines: Story = {
+  args: {
+    items: [
+      ...defaultBreadcrumbItemsData.slice(0, -1),
+      {
+        label: 'CTA Section',
+        isActive: true,
+      },
+    ],
+  },
 
-LongBreadcrumbsInTwoLines.args = {
-  items: [
-    ...defaultBreadcrumbItemsData.slice(0, -1),
-    {
-      label: 'CTA Section',
-      isActive: true,
-    },
-  ],
-}
-
-LongBreadcrumbsInTwoLines.parameters = {
-  docs: {
-    description: {
-      story:
-        "The SbBreadcrumbs will automatically wrap the line if the container doesn't have enough space to render the list in a single line, below you can see this, as the container is only `400px`, causing the list to break line and render on the next line.",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The SbBreadcrumbs will automatically wrap the line if the container doesn't have enough space to render the list in a single line, below you can see this, as the container is only `400px`, causing the list to break line and render on the next line.",
+      },
     },
   },
 }
 
-export const ItemsTruncated = Template.bind({})
+export const ItemsTruncated: Story = {
+  args: {
+    items: [
+      ...defaultBreadcrumbItemsData.slice(0, 2),
+      {
+        label: 'Long hero section name tooltip',
+        href: '#test-truncated',
+      },
+      {
+        label: 'CTA Section',
+        isActive: true,
+      },
+    ],
+  },
 
-ItemsTruncated.args = {
-  items: [
-    ...defaultBreadcrumbItemsData.slice(0, 2),
-    {
-      label: 'Long hero section name tooltip',
-      href: '#test-truncated',
-    },
-    {
-      label: 'CTA Section',
-      isActive: true,
-    },
-  ],
-}
-
-ItemsTruncated.parameters = {
-  docs: {
-    description: {
-      story:
-        'When the label is long it will be automatically truncated, the truncate function is activated when the label has more than 13 characters.',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When the label is long it will be automatically truncated, the truncate function is activated when the label has more than 13 characters.',
+      },
     },
   },
 }

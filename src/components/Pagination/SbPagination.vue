@@ -159,10 +159,11 @@ export default {
 
   emits: [
     'update:modelValue',
-    'on-next-page',
-    'on-previous-page',
+    'next-page',
+    'previous-page',
     'page-change',
     'per-page-change',
+
   ],
 
   computed: {

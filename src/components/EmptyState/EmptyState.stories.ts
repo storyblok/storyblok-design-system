@@ -1,7 +1,8 @@
 import SbEmptyState from './index'
-import type { Args, StoryObj } from '@storybook/vue3'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+const meta: Meta<typeof SbEmptyState> = {
   title: 'Data/SbEmptyState',
   component: SbEmptyState,
   args: {
@@ -14,9 +15,11 @@ export default {
 
 type Story = StoryObj<typeof SbEmptyState>
 
+export default meta
+
 export const Default: Story = {
   name: 'Default Empty State',
-  render: (args) => ({
+  render: (args: Args) => ({
     components: { SbEmptyState },
     setup(): Args {
       return { args }
@@ -29,7 +32,7 @@ export const Default: Story = {
 
 export const WithIcon: Story = {
   name: 'Empty State with Icon',
-  render: (args) => ({
+  render: (args: Args) => ({
     components: { SbEmptyState },
     setup(): Args {
       return { args }
@@ -42,7 +45,7 @@ export const WithIcon: Story = {
 
 export const WithTopRightIcon: Story = {
   name: 'Empty State with Top Icon',
-  render: (args) => ({
+  render: (args: Args) => ({
     components: { SbEmptyState },
     setup(): Args {
       return { args }
@@ -59,7 +62,7 @@ export const WithTopRightIcon: Story = {
 
 export const WithIllustration: Story = {
   name: 'Empty State with Illustration',
-  render: (args) => ({
+  render: (args: Args) => ({
     components: { SbEmptyState },
     setup(): Args {
       return { args }
@@ -72,7 +75,7 @@ export const WithIllustration: Story = {
 
 export const WithButtons: Story = {
   name: 'Empty State with Buttons',
-  render: (args) => ({
+  render: (args: Args) => ({
     components: { SbEmptyState },
     setup(): Args {
       return { args }

@@ -1,6 +1,10 @@
 import SbLogo from './index'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbLogo>
+
+const meta: Meta<typeof SbLogo> = {
   title: 'Basic/SbLogo',
   component: SbLogo,
   argTypes: {
@@ -22,34 +26,40 @@ export default {
   },
 }
 
-export const Default = (args) => ({
-  components: { SbLogo },
-  setup() {
-    return { args }
-  },
-  template: `
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    components: { SbLogo },
+    setup() {
+      return { args }
+    },
+    template: `
     <SbLogo v-bind="args" />
   `,
-})
-
-export const WhiteText = (args) => ({
-  components: { SbLogo },
-  setup() {
-    return { args }
-  },
-  template: `
+  }),
+}
+export const WhiteText: Story = {
+  render: (args: Args) => ({
+    components: { SbLogo },
+    setup() {
+      return { args }
+    },
+    template: `
     <div style="background-color:#1b243f;padding:20px;">
       <SbLogo text-variant="white" />
     </div>
   `,
-})
-
-export const IconOnly = (args) => ({
-  components: { SbLogo },
-  setup() {
-    return { args }
-  },
-  template: `
+  }),
+}
+export const IconOnly: Story = {
+  render: (args: Args) => ({
+    components: { SbLogo },
+    setup() {
+      return { args }
+    },
+    template: `
       <SbLogo icon-only />
   `,
-})
+  }),
+}

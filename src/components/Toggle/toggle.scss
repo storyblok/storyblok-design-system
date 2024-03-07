@@ -96,6 +96,17 @@ $toggle-padding: 4px;
   }
 }
 
+.sb-toggle--visible-label {
+  .sb-toggle__label-visible {
+    position: absolute;
+    left: $s-8;
+    top: 0.5rem;
+    min-width: 100px;
+    font-size: $font-13;
+    font-weight: $font-medium;
+  }
+}
+
 .sb-toggle__icon {
   position: absolute;
   top: 50%;

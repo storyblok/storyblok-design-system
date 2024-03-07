@@ -1,40 +1,11 @@
 import SbPagination from '.'
 
-const PaginationTemplate = (args) => ({
-  components: { SbPagination },
-  setup: () => ({ args }),
-  data: () => ({
-    currentPage: 1,
-    perPageData: 10,
-  }),
-  watch: {
-    modelValue(val) {
-      this.currentPage = val
-    },
-    perPage(val) {
-      this.perPageData = val
-    },
-  },
-  methods: {
-    onPageChangeData(val) {
-      this.perPageData = val
-      this.onPageChange(val)
-    },
-  },
-  template: `
-    <div style="padding: 20px; margin-top: 250px">
-      <SbPagination
-        v-bind="args"
-        :per-page="perPageData"
-        v-model="currentPage"
-        @page-change="onPageChange"
-        @per-page-change="onPageChangeData"
-      />
-    </div>
-  `,
-})
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+import { ref, watch } from 'vue'
 
-export default {
+type Story = StoryObj<typeof SbPagination>
+
+const meta: Meta<typeof SbPagination> = {
   title: 'Navigation/SbPagination',
   component: SbPagination,
   parameters: {
@@ -168,51 +139,92 @@ export default {
       description: 'Event triggered when one presses the next button',
     },
   },
+  render: (args: Args) => ({
+    components: { SbPagination },
+    setup() {
+      const currentPage = ref(1)
+      const perPageData = ref(10)
+
+      watch(
+        () => args.modelValue,
+        (val) => {
+          currentPage.value = val
+        },
+      )
+
+      watch(
+        () => args.perPage,
+        (val) => {
+          perPageData.value = val
+        },
+      )
+
+      const onPageChange = (val: number): void => {
+        currentPage.value = val
+      }
+
+      const onPageChangeData = (val: number): void => {
+        perPageData.value = val
+        onPageChange(val)
+      }
+      return { currentPage, perPageData, onPageChange, onPageChangeData, args }
+    },
+    template: `
+      <div style="padding: 20px; margin-top: 250px">
+        <SbPagination
+          v-bind="args"
+          :per-page="perPageData"
+          v-model="currentPage"
+          @page-change="onPageChange"
+          @per-page-change="onPageChangeData"
+        />
+      </div>
+    `,
+  }),
 }
 
-export const Default = PaginationTemplate.bind({})
+export default meta
 
-export const FullWidth = PaginationTemplate.bind({})
+export const Default: Story = {}
 
-FullWidth.args = {
-  isFullWidth: true,
-}
-
-FullWidth.parameters = {
-  docs: {
-    description: {
-      story:
-        'When you define the `SbPagination` as `isFullWidth`, it will be expanded to full width to fill its parent container.',
+export const FullWidth: Story = {
+  args: {
+    isFullWidth: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When you define the `SbPagination` as `isFullWidth`, it will be expanded to full width to fill its parent container.',
+      },
     },
   },
 }
 
-export const Compact = PaginationTemplate.bind({})
-
-Compact.args = {
-  compact: true,
-}
-
-Compact.parameters = {
-  docs: {
-    description: {
-      story:
-        'When it uses the `compact` property, only the previous and next buttons show up and the informations about the items',
+export const Compact: Story = {
+  args: {
+    compact: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When it uses the `compact` property, only the previous and next buttons show up and the informations about the items',
+      },
     },
   },
 }
 
-export const Carousel = PaginationTemplate.bind({})
-
-Carousel.args = {
-  carousel: true,
-}
-
-Carousel.parameters = {
-  docs: {
-    description: {
-      story:
-        'When it uses the `carousel` property, only the previous and next buttons show up and, in the middle, a dot navigation shows to change the page',
+export const Carousel: Story = {
+  args: {
+    carousel: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When it uses the `carousel` property, only the previous and next buttons show up and, in the middle, a dot navigation shows to change the page',
+      },
     },
   },
 }

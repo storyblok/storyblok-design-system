@@ -1,0 +1,73 @@
+$marker-size: 26px;
+
+.sb-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+
+  &:focus, &:focus-visible {
+    border-radius: 50%;
+    outline-offset: 2px;
+    outline: 1px solid $bg-teal;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &__label {
+    position: absolute;
+    bottom: $marker-size;
+    width: auto;
+    min-width: 50px;
+    margin-bottom: $s-2;
+    color: $text-dark-blue;
+    font-size: $font-12;
+    font-weight: $font-medium;
+    line-height: $font-16;
+    text-align: center;
+  }
+
+  &__marker {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $marker-size;
+    height: $marker-size;
+    background-color: $bg-white;
+    border: 2px solid $border-gray-light;
+    border-radius: 50%;
+  }
+
+  &--active {
+    .sb-step__label {
+      color: $text-dark-blue;
+    }
+
+    .sb-step__marker::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      right: 50%;
+      top: 50%;
+      display: block;
+      width: 12px;
+      height: 12px;
+      background-color: $text-dark-blue;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &--completed {
+    cursor: pointer;
+
+    .sb-step__label {
+      color: $text-dark-blue;
+    }
+  }
+}

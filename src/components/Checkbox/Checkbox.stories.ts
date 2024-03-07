@@ -1,6 +1,10 @@
 import SbCheckbox from './index'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbCheckbox>
+
+const meta: Meta<typeof SbCheckbox> = {
   title: 'Forms/SbCheckbox',
   component: SbCheckbox,
   args: {
@@ -14,12 +18,15 @@ export default {
   },
 }
 
-export const Default = (args) => ({
-  components: { SbCheckbox },
-  setup() {
-    return { ...args }
-  },
-  template: `
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    components: { SbCheckbox },
+    setup() {
+      return { ...args }
+    },
+    template: `
     <div>
       <SbCheckbox
         :name="name"
@@ -43,14 +50,16 @@ export const Default = (args) => ({
       />
     </div>
   `,
-})
+  }),
+}
 
-export const Selected = (args) => ({
-  components: { SbCheckbox },
-  setup() {
-    return { ...args }
-  },
-  template: `
+export const Selected: Story = {
+  render: (args: Args) => ({
+    components: { SbCheckbox },
+    setup() {
+      return { ...args }
+    },
+    template: `
     <div>
       <div style="margin-bottom: 20px">
         <SbCheckbox
@@ -96,14 +105,16 @@ export const Selected = (args) => ({
       </div>
     </div>
   `,
-})
+  }),
+}
 
-export const Inline = (args) => ({
-  components: { SbCheckbox },
-  setup() {
-    return { ...args }
-  },
-  template: `
+export const Inline: Story = {
+  render: (args: Args) => ({
+    components: { SbCheckbox },
+    setup() {
+      return { ...args }
+    },
+    template: `
     <div>
       <div style="margin-bottom: 20px;">
         <SbCheckbox
@@ -137,14 +148,16 @@ export const Inline = (args) => ({
       </div>
     </div>
   `,
-})
+  }),
+}
 
-export const Outline = (args) => ({
-  components: { SbCheckbox },
-  setup() {
-    return { ...args }
-  },
-  template: `
+export const Outline: Story = {
+  render: (args: Args) => ({
+    components: { SbCheckbox },
+    setup() {
+      return { ...args }
+    },
+    template: `
     <div>
       <div>
         <SbCheckbox
@@ -181,4 +194,5 @@ export const Outline = (args) => ({
       </div>
     </div>
   `,
-})
+  }),
+}

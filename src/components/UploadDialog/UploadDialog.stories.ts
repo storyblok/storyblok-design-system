@@ -1,6 +1,10 @@
 import SbUploadDialog from '.'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbUploadDialog>
+
+const meta: Meta<typeof SbUploadDialog> = {
   title: 'Interface/SbUploadDialog',
   component: SbUploadDialog,
   parameters: {
@@ -77,18 +81,21 @@ export default {
       },
     },
   },
+  render: (args: Args) => ({
+    components: { SbUploadDialog },
+
+    setup() {
+      return { args }
+    },
+
+    template: `
+      <SbUploadDialog
+        v-bind="args"
+      />
+    `,
+  }),
 }
 
-export const Default = (args) => ({
-  components: { SbUploadDialog },
+export default meta
 
-  setup() {
-    return { args }
-  },
-
-  template: `
-    <SbUploadDialog
-      v-bind="args"
-    />
-  `,
-})
+export const Default: Story = {}

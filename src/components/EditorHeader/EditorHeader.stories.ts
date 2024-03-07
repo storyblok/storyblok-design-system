@@ -45,7 +45,11 @@ const actionsList = [
   },
 ]
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbEditorHeader>
+
+const meta: Meta<typeof SbEditorHeader> = {
   title: 'Interface/SbEditorHeader',
   component: SbEditorHeader,
   parameters: {
@@ -72,9 +76,11 @@ export default {
   },
 }
 
-export const Default = {
+export default meta
+
+export const Default: Story = {
   name: 'Default',
-  render: (args) => ({
+  render: (args: Args) => ({
     components: { SbEditorHeader },
     setup() {
       return { args }
@@ -85,9 +91,10 @@ export const Default = {
   }),
 }
 
-export const WithSlots = () => ({
-  components: { SbEditorHeader },
-  template: `
+export const WithSlots: Story = {
+  render: () => ({
+    components: { SbEditorHeader },
+    template: `
       <SbEditorHeader>
         <template #left>
           <p>Custom left slot</p>
@@ -102,14 +109,17 @@ export const WithSlots = () => ({
         </template>
       </SbEditorHeader>
   `,
-})
+  }),
+}
 
-export const DarkMode = () => ({
-  components: { SbEditorHeader },
-  template: `
+export const DarkMode: Story = {
+  render: () => ({
+    components: { SbEditorHeader },
+    template: `
     <SbEditorHeader
       header-title="My title"
       mode="dark"
     />
   `,
-})
+  }),
+}

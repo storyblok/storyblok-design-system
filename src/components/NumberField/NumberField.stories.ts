@@ -1,6 +1,11 @@
 import SbNumberField from './index'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+import { ref } from 'vue'
+
+type Story = StoryObj<typeof SbNumberField>
+
+const meta: Meta<typeof SbNumberField> = {
   title: 'Forms/SbNumberField',
   component: SbNumberField,
   args: {
@@ -20,59 +25,98 @@ export default {
     errorMessage: 'Some error message',
     error: false,
   },
-}
+  render: (args: Args) => ({
+    components: { SbNumberField },
+    setup: () => {
+      const internalValue = ref(args.modelValue)
+      return { internalValue, args }
+    },
 
-export const Default = (args) => ({
-  components: { SbNumberField },
-  setup: () => ({ args }),
-  data: () => ({
-    internalValue: 10,
-  }),
-  template: `
+    template: `
     <div style="max-width: 300px">
       <SbNumberField
         style="margin-bottom: 20px;"
-        v-model="internalValue"
         v-bind="args"
-        label="Number input"
-      />
-
-      <SbNumberField
-        style="margin-bottom: 20px;"
         v-model="internalValue"
-        v-bind="args"
-        label="Max: 10 and Min: -10"
-      />
-
-      <SbNumberField
-        v-model="internalValue"
-        style="margin-bottom: 20px;"
-        v-bind="args"
-        label="Step: 0.5"
-      />
-
-      <SbNumberField
-        style="margin-bottom: 20px;"
-        v-model="internalValue"
-        v-bind="args"
-        label="Precision of 3 decimals"
-      />
-
-      <SbNumberField
-        style="margin-bottom: 20px;"
-        v-model="internalValue"
-        v-bind="args"
-        label="Disabled input"
-        disabled
-      />
-
-      <SbNumberField
-        style="margin-bottom: 20px;"
-        v-model="internalValue"
-        v-bind="args"
-        label="Readonly input"
-        readonly
       />
     </div>
   `,
-})
+  }),
+}
+
+export default meta
+
+export const Default: Story = {}
+
+export const withMinAndMax: Story = {
+  args: {
+    min: -10,
+    max: 10,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can set the minimum and maximum value of the input, e.g. -10 to 10',
+      },
+    },
+  },
+}
+
+export const withStep: Story = {
+  args: {
+    step: 0.5,
+    precision: 2,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'You can set the step of the input, e.g. 0.5',
+      },
+    },
+  },
+}
+
+export const withPrecision: Story = {
+  args: {
+    precision: 3,
+  },
+}
+
+export const withDisabled: Story = {
+  args: {
+    disabled: true,
+  },
+}
+
+export const withReadonly: Story = {
+  args: {
+    readonly: true,
+  },
+}
+
+export const withRequired: Story = {
+  args: {
+    required: true,
+  },
+}
+
+export const withError: Story = {
+  args: {
+    error: true,
+    errorMessage: 'This is an error message',
+  },
+}
+
+export const withLabel: Story = {
+  args: {
+    label: 'Number input',
+  },
+}
+
+export const withPlaceholder: Story = {
+  args: {
+    placeholder: 'Placeholder text',
+    modelValue: undefined,
+  },
+}

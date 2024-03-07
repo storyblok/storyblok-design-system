@@ -1,6 +1,10 @@
 import SbLink from './index'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbLink>
+
+const meta: Meta<typeof SbLink> = {
   title: 'Basic/SbLink',
   component: SbLink,
   args: {
@@ -73,46 +77,56 @@ export default {
   },
 }
 
-export const Default = (args) => ({
-  components: { SbLink },
-  setup() {
-    return { args }
-  },
-  template: `
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    components: { SbLink },
+    setup() {
+      return { args }
+    },
+    template: `
     <SbLink
       v-bind="args"
     />
   `,
-})
+  }),
+}
 
-export const InlineLabel = (args) => ({
-  components: { SbLink },
-  setup() {
-    return { args }
-  },
-  template: `
+export const InlineLabel: Story = {
+  render: (args: Args) => ({
+    components: { SbLink },
+    setup() {
+      return { args }
+    },
+    template: `
     <SbLink>
-      {{ label }}
+      Inline Label
     </SbLink>
   `,
-})
+  }),
+}
 
-export const WithIconLeft = () => ({
-  components: { SbLink },
-  template: `
+export const WithIconLeft: Story = {
+  render: () => ({
+    components: { SbLink },
+    template: `
         <SbLink
           icon="check"
           primary-label="With icon left"
         />
     `,
-})
+  }),
+}
 
-export const WithIconRight = () => ({
-  components: { SbLink },
-  template: `
+export const WithIconRight: Story = {
+  render: () => ({
+    components: { SbLink },
+    template: `
         <SbLink
           icon-right="check"
           secondary-label="With icon left"
         />
     `,
-})
+  }),
+}

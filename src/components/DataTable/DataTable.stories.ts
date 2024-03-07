@@ -29,17 +29,11 @@ const description = {
   hideActionsMenu: 'Hides the blue actions menu on the top of the Data Table',
 }
 
-const DataTableTemplate = (args) => ({
-  components: { SbDataTable },
-  setup: () => ({ args }),
-  template: `
-    <SbDataTable
-      v-bind="args"
-    />
-  `,
-})
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
 
-export default {
+type Story = StoryObj<typeof SbDataTable>
+
+const meta: Meta<typeof SbDataTable> = {
   title: 'Data/SbDataTable',
   components: SbDataTable,
   excludeStories: /.*Data$/,
@@ -142,6 +136,15 @@ export default {
       },
     },
   },
+  render: (args: Args) => ({
+    components: { SbDataTable },
+    setup: () => ({ args }),
+    template: `
+      <SbDataTable
+        v-bind="args"
+      />
+    `,
+  }),
 }
 
 export const defaultTableActionsData = [
@@ -236,359 +239,353 @@ export const defaultTableItemsData = [
   },
 ]
 
-export const Default = DataTableTemplate.bind({})
+export default meta
 
-Default.args = {
-  headers: [...defaultTableHeadersData],
-  items: [...defaultTableItemsData],
+export const Default: Story = {
+  args: {
+    headers: [...defaultTableHeadersData],
+    items: [...defaultTableItemsData],
+  },
 }
+export const ActionsMenu: Story = {
+  args: {
+    ...Default.args,
+    actions: [...defaultTableActionsData],
+    allowSelection: true,
+    selectionMode: 'multiple',
+    hideLabelActionsBreakpoint: 1000,
+  },
 
-export const ActionsMenu = DataTableTemplate.bind({})
-
-ActionsMenu.args = {
-  ...Default.args,
-  actions: [...defaultTableActionsData],
-  allowSelection: true,
-  selectionMode: 'multiple',
-  hideLabelActionsBreakpoint: 1000,
-}
-
-ActionsMenu.parameters = {
-  docs: {
-    description: {
-      story: description.actionsMenu,
+  parameters: {
+    docs: {
+      description: {
+        story: description.actionsMenu,
+      },
     },
   },
 }
+export const HideHeader: Story = {
+  args: {
+    ...Default.args,
+    hideHeader: true,
+  },
 
-export const HideHeader = DataTableTemplate.bind({})
-
-HideHeader.args = {
-  ...Default.args,
-  hideHeader: true,
-}
-
-HideHeader.parameters = {
-  docs: {
-    description: {
-      story: description.hideHeader,
+  parameters: {
+    docs: {
+      description: {
+        story: description.hideHeader,
+      },
     },
   },
 }
+export const IsLoading: Story = {
+  args: {
+    ...Default.args,
+    isLoading: true,
+  },
 
-export const IsLoading = DataTableTemplate.bind({})
-
-IsLoading.args = {
-  ...Default.args,
-  isLoading: true,
-}
-
-IsLoading.parameters = {
-  docs: {
-    description: {
-      story: description.isLoading,
+  parameters: {
+    docs: {
+      description: {
+        story: description.isLoading,
+      },
     },
   },
 }
+export const SelectionMode: Story = {
+  args: {
+    ...Default.args,
+    allowSelection: true,
+    selectionMode: 'single',
+  },
 
-export const SelectionMode = DataTableTemplate.bind({})
-
-SelectionMode.args = {
-  ...Default.args,
-  allowSelection: true,
-  selectionMode: 'single',
-}
-
-SelectionMode.parameters = {
-  docs: {
-    description: {
-      story: description.selectionMode,
+  parameters: {
+    docs: {
+      description: {
+        story: description.selectionMode,
+      },
     },
   },
 }
+export const LockedItem: Story = {
+  args: {
+    ...Default.args,
+    allowSelection: true,
+    selectionMode: 'multiple',
+    striped: true,
+    items: [
+      {
+        name: 'French Fries',
+        calories: 261,
+        fat: 1.0,
+        carbs: 21,
+        protein: 3.0,
+        iron: '2%',
+        selectable: false,
+      },
+      {
+        name: 'Hamburger',
+        calories: 271,
+        fat: 1.2,
+        carbs: 22,
+        protein: 4.0,
+        iron: '3%',
+      },
+      {
+        name: 'Chocolate Pizza',
+        calories: 244,
+        fat: 1.4,
+        carbs: 277,
+        protein: 8.0,
+        iron: '1%',
+      },
+      {
+        name: 'Green Tea',
+        calories: 1,
+        fat: 1,
+        carbs: 100,
+        protein: 4.0,
+        iron: '2%',
+        selectable: false,
+      },
+    ],
+  },
 
-export const LockedItem = DataTableTemplate.bind({})
-
-LockedItem.args = {
-  ...Default.args,
-  allowSelection: true,
-  selectionMode: 'multiple',
-  striped: true,
-  items: [
-    {
-      name: 'French Fries',
-      calories: 261,
-      fat: 1.0,
-      carbs: 21,
-      protein: 3.0,
-      iron: '2%',
-      selectable: false,
-    },
-    {
-      name: 'Hamburger',
-      calories: 271,
-      fat: 1.2,
-      carbs: 22,
-      protein: 4.0,
-      iron: '3%',
-    },
-    {
-      name: 'Chocolate Pizza',
-      calories: 244,
-      fat: 1.4,
-      carbs: 277,
-      protein: 8.0,
-      iron: '1%',
-    },
-    {
-      name: 'Green Tea',
-      calories: 1,
-      fat: 1,
-      carbs: 100,
-      protein: 4.0,
-      iron: '2%',
-      selectable: false,
-    },
-  ],
-}
-
-LockedItem.parameters = {
-  docs: {
-    description: {
-      story: description.lockedItem,
+  parameters: {
+    docs: {
+      description: {
+        story: description.lockedItem,
+      },
     },
   },
 }
+export const HideActionsMenu: Story = {
+  args: {
+    ...Default.args,
+    allowSelection: true,
+    selectionMode: 'multiple',
+    hideActionsMenu: true,
+  },
 
-export const HideActionsMenu = DataTableTemplate.bind({})
-
-HideActionsMenu.args = {
-  ...Default.args,
-  allowSelection: true,
-  selectionMode: 'multiple',
-  hideActionsMenu: true,
-}
-
-HideActionsMenu.parameters = {
-  docs: {
-    description: {
-      story: description.hideActionsMenu,
+  parameters: {
+    docs: {
+      description: {
+        story: description.hideActionsMenu,
+      },
     },
   },
 }
+export const Striped: Story = {
+  args: {
+    ...Default.args,
+    striped: true,
+  },
 
-export const Striped = DataTableTemplate.bind({})
-
-Striped.args = {
-  ...Default.args,
-  striped: true,
-}
-
-Striped.parameters = {
-  docs: {
-    description: {
-      story: description.striped,
+  parameters: {
+    docs: {
+      description: {
+        story: description.striped,
+      },
     },
   },
 }
+export const StickyMenu: Story = {
+  args: {
+    ...Default.args,
+    items: [
+      ...defaultTableItemsData,
+      {
+        name: 'French Fries',
+        calories: 261,
+        fat: 1.0,
+        carbs: 21,
+        protein: 3.0,
+        iron: '2%',
+      },
+      {
+        name: 'Hamburger',
+        calories: 271,
+        fat: 1.2,
+        carbs: 22,
+        protein: 4.0,
+        iron: '3%',
+      },
+      {
+        name: 'Chocolate Pizza',
+        calories: 244,
+        fat: 1.4,
+        carbs: 277,
+        protein: 8.0,
+        iron: '1%',
+      },
+      {
+        name: 'Green Tea',
+        calories: 1,
+        fat: 1,
+        carbs: 100,
+        protein: 4.0,
+        iron: '2%',
+      },
+      {
+        name: 'Blueberry Juice',
+        calories: 344,
+        fat: 1.55,
+        carbs: 277,
+        protein: 7.0,
+        iron: '1%',
+      },
+      {
+        name: 'Water',
+        calories: 1,
+        fat: 0,
+        carbs: 10,
+        protein: 2.0,
+        iron: '0%',
+      },
+      {
+        name: 'Soda',
+        calories: 1444,
+        fat: 1.0,
+        carbs: 217,
+        protein: 5.0,
+        iron: '1%',
+      },
+      {
+        name: 'Petit Gateau',
+        calories: 1244,
+        fat: 5.4,
+        carbs: 577,
+        protein: 9.0,
+        iron: '1%',
+      },
+      {
+        name: 'Cookie',
+        calories: 344,
+        fat: 5.5,
+        carbs: 877,
+        protein: 9.0,
+        iron: '1%',
+      },
+      {
+        name: 'Jellybeans',
+        calories: 644,
+        fat: 5.7,
+        carbs: 578,
+        protein: 8.0,
+        iron: '1%',
+      },
+      {
+        name: 'Milkshake',
+        calories: 944,
+        fat: 5.8,
+        carbs: 567,
+        protein: 2.0,
+        iron: '3%',
+      },
+      {
+        name: 'Pasta',
+        calories: 644,
+        fat: 5.6,
+        carbs: 587,
+        protein: 1.0,
+        iron: '1%',
+      },
+      {
+        name: 'Cappuccino',
+        calories: 244,
+        fat: 1.8,
+        carbs: 167,
+        protein: 1.0,
+        iron: '3%',
+      },
+      {
+        name: 'Coffee',
+        calories: 44,
+        fat: 4.8,
+        carbs: 547,
+        protein: 5.0,
+        iron: '3%',
+      },
+      {
+        name: 'Energy Drink',
+        calories: 1244,
+        fat: 12.8,
+        carbs: 5567,
+        protein: 4.0,
+        iron: '3%',
+      },
+      {
+        name: 'Orange Juice',
+        calories: 122,
+        fat: 2.8,
+        carbs: 57,
+        protein: 3.0,
+        iron: '1%',
+      },
+      {
+        name: 'Bread',
+        calories: 344,
+        fat: 13.8,
+        carbs: 5367,
+        protein: 3.0,
+        iron: '3%',
+      },
+      {
+        name: 'Tomatoes',
+        calories: 144,
+        fat: 1.8,
+        carbs: 7,
+        protein: 1.0,
+        iron: '1%',
+      },
+      {
+        name: 'Meat',
+        calories: 422,
+        fat: 14.8,
+        carbs: 167,
+        protein: 2.0,
+        iron: '3%',
+      },
+      {
+        name: 'Cheese',
+        calories: 442,
+        fat: 4.8,
+        carbs: 1670,
+        protein: 1.0,
+        iron: '3%',
+      },
+      {
+        name: 'Lasagna',
+        calories: 1422,
+        fat: 140.8,
+        carbs: 2167,
+        protein: 4.0,
+        iron: '3%',
+      },
+    ],
+    stickyMenu: true,
+    allowSelection: true,
+    selectionMode: 'multiple',
+  },
 
-export const StickyMenu = DataTableTemplate.bind({})
-
-StickyMenu.args = {
-  ...Default.args,
-  items: [
-    ...defaultTableItemsData,
-    {
-      name: 'French Fries',
-      calories: 261,
-      fat: 1.0,
-      carbs: 21,
-      protein: 3.0,
-      iron: '2%',
-    },
-    {
-      name: 'Hamburger',
-      calories: 271,
-      fat: 1.2,
-      carbs: 22,
-      protein: 4.0,
-      iron: '3%',
-    },
-    {
-      name: 'Chocolate Pizza',
-      calories: 244,
-      fat: 1.4,
-      carbs: 277,
-      protein: 8.0,
-      iron: '1%',
-    },
-    {
-      name: 'Green Tea',
-      calories: 1,
-      fat: 1,
-      carbs: 100,
-      protein: 4.0,
-      iron: '2%',
-    },
-    {
-      name: 'Blueberry Juice',
-      calories: 344,
-      fat: 1.55,
-      carbs: 277,
-      protein: 7.0,
-      iron: '1%',
-    },
-    {
-      name: 'Water',
-      calories: 1,
-      fat: 0,
-      carbs: 10,
-      protein: 2.0,
-      iron: '0%',
-    },
-    {
-      name: 'Soda',
-      calories: 1444,
-      fat: 1.0,
-      carbs: 217,
-      protein: 5.0,
-      iron: '1%',
-    },
-    {
-      name: 'Petit Gateau',
-      calories: 1244,
-      fat: 5.4,
-      carbs: 577,
-      protein: 9.0,
-      iron: '1%',
-    },
-    {
-      name: 'Cookie',
-      calories: 344,
-      fat: 5.5,
-      carbs: 877,
-      protein: 9.0,
-      iron: '1%',
-    },
-    {
-      name: 'Jellybeans',
-      calories: 644,
-      fat: 5.7,
-      carbs: 578,
-      protein: 8.0,
-      iron: '1%',
-    },
-    {
-      name: 'Milkshake',
-      calories: 944,
-      fat: 5.8,
-      carbs: 567,
-      protein: 2.0,
-      iron: '3%',
-    },
-    {
-      name: 'Pasta',
-      calories: 644,
-      fat: 5.6,
-      carbs: 587,
-      protein: 1.0,
-      iron: '1%',
-    },
-    {
-      name: 'Cappuccino',
-      calories: 244,
-      fat: 1.8,
-      carbs: 167,
-      protein: 1.0,
-      iron: '3%',
-    },
-    {
-      name: 'Coffee',
-      calories: 44,
-      fat: 4.8,
-      carbs: 547,
-      protein: 5.0,
-      iron: '3%',
-    },
-    {
-      name: 'Energy Drink',
-      calories: 1244,
-      fat: 12.8,
-      carbs: 5567,
-      protein: 4.0,
-      iron: '3%',
-    },
-    {
-      name: 'Orange Juice',
-      calories: 122,
-      fat: 2.8,
-      carbs: 57,
-      protein: 3.0,
-      iron: '1%',
-    },
-    {
-      name: 'Bread',
-      calories: 344,
-      fat: 13.8,
-      carbs: 5367,
-      protein: 3.0,
-      iron: '3%',
-    },
-    {
-      name: 'Tomatoes',
-      calories: 144,
-      fat: 1.8,
-      carbs: 7,
-      protein: 1.0,
-      iron: '1%',
-    },
-    {
-      name: 'Meat',
-      calories: 422,
-      fat: 14.8,
-      carbs: 167,
-      protein: 2.0,
-      iron: '3%',
-    },
-    {
-      name: 'Cheese',
-      calories: 442,
-      fat: 4.8,
-      carbs: 1670,
-      protein: 1.0,
-      iron: '3%',
-    },
-    {
-      name: 'Lasagna',
-      calories: 1422,
-      fat: 140.8,
-      carbs: 2167,
-      protein: 4.0,
-      iron: '3%',
-    },
-  ],
-  stickyMenu: true,
-  allowSelection: true,
-  selectionMode: 'multiple',
-}
-
-StickyMenu.parameters = {
-  docs: {
-    description: {
-      story: description.stickyMenu,
+  parameters: {
+    docs: {
+      description: {
+        story: description.stickyMenu,
+      },
     },
   },
 }
-
-export const Slots = (args) => ({
-  components: {
-    SbDataTable,
-    SbAvatarGroup,
-    SbAvatar,
-    SbDataTableColumn,
-  },
-  setup: () => ({ args }),
-  template: `
+export const Slots: Story = {
+  render: (args: Args) => ({
+    components: {
+      SbDataTable,
+      SbAvatarGroup,
+      SbAvatar,
+      SbDataTableColumn,
+    },
+    setup: () => ({ args }),
+    template: `
     <div>
       <SbDataTable
         v-bind="args"
@@ -610,71 +607,72 @@ export const Slots = (args) => ({
       </SbDataTable>
     </div>
   `,
-})
+  }),
 
-Slots.args = {
-  heading: [
-    {
-      label: 'Spaces',
-      value: 'title',
-      main: true,
-      sortable: true,
-    },
-    { label: 'Authors' },
-  ],
-  items: [
-    {
-      title: 'My second space',
-      editedOn: '3 days ago',
-      authors: [
-        {
-          name: 'John Doe',
-          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
-        },
-        {
-          name: 'Kobe Bryant',
-          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
-        },
-      ],
-    },
-    {
-      title: 'My first space',
-      editedOn: '3 days ago',
-      authors: [
-        {
-          name: 'John Doe',
-          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
-        },
-        {
-          name: 'Kobe Bryant',
-          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
-        },
-      ],
-    },
-    {
-      title: 'Storyblok Demo',
-      editedOn: '3 days ago',
-      authors: [
-        {
-          name: 'John Doe',
-          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
-        },
-      ],
-    },
-  ],
-}
-
-export const CustomHeaderSlots = (args) => ({
-  components: {
-    SbDataTable,
-    SbAvatarGroup,
-    SbAvatar,
-    SbDataTableColumn,
-    SbIcon,
-    SbSelect,
+  args: {
+    heading: [
+      {
+        label: 'Spaces',
+        value: 'title',
+        main: true,
+        sortable: true,
+      },
+      { label: 'Authors' },
+    ],
+    items: [
+      {
+        title: 'My second space',
+        editedOn: '3 days ago',
+        authors: [
+          {
+            name: 'John Doe',
+            src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+          },
+          {
+            name: 'Kobe Bryant',
+            src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+          },
+        ],
+      },
+      {
+        title: 'My first space',
+        editedOn: '3 days ago',
+        authors: [
+          {
+            name: 'John Doe',
+            src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+          },
+          {
+            name: 'Kobe Bryant',
+            src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+          },
+        ],
+      },
+      {
+        title: 'Storyblok Demo',
+        editedOn: '3 days ago',
+        authors: [
+          {
+            name: 'John Doe',
+            src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+          },
+        ],
+      },
+    ],
   },
-  setup: () => ({ args }),
-  template: `
+}
+export const CustomHeaderSlots: Story = {
+  render: (args: Args) => ({
+    components: {
+      SbDataTable,
+      SbAvatarGroup,
+      SbAvatar,
+      SbDataTableColumn,
+      SbIcon,
+      SbSelect,
+    },
+    setup: () => ({ args }),
+    template: `
     <div>
       <SbDataTable
         v-bind="args"
@@ -713,47 +711,48 @@ export const CustomHeaderSlots = (args) => ({
       </SbDataTable>
     </div>
   `,
-})
+  }),
 
-CustomHeaderSlots.args = {
-  items: [
-    {
-      title: 'My second space',
-      editedOn: '3 days ago',
-      authors: [
-        {
-          name: 'John Doe',
-          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
-        },
-        {
-          name: 'Kobe Bryant',
-          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
-        },
-      ],
-    },
-    {
-      title: 'My first space',
-      editedOn: '3 days ago',
-      authors: [
-        {
-          name: 'John Doe',
-          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
-        },
-        {
-          name: 'Kobe Bryant',
-          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
-        },
-      ],
-    },
-    {
-      title: 'Storyblok Demo',
-      editedOn: '3 days ago',
-      authors: [
-        {
-          name: 'John Doe',
-          src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
-        },
-      ],
-    },
-  ],
+  args: {
+    items: [
+      {
+        title: 'My second space',
+        editedOn: '3 days ago',
+        authors: [
+          {
+            name: 'John Doe',
+            src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+          },
+          {
+            name: 'Kobe Bryant',
+            src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+          },
+        ],
+      },
+      {
+        title: 'My first space',
+        editedOn: '3 days ago',
+        authors: [
+          {
+            name: 'John Doe',
+            src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+          },
+          {
+            name: 'Kobe Bryant',
+            src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+          },
+        ],
+      },
+      {
+        title: 'Storyblok Demo',
+        editedOn: '3 days ago',
+        authors: [
+          {
+            name: 'John Doe',
+            src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
+          },
+        ],
+      },
+    ],
+  },
 }

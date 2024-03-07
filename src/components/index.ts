@@ -22,6 +22,8 @@ import SbPortal from './Portal/index.vue'
 import SbRadio from './Radio'
 import SbSelect from './Select'
 import SbSeparator from './Separator'
+import SbStep from './Stepper/components/Step'
+import SbStepper from './Stepper'
 import SbTag from './Tag'
 import SbTextField from './TextField'
 import SbToggle from './Toggle'
@@ -76,6 +78,8 @@ export {
   SbRadio,
   SbSelect,
   SbSeparator,
+  SbStep,
+  SbStepper,
   SbTag,
   SbTextField,
   SbToggle,

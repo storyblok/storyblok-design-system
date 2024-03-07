@@ -7,62 +7,32 @@ import {
 } from './index'
 
 import SbButton from '../Button'
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+import { ref } from 'vue'
 
-/**
- * this code is always inject the story viewMode in the v6.0.0 of Storyblok
- * when it tries to update the v6.1.11 (the current version) it finds some
- * bugs to code execution, like the stories components execute twice
- *
- * So, we implement this mixin to inject the story viewMode context to
- * know which context the story is executed to prevent the overflow of modals
- * in docs
- */
-const StorybookInjectionsMixin = (storyContext) => {
-  const viewMode = storyContext.viewMode || 'story'
-
-  // @vue/component
-  return {
-    __STORYBOOK_VIEW_MODE: viewMode,
-
-    computed: {
-      isInDocs() {
-        return this.$options.__STORYBOOK_VIEW_MODE === 'docs'
-      },
+const ModalTemplate: Story = (customTemplate: string = '') => ({
+  render: (args: Args) => ({
+    components: {
+      SbModal,
+      SbModalContent,
+      SbModalFooter,
+      SbModalHeader,
+      SbButton,
     },
-  }
-}
 
-const StoriesModalMixin = (args, storyContext) => {
-  // @vue/component
-  return {
-    mixins: [StorybookInjectionsMixin(storyContext)],
+    setup: () => {
+      const showModal = ref(false)
 
-    setup: () => ({ ...args }),
+      const handleShowModal = () => {
+        showModal.value = true
+      }
 
-    data: () => ({
-      showModal: false,
-    }),
-
-    methods: {
-      handleShowModal() {
-        this.showModal = true
-      },
+      return { args, showModal, handleShowModal }
     },
-  }
-}
 
-const ModalTemplate = (args, storyContext) => ({
-  mixins: [StoriesModalMixin(args, storyContext)],
-
-  components: {
-    SbModal,
-    SbModalContent,
-    SbModalFooter,
-    SbModalHeader,
-    SbButton,
-  },
-
-  template: `
+    template: customTemplate.length
+      ? customTemplate
+      : `
     <div>
       <SbButton
         label="Open Modal!"
@@ -72,15 +42,15 @@ const ModalTemplate = (args, storyContext) => ({
         style="margin: 0 auto; display: flex; margin-top: 30%;"
       />
       <SbModal
+        v-bind="args"
         :is-open="showModal"
-        :full-width="fullWidth"
         @hide="showModal = false"
       >
         <SbModalHeader
           v-bind="{
-            title,
-            icon,
-            align,
+            title: args.title,
+            icon: args.icon,
+            align: args.align,
           }"
         />
 
@@ -96,49 +66,12 @@ const ModalTemplate = (args, storyContext) => ({
       </SbModal>
     </div>
   `,
+  }),
 })
 
-const ModalTypeTemplate = (args, storyContext) => ({
-  mixins: [StorybookInjectionsMixin(storyContext)],
+type Story = StoryObj<typeof SbModal>
 
-  setup: () => ({ ...args }),
-
-  components: { SbModalType },
-
-  computed: {
-    buttonVariant() {
-      return this.type === 'confirmation' ? 'primary' : 'danger'
-    },
-  },
-
-  methods: {
-    handleShowModal() {
-      this.$refs.modal.show()
-    },
-  },
-
-  template: `
-    <div>
-      <SbButton
-        label="Open Modal!"
-        :variant="buttonVariant"
-        @click="handleShowModal"
-        style="margin: 0 auto; display: flex; margin-top: 30%;"
-      />
-      <SbModalType
-        ref="modal"
-        :title="title"
-        :align="align"
-        :message="message"
-        :type="type"
-        :cancelButtonLabel="cancelButtonLabel"
-        :actionButtonLabel="actionButtonLabel"
-      />
-    </div>
-  `,
-})
-
-export default {
+const meta: Meta<typeof SbModal> = {
   title: 'Interface/SbModal',
   component: SbModal,
   parameters: {
@@ -201,16 +134,15 @@ export default {
       },
     },
   },
+  render: ModalTemplate().render,
 }
 
-export const Default = ModalTemplate.bind({})
+export default meta
 
-export const ModalWithoutFooter = (args, storyContext) => ({
-  components: { SbModal, SbModalHeader, SbModalContent, SbButton },
+export const Default: Story = {}
 
-  mixins: [StoriesModalMixin(args, storyContext)],
-
-  template: `
+export const ModalWithoutFooter: Story = {
+  render: ModalTemplate(`
   <div>
     <SbButton
       label="Open Modal!"
@@ -233,28 +165,22 @@ export const ModalWithoutFooter = (args, storyContext) => ({
       <SbButton label="Click me!" variant="primary" style="margin: 0 auto;display: flex"/>
     </SbModal>
   </div>
-  `,
-})
-
-ModalWithoutFooter.args = {
-  title: 'This Modal dont have footer !',
-}
-
-ModalWithoutFooter.parameters = {
-  docs: {
-    description: {
-      story:
-        'SbModal components are versatile, the user can add or not a footer',
+  `).render,
+  args: {
+    title: 'This Modal dont have footer !',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'SbModal components are versatile, the user can add or not a footer',
+      },
     },
   },
 }
 
-export const ModalWithoutHeader = (args, storyContext) => ({
-  components: { SbModal, SbModalContent, SbButton, SbModalFooter },
-
-  mixins: [StoriesModalMixin(args, storyContext)],
-
-  template: `
+export const ModalWithoutHeader: Story = {
+  render: ModalTemplate(`
   <div>
     <SbButton
       label="Open Modal!"
@@ -272,30 +198,19 @@ export const ModalWithoutHeader = (args, storyContext) => ({
         <SbButton label="Click me!" variant="primary"/>
       </SbModalFooter>
     </SbModal>
-  </div>`,
-})
-
-ModalWithoutHeader.parameters = {
-  docs: {
-    description: {
-      story:
-        'The `SbModal` component was built to be versatile, so you can use it without the header, and or footer.',
+  </div>`).render,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `SbModal` component was built to be versatile, so you can use it without the header, and or footer.',
+      },
     },
   },
 }
 
-export const ModalWithMediumSize = (args, storyContext) => ({
-  mixins: [StoriesModalMixin(args, storyContext)],
-
-  components: {
-    SbModal,
-    SbModalHeader,
-    SbModalContent,
-    SbButton,
-    SbModalFooter,
-  },
-
-  template: `
+export const ModalWithMediumSize: Story = {
+  render: ModalTemplate(`
   <div>
     <SbButton
       label="Open Modal!"
@@ -304,7 +219,7 @@ export const ModalWithMediumSize = (args, storyContext) => ({
       v-if="!showModal"
       style="margin: 0 auto; display: flex; margin-top: 30%;"
     />
-    <SbModal :is-open="showModal" v-on:hide="showModal = false">
+    <SbModal v-bind="args" :is-open="showModal" v-on:hide="showModal = false">
       <SbModalHeader :align="align" :title="title" />
 
       <SbModalContent>
@@ -316,81 +231,68 @@ export const ModalWithMediumSize = (args, storyContext) => ({
         <SbButton label="Label" variant="tertiary"/>
       </SbModalFooter>
     </SbModal>
-  </div>`,
-})
+  </div>`).render,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `SbModal` component has a variable `height` so you can add content with the height you want the member to adjust to.',
+      },
+    },
+  },
+  args: {
+    title: 'Main Title',
+    align: 'left',
+  },
+}
 
-ModalWithMediumSize.parameters = {
-  docs: {
-    description: {
-      story:
-        'The `SbModal` component has a variable `height` so you can add content with the height you want the member to adjust to.',
+export const ModalInFullWidth: Story = {
+  args: {
+    fullWidth: true,
+  },
+}
+
+export const ModalTypeComponentConfirm: Story = {
+  args: {
+    title: 'Confirm',
+    align: 'center',
+    message: 'A confirm message',
+    type: 'confirmation',
+    cancelButtonLabel: "No, don't create",
+    actionButtonLabel: 'Ok, create it!',
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The component `SbModaType` is a type of modal with a predefined style, the idea is to standardize the type of modal to `confirm` an action, so we can maintain the consistency of the DS.',
+      },
     },
   },
 }
 
-ModalWithMediumSize.args = {
-  title: 'Main Title',
-  align: 'left',
-}
-
-export const ModalInFullWidth = ModalTemplate.bind({})
-
-ModalInFullWidth.args = {
-  fullWidth: true,
-}
-
-export const ModalTypeComponentConfirm = ModalTypeTemplate.bind({})
-
-ModalTypeComponentConfirm.args = {
-  title: 'Confirm',
-  align: 'center',
-  message: 'A confirm message',
-  type: 'confirmation',
-  cancelButtonLabel: "No, don't create",
-  actionButtonLabel: 'Ok, create it!',
-}
-
-ModalTypeComponentConfirm.parameters = {
-  docs: {
-    description: {
-      story:
-        'The component `SbModaType` is a type of modal with a predefined style, the idea is to standardize the type of modal to `confirm` an action, so we can maintain the consistency of the DS.',
+export const ModalTypeComponentDelete: Story = {
+  args: {
+    title: 'Delete This Project',
+    align: 'center',
+    message: 'A delete message',
+    type: 'delete',
+    cancelButtonLabel: "No, don't delete it",
+    actionButtonLabel: 'Ok, delete it!',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The component `SbModaType` is a type of modal with a predefined style, the idea is to standardize the type of modal to `delete` an action, so we can maintain the consistency of the DS.',
+      },
     },
   },
 }
 
-export const ModalTypeComponentDelete = ModalTypeTemplate.bind({})
-
-ModalTypeComponentDelete.args = {
-  title: 'Delete This Project',
-  align: 'center',
-  message: 'A delete message',
-  type: 'delete',
-  cancelButtonLabel: "No, don't delete it",
-  actionButtonLabel: 'Ok, delete it!',
-}
-
-ModalTypeComponentDelete.parameters = {
-  docs: {
-    description: {
-      story:
-        'The component `SbModaType` is a type of modal with a predefined style, the idea is to standardize the type of modal to `delete` an action, so we can maintain the consistency of the DS.',
-    },
-  },
-}
-
-export const ModalClosingWithEsc = (args, storyContext) => ({
-  mixins: [StoriesModalMixin(args, storyContext)],
-
-  components: {
-    SbModal,
-    SbModalHeader,
-    SbModalContent,
-    SbButton,
-    SbModalFooter,
-  },
-
-  template: `
+export const ModalClosingWithEsc: Story = {
+  render: ModalTemplate(`
   <div>
     <SbButton
       label="Open Modal!"
@@ -411,33 +313,23 @@ export const ModalClosingWithEsc = (args, storyContext) => ({
         <SbButton label="Label" variant="tertiary"/>
       </SbModalFooter>
     </SbModal>
-  </div>`,
-})
-
-ModalClosingWithEsc.parameters = {
-  docs: {
-    description: {
-      story:
-        'The `SbModal` component has the optional choice of being closed when the user press `ESC` on the keyboard',
+  </div>`).render,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `SbModal` component has the optional choice of being closed when the user press `ESC` on the keyboard',
+      },
     },
   },
-}
-
-ModalClosingWithEsc.args = {
-  title: 'Main Title',
-  align: 'left',
-}
-
-export const ModalCloseOnHeader = (args, storyContext) => ({
-  mixins: [StoriesModalMixin(args, storyContext)],
-
-  components: {
-    SbModal,
-    SbModalHeader,
-    SbModalContent,
+  args: {
+    title: 'Main Title',
+    align: 'left',
   },
+}
 
-  template: `
+export const ModalCloseOnHeader: Story = {
+  render: ModalTemplate(`
   <div>
     <SbButton
       label="Open Modal!"
@@ -452,33 +344,24 @@ export const ModalCloseOnHeader = (args, storyContext) => ({
         <div style="width: 100%;"><p style="text-align: left; margin: 0;">This Modal has a Close button on the header !</p></div>
       </SbModalContent>
     </SbModal>
-  </div>`,
-})
-
-ModalCloseOnHeader.parameters = {
-  docs: {
-    description: {
-      story: `This storie is to show that too we can render the close button directly in the modal header to add new design possibilities,
+  </div>`).render,
+  parameters: {
+    docs: {
+      description: {
+        story: `This storie is to show that too we can render the close button directly in the modal header to add new design possibilities,
         to activate this function, pass the prop 'close-on-header'. You will also need to add a template with slot:actions to add
         other buttons next to the close button.`,
+      },
     },
   },
-}
-
-ModalCloseOnHeader.args = {
-  title: 'Main Title',
-  align: 'left',
-}
-export const ModalTarget = (args, storyContext) => ({
-  mixins: [StoriesModalMixin(args, storyContext)],
-
-  components: {
-    SbModal,
-    SbModalHeader,
-    SbModalContent,
+  args: {
+    title: 'Main Title',
+    align: 'left',
   },
+}
 
-  template: `
+export const ModalTarget: Story = {
+  render: ModalTemplate(`
   <div id="boxModal" style="width: 500px; height: 400px">
     <SbButton
       label="Open Modal!"
@@ -492,18 +375,16 @@ export const ModalTarget = (args, storyContext) => ({
         <div style="width: 100%;"><p style="text-align: left; margin: 0;">This modal opens inside the div with id "boxModal"</p></div>
       </SbModalContent>
     </SbModal>
-  </div>`,
-})
-
-ModalTarget.parameters = {
-  docs: {
-    description: {
-      story: `This storie is to show that we can also render the modal inside any div, and not necessarily in the body of the document.
+  </div>`).render,
+  parameters: {
+    docs: {
+      description: {
+        story: `This storie is to show that we can also render the modal inside any div, and not necessarily in the body of the document.
       For that we need to pass the 'target' and 'disabled-target-default' props.`,
+      },
     },
   },
-}
-
-ModalTarget.args = {
-  disabledTargetDefault: true,
+  args: {
+    disabledTargetDefault: true,
+  },
 }
