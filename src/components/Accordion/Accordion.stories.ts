@@ -1,6 +1,10 @@
 import Accordion from './index'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof Accordion>
+
+const meta: Meta<typeof Accordion> = {
   title: 'Basic/SbAccordion',
   component: Accordion,
   args: {
@@ -13,85 +17,93 @@ export default {
     noPadding: false,
     contentInfoSlot: '<i>4 items</i>',
   },
-}
-
-const Template = (args) => ({
-  components: { Accordion },
-  setup() {
-    return { args }
-  },
-  template: `
-    <div>
-      <Accordion
-        v-bind="args"
-        style="max-width: 300px"
-      >
-        <h2>Some text</h2>
-        <p>Some more text</p>
-
-        <template #contentInfo>
-          <span v-html="args.contentInfoSlot" />
-        </template>
-      </Accordion>
-
-      <Accordion
-        v-bind="args"
-        style="max-width: 300px"
-      >
-        <h2>Some text</h2>
-        <p>Some more text</p>
-
-        <template #contentInfo>
-          <span v-html="args.contentInfoSlot" />
-        </template>
-      </Accordion>
-
-      <Accordion
+  render: (args: Args) => ({
+    components: { Accordion },
+    setup() {
+      return { args }
+    },
+    template: `
+      <div>
+        <Accordion
           v-bind="args"
           style="max-width: 300px"
-      >
-        <h2>Some text</h2>
-        <p>Some more text</p>
+        >
+          <h2>Some text</h2>
+          <p>Some more text</p>
 
-        <template #contentInfo>
-          <span v-html="args.contentInfoSlot" />
-        </template>
-      </Accordion>
-    </div>
-  `,
-})
+          <template #contentInfo>
+            <span v-html="args.contentInfoSlot" />
+          </template>
+        </Accordion>
 
-export const Default = Template.bind({})
-Default.args = { title: 'Hello World' }
+        <Accordion
+          v-bind="args"
+          style="max-width: 300px"
+        >
+          <h2>Some text</h2>
+          <p>Some more text</p>
 
-export const WithIcon = Template.bind({})
-WithIcon.args = {
-  title: 'Hello World with Icon',
-  icon: 'trash-2',
-  iconDescription: 'Delete',
+          <template #contentInfo>
+            <span v-html="args.contentInfoSlot" />
+          </template>
+        </Accordion>
+
+        <Accordion
+            v-bind="args"
+            style="max-width: 300px"
+        >
+          <h2>Some text</h2>
+          <p>Some more text</p>
+
+          <template #contentInfo>
+            <span v-html="args.contentInfoSlot" />
+          </template>
+        </Accordion>
+      </div>
+    `,
+  }),
 }
 
-export const isOpen = Template.bind({})
-isOpen.args = {
-  isOpen: true,
+export default meta
+
+export const Default: Story = {
+  args: { title: 'Hello World' },
 }
 
-export const noHighlight = Template.bind({})
-noHighlight.args = {
-  noHighlight: true,
+export const WithIcon: Story = {
+  args: {
+    title: 'Hello World with Icon',
+    icon: 'trash-2',
+    iconDescription: 'Delete',
+  },
 }
 
-export const noBorder = Template.bind({})
-noBorder.args = {
-  noBorder: true,
+export const isOpen: Story = {
+  args: {
+    isOpen: true,
+  },
 }
 
-export const noPadding = Template.bind({})
-noPadding.args = {
-  noPadding: true,
+export const noHighlight: Story = {
+  args: {
+    noHighlight: true,
+  },
 }
 
-export const contentInfo = Template.bind({})
-contentInfo.args = {
-  contentInfoSlot: '',
+export const noBorder: Story = {
+  args: {
+    noBorder: true,
+  },
+}
+
+export const noPadding: Story = {
+  args: {
+    noPadding: true,
+  },
+}
+
+export const contentInfo: Story = {
+  args: {
+    contentInfoSlot: '',
+  },
 }

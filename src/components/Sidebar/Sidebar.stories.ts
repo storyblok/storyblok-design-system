@@ -1,8 +1,7 @@
-// Sidebar.stories.js
-
 import { SbSidebar, SbSidebarListItem } from '.'
 import { SbMenu, SbMenuList, SbMenuItem } from '../Menu'
 import { SbIcon } from '../Icon'
+import { ref } from 'vue'
 
 export const listItemsData = [
   {
@@ -37,7 +36,11 @@ export const listItemsData = [
   },
 ]
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbSidebar>
+
+const meta: Meta<typeof SbSidebar> = {
   title: 'Interface/SbSidebar',
   component: SbSidebar,
   args: {
@@ -56,10 +59,7 @@ export default {
       },
     },
   },
-}
-
-export const Normal = {
-  render: (args) => ({
+  render: (args: Args) => ({
     components: { SbSidebar },
     setup() {
       return { args }
@@ -68,32 +68,24 @@ export const Normal = {
   }),
 }
 
-export const Minimized = {
-  render: (args) => ({
-    components: { SbSidebar },
-    setup() {
-      return { args }
-    },
-    template: '<SbSidebar v-bind="args" v-on="args" />',
-  }),
+export default meta
+
+export const Default: Story = {}
+
+export const Minimized: Story = {
   args: {
     minimize: true,
   },
 }
 
-export const CustomLogo = {
-  render: (args) => ({
-    components: { SbSidebar },
-    setup: () => ({ args }),
-    template: '<SbSidebar v-bind="args" v-on="args" />',
-  }),
+export const CustomLogo: Story = {
   args: {
     logo: 'https://bcassetcdn.com/social/bvrg7kkg12/preview.png',
   },
 }
 
-export const CustomItems = {
-  render: (args) => ({
+export const CustomItems: Story = {
+  render: (args: Args) => ({
     components: {
       SbIcon,
       SbSidebar,
@@ -102,11 +94,11 @@ export const CustomItems = {
       SbMenuList,
       SbMenuItem,
     },
-    setup: () => ({ args }),
-    data: () => ({
-      internalMinimize: false,
-      openUserDropdown: false,
-    }),
+    setup: () => {
+      const internalMinimize = ref(false)
+      const openUserDropdown = ref(false)
+      return { args, internalMinimize, openUserDropdown }
+    },
     template: `<SbSidebar>
     <SbSidebarListItem
       icon="partner-team"

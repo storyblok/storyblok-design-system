@@ -1,7 +1,9 @@
-$base-border: 1px solid $border-gray-light;
+@use './colors' as colors;
+
+$base-border: 1px solid colors.$border-gray-light;
 
 // Box-shadow
-$box-shadow-default: 0 2px 17px 3px $shadow-dark-blue-transparent;
+$box-shadow-default: 0 2px 17px 3px colors.$shadow-dark-blue-transparent;
 
 // Border radius
 $base-border-radius: 8px;

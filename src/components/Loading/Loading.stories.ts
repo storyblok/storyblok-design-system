@@ -2,19 +2,11 @@ import { SbLoading, SbLoadingPlaceholder } from './index'
 import { availableColors } from '../../utils'
 import { loadingTypes, loadingSizes } from './utils'
 
-const LoadingTemplate = (args) => ({
-  components: { SbLoading },
-  setup() {
-    return { args }
-  },
-  template: `
-    <SbLoading
-      v-bind="args"
-    />
-  `,
-})
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
 
-export default {
+type Story = StoryObj<typeof SbLoading>
+
+const meta: Meta<typeof SbLoading> = {
   title: 'Interface/SbLoading',
   component: SbLoading,
   parameters: {
@@ -88,43 +80,59 @@ export default {
       },
     },
   },
+  render: (args: Args) => ({
+    components: { SbLoading },
+    setup() {
+      return { args }
+    },
+    template: `
+      <SbLoading
+        v-bind="args"
+      />
+    `,
+  }),
 }
 
-export const Default = LoadingTemplate.bind({})
+export default meta
 
-export const ProgressBar = (args) => ({
-  components: { SbLoading },
-  setup() {
-    return { args }
-  },
-  template: `
+export const Default: Story = {}
+
+export const ProgressBar: Story = {
+  render: (args: Args) => ({
+    components: { SbLoading },
+    setup() {
+      return { args }
+    },
+    template: `
       <SbLoading
         v-bind="args"
       />
   `,
-})
+  }),
 
-ProgressBar.args = {
-  type: 'bar',
-  modelValue: 25,
-  showPercentage: true,
-}
+  args: {
+    type: 'bar',
+    modelValue: 25,
+    showPercentage: true,
+  },
 
-ProgressBar.parameters = {
-  docs: {
-    description: {
-      story:
-        'When passing the prop `bar` the component starts to render a progress bar.',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When passing the prop `bar` the component starts to render a progress bar.',
+      },
     },
   },
 }
 
-export const SpinnerWithSizes = (args) => ({
-  components: { SbLoading },
-  setup() {
-    return { args }
-  },
-  template: `
+export const SpinnerWithSizes: Story = {
+  render: (args: Args) => ({
+    components: { SbLoading },
+    setup() {
+      return { args }
+    },
+    template: `
     <div>
       <SbLoading
         v-bind="args"
@@ -148,24 +156,26 @@ export const SpinnerWithSizes = (args) => ({
       />
     </div>
   `,
-})
+  }),
 
-SpinnerWithSizes.parameters = {
-  docs: {
-    iframeHeight: 200,
-    description: {
-      story:
-        'When passing the prop `spinner` the component starts to render an animated spinner',
+  parameters: {
+    docs: {
+      iframeHeight: 200,
+      description: {
+        story:
+          'When passing the prop `spinner` the component starts to render an animated spinner',
+      },
     },
   },
 }
 
-export const SpinnerWithPercentage = (args) => ({
-  components: { SbLoading },
-  setup() {
-    return { args }
-  },
-  template: `
+export const SpinnerWithPercentage: Story = {
+  render: (args: Args) => ({
+    components: { SbLoading },
+    setup() {
+      return { args }
+    },
+    template: `
     <div>
       <div style="margin-bottom: 15px">
         <SbLoading
@@ -205,40 +215,43 @@ export const SpinnerWithPercentage = (args) => ({
       </div>
     </div>
   `,
-})
+  }),
 
-SpinnerWithPercentage.parameters = {
-  docs: {
-    iframeHeight: 300,
-    description: {
-      story:
-        'The spinners also show the percentage of the loanding, pass the `showPercentage` property so that the percentage is shown.',
+  parameters: {
+    docs: {
+      iframeHeight: 300,
+      description: {
+        story:
+          'The spinners also show the percentage of the loanding, pass the `showPercentage` property so that the percentage is shown.',
+      },
     },
   },
 }
 
-export const LoadingWithPlaceholder = (args) => ({
-  components: { SbLoading, SbLoadingPlaceholder },
-  setup: () => ({ args }),
-  template: `
+export const LoadingWithPlaceholder: Story = {
+  render: (args: Args) => ({
+    components: { SbLoading, SbLoadingPlaceholder },
+    setup: () => ({ args }),
+    template: `
     <SbLoading v-bind="args">
       <SbLoadingPlaceholder v-bind="args" style="margin-bottom: 10px"/>
       <SbLoadingPlaceholder v-bind="args" style="margin-bottom: 10px"/>
     </SbLoading>
   `,
-})
+  }),
 
-LoadingWithPlaceholder.args = {
-  type: 'placeholder',
-  width: '50%',
-  height: '25px',
-}
+  args: {
+    type: 'placeholder',
+    width: '50%',
+    height: '25px',
+  },
 
-LoadingWithPlaceholder.parameters = {
-  docs: {
-    description: {
-      story:
-        'When passing `placeholder` as prop to SbLoading it enables the rendering of the SbLoadingPlaceholder component, this component can receive width and height as props',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When passing `placeholder` as prop to SbLoading it enables the rendering of the SbLoadingPlaceholder component, this component can receive width and height as props',
+      },
     },
   },
 }

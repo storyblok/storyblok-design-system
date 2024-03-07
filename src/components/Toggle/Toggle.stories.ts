@@ -1,14 +1,19 @@
 import SbToggle from './index'
 import availableIcons from '../../lib/all-icons'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+import { execPath } from 'process'
+
+type Story = StoryObj<typeof SbToggle>
+
+const meta: Meta<typeof SbToggle> = {
   title: 'Forms/SbToggle',
   component: SbToggle,
   args: {
     id: 'example',
     name: 'example',
-    modelValue: false,
-    nativeValue: false,
+    modelValue: true,
+    nativeValue: true,
     indeterminate: false,
     disabled: false,
     required: false,
@@ -32,127 +37,106 @@ export default {
         type: 'select',
       },
     },
+    render: (args: Args) => ({
+      components: { SbToggle },
+      setup() {
+        return { args }
+      },
+      template: `
+      <div>
+        <SbToggle
+          v-bind="args"
+          label="Default"
+        />
+      </div>
+    `,
+    }),
   },
 }
 
-export const Default = (args) => ({
-  components: { SbToggle },
-  setup() {
-    return { ...args }
+export default meta
+
+export const Default: Story = {
+  args: {
+    id: 'example-default',
   },
-  template: `
+}
+
+export const Indeterminate: Story = {
+  args: {
+    id: 'example-indeterminate',
+    indeterminate: true,
+  },
+}
+
+export const withVisibleLabel: Story = {
+  args: {
+    id: 'example-visible-label',
+    label: 'Visible label',
+    showLabel: true,
+  },
+}
+
+export const Disabled: Story = {
+  args: {
+    id: 'example-disabled',
+    disabled: true,
+  },
+}
+
+export const Required: Story = {
+  args: {
+    id: 'example-required',
+    required: true,
+  },
+}
+
+export const WithIcon: Story = {
+  args: {
+    icon: 'globe',
+    id: 'example-icon',
+  },
+}
+
+export const Variants: Story = {
+  render: (args: Args) => ({
+    components: { SbToggle },
+    setup() {
+      return { args }
+    },
+    template: `
     <div>
       <SbToggle
-        :name="name"
-        id="inactive"
-        label="Inactive"
-        :modelValue="modelValue"
-        :disabled="disabled"
-        :required="required"
-        :icon="icon"
-        :variant="variant"
-        style="margin-bottom: 10px;"
-      /><br>
-
-      <SbToggle
-        :name="name"
-        id="active"
-        label="Active"
-        :modelValue="true"
-        :disabled="disabled"
-        :required="required"
-        :icon="icon"
-        :variant="variant"
-        style="margin-bottom: 10px;"
-      /><br>
-
-      <SbToggle
-        :name="name"
-        id="inactive-disabled"
-        label="Inactive - Disabled"
-        :modelValue="modelValue"
-        :required="required"
-        :icon="icon"
-        :variant="variant"
-        disabled
-      /><br>
-
-    </div>
-  `,
-})
-
-export const WithIcon = (args) => ({
-  components: { SbToggle },
-  setup() {
-    return { ...args }
-  },
-  template: `
-    <div>
-      <div style="margin-bottom: 20px">
-        <SbToggle
-          id="selected"
-          label="With Icon Inactive"
-          :name="name"
-          :modelValue="false"
-          icon="globe"
-          :variant="variant"
-          native-value="With Icon Inactive"
-          style="margin-bottom: 10px;"
-        /><br>
-      </div>
-    </div>
-  `,
-})
-export const WithVariant = (args) => ({
-  components: { SbToggle },
-  setup() {
-    return { ...args }
-  },
-  template: `
-    <div>
-      <SbToggle
-        id="default-variant"
+        v-bind="args"
+        id="primary"
         label="Default Variant"
-        :name="name"
-        :modelValue="true"
-        :icon="icon"
-        :variant="'primary'"
-        native-value="Default Variant"
+        variant="primary"
         style="margin-bottom: 10px;"
       /><br>
 
       <SbToggle
-        id="secondary-variant"
-        label="Secondary Variant"
-        :name="name"
-        :modelValue="true"
-        :icon="icon"
-        :variant="'secondary'"
-        native-value="Secondary Variant"
+        v-bind="args"
+        id="secondary"
+        variant="secondary"
         style="margin-bottom: 10px;"
       /><br>
 
       <SbToggle
-        id="ghost-variant"
+        v-bind="args"
+        id="ghost"
         label="Ghost Variant"
-        :name="name"
-        :modelValue="true"
-        :icon="icon"
-        :variant="'ghost'"
-        native-value="Ghost Variant"
+        variant="ghost"
         style="margin-bottom: 10px;"
       /><br>
 
       <SbToggle
-        id="danger-variant"
+        v-bind="args"
+        id="danger"
         label="Danger Variant"
-        :name="name"
-        :modelValue="true"
-        :icon="icon"
-        :variant="'danger'"
-        native-value="Danger Variant"
+        variant="danger"
         style="margin-bottom: 10px;"
       /><br>
     </div>
   `,
-})
+  }),
+}

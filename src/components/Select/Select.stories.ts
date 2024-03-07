@@ -2,53 +2,7 @@ import { SbSelect } from '.'
 import { SbMinibrowser } from '../Minibrowser'
 import { MOCK_DATA } from '../Minibrowser/Minibrowser.stories'
 import { toLowerCase, isString } from '../../utils'
-
-// @vue/component
-const SelectTemplate = (args) => ({
-  components: {
-    SbSelect,
-  },
-
-  setup: () => ({ args }),
-
-  data: () => ({
-    internalValue: null,
-  }),
-
-  watch: {
-    modelValue: {
-      handler(newValue) {
-        this.internalValue = newValue
-      },
-      immediate: true,
-    },
-    multiple: {
-      handler(isMultiple) {
-        this.internalValue = isMultiple ? [] : null
-      },
-      immediate: true,
-    },
-  },
-
-  methods: {
-    handleOptionCreated(value) {
-      const newValue = { value, label: value }
-      this.options.push(newValue)
-      this.internalValue.push(value)
-    },
-  },
-
-  template: `
-    <div style="min-height: 300px;">
-      <SbSelect
-        v-bind="args"
-        v-model="internalValue"
-        style="max-width: 300px"
-        @option-created="handleOptionCreated"
-    />
-    </div>
-    `,
-})
+import { ref, watch } from 'vue'
 
 export const defaultSelectOptionsData = [
   {
@@ -185,14 +139,18 @@ export const defaultOptionsWithIconData = [
   },
 ]
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbSelect>
+
+const meta: Meta<typeof SbSelect> = {
   title: 'Forms/SbSelect',
   component: SbSelect,
   excludeStories: /.*Data$/,
   args: {
     label: 'Choose an option',
     options: [...defaultSelectOptionsData],
-    modelValue: null,
+    modelValue: [],
     multiple: false,
     firstValueIsAllValue: false,
     filterable: false,
@@ -211,74 +169,103 @@ export default {
     showCount: false,
     inlineLabel: '',
   },
-}
-
-export const Default = SelectTemplate.bind({})
-
-export const Multiple = SelectTemplate.bind({})
-
-Multiple.args = {
-  multiple: true,
-}
-
-export const MultipleWithAllOption = SelectTemplate.bind({})
-
-MultipleWithAllOption.args = {
-  multiple: true,
-  options: selectOptionsDataWithAllOptionData,
-  firstValueIsAllValue: true,
-}
-
-export const OptionsWithIcon = SelectTemplate.bind({})
-
-OptionsWithIcon.args = {
-  options: defaultOptionsWithIconData,
-}
-
-export const Filterable = SelectTemplate.bind({})
-
-Filterable.args = {
-  filterable: true,
-  disableInternalFilter: false,
-}
-
-export const LazySearch = (args) => ({
-  components: {
-    SbSelect,
-  },
-
-  setup() {
-    return { args }
-  },
-
-  data: () => ({
-    internalSearch: true,
-    internalValue: null,
-    internalOptions: args.options,
-    internalLoading: args.isLoading,
-  }),
-
-  methods: {
-    handleFilter(search) {
-      this.internalLoading = true
-
-      setTimeout(() => {
-        if (!search) {
-          this.internalOptions = this.options
-          this.internalLoading = false
-          return
-        }
-
-        this.internalOptions = this.options.filter((option) => {
-          return toLowerCase(option.label).includes(search)
-        })
-
-        this.internalLoading = false
-      }, 300)
+  render: (args: Args) => ({
+    components: {
+      SbSelect,
     },
-  },
 
-  template: `
+    setup: () => {
+      const internalValue = ref(args.modelValue)
+      const options = ref(args.options)
+
+      const handleOptionCreated = (value) => {
+        const newValue = { value, label: value }
+        options.value.push(newValue)
+        internalValue.value.push(value)
+      }
+
+      watch(
+        () => args.modelValue,
+        (newValue) => {
+          internalValue.value = newValue
+        },
+      )
+
+      return { args, handleOptionCreated, internalValue, options }
+    },
+
+    template: `
+      <div style="min-height: 300px;">
+        <SbSelect
+          v-bind="args"
+          v-model="internalValue"
+          style="max-width: 300px"
+          @option-created="handleOptionCreated"
+      />
+      </div>
+      `,
+  }),
+}
+
+export default meta
+
+export const Default: Story = {}
+export const Multiple: Story = {
+  args: {
+    multiple: true,
+  },
+}
+export const MultipleWithAllOption: Story = {
+  args: {
+    multiple: true,
+    options: selectOptionsDataWithAllOptionData,
+    firstValueIsAllValue: true,
+  },
+}
+export const OptionsWithIcon: Story = {
+  args: {
+    options: defaultOptionsWithIconData,
+  },
+}
+export const Filterable: Story = {
+  args: {
+    filterable: true,
+    disableInternalFilter: false,
+  },
+}
+export const LazySearch: Story = {
+  render: (args: Args) => ({
+    components: {
+      SbSelect,
+    },
+
+    setup() {
+      const internalSearch = ref(true)
+      const internalValue = ref(null)
+      const internalOptions = ref(args.options)
+      const internalLoading = ref(args.isLoading)
+
+      const handleFilter = (search) => {
+        internalLoading.value = true
+
+        setTimeout(() => {
+          if (!search) {
+            internalOptions.value = options.value
+            internalLoading.value = false
+            return
+          }
+
+          internalOptions.value = options.value.filter((option) => {
+            return toLowerCase(option.label).includes(search)
+          })
+
+          internalLoading.value = false
+        }, 300)
+      }
+      return { handleFilter, args, internalSearch, internalValue }
+    },
+
+    template: `
   <div style="min-height: 300px">
     <SbSelect
       v-bind="args"
@@ -288,107 +275,102 @@ export const LazySearch = (args) => ({
     />
     </div>
   `,
-})
-
-LazySearch.args = {
-  filterable: true,
-  disableInternalSearch: true,
-}
-
-export const MultipleAndFilterable = SelectTemplate.bind({})
-
-MultipleAndFilterable.args = {
-  multiple: true,
-  filterable: true,
-}
-
-export const Loading = SelectTemplate.bind({})
-
-Loading.args = {
-  isLoading: true,
-}
-
-export const AllowCreate = SelectTemplate.bind({})
-
-AllowCreate.args = {
-  allowCreate: true,
-  filterable: true,
-  multiple: true,
-  noDataTextTag: 'Start typing to add new tag.',
-}
-
-export const WithIcon = SelectTemplate.bind({})
-
-WithIcon.args = {
-  leftIcon: 'calendar',
-}
-
-export const WithAvatars = SelectTemplate.bind({})
-
-WithAvatars.args = {
-  useAvatars: true,
-  filterable: true,
-  options: [...defaultAvatarsData],
-}
-
-export const MutipleAndAvatars = SelectTemplate.bind({})
-
-MutipleAndAvatars.args = {
-  multiple: true,
-  useAvatars: true,
-  filterable: true,
-  options: [...defaultAvatarsData],
-}
-
-export const Inline = SelectTemplate.bind({})
-
-Inline.args = {
-  inline: true,
-}
-
-export const WithMinibrowser = (args) => ({
-  components: {
-    SbSelect,
-    SbMinibrowser,
-  },
-
-  setup() {
-    return { args }
-  },
-
-  data: () => ({
-    internalValue: null,
-    minibrowserOptions: [...MOCK_DATA.FIRST_LEVEL],
   }),
 
-  watch: {
-    modelValue: {
-      handler(newValue) {
-        this.internalValue = newValue
-      },
-      immediate: true,
-    },
+  args: {
+    filterable: true,
+    disableInternalSearch: true,
   },
+}
+export const MultipleAndFilterable: Story = {
+  args: {
+    multiple: true,
+    filterable: true,
+  },
+}
+export const Loading: Story = {
+  args: {
+    isLoading: true,
+  },
+}
+export const AllowCreate: Story = {
+  args: {
+    allowCreate: true,
+    filterable: true,
+    multiple: true,
+    noDataTextTag: 'Start typing to add new tag.',
+  },
+}
+export const WithIcon: Story = {
+  args: {
+    leftIcon: 'calendar',
+  },
+}
+export const WithAvatars: Story = {
+  args: {
+    useAvatars: true,
+    filterable: true,
+    options: [...defaultAvatarsData],
+  },
+}
+export const MutipleAndAvatars: Story = {
+  args: {
+    multiple: true,
+    useAvatars: true,
+    filterable: true,
+    options: [...defaultAvatarsData],
+  },
+}
+export const Inline: Story = {
+  args: {
+    inline: true,
+  },
+}
+export const WithMinibrowser: Story = {
+  render: (args: Args) => ({
+    components: {
+      SbSelect,
+      SbMinibrowser,
+    },
 
-  methods: {
-    onSelectItem(item) {
-      const hasChilren = item?.items?.length > 0
-      if (!hasChilren) {
-        this.internalValue = item.label
+    setup() {
+      const internalValue = ref(null)
+      const minibrowserOptions = ref([...MOCK_DATA.FIRST_LEVEL])
+      const refSelect = ref(null)
 
-        this.$refs.select.hideList()
+      watch(
+        () => args.modelValue,
+        (newValue) => {
+          internalValue.value = newValue
+        },
+      )
+
+      const onSelectItem = (item) => {
+        const hasChilren = item?.items?.length > 0
+        if (!hasChilren) {
+          internalValue.value = item.label
+          refSelect?.value?.hideList()
+        }
+      }
+
+      const handleCloseBrowser = () => {
+        refSelect?.value?.wrapClose()
+      }
+
+      return {
+        args,
+        refSelect,
+        internalValue,
+        minibrowserOptions,
+        onSelectItem,
+        handleCloseBrowser,
       }
     },
 
-    handleCloseBrowser() {
-      this.$refs.select.wrapClose()
-    },
-  },
-
-  template: `
+    template: `
     <div style="min-height: 300px">
       <SbSelect
-        ref="select"
+        ref="refSelect"
         v-bind="args"
         v-model="internalValue"
         style="max-width: 300px"
@@ -403,42 +385,42 @@ export const WithMinibrowser = (args) => ({
       </SbSelect>
     </div>
   `,
-})
-
-export const EmitOption = (args) => ({
-  components: {
-    SbSelect,
-    SbMinibrowser,
-  },
-
-  setup() {
-    return { args }
-  },
-
-  data: () => ({
-    singleSelectValue: null,
-    singleSelectOption: {},
-
-    multipleSelectValue: [],
   }),
-
-  watch: {
-    modelValue: {
-      handler(newValue) {
-        this.internalValue = newValue
-      },
-      immediate: true,
+}
+export const EmitOption: Story = {
+  render: (args: Args) => ({
+    components: {
+      SbSelect,
+      SbMinibrowser,
     },
-  },
 
-  methods: {
-    handleSingleSelect(selectedValue) {
-      this.singleSelectValue = selectedValue.value
-      this.singleSelectOption = selectedValue
+    setup() {
+      const singleSelectValue = ref(null)
+      const singleSelectOption = ref({})
+      const multipleSelectValue = ref([])
+
+      const handleSingleSelect = (selectedValue) => {
+        singleSelectValue.value = selectedValue.value
+        singleSelectOption.value = selectedValue
+      }
+
+      watch(
+        () => args.modelValue,
+        (newValue) => {
+          internalValue.value = newValue
+        },
+      )
+
+      return {
+        args,
+        handleSingleSelect,
+        singleSelectValue,
+        singleSelectOption,
+        multipleSelectValue,
+      }
     },
-  },
 
-  template: `
+    template: `
     <div>
       <div style="min-height: 300px">
         <h2 style="margin-bottom: 10px"> Single Select </h2>
@@ -474,141 +456,128 @@ export const EmitOption = (args) => ({
       </p>
     </div>
   `,
-})
-
-EmitOption.parameters = {
-  docs: {
-    description: {
-      story:
-        'When we set the `emitOption` property, the `input` event will send the whole option object, instead of the `value` property in options objects. It is expected different value types in **single** and **multiple** value property. In **single** selection, the `value` property can be a `Number` or a `String`. In multiple selection, the `value` **must** be an array of objects defined in options. This could be useful if you want to use the `<SbSelect>` with `v-model`',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When we set the `emitOption` property, the `input` event will send the whole option object, instead of the `value` property in options objects. It is expected different value types in **single** and **multiple** value property. In **single** selection, the `value` property can be a `Number` or a `String`. In multiple selection, the `value` **must** be an array of objects defined in options. This could be useful if you want to use the `<SbSelect>` with `v-model`',
+      },
     },
   },
 }
-
-export const EmitSearch = (args) => ({
-  components: {
-    SbSelect,
-  },
-
-  setup() {
-    return { args }
-  },
-
-  data: () => ({
-    searchInput: '',
-  }),
-
-  methods: {
-    handleSearchValue(event) {
-      if (!isString(event) && typeof event === 'object') {
-        this.searchInput = event.label
-      } else {
-        this.searchInput = !isString(event) ? event.target.value : event
-      }
+export const EmitSearch: Story = {
+  render: (args: Args) => ({
+    components: {
+      SbSelect,
     },
-  },
+    setup() {
+      const searchInput = ref('')
 
-  template: `
+      const handleSearchValue = (event) => {
+        searchInput.value = event?.target?.value ?? event?.label
+      }
+
+      return { args, searchInput, handleSearchValue }
+    },
+
+    template: `
     <div>
       <div style="min-height: 300px;">
-        <h2 style="margin-bottom: 10px"> Typed value {{ searchInput }} </h2>
+
+
+        <p class="font-medium text-dark-blue font-size-lg">
+          Search value: {{ searchInput }}
+        </p>
 
         <SbSelect
           v-bind="args"
           emit-search
           emit-option
+          filterable
           :modelValue="searchInput"
           @input="handleSearchValue"
           style="max-width: 300px"
         />
+
       </div>
     </div>
   `,
-})
-
-EmitSearch.parameters = {
-  docs: {
-    description: {
-      story:
-        'When we set `emitSearch` property to true, the `input` event will send the typed value. It is useful when you want to forward values that are not in the dropdown list. Note that the typed value will overwrite any values from the dropdown list previously selected. This must be used with filterable set to true.',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When we set `emitSearch` property to true, the `input` event will send the typed value. It is useful when you want to forward values that are not in the dropdown list. Note that the typed value will overwrite any values from the dropdown list previously selected. This must be used with filterable set to true.',
+      },
     },
   },
 }
-
-export const WithCaption = SelectTemplate.bind({})
-
-WithCaption.args = {
-  showCaption: true,
-  options: [...defaultOptionsWithCaptionData],
-}
-
-WithCaption.parameters = {
-  docs: {
-    description: {
-      story:
-        'When we pass the `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
+export const WithCaption: Story = {
+  args: {
+    showCaption: true,
+    options: [...defaultOptionsWithCaptionData],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When we pass the `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
+      },
     },
   },
 }
-
-export const WithCaptionTag = SelectTemplate.bind({})
-
-WithCaptionTag.args = {
-  showCaption: true,
-  multiple: true,
-  options: [...defaultOptionsWithCaptionData],
-}
-
-WithCaptionTag.parameters = {
-  docs: {
-    description: {
-      story:
-        'When we pass the `multiple` and `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
+export const WithCaptionTag: Story = {
+  args: {
+    showCaption: true,
+    multiple: true,
+    options: [...defaultOptionsWithCaptionData],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When we pass the `multiple` and `showCaption` prop, it will be possible to render a caption below the name of the value in the `SbSelectList` and in the `SelectInner`, in addition to the value, the caption will be shown in parentheses, the name of the key in the object that will bring the values of the caption can have any name, by default it is `caption` but you can pass any customizable name through the `itemCaption` prop.',
+      },
     },
   },
 }
-
-export const WithOptionDisabled = SelectTemplate.bind({})
-
-WithOptionDisabled.args = {
-  isOptionDisabled: (item) => item.value === 2,
-}
-
-WithOptionDisabled.parameters = {
-  docs: {
-    description: {
-      story:
-        'When we pass the `isOptionDisabled` prop, it will be possible to render a option disabled',
+export const WithOptionDisabled: Story = {
+  args: {
+    isOptionDisabled: (item) => item.value === 2,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When we pass the `isOptionDisabled` prop, it will be possible to render a option disabled',
+      },
     },
   },
 }
-
-export const WithInlineLabel = SelectTemplate.bind({})
-
-WithInlineLabel.args = {
-  inlineLabel: 'Item:',
-}
-
-WithInlineLabel.parameters = {
-  docs: {
-    description: {
-      story: 'Use the `inline-label` property to add text inside the select',
+export const WithInlineLabel: Story = {
+  args: {
+    inlineLabel: 'Item:',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use the `inline-label` property to add text inside the select',
+      },
     },
   },
 }
-
-export const MultipleWithCountLabels = SelectTemplate.bind({})
-
-MultipleWithCountLabels.args = {
-  multiple: true,
-  showCount: true,
-}
-
-MultipleWithCountLabels.parameters = {
-  docs: {
-    description: {
-      story:
-        'Use the `show-count` property to group the selected items in a counter.',
+export const MultipleWithCountLabels: Story = {
+  args: {
+    multiple: true,
+    showCount: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use the `show-count` property to group the selected items in a counter.',
+      },
     },
   },
 }

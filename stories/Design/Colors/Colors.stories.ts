@@ -4,51 +4,56 @@ import ContrastResult from './components/ContrastResult.vue'
 
 import { SbSelect } from '../../../src/components'
 import { colors } from './constants'
-
 export default {
   title: 'Design/Colors',
   component: ColorPallette,
 }
 
-export const AllColors = () => ({
-  components: { ColorPallette },
-  data: () => ({
-    colors,
-  }),
-  template: `
+export const AllColors = {
+  render: () => ({
+    components: { ColorPallette },
+    data: () => ({
+      colors,
+    }),
+    template: `
   <section style="padding: 20px;">
     <h1 class="sb-mb-4 font-20">Primary palette</h1>
     <ColorPallette :palette="value" :color-name="key" v-for="(value, key) in colors" :key="key" />
   </section>
   `,
-})
-
-export const ColorContrastGrid = () => ({
-  components: { ColorGrid, SbSelect },
-  data: () => ({
-    sample: 'teal',
   }),
-  computed: {
-    selectOptions() {
-      return Object.keys(colors).map((name) => {
-        return {
-          label: name,
-          value: name,
-        }
-      })
+}
+
+export const ColorContrastGrid = {
+  render: () => ({
+    components: { ColorGrid, SbSelect },
+    data: () => ({
+      sample: 'teal',
+    }),
+    computed: {
+      selectOptions() {
+        return Object.keys(colors).map((name) => {
+          return {
+            label: name,
+            value: name,
+          }
+        })
+      },
+      colorsArray() {
+        return Object.entries(colors[this.sample]).reduce(
+          (acc, [name, hex]) => {
+            const colorObject = {
+              name,
+              hex,
+              parentColor: this.sample,
+            }
+            return [...acc, colorObject]
+          },
+          [],
+        )
+      },
     },
-    colorsArray() {
-      return Object.entries(colors[this.sample]).reduce((acc, [name, hex]) => {
-        const colorObject = {
-          name,
-          hex,
-          parentColor: this.sample,
-        }
-        return [...acc, colorObject]
-      }, [])
-    },
-  },
-  template: `
+    template: `
     <h1 class="sb-mb-4">Color Grid</h1>
     <p class="sb-mb-4 font-14 text-gray">Select a color palette to see the contrast grid</p>
     <SbSelect :options="selectOptions" v-model="sample" class="mw-300 sb-mb-4" />
@@ -57,7 +62,8 @@ export const ColorContrastGrid = () => ({
       :sample="sample">
     </ColorGrid>
   `,
-})
+  }),
+}
 
 export const ColorComparator = () => ({
   components: { SbSelect, ContrastResult },

@@ -1,17 +1,10 @@
 import SbNotification from './index'
 
-const NotificationTemplate = (args) => ({
-  components: { SbNotification },
-  setup() {
-    return { args }
-  },
-  template: `
-    <SbNotification
-      v-bind="args"
-    />`,
-})
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
 
-export default {
+type Story = StoryObj<typeof SbNotification>
+
+const meta: Meta<typeof SbNotification> = {
   title: 'Data/SbNotification',
   component: SbNotification,
   parameters: {
@@ -83,16 +76,29 @@ export default {
       },
     },
   },
+  render: (args: Args) => ({
+    components: { SbNotification },
+    setup() {
+      return { args }
+    },
+    template: `
+      <SbNotification
+        v-bind="args"
+      />`,
+  }),
 }
 
-export const Default = NotificationTemplate.bind({})
+export default meta
 
-export const AllStatus = (args) => ({
-  components: { SbNotification },
-  setup() {
-    return { args }
-  },
-  template: `<div>
+export const Default: Story = {}
+
+export const AllStatus: Story = {
+  render: (args: Args) => ({
+    components: { SbNotification },
+    setup() {
+      return { args }
+    },
+    template: `<div>
     <SbNotification
     v-bind="args"
       status="positive"
@@ -114,23 +120,24 @@ export const AllStatus = (args) => ({
       status="negativ"
       />
   </div>`,
-})
-
-AllStatus.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can set the `status` property to change the type of the `SbNotification`',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can set the `status` property to change the type of the `SbNotification`',
+      },
     },
   },
 }
 
-export const AllSizes = (args) => ({
-  components: { SbNotification },
-  setup() {
-    return { args }
-  },
-  template: `<div>
+export const AllSizes: Story = {
+  render: (args: Args) => ({
+    components: { SbNotification },
+    setup() {
+      return { args }
+    },
+    template: `<div>
     <SbNotification
       v-bind="args"
         status="positive"
@@ -154,23 +161,24 @@ export const AllSizes = (args) => ({
       isFull="true"
       />
   </div>`,
-})
-
-AllSizes.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can create notifications of standard size or full size, with or without content',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can create notifications of standard size or full size, with or without content',
+      },
     },
   },
 }
 
-export const ExpandableNotification = (args) => ({
-  components: { SbNotification },
-  setup() {
-    return { args }
-  },
-  template: `<div>
+export const ExpandableNotification: Story = {
+  render: (args: Args) => ({
+    components: { SbNotification },
+    setup() {
+      return { args }
+    },
+    template: `<div>
     <SbNotification
         v-bind="args"
         status="info"
@@ -190,13 +198,13 @@ export const ExpandableNotification = (args) => ({
       isFull="true"
     />
   </div>`,
-})
-
-ExpandableNotification.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can create expansive notifications, to hide part of the content, for this pass the `isExpandable` prop',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can create expansive notifications, to hide part of the content, for this pass the `isExpandable` prop',
+      },
     },
   },
 }

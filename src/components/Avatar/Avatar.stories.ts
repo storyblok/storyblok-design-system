@@ -1,10 +1,14 @@
-import SbAvatar from './SbAvatar'
+import SbAvatar from './SbAvatar.vue'
 
 import { availableColors } from '../../utils'
 import { badgeTypes } from '../Badge/lib'
 
 // default export defines configurations to all stories
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+
+type Story = StoryObj<typeof SbAvatar>
+
+const meta: Meta<typeof SbAvatar> = {
   title: 'Data/SbAvatar',
   component: SbAvatar,
   parameters: {
@@ -16,7 +20,7 @@ export default {
     },
   },
   args: {
-    bgColor: 'primary',
+    bgColor: 'teal',
     description: null,
     descriptionPosition: null,
     name: null,
@@ -105,47 +109,50 @@ export default {
       },
     },
   },
+  render: (args: Args) => ({
+    components: { SbAvatar },
+    setup() {
+      return { args }
+    },
+    template: `
+      <SbAvatar
+        v-bind="args"
+      />
+    `,
+  }),
 }
 
-export const Default = (args) => ({
-  components: { SbAvatar },
-  setup() {
-    return { args }
+export default meta
+
+export const Default: Story = {
+  args: {
+    src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
   },
-  template: `
-    <SbAvatar
-      v-bind="args"
-    />
-  `,
-})
-
-Default.args = {
-  src: 'https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4',
 }
 
-export const Initials = () => ({
-  components: { SbAvatar },
-  template: `<div>
-    <SbAvatar name="John Doe" size="large" bg-color="primary" />
-
-    <SbAvatar name="John Doe" bg-color="primary-dark" />
-
-    <SbAvatar name="John" size="small" bg-color="secondary" />
+export const Initials: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatar },
+    template: `<div>
+    <SbAvatar name="John Doe" size="large" bg-color="teal" />
+    <SbAvatar name="John Doe" bg-color="dark-blue" />
+    <SbAvatar name="John" size="small" bg-color="green" />
   </div>`,
-})
-
-Initials.parameters = {
-  docs: {
-    description: {
-      story:
-        'When you do not pass the `src` attribute, but, pass the `name` attribute, the component will be use the initials from the name',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When you do not pass the `src` attribute, but, pass the `name` attribute, the component will be use the initials from the name',
+      },
     },
   },
 }
 
-export const Sizes = () => ({
-  components: { SbAvatar },
-  template: `<div>
+export const Sizes: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatar },
+    template: `<div>
     <SbAvatar
       src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
       size="large"
@@ -163,20 +170,21 @@ export const Sizes = () => ({
       bg-color="secondary"
     />
   </div>`,
-})
-
-Sizes.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can change the size of the `SbAvatar` components just passing the `size` attribute',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can change the size of the `SbAvatar` components just passing the `size` attribute',
+      },
     },
   },
 }
 
-export const WithUsername = () => ({
-  components: { SbAvatar },
-  template: `<div>
+export const WithUsername: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatar },
+    template: `<div>
     <div style="margin: 10px 0;">
       <SbAvatar
         src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4"
@@ -203,23 +211,24 @@ export const WithUsername = () => ({
       />
     </div>
   </div>`,
-})
-
-WithUsername.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can show the `name` attribute on the right by passing the `showName` attribute',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can show the `name` attribute on the right by passing the `showName` attribute',
+      },
     },
   },
 }
 
-export const WithDescription = (args) => ({
-  components: { SbAvatar },
-  setup() {
-    return { args }
-  },
-  template: `<div>
+export const WithDescription: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatar },
+    setup() {
+      return { args }
+    },
+    template: `<div>
     <div>
       <SbAvatar
         v-bind="args"
@@ -231,29 +240,29 @@ export const WithDescription = (args) => ({
       <SbAvatar
         v-bind="args"
         descriptionPosition="bottom"
-        bg-color="primary-dark"
+        bg-color="dark-blue"
       />
     </div>
   </div>`,
-})
-
-WithDescription.args = {
-  name: 'John Doe',
-  description: 'Created by',
-  showName: true,
-}
-
-WithDescription.parameters = {
-  docs: {
-    description: {
-      story: 'You can add a description to `SbAvatar`',
+  }),
+  args: {
+    name: 'John Doe',
+    description: 'Created by',
+    showName: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'You can add a description to `SbAvatar`',
+      },
     },
   },
 }
 
-export const WithFallback = () => ({
-  components: { SbAvatar },
-  template: `<div>
+export const WithFallback: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatar },
+    template: `<div>
     <SbAvatar
       src="https://google.com"
       size="large"
@@ -268,58 +277,60 @@ export const WithFallback = () => ({
       bg-color="negative"
     />
   </div>`,
-})
-
-WithFallback.parameters = {
-  docs: {
-    description: {
-      story:
-        'When the image is not available, the component will be show a fallback avatar',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When the image is not available, the component will be show a fallback avatar',
+      },
     },
   },
 }
 
-export const WithStatus = (args) => ({
-  components: { SbAvatar },
-  setup() {
-    return { args }
+export const WithStatus: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatar },
+    setup() {
+      return { ...args }
+    },
+    template: '<SbAvatar :src="src" :status="status" :size="size" />',
+  }),
+  args: {
+    src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
+    status: 'positive',
   },
-  template: '<SbAvatar :src="src" :status="status" :size="size" />',
-})
-
-WithStatus.args = {
-  src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
-  status: 'positive',
 }
 
-export const WithInitials = (args) => ({
-  components: { SbAvatar },
-  setup() {
-    return { args }
-  },
-  template: `<div>
+export const WithInitials: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatar },
+    setup() {
+      return { args }
+    },
+    template: `<div>
     <SbAvatar name="John Doe" />
   </div>`,
-})
-
-WithInitials.args = {
-  size: 'large',
-  name: 'Ada Lovelace',
-  bgColor: 'primary',
-}
-
-WithInitials.parameters = {
-  docs: {
-    description: {
-      story:
-        'When you do not use the `src` attribute, the component will use the `name` attribute to show the initials to name',
+  }),
+  args: {
+    size: 'large',
+    name: 'Ada Lovelace',
+    bgColor: 'teal',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When you do not use the `src` attribute, the component will use the `name` attribute to show the initials to name',
+      },
     },
   },
 }
 
-export const WithInternalElements = () => ({
-  components: { SbAvatar },
-  template: `<div>
+export const WithInternalElements: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatar },
+    template: `<div>
     <div style="margin: 10px 0">
       <SbAvatar size="large">
         <img src="https://avatars0.githubusercontent.com/u/20342656?s=460&u=1f62c95c10543861ad74b58a3c03cd774e7a4fa4&v=4" alt="Image of John Doe" />
@@ -332,43 +343,44 @@ export const WithInternalElements = () => ({
       </SbAvatar>
     </div>
   </div>`,
-})
-
-WithInternalElements.parameters = {
-  docs: {
-    description: {
-      story:
-        'You can use internal elements inside `SbAvatar` component, like `<img>` tag',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can use internal elements inside `SbAvatar` component, like `<img>` tag',
+      },
     },
   },
 }
 
-export const WithTooltip = (args) => ({
-  components: { SbAvatar },
-  setup() {
-    return { args }
+export const WithTooltip: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatar },
+    setup() {
+      return { ...args }
+    },
+    template: '<SbAvatar :src="src" :name="name" :use-tooltip="useTooltip" />',
+  }),
+  args: {
+    src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
+    name: 'John Doe',
+    useTooltip: true,
   },
-  template: '<SbAvatar :src="src" :name="name" :use-tooltip="useTooltip" />',
-})
-
-WithTooltip.args = {
-  src: 'https://avatars1.githubusercontent.com/u/7952803?s=400&u=0fd8a3a0721768210fdcedb7607e9ad33af9f7ad&v=4',
-  name: 'John Doe',
-  useTooltip: true,
-}
-
-WithTooltip.parameters = {
-  docs: {
-    description: {
-      story:
-        'When you set the `useTooltip` property, you need to provide a `name` property that should be used for tooltip label. This should not render the user name and description on right',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When you set the `useTooltip` property, you need to provide a `name` property that should be used for tooltip label. This should not render the user name and description on right',
+      },
     },
   },
 }
 
-export const MultipleAvatarsWithTheSameColor = () => ({
-  components: { SbAvatar },
-  template: `<div>
+export const MultipleAvatarsWithTheSameColor: Story = {
+  render: (args: Args) => ({
+    components: { SbAvatar },
+    template: `<div>
     <SbAvatar name="Ada Lovelace" />
 
     <SbAvatar name="Ada Lovelace" />
@@ -409,13 +421,13 @@ export const MultipleAvatarsWithTheSameColor = () => ({
 
     <SbAvatar name="Banū Mūsā" />
   </div>`,
-})
-
-MultipleAvatarsWithTheSameColor.parameters = {
-  docs: {
-    description: {
-      story:
-        'This story is to show for the user when we have a list with a lot of users, and if the avatar initials is the same, the color for this avatar will be the same and not a randomized color.',
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This story is to show for the user when we have a list with a lot of users, and if the avatar initials is the same, the color for this avatar will be the same and not a randomized color.',
+      },
     },
   },
 }

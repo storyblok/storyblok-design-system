@@ -4,7 +4,12 @@ import { availableColors } from '../../utils'
 import availableIcons from '../../lib/all-icons'
 import internalIcons from '../../lib/internal-icons'
 
-export default {
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
+import { ref } from 'vue'
+
+type Story = StoryObj<typeof SbIcon>
+
+const meta: Meta<typeof SbIcon> = {
   title: 'Basic/SbIcon',
   component: SbIcon,
   args: {
@@ -57,43 +62,53 @@ export default {
   },
 }
 
-export const Default = (args) => ({
-  components: { SbIcon },
-  setup() {
-    return { args }
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    components: { SbIcon },
+    setup() {
+      return { args }
+    },
+    template: '<SbIcon v-bind="args" />',
+  }),
+
+  args: {
+    size: 'normal',
   },
-  template: '<SbIcon v-bind="args" />',
-})
-
-Default.args = {
-  size: 'normal',
 }
 
-export const IconWithBackground = () => ({
-  components: { SbIcon },
-  template:
-    '<SbIcon name="toy-brick" color="primary" background-color="primary" />',
-})
-
-export const FallbackIcon = () => ({
-  components: { SbIcon },
-  template: '<SbIcon name="avatar-fallback" size="x-large" color="green" />',
-})
-
-export const LucideIcon = () => ({
-  components: { SbIcon },
-  template: '<div><SbIcon name="cat" size="large" color="green" /></div>',
-})
-
-LucideIcon.args = {
-  name: 'cat',
-  size: 'large',
-  color: 'green',
+export const IconWithBackground: Story = {
+  render: () => ({
+    components: { SbIcon },
+    template:
+      '<SbIcon name="toy-brick" color="primary" background-color="primary" />',
+  }),
 }
 
-export const IconSizes = () => ({
-  components: { SbIcon },
-  template: `
+export const FallbackIcon: Story = {
+  render: () => ({
+    components: { SbIcon },
+    template: '<SbIcon name="avatar-fallback" size="x-large" color="green" />',
+  }),
+}
+
+export const LucideIcon: Story = {
+  render: () => ({
+    components: { SbIcon },
+    template: '<div><SbIcon name="cat" size="large" color="green" /></div>',
+    args: {
+      name: 'cat',
+      size: 'large',
+      color: 'green',
+    },
+  }),
+}
+
+export const IconSizes: Story = {
+  render: () => ({
+    components: { SbIcon },
+    template: `
     <div>
       <div style="margin-bottom: 10px">
         <SbIcon name="chevron-down" size="small" />
@@ -109,19 +124,18 @@ export const IconSizes = () => ({
       </div>
     </div>
   `,
-})
-
-export const StoryblokIcons = (args) => ({
-  components: { SbIcon },
-  setup() {
-    return { args }
-  },
-  data: () => ({
-    icons: [...Object.keys(internalIcons)],
   }),
-  template: `
+}
+
+export const StoryblokIcons: Story = {
+  render: (args: Args) => ({
+    components: { SbIcon },
+    setup() {
+      const icons = [...Object.keys(internalIcons)]
+      return { args, icons }
+    },
+    template: `
   <div>
-    <p style="font-size: 20px; padding-left: 20px; margin: 0;"> All icons </p>
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
       <div
         v-for="(name, index) in icons"
@@ -135,4 +149,5 @@ export const StoryblokIcons = (args) => ({
     </div>
   </div>
   `,
-})
+  }),
+}

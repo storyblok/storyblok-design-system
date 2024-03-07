@@ -1,7 +1,11 @@
 import { SbPopover, placementOptions } from '.'
 import SbButton from '../Button'
+import { ref } from 'vue'
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
 
-export default {
+type Story = StoryObj<typeof SbPopover>
+
+const meta: Meta<typeof SbPopover> = {
   title: 'Interface/SbPopover',
   component: SbPopover,
   args: {
@@ -49,24 +53,22 @@ export default {
   },
 }
 
-// @vue/component
-export const Default = (args) => ({
-  components: {
-    SbButton,
-    SbPopover,
-  },
-  setup() {
-    return { args }
-  },
-  data: () => ({
-    isOpen: false,
-  }),
-  methods: {
-    handleClick() {
-      this.isOpen = !this.isOpen
+export default meta
+
+export const Default: Story = {
+  render: (args: Args) => ({
+    components: {
+      SbButton,
+      SbPopover,
     },
-  },
-  template: `
+    setup() {
+      const isOpen = ref(false)
+      function handleClick() {
+        isOpen.value = !isOpen.value
+      }
+      return { args, isOpen, handleClick }
+    },
+    template: `
     <div>
       <SbButton id="buttontest" label="Click me" @click="handleClick" />
 
@@ -84,25 +86,23 @@ export const Default = (args) => ({
       </SbPopover>
     </div>
   `,
-})
-
-export const UsingPortalTarget = (args) => ({
-  components: {
-    SbButton,
-    SbPopover,
-  },
-  setup() {
-    return { args }
-  },
-  data: () => ({
-    isOpen: false,
   }),
-  methods: {
-    handleClick() {
-      this.isOpen = !this.isOpen
+}
+
+export const UsingPortalTarget: Story = {
+  render: (args: Args) => ({
+    components: {
+      SbButton,
+      SbPopover,
     },
-  },
-  template: `
+    setup() {
+      const isOpen = ref(false)
+      function handleClick() {
+        isOpen.value = !isOpen.value
+      }
+      return { args, isOpen, handleClick }
+    },
+    template: `
     <div>
       <SbButton id="buttontest" label="Click me" @click="handleClick" />
 
@@ -126,4 +126,5 @@ export const UsingPortalTarget = (args) => ({
       </div>
     </div>
   `,
-})
+  }),
+}

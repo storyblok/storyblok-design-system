@@ -1,49 +1,12 @@
 import { SbSlideover } from './index'
 import { SbModalHeader, SbModalContent, SbModalFooter } from '../Modal'
 import SbButton from '../Button'
+import { ref } from 'vue'
+import type { Args, Meta, StoryObj } from '@storybook/vue3'
 
-const SlideoverTemplate = (args) => ({
-  components: {
-    SbSlideover,
-    SbButton,
-    SbModalHeader,
-    SbModalContent,
-    SbModalFooter,
-  },
-  setup: () => ({ args }),
-  methods: {
-    handleToggleSlide() {
-      this.show = !this.show
-    },
-  },
-  data: () => ({
-    show: false,
-  }),
-  template: `
-    <div>
-      <SbButton
-        label="Open Slideover!"
-        @click="handleToggleSlide"
-        style="margin: 0 auto; display: flex; margin-top: 30%;"/>
+type Story = StoryObj<typeof SbSlideover>
 
-      <SbSlideover :is-open="show" v-bind="args" @hide="handleToggleSlide">
-
-        <SbModalHeader :title="args.title" align="left" />
-
-        <SbModalContent style="flex: 1;">
-          <p>Storyblok helps your team to tell your story and...</p>
-        </SbModalContent>
-
-        <SbModalFooter>
-          <SbButton label="Label" variant="primary"/>
-          <SbButton label="Label" variant="tertiary"/>
-        </SbModalFooter>
-      </SbSlideover>
-    </div>
-  `,
-})
-
-export default {
+const meta: Meta<typeof SbSlideover> = {
   title: 'Interface/SbSlideover',
   component: SbSlideover,
   parameters: {
@@ -65,28 +28,75 @@ export default {
       },
     },
   },
-}
-
-export const Default = SlideoverTemplate.bind({})
-
-export const SlideoverOnLeft = SlideoverTemplate.bind({})
-
-SlideoverOnLeft.args = {
-  orientation: 'left',
-}
-
-export const SlideoverWithoutFooter = (args) => ({
-  components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
-  setup: () => ({ args }),
-  methods: {
-    handleToggleSlide() {
-      this.show = !this.show
+  render: (args: Args) => ({
+    components: {
+      SbSlideover,
+      SbButton,
+      SbModalHeader,
+      SbModalContent,
+      SbModalFooter,
     },
-  },
-  data: () => ({
-    show: false,
+    setup() {
+      const show = ref(false)
+      function handleToggleSlide() {
+        show.value = !show.value
+      }
+
+      return {
+        args,
+        show,
+        handleToggleSlide,
+      }
+    },
+    template: `
+      <div>
+        <SbButton
+          label="Open Slideover!"
+          @click="handleToggleSlide"
+          style="margin: 0 auto; display: flex; margin-top: 30%;"/>
+
+        <SbSlideover :is-open="show" v-bind="args" @hide="handleToggleSlide">
+
+          <SbModalHeader :title="args.title" align="left" />
+
+          <SbModalContent style="flex: 1;">
+            <p>Storyblok helps your team to tell your story and...</p>
+          </SbModalContent>
+
+          <SbModalFooter>
+            <SbButton label="Label" variant="primary"/>
+            <SbButton label="Label" variant="tertiary"/>
+          </SbModalFooter>
+        </SbSlideover>
+      </div>
+    `,
   }),
-  template: `
+}
+
+export default meta
+
+export const Default: Story = {}
+export const SlideoverOnLeft: Story = {
+  args: {
+    orientation: 'left',
+  },
+}
+export const SlideoverWithoutFooter: Story = {
+  render: (args: Args) => ({
+    components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
+    setup() {
+      const show = ref(false)
+      function handleToggleSlide() {
+        show.value = !show.value
+      }
+
+      return {
+        args,
+        show,
+        handleToggleSlide,
+      }
+    },
+    template: `
     <div>
       <SbButton
         label="Open Slideover!"
@@ -103,20 +113,24 @@ export const SlideoverWithoutFooter = (args) => ({
       </SbSlideover>
     </div>
   `,
-})
-
-export const SlideoverInMaxSize = (args) => ({
-  components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
-  setup: () => ({ args }),
-  methods: {
-    handleToggleSlide() {
-      this.show = !this.show
-    },
-  },
-  data: () => ({
-    show: false,
   }),
-  template: `
+}
+export const SlideoverInMaxSize: Story = {
+  render: (args: Args) => ({
+    components: { SbSlideover, SbButton, SbModalHeader, SbModalContent },
+    setup() {
+      const show = ref(false)
+      function handleToggleSlide() {
+        show.value = !show.value
+      }
+
+      return {
+        args,
+        show,
+        handleToggleSlide,
+      }
+    },
+    template: `
     <div>
       <SbButton
         label="Open Slideover!"
@@ -135,4 +149,5 @@ export const SlideoverInMaxSize = (args) => ({
       </SbSlideover>
     </div>
   `,
-})
+  }),
+}
