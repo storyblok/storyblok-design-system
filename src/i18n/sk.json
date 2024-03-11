@@ -17,8 +17,6 @@
   "uploading": "Nahrávanie",
   "minAnd": "min a",
   "secLeft": "sec left",
-  "back": "Späť",
-  "next": "Ďalej",
-  "nextTab": "Ďalšia karta",
-  "prevTab": "Predchádzajúca karta"
+  "back": "Späť", 
+  "next": "Ďalej"
 }
