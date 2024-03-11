@@ -12,7 +12,7 @@
 
     <template v-for="(item, index) in items" v-else :key="item.label">
       <SbBreadcrumbItem v-bind="item" />
-      <SbBreadcrumbSeparator v-if="index + 1 < items.length" />
+      <SbBreadcrumbSeparator v-if="hasSeperator(index, items.length)" />
     </template>
 
     <slot />
@@ -66,6 +66,9 @@ export default {
   methods: {
     toggleDropdown() {
       this.showDropdown = !this.showDropdown
+    },
+    hasSeperator(index: number, itemsLength: number) {
+      return index + 1 < itemsLength
     },
   },
 }

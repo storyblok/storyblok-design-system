@@ -18,5 +18,7 @@
   "minAnd": "min i",
   "secLeft": "sek. w lewo",
   "back": "Wstecz",
-  "next": "Następny"
+  "next": "Następny",
+  "nextTab": "Następna karta",
+  "prevTab": "Poprzednia karta"
 }

@@ -18,5 +18,7 @@
   "minAnd": "分と",
   "secLeft": "残り時間",
   "back": "戻る",
-  "next": "次へ"
+  "next": "次へ",
+  "nextTab": "次のタブ",
+  "prevTab": "前のタブ"
 }

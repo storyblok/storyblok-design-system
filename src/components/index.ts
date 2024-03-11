@@ -12,8 +12,8 @@ import SbFormItem from './FormItem'
 import SbGroupButton from './GroupButton'
 import SbIcon from './Icon'
 import SbIconButton from './IconButton'
-import SbIllustration from './Illustration/index.ts'
-import SbEmptyState from './EmptyState/index.ts'
+import SbIllustration from './Illustration/index'
+import SbEmptyState from './EmptyState/index'
 import SbLink from './Link'
 import SbLogo from './Logo'
 import SbNotification from './Notification'
@@ -25,6 +25,7 @@ import SbSeparator from './Separator'
 import SbStep from './Stepper/components/Step'
 import SbStepper from './Stepper'
 import SbTag from './Tag'
+import SbTabMenu from './TabMenu'
 import SbTextField from './TextField'
 import SbToggle from './Toggle'
 import SbTooltip from './Tooltip'
@@ -35,13 +36,12 @@ import SbHeader from './Header'
 export * from './Loading'
 export * from './Breadcrumbs'
 export * from './Card'
-export * from './EditorHeader/index.ts'
+export * from './EditorHeader/index'
 export * from './Menu'
 export * from './Minibrowser'
 export * from './Sidebar'
 export * from './Slideover'
 export * from './TabPanels'
-export * from './Tabs'
 export * from './DataTable'
 export {
   SbModal,
@@ -81,6 +81,7 @@ export {
   SbStep,
   SbStepper,
   SbTag,
+  SbTabMenu,
   SbTextField,
   SbToggle,
   SbTooltip,
