@@ -3,15 +3,8 @@
     <span
       v-for="(dayItem, key) in days"
       :key="key"
-      class="sb-datepicker-days__item"
-      :class="{
-        'sb-datepicker-days__item--inactive': !dayItem.inMonth,
-        'sb-datepicker-days__item--active': dayItem.checked,
-        'sb-datepicker-days__item--current': dayItem.current,
-        'sb-datepicker-days__item--disabled': dayItem.disabled,
-      }"
-      :data-testid="dayItem.dataTestid"
-      @click="($evt) => handleDayClick($evt, dayItem)"
+      :class="returnClasses(dayItem as unknown as DayItem)"
+      @click.stop="handleDayClick(dayItem as unknown as DayItem)"
     >
       {{ dayItem.label }}
     </span>
@@ -20,13 +13,17 @@
 
 <script lang="ts">
 import dayjs from 'dayjs'
+import isBetween from 'dayjs/plugin/isBetween'
+import type { DayItem } from '../utils'
+import type { PropType } from 'vue'
 
+dayjs.extend(isBetween)
 export default {
   name: 'SbDatepickerDays',
 
   props: {
     modelValue: {
-      type: String,
+      type: [String, Array],
       default: null,
     },
     internalDate: {
@@ -45,14 +42,23 @@ export default {
       type: Boolean,
       default: false,
     },
-    dataTestid: {
-      type: String,
-      default: null,
+    range: {
+      type: Array as PropType<string[]>,
+      default: () => [],
     },
   },
 
   emits: ['update:modelValue'],
+
   computed: {
+    firstRangeValue(): string {
+      return this.range[0]
+    },
+
+    secondRangeValue(): string {
+      return this.range[1]
+    },
+
     days() {
       const daysInTheMonth = dayjs(this.internalDate).daysInMonth()
       const firstDate = dayjs(this.internalDate).startOf('month')
@@ -68,22 +74,31 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
+          insideRange: this.insideRange(dateValue),
           disabled: this.isDisabledDay(dateValue),
-          dataTestid: this.getDataTestid(dateValue),
+          dataTestid: this.getDataTestid(dateValue.toString()),
         })
       }
 
       for (let i = 1; i <= daysInTheMonth; i++) {
         const dateValue = dayjs(this.internalDate).date(i)
+        let checked = false
+        if (!this.range || this.firstRangeValue === '') {
+          checked = dayjs(this.modelValue.toString()).isSame(dateValue, 'day')
+        } else {
+          checked = dayjs(this.firstRangeValue).isSame(dateValue, 'day')
+        }
 
         days.push({
           label: i,
           date: dateValue,
           inMonth: true,
-          checked: dayjs(this.modelValue).isSame(dateValue, 'day'),
-          current: dayjs().isSame(dateValue, 'day'),
+          checked,
+          border: this.isOnBorderOfDateRange(dateValue),
+          insideRange: this.insideRange(dateValue),
+          current: !this.hasRange ? dayjs().isSame(dateValue, 'day') : false,
           disabled: this.isDisabledDay(dateValue),
-          dataTestid: this.getDataTestid(dateValue),
+          dataTestid: this.getDataTestid(dateValue.toString()),
         })
       }
 
@@ -97,45 +112,56 @@ export default {
           inMonth: false,
           checked: false,
           current: false,
+          insideRange: this.insideRange(dateValue),
+          border: this.isOnBorderOfDateRange(dateValue),
           disabled: this.isDisabledDay(dateValue),
-          dataTestid: this.getDataTestid(dateValue),
+          dataTestid: this.getDataTestid(dateValue.toString()),
         })
       }
 
       return days
     },
+
+    hasRange() {
+      return this.range[0] !== '' && this.range[1] !== ''
+    },
   },
+
   methods: {
-    handleDayClick($event, day) {
+    getDataTestid(key: string) {
+      return `sb-datepicker-days-${key}`
+    },
+
+    handleDayClick(day: DayItem) {
       if (day.disabled) {
         return
       }
-      $event.stopPropagation()
-      this.$emit('update:modelValue', day.date.format())
+      const value = dayjs(day.date).format()
+      this.$emit('update:modelValue', { value, key: 'day' })
     },
 
     /**
      * get the day of the week
      * @param {dayjs} dayJsInstance
      */
-    $_getDayInWeek(dayJsInstance) {
+    $_getDayInWeek(dayJsInstance: dayjs.Dayjs) {
       const _day = dayJsInstance.day()
       return _day === 0 ? 7 : _day
     },
 
-    isDateDisabledPast(dateValue) {
+    isDateDisabledPast(dateValue: dayjs.Dayjs) {
       return this.disabledPast && dayjs().isAfter(dateValue, 'day')
     },
 
-    isMinDateDisabled(dateValue) {
+    isMinDateDisabled(dateValue: dayjs.Dayjs) {
       return this.minDate && dayjs(dateValue).isBefore(this.minDate, 'day')
     },
 
-    isMaxDateDisabled(dateValue) {
+    isMaxDateDisabled(dateValue: dayjs.Dayjs) {
       return this.maxDate && dayjs(dateValue).isAfter(this.maxDate, 'day')
     },
 
-    isDisabledDay(dateValue) {
+    isDisabledDay(dateValue: dayjs.Dayjs) {
       return !!(
         this.isDateDisabledPast(dateValue) ||
         this.isMinDateDisabled(dateValue) ||
@@ -143,8 +169,37 @@ export default {
       )
     },
 
-    getDataTestid(date) {
-      return `${this.dataTestid}-day-${dayjs(date).format('MM-DD-YYYY')}`
+    returnClasses(dayItem: DayItem) {
+      return [
+        'sb-datepicker-days__item',
+        !dayItem.inMonth && 'sb-datepicker-days__item--inactive',
+        dayItem.checked && 'sb-datepicker-days__item--active',
+        dayItem.current && 'sb-datepicker-days__item--current',
+        dayItem.disabled && 'sb-datepicker-days__item--disabled',
+        dayItem.insideRange && 'sb-datepicker-days__item--range',
+        dayItem.border && 'sb-datepicker-days__item--range-border',
+      ]
+    },
+
+    insideRange(day: dayjs.Dayjs) {
+      const date = dayjs(day.toDate())
+
+      return (
+        this.hasRange &&
+        date.isBetween(
+          this.firstRangeValue,
+          dayjs(this.secondRangeValue),
+          'day',
+          '[]',
+        )
+      )
+    },
+
+    isOnBorderOfDateRange(dateValue: string | dayjs.Dayjs): boolean {
+      return (
+        dayjs(this.firstRangeValue).isSame(dateValue, 'day') ||
+        dayjs(this.secondRangeValue).isSame(dateValue, 'day')
+      )
     },
   },
 }

@@ -70,7 +70,7 @@ export default {
       $event.stopPropagation()
       const value = dayjs(this.internalDate).year(year).format()
 
-      this.$emit('update:modelValue', value)
+      this.$emit('update:modelValue', { value, key: 'years' })
     },
   },
 }
