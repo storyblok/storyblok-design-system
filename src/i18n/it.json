@@ -18,5 +18,7 @@
   "minAnd": "min e",
   "secLeft": "sec rimasti",
   "back": "indietro",
-  "next": "successivo"
+  "next": "successivo",
+  "nextTab": "Tab successivo",
+  "prevTab": "Tab precedente"
 }

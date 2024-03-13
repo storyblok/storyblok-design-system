@@ -18,5 +18,7 @@
   "minAnd": "最小和",
   "secLeft": "剩余秒数",
   "back": "背部",
-  "next": "下一个"
+  "next": "下一个",
+  "nextTab": "下一个选项卡",
+  "prevTab": "上一个选项卡"
 }
