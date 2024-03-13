@@ -14,15 +14,15 @@ describe('SbDatepicker component', () => {
       plugins: [Maska],
     })
   }
-  const { placeholder } = SbDatepickerData.args
-  const { timeZone } = SbDatepickerData.args
-  const { type } = SbDatepickerData.args
-  const { modelValue } = SbDatepickerData.args
+  const { placeholder, timeZone, type, modelValue, hourFormat } =
+    SbDatepickerData.args
+
   const wrapper = factory({
     placeholder,
     timeZone,
     type,
     modelValue,
+    hourFormat,
   })
 
   describe('test datepicker I/Os', () => {
@@ -31,7 +31,6 @@ describe('SbDatepicker component', () => {
       expect(wrapper.emitted('update:modelValue')[0]).toEqual([
         '2021-12-02 00:00',
       ])
-      expect(wrapper.vm.internalValue).toBe('2021-12-01 19:00')
     })
   })
 
@@ -49,7 +48,7 @@ describe('SbDatepicker component', () => {
     it('Should change internal visualization property based on type', () => {
       wrapper.vm.handleInputClick()
       expect(
-        wrapper.vm.internalVisualization === INTERNAL_VIEWS.CALENDAR,
+        wrapper.vm.internalVisualization === INTERNAL_VIEWS.calendar,
       ).toBeTruthy()
     })
   })

@@ -15,18 +15,23 @@ const meta: Meta<typeof SbDatepicker> = {
     type: 'datetime',
     disabled: false,
     isoDate: false,
-    timeZone: 'America/Detroit',
+    tzOffset: '',
+    timeZone: 'America/Sao_Paulo',
     tzTooltip: '',
     minDate: '',
     maxDate: '',
     minuteRange: 1,
     disabledPast: false,
+    hourFormat: '24h',
+    inlineLabel: '',
+    showTimezoneInput: true,
+    disableTimezoneInput: false,
   },
   argTypes: {
     timeZone: {
       name: 'timeZone',
       description:
-        'Use this property to bind the user timezone, for example "America/Detroit". The component will calculate the offset automatically',
+        'Use this property to bind the user timezone, for example "America/Sao_Paulo". The component will calculate the offset automatically',
       defaultValue: 'UTC',
       table: {
         type: { summary: 'String' },
@@ -137,13 +142,43 @@ const meta: Meta<typeof SbDatepicker> = {
         type: 'text',
       },
     },
+    hourFormat: {
+      name: 'hourFormat',
+      options: ['24h', '12h'],
+      description:
+        'Use the property `hour-format` to manipulate the time format shown in the timer select, values ​​can be 24h or 12h',
+      defaultValue: '24h',
+      control: {
+        type: 'select',
+      },
+    },
+    showTimezoneInput: {
+      name: 'showTimezoneInput',
+      description:
+        'With this property you can control whether the time zone input will appear in the time select component',
+      defaultValue: true,
+      control: {
+        type: 'boolean',
+      },
+    },
+    disableTimezoneInput: {
+      name: 'disableTimezoneInput',
+      description:
+        'With this property, the timezone will appear but in disabled mode, the user will only be able to see the timezone, but not change it.',
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    },
   },
   render: (args: Args) => ({
     components: { SbDatepicker },
 
     setup: () => {
       const internalDatetimeValue = ref(
-        dayjs(args.modelValue).format('YYYY-MM-DD HH:mm'),
+        Array.isArray(args.modelValue)
+          ? args.modelValue
+          : dayjs(args.modelValue).format('YYYY-MM-DD HH:mm'),
       )
       return { args, internalDatetimeValue }
     },
@@ -163,9 +198,11 @@ const meta: Meta<typeof SbDatepicker> = {
 export default meta
 
 export const Default: Story = {}
+
 export const TimeType: Story = {
   args: {
     minuteRange: 5,
+    hourFormat: '24h',
   },
 
   parameters: {
@@ -176,6 +213,7 @@ export const TimeType: Story = {
     },
   },
 }
+
 export const DateType: Story = {
   args: {
     type: 'date',
@@ -256,6 +294,22 @@ export const WithInlineLabel: Story = {
     docs: {
       description: {
         story: 'Use the `inline-label` property to add text inside the field',
+      },
+    },
+  },
+}
+
+export const DateRange = {
+  args: {
+    modelValue: ['2023-12-02', '2023-12-20'],
+    type: 'daterange',
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'With the `daterange` prop it is possible to select two different dates and this range value will be output as an array, with the first item being the first date in the range and the second the second date, such as `["2023-12-02", "2023-12-20"]`',
       },
     },
   },

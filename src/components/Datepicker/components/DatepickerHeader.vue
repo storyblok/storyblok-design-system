@@ -1,15 +1,6 @@
 <template>
   <div class="sb-datepicker-header">
     <div class="sb-datepicker-header__top">
-      <button
-        class="sb-datepicker-header__button"
-        :disabled="isDisabled"
-        :data-testid="`${dataTestid}-header-previous-month`"
-        @click="handlePreviousClick"
-      >
-        <SbIcon name="chevron-left" :color="iconColor" />
-      </button>
-
       <p v-if="isCalendarView" class="sb-datepicker-header__title">
         <span data-testid="span-current-month" @click="handleCurrentMonthClick">
           {{ currentMonth }},&nbsp;
@@ -28,14 +19,29 @@
         {{ currentMonth }}, {{ currentYear }}
       </p>
 
-      <button
+      <SbButton
+        v-if="!isDisabled"
         class="sb-datepicker-header__button"
         :disabled="isDisabled"
+        size="small"
+        icon="chevron-left"
+        only-icon
+        variant="tertiary"
+        :data-testid="`${dataTestid}-header-previous-month`"
+        @click="handlePreviousClick"
+      />
+
+      <SbButton
+        v-if="!isDisabled"
+        class="sb-datepicker-header__button"
+        :disabled="isDisabled"
+        size="small"
+        icon="chevron-right"
+        only-icon
+        variant="tertiary"
         :data-testid="`${dataTestid}-header-next-month`"
         @click="handleNextClick"
-      >
-        <SbIcon name="chevron-right" :color="iconColor" />
-      </button>
+      />
     </div>
 
     <SbDatepickerWeek v-if="isCalendarView" />
@@ -49,14 +55,13 @@
 <script lang="ts">
 import dayjs from 'dayjs'
 
-import SbIcon from '../../Icon'
-
-import SbDatepickerWeek from './DatepickerWeek'
+import SbDatepickerWeek from './DatepickerWeek.vue'
+import SbButton from '../../Button'
 
 export default {
   name: 'SbDatepickerHeader',
 
-  components: { SbIcon, SbDatepickerWeek },
+  components: { SbDatepickerWeek, SbButton },
 
   props: {
     isCalendarView: Boolean,
@@ -76,10 +81,6 @@ export default {
   emits: ['change-month', 'change-year', 'next-month', 'previous-month'],
 
   computed: {
-    iconColor() {
-      return this.isDisabled ? 'light-gray' : 'primary-dark'
-    },
-
     isDisabled() {
       return !this.isCalendarView
     },
@@ -122,12 +123,12 @@ export default {
       this.$emit('next-month')
     },
 
-    handleCurrentMonthClick($event) {
+    handleCurrentMonthClick($event: Event) {
       $event.stopPropagation()
       this.$emit('change-month')
     },
 
-    handleCurrentYearClick($event) {
+    handleCurrentYearClick($event: Event) {
       $event.stopPropagation()
       this.$emit('change-year')
     },

@@ -18,5 +18,7 @@
   "minAnd": "min y",
   "secLeft": "sec left",
   "back": "Atrás",
-  "next": "Siguiente"
+  "next": "Siguiente",
+  "nextTab": "siguiente pestaña",
+  "prevTab": "pestaña anterior"
 }

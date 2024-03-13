@@ -388,3 +388,62 @@ export const ModalTarget: Story = {
     disabledTargetDefault: true,
   },
 }
+
+export const MultipleModals: Story = {
+  render: (args: Args) => ({
+    components: {
+      SbModal,
+      SbModalContent,
+      SbButton,
+    },
+
+    setup: () => {
+      const isModalOneVisible = ref(false)
+      const isModalTwoVisible = ref(false)
+
+      const handleShowModal = (type: string) => {
+        if (type === 'one') {
+          isModalOneVisible.value = true
+        }
+        if (type === 'two') {
+          isModalTwoVisible.value = true
+        }
+      }
+
+      return { args, isModalOneVisible, isModalTwoVisible, handleShowModal }
+    },
+
+    template: `
+    <div>
+      <SbButton
+        label="Show Modal One"
+        variant="primary"
+        @click="handleShowModal('one')"
+      />
+      <SbModal
+        v-bind="args"
+        :is-open="isModalOneVisible"
+        @hide="isModalOneVisible = false"
+      >
+        <SbModalContent>
+          <p style="text-align:center">This is modal one</p>
+          <SbButton
+            label="Show Modal Two"
+            variant="primary"
+            @click="handleShowModal('two')"
+          />
+        </SbModalContent>
+      </SbModal>
+      <SbModal
+        v-bind="args"
+        :is-open="isModalTwoVisible"
+        @hide="isModalTwoVisible = false"
+      >
+        <SbModalContent>
+          <p style="text-align:center">This is modal two</p>
+        </SbModalContent>
+      </SbModal>
+    </div>
+  `,
+  }),
+}
