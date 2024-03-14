@@ -40,7 +40,9 @@ $bg-colors: (
 
 .sb-icon {
   display: inline-block;
+  flex-shrink: 0;
   vertical-align: middle;
+  user-select: none;
 
   @include setIconSize($icon-default-size);
   @include setIconColor(currentColor);
