@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import SbPortal from '../Portal'
+import SbPortal from '../Portal/index.vue'
 import { createPopper } from '@popperjs/core/lib/popper-lite'
 import {
   flip,
@@ -223,7 +223,7 @@ export default {
       }
     },
 
-    wrapClose(e) {
+    wrapClose(e: Event) {
       const referenceIsString = typeof this.referenceEl === 'string'
       const hasContains = typeof this.referenceEl?.contains === 'function'
       const targetIsNode = e?.target instanceof Node

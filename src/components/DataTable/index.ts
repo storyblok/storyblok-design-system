@@ -105,7 +105,6 @@ const SbDataTable = {
         this.deselectAll()
       }
     },
-
     selectedRows(value) {
       this.$emit('selected-rows', value)
     },

@@ -144,8 +144,12 @@
   }
 }
 
-@mixin transition($props) {
+// TODO replace $base-transition with this mixin. $base-transition is using `all` which is:
+//  1) is highly unperformant,
+//  2) can cause unexpected transitions
+@mixin transition($props...) {
   transition-duration: 100ms;
   transition-property: $props;
   transition-timing-function: ease-in-out;
+  will-change: $props;
 }
