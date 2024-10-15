@@ -114,7 +114,7 @@ const meta: Meta<typeof SbButton> = {
     },
     label: {
       name: 'label',
-      description: 'Label (inner test)',
+      description: 'Label (inner text)',
       control: {
         type: 'text',
       },
